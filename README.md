@@ -13,6 +13,7 @@ My stretch goal if I can encourage you to help me (please!) is to add MultiMap a
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript export so it helps your career  :)
 
 **Author**
+
 Larry Diamond
 
 
