@@ -1,4 +1,4 @@
-# typescriptcollectionsframework
+# Typescript Collections Framework
 TypeScript port of the Java Collections framework for use in AngularJS
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
