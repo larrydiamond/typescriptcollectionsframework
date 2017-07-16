@@ -1,0 +1,11 @@
+{
+  "name": "typescriptcollectionsframework",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Collections Framework for TypeScript compatible with AngularJS",
+  "homepage": "https://github.com/larrydiamond/typescriptcollectionsframework",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^2.0.0"
+  }
+}
