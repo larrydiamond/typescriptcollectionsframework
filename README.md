@@ -15,4 +15,9 @@ My stretch goal if I can encourage you to help me (please!) is to add MultiMap a
 # Author
 Larry Diamond
 
+# Design methodology
+The goal of this library is to provide a "as Java Collections" framework as possible so that developers can migrate their existing Java knowledge to TypeScript and be productive quicker.   It won't be possible to perfectly recreate the framework since the language is not the same, but the goal is to provide as many of the "normal" classes as possible with as many of the "normal" methods as possible.
 
+Semver will be adopted once we are at version 1.0 of this framework.
+
+In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for the equals method and the hashCode method.   Similarly, we will provide "boxed" implementations of boolean, number, and string that are compatible with this library.
