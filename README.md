@@ -20,4 +20,4 @@ The goal of this library is to provide a "as Java Collections" framework as poss
 
 Semver will be adopted once we are at version 1.0 of this framework.
 
-In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for the equals method and the hashCode method.   Similarly, we will provide "boxed" implementations of boolean, number, and string that are compatible with this library.
+In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for the methods we would need to create in Java.
