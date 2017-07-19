@@ -6,6 +6,9 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {Collectable} from "./Collectable";
+import {Collection} from "./Collection";
+
 export interface List<T extends Collectable> extends Collection<T> {
   /*
   Modified from https://docs.oracle.com/javase/8/docs/api/java/util/List.html

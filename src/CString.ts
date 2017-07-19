@@ -6,6 +6,8 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {Collectable} from "./Collectable";
+
 export class CString implements Collectable {
   str:string;
   constructor (istr:string) {

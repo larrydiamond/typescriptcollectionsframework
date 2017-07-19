@@ -6,6 +6,8 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {Collectable} from "./Collectable";
+
 export class CNumber implements Collectable {
   num:number;
   constructor (inum:number) {
