@@ -92,4 +92,40 @@ describe("Test ArrayList functionality", function () {
         expect(collection.isEmpty()).toEqual(true);
         expect(collection.size()).toEqual(0);
     });
+    it("Test get", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        var product1 = new PetStoreProduct("Catnip", 4.99);
+        var product2 = new PetStoreProduct("ChewToy", 14.99);
+        arraylist.add(product1);
+        arraylist.add(product2);
+        var index0 = arraylist.get(0);
+        var index1 = arraylist.get(1);
+        expect(product1.equals(index0)).toEqual(true);
+        expect(product1.equals(index1)).toEqual(false);
+        expect(product2.equals(index0)).toEqual(false);
+        expect(product2.equals(index1)).toEqual(true);
+    });
+    it("Test indexof", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        var product1 = new PetStoreProduct("Catnip", 4.99);
+        var product2 = new PetStoreProduct("ChewToy", 14.99);
+        arraylist.add(product1);
+        arraylist.add(product2);
+        var product3 = new PetStoreProduct("Goldfish", 9.99);
+        expect(arraylist.indexOf(product1)).toEqual(0);
+        expect(arraylist.indexOf(product2)).toEqual(1);
+        expect(arraylist.indexOf(product3)).toEqual(-1);
+    });
+    it("Test set", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        var product1 = new PetStoreProduct("Catnip", 4.99);
+        var product2 = new PetStoreProduct("ChewToy", 14.99);
+        arraylist.add(product1);
+        arraylist.add(product2);
+        var product3 = new PetStoreProduct("Goldfish", 9.99);
+        arraylist.set(1, product3);
+        expect(arraylist.indexOf(product1)).toEqual(0);
+        expect(arraylist.indexOf(product2)).toEqual(-1);
+        expect(arraylist.indexOf(product3)).toEqual(1);
+    });
 });

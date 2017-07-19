@@ -116,6 +116,55 @@ describe("Test ArrayList functionality", function() {
     expect (collection.size ()).toEqual(0);
   });
 
+  it("Test get", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
 
+    let product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+    let product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+
+    let index0:PetStoreProduct = arraylist.get (0);
+    let index1:PetStoreProduct = arraylist.get (1);
+
+    expect (product1.equals (index0)).toEqual(true);
+    expect (product1.equals (index1)).toEqual(false);
+    expect (product2.equals (index0)).toEqual(false);
+    expect (product2.equals (index1)).toEqual(true);
+  });
+
+  it("Test indexof", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    let product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+    let product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+
+    let product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
+
+    expect (arraylist.indexOf (product1)).toEqual(0);
+    expect (arraylist.indexOf (product2)).toEqual(1);
+    expect (arraylist.indexOf (product3)).toEqual(-1);
+  });
+
+  it("Test set", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    let product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+    let product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+
+    let product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
+
+    arraylist.set (1, product3);
+    expect (arraylist.indexOf (product1)).toEqual(0);
+    expect (arraylist.indexOf (product2)).toEqual(-1);
+    expect (arraylist.indexOf (product3)).toEqual(1);
+  });
 
 });
