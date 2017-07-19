@@ -1,7 +1,7 @@
 {
   "name": "typescriptcollectionsframework",
-  "version": "0.1.1",
-  "private": true,
+  "author": "Larry Diamond <ldiamond@ldiamond.com>",
+  "version": "0.1.3",
   "description": "Collections Framework for TypeScript compatible with AngularJS",
   "homepage": "https://github.com/larrydiamond/typescriptcollectionsframework",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "gulp-typescript": "^3.1.3",
     "jasmine": "^2.5.2",
     "merge2": "^1.0.2",
+    "run-sequence": "^3.0.0",
     "standard-version": "^3.0.0",
     "tslint": "~3.15.1",
     "typescript": "^2.0.0"
@@ -32,6 +33,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://arrydiamond/typescriptcollectionsframework.git"
+    "url": "https://github.com/larrydiamond/typescriptcollectionsframework.git"
   }
 }
