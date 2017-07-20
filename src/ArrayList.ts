@@ -34,6 +34,11 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   elements:T[] = null;
   sizeValue:number = 0;
 
+/**
+ * Appends the specified element to the end of this list
+ * @param {T} t element to Append
+ * @return {boolean} true if this collection changed as a result of the call
+ */
   add (t:T) : boolean {
     if (this.elements == null) {
       this.elements = new Array<T>();
@@ -43,15 +48,28 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     return true;
   }
 
+/**
+ * Removes all of the elements from this list. The list will be empty after this call returns.
+ */
   clear () {
     this.elements = new Array<T>();
     this.sizeValue = 0;
   }
 
+/**
+ * Returns the element at the specified position in this list.
+ * @param {number} index index of the element to return
+ * @return {T} the element at the specified position in this list
+ */
   get(index:number):T {
     return this.elements [index];
   }
 
+/**
+ * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+ * @param {T} t element to search for
+ * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
+ */
   indexOf (t:T) : number {
     if (this.elements == null)
       return -1;
@@ -89,6 +107,13 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     return new ArrayListJIterator(this);
   }
 
+  /* Easy iteration */
+  /*
+  for ((value: T) => void) : void {
+
+  }
+  */
+  
   /* for eventual support of TypeScript iteration */
   [Symbol.iterator] ():Iterator<T> {
     return new ArrayListIterator (this);

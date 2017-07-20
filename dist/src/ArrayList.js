@@ -29,6 +29,11 @@ var ArrayList = (function () {
         this.elements = null;
         this.sizeValue = 0;
     }
+    /**
+     * Appends the specified element to the end of this list
+     * @param {T} t element to Append
+     * @return {boolean} true if this collection changed as a result of the call
+     */
     ArrayList.prototype.add = function (t) {
         if (this.elements == null) {
             this.elements = new Array();
@@ -37,13 +42,26 @@ var ArrayList = (function () {
         this.sizeValue = this.sizeValue + 1;
         return true;
     };
+    /**
+     * Removes all of the elements from this list. The list will be empty after this call returns.
+     */
     ArrayList.prototype.clear = function () {
         this.elements = new Array();
         this.sizeValue = 0;
     };
+    /**
+     * Returns the element at the specified position in this list.
+     * @param {number} index index of the element to return
+     * @return {T} the element at the specified position in this list
+     */
     ArrayList.prototype.get = function (index) {
         return this.elements[index];
     };
+    /**
+     * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+     * @param {T} t element to search for
+     * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
+     */
     ArrayList.prototype.indexOf = function (t) {
         if (this.elements == null)
             return -1;
@@ -73,6 +91,12 @@ var ArrayList = (function () {
     ArrayList.prototype.iterator = function () {
         return new ArrayListJIterator(this);
     };
+    /* Easy iteration */
+    /*
+    for ((value: T) => void) : void {
+  
+    }
+    */
     /* for eventual support of TypeScript iteration */
     ArrayList.prototype[Symbol.iterator] = function () {
         return new ArrayListIterator(this);

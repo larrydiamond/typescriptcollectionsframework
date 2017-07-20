@@ -18,9 +18,27 @@ export declare class ArrayListJIterator<T extends Collectable> implements JItera
 export declare class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     elements: T[];
     sizeValue: number;
+    /**
+     * Appends the specified element to the end of this list
+     * @param {T} t element to Append
+     * @return {boolean} true if this collection changed as a result of the call
+     */
     add(t: T): boolean;
+    /**
+     * Removes all of the elements from this list. The list will be empty after this call returns.
+     */
     clear(): void;
+    /**
+     * Returns the element at the specified position in this list.
+     * @param {number} index index of the element to return
+     * @return {T} the element at the specified position in this list
+     */
     get(index: number): T;
+    /**
+     * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+     * @param {T} t element to search for
+     * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
+     */
     indexOf(t: T): number;
     isEmpty(): boolean;
     set(index: number, element: T): T;

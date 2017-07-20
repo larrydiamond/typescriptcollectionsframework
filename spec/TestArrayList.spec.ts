@@ -176,4 +176,26 @@ describe("Test ArrayList functionality", function() {
     }
   });
 
+/*
+  it("Easy iteration", function () {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+
+    let offset:number = 0;
+
+    arraylist.for (thisElement => {
+      if (offset === 0)
+        expect (thisElement.productName).toEqual (product1.productName);
+      if (offset === 1)
+        expect (thisElement.productName).toEqual (product2.productName);
+      if (offset > 1)
+        fail();
+
+        offset++;
+    });
+  });
+*/
+
 });
