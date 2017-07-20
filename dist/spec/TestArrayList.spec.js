@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("../src/ArrayList");
 describe("Test ArrayList functionality", function () {
-    // This class does nothing I just need to have a class in the test list
+    // PetStoreProduct will be used in testing the ArrayList class
     var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
@@ -17,6 +17,9 @@ describe("Test ArrayList functionality", function () {
         return PetStoreProduct;
     }());
     ;
+    var product1 = new PetStoreProduct("Catnip", 4.99);
+    var product2 = new PetStoreProduct("ChewToy", 14.99);
+    var product3 = new PetStoreProduct("Goldfish", 9.99);
     it("Test Creation state", function () {
         var list = new ArrayList_1.ArrayList();
         expect(list.isEmpty()).toEqual(true);
@@ -29,8 +32,6 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList();
         var list = arraylist;
         var collection = list;
-        var product1 = new PetStoreProduct("Catnip", 4.99);
-        var product2 = new PetStoreProduct("ChewToy", 14.99);
         arraylist.add(product1);
         arraylist.add(product2);
         expect(arraylist.isEmpty()).toEqual(false);
@@ -44,8 +45,6 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList();
         var list = arraylist;
         var collection = list;
-        var product1 = new PetStoreProduct("Catnip", 4.99);
-        var product2 = new PetStoreProduct("ChewToy", 14.99);
         arraylist.add(product1);
         arraylist.add(product2);
         expect(arraylist.isEmpty()).toEqual(false);
@@ -94,8 +93,6 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test get", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        var product1 = new PetStoreProduct("Catnip", 4.99);
-        var product2 = new PetStoreProduct("ChewToy", 14.99);
         arraylist.add(product1);
         arraylist.add(product2);
         var index0 = arraylist.get(0);
@@ -107,25 +104,35 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test indexof", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        var product1 = new PetStoreProduct("Catnip", 4.99);
-        var product2 = new PetStoreProduct("ChewToy", 14.99);
         arraylist.add(product1);
         arraylist.add(product2);
-        var product3 = new PetStoreProduct("Goldfish", 9.99);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
         expect(arraylist.indexOf(product3)).toEqual(-1);
     });
     it("Test set", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        var product1 = new PetStoreProduct("Catnip", 4.99);
-        var product2 = new PetStoreProduct("ChewToy", 14.99);
         arraylist.add(product1);
         arraylist.add(product2);
-        var product3 = new PetStoreProduct("Goldfish", 9.99);
         arraylist.set(1, product3);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(-1);
         expect(arraylist.indexOf(product3)).toEqual(1);
+    });
+    it("Test java iteration", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        arraylist.add(product1);
+        arraylist.add(product2);
+        var offset = 0;
+        for (var iter = arraylist.iterator(); iter.hasNext();) {
+            var psp = iter.next();
+            if (offset === 0)
+                expect(psp.productName).toEqual(product1.productName);
+            if (offset === 1)
+                expect(psp.productName).toEqual(product2.productName);
+            if (offset > 1)
+                fail();
+            offset++;
+        }
     });
 });

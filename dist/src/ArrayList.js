@@ -7,6 +7,23 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/* Java style iterator */
+var ArrayListJIterator = (function () {
+    function ArrayListJIterator(iArrayList) {
+        this.offset = 0;
+        this.arraylist = iArrayList;
+    }
+    ArrayListJIterator.prototype.hasNext = function () {
+        if (this.offset < this.arraylist.size())
+            return true;
+        return false;
+    };
+    ArrayListJIterator.prototype.next = function () {
+        return this.arraylist.get(this.offset++);
+    };
+    return ArrayListJIterator;
+}());
+exports.ArrayListJIterator = ArrayListJIterator;
 var ArrayList = (function () {
     function ArrayList() {
         this.elements = null;
@@ -52,6 +69,40 @@ var ArrayList = (function () {
     ArrayList.prototype.size = function () {
         return this.sizeValue;
     };
+    /* java style iteration */
+    ArrayList.prototype.iterator = function () {
+        return new ArrayListJIterator(this);
+    };
+    /* for eventual support of TypeScript iteration */
+    ArrayList.prototype[Symbol.iterator] = function () {
+        return new ArrayListIterator(this);
+    };
     return ArrayList;
 }());
 exports.ArrayList = ArrayList;
+/* for eventual support of TypeScript iteration */
+var ArrayListIteratorResult = (function () {
+    function ArrayListIteratorResult(iDone, iValue) {
+        this.done = iDone;
+        this.value = iValue;
+    }
+    return ArrayListIteratorResult;
+}());
+exports.ArrayListIteratorResult = ArrayListIteratorResult;
+/* for eventual support of TypeScript iteration */
+var ArrayListIterator = (function () {
+    function ArrayListIterator(iArrayList) {
+        this.offset = 0;
+        this.arraylist = iArrayList;
+    }
+    ArrayListIterator.prototype.next = function (value) {
+        if (this.offset < this.arraylist.size()) {
+            return new ArrayListIteratorResult(false, this.arraylist.get(this.offset++));
+        }
+        else {
+            return new ArrayListIteratorResult(true, null);
+        }
+    };
+    return ArrayListIterator;
+}());
+exports.ArrayListIterator = ArrayListIterator;
