@@ -74,20 +74,37 @@ var ArrayList = (function () {
         }
         return -1;
     };
+    /**
+     * Returns true if this list contains no elements.
+     * @return {boolean} true if this list contains no elements
+     */
     ArrayList.prototype.isEmpty = function () {
         if (this.sizeValue == 0)
             return true;
         return false;
     };
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     * @param {number} index index of the element to replace
+     * @param {T} element element to be stored at the specified position
+     * @return {number} the element previously at the specified position
+     */
     ArrayList.prototype.set = function (index, element) {
         var tmp = this.elements[index];
         this.elements[index] = element;
         return tmp;
     };
+    /**
+     * Returns the number of elements in this list.
+     * @return {number} the number of elements in this list
+     */
     ArrayList.prototype.size = function () {
         return this.sizeValue;
     };
-    /* java style iteration */
+    /**
+     * Returns a Java style iterator
+     * @return {JIterator<T>} the Java style iterator
+     */
     ArrayList.prototype.iterator = function () {
         return new ArrayListJIterator(this);
     };
@@ -97,7 +114,10 @@ var ArrayList = (function () {
   
     }
     */
-    /* for eventual support of TypeScript iteration */
+    /**
+     * Returns a TypeScript style iterator
+     * @return {Iterator<T>} the TypeScript style iterator
+     */
     ArrayList.prototype[Symbol.iterator] = function () {
         return new ArrayListIterator(this);
     };

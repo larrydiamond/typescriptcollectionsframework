@@ -9,15 +9,15 @@
 import {Collectable} from "./Collectable";
 
 export interface JIterator<T extends Collectable> {
-  /*
-  Modified from https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
-  Returns true if the iteration has more elements.
-  */
+/**
+ * Returns true if the iteration has more elements.
+ * @return {boolean} true if the iteration has more elements
+ */
   hasNext():boolean;
 
-  /*
-  Modified from https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
-  Returns the next element in the iteration.
-  */
+/**
+ * Returns the next element in the iteration.
+ * @return {T} the next element in the iteration
+ */
   next():T;
 }

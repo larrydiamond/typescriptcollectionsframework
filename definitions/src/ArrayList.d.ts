@@ -40,10 +40,32 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     indexOf(t: T): number;
+    /**
+     * Returns true if this list contains no elements.
+     * @return {boolean} true if this list contains no elements
+     */
     isEmpty(): boolean;
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     * @param {number} index index of the element to replace
+     * @param {T} element element to be stored at the specified position
+     * @return {number} the element previously at the specified position
+     */
     set(index: number, element: T): T;
+    /**
+     * Returns the number of elements in this list.
+     * @return {number} the number of elements in this list
+     */
     size(): number;
+    /**
+     * Returns a Java style iterator
+     * @return {JIterator<T>} the Java style iterator
+     */
     iterator(): JIterator<T>;
+    /**
+     * Returns a TypeScript style iterator
+     * @return {Iterator<T>} the TypeScript style iterator
+     */
     [Symbol.iterator](): Iterator<T>;
 }
 export declare class ArrayListIteratorResult<T extends Collectable> implements IteratorResult<T> {
