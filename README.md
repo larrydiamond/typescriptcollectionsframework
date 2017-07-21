@@ -21,3 +21,8 @@ The goal of this library is to provide a "as Java Collections" framework as poss
 Semver will be adopted once we are at version 1.0 of this framework.
 
 In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for the methods we would need to create in Java.
+
+# Thank you for all the support.   
+I started this framework 3 days ago and we've already been downloaded more than 150 times.   That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  
+
+Please feel free to email me at ldiamond at ldiamond dot com with feature requests.  I love to hear from people putting my effort to good use.   :)
