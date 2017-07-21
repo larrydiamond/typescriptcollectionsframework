@@ -19,13 +19,13 @@ export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
     this.arraylist = iArrayList;
   }
 
-  hasNext():boolean {
+  public hasNext():boolean {
     if (this.offset < this.arraylist.size())
       return true;
     return false;
   }
 
-  next():T {
+  public next():T {
     return this.arraylist.get (this.offset++);
   }
 }
@@ -39,7 +39,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @param {T} t element to Append
  * @return {boolean} true if this collection changed as a result of the call
  */
-  add (t:T) : boolean {
+  public add (t:T) : boolean {
     if (this.elements == null) {
       this.elements = new Array<T>();
     }
@@ -51,7 +51,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
 /**
  * Removes all of the elements from this list. The list will be empty after this call returns.
  */
-  clear () {
+  public clear () {
     this.elements = new Array<T>();
     this.sizeValue = 0;
   }
@@ -70,7 +70,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @param {T} t element to search for
  * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
  */
-  indexOf (t:T) : number {
+  public indexOf (t:T) : number {
     if (this.elements == null)
       return -1;
     if (this.sizeValue <= 0)
@@ -89,7 +89,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * Returns true if this list contains no elements.
  * @return {boolean} true if this list contains no elements
  */
-  isEmpty () : boolean {
+  public isEmpty () : boolean {
     if (this.sizeValue == 0)
       return true;
 
@@ -102,7 +102,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @param {T} element element to be stored at the specified position
  * @return {number} the element previously at the specified position
  */
-  set(index:number, element:T):T {
+  public set(index:number, element:T):T {
     let tmp:T = this.elements [index];
     this.elements [index] = element;
     return tmp;
@@ -113,7 +113,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * Returns the number of elements in this list.
  * @return {number} the number of elements in this list
  */
-  size () : number {
+  public size () : number {
     return this.sizeValue;
   }
 
@@ -121,7 +121,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
    * Returns a Java style iterator
    * @return {JIterator<T>} the Java style iterator
    */
-  iterator():JIterator<T> {
+  public iterator():JIterator<T> {
     return new ArrayListJIterator(this);
   }
 
@@ -136,7 +136,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
    * Returns a TypeScript style iterator
    * @return {Iterator<T>} the TypeScript style iterator
    */
-  [Symbol.iterator] ():Iterator<T> {
+  public [Symbol.iterator] ():Iterator<T> {
     return new ArrayListIterator (this);
   }
 
@@ -163,7 +163,7 @@ export class ArrayListIterator<T extends Collectable> implements Iterator<T> {
     this.arraylist = iArrayList;
   }
 
-  next(value?: any): IteratorResult<T> {
+  public next(value?: any): IteratorResult<T> {
     if (this.offset < this.arraylist.size()) {
       return new ArrayListIteratorResult(false, this.arraylist.get (this.offset++));
     } else {
