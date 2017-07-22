@@ -20,5 +20,7 @@ export {Map} from "./src/Map";
 export {NaiveMap} from "./src/NaiveMap";
 export {NaiveSet} from "./src/NaiveSet";
 export {NavigableMap} from "./src/NavigableMap";
+export {PriorityQueue} from "./src/PriorityQueue";
+export {Queue} from "./src/Queue";
 export {SortedMap} from "./src/SortedMap";
 export {TreeMap} from "./src/TreeMap";
