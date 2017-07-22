@@ -104,6 +104,14 @@ var NaiveMap = (function () {
             }
         }
     };
+    /**
+     * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+     * @param {K} key the key whose associated value is to be returned
+     * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
+     */
+    NaiveMap.prototype.get = function (key) {
+        return null;
+    };
     return NaiveMap;
 }());
 exports.NaiveMap = NaiveMap;

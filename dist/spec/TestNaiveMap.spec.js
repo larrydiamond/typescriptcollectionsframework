@@ -104,6 +104,11 @@ describe("Test NaiveMap functionality", function () {
         basicTypesMap1.put("Goldfish", 9.99);
         basicTypesMap1.put("AAAAA", 0.99);
         expect(basicTypesMap1.size()).toEqual(4);
+        var oldPrice = basicTypesMap1.put("ChewToy", 9.99);
+        expect(oldPrice).toEqual(14.99);
+        expect(basicTypesMap1.size()).toEqual(4);
+        expect(basicTypesMap1.put("Catnip", 5.99)).toEqual(4.99);
+        expect(basicTypesMap1.size()).toEqual(4);
         basicTypesMap2.put(14.99, "ChewToy");
         basicTypesMap2.put(4.99, "Catnip");
         basicTypesMap2.put(9.99, "Goldfish");
