@@ -52,13 +52,37 @@ export class NaiveMapNode<K,V> {
   }
 }
 
-export class NaiveMap<K extends Collectable,V> implements NavigableMap<K,V> {
+export class NaiveMap<K,V> implements NavigableMap<K,V> {
   private topNode:NaiveMapNode<K,V>;
   private comparator:Comparator<K>;
 
   constructor(iComparator:Comparator<K>) {
     this.comparator = iComparator;
   }
+
+/**
+ * Returns the number of key-value mappings in this map.
+ * @return {number} the number of key-value mappings in this map
+ */
+ public size () : number {
+   if (this.topNode === null)
+     return 0;
+
+   if (this.topNode === undefined)
+     return 0;
+
+   return this.sizeTree (this.topNode.getLeftNode()) + this.sizeTree (this.topNode.getRightNode()) + 1;
+ }
+
+ private sizeTree (n:NaiveMapNode<K,V>):number {
+   if (n === null)
+     return 0;
+
+   if (n === undefined)
+     return 0;
+
+   return this.sizeTree (n.getLeftNode()) + this.sizeTree (n.getRightNode()) + 1;
+ }
 
 /**
  * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.

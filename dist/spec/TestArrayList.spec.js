@@ -9,7 +9,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("../src/ArrayList");
 describe("Test ArrayList functionality", function () {
-    // PetStoreProduct will be used in testing the ArrayList class
+    // PetStoreProduct will be used in testing
     var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;

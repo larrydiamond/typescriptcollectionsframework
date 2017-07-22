@@ -14,7 +14,7 @@ import {List} from "../src/List";
 
 describe("Test ArrayList functionality", function() {
 
-  // PetStoreProduct will be used in testing the ArrayList class
+  // PetStoreProduct will be used in testing
   class PetStoreProduct implements Collectable {
     private productName:string;
     private price:number;

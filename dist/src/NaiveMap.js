@@ -43,6 +43,24 @@ var NaiveMap = (function () {
         this.comparator = iComparator;
     }
     /**
+     * Returns the number of key-value mappings in this map.
+     * @return {number} the number of key-value mappings in this map
+     */
+    NaiveMap.prototype.size = function () {
+        if (this.topNode === null)
+            return 0;
+        if (this.topNode === undefined)
+            return 0;
+        return this.sizeTree(this.topNode.getLeftNode()) + this.sizeTree(this.topNode.getRightNode()) + 1;
+    };
+    NaiveMap.prototype.sizeTree = function (n) {
+        if (n === null)
+            return 0;
+        if (n === undefined)
+            return 0;
+        return this.sizeTree(n.getLeftNode()) + this.sizeTree(n.getRightNode()) + 1;
+    };
+    /**
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
      * @param {K} key key with which the specified value is to be associated
      * @param {V} value value to be associated with the specified key
