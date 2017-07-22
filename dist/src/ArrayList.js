@@ -7,23 +7,6 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-/* Java style iterator */
-var ArrayListJIterator = (function () {
-    function ArrayListJIterator(iArrayList) {
-        this.offset = 0;
-        this.arraylist = iArrayList;
-    }
-    ArrayListJIterator.prototype.hasNext = function () {
-        if (this.offset < this.arraylist.size())
-            return true;
-        return false;
-    };
-    ArrayListJIterator.prototype.next = function () {
-        return this.arraylist.get(this.offset++);
-    };
-    return ArrayListJIterator;
-}());
-exports.ArrayListJIterator = ArrayListJIterator;
 var ArrayList = (function () {
     function ArrayList() {
         this.elements = null;
@@ -124,6 +107,23 @@ var ArrayList = (function () {
     return ArrayList;
 }());
 exports.ArrayList = ArrayList;
+/* Java style iterator */
+var ArrayListJIterator = (function () {
+    function ArrayListJIterator(iArrayList) {
+        this.offset = 0;
+        this.arraylist = iArrayList;
+    }
+    ArrayListJIterator.prototype.hasNext = function () {
+        if (this.offset < this.arraylist.size())
+            return true;
+        return false;
+    };
+    ArrayListJIterator.prototype.next = function () {
+        return this.arraylist.get(this.offset++);
+    };
+    return ArrayListJIterator;
+}());
+exports.ArrayListJIterator = ArrayListJIterator;
 /* for eventual support of TypeScript iteration */
 var ArrayListIteratorResult = (function () {
     function ArrayListIteratorResult(iDone, iValue) {

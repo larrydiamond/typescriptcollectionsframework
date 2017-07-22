@@ -10,26 +10,6 @@
  import {JIterator} from "./JIterator";
  import {List} from "./List";
 
-/* Java style iterator */
-export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
-  private offset:number = 0;
-  private arraylist:ArrayList<T>;
-
-  constructor (iArrayList:ArrayList<T>) {
-    this.arraylist = iArrayList;
-  }
-
-  public hasNext():boolean {
-    if (this.offset < this.arraylist.size())
-      return true;
-    return false;
-  }
-
-  public next():T {
-    return this.arraylist.get (this.offset++);
-  }
-}
-
 export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   elements:T[] = null;
   sizeValue:number = 0;
@@ -142,6 +122,25 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
 
 }
 
+/* Java style iterator */
+export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
+  private offset:number = 0;
+  private arraylist:ArrayList<T>;
+
+  constructor (iArrayList:ArrayList<T>) {
+    this.arraylist = iArrayList;
+  }
+
+  public hasNext():boolean {
+    if (this.offset < this.arraylist.size())
+      return true;
+    return false;
+  }
+
+  public next():T {
+    return this.arraylist.get (this.offset++);
+  }
+}
 
 /* for eventual support of TypeScript iteration */
 export class ArrayListIteratorResult<T extends Collectable> implements IteratorResult<T> {

@@ -8,13 +8,6 @@
 import { Collectable } from "./Collectable";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
-export declare class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
-    private offset;
-    private arraylist;
-    constructor(iArrayList: ArrayList<T>);
-    hasNext(): boolean;
-    next(): T;
-}
 export declare class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     elements: T[];
     sizeValue: number;
@@ -67,6 +60,13 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      * @return {Iterator<T>} the TypeScript style iterator
      */
     [Symbol.iterator](): Iterator<T>;
+}
+export declare class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
+    private offset;
+    private arraylist;
+    constructor(iArrayList: ArrayList<T>);
+    hasNext(): boolean;
+    next(): T;
 }
 export declare class ArrayListIteratorResult<T extends Collectable> implements IteratorResult<T> {
     done: boolean;
