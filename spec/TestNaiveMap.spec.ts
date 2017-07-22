@@ -5,9 +5,10 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
-import {NaiveMap} from "../src/NaiveMap";
-import {Comparator} from "../src/Comparator";
 import {Collectable} from "../src/Collectable";
+import {CollectionUtils} from "../src/CollectionUtils";
+import {Comparator} from "../src/Comparator";
+import {NaiveMap} from "../src/NaiveMap";
 
 describe("Test NaiveMap functionality", function() {
 
@@ -106,49 +107,11 @@ describe("Test NaiveMap functionality", function() {
     blah2:string;
   }
 
-  let sortString:Comparator<string> = {
-    compare(o1:string, o2:string) : number {
-      if (o1 === o2)
-        return 0;
-      if (o1 === null)
-        return -1;
-      if (o1 === undefined)
-        return -1;
-      if (o2 === null)
-        return 1;
-      if (o2 === undefined)
-        return 1;
-      if (o1 < o2)
-        return -1;
-
-      return 1;
-    }
-  }
-
-  let sortNumber:Comparator<number> = {
-    compare(o1:number, o2:number) : number {
-      if (o1 === o2)
-        return 0;
-      if (o1 === null)
-        return -1;
-      if (o1 === undefined)
-        return -1;
-      if (o2 === null)
-        return 1;
-      if (o2 === undefined)
-        return 1;
-      if (o1 < o2)
-        return -1;
-
-      return 1;
-    }
-  }
-
   it("Test Creation state", function() {
     let naiveMap1:NaiveMap<PetStoreProduct,ValueClass> = new NaiveMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     expect (naiveMap1.size ()).toEqual(0);
 
-    let naiveMap2:NaiveMap<string,number> = new NaiveMap<string,number>(sortString);
+    let naiveMap2:NaiveMap<string,number> = new NaiveMap<string,number>(CollectionUtils.getStringComparator());
     expect (naiveMap2.size ()).toEqual(0);
   });
 

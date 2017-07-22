@@ -1,12 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
-* @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
-*/
+var CollectionUtils_1 = require("../src/CollectionUtils");
 var NaiveMap_1 = require("../src/NaiveMap");
 describe("Test NaiveMap functionality", function () {
     // PetStoreProduct will be used in testing
@@ -93,44 +87,10 @@ describe("Test NaiveMap functionality", function () {
         }
         return ValueClass;
     }());
-    var sortString = {
-        compare: function (o1, o2) {
-            if (o1 === o2)
-                return 0;
-            if (o1 === null)
-                return -1;
-            if (o1 === undefined)
-                return -1;
-            if (o2 === null)
-                return 1;
-            if (o2 === undefined)
-                return 1;
-            if (o1 < o2)
-                return -1;
-            return 1;
-        }
-    };
-    var sortNumber = {
-        compare: function (o1, o2) {
-            if (o1 === o2)
-                return 0;
-            if (o1 === null)
-                return -1;
-            if (o1 === undefined)
-                return -1;
-            if (o2 === null)
-                return 1;
-            if (o2 === undefined)
-                return 1;
-            if (o1 < o2)
-                return -1;
-            return 1;
-        }
-    };
     it("Test Creation state", function () {
         var naiveMap1 = new NaiveMap_1.NaiveMap(alphabeticalSortPetStoreProduct);
         expect(naiveMap1.size()).toEqual(0);
-        var naiveMap2 = new NaiveMap_1.NaiveMap(sortString);
+        var naiveMap2 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(naiveMap2.size()).toEqual(0);
     });
 });
