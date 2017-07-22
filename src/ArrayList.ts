@@ -40,7 +40,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @return {boolean} true if this collection changed as a result of the call
  */
   public add (t:T) : boolean {
-    if (this.elements == null) {
+    if (this.elements === null) {
       this.elements = new Array<T>();
     }
     this.elements.push (t);
@@ -71,7 +71,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
  */
   public indexOf (t:T) : number {
-    if (this.elements == null)
+    if (this.elements === null)
       return -1;
     if (this.sizeValue <= 0)
       return -1;
@@ -90,7 +90,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @return {boolean} true if this list contains no elements
  */
   public isEmpty () : boolean {
-    if (this.sizeValue == 0)
+    if (this.sizeValue === 0)
       return true;
 
     return false;

@@ -21,6 +21,12 @@ describe("Test ArrayList functionality", function () {
             return false;
         };
         ;
+        PetStoreProduct.prototype.getProductName = function () {
+            return this.productName;
+        };
+        PetStoreProduct.prototype.getPrice = function () {
+            return this.price;
+        };
         return PetStoreProduct;
     }());
     ;
@@ -134,9 +140,9 @@ describe("Test ArrayList functionality", function () {
         for (var iter = arraylist.iterator(); iter.hasNext();) {
             var psp = iter.next();
             if (offset === 0)
-                expect(psp.productName).toEqual(product1.productName);
+                expect(psp.getProductName()).toEqual(product1.getProductName());
             if (offset === 1)
-                expect(psp.productName).toEqual(product2.productName);
+                expect(psp.getProductName()).toEqual(product2.getProductName());
             if (offset > 1)
                 fail();
             offset++;

@@ -35,7 +35,7 @@ var ArrayList = (function () {
      * @return {boolean} true if this collection changed as a result of the call
      */
     ArrayList.prototype.add = function (t) {
-        if (this.elements == null) {
+        if (this.elements === null) {
             this.elements = new Array();
         }
         this.elements.push(t);
@@ -63,7 +63,7 @@ var ArrayList = (function () {
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     ArrayList.prototype.indexOf = function (t) {
-        if (this.elements == null)
+        if (this.elements === null)
             return -1;
         if (this.sizeValue <= 0)
             return -1;
@@ -79,7 +79,7 @@ var ArrayList = (function () {
      * @return {boolean} true if this list contains no elements
      */
     ArrayList.prototype.isEmpty = function () {
-        if (this.sizeValue == 0)
+        if (this.sizeValue === 0)
             return true;
         return false;
     };

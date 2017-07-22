@@ -16,19 +16,27 @@ describe("Test ArrayList functionality", function() {
 
   // PetStoreProduct will be used in testing the ArrayList class
   class PetStoreProduct implements Collectable {
-    public productName:string;
-    public price:number;
+    private productName:string;
+    private price:number;
 
-    constructor (iName:string, iPrice:number) {
+    public constructor (iName:string, iPrice:number) {
       this.productName = iName;
       this.price = iPrice;
     }
 
-    equals (t:any) : boolean {
+    public equals (t:any) : boolean {
       if (JSON.stringify(this) === JSON.stringify(t))
         return true;
       return false;
     };
+
+    public getProductName ():string {
+      return this.productName;
+    }
+
+    public getPrice():number {
+      return this.price;
+    }
   };
 
   let product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
@@ -174,9 +182,9 @@ describe("Test ArrayList functionality", function() {
       let psp:PetStoreProduct = iter.next ();
 
       if (offset === 0)
-        expect (psp.productName).toEqual (product1.productName);
+        expect (psp.getProductName()).toEqual (product1.getProductName());
       if (offset === 1)
-        expect (psp.productName).toEqual (product2.productName);
+        expect (psp.getProductName()).toEqual (product2.getProductName());
       if (offset > 1)
         fail();
 
