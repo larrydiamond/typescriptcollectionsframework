@@ -6,10 +6,11 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
-import {NaiveMap} from "./NaiveMap";
 import {Comparator} from "./Comparator";
+import {NaiveMap} from "./NaiveMap";
+import {Set} from "./Set";
 
-export class NaiveSet<K> {
+export class NaiveSet<K> implements Set<K> {
   private datastore:NaiveMap<K,number> = null;
 
   private comparator:Comparator<K> = null;

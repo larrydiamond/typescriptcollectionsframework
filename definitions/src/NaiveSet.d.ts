@@ -1,5 +1,13 @@
+/**
+* @license
+* Copyright Larry Diamond 2017 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
 import { Comparator } from "./Comparator";
-export declare class NaiveSet<K> {
+import { Set } from "./Set";
+export declare class NaiveSet<K> implements Set<K> {
     private datastore;
     private comparator;
     constructor(iComparator: Comparator<K>);

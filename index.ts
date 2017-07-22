@@ -13,6 +13,7 @@ export {Collection} from "./src/Collection";
 export {CollectionUtils} from "./src/CollectionUtils";
 export {CString} from "./src/CString";
 export {ImmutableMap} from "./src/ImmutableMap";
+export {ImmutableSet} from "./src/ImmutableSet";
 export {JIterator} from "./src/JIterator";
 export {List} from "./src/List";
 export {Map} from "./src/Map";
