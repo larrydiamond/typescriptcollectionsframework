@@ -38,4 +38,5 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
      * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
      */
     get(key: K): V;
+    private getNode(node, key);
 }

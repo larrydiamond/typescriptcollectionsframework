@@ -20,4 +20,11 @@ export interface Map<K,V> {
   * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
   */
   put (key:K, value:V) : V;
+
+  /**
+   * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+   * @param {K} key the key whose associated value is to be returned
+   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
+   */
+   get (key:K) : V;
 }

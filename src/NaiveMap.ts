@@ -53,8 +53,8 @@ export class NaiveMapNode<K,V> {
 }
 
 export class NaiveMap<K,V> implements NavigableMap<K,V> {
-  private topNode:NaiveMapNode<K,V>;
-  private comparator:Comparator<K>;
+  private topNode:NaiveMapNode<K,V> = null;
+  private comparator:Comparator<K> = null;
 
   constructor(iComparator:Comparator<K>) {
     this.comparator = iComparator;
@@ -135,9 +135,33 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
   */
   public get (key:K) : V {
-    return null;
+    if ((this.topNode === null) || (this.topNode === undefined))
+      return null;
+
+    return this.getNode (this.topNode, key);
   }
 
+  private getNode (node:NaiveMapNode<K,V>, key:K) : V {
+    let comp:number = this.comparator.compare(key, node.getKey());
+    if (comp === 0)
+      return node.getValue();
+
+    if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
+      let nextNode: NaiveMapNode<K,V> = node.getRightNode();
+      if (nextNode === null) {
+        return null;
+      } else {
+        return this.getNode (nextNode, key);
+      }
+    } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
+      let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
+      if (nextNode === null) {
+        return null;
+      } else {
+        return this.getNode (nextNode, key);
+      }
+    }
+  }
 
 
 }

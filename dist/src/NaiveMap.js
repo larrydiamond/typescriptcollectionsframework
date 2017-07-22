@@ -40,6 +40,8 @@ var NaiveMapNode = (function () {
 exports.NaiveMapNode = NaiveMapNode;
 var NaiveMap = (function () {
     function NaiveMap(iComparator) {
+        this.topNode = null;
+        this.comparator = null;
         this.comparator = iComparator;
     }
     /**
@@ -110,7 +112,32 @@ var NaiveMap = (function () {
      * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
      */
     NaiveMap.prototype.get = function (key) {
-        return null;
+        if ((this.topNode === null) || (this.topNode === undefined))
+            return null;
+        return this.getNode(this.topNode, key);
+    };
+    NaiveMap.prototype.getNode = function (node, key) {
+        var comp = this.comparator.compare(key, node.getKey());
+        if (comp === 0)
+            return node.getValue();
+        if (comp < 0) {
+            var nextNode = node.getRightNode();
+            if (nextNode === null) {
+                return null;
+            }
+            else {
+                return this.getNode(nextNode, key);
+            }
+        }
+        else {
+            var nextNode = node.getLeftNode();
+            if (nextNode === null) {
+                return null;
+            }
+            else {
+                return this.getNode(nextNode, key);
+            }
+        }
     };
     return NaiveMap;
 }());
