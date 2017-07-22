@@ -7,37 +7,6 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var NaiveMapNode = (function () {
-    function NaiveMapNode(iKey, iValue) {
-        this.key = iKey;
-        this.value = iValue;
-        this.leftNode = null;
-        this.rightNode = null;
-    }
-    NaiveMapNode.prototype.getKey = function () {
-        return this.key;
-    };
-    NaiveMapNode.prototype.getValue = function () {
-        return this.value;
-    };
-    NaiveMapNode.prototype.setValue = function (v) {
-        this.value = v;
-    };
-    NaiveMapNode.prototype.getLeftNode = function () {
-        return this.leftNode;
-    };
-    NaiveMapNode.prototype.setLeftNode = function (n) {
-        this.leftNode = n;
-    };
-    NaiveMapNode.prototype.getRightNode = function () {
-        return this.rightNode;
-    };
-    NaiveMapNode.prototype.setRightNode = function (n) {
-        this.rightNode = n;
-    };
-    return NaiveMapNode;
-}());
-exports.NaiveMapNode = NaiveMapNode;
 var NaiveMap = (function () {
     function NaiveMap(iComparator) {
         this.topNode = null;
@@ -142,3 +111,34 @@ var NaiveMap = (function () {
     return NaiveMap;
 }());
 exports.NaiveMap = NaiveMap;
+var NaiveMapNode = (function () {
+    function NaiveMapNode(iKey, iValue) {
+        this.key = iKey;
+        this.value = iValue;
+        this.leftNode = null;
+        this.rightNode = null;
+    }
+    NaiveMapNode.prototype.getKey = function () {
+        return this.key;
+    };
+    NaiveMapNode.prototype.getValue = function () {
+        return this.value;
+    };
+    NaiveMapNode.prototype.setValue = function (v) {
+        this.value = v;
+    };
+    NaiveMapNode.prototype.getLeftNode = function () {
+        return this.leftNode;
+    };
+    NaiveMapNode.prototype.setLeftNode = function (n) {
+        this.leftNode = n;
+    };
+    NaiveMapNode.prototype.getRightNode = function () {
+        return this.rightNode;
+    };
+    NaiveMapNode.prototype.setRightNode = function (n) {
+        this.rightNode = n;
+    };
+    return NaiveMapNode;
+}());
+exports.NaiveMapNode = NaiveMapNode;

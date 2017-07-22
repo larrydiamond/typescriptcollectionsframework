@@ -19,7 +19,7 @@
     "run-sequence": "^1.2.2",
     "standard-version": "^4.0.0",
     "tslint": "~3.15.1",
-    "typescript": "^2.0.0"
+    "typescript": "^2.4.2"
   },
   "main": "dist/index.js",
   "typings": "definitions/index",

@@ -17,5 +17,7 @@ var CString_1 = require("./src/CString");
 exports.CString = CString_1.CString;
 var NaiveMap_1 = require("./src/NaiveMap");
 exports.NaiveMap = NaiveMap_1.NaiveMap;
+var NaiveSet_1 = require("./src/NaiveSet");
+exports.NaiveSet = NaiveSet_1.NaiveSet;
 var TreeMap_1 = require("./src/TreeMap");
 exports.TreeMap = TreeMap_1.TreeMap;

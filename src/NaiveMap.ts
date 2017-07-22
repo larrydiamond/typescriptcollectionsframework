@@ -6,51 +6,8 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
-import {Collectable} from "./Collectable";
 import {Comparator} from "./Comparator";
 import {NavigableMap} from "./NavigableMap";
-
-export class NaiveMapNode<K,V> {
-  private key:K;
-  private value:V;
-  private leftNode:NaiveMapNode<K,V>;
-  private rightNode:NaiveMapNode<K,V>;
-
-  public constructor(iKey:K, iValue:V) {
-    this.key = iKey;
-    this.value = iValue;
-    this.leftNode = null;
-    this.rightNode = null;
-  }
-
-  public getKey ():K {
-    return this.key;
-  }
-
-  public getValue ():V {
-    return this.value;
-  }
-
-  public setValue (v:V): void {
-    this.value = v;
-  }
-
-  public getLeftNode(): NaiveMapNode<K,V> {
-    return this.leftNode;
-  }
-
-  public setLeftNode(n:NaiveMapNode<K,V>): void {
-    this.leftNode = n;
-  }
-
-  public getRightNode(): NaiveMapNode<K,V> {
-    return this.rightNode;
-  }
-
-  public setRightNode(n:NaiveMapNode<K,V>): void {
-    this.rightNode = n;
-  }
-}
 
 export class NaiveMap<K,V> implements NavigableMap<K,V> {
   private topNode:NaiveMapNode<K,V> = null;
@@ -162,6 +119,46 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
       }
     }
   }
+}
 
+export class NaiveMapNode<K,V> {
+  private key:K;
+  private value:V;
+  private leftNode:NaiveMapNode<K,V>;
+  private rightNode:NaiveMapNode<K,V>;
 
+  public constructor(iKey:K, iValue:V) {
+    this.key = iKey;
+    this.value = iValue;
+    this.leftNode = null;
+    this.rightNode = null;
+  }
+
+  public getKey ():K {
+    return this.key;
+  }
+
+  public getValue ():V {
+    return this.value;
+  }
+
+  public setValue (v:V): void {
+    this.value = v;
+  }
+
+  public getLeftNode(): NaiveMapNode<K,V> {
+    return this.leftNode;
+  }
+
+  public setLeftNode(n:NaiveMapNode<K,V>): void {
+    this.leftNode = n;
+  }
+
+  public getRightNode(): NaiveMapNode<K,V> {
+    return this.rightNode;
+  }
+
+  public setRightNode(n:NaiveMapNode<K,V>): void {
+    this.rightNode = n;
+  }
 }
