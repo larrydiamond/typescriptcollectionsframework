@@ -91,7 +91,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
  * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
  */
   public put (key:K, value:V) : V {
-    if (this.topNode === null) {
+    if ((this.topNode === null) || (this.topNode === undefined)) {
       let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value);
       this.topNode = newNode;
       return null;

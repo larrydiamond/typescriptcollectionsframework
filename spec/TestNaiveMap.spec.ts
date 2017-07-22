@@ -13,7 +13,7 @@ import {NaiveMap} from "../src/NaiveMap";
 describe("Test NaiveMap functionality", function() {
 
   // PetStoreProduct will be used in testing
-  class PetStoreProduct implements Collectable {
+  class PetStoreProduct {
     private productName:string;
     private price:number;
 
@@ -21,12 +21,6 @@ describe("Test NaiveMap functionality", function() {
       this.productName = iName;
       this.price = iPrice;
     }
-
-    public equals (t:any) : boolean {
-      if (JSON.stringify(this) === JSON.stringify(t))
-        return true;
-      return false;
-    };
 
     public getProductName ():string {
       return this.productName;
@@ -37,8 +31,8 @@ describe("Test NaiveMap functionality", function() {
     }
   };
 
-  let product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
   let product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+  let product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
   let product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
 
   let alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
@@ -113,6 +107,35 @@ describe("Test NaiveMap functionality", function() {
 
     let naiveMap2:NaiveMap<string,number> = new NaiveMap<string,number>(CollectionUtils.getStringComparator());
     expect (naiveMap2.size ()).toEqual(0);
+  });
+
+  it("Test Adding some items", function() {
+    let petStoreMap1:NaiveMap<PetStoreProduct,ValueClass> = new NaiveMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
+    let petStoreMap2:NaiveMap<PetStoreProduct,ValueClass> = new NaiveMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let basicTypesMap1:NaiveMap<string,number> = new NaiveMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap2:NaiveMap<number,string> = new NaiveMap<number,string>(CollectionUtils.getNumberComparator());
+
+    petStoreMap1.put (product1, new ValueClass());
+    petStoreMap1.put (product2, new ValueClass());
+    petStoreMap1.put (product3, new ValueClass());
+    expect (petStoreMap1.size ()).toEqual(3);
+
+    petStoreMap2.put (product1, new ValueClass());
+    petStoreMap2.put (product2, new ValueClass());
+    expect (petStoreMap2.size ()).toEqual(2);
+
+    basicTypesMap1.put ("ChewToy", 14.99);
+    basicTypesMap1.put ("Catnip", 4.99);
+    basicTypesMap1.put ("Goldfish", 9.99);
+    basicTypesMap1.put ("AAAAA", 0.99);
+    expect (basicTypesMap1.size ()).toEqual(4);
+
+    basicTypesMap2.put (14.99, "ChewToy");
+    basicTypesMap2.put (4.99, "Catnip");
+    basicTypesMap2.put (9.99, "Goldfish");
+    basicTypesMap2.put (0.99, "AAAAA");
+    basicTypesMap2.put (5.99, "BBBBB");
+    expect (basicTypesMap2.size ()).toEqual(5);
   });
 
 

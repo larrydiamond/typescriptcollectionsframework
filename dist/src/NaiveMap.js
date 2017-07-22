@@ -67,7 +67,7 @@ var NaiveMap = (function () {
      * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
      */
     NaiveMap.prototype.put = function (key, value) {
-        if (this.topNode === null) {
+        if ((this.topNode === null) || (this.topNode === undefined)) {
             var newNode = new NaiveMapNode(key, value);
             this.topNode = newNode;
             return null;

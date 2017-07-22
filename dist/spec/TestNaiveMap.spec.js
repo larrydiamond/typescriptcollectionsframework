@@ -9,12 +9,6 @@ describe("Test NaiveMap functionality", function () {
             this.productName = iName;
             this.price = iPrice;
         }
-        PetStoreProduct.prototype.equals = function (t) {
-            if (JSON.stringify(this) === JSON.stringify(t))
-                return true;
-            return false;
-        };
-        ;
         PetStoreProduct.prototype.getProductName = function () {
             return this.productName;
         };
@@ -24,8 +18,8 @@ describe("Test NaiveMap functionality", function () {
         return PetStoreProduct;
     }());
     ;
-    var product1 = new PetStoreProduct("Catnip", 4.99);
     var product2 = new PetStoreProduct("ChewToy", 14.99);
+    var product1 = new PetStoreProduct("Catnip", 4.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     var alphabeticalSortPetStoreProduct = {
         compare: function (o1, o2) {
@@ -92,5 +86,29 @@ describe("Test NaiveMap functionality", function () {
         expect(naiveMap1.size()).toEqual(0);
         var naiveMap2 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(naiveMap2.size()).toEqual(0);
+    });
+    it("Test Adding some items", function () {
+        var petStoreMap1 = new NaiveMap_1.NaiveMap(alphabeticalSortPetStoreProduct);
+        var petStoreMap2 = new NaiveMap_1.NaiveMap(priceSortPetStoreProduct);
+        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap2 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getNumberComparator());
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        petStoreMap1.put(product3, new ValueClass());
+        expect(petStoreMap1.size()).toEqual(3);
+        petStoreMap2.put(product1, new ValueClass());
+        petStoreMap2.put(product2, new ValueClass());
+        expect(petStoreMap2.size()).toEqual(2);
+        basicTypesMap1.put("ChewToy", 14.99);
+        basicTypesMap1.put("Catnip", 4.99);
+        basicTypesMap1.put("Goldfish", 9.99);
+        basicTypesMap1.put("AAAAA", 0.99);
+        expect(basicTypesMap1.size()).toEqual(4);
+        basicTypesMap2.put(14.99, "ChewToy");
+        basicTypesMap2.put(4.99, "Catnip");
+        basicTypesMap2.put(9.99, "Goldfish");
+        basicTypesMap2.put(0.99, "AAAAA");
+        basicTypesMap2.put(5.99, "BBBBB");
+        expect(basicTypesMap2.size()).toEqual(5);
     });
 });
