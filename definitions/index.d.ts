@@ -16,6 +16,7 @@ export { ImmutableSet } from "./src/ImmutableSet";
 export { JIterator } from "./src/JIterator";
 export { List } from "./src/List";
 export { Map } from "./src/Map";
+export { MapEntry } from "./src/MapEntry";
 export { NaiveMap } from "./src/NaiveMap";
 export { NaiveSet } from "./src/NaiveSet";
 export { NavigableMap } from "./src/NavigableMap";

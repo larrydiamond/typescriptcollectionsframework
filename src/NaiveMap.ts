@@ -6,7 +6,9 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {BasicMapEntry} from "./BasicMapEntry";
 import {Comparator} from "./Comparator";
+import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 
 export class NaiveMap<K,V> implements NavigableMap<K,V> {
@@ -49,7 +51,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
  */
   public put (key:K, value:V) : V {
     if ((this.topNode === null) || (this.topNode === undefined)) {
-      let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value);
+      let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, null);
       this.topNode = newNode;
       return null;
     }
@@ -68,7 +70,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
       let nextNode: NaiveMapNode<K,V> = node.getRightNode();
       if (nextNode === null) {
-        let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value);
+        let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
         node.setRightNode(newNode);
         return null;
       } else {
@@ -77,7 +79,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
       let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
       if (nextNode === null) {
-        let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value);
+        let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
         node.setLeftNode(newNode);
         return null;
       } else {
@@ -119,6 +121,46 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
       }
     }
   }
+
+  /**
+  * Returns the first (lowest) key currently in this map.
+  * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+  */
+  public firstKey () : K {
+    if (this.topNode === null)
+      return undefined;
+
+    if (this.topNode === undefined)
+      return undefined;
+
+    let node:NaiveMapNode<K,V> = this.topNode;
+    while (node.getLeftNode() !== null) {
+      node = node.getLeftNode();
+    }
+
+    return node.getKey();
+  }
+
+
+  /**
+  * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+  * @return {MapEntry} an entry with the least key, or null if this map is empty
+  */
+  public firstEntry () : MapEntry<K,V> {
+    if (this.topNode === null)
+      return null;
+
+    if (this.topNode === undefined)
+      return null;
+
+    let node:NaiveMapNode<K,V> = this.topNode;
+    while (node.getLeftNode() !== null) {
+      node = node.getLeftNode();
+    }
+
+    return node.getMapEntry();
+  }
+
 }
 
 export class NaiveMapNode<K,V> {
@@ -126,12 +168,14 @@ export class NaiveMapNode<K,V> {
   private value:V;
   private leftNode:NaiveMapNode<K,V>;
   private rightNode:NaiveMapNode<K,V>;
+  private parentNode:NaiveMapNode<K,V>;
 
-  public constructor(iKey:K, iValue:V) {
+  public constructor(iKey:K, iValue:V, iParent:NaiveMapNode<K,V>) {
     this.key = iKey;
     this.value = iValue;
     this.leftNode = null;
     this.rightNode = null;
+    this.parentNode = iParent;
   }
 
   public getKey ():K {
@@ -160,5 +204,17 @@ export class NaiveMapNode<K,V> {
 
   public setRightNode(n:NaiveMapNode<K,V>): void {
     this.rightNode = n;
+  }
+
+  public getParentNode(): NaiveMapNode<K,V> {
+    return this.parentNode;
+  }
+
+  public setParentNode(n:NaiveMapNode<K,V>): void {
+    this.parentNode = n;
+  }
+
+  public getMapEntry(): MapEntry<K,V> {
+    return new BasicMapEntry(this.key, this.value);
   }
 }

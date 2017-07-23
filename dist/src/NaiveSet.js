@@ -7,6 +7,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var NaiveSet = (function () {
     function NaiveSet(iComparator) {
         this.datastore = null;
@@ -52,6 +53,52 @@ var NaiveSet = (function () {
             return false;
         return true;
     };
+    /**
+    * Returns the first (lowest) element currently in this set.
+    * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+    */
+    NaiveSet.prototype.first = function () {
+        return this.datastore.firstKey();
+    };
+    /**
+    * Returns a Java style iterator
+    * @return {JIterator<K>} the Java style iterator
+    */
+    NaiveSet.prototype.iterator = function () {
+        return new NaiveSetJIterator(this);
+    };
+    /**
+    * Returns a TypeScript style iterator
+    * @return {Iterator<K>} the TypeScript style iterator
+    */
+    NaiveSet.prototype[Symbol.iterator] = function () {
+        return new NaiveSetIterator(this);
+    };
     return NaiveSet;
 }());
 exports.NaiveSet = NaiveSet;
+/* Java style iterator */
+var NaiveSetJIterator = (function () {
+    function NaiveSetJIterator(iSet) {
+        this.set = iSet;
+    }
+    NaiveSetJIterator.prototype.hasNext = function () {
+        return false; //TODO
+    };
+    NaiveSetJIterator.prototype.next = function () {
+        return null; //TODO
+    };
+    return NaiveSetJIterator;
+}());
+exports.NaiveSetJIterator = NaiveSetJIterator;
+/* TypeScript iterator */
+var NaiveSetIterator = (function () {
+    function NaiveSetIterator(iSet) {
+        this.set = iSet;
+    }
+    NaiveSetIterator.prototype.next = function (value) {
+        return new BasicIteratorResult_1.BasicIteratorResult(true, null); //TODO
+    };
+    return NaiveSetIterator;
+}());
+exports.NaiveSetIterator = NaiveSetIterator;

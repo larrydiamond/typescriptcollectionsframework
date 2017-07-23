@@ -6,7 +6,9 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
+import {JIterator} from "./JIterator";
 import {NaiveMap} from "./NaiveMap";
 import {Set} from "./Set";
 
@@ -50,7 +52,6 @@ export class NaiveSet<K> implements Set<K> {
     return false;
   }
 
-
   /**
   * Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals
   * @param {K} item object to be checked for containment in this set
@@ -63,4 +64,60 @@ export class NaiveSet<K> implements Set<K> {
     return true;
   }
 
+  /**
+  * Returns the first (lowest) element currently in this set.
+  * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+  */
+  public first () : K {
+    return this.datastore.firstKey();
+  }
+
+  /**
+  * Returns a Java style iterator
+  * @return {JIterator<K>} the Java style iterator
+  */
+  public iterator():JIterator<K> {
+    return new NaiveSetJIterator(this);
+  }
+
+  /**
+  * Returns a TypeScript style iterator
+  * @return {Iterator<K>} the TypeScript style iterator
+  */
+  public [Symbol.iterator] ():Iterator<K> {
+    return new NaiveSetIterator (this);
+  }
+}
+
+
+/* Java style iterator */
+export class NaiveSetJIterator<T> implements JIterator<T> {
+  private location:T;
+  private set:Set<T>;
+
+  constructor (iSet:NaiveSet<T>) {
+    this.set = iSet;
+  }
+
+  public hasNext():boolean {
+    return false; //TODO
+  }
+
+  public next():T {
+    return null; //TODO
+  }
+}
+
+/* TypeScript iterator */
+export class NaiveSetIterator<T> implements Iterator<T> {
+  private location:T;
+  private set:Set<T>;
+
+  constructor (iSet:NaiveSet<T>) {
+    this.set = iSet;
+  }
+
+  public next(value?: any): IteratorResult<T> {
+    return new BasicIteratorResult(true, null); //TODO
+  }
 }

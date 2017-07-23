@@ -6,7 +6,8 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
- import {Collectable} from "./Collectable";
+import {BasicIteratorResult} from "./BasicIteratorResult";
+import {Collectable} from "./Collectable";
  import {JIterator} from "./JIterator";
  import {List} from "./List";
 
@@ -105,13 +106,6 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     return new ArrayListJIterator(this);
   }
 
-  /* Easy iteration */
-  /*
-  for ((value: T) => void) : void {
-
-  }
-  */
-
   /**
    * Returns a TypeScript style iterator
    * @return {Iterator<T>} the TypeScript style iterator
@@ -142,18 +136,7 @@ export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
   }
 }
 
-/* for eventual support of TypeScript iteration */
-export class ArrayListIteratorResult<T extends Collectable> implements IteratorResult<T> {
-    done:boolean;
-    value:T;
-
-    constructor(iDone:boolean, iValue:T) {
-      this.done = iDone;
-      this.value = iValue;
-    }
-}
-
-/* for eventual support of TypeScript iteration */
+/* TypeScript iterator */
 export class ArrayListIterator<T extends Collectable> implements Iterator<T> {
   private offset:number = 0;
   private arraylist:ArrayList<T>;
@@ -164,19 +147,9 @@ export class ArrayListIterator<T extends Collectable> implements Iterator<T> {
 
   public next(value?: any): IteratorResult<T> {
     if (this.offset < this.arraylist.size()) {
-      return new ArrayListIteratorResult(false, this.arraylist.get (this.offset++));
+      return new BasicIteratorResult(false, this.arraylist.get (this.offset++));
     } else {
-      return new ArrayListIteratorResult(true, null);
+      return new BasicIteratorResult(true, null);
     }
   }
-
-/*
-  return?(value?: any): IteratorResult<T> {
-    return null;
-  }
-
-  throw?(e?: any): IteratorResult<T> {
-    return null;
-  }
-  */
 }

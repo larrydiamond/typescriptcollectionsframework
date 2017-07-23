@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var BasicMapEntry_1 = require("./BasicMapEntry");
 var NaiveMap = (function () {
     function NaiveMap(iComparator) {
         this.topNode = null;
@@ -39,7 +40,7 @@ var NaiveMap = (function () {
      */
     NaiveMap.prototype.put = function (key, value) {
         if ((this.topNode === null) || (this.topNode === undefined)) {
-            var newNode = new NaiveMapNode(key, value);
+            var newNode = new NaiveMapNode(key, value, null);
             this.topNode = newNode;
             return null;
         }
@@ -55,7 +56,7 @@ var NaiveMap = (function () {
         if (comp < 0) {
             var nextNode = node.getRightNode();
             if (nextNode === null) {
-                var newNode = new NaiveMapNode(key, value);
+                var newNode = new NaiveMapNode(key, value, node);
                 node.setRightNode(newNode);
                 return null;
             }
@@ -66,7 +67,7 @@ var NaiveMap = (function () {
         else {
             var nextNode = node.getLeftNode();
             if (nextNode === null) {
-                var newNode = new NaiveMapNode(key, value);
+                var newNode = new NaiveMapNode(key, value, node);
                 node.setLeftNode(newNode);
                 return null;
             }
@@ -108,15 +109,46 @@ var NaiveMap = (function () {
             }
         }
     };
+    /**
+    * Returns the first (lowest) key currently in this map.
+    * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+    */
+    NaiveMap.prototype.firstKey = function () {
+        if (this.topNode === null)
+            return undefined;
+        if (this.topNode === undefined)
+            return undefined;
+        var node = this.topNode;
+        while (node.getLeftNode() !== null) {
+            node = node.getLeftNode();
+        }
+        return node.getKey();
+    };
+    /**
+    * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+    * @return {MapEntry} an entry with the least key, or null if this map is empty
+    */
+    NaiveMap.prototype.firstEntry = function () {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var node = this.topNode;
+        while (node.getLeftNode() !== null) {
+            node = node.getLeftNode();
+        }
+        return node.getMapEntry();
+    };
     return NaiveMap;
 }());
 exports.NaiveMap = NaiveMap;
 var NaiveMapNode = (function () {
-    function NaiveMapNode(iKey, iValue) {
+    function NaiveMapNode(iKey, iValue, iParent) {
         this.key = iKey;
         this.value = iValue;
         this.leftNode = null;
         this.rightNode = null;
+        this.parentNode = iParent;
     }
     NaiveMapNode.prototype.getKey = function () {
         return this.key;
@@ -138,6 +170,15 @@ var NaiveMapNode = (function () {
     };
     NaiveMapNode.prototype.setRightNode = function (n) {
         this.rightNode = n;
+    };
+    NaiveMapNode.prototype.getParentNode = function () {
+        return this.parentNode;
+    };
+    NaiveMapNode.prototype.setParentNode = function (n) {
+        this.parentNode = n;
+    };
+    NaiveMapNode.prototype.getMapEntry = function () {
+        return new BasicMapEntry_1.BasicMapEntry(this.key, this.value);
     };
     return NaiveMapNode;
 }());

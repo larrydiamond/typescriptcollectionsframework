@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
- */
 import { Collectable } from "./Collectable";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
@@ -67,11 +60,6 @@ export declare class ArrayListJIterator<T extends Collectable> implements JItera
     constructor(iArrayList: ArrayList<T>);
     hasNext(): boolean;
     next(): T;
-}
-export declare class ArrayListIteratorResult<T extends Collectable> implements IteratorResult<T> {
-    done: boolean;
-    value: T;
-    constructor(iDone: boolean, iValue: T);
 }
 export declare class ArrayListIterator<T extends Collectable> implements Iterator<T> {
     private offset;

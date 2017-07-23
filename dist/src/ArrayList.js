@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var ArrayList = (function () {
     function ArrayList() {
         this.elements = null;
@@ -91,12 +92,6 @@ var ArrayList = (function () {
     ArrayList.prototype.iterator = function () {
         return new ArrayListJIterator(this);
     };
-    /* Easy iteration */
-    /*
-    for ((value: T) => void) : void {
-  
-    }
-    */
     /**
      * Returns a TypeScript style iterator
      * @return {Iterator<T>} the TypeScript style iterator
@@ -124,16 +119,7 @@ var ArrayListJIterator = (function () {
     return ArrayListJIterator;
 }());
 exports.ArrayListJIterator = ArrayListJIterator;
-/* for eventual support of TypeScript iteration */
-var ArrayListIteratorResult = (function () {
-    function ArrayListIteratorResult(iDone, iValue) {
-        this.done = iDone;
-        this.value = iValue;
-    }
-    return ArrayListIteratorResult;
-}());
-exports.ArrayListIteratorResult = ArrayListIteratorResult;
-/* for eventual support of TypeScript iteration */
+/* TypeScript iterator */
 var ArrayListIterator = (function () {
     function ArrayListIterator(iArrayList) {
         this.offset = 0;
@@ -141,10 +127,10 @@ var ArrayListIterator = (function () {
     }
     ArrayListIterator.prototype.next = function (value) {
         if (this.offset < this.arraylist.size()) {
-            return new ArrayListIteratorResult(false, this.arraylist.get(this.offset++));
+            return new BasicIteratorResult_1.BasicIteratorResult(false, this.arraylist.get(this.offset++));
         }
         else {
-            return new ArrayListIteratorResult(true, null);
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
     };
     return ArrayListIterator;

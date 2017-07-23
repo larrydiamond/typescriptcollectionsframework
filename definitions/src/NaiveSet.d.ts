@@ -1,11 +1,5 @@
-/**
-* @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
-*/
 import { Comparator } from "./Comparator";
+import { JIterator } from "./JIterator";
 import { Set } from "./Set";
 export declare class NaiveSet<K> implements Set<K> {
     private datastore;
@@ -33,4 +27,32 @@ export declare class NaiveSet<K> implements Set<K> {
     * @return {boolean} true if this set contains the specified element
     */
     contains(item: K): boolean;
+    /**
+    * Returns the first (lowest) element currently in this set.
+    * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+    */
+    first(): K;
+    /**
+    * Returns a Java style iterator
+    * @return {JIterator<K>} the Java style iterator
+    */
+    iterator(): JIterator<K>;
+    /**
+    * Returns a TypeScript style iterator
+    * @return {Iterator<K>} the TypeScript style iterator
+    */
+    [Symbol.iterator](): Iterator<K>;
+}
+export declare class NaiveSetJIterator<T> implements JIterator<T> {
+    private location;
+    private set;
+    constructor(iSet: NaiveSet<T>);
+    hasNext(): boolean;
+    next(): T;
+}
+export declare class NaiveSetIterator<T> implements Iterator<T> {
+    private location;
+    private set;
+    constructor(iSet: NaiveSet<T>);
+    next(value?: any): IteratorResult<T>;
 }
