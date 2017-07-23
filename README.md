@@ -23,6 +23,9 @@ Semver will be adopted once we are at version 1.0 of this framework.
 In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for the methods we would need to create in Java.
 
 # Thank you for all the support.   
-I started this framework 3 days ago and we've already been downloaded more than 150 times.   That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  
+The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  
 
 Please feel free to email me at ldiamond at ldiamond dot com with feature requests.  I love to hear from people putting my effort to good use.   :)
+
+# Queue and Priority Queue are coming shortly
+A very talented developer has volunteered to implement Queue and PriorityQueue.   He will be properly acknowledged and promoted as a contributor very soon.    Thank you for agreeing to make this framework better, and I really appreciate volunteers!
