@@ -8,7 +8,7 @@
 
 import {ImmutableSet} from "./ImmutableSet";
 
-export interface Set<K> extends ImmutableSet<K> {
+export interface JSet<K> extends ImmutableSet<K> {
 
   /**
   * Adds the specified element to this set if it is not already present.

@@ -8,7 +8,7 @@
 
 import {ImmutableMap} from "./ImmutableMap";
 
-export interface Map<K,V> extends ImmutableMap<K,V> {
+export interface JMap<K,V> extends ImmutableMap<K,V> {
   /**
   * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
   * @param {K} key key with which the specified value is to be associated

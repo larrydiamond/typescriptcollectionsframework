@@ -5,8 +5,8 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
-import { Map } from "./Map";
-export declare class HashMap<K, V> implements Map<K, V> {
+import { JMap } from "./JMap";
+export declare class HashMap<K, V> implements JMap<K, V> {
     private nativeDictionary;
     constructor();
     /**

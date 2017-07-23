@@ -10,9 +10,9 @@ import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
 import {JIterator} from "./JIterator";
 import {NaiveMap} from "./NaiveMap";
-import {Set} from "./Set";
+import {JSet} from "./JSet";
 
-export class NaiveSet<K> implements Set<K> {
+export class NaiveSet<K> implements JSet<K> {
   private datastore:NaiveMap<K,number> = null;
 
   private comparator:Comparator<K> = null;
@@ -93,7 +93,7 @@ export class NaiveSet<K> implements Set<K> {
 /* Java style iterator */
 export class NaiveSetJIterator<T> implements JIterator<T> {
   private location:T;
-  private set:Set<T>;
+  private set:JSet<T>;
 
   constructor (iSet:NaiveSet<T>) {
     this.set = iSet;
@@ -111,7 +111,7 @@ export class NaiveSetJIterator<T> implements JIterator<T> {
 /* TypeScript iterator */
 export class NaiveSetIterator<T> implements Iterator<T> {
   private location:T;
-  private set:Set<T>;
+  private set:JSet<T>;
 
   constructor (iSet:NaiveSet<T>) {
     this.set = iSet;

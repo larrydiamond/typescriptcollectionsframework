@@ -6,9 +6,9 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
-import {Map} from "./Map";
+import {JMap} from "./JMap";
 
-export class HashMap<K,V> implements Map<K,V> {
+export class HashMap<K,V> implements JMap<K,V> {
   private nativeDictionary:any; // Okay, why does this work?   Because each JS engine automatically either does a hashmap or something else for its objects to improve performance.   I'm relying on their hard work.
 
   public constructor () {

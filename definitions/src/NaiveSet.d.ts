@@ -1,7 +1,7 @@
 import { Comparator } from "./Comparator";
 import { JIterator } from "./JIterator";
-import { Set } from "./Set";
-export declare class NaiveSet<K> implements Set<K> {
+import { JSet } from "./JSet";
+export declare class NaiveSet<K> implements JSet<K> {
     private datastore;
     private comparator;
     constructor(iComparator: Comparator<K>);
