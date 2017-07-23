@@ -83,10 +83,30 @@ var NaiveSetJIterator = (function () {
         this.set = iSet;
     }
     NaiveSetJIterator.prototype.hasNext = function () {
-        return false; //TODO
+        if (this.location === undefined) {
+            var first = this.set.first();
+            if (first === undefined)
+                return false;
+            return true;
+        }
+        else {
+            return false; //TODO
+        }
     };
     NaiveSetJIterator.prototype.next = function () {
-        return null; //TODO
+        if (this.location === undefined) {
+            var first = this.set.first();
+            if (first === undefined) {
+                return null;
+            }
+            else {
+                this.location = first;
+                return first;
+            }
+        }
+        else {
+            return null; // TODO
+        }
     };
     return NaiveSetJIterator;
 }());

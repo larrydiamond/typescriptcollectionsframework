@@ -123,10 +123,10 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
   }
 
   /**
-  * Returns the first (lowest) key currently in this map.
-  * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+  * Returns the first (lowest) node currently in this map.
+  * @return {NaiveMapNode} the first (lowest) node currently in this map, returns undefined if the Map is empty
   */
-  public firstKey () : K {
+  private firstMapNode () : NaiveMapNode<K,V> {
     if (this.topNode === null)
       return undefined;
 
@@ -138,26 +138,28 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
       node = node.getLeftNode();
     }
 
-    return node.getKey();
+    return node;
   }
 
+  /**
+  * Returns the first (lowest) key currently in this map.
+  * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+  */
+  public firstKey () : K {
+    let node:NaiveMapNode<K,V> = this.firstMapNode();
+    if (node === undefined)
+      return undefined;
+    return node.getKey();
+  }
 
   /**
   * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
   * @return {MapEntry} an entry with the least key, or null if this map is empty
   */
   public firstEntry () : MapEntry<K,V> {
-    if (this.topNode === null)
-      return null;
-
-    if (this.topNode === undefined)
-      return null;
-
-    let node:NaiveMapNode<K,V> = this.topNode;
-    while (node.getLeftNode() !== null) {
-      node = node.getLeftNode();
-    }
-
+    let node:NaiveMapNode<K,V> = this.firstMapNode();
+    if (node === undefined)
+      return undefined;
     return node.getMapEntry();
   }
 

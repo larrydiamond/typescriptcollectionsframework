@@ -93,18 +93,35 @@ export class NaiveSet<K> implements JSet<K> {
 /* Java style iterator */
 export class NaiveSetJIterator<T> implements JIterator<T> {
   private location:T;
-  private set:JSet<T>;
+  private set:NaiveSet<T>;
 
   constructor (iSet:NaiveSet<T>) {
     this.set = iSet;
   }
 
   public hasNext():boolean {
-    return false; //TODO
+    if (this.location === undefined) { // first time caller
+      let first:T = this.set.first();
+      if (first === undefined)
+        return false;
+      return true;
+    } else { // we've already called this iterator before
+      return false; //TODO
+    }
   }
 
   public next():T {
-    return null; //TODO
+    if (this.location === undefined) { // first time caller
+      let first:T = this.set.first();
+      if (first === undefined) {
+        return null;
+      } else {
+        this.location = first;
+        return first;
+      }
+    } else { // we've already called this iterator before
+      return null; // TODO
+    }
   }
 }
 

@@ -27,6 +27,11 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
     get(key: K): V;
     private getNode(node, key);
     /**
+    * Returns the first (lowest) node currently in this map.
+    * @return {NaiveMapNode} the first (lowest) node currently in this map, returns undefined if the Map is empty
+    */
+    private firstMapNode();
+    /**
     * Returns the first (lowest) key currently in this map.
     * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
     */

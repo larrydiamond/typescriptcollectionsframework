@@ -110,10 +110,10 @@ var NaiveMap = (function () {
         }
     };
     /**
-    * Returns the first (lowest) key currently in this map.
-    * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+    * Returns the first (lowest) node currently in this map.
+    * @return {NaiveMapNode} the first (lowest) node currently in this map, returns undefined if the Map is empty
     */
-    NaiveMap.prototype.firstKey = function () {
+    NaiveMap.prototype.firstMapNode = function () {
         if (this.topNode === null)
             return undefined;
         if (this.topNode === undefined)
@@ -122,6 +122,16 @@ var NaiveMap = (function () {
         while (node.getLeftNode() !== null) {
             node = node.getLeftNode();
         }
+        return node;
+    };
+    /**
+    * Returns the first (lowest) key currently in this map.
+    * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+    */
+    NaiveMap.prototype.firstKey = function () {
+        var node = this.firstMapNode();
+        if (node === undefined)
+            return undefined;
         return node.getKey();
     };
     /**
@@ -129,14 +139,9 @@ var NaiveMap = (function () {
     * @return {MapEntry} an entry with the least key, or null if this map is empty
     */
     NaiveMap.prototype.firstEntry = function () {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
-            return null;
-        var node = this.topNode;
-        while (node.getLeftNode() !== null) {
-            node = node.getLeftNode();
-        }
+        var node = this.firstMapNode();
+        if (node === undefined)
+            return undefined;
         return node.getMapEntry();
     };
     return NaiveMap;
