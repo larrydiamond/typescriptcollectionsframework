@@ -11,6 +11,12 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      */
     add(t: T): boolean;
     /**
+     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * @param {number} index index at which the specified element is to be inserted
+     * @param {T} t element to be inserted
+     */
+    addElement(index: number, t: T): void;
+    /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
     clear(): void;

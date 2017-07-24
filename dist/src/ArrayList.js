@@ -27,6 +27,18 @@ var ArrayList = (function () {
         return true;
     };
     /**
+     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * @param {number} index index at which the specified element is to be inserted
+     * @param {T} t element to be inserted
+     */
+    ArrayList.prototype.addElement = function (index, t) {
+        if (this.elements === null) {
+            this.elements = new Array();
+        }
+        this.elements.splice(index, 0, t);
+        this.sizeValue = this.sizeValue + 1;
+    };
+    /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
     ArrayList.prototype.clear = function () {

@@ -15,19 +15,32 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   elements:T[] = null;
   sizeValue:number = 0;
 
-/**
- * Appends the specified element to the end of this list
- * @param {T} t element to Append
- * @return {boolean} true if this collection changed as a result of the call
- */
-  public add (t:T) : boolean {
-    if (this.elements === null) {
-      this.elements = new Array<T>();
+  /**
+   * Appends the specified element to the end of this list
+   * @param {T} t element to Append
+   * @return {boolean} true if this collection changed as a result of the call
+   */
+    public add (t:T) : boolean {
+      if (this.elements === null) {
+        this.elements = new Array<T>();
+      }
+      this.elements.push (t);
+      this.sizeValue = this.sizeValue + 1;
+      return true;
     }
-    this.elements.push (t);
-    this.sizeValue = this.sizeValue + 1;
-    return true;
-  }
+
+   /**
+    * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+    * @param {number} index index at which the specified element is to be inserted
+    * @param {T} t element to be inserted
+    */
+    public addElement (index:number, t:T) : void {
+      if (this.elements === null) {
+        this.elements = new Array<T>();
+      }
+      this.elements.splice (index, 0, t);
+      this.sizeValue = this.sizeValue + 1;
+    }
 
 /**
  * Removes all of the elements from this list. The list will be empty after this call returns.

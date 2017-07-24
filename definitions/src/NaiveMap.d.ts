@@ -32,14 +32,14 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
     */
     private firstMapNode();
     /**
-    * Returns the first (lowest) key currently in this map.
-    * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
-    */
+     * Returns the first (lowest) key currently in this map.
+     * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+     */
     firstKey(): K;
     /**
-    * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
-    * @return {MapEntry} an entry with the least key, or null if this map is empty
-    */
+     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+     * @return {MapEntry} an entry with the least key, or null if this map is empty
+     */
     firstEntry(): MapEntry<K, V>;
 }
 export declare class NaiveMapNode<K, V> {

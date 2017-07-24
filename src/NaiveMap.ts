@@ -141,7 +141,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     return node;
   }
 
-  /**
+ /**
   * Returns the first (lowest) key currently in this map.
   * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
   */
@@ -152,7 +152,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     return node.getKey();
   }
 
-  /**
+ /**
   * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
   * @return {MapEntry} an entry with the least key, or null if this map is empty
   */
