@@ -17,6 +17,12 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      */
     addElement(index: number, t: T): void;
     /**
+     * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
+     * @param {number} index the index of the element to be removed
+     * @return {T} the element that was removed from the list, undefined if the element does not exist
+     */
+    remove(index: number): T;
+    /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
     clear(): void;

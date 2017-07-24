@@ -231,6 +231,48 @@ describe("Test ArrayList functionality", function() {
     expect (arraylist.indexOf (product3)).toEqual(2);
   });
 
+  it("Test remove at front of list", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+    arraylist.add (product3);
+    arraylist.remove (0);
+
+    expect (arraylist.size ()).toEqual(2);
+    expect (arraylist.indexOf (product1)).toEqual(-1);
+    expect (arraylist.indexOf (product2)).toEqual(0);
+    expect (arraylist.indexOf (product3)).toEqual(1);
+  });
+
+  it("Test remove in middle of list", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+    arraylist.add (product3);
+    arraylist.remove (1);
+
+    expect (arraylist.size ()).toEqual(2);
+    expect (arraylist.indexOf (product1)).toEqual(0);
+    expect (arraylist.indexOf (product2)).toEqual(-1);
+    expect (arraylist.indexOf (product3)).toEqual(1);
+  });
+
+  it("Test remove at end of list", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    arraylist.add (product1);
+    arraylist.add (product2);
+    arraylist.add (product3);
+    arraylist.remove (2);
+
+    expect (arraylist.size ()).toEqual(2);
+    expect (arraylist.indexOf (product1)).toEqual(0);
+    expect (arraylist.indexOf (product2)).toEqual(1);
+    expect (arraylist.indexOf (product3)).toEqual(-1);
+  });
+
 /*
   it("Easy iteration", function () {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
