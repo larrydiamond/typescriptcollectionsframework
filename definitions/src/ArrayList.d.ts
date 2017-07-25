@@ -39,6 +39,18 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      */
     indexOf(t: T): number;
     /**
+     * Returns true if this list contains the specified element.
+     * @param {T} t element whose presence in this list is to be tested
+     * @return {boolean} true if this list contains the specified element
+     */
+    contains(t: T): boolean;
+    /**
+     * Removes the first occurrence of the specified element from this list, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
+     * @param {T} t element to be removed from this list, if present
+     * @return {T} true if this list contained the specified element
+     */
+    removeElement(t: T): boolean;
+    /**
      * Returns true if this list contains no elements.
      * @return {boolean} true if this list contains no elements
      */

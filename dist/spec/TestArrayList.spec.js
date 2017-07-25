@@ -33,6 +33,7 @@ describe("Test ArrayList functionality", function () {
     var product1 = new PetStoreProduct("Catnip", 4.99);
     var product2 = new PetStoreProduct("ChewToy", 14.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);
+    var productNotAvailable = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
     it("Test Creation state", function () {
         var list = new ArrayList_1.ArrayList();
         expect(list.isEmpty()).toEqual(true);
@@ -45,8 +46,11 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList();
         var list = arraylist;
         var collection = list;
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.contains(product3)).toEqual(false);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.contains(product2)).toEqual(true);
+        expect(arraylist.contains(product3)).toEqual(false);
         expect(arraylist.isEmpty()).toEqual(false);
         expect(arraylist.size()).toEqual(2);
         expect(list.isEmpty()).toEqual(false);
@@ -58,38 +62,38 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList();
         var list = arraylist;
         var collection = list;
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.isEmpty()).toEqual(false);
         expect(arraylist.size()).toEqual(2);
         expect(list.isEmpty()).toEqual(false);
         expect(list.size()).toEqual(2);
         expect(collection.isEmpty()).toEqual(false);
         expect(collection.size()).toEqual(2);
-        arraylist.clear();
+        arraylist.clear(); // returns void, nothing to expect :(
         expect(arraylist.isEmpty()).toEqual(true);
         expect(arraylist.size()).toEqual(0);
         expect(list.isEmpty()).toEqual(true);
         expect(list.size()).toEqual(0);
         expect(collection.isEmpty()).toEqual(true);
         expect(collection.size()).toEqual(0);
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.isEmpty()).toEqual(false);
         expect(arraylist.size()).toEqual(2);
         expect(list.isEmpty()).toEqual(false);
         expect(list.size()).toEqual(2);
         expect(collection.isEmpty()).toEqual(false);
         expect(collection.size()).toEqual(2);
-        list.clear();
+        list.clear(); // returns void, nothing to expect :(
         expect(arraylist.isEmpty()).toEqual(true);
         expect(arraylist.size()).toEqual(0);
         expect(list.isEmpty()).toEqual(true);
         expect(list.size()).toEqual(0);
         expect(collection.isEmpty()).toEqual(true);
         expect(collection.size()).toEqual(0);
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.isEmpty()).toEqual(false);
         expect(arraylist.size()).toEqual(2);
         expect(list.isEmpty()).toEqual(false);
@@ -106,8 +110,8 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test get", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         var index0 = arraylist.get(0);
         var index1 = arraylist.get(1);
         expect(product1.equals(index0)).toEqual(true);
@@ -117,25 +121,26 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test indexof", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
         expect(arraylist.indexOf(product3)).toEqual(-1);
     });
     it("Test set", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
-        arraylist.set(1, product3);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        var oldElement = arraylist.set(1, product3);
+        expect(oldElement).toEqual(product2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(-1);
         expect(arraylist.indexOf(product3)).toEqual(1);
     });
     it("Test java iteration", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         var offset = 0;
         for (var iter = arraylist.iterator(); iter.hasNext();) {
             var psp = iter.next();
@@ -150,8 +155,8 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test addElement at front of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         arraylist.addElement(0, product3);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(1);
@@ -160,8 +165,8 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test addElement in middle of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         arraylist.addElement(1, product3);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(0);
@@ -170,8 +175,8 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test addElement at end of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         arraylist.addElement(2, product3);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(0);
@@ -180,10 +185,10 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test remove at front of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
-        arraylist.add(product3);
-        arraylist.remove(0);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.remove(0)).toEqual(product1);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(-1);
         expect(arraylist.indexOf(product2)).toEqual(0);
@@ -191,10 +196,10 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test remove in middle of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
-        arraylist.add(product3);
-        arraylist.remove(1);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.remove(1)).toEqual(product2);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(-1);
@@ -202,14 +207,69 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test remove at end of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
-        arraylist.add(product1);
-        arraylist.add(product2);
-        arraylist.add(product3);
-        arraylist.remove(2);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.remove(2)).toEqual(product3);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
         expect(arraylist.indexOf(product3)).toEqual(-1);
+    });
+    it("Test removeElement at front of list", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.removeElement(product1)).toEqual(true);
+        expect(arraylist.size()).toEqual(2);
+        expect(arraylist.indexOf(product1)).toEqual(-1);
+        expect(arraylist.indexOf(product2)).toEqual(0);
+        expect(arraylist.indexOf(product3)).toEqual(1);
+    });
+    it("Test removeElement in middle of list", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.removeElement(product2)).toEqual(true);
+        expect(arraylist.size()).toEqual(2);
+        expect(arraylist.indexOf(product1)).toEqual(0);
+        expect(arraylist.indexOf(product2)).toEqual(-1);
+        expect(arraylist.indexOf(product3)).toEqual(1);
+    });
+    it("Test removeElement at end of list", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.removeElement(product3)).toEqual(true);
+        expect(arraylist.size()).toEqual(2);
+        expect(arraylist.indexOf(product1)).toEqual(0);
+        expect(arraylist.indexOf(product2)).toEqual(1);
+        expect(arraylist.indexOf(product3)).toEqual(-1);
+    });
+    it("Test duplicates in array", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.size()).toEqual(4);
+        expect(arraylist.removeElement(product1)).toEqual(true);
+        expect(arraylist.size()).toEqual(3);
+        expect(arraylist.indexOf(product1)).toEqual(2);
+        expect(arraylist.indexOf(product2)).toEqual(0);
+        expect(arraylist.indexOf(product3)).toEqual(1);
+        arraylist.add(product3);
+        expect(arraylist.size()).toEqual(4);
+        expect(arraylist.indexOf(product3)).toEqual(1);
+        expect(arraylist.removeElement(product3)).toEqual(true);
+        expect(arraylist.size()).toEqual(3);
+        expect(arraylist.indexOf(product1)).toEqual(1);
+        expect(arraylist.indexOf(product2)).toEqual(0);
+        expect(arraylist.indexOf(product3)).toEqual(2);
+        expect(arraylist.removeElement(productNotAvailable)).toEqual(false);
     });
     /*
       it("Easy iteration", function () {
