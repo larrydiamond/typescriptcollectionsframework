@@ -60,6 +60,13 @@ private printMapNode (node:NaiveMapNode<K,V>) : void {
 }
 
 /**
+ * Removes all of the mappings from this map. The map will be empty after this call returns.
+ */
+ public clear () : void {
+   this.topNode = null;
+}
+
+/**
  * Returns the comparator used to order the keys in this map
  * @return {Comparator} the comparator used to order the keys in this map
  */
@@ -137,7 +144,7 @@ public size () : number {
   }
 
  /**
-  * Returns true if this map contains a mapping for the specified key.
+  * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
   * @param {K} key key whose presence in this map is to be tested
   * @return {boolean} true if this map contains a mapping for the specified key
   */
@@ -151,10 +158,10 @@ public size () : number {
     return true;
   }
 
-  private getNode (node:NaiveMapNode<K,V>, key:K) : V {
+  private getNode (node:NaiveMapNode<K,V>, key:K) : NaiveMapNode<K,V> {
     let comp:number = this.mapComparator.compare(key, node.getKey());
     if (comp === 0)
-      return node.getValue();
+      return node;
 
     if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
       let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
@@ -182,8 +189,29 @@ public size () : number {
     if ((this.topNode === null) || (this.topNode === undefined))
       return null;
 
-    return this.getNode (this.topNode, key);
+    let tmp:NaiveMapNode<K,V> = this.getNode (this.topNode, key);
+    if (tmp === null)
+      return null;
+
+    return tmp.getValue();
   }
+
+  /**
+   * Removes the mapping for this key from this TreeMap if present.
+   * @param {K} key key for which mapping should be removed
+   * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+   */
+   public remove (key:K) : V {
+     if ((this.topNode === null) || (this.topNode === undefined))
+      return null;
+
+     let tmp:NaiveMapNode<K,V> = this.getNode (this.topNode, key);
+     if (tmp === null) {
+       return null;
+     }
+
+     return null;
+   }
 
   /**
   * Returns the first (lowest) node currently in this map.

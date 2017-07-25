@@ -206,7 +206,8 @@ describe("Test NaiveMap functionality", function() {
 
   it("Test Adding three native items", function() {
     let basicTypesMap1:NaiveMap<string,number> = new NaiveMap<string,number>(CollectionUtils.getStringComparator());
-    basicTypesMap1.printMap();
+    basicTypesMap1.clear();
+    expect (basicTypesMap1.size ()).toEqual(0);
 
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
@@ -228,6 +229,11 @@ describe("Test NaiveMap functionality", function() {
     expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("Catnip", 4.99));
     expect (basicTypesMap1.lastKey()).toEqual("Leash");
     expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("Leash", 1.99));
+
+    expect (basicTypesMap1.size ()).toEqual(3);
+    basicTypesMap1.clear();
+    expect (basicTypesMap1.size ()).toEqual(0);
+
   });
 
   it("Test Adding some items", function() {

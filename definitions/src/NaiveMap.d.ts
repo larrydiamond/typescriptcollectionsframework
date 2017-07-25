@@ -8,6 +8,10 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
     printMap(): void;
     private printMapNode(node);
     /**
+     * Removes all of the mappings from this map. The map will be empty after this call returns.
+     */
+    clear(): void;
+    /**
      * Returns the comparator used to order the keys in this map
      * @return {Comparator} the comparator used to order the keys in this map
      */
@@ -27,7 +31,7 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
     put(key: K, value: V): V;
     private putNode(node, key, value);
     /**
-     * Returns true if this map contains a mapping for the specified key.
+     * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
      * @param {K} key key whose presence in this map is to be tested
      * @return {boolean} true if this map contains a mapping for the specified key
      */
@@ -39,6 +43,12 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
      * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
      */
     get(key: K): V;
+    /**
+     * Removes the mapping for this key from this TreeMap if present.
+     * @param {K} key key for which mapping should be removed
+     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+     */
+    remove(key: K): V;
     /**
     * Returns the first (lowest) node currently in this map.
     * @return {NaiveMapNode} the first (lowest) node currently in this map, returns null if the Map is empty

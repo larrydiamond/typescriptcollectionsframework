@@ -55,6 +55,12 @@ var NaiveMap = (function () {
         }
     };
     /**
+     * Removes all of the mappings from this map. The map will be empty after this call returns.
+     */
+    NaiveMap.prototype.clear = function () {
+        this.topNode = null;
+    };
+    /**
      * Returns the comparator used to order the keys in this map
      * @return {Comparator} the comparator used to order the keys in this map
      */
@@ -124,7 +130,7 @@ var NaiveMap = (function () {
         }
     };
     /**
-     * Returns true if this map contains a mapping for the specified key.
+     * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
      * @param {K} key key whose presence in this map is to be tested
      * @return {boolean} true if this map contains a mapping for the specified key
      */
@@ -138,7 +144,7 @@ var NaiveMap = (function () {
     NaiveMap.prototype.getNode = function (node, key) {
         var comp = this.mapComparator.compare(key, node.getKey());
         if (comp === 0)
-            return node.getValue();
+            return node;
         if (comp < 0) {
             var nextNode = node.getLeftNode();
             if (nextNode === null) {
@@ -166,7 +172,24 @@ var NaiveMap = (function () {
     NaiveMap.prototype.get = function (key) {
         if ((this.topNode === null) || (this.topNode === undefined))
             return null;
-        return this.getNode(this.topNode, key);
+        var tmp = this.getNode(this.topNode, key);
+        if (tmp === null)
+            return null;
+        return tmp.getValue();
+    };
+    /**
+     * Removes the mapping for this key from this TreeMap if present.
+     * @param {K} key key for which mapping should be removed
+     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+     */
+    NaiveMap.prototype.remove = function (key) {
+        if ((this.topNode === null) || (this.topNode === undefined))
+            return null;
+        var tmp = this.getNode(this.topNode, key);
+        if (tmp === null) {
+            return null;
+        }
+        return null;
     };
     /**
     * Returns the first (lowest) node currently in this map.
