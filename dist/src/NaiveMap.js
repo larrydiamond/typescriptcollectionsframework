@@ -11,13 +11,60 @@ var BasicMapEntry_1 = require("./BasicMapEntry");
 var NaiveMap = (function () {
     function NaiveMap(iComparator) {
         this.topNode = null;
-        this.comparator = null;
-        this.comparator = iComparator;
+        this.mapComparator = null;
+        this.mapComparator = iComparator;
     }
+    NaiveMap.prototype.printMap = function () {
+        if (this.topNode === null) {
+            console.log("top node is null");
+            return;
+        }
+        if (this.topNode === undefined) {
+            console.log("top node is undefined");
+            return;
+        }
+        console.log("New Tree: size = " + this.size());
+        this.printMapNode(this.topNode);
+        console.log("End of Tree");
+    };
+    NaiveMap.prototype.printMapNode = function (node) {
+        console.log("New Node: key = " + node.getKey() + " value = " + node.getValue());
+        if (node.getParentNode() !== null) {
+            console.log("Parent key = " + node.getParentNode().getKey());
+        }
+        else {
+            console.log("Parent node is null");
+        }
+        if (node.getLeftNode() !== null) {
+            console.log("Left key = " + node.getLeftNode().getKey());
+        }
+        else {
+            console.log("Left node is null");
+        }
+        if (node.getRightNode() !== null) {
+            console.log("Right key = " + node.getRightNode().getKey());
+        }
+        else {
+            console.log("Right node is null");
+        }
+        if (node.getLeftNode() !== null) {
+            this.printMapNode(node.getLeftNode());
+        }
+        if (node.getRightNode() !== null) {
+            this.printMapNode(node.getRightNode());
+        }
+    };
     /**
-     * Returns the number of key-value mappings in this map.
-     * @return {number} the number of key-value mappings in this map
+     * Returns the comparator used to order the keys in this map
+     * @return {Comparator} the comparator used to order the keys in this map
      */
+    NaiveMap.prototype.comparator = function () {
+        return this.mapComparator;
+    };
+    /**
+    * Returns the number of key-value mappings in this map.
+    * @return {number} the number of key-value mappings in this map
+    */
     NaiveMap.prototype.size = function () {
         if (this.topNode === null)
             return 0;
@@ -47,13 +94,24 @@ var NaiveMap = (function () {
         return this.putNode(this.topNode, key, value);
     };
     NaiveMap.prototype.putNode = function (node, key, value) {
-        var comp = this.comparator.compare(key, node.getKey());
+        var comp = this.mapComparator.compare(key, node.getKey());
         if (comp === 0) {
             var tmpV = node.getValue();
             node.setValue(value);
             return tmpV;
         }
         if (comp < 0) {
+            var nextNode = node.getLeftNode();
+            if (nextNode === null) {
+                var newNode = new NaiveMapNode(key, value, node);
+                node.setLeftNode(newNode);
+                return null;
+            }
+            else {
+                return this.putNode(nextNode, key, value);
+            }
+        }
+        else {
             var nextNode = node.getRightNode();
             if (nextNode === null) {
                 var newNode = new NaiveMapNode(key, value, node);
@@ -64,15 +122,39 @@ var NaiveMap = (function () {
                 return this.putNode(nextNode, key, value);
             }
         }
-        else {
+    };
+    /**
+     * Returns true if this map contains a mapping for the specified key.
+     * @param {K} key key whose presence in this map is to be tested
+     * @return {boolean} true if this map contains a mapping for the specified key
+     */
+    NaiveMap.prototype.containsKey = function (key) {
+        if ((this.topNode === null) || (this.topNode === undefined))
+            return false;
+        if (this.getNode(this.topNode, key) === null)
+            return false;
+        return true;
+    };
+    NaiveMap.prototype.getNode = function (node, key) {
+        var comp = this.mapComparator.compare(key, node.getKey());
+        if (comp === 0)
+            return node.getValue();
+        if (comp < 0) {
             var nextNode = node.getLeftNode();
             if (nextNode === null) {
-                var newNode = new NaiveMapNode(key, value, node);
-                node.setLeftNode(newNode);
                 return null;
             }
             else {
-                return this.putNode(nextNode, key, value);
+                return this.getNode(nextNode, key);
+            }
+        }
+        else {
+            var nextNode = node.getRightNode();
+            if (nextNode === null) {
+                return null;
+            }
+            else {
+                return this.getNode(nextNode, key);
             }
         }
     };
@@ -86,38 +168,15 @@ var NaiveMap = (function () {
             return null;
         return this.getNode(this.topNode, key);
     };
-    NaiveMap.prototype.getNode = function (node, key) {
-        var comp = this.comparator.compare(key, node.getKey());
-        if (comp === 0)
-            return node.getValue();
-        if (comp < 0) {
-            var nextNode = node.getRightNode();
-            if (nextNode === null) {
-                return null;
-            }
-            else {
-                return this.getNode(nextNode, key);
-            }
-        }
-        else {
-            var nextNode = node.getLeftNode();
-            if (nextNode === null) {
-                return null;
-            }
-            else {
-                return this.getNode(nextNode, key);
-            }
-        }
-    };
     /**
     * Returns the first (lowest) node currently in this map.
-    * @return {NaiveMapNode} the first (lowest) node currently in this map, returns undefined if the Map is empty
+    * @return {NaiveMapNode} the first (lowest) node currently in this map, returns null if the Map is empty
     */
     NaiveMap.prototype.firstMapNode = function () {
         if (this.topNode === null)
-            return undefined;
+            return null;
         if (this.topNode === undefined)
-            return undefined;
+            return null;
         var node = this.topNode;
         while (node.getLeftNode() !== null) {
             node = node.getLeftNode();
@@ -126,12 +185,12 @@ var NaiveMap = (function () {
     };
     /**
      * Returns the first (lowest) key currently in this map.
-     * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+     * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
      */
     NaiveMap.prototype.firstKey = function () {
         var node = this.firstMapNode();
-        if (node === undefined)
-            return undefined;
+        if (node === null)
+            return null;
         return node.getKey();
     };
     /**
@@ -140,8 +199,43 @@ var NaiveMap = (function () {
      */
     NaiveMap.prototype.firstEntry = function () {
         var node = this.firstMapNode();
-        if (node === undefined)
-            return undefined;
+        if (node === null)
+            return null;
+        return node.getMapEntry();
+    };
+    /**
+    * Returns the last (highest) node currently in this map.
+    * @return {NaiveMapNode} the last (highest) node currently in this map, returns null if the Map is empty
+    */
+    NaiveMap.prototype.lastMapNode = function () {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var node = this.topNode;
+        while (node.getRightNode() !== null) {
+            node = node.getRightNode();
+        }
+        return node;
+    };
+    /**
+     * Returns the last (highest) key currently in this map.
+     * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
+     */
+    NaiveMap.prototype.lastKey = function () {
+        var node = this.lastMapNode();
+        if (node === null)
+            return null;
+        return node.getKey();
+    };
+    /**
+     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    NaiveMap.prototype.lastEntry = function () {
+        var node = this.lastMapNode();
+        if (node === null)
+            return null;
         return node.getMapEntry();
     };
     return NaiveMap;

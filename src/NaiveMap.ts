@@ -13,17 +13,65 @@ import {NavigableMap} from "./NavigableMap";
 
 export class NaiveMap<K,V> implements NavigableMap<K,V> {
   private topNode:NaiveMapNode<K,V> = null;
-  private comparator:Comparator<K> = null;
+  private mapComparator:Comparator<K> = null;
 
   constructor(iComparator:Comparator<K>) {
-    this.comparator = iComparator;
+    this.mapComparator = iComparator;
   }
 
+public printMap() : void {
+  if (this.topNode === null) {
+    console.log ("top node is null");
+    return;
+  }
+
+  if (this.topNode === undefined) {
+    console.log ("top node is undefined");
+    return;
+  }
+  console.log ("New Tree: size = " + this.size());
+  this.printMapNode (this.topNode);
+  console.log ("End of Tree");
+}
+
+private printMapNode (node:NaiveMapNode<K,V>) : void {
+  console.log ("New Node: key = " + node.getKey() + " value = " + node.getValue());
+  if (node.getParentNode() !== null) {
+    console.log ("Parent key = " + node.getParentNode().getKey());
+  } else {
+    console.log ("Parent node is null");
+  }
+  if (node.getLeftNode() !== null) {
+    console.log ("Left key = " + node.getLeftNode().getKey());
+  } else {
+    console.log ("Left node is null");
+  }
+  if (node.getRightNode() !== null) {
+    console.log ("Right key = " + node.getRightNode().getKey());
+  } else {
+    console.log ("Right node is null");
+  }
+  if (node.getLeftNode() !== null) {
+    this.printMapNode (node.getLeftNode());
+  }
+  if (node.getRightNode() !== null) {
+    this.printMapNode (node.getRightNode());
+  }
+}
+
 /**
- * Returns the number of key-value mappings in this map.
- * @return {number} the number of key-value mappings in this map
+ * Returns the comparator used to order the keys in this map
+ * @return {Comparator} the comparator used to order the keys in this map
  */
- public size () : number {
+ public comparator () : Comparator<K> {
+   return this.mapComparator;
+}
+
+/**
+* Returns the number of key-value mappings in this map.
+* @return {number} the number of key-value mappings in this map
+*/
+public size () : number {
    if (this.topNode === null)
      return 0;
 
@@ -60,7 +108,7 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
   }
 
   private putNode (node:NaiveMapNode<K,V>, key:K, value:V) : V {
-    let comp:number = this.comparator.compare(key, node.getKey());
+    let comp:number = this.mapComparator.compare(key, node.getKey());
     if (comp === 0) {
       let tmpV:V = node.getValue();
       node.setValue(value);
@@ -68,6 +116,15 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     }
 
     if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
+      let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
+      if (nextNode === null) {
+        let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
+        node.setLeftNode(newNode);
+        return null;
+      } else {
+        return this.putNode (nextNode, key, value);
+      }
+    } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
       let nextNode: NaiveMapNode<K,V> = node.getRightNode();
       if (nextNode === null) {
         let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
@@ -76,14 +133,42 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
       } else {
         return this.putNode (nextNode, key, value);
       }
-    } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
+    }
+  }
+
+ /**
+  * Returns true if this map contains a mapping for the specified key.
+  * @param {K} key key whose presence in this map is to be tested
+  * @return {boolean} true if this map contains a mapping for the specified key
+  */
+  public containsKey (key:K) : boolean {
+    if ((this.topNode === null) || (this.topNode === undefined))
+      return false;
+
+    if (this.getNode (this.topNode, key) === null)
+      return false;
+
+    return true;
+  }
+
+  private getNode (node:NaiveMapNode<K,V>, key:K) : V {
+    let comp:number = this.mapComparator.compare(key, node.getKey());
+    if (comp === 0)
+      return node.getValue();
+
+    if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
       let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
       if (nextNode === null) {
-        let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
-        node.setLeftNode(newNode);
         return null;
       } else {
-        return this.putNode (nextNode, key, value);
+        return this.getNode (nextNode, key);
+      }
+    } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
+      let nextNode: NaiveMapNode<K,V> = node.getRightNode();
+      if (nextNode === null) {
+        return null;
+      } else {
+        return this.getNode (nextNode, key);
       }
     }
   }
@@ -100,38 +185,16 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     return this.getNode (this.topNode, key);
   }
 
-  private getNode (node:NaiveMapNode<K,V>, key:K) : V {
-    let comp:number = this.comparator.compare(key, node.getKey());
-    if (comp === 0)
-      return node.getValue();
-
-    if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
-      let nextNode: NaiveMapNode<K,V> = node.getRightNode();
-      if (nextNode === null) {
-        return null;
-      } else {
-        return this.getNode (nextNode, key);
-      }
-    } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
-      let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
-      if (nextNode === null) {
-        return null;
-      } else {
-        return this.getNode (nextNode, key);
-      }
-    }
-  }
-
   /**
   * Returns the first (lowest) node currently in this map.
-  * @return {NaiveMapNode} the first (lowest) node currently in this map, returns undefined if the Map is empty
+  * @return {NaiveMapNode} the first (lowest) node currently in this map, returns null if the Map is empty
   */
   private firstMapNode () : NaiveMapNode<K,V> {
     if (this.topNode === null)
-      return undefined;
+      return null;
 
     if (this.topNode === undefined)
-      return undefined;
+      return null;
 
     let node:NaiveMapNode<K,V> = this.topNode;
     while (node.getLeftNode() !== null) {
@@ -143,12 +206,12 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
 
  /**
   * Returns the first (lowest) key currently in this map.
-  * @return {K} the first (lowest) key currently in this map, returns undefined if the Map is empty
+  * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
   */
   public firstKey () : K {
     let node:NaiveMapNode<K,V> = this.firstMapNode();
-    if (node === undefined)
-      return undefined;
+    if (node === null)
+      return null;
     return node.getKey();
   }
 
@@ -158,8 +221,49 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
   */
   public firstEntry () : MapEntry<K,V> {
     let node:NaiveMapNode<K,V> = this.firstMapNode();
-    if (node === undefined)
-      return undefined;
+    if (node === null)
+      return null;
+    return node.getMapEntry();
+  }
+
+  /**
+  * Returns the last (highest) node currently in this map.
+  * @return {NaiveMapNode} the last (highest) node currently in this map, returns null if the Map is empty
+  */
+  private lastMapNode () : NaiveMapNode<K,V> {
+    if (this.topNode === null)
+      return null;
+
+    if (this.topNode === undefined)
+      return null;
+
+    let node:NaiveMapNode<K,V> = this.topNode;
+    while (node.getRightNode() !== null) {
+      node = node.getRightNode();
+    }
+
+    return node;
+  }
+
+ /**
+  * Returns the last (highest) key currently in this map.
+  * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
+  */
+  public lastKey () : K {
+    let node:NaiveMapNode<K,V> = this.lastMapNode();
+    if (node === null)
+      return null;
+    return node.getKey();
+  }
+
+ /**
+  * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  public lastEntry () : MapEntry<K,V> {
+    let node:NaiveMapNode<K,V> = this.lastMapNode();
+    if (node === null)
+      return null;
     return node.getMapEntry();
   }
 
