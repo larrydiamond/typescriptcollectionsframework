@@ -54,6 +54,32 @@ var NaiveMap = (function () {
             this.printMapNode(node.getRightNode());
         }
     };
+    NaiveMap.prototype.validateMap = function () {
+        if ((this.topNode === null) || (this.topNode === undefined)) {
+            return true;
+        }
+        return this.validateNode(this.topNode);
+    };
+    NaiveMap.prototype.validateNode = function (node) {
+        var left = node.getLeftNode();
+        var right = node.getRightNode();
+        var thiskey = node.getKey();
+        if (left !== null) {
+            var leftkey = left.getKey();
+            var comp = this.mapComparator.compare(thiskey, leftkey);
+            if (comp < 0)
+                return false;
+            return this.validateNode(left);
+        }
+        if (right !== null) {
+            var rightkey = right.getKey();
+            var comp = this.mapComparator.compare(thiskey, rightkey);
+            if (comp > 0)
+                return false;
+            return this.validateNode(right);
+        }
+        return true;
+    };
     /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
@@ -189,7 +215,77 @@ var NaiveMap = (function () {
         if (tmp === null) {
             return null;
         }
-        return null;
+        var parent = tmp.getParentNode();
+        var left = tmp.getLeftNode();
+        var right = tmp.getRightNode();
+        if (tmp.getLeftNode() === null) {
+            if (tmp.getRightNode() === null) {
+                // close up this wing of the tree, nothing to see here
+                if (parent === null) {
+                    this.topNode = null;
+                }
+                else {
+                    if (parent.getLeftNode() === tmp) {
+                        parent.setLeftNode(null);
+                    }
+                    else {
+                        parent.setRightNode(null);
+                    }
+                }
+            }
+            else {
+                right.setParentNode(parent);
+                if (parent === null) {
+                    this.topNode = right;
+                }
+                else {
+                    if (parent.getLeftNode() === tmp) {
+                        parent.setLeftNode(right);
+                    }
+                    else {
+                        parent.setRightNode(right);
+                    }
+                }
+            }
+        }
+        else {
+            if (right === null) {
+                left.setParentNode(parent);
+                if (parent === null) {
+                    this.topNode = left;
+                }
+                else {
+                    if (parent.getLeftNode() === tmp) {
+                        parent.setLeftNode(left);
+                    }
+                    else {
+                        parent.setRightNode(left);
+                    }
+                }
+            }
+            else {
+                // Horrific unbalancing about to occur here, please avert your eyes until the Red Black stuff comes
+                // Make the Left node the new parent
+                // Move the right node to the right of the rightmost node under the left node
+                if (parent === null) {
+                    this.topNode = left;
+                }
+                else {
+                    if (parent.getLeftNode() === tmp) {
+                        parent.setLeftNode(left);
+                    }
+                    else {
+                        parent.setRightNode(left);
+                    }
+                }
+                var parentOfRight = tmp.getLeftNode();
+                while (parentOfRight.getRightNode() !== null)
+                    parentOfRight = parentOfRight.getRightNode();
+                parentOfRight.setRightNode(right);
+                right.setParentNode(parentOfRight);
+            }
+        }
+        return tmp.getValue();
     };
     /**
     * Returns the first (lowest) node currently in this map.

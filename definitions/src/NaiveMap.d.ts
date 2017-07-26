@@ -7,6 +7,8 @@ export declare class NaiveMap<K, V> implements NavigableMap<K, V> {
     constructor(iComparator: Comparator<K>);
     printMap(): void;
     private printMapNode(node);
+    validateMap(): boolean;
+    private validateNode(node);
     /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */

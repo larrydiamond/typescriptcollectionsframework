@@ -19,45 +19,76 @@ export class NaiveMap<K,V> implements NavigableMap<K,V> {
     this.mapComparator = iComparator;
   }
 
-public printMap() : void {
-  if (this.topNode === null) {
-    console.log ("top node is null");
-    return;
+  public printMap() : void {
+    if (this.topNode === null) {
+      console.log ("top node is null");
+      return;
+    }
+
+    if (this.topNode === undefined) {
+      console.log ("top node is undefined");
+      return;
+    }
+    console.log ("New Tree: size = " + this.size());
+    this.printMapNode (this.topNode);
+    console.log ("End of Tree");
   }
 
-  if (this.topNode === undefined) {
-    console.log ("top node is undefined");
-    return;
+  private printMapNode (node:NaiveMapNode<K,V>) : void {
+    console.log ("New Node: key = " + node.getKey() + " value = " + node.getValue());
+    if (node.getParentNode() !== null) {
+      console.log ("Parent key = " + node.getParentNode().getKey());
+    } else {
+      console.log ("Parent node is null");
+    }
+    if (node.getLeftNode() !== null) {
+      console.log ("Left key = " + node.getLeftNode().getKey());
+    } else {
+      console.log ("Left node is null");
+    }
+    if (node.getRightNode() !== null) {
+      console.log ("Right key = " + node.getRightNode().getKey());
+    } else {
+      console.log ("Right node is null");
+    }
+    if (node.getLeftNode() !== null) {
+      this.printMapNode (node.getLeftNode());
+    }
+    if (node.getRightNode() !== null) {
+      this.printMapNode (node.getRightNode());
+    }
   }
-  console.log ("New Tree: size = " + this.size());
-  this.printMapNode (this.topNode);
-  console.log ("End of Tree");
-}
 
-private printMapNode (node:NaiveMapNode<K,V>) : void {
-  console.log ("New Node: key = " + node.getKey() + " value = " + node.getValue());
-  if (node.getParentNode() !== null) {
-    console.log ("Parent key = " + node.getParentNode().getKey());
-  } else {
-    console.log ("Parent node is null");
+  public validateMap() : boolean {
+    if ((this.topNode === null) || (this.topNode === undefined)) {
+      return true;
+    }
+
+    return this.validateNode (this.topNode);
   }
-  if (node.getLeftNode() !== null) {
-    console.log ("Left key = " + node.getLeftNode().getKey());
-  } else {
-    console.log ("Left node is null");
+
+  private validateNode(node:NaiveMapNode<K,V>) : boolean {
+    let left:NaiveMapNode<K,V> = node.getLeftNode();
+    let right:NaiveMapNode<K,V> = node.getRightNode();
+    let thiskey:K = node.getKey();
+    if (left !== null) {
+      let leftkey:K = left.getKey();
+      let comp:number = this.mapComparator.compare(thiskey, leftkey);
+      if (comp < 0) // the key on the left should be either on the right or is this key
+        return false;
+      return this.validateNode (left);
+    }
+
+    if (right !== null) {
+      let rightkey:K = right.getKey();
+      let comp:number = this.mapComparator.compare(thiskey, rightkey);
+      if (comp > 0) // the key on the right should be either on the left or is this key
+        return false;
+      return this.validateNode (right);
+    }
+
+    return true;
   }
-  if (node.getRightNode() !== null) {
-    console.log ("Right key = " + node.getRightNode().getKey());
-  } else {
-    console.log ("Right node is null");
-  }
-  if (node.getLeftNode() !== null) {
-    this.printMapNode (node.getLeftNode());
-  }
-  if (node.getRightNode() !== null) {
-    this.printMapNode (node.getRightNode());
-  }
-}
 
 /**
  * Removes all of the mappings from this map. The map will be empty after this call returns.
@@ -122,7 +153,7 @@ public size () : number {
       return tmpV;
     }
 
-    if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
+    if (comp < 0) { // This means that the new value is lower than the current node and belongs someplace on the left of the current node
       let nextNode: NaiveMapNode<K,V> = node.getLeftNode();
       if (nextNode === null) {
         let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
@@ -131,7 +162,7 @@ public size () : number {
       } else {
         return this.putNode (nextNode, key, value);
       }
-    } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
+    } else {  // This means that the new value is higher than the current node and belongs someplace on the right of the current node
       let nextNode: NaiveMapNode<K,V> = node.getRightNode();
       if (nextNode === null) {
         let newNode:NaiveMapNode<K,V> = new NaiveMapNode<K,V>(key, value, node);
@@ -196,22 +227,85 @@ public size () : number {
     return tmp.getValue();
   }
 
-  /**
-   * Removes the mapping for this key from this TreeMap if present.
-   * @param {K} key key for which mapping should be removed
-   * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
-   */
-   public remove (key:K) : V {
-     if ((this.topNode === null) || (this.topNode === undefined))
+ /**
+  * Removes the mapping for this key from this TreeMap if present.
+  * @param {K} key key for which mapping should be removed
+  * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+  */
+  public remove (key:K) : V {
+    if ((this.topNode === null) || (this.topNode === undefined))
       return null;
 
-     let tmp:NaiveMapNode<K,V> = this.getNode (this.topNode, key);
-     if (tmp === null) {
-       return null;
-     }
+    let tmp:NaiveMapNode<K,V> = this.getNode (this.topNode, key);
+    if (tmp === null) {
+      return null;
+    }
 
-     return null;
-   }
+    let parent:NaiveMapNode<K,V> = tmp.getParentNode();
+    let left:NaiveMapNode<K,V> = tmp.getLeftNode();
+    let right:NaiveMapNode<K,V> = tmp.getRightNode();
+
+    if (tmp.getLeftNode() === null) { // nothing to the left
+      if (tmp.getRightNode() === null) { // nothing to the right
+        // close up this wing of the tree, nothing to see here
+        if (parent === null) { // if theres no parent then this is the root node of the Tree
+          this.topNode = null;
+        } else {
+          if (parent.getLeftNode() === tmp) {
+            parent.setLeftNode(null);
+          } else {
+            parent.setRightNode(null);
+          }
+        }
+      } else {  // there are nodes to the right but not to the left
+        right.setParentNode(parent);
+        if (parent === null) {
+          this.topNode = right;
+        } else {
+          if (parent.getLeftNode() === tmp) {
+            parent.setLeftNode(right);
+          } else {
+            parent.setRightNode(right);
+          }
+        }
+      }
+    } else {  // there are nodes to the left
+      if (right === null) { // there are nodes to the left but not to the right
+        left.setParentNode(parent);
+        if (parent === null) {
+          this.topNode = left;
+        } else {
+          if (parent.getLeftNode() === tmp) {
+            parent.setLeftNode(left);
+          } else {
+            parent.setRightNode(left);
+          }
+        }
+      } else {  // there are nodes to the left and to the right
+        // Horrific unbalancing about to occur here, please avert your eyes until the Red Black stuff comes
+
+        // Make the Left node the new parent
+        // Move the right node to the right of the rightmost node under the left node
+        if (parent === null) {
+          this.topNode = left;
+        } else {
+          if (parent.getLeftNode() === tmp) {
+            parent.setLeftNode(left);
+          } else {
+            parent.setRightNode(left);
+          }
+        }
+
+        let parentOfRight:NaiveMapNode<K,V> = tmp.getLeftNode();
+        while (parentOfRight.getRightNode() !== null)
+          parentOfRight = parentOfRight.getRightNode();
+        parentOfRight.setRightNode(right);
+        right.setParentNode(parentOfRight);
+      }
+    }
+
+    return tmp.getValue();
+  }
 
   /**
   * Returns the first (lowest) node currently in this map.

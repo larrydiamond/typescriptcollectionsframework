@@ -208,6 +208,7 @@ describe("Test NaiveMap functionality", function() {
     let basicTypesMap1:NaiveMap<string,number> = new NaiveMap<string,number>(CollectionUtils.getStringComparator());
     basicTypesMap1.clear();
     expect (basicTypesMap1.size ()).toEqual(0);
+    expect (basicTypesMap1.validateMap ()).toEqual(true);
 
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
@@ -215,6 +216,7 @@ describe("Test NaiveMap functionality", function() {
     expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
     expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    expect (basicTypesMap1.validateMap ()).toEqual(true);
 
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(2);
@@ -222,6 +224,7 @@ describe("Test NaiveMap functionality", function() {
     expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("Catnip", 4.99));
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
     expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    expect (basicTypesMap1.validateMap ()).toEqual(true);
 
     expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(3);
@@ -229,10 +232,12 @@ describe("Test NaiveMap functionality", function() {
     expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("Catnip", 4.99));
     expect (basicTypesMap1.lastKey()).toEqual("Leash");
     expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("Leash", 1.99));
+    expect (basicTypesMap1.validateMap ()).toEqual(true);
 
     expect (basicTypesMap1.size ()).toEqual(3);
     basicTypesMap1.clear();
     expect (basicTypesMap1.size ()).toEqual(0);
+    expect (basicTypesMap1.validateMap ()).toEqual(true);
 
   });
 
