@@ -32,7 +32,9 @@
   },
   "scripts": {
     "test": "gulp test",
-    "release": "standard-version"
+    "release": "standard-version",
+    "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
+
   },
   "repository": {
     "type": "git",
