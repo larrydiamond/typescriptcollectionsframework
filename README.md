@@ -1,6 +1,9 @@
 # Typescript Collections Framework
 TypeScript port of the Java Collections framework for use in AngularJS
 
+[![NPM](https://nodei.co/npm/typescriptcollectionsframework.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/typescriptcollectionsframework)
+
+
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
 My hope is to port Set, List, Map, and many of the implementations to TypeScript so that Java developers (like myself) 
