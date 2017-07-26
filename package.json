@@ -33,7 +33,7 @@
   "scripts": {
     "test": "gulp test",
     "release": "standard-version",
-    "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
+    "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
 
   },
   "repository": {
