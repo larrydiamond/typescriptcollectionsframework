@@ -25,7 +25,7 @@ The goal of this library is to provide a "as Java Collections" framework as poss
 
 Semver will be adopted once we are at version 1.0 of this framework.
 
-In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for the methods we would need to create in Java.
+In TypeScript all objects do not inherit from Object (which we do not control anyway) so a new base Interface called Collectable has been created for ArrayList to support equals().
 
 # Thank you for all the support.   
 The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  
