@@ -20,9 +20,11 @@
     "standard-version": "^4.0.0",
     "tslint": "~3.15.1",
     "typescript": "^2.4.2",
-    "nodeunit": "0.11.1",
-    "jscoverage": "0.6.0",
-    "coveralls": "2.13.1"
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "sinon": "~1.8.0",
+    "istanbul": "~0.2.4",
+    "coveralls": "~2.7.1"
   },
   "main": "dist/index.js",
   "typings": "definitions/index",
@@ -32,7 +34,8 @@
   "scripts": {
     "test": "gulp test",
     "release": "standard-version",
-    "coveralls": "jscoverage src && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov spec | coveralls"
+    "coveralls": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "coverallsfirstscriptdidntwork": "jscoverage src && nodeunit --reporter=lcov spec | coveralls"
   },
   "repository": {
     "type": "git",
