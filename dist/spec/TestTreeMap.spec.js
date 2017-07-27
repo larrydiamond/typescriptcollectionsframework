@@ -9,8 +9,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicMapEntry_1 = require("../src/BasicMapEntry");
 var CollectionUtils_1 = require("../src/CollectionUtils");
-var NaiveMap_1 = require("../src/NaiveMap");
-describe("Test NaiveMap functionality", function () {
+var TreeMap_1 = require("../src/TreeMap");
+describe("Test TreeMap functionality", function () {
     // PetStoreProduct will be used in testing
     var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
@@ -91,21 +91,21 @@ describe("Test NaiveMap functionality", function () {
         return ValueClass;
     }());
     it("Test Creation state", function () {
-        var naiveMap1 = new NaiveMap_1.NaiveMap(alphabeticalSortPetStoreProduct);
-        expect(naiveMap1.size()).toEqual(0);
-        expect(naiveMap1.firstKey()).toEqual(null);
-        expect(naiveMap1.firstEntry()).toEqual(null);
-        expect(naiveMap1.lastKey()).toEqual(null);
-        expect(naiveMap1.lastEntry()).toEqual(null);
-        var naiveMap2 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
-        expect(naiveMap2.size()).toEqual(0);
-        expect(naiveMap2.firstKey()).toEqual(null);
-        expect(naiveMap2.firstEntry()).toEqual(null);
-        expect(naiveMap2.lastKey()).toEqual(null);
-        expect(naiveMap2.lastEntry()).toEqual(null);
+        var TreeMap1 = new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct);
+        expect(TreeMap1.size()).toEqual(0);
+        expect(TreeMap1.firstKey()).toEqual(null);
+        expect(TreeMap1.firstEntry()).toEqual(null);
+        expect(TreeMap1.lastKey()).toEqual(null);
+        expect(TreeMap1.lastEntry()).toEqual(null);
+        var TreeMap2 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(TreeMap2.size()).toEqual(0);
+        expect(TreeMap2.firstKey()).toEqual(null);
+        expect(TreeMap2.firstEntry()).toEqual(null);
+        expect(TreeMap2.lastKey()).toEqual(null);
+        expect(TreeMap2.lastEntry()).toEqual(null);
     });
     it("Test Adding one item", function () {
-        var petStoreMap1 = new NaiveMap_1.NaiveMap(alphabeticalSortPetStoreProduct);
+        var petStoreMap1 = new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct);
         expect(petStoreMap1.put(product1, new ValueClass())).toEqual(null);
         expect(petStoreMap1.size()).toEqual(1);
         expect(petStoreMap1.firstKey()).toEqual(product1);
@@ -114,7 +114,7 @@ describe("Test NaiveMap functionality", function () {
         expect(petStoreMap1.lastEntry()).toEqual(new BasicMapEntry_1.BasicMapEntry(product1, new ValueClass()));
     });
     it("Test Adding one native item", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.size()).toEqual(1);
         expect(basicTypesMap1.firstKey()).toEqual("ChewToy");
@@ -123,7 +123,7 @@ describe("Test NaiveMap functionality", function () {
         expect(basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
     });
     it("Test Adding two items", function () {
-        var petStoreMap1 = new NaiveMap_1.NaiveMap(alphabeticalSortPetStoreProduct);
+        var petStoreMap1 = new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct);
         expect(petStoreMap1.put(product1, new ValueClass())).toEqual(null);
         expect(petStoreMap1.size()).toEqual(1);
         expect(petStoreMap1.firstKey()).toEqual(product1);
@@ -138,7 +138,7 @@ describe("Test NaiveMap functionality", function () {
         expect(petStoreMap1.lastEntry()).toEqual(new BasicMapEntry_1.BasicMapEntry(product1, new ValueClass()));
     });
     it("Test Adding two native items", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.size()).toEqual(1);
         expect(basicTypesMap1.firstKey()).toEqual("ChewToy");
@@ -153,31 +153,31 @@ describe("Test NaiveMap functionality", function () {
         expect(basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
     });
     it("Test ContainsKey where the item is contained", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
         expect(basicTypesMap1.containsKey("Catnip")).toEqual(true);
     });
     it("Test ContainsKey where the item is not contained", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
         expect(basicTypesMap1.containsKey("Bananas")).toEqual(false); // I guess we have no bananas today
     });
     it("Test ContainsKey where the item is contained", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
         expect(basicTypesMap1.containsKey("Catnip")).toEqual(true);
     });
     it("Test ContainsKey where the item is not contained", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
         expect(basicTypesMap1.containsKey("Bananas")).toEqual(false); // I guess we have no bananas today
     });
     it("Test Adding three native items", function () {
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         basicTypesMap1.clear();
         expect(basicTypesMap1.size()).toEqual(0);
         expect(basicTypesMap1.validateMap()).toEqual(true);
@@ -208,10 +208,10 @@ describe("Test NaiveMap functionality", function () {
         expect(basicTypesMap1.validateMap()).toEqual(true);
     });
     it("Test Adding some items", function () {
-        var petStoreMap1 = new NaiveMap_1.NaiveMap(alphabeticalSortPetStoreProduct);
-        var petStoreMap2 = new NaiveMap_1.NaiveMap(priceSortPetStoreProduct);
-        var basicTypesMap1 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getStringComparator());
-        var basicTypesMap2 = new NaiveMap_1.NaiveMap(CollectionUtils_1.CollectionUtils.getNumberComparator());
+        var petStoreMap1 = new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct);
+        var petStoreMap2 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        var basicTypesMap2 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getNumberComparator());
         expect(petStoreMap1.put(product1, new ValueClass())).toEqual(null);
         expect(petStoreMap1.put(product2, new ValueClass(10))).toEqual(null);
         expect(petStoreMap1.put(product3, new ValueClass())).toEqual(null);
@@ -237,5 +237,63 @@ describe("Test NaiveMap functionality", function () {
         expect(basicTypesMap2.put(0.99, "AAAAA")).toEqual(null);
         expect(basicTypesMap2.put(0.99, "BBBBB")).toEqual("AAAAA");
         expect(basicTypesMap2.size()).toEqual(4);
+    });
+    it("Test Remove from empty", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.remove("Bananas")).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(0);
+    });
+    it("Test Remove from one entry map", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.remove("Bananas")).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(1);
+        expect(basicTypesMap1.remove("Bananas")).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(1);
+        expect(basicTypesMap1.remove("ChewToy")).toEqual(14.99);
+        expect(basicTypesMap1.size()).toEqual(0);
+        basicTypesMap1.clear();
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(1);
+        basicTypesMap1.clear();
+        expect(basicTypesMap1.remove("Bananas")).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.remove("ChewToy")).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(0);
+    });
+    it("Test Remove head both sides loaded", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("Goldfish", 9.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(4);
+        expect(basicTypesMap1.remove("ChewToy")).toEqual(14.99);
+        expect(basicTypesMap1.size()).toEqual(3);
+    });
+    it("Test Remove head left full right empty", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(3);
+        expect(basicTypesMap1.remove("ChewToy")).toEqual(14.99);
+        expect(basicTypesMap1.size()).toEqual(2);
+    });
+    it("Test Remove head right full left empty", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(3);
+        expect(basicTypesMap1.remove("AAAAA")).toEqual(0.99);
+        expect(basicTypesMap1.size()).toEqual(2);
     });
 });

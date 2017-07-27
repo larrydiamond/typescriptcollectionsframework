@@ -14,16 +14,15 @@
     "gulp-clean": "^0.3.2",
     "gulp-jasmine": "^2.4.2",
     "gulp-typescript": "^3.1.3",
-    "codecov": "^2.1.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.3.0",
-    "mocha-lcov-reporter": "^1.3.0",
     "jasmine": "^2.5.2",
     "merge2": "^1.0.2",
     "run-sequence": "^1.2.2",
     "standard-version": "^4.0.0",
     "tslint": "~3.15.1",
-    "typescript": "^2.4.2"
+    "typescript": "^2.4.2",
+    "nodeunit": "0.11.1",
+    "jscoverage": "0.6.0",
+    "coveralls": "2.13.1"
   },
   "main": "dist/index.js",
   "typings": "definitions/index",
@@ -33,8 +32,7 @@
   "scripts": {
     "test": "gulp test",
     "release": "standard-version",
-    "codecov": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcov -- -R spec && istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && gulp codecov && rm -rf ./coverage"
-
+    "coveralls": "jscoverage src && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov spec | coveralls"
   },
   "repository": {
     "type": "git",

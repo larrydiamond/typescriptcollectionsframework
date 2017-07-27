@@ -8,18 +8,20 @@
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
-var NaiveSet = (function () {
-    function NaiveSet(iComparator) {
+var TreeMap_1 = require("./TreeMap");
+var TreeSet = (function () {
+    function TreeSet(iComparator) {
         this.datastore = null;
         this.comparator = null;
         this.comparator = iComparator;
+        this.datastore = new TreeMap_1.TreeMap(this.comparator);
     }
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
     * @return {boolean} true if this set did not already contain the specified element
     */
-    NaiveSet.prototype.add = function (element) {
+    TreeSet.prototype.add = function (element) {
         var tmp = this.datastore.put(element, 1);
         if (tmp === null)
             return false;
@@ -29,14 +31,18 @@ var NaiveSet = (function () {
     * Returns the number of elements in this set (its cardinality).
     * @return {number} the number of elements in this set (its cardinality)
     */
-    NaiveSet.prototype.size = function () {
+    TreeSet.prototype.size = function () {
+        if (this.datastore === null)
+            return 0;
         return this.datastore.size();
     };
     /**
     * Returns true if this set contains no elements.
     * @return {boolean} true if this set contains no elements
     */
-    NaiveSet.prototype.isEmpty = function () {
+    TreeSet.prototype.isEmpty = function () {
+        if (this.datastore === null)
+            return true;
         var tmp = this.datastore.size();
         if (tmp === 0)
             return true;
@@ -47,7 +53,7 @@ var NaiveSet = (function () {
     * @param {K} item object to be checked for containment in this set
     * @return {boolean} true if this set contains the specified element
     */
-    NaiveSet.prototype.contains = function (item) {
+    TreeSet.prototype.contains = function (item) {
         var tmp = this.datastore.get(item);
         if (tmp === null)
             return false;
@@ -57,32 +63,32 @@ var NaiveSet = (function () {
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
     */
-    NaiveSet.prototype.first = function () {
+    TreeSet.prototype.first = function () {
         return this.datastore.firstKey();
     };
     /**
     * Returns a Java style iterator
     * @return {JIterator<K>} the Java style iterator
     */
-    NaiveSet.prototype.iterator = function () {
-        return new NaiveSetJIterator(this);
+    TreeSet.prototype.iterator = function () {
+        return new TreeSetJIterator(this);
     };
     /**
     * Returns a TypeScript style iterator
     * @return {Iterator<K>} the TypeScript style iterator
     */
-    NaiveSet.prototype[Symbol.iterator] = function () {
-        return new NaiveSetIterator(this);
+    TreeSet.prototype[Symbol.iterator] = function () {
+        return new TreeSetIterator(this);
     };
-    return NaiveSet;
+    return TreeSet;
 }());
-exports.NaiveSet = NaiveSet;
+exports.TreeSet = TreeSet;
 /* Java style iterator */
-var NaiveSetJIterator = (function () {
-    function NaiveSetJIterator(iSet) {
+var TreeSetJIterator = (function () {
+    function TreeSetJIterator(iSet) {
         this.set = iSet;
     }
-    NaiveSetJIterator.prototype.hasNext = function () {
+    TreeSetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) {
             var first = this.set.first();
             if (first === undefined)
@@ -93,7 +99,7 @@ var NaiveSetJIterator = (function () {
             return false; //TODO
         }
     };
-    NaiveSetJIterator.prototype.next = function () {
+    TreeSetJIterator.prototype.next = function () {
         if (this.location === undefined) {
             var first = this.set.first();
             if (first === undefined) {
@@ -108,17 +114,17 @@ var NaiveSetJIterator = (function () {
             return null; // TODO
         }
     };
-    return NaiveSetJIterator;
+    return TreeSetJIterator;
 }());
-exports.NaiveSetJIterator = NaiveSetJIterator;
+exports.TreeSetJIterator = TreeSetJIterator;
 /* TypeScript iterator */
-var NaiveSetIterator = (function () {
-    function NaiveSetIterator(iSet) {
+var TreeSetIterator = (function () {
+    function TreeSetIterator(iSet) {
         this.set = iSet;
     }
-    NaiveSetIterator.prototype.next = function (value) {
+    TreeSetIterator.prototype.next = function (value) {
         return new BasicIteratorResult_1.BasicIteratorResult(true, null); //TODO
     };
-    return NaiveSetIterator;
+    return TreeSetIterator;
 }());
-exports.NaiveSetIterator = NaiveSetIterator;
+exports.TreeSetIterator = TreeSetIterator;

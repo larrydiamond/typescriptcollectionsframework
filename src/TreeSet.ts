@@ -9,16 +9,17 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
 import {JIterator} from "./JIterator";
-import {NaiveMap} from "./NaiveMap";
+import {TreeMap} from "./TreeMap";
 import {JSet} from "./JSet";
 
-export class NaiveSet<K> implements JSet<K> {
-  private datastore:NaiveMap<K,number> = null;
+export class TreeSet<K> implements JSet<K> {
+  private datastore:TreeMap<K,number> = null;
 
   private comparator:Comparator<K> = null;
 
   constructor(iComparator:Comparator<K>) {
     this.comparator = iComparator;
+    this.datastore = new TreeMap<K,number>(this.comparator);
   }
 
   /**
@@ -38,6 +39,8 @@ export class NaiveSet<K> implements JSet<K> {
   * @return {number} the number of elements in this set (its cardinality)
   */
   public size () : number {
+    if (this.datastore === null)
+      return 0;
     return this.datastore.size();
   }
 
@@ -46,6 +49,8 @@ export class NaiveSet<K> implements JSet<K> {
   * @return {boolean} true if this set contains no elements
   */
   public isEmpty () : boolean {
+    if (this.datastore === null)
+      return true;
     let tmp:number = this.datastore.size();
     if (tmp === 0)
       return true;
@@ -77,7 +82,7 @@ export class NaiveSet<K> implements JSet<K> {
   * @return {JIterator<K>} the Java style iterator
   */
   public iterator():JIterator<K> {
-    return new NaiveSetJIterator(this);
+    return new TreeSetJIterator(this);
   }
 
   /**
@@ -85,17 +90,17 @@ export class NaiveSet<K> implements JSet<K> {
   * @return {Iterator<K>} the TypeScript style iterator
   */
   public [Symbol.iterator] ():Iterator<K> {
-    return new NaiveSetIterator (this);
+    return new TreeSetIterator (this);
   }
 }
 
 
 /* Java style iterator */
-export class NaiveSetJIterator<T> implements JIterator<T> {
+export class TreeSetJIterator<T> implements JIterator<T> {
   private location:T;
-  private set:NaiveSet<T>;
+  private set:TreeSet<T>;
 
-  constructor (iSet:NaiveSet<T>) {
+  constructor (iSet:TreeSet<T>) {
     this.set = iSet;
   }
 
@@ -126,11 +131,11 @@ export class NaiveSetJIterator<T> implements JIterator<T> {
 }
 
 /* TypeScript iterator */
-export class NaiveSetIterator<T> implements Iterator<T> {
+export class TreeSetIterator<T> implements Iterator<T> {
   private location:T;
   private set:JSet<T>;
 
-  constructor (iSet:NaiveSet<T>) {
+  constructor (iSet:TreeSet<T>) {
     this.set = iSet;
   }
 
