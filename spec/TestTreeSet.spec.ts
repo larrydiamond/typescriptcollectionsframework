@@ -107,13 +107,11 @@ describe("Test TreeSet functionality", function() {
     expect (TreeSet2.isEmpty ()).toEqual(true);
   });
 
-/*
-
   it("Test Adding one item", function() {
     let TreeSet1:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
     expect (TreeSet1.size ()).toEqual(0);
     expect (TreeSet1.isEmpty ()).toEqual(true);
-    expect (TreeSet1.add (product1)).toEqual(true);
+    expect (TreeSet1.add (product1)).toEqual(false);
     expect (1).toEqual(TreeSet1.size ());
     expect (false).toEqual(TreeSet1.isEmpty ());
   });
@@ -122,10 +120,69 @@ describe("Test TreeSet functionality", function() {
     let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect (1).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+  });
+
+  it("Test Adding two items basic datatypes", function() {
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.isEmpty ()).toEqual(true);
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect (1).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+    expect (TreeSet2.add ("Second")).toEqual(false);
+    expect (2).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+  });
+
+  it("Test Adding two items basic datatypessame value", function() {
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.isEmpty ()).toEqual(true);
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect (1).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
     expect (TreeSet2.add ("Hello")).toEqual(true);
     expect (1).toEqual(TreeSet2.size ());
     expect (false).toEqual(TreeSet2.isEmpty ());
   });
-*/
+
+  it("Test contains basic datatypessame value", function() {
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    expect (false).toEqual(TreeSet2.contains ("Hello"));
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.isEmpty ()).toEqual(true);
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect (true).toEqual(TreeSet2.contains ("Hello"));
+    expect (1).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+    expect (TreeSet2.add ("Hello")).toEqual(true);
+    expect (true).toEqual(TreeSet2.contains ("Hello"));
+    expect (1).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+  });
+
+  it("Test first basic datatypes", function() {
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.isEmpty ()).toEqual(true);
+    expect (null).toEqual(TreeSet2.first());
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect ("Hello").toEqual(TreeSet2.first());
+    expect (1).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+    expect (TreeSet2.add ("Second")).toEqual(false);
+    expect ("Hello").toEqual(TreeSet2.first());
+    expect (2).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+    expect (TreeSet2.add ("Alpha")).toEqual(false);
+    expect ("Alpha").toEqual(TreeSet2.first());
+    expect (3).toEqual(TreeSet2.size ());
+    expect (false).toEqual(TreeSet2.isEmpty ());
+  });
+
+
 
 });
