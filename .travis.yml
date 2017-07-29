@@ -6,4 +6,4 @@ script:
   - npm test
 
 after_script:
-  - node_modules/tslint/bin/tslint -c tsconfig.json */*.ts
+  - node_modules/tslint/bin/tslint -c tslint.json */*.ts

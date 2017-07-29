@@ -1,7 +1,7 @@
 {
     "rules": {
         "no-empty-interface": true,
-        "no-import_side-effect": true,
+        "no-import-side-effect": true,
         "no-inferrable-types": true,
         "no-bitwise": true,
         "no-conditional-assignment": true,
@@ -14,8 +14,6 @@
         "no-shadowed-variable": true,
         "no-switch-case-fall-through": true,
         "no-unused-expression": true,
-        "no-unused-vatiable": true,
-        "no-use-before-declare": true,
         "no-var-keyword": true,
         "switch-default": true,
         "triple-equals": true,
