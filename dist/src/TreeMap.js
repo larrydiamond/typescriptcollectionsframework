@@ -177,11 +177,11 @@ var TreeMap = (function () {
         // Got all that?
         // if there is a right child to this node, return the leftmost child of that node
         if (node.getRightNode() !== null) {
-            var tmp_1 = node.getRightNode();
-            while (tmp_1.getLeftNode() !== null) {
-                node = node.getLeftNode();
+            var child = node.getRightNode();
+            while (child.getLeftNode() !== null) {
+                child = child.getLeftNode();
             }
-            return node;
+            return child;
         }
         // If there is no parent node and no right child node then there's no next node and return null
         if (node.getParentNode() === null) {

@@ -198,11 +198,11 @@ public size () : number {
 
     // if there is a right child to this node, return the leftmost child of that node
     if (node.getRightNode() !== null) {
-      let tmp:TreeMapNode<K,V> = node.getRightNode();
-      while (tmp.getLeftNode() !== null) {
-        node = node.getLeftNode();
+      let child:TreeMapNode<K,V> = node.getRightNode();
+      while (child.getLeftNode() !== null) {
+        child = child.getLeftNode();
       }
-      return node;
+      return child;
     }
 
     // If there is no parent node and no right child node then there's no next node and return null
