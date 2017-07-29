@@ -33,10 +33,7 @@
   },
   "scripts": {
     "test": "gulp test",
-    "release": "standard-version",
-    "coveralls": "istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "coverallssecondattemptfailed": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "coverallsfirstscriptdidntwork": "jscoverage src && nodeunit --reporter=lcov spec | coveralls"
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
