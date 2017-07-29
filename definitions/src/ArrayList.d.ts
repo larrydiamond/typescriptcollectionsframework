@@ -1,9 +1,13 @@
 import { Collectable } from "./Collectable";
+import { Collection } from "./Collection";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
+    private initialCapacity;
+    private initialElements;
     elements: T[];
     sizeValue: number;
+    constructor(initialCapacity?: number, initialElements?: Collection<T>);
     /**
      * Appends the specified element to the end of this list
      * @param {T} t element to Append
@@ -16,6 +20,13 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      * @param {T} t element to be inserted
      */
     addElement(index: number, t: T): void;
+    /**
+     * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
+     * @param {number} index index at which to insert the first element from the specified collection
+     * @param {Collection} c collection containing elements to be added to this list
+     * @return {boolean} true if this collection changed as a result of the call
+     */
+    addAll(index: number, c: Collection<T>): boolean;
     /**
      * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
      * @param {number} index the index of the element to be removed
@@ -50,6 +61,12 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      * @return {T} true if this list contained the specified element
      */
     removeElement(t: T): boolean;
+    /**
+     * Removes from this list all of its elements that are contained in the specified collection.
+     * @param {Collection} c collection containing elements to be removed from this list
+     * @return {boolean} true if this list changed as a result of the call
+     */
+    removeAll(c: Collection<T>): boolean;
     /**
      * Returns true if this list contains no elements.
      * @return {boolean} true if this list contains no elements

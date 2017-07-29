@@ -125,7 +125,16 @@ export class TreeSet<K> implements JSet<K> {
     return tmp;
   }
 
-  /**
+ /**
+  * Needed For Iterator
+  * @param {K} key the given key
+  * @return {K} the least key greater than key, or null if there is no such key
+  */
+  public getNextHigherKey (key:K) : K {
+    return this.datastore.getNextHigherKey(key);
+  }
+
+ /**
   * Returns a Java style iterator
   * @return {JIterator<K>} the Java style iterator
   */
@@ -159,7 +168,12 @@ export class TreeSetJIterator<T> implements JIterator<T> {
         return false;
       return true;
     } else { // we've already called this iterator before
-      return false; //TODO
+      let tmp:T = this.set.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 
@@ -173,7 +187,13 @@ export class TreeSetJIterator<T> implements JIterator<T> {
         return first;
       }
     } else { // we've already called this iterator before
-      return null; // TODO
+      let tmp:T = this.set.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return null;
+      } else {
+        this.location = tmp;
+        return tmp;
+      }
     }
   }
 }
@@ -181,13 +201,30 @@ export class TreeSetJIterator<T> implements JIterator<T> {
 /* TypeScript iterator */
 export class TreeSetIterator<T> implements Iterator<T> {
   private location:T;
-  private set:JSet<T>;
+  private set:TreeSet<T>;
 
   constructor (iSet:TreeSet<T>) {
     this.set = iSet;
+    this.location = null;
   }
 
   public next(value?: any): IteratorResult<T> {
-    return new BasicIteratorResult(true, null); //TODO
+    if (this.location === undefined) { // first time caller
+      let first:T = this.set.first();
+      if (first === undefined) {
+        return new BasicIteratorResult(true, null);
+      } else {
+        this.location = first;
+        return new BasicIteratorResult(false, this.location);
+      }
+    } else { // we've already called this iterator before
+      let tmp:T = this.set.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return new BasicIteratorResult(true, null);
+      } else {
+        this.location = tmp;
+        return new BasicIteratorResult(false, this.location);
+      }
+    }
   }
 }

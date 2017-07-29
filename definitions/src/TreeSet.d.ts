@@ -56,9 +56,15 @@ export declare class TreeSet<K> implements JSet<K> {
      */
     pollLast(): K;
     /**
-    * Returns a Java style iterator
-    * @return {JIterator<K>} the Java style iterator
-    */
+     * Needed For Iterator
+     * @param {K} key the given key
+     * @return {K} the least key greater than key, or null if there is no such key
+     */
+    getNextHigherKey(key: K): K;
+    /**
+     * Returns a Java style iterator
+     * @return {JIterator<K>} the Java style iterator
+     */
     iterator(): JIterator<K>;
     /**
     * Returns a TypeScript style iterator

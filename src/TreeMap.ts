@@ -175,6 +175,56 @@ public size () : number {
   }
 
  /**
+  * Needed For Iterator
+  * @param {K} key the given key
+  * @return {K} the least key greater than key, or null if there is no such key
+  */
+  public getNextHigherKey (key:K) : K {
+    if ((this.topNode === null) || (this.topNode === undefined)) {
+      return null;
+    }
+
+    let tmp:TreeMapNode<K,V> = this.nextHigherNode(this.topNode); // TODO
+    if (tmp === null) return null;
+    return tmp.getKey();
+  }
+
+  private nextHigherNode (node:TreeMapNode<K,V>) : TreeMapNode<K,V> {
+    // if there is a right child to this node, return the leftmost child of that node
+    // If there is no parent node and no right child node then there's no next node and return null
+    // If I am the left child of my parent node and I have no right child then my parent node is the next node
+    // If I am the right child of my parent node, keep recursing up nodes until null or I find a node of which I am a left child of and return that node
+    // Got all that?
+
+    // if there is a right child to this node, return the leftmost child of that node
+    if (node.getRightNode() !== null) {
+      let tmp:TreeMapNode<K,V> = node.getRightNode();
+      while (tmp.getLeftNode() !== null) {
+        node = node.getLeftNode();
+      }
+      return node;
+    }
+
+    // If there is no parent node and no right child node then there's no next node and return null
+    if (node.getParentNode() === null) {  // if there's a right child that was handled above
+      return null;
+    }
+
+    // If I am the left child of my parent node and I have no right child then my parent node is the next node
+    if (node.getParentNode().getLeftNode() === node) {
+      return node.getParentNode();
+    }
+
+    // If I am the right child of my parent node, keep recursing up nodes until null or I find a node of which I am a left child of and return that node
+    let tmp:TreeMapNode<K,V> = node.getParentNode();
+    while ((tmp !== null) && (tmp.getParentNode() !== null) && (tmp.getParentNode().getRightNode() === tmp)) {
+      tmp = tmp.getParentNode();
+    }
+
+    return tmp;
+  }
+
+ /**
   * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
   * @param {K} key key whose presence in this map is to be tested
   * @return {boolean} true if this map contains a mapping for the specified key

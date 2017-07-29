@@ -9,9 +9,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var ArrayList = (function () {
-    function ArrayList() {
+    function ArrayList(initialCapacity, initialElements) {
+        if (initialCapacity === void 0) { initialCapacity = 10; }
+        if (initialElements === void 0) { initialElements = null; }
+        this.initialCapacity = initialCapacity;
+        this.initialElements = initialElements;
         this.elements = null;
         this.sizeValue = 0;
+        // we currently do not do anything with the initialCapacity..... yet
+        if (initialElements !== null) {
+            for (var iter = initialElements.iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.add(t);
+            }
+        }
     }
     /**
      * Appends the specified element to the end of this list
@@ -37,6 +48,30 @@ var ArrayList = (function () {
         }
         this.elements.splice(index, 0, t);
         this.sizeValue = this.sizeValue + 1;
+    };
+    /**
+     * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
+     * @param {number} index index at which to insert the first element from the specified collection
+     * @param {Collection} c collection containing elements to be added to this list
+     * @return {boolean} true if this collection changed as a result of the call
+     */
+    ArrayList.prototype.addAll = function (index, c) {
+        if (index === void 0) { index = -1; }
+        if (c === null)
+            return false;
+        if (c === undefined)
+            return false;
+        if (c.size() < 1)
+            return false;
+        var offsetToStartAt = index;
+        if (offsetToStartAt === -1) {
+            index = this.size();
+        }
+        for (var iter = c.iterator(); iter.hasNext();) {
+            var t = iter.next();
+            this.add(t);
+        }
+        return true;
     };
     /**
      * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
@@ -103,11 +138,36 @@ var ArrayList = (function () {
         if (this.elements === null) {
             return false;
         }
-        var offset = this.indexOf(t);
-        if (offset === -1)
+        if (this.elements === undefined) {
             return false;
+        }
+        var offset = this.indexOf(t);
+        if (offset === -1) {
+            return false;
+        }
         this.remove(offset);
         return true;
+    };
+    /**
+     * Removes from this list all of its elements that are contained in the specified collection.
+     * @param {Collection} c collection containing elements to be removed from this list
+     * @return {boolean} true if this list changed as a result of the call
+     */
+    ArrayList.prototype.removeAll = function (c) {
+        if (c === null)
+            return false;
+        if (c === undefined)
+            return false;
+        if (c.size() < 1)
+            return false;
+        var changed = false;
+        for (var iter = c.iterator(); iter.hasNext();) {
+            var t = iter.next();
+            var tmp = this.removeElement(t);
+            if (tmp === true)
+                changed = true;
+        }
+        return changed;
     };
     /**
      * Returns true if this list contains no elements.

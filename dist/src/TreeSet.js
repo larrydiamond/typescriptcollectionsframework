@@ -108,9 +108,17 @@ var TreeSet = (function () {
         return tmp;
     };
     /**
-    * Returns a Java style iterator
-    * @return {JIterator<K>} the Java style iterator
-    */
+     * Needed For Iterator
+     * @param {K} key the given key
+     * @return {K} the least key greater than key, or null if there is no such key
+     */
+    TreeSet.prototype.getNextHigherKey = function (key) {
+        return this.datastore.getNextHigherKey(key);
+    };
+    /**
+     * Returns a Java style iterator
+     * @return {JIterator<K>} the Java style iterator
+     */
     TreeSet.prototype.iterator = function () {
         return new TreeSetJIterator(this);
     };
@@ -137,7 +145,13 @@ var TreeSetJIterator = (function () {
             return true;
         }
         else {
-            return false; //TODO
+            var tmp = this.set.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
     };
     TreeSetJIterator.prototype.next = function () {
@@ -152,7 +166,14 @@ var TreeSetJIterator = (function () {
             }
         }
         else {
-            return null; // TODO
+            var tmp = this.set.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return null;
+            }
+            else {
+                this.location = tmp;
+                return tmp;
+            }
         }
     };
     return TreeSetJIterator;
@@ -162,9 +183,29 @@ exports.TreeSetJIterator = TreeSetJIterator;
 var TreeSetIterator = (function () {
     function TreeSetIterator(iSet) {
         this.set = iSet;
+        this.location = null;
     }
     TreeSetIterator.prototype.next = function (value) {
-        return new BasicIteratorResult_1.BasicIteratorResult(true, null); //TODO
+        if (this.location === undefined) {
+            var first = this.set.first();
+            if (first === undefined) {
+                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+            }
+            else {
+                this.location = first;
+                return new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
+            }
+        }
+        else {
+            var tmp = this.set.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+            }
+            else {
+                this.location = tmp;
+                return new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
+            }
+        }
     };
     return TreeSetIterator;
 }());

@@ -33,6 +33,13 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     put(key: K, value: V): V;
     private putNode(node, key, value);
     /**
+     * Needed For Iterator
+     * @param {K} key the given key
+     * @return {K} the least key greater than key, or null if there is no such key
+     */
+    getNextHigherKey(key: K): K;
+    private nextHigherNode(node);
+    /**
      * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
      * @param {K} key key whose presence in this map is to be tested
      * @return {boolean} true if this map contains a mapping for the specified key

@@ -8,12 +8,23 @@
 
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
- import {JIterator} from "./JIterator";
- import {List} from "./List";
+import {Collection} from "./Collection";
+import {JIterator} from "./JIterator";
+import {List} from "./List";
 
 export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   elements:T[] = null;
   sizeValue:number = 0;
+
+  constructor (private initialCapacity:number = 10, private initialElements:Collection<T> = null) {
+    // we currently do not do anything with the initialCapacity..... yet
+    if (initialElements !== null) {
+      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
+        let t:T = iter.next ();
+        this.add (t);
+      }
+    }
+  }
 
   /**
    * Appends the specified element to the end of this list
@@ -40,6 +51,29 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
       }
       this.elements.splice (index, 0, t);
       this.sizeValue = this.sizeValue + 1;
+    }
+
+   /**
+    * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
+    * @param {number} index index at which to insert the first element from the specified collection
+    * @param {Collection} c collection containing elements to be added to this list
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addAll (index:number = -1, c:Collection<T>) : boolean {
+      if (c === null) return false;
+      if (c === undefined) return false;
+      if (c.size() < 1) return false;
+      let offsetToStartAt = index;
+      if (offsetToStartAt === -1) {
+        index = this.size();
+      }
+
+      for (let iter = c.iterator(); iter.hasNext(); ) {
+        let t:T = iter.next ();
+        this.add (t);
+      }
+
+      return true;
     }
 
    /**
@@ -116,12 +150,38 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
       return false;
     }
 
+    if (this.elements === undefined) {
+      return false;
+    }
+
     let offset:number = this.indexOf (t);
-    if (offset === -1)
-    return false;
+    if (offset === -1) {
+      return false;
+    }
 
     this.remove (offset);
     return true;
+  }
+
+ /**
+  * Removes from this list all of its elements that are contained in the specified collection.
+  * @param {Collection} c collection containing elements to be removed from this list
+  * @return {boolean} true if this list changed as a result of the call
+  */
+  public removeAll (c:Collection<T>) : boolean {
+    if (c === null) return false;
+    if (c === undefined) return false;
+    if (c.size() < 1) return false;
+
+    let changed:boolean = false;
+
+    for (let iter = c.iterator(); iter.hasNext(); ) {
+      let t:T = iter.next ();
+      let tmp = this.removeElement(t);
+      if (tmp === true) changed = true;
+    }
+
+    return changed;
   }
 
 /**
