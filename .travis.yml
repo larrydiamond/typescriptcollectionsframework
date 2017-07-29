@@ -5,3 +5,5 @@ node_js: "7"
 script:
   - npm test
 
+after_script:
+  - node_modules/tslint/bin/tslint -c tsconfig.json */*.ts
