@@ -109,7 +109,42 @@ describe("Test HashMap functionality", function() {
     expect (myMap2.size ()).toEqual(0);
   });
 
-  /* tests dont work yet cant expose this class yet
+  it("Test adding one entry native", function() {
+    let myMap1:HashMap<string,number> = new HashMap<string,number> ();
+    expect (myMap1.size ()).toEqual(0);
+    expect (undefined).toEqual(myMap1.put("Leash", 4.99));
+    expect (myMap1.size ()).toEqual(1);
+  });
+
+  it("Test adding one entry", function() {
+    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    expect (myMap1.size ()).toEqual(0);
+    expect (undefined).toEqual(myMap1.put(product1, new ValueClass()));
+    expect (myMap1.size ()).toEqual(1);
+  });
+
+  it("Test adding two entries native", function() {
+    let myMap1:HashMap<string,number> = new HashMap<string,number> ();
+    expect (myMap1.size ()).toEqual(0);
+    expect (undefined).toEqual(myMap1.put("Leash", 4.99));
+    expect (myMap1.size ()).toEqual(1);
+    expect (undefined).toEqual(myMap1.put("Catnip", 2.99));
+    expect (myMap1.size ()).toEqual(2);
+  });
+
+/*
+  it("Test adding two entries", function() {
+    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+//    myMap1.printMap();
+    expect (myMap1.size ()).toEqual(0);
+    expect (undefined).toEqual(myMap1.put(product1, new ValueClass()));
+//    myMap1.printMap();
+    expect (myMap1.size ()).toEqual(1);
+    expect (undefined).toEqual(myMap1.put(product2, new ValueClass()));
+//    myMap1.printMap();
+    expect (myMap1.size ()).toEqual(2);
+  });
+
   it("Test Adding some items", function() {
     let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
     let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
@@ -123,6 +158,7 @@ describe("Test HashMap functionality", function() {
     petStoreMap2.put (product2, new ValueClass());
     expect (petStoreMap2.size ()).toEqual(2);
   });
+*/
 
   it("Test native types", function() {
     let basicTypesMap1:HashMap<string,number> = new HashMap<string,number>();
@@ -150,8 +186,5 @@ describe("Test HashMap functionality", function() {
     basicTypesMap2.put (0.99, "BBBBB");
     expect (basicTypesMap2.size ()).toEqual(4);
   });
-
-*/
-
 
 });

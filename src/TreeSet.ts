@@ -15,11 +15,8 @@ import {JSet} from "./JSet";
 export class TreeSet<K> implements JSet<K> {
   private datastore:TreeMap<K,number> = null;
 
-  private comparator:Comparator<K> = null;
-
   constructor(iComparator:Comparator<K>) {
-    this.comparator = iComparator;
-    this.datastore = new TreeMap<K,number>(this.comparator);
+    this.datastore = new TreeMap<K,number>(iComparator);
   }
 
   /**
@@ -29,8 +26,10 @@ export class TreeSet<K> implements JSet<K> {
   */
   public add (element:K) : boolean {
     let tmp:number = this.datastore.put(element, 1);
-    if (tmp === null)
+    if (tmp === null) {
       return false;
+    }
+
     return true;
   }
 
@@ -42,6 +41,14 @@ export class TreeSet<K> implements JSet<K> {
     if (this.datastore === null)
       return 0;
     return this.datastore.size();
+  }
+
+  /**
+   * Returns the comparator used to order the keys in this set
+   * @return {Comparator} the comparator used to order the keys in this set
+   */
+   public comparator () : Comparator<K> {
+     return this.datastore.comparator();
   }
 
   /**
@@ -75,6 +82,47 @@ export class TreeSet<K> implements JSet<K> {
   */
   public first () : K {
     return this.datastore.firstKey();
+  }
+
+  /**
+  * Returns the last (highest) element currently in this set.
+  * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+  */
+  public last () : K {
+    return this.datastore.lastKey();
+  }
+
+  /**
+  * Removes all of the elements from this set. The set will be empty after this call returns.
+  */
+  public clear () : void {
+    return this.datastore.clear();
+  }
+
+ /**
+  * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+  * @return {K} the first (lowest) element, or null if this set is empty
+  */
+  public pollFirst () : K {
+    if (this.datastore.size() === 0)
+      return null;
+
+    let tmp:K = this.datastore.firstKey();
+    this.datastore.remove(tmp);
+    return tmp;
+  }
+
+ /**
+  * Retrieves and removes the last (highest) element, or returns null if this set is empty.
+  * @return {K} the last (highest) element, or null if this set is empty
+  */
+  public pollLast () : K {
+    if (this.datastore.size() === 0)
+      return null;
+
+    let tmp:K = this.datastore.lastKey();
+    this.datastore.remove(tmp);
+    return tmp;
   }
 
   /**

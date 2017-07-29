@@ -12,9 +12,7 @@ var TreeMap_1 = require("./TreeMap");
 var TreeSet = (function () {
     function TreeSet(iComparator) {
         this.datastore = null;
-        this.comparator = null;
-        this.comparator = iComparator;
-        this.datastore = new TreeMap_1.TreeMap(this.comparator);
+        this.datastore = new TreeMap_1.TreeMap(iComparator);
     }
     /**
     * Adds the specified element to this set if it is not already present.
@@ -23,8 +21,9 @@ var TreeSet = (function () {
     */
     TreeSet.prototype.add = function (element) {
         var tmp = this.datastore.put(element, 1);
-        if (tmp === null)
+        if (tmp === null) {
             return false;
+        }
         return true;
     };
     /**
@@ -35,6 +34,13 @@ var TreeSet = (function () {
         if (this.datastore === null)
             return 0;
         return this.datastore.size();
+    };
+    /**
+     * Returns the comparator used to order the keys in this set
+     * @return {Comparator} the comparator used to order the keys in this set
+     */
+    TreeSet.prototype.comparator = function () {
+        return this.datastore.comparator();
     };
     /**
     * Returns true if this set contains no elements.
@@ -65,6 +71,41 @@ var TreeSet = (function () {
     */
     TreeSet.prototype.first = function () {
         return this.datastore.firstKey();
+    };
+    /**
+    * Returns the last (highest) element currently in this set.
+    * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+    */
+    TreeSet.prototype.last = function () {
+        return this.datastore.lastKey();
+    };
+    /**
+    * Removes all of the elements from this set. The set will be empty after this call returns.
+    */
+    TreeSet.prototype.clear = function () {
+        return this.datastore.clear();
+    };
+    /**
+     * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+     * @return {K} the first (lowest) element, or null if this set is empty
+     */
+    TreeSet.prototype.pollFirst = function () {
+        if (this.datastore.size() === 0)
+            return null;
+        var tmp = this.datastore.firstKey();
+        this.datastore.remove(tmp);
+        return tmp;
+    };
+    /**
+     * Retrieves and removes the last (highest) element, or returns null if this set is empty.
+     * @return {K} the last (highest) element, or null if this set is empty
+     */
+    TreeSet.prototype.pollLast = function () {
+        if (this.datastore.size() === 0)
+            return null;
+        var tmp = this.datastore.lastKey();
+        this.datastore.remove(tmp);
+        return tmp;
     };
     /**
     * Returns a Java style iterator

@@ -5,7 +5,7 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     private topNode;
     private mapComparator;
     constructor(iComparator: Comparator<K>);
-    printMap(): void;
+    private printMap();
     private printMapNode(node);
     validateMap(): boolean;
     private validateNode(node);

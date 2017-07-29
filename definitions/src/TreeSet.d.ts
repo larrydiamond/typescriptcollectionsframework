@@ -3,7 +3,6 @@ import { JIterator } from "./JIterator";
 import { JSet } from "./JSet";
 export declare class TreeSet<K> implements JSet<K> {
     private datastore;
-    private comparator;
     constructor(iComparator: Comparator<K>);
     /**
     * Adds the specified element to this set if it is not already present.
@@ -16,6 +15,11 @@ export declare class TreeSet<K> implements JSet<K> {
     * @return {number} the number of elements in this set (its cardinality)
     */
     size(): number;
+    /**
+     * Returns the comparator used to order the keys in this set
+     * @return {Comparator} the comparator used to order the keys in this set
+     */
+    comparator(): Comparator<K>;
     /**
     * Returns true if this set contains no elements.
     * @return {boolean} true if this set contains no elements
@@ -32,6 +36,25 @@ export declare class TreeSet<K> implements JSet<K> {
     * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
     */
     first(): K;
+    /**
+    * Returns the last (highest) element currently in this set.
+    * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+    */
+    last(): K;
+    /**
+    * Removes all of the elements from this set. The set will be empty after this call returns.
+    */
+    clear(): void;
+    /**
+     * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+     * @return {K} the first (lowest) element, or null if this set is empty
+     */
+    pollFirst(): K;
+    /**
+     * Retrieves and removes the last (highest) element, or returns null if this set is empty.
+     * @return {K} the last (highest) element, or null if this set is empty
+     */
+    pollLast(): K;
     /**
     * Returns a Java style iterator
     * @return {JIterator<K>} the Java style iterator

@@ -86,47 +86,73 @@ describe("Test HashMap functionality", function () {
         var myMap2 = new HashMap_1.HashMap();
         expect(myMap2.size()).toEqual(0);
     });
-    /* tests dont work yet cant expose this class yet
-    it("Test Adding some items", function() {
-      let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
-      let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
-  
-      petStoreMap1.put (product1, new ValueClass());
-      petStoreMap1.put (product2, new ValueClass());
-      petStoreMap1.put (product3, new ValueClass());
-      expect (petStoreMap1.size ()).toEqual(3);
-  
-      petStoreMap2.put (product1, new ValueClass());
-      petStoreMap2.put (product2, new ValueClass());
-      expect (petStoreMap2.size ()).toEqual(2);
+    it("Test adding one entry native", function () {
+        var myMap1 = new HashMap_1.HashMap();
+        expect(myMap1.size()).toEqual(0);
+        expect(undefined).toEqual(myMap1.put("Leash", 4.99));
+        expect(myMap1.size()).toEqual(1);
     });
-  
-    it("Test native types", function() {
-      let basicTypesMap1:HashMap<string,number> = new HashMap<string,number>();
-      let basicTypesMap2:HashMap<number,string> = new HashMap<number,string>();
-  
-      basicTypesMap1.put ("ChewToy", 14.99);
-      basicTypesMap1.put ("Catnip", 4.99);
-      basicTypesMap1.put ("Goldfish", 9.99);
-      basicTypesMap1.put ("AAAAA", 0.99);
-      expect (basicTypesMap1.size ()).toEqual(4);
-  
-      let oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
-      expect (oldPrice).toEqual (14.99);
-      expect (basicTypesMap1.size ()).toEqual(4);
-  
-      expect (basicTypesMap1.get ("Catnip")).toEqual (4.99);
-      expect (basicTypesMap1.put ("Catnip", 5.99)).toEqual (4.99);
-      expect (basicTypesMap1.size ()).toEqual(4);
-      expect (basicTypesMap1.get ("Catnip")).toEqual (5.99);
-  
-      basicTypesMap2.put (14.99, "ChewToy");
-      basicTypesMap2.put (4.99, "Catnip");
-      basicTypesMap2.put (9.99, "Goldfish");
-      basicTypesMap2.put (0.99, "AAAAA");
-      basicTypesMap2.put (0.99, "BBBBB");
-      expect (basicTypesMap2.size ()).toEqual(4);
+    it("Test adding one entry", function () {
+        var myMap1 = new HashMap_1.HashMap();
+        expect(myMap1.size()).toEqual(0);
+        expect(undefined).toEqual(myMap1.put(product1, new ValueClass()));
+        expect(myMap1.size()).toEqual(1);
     });
-  
-  */
+    it("Test adding two entries native", function () {
+        var myMap1 = new HashMap_1.HashMap();
+        expect(myMap1.size()).toEqual(0);
+        expect(undefined).toEqual(myMap1.put("Leash", 4.99));
+        expect(myMap1.size()).toEqual(1);
+        expect(undefined).toEqual(myMap1.put("Catnip", 2.99));
+        expect(myMap1.size()).toEqual(2);
+    });
+    /*
+      it("Test adding two entries", function() {
+        let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    //    myMap1.printMap();
+        expect (myMap1.size ()).toEqual(0);
+        expect (undefined).toEqual(myMap1.put(product1, new ValueClass()));
+    //    myMap1.printMap();
+        expect (myMap1.size ()).toEqual(1);
+        expect (undefined).toEqual(myMap1.put(product2, new ValueClass()));
+    //    myMap1.printMap();
+        expect (myMap1.size ()).toEqual(2);
+      });
+    
+      it("Test Adding some items", function() {
+        let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+        let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    
+        petStoreMap1.put (product1, new ValueClass());
+        petStoreMap1.put (product2, new ValueClass());
+        petStoreMap1.put (product3, new ValueClass());
+        expect (petStoreMap1.size ()).toEqual(3);
+    
+        petStoreMap2.put (product1, new ValueClass());
+        petStoreMap2.put (product2, new ValueClass());
+        expect (petStoreMap2.size ()).toEqual(2);
+      });
+    */
+    it("Test native types", function () {
+        var basicTypesMap1 = new HashMap_1.HashMap();
+        var basicTypesMap2 = new HashMap_1.HashMap();
+        basicTypesMap1.put("ChewToy", 14.99);
+        basicTypesMap1.put("Catnip", 4.99);
+        basicTypesMap1.put("Goldfish", 9.99);
+        basicTypesMap1.put("AAAAA", 0.99);
+        expect(basicTypesMap1.size()).toEqual(4);
+        var oldPrice = basicTypesMap1.put("ChewToy", 9.99);
+        expect(oldPrice).toEqual(14.99);
+        expect(basicTypesMap1.size()).toEqual(4);
+        expect(basicTypesMap1.get("Catnip")).toEqual(4.99);
+        expect(basicTypesMap1.put("Catnip", 5.99)).toEqual(4.99);
+        expect(basicTypesMap1.size()).toEqual(4);
+        expect(basicTypesMap1.get("Catnip")).toEqual(5.99);
+        basicTypesMap2.put(14.99, "ChewToy");
+        basicTypesMap2.put(4.99, "Catnip");
+        basicTypesMap2.put(9.99, "Goldfish");
+        basicTypesMap2.put(0.99, "AAAAA");
+        basicTypesMap2.put(0.99, "BBBBB");
+        expect(basicTypesMap2.size()).toEqual(4);
+    });
 });
