@@ -29,7 +29,7 @@
   "scripts": {
     "test": "gulp test",
     "release": "standard-version",
-    "tslint": "node_modules/tslint/bin/tslint -c tsconfig.json */*.ts"
+    "tslint": "node_modules/tslint/bin/tslint -c tslint.json */*.ts"
   },
   "repository": {
     "type": "git",
