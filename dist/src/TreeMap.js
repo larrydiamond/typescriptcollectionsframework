@@ -164,7 +164,7 @@ var TreeMap = (function () {
         if ((this.topNode === null) || (this.topNode === undefined)) {
             return null;
         }
-        var tmp = this.nextHigherNode(this.topNode); // TODO
+        var tmp = this.nextHigherNode(this.topNode);
         if (tmp === null)
             return null;
         return tmp.getKey();

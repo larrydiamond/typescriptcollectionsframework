@@ -184,7 +184,7 @@ public size () : number {
       return null;
     }
 
-    let tmp:TreeMapNode<K,V> = this.nextHigherNode(this.topNode); // TODO
+    let tmp:TreeMapNode<K,V> = this.nextHigherNode(this.topNode);
     if (tmp === null) return null;
     return tmp.getKey();
   }
