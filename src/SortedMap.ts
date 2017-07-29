@@ -6,7 +6,9 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
-export interface SortedMap<K,V> {
+import {JMap} from "./JMap";
+
+export interface SortedMap<K,V> extends JMap<K,V> {
 
  /**
   * Returns the first (lowest) key currently in this map.
