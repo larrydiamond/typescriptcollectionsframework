@@ -2,7 +2,6 @@
     "rules": {
         "no-empty-interface": true,
         "no-import-side-effect": true,
-        "no-inferrable-types": true,
         "no-bitwise": true,
         "no-conditional-assignment": true,
         "no-construct": true,

@@ -28,7 +28,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "release": "standard-version"
+    "release": "standard-version",
+    "tslint": "node_modules/tslint/bin/tslint -c tsconfig.json */*.ts"
   },
   "repository": {
     "type": "git",
