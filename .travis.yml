@@ -8,4 +8,4 @@ script:
 after_script:
   - npm run tslint
   - npm install istanbul
-  - istanbul cover node_modules\jasmine\bin\jasmine.js
+  - istanbul cover node_modules/jasmine/bin/jasmine.js
