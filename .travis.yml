@@ -7,5 +7,5 @@ script:
 
 after_script:
   - npm run tslint
-  - npm install istanbul jasmine-node
-  - istanbul cover --include-all-sources jasmine-node spec
+  - npm install istanbul jasmine-node codecov
+  - istanbul cover --include-all-sources jasmine-node spec && codecov
