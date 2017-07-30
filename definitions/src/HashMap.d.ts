@@ -1,13 +1,7 @@
-/**
-* @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
-*/
+import { Hashable } from "./Hashable";
 import { JMap } from "./JMap";
-export declare class HashMap<K, V> implements JMap<K, V> {
-    private nativeDictionary;
+export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
+    private data;
     constructor();
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
@@ -21,11 +15,11 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     * @return {number} the number of key-value mappings in this map
     */
     size(): number;
-    printMap(): void;
     /**
     * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
     * @param {K} key the key whose associated value is to be returned
     * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
     */
     get(key: K): V;
+    private getMapEntry(key);
 }

@@ -12,7 +12,8 @@ export {Collectable} from "./src/Collectable";
 export {Collection} from "./src/Collection";
 export {CollectionUtils} from "./src/CollectionUtils";
 export {CString} from "./src/CString";
-//export {HashMap} from "./src/HashMap";   HashMap doesnt work yet, cant expose it until it works
+export {Hashable} from "./src/Hashable";
+export {HashMap} from "./src/HashMap";
 export {ImmutableMap} from "./src/ImmutableMap";
 export {ImmutableSet} from "./src/ImmutableSet";
 export {JIterator} from "./src/JIterator";

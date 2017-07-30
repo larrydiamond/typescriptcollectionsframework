@@ -8,16 +8,29 @@
 import { MapEntry } from "./MapEntry";
 export declare class BasicMapEntry<K, V> implements MapEntry<K, V> {
     private key;
-    private value;
+    protected value: V;
     constructor(iKey: K, iValue: V);
     /**
-    * Returns the key corresponding to this entry.
-    * @return {K} the key corresponding to this entry
-    */
+     * Returns the key corresponding to this entry.
+     * @return {K} the key corresponding to this entry
+     */
     getKey(): K;
     /**
-    * Returns the value corresponding to this entry. If the mapping has been removed from the backing map (by the iterator's remove operation), the results of this call are undefined.
-    * @return {V} the value corresponding to this entry
-    */
+     * Returns the value corresponding to this entry. If the mapping has been removed from the backing map (by the iterator's remove operation), the results of this call are undefined.
+     * @return {V} the value corresponding to this entry
+     */
     getValue(): V;
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * The equals method implements an equivalence relation on non-null object references:
+     * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
+     * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
+     * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
+     * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
+     * For any non-null reference value x, x.equals(null) should return false.
+     * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
+     * @param {T} t element to compare
+     * @return {boolean} true if the other element is "equal" to this one
+     */
+    equals(t: any): boolean;
 }

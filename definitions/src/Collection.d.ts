@@ -7,7 +7,7 @@
  */
 import { Collectable } from "./Collectable";
 import { JIterator } from "./JIterator";
-export interface Collection<T extends Collectable> {
+export interface Collection<T extends Collectable> extends Collectable {
     /**
      * Ensures that this collection contains the specified element (optional operation).
      * Returns true if this collection changed as a result of the call. (Returns false if this collection does not permit duplicates and already contains the specified element.)

@@ -9,11 +9,12 @@ import {Collectable} from "../src/Collectable";
 import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
 import {HashMap} from "../src/HashMap";
+import {Hashable} from "../src/Hashable";
 
 describe("Test HashMap functionality", function() {
 
   // PetStoreProduct will be used in testing
-  class PetStoreProduct {
+  class PetStoreProduct implements Hashable {
     private productName:string;
     private price:number;
 
@@ -28,6 +29,23 @@ describe("Test HashMap functionality", function() {
 
     public getPrice():number {
       return this.price;
+    }
+
+    equals (t:any) : boolean {
+      if (t instanceof PetStoreProduct) {
+        if ((this.productName === t.getProductName()) && (this.price === t.getPrice()))
+          return true;
+      }
+      return false;
+    }
+
+    hashCode () : number {
+      if (this.price === undefined)
+        return 1;
+      if (this.price === null)
+        return 1;
+      let tmp:number = Math.abs (this.price);
+      return Math.ceil (tmp);
     }
   };
 
@@ -105,24 +123,31 @@ describe("Test HashMap functionality", function() {
     let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
     expect (myMap1.size ()).toEqual(0);
 
+/*
     let myMap2:HashMap<string,number> = new HashMap<string,number>();
     expect (myMap2.size ()).toEqual(0);
+*/
   });
 
+/*
   it("Test adding one entry native", function() {
     let myMap1:HashMap<string,number> = new HashMap<string,number> ();
     expect (myMap1.size ()).toEqual(0);
     expect (undefined).toEqual(myMap1.put("Leash", 4.99));
     expect (myMap1.size ()).toEqual(1);
   });
+*/
 
+/*
   it("Test adding one entry", function() {
     let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
     expect (myMap1.size ()).toEqual(0);
     expect (undefined).toEqual(myMap1.put(product1, new ValueClass()));
     expect (myMap1.size ()).toEqual(1);
   });
+*/
 
+/*
   it("Test adding two entries native", function() {
     let myMap1:HashMap<string,number> = new HashMap<string,number> ();
     expect (myMap1.size ()).toEqual(0);
@@ -131,6 +156,7 @@ describe("Test HashMap functionality", function() {
     expect (undefined).toEqual(myMap1.put("Catnip", 2.99));
     expect (myMap1.size ()).toEqual(2);
   });
+*/
 
 /*
   it("Test adding two entries", function() {
@@ -160,6 +186,7 @@ describe("Test HashMap functionality", function() {
   });
 */
 
+/*
   it("Test native types", function() {
     let basicTypesMap1:HashMap<string,number> = new HashMap<string,number>();
     let basicTypesMap2:HashMap<number,string> = new HashMap<number,string>();
@@ -186,5 +213,6 @@ describe("Test HashMap functionality", function() {
     basicTypesMap2.put (0.99, "BBBBB");
     expect (basicTypesMap2.size ()).toEqual(4);
   });
+*/
 
 });

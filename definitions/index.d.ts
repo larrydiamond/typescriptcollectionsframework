@@ -11,6 +11,8 @@ export { Collectable } from "./src/Collectable";
 export { Collection } from "./src/Collection";
 export { CollectionUtils } from "./src/CollectionUtils";
 export { CString } from "./src/CString";
+export { Hashable } from "./src/Hashable";
+export { HashMap } from "./src/HashMap";
 export { ImmutableMap } from "./src/ImmutableMap";
 export { ImmutableSet } from "./src/ImmutableSet";
 export { JIterator } from "./src/JIterator";

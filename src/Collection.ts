@@ -9,7 +9,7 @@
 import {Collectable} from "./Collectable";
 import {JIterator} from "./JIterator";
 
-export interface Collection<T extends Collectable> {
+export interface Collection<T extends Collectable> extends Collectable {
 
   /**
    * Ensures that this collection contains the specified element (optional operation).

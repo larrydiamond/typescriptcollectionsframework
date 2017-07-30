@@ -6,13 +6,19 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {ArrayList} from "./ArrayList";
+import {BasicMapEntry} from "./BasicMapEntry";
+import {Collectable} from "./Collectable";
+import {Hashable} from "./Hashable";
 import {JMap} from "./JMap";
 
-export class HashMap<K,V> implements JMap<K,V> {
-  private nativeDictionary:any; // Okay, why does this work?   Because each JS engine automatically either does a hashmap or something else for its objects to improve performance.   I'm relying on their hard work.
+
+
+export class HashMap<K extends Hashable,V> implements JMap<K,V> {
+  private data:ArrayList<ArrayList<HashMapEntry<K,V>>> = null;
 
   public constructor () {
-    this.nativeDictionary = {};
+    this.data = new ArrayList();
   }
 
   /**
@@ -22,9 +28,19 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
   */
   public put (key:K, value:V) : V {
-    let tmp:V = this.nativeDictionary [key];
-    this.nativeDictionary [key] = value;
-    return tmp;
+    let mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
+    if (mapEntry === null) {
+      let hashCode:number = key.hashCode();
+
+
+
+      return null; // TODO
+
+    } else {
+      let tmp:V = mapEntry.getValue();
+      mapEntry.setValue(value);
+      return tmp;
+    }
   }
 
   /**
@@ -34,26 +50,8 @@ export class HashMap<K,V> implements JMap<K,V> {
   public size () : number {
     let tmp:number = 0;
 
-    for (let entry in this.nativeDictionary) {
-      tmp = tmp + 1;
-    }
-
-    return tmp;
+    return tmp; // TODO
   }
-
-  public printMap():void {
-    let tmp:number = 0;
-
-    for (let entry in this.nativeDictionary) {
-      console.log ("Entry " + JSON.stringify(entry) + " = " + tmp);
-//      let {key:K,value:V} = entry;
-//      console.log ("Entry " + JSON.stringify(key) + JSON.stringify(value) + " = " + tmp);
-      tmp = tmp + 1;
-    }
-
-    console.log ("Map " + JSON.stringify(this.nativeDictionary) + " = " + tmp);
-  }
-
 
   /**
   * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
@@ -61,6 +59,17 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
   */
   public get (key:K) : V {
-    return this.nativeDictionary [key];
+    let hashCode:number = key.hashCode();
+    return null; // TODO
+  }
+
+  private getMapEntry (key:K) : HashMapEntry<K,V> {
+    return null; // TODO
+  }
+}
+
+class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
+  setValue (iValue:V) : void {
+    this.value = iValue;
   }
 }
