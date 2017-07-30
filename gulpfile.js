@@ -3,6 +3,7 @@ const ts = require('gulp-typescript');
 const jasmine = require('gulp-jasmine');
 const clean = require('gulp-clean');
 const runSequence = require('run-sequence');
+cover = require('gulp-coverage');
 
 gulp.task('build', function() {
     const merge = require('merge2');
@@ -25,6 +26,9 @@ gulp.task('clean', function () {
 gulp.task('test:run', function() {
     return gulp.src('dist/spec/**')
       .pipe(jasmine())
+      .pipe(cover.gather())
+      .pipe(cover.format())
+      .pipe(gulp.dest('reports'));
 });
 
 gulp.task('watch', ['default'], function() {
