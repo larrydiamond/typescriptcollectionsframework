@@ -7,5 +7,5 @@ script:
 
 after_script:
   - npm run tslint
-  - npm install istanbul
-  - istanbul cover node_modules/jasmine/bin/jasmine.js
+  - npm install istanbul jasmine-node
+  - istanbul cover --include-all-sources jasmine-node spec
