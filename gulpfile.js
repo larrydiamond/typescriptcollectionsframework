@@ -31,7 +31,7 @@ gulp.task('test:run', function() {
                 }))
       .pipe(jasmine())
       .pipe(cover.gather())
-      .pipe(cover.format())
+      .pipe(cover.format({ reporter: 'lcov' }))
       .pipe(gulp.dest('reports'));
 });
 
