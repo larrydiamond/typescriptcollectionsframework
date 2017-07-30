@@ -7,4 +7,5 @@ script:
 
 after_script:
   - npm run tslint
+  - ls
   - bash <(curl -s https://codecov.io/bash)
