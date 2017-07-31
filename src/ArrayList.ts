@@ -201,7 +201,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @param {T} element element to be stored at the specified position
  * @return {number} the element previously at the specified position
  */
-  public set(index:number, element:T):T {
+  public set(index:number, element:T) : T {
     let tmp:T = this.elements [index];
     this.elements [index] = element;
     return tmp;

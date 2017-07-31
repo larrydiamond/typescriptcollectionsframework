@@ -10,6 +10,7 @@ export { CNumber } from "./src/CNumber";
 export { Collectable } from "./src/Collectable";
 export { Collection } from "./src/Collection";
 export { CollectionUtils } from "./src/CollectionUtils";
+export { Comparator } from "./src/Comparator";
 export { CString } from "./src/CString";
 export { Hashable } from "./src/Hashable";
 export { HashMap } from "./src/HashMap";
