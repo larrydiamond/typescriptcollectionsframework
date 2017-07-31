@@ -8,4 +8,6 @@ script:
 after_script:
   - npm run tslint
   - ls -l
+  - npm install nyc
+  - nyc --reporter=lcov --reporter=text-lcov npm test
   - bash <(curl -s https://codecov.io/bash)
