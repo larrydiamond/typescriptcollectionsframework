@@ -9,7 +9,6 @@ module.exports = function(config) {
             "src/**/*.ts": ["karma-typescript", "coverage"],
             "spec/**/*.ts": ["karma-typescript"]
         },
-        reporters: ["progress", "karma-typescript"],
-        browsers: ["PhantomJS"]
+        reporters: ["progress", "karma-typescript"]
     });
 };
