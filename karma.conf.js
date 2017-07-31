@@ -10,7 +10,7 @@ module.exports = function(config) {
             "spec/**/*.ts": ["karma-typescript"]
         },
         reporters: ["progress", "karma-typescript"],
-        coverageReporter = {
+        coverageReporter: {
             type : 'lcov',
             dir : 'coverage/'
         }
