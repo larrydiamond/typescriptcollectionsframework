@@ -9,6 +9,10 @@ module.exports = function(config) {
             "src/**/*.ts": ["karma-typescript", "coverage"],
             "spec/**/*.ts": ["karma-typescript"]
         },
-        reporters: ["progress", "karma-typescript"]
+        reporters: ["progress", "karma-typescript"],
+        coverageReporter = {
+            type : 'lcov',
+            dir : 'coverage/'
+        }
     });
 };
