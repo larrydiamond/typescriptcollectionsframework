@@ -7,6 +7,7 @@ script:
 
 after_script:
   - npm run tslint
-  - npm install karma karma-typescript phantomjs-prebuilt karma-jasmine karma-chrome-launcher
+  - npm install karma karma-typescript phantomjs-prebuilt karma-jasmine karma-chrome-launcher karma-phantomjs-launcher
   - ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS
+  - ls -ltrRa coverage
   - bash <(curl -s https://codecov.io/bash)
