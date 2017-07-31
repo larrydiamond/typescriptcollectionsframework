@@ -26,7 +26,7 @@ gulp.task('clean', function () {
 gulp.task('test:run', function() {
     return gulp.src('dist/spec/**')
                 .pipe(cover.instrument({
-                    pattern: ['src/**/*.js'],
+                    pattern: ['src/**/*.ts'],
                     debugDirectory: 'debug'
                 }))
       .pipe(jasmine())
