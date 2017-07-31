@@ -9,5 +9,5 @@ after_script:
   - npm run tslint
   - ls -l
   - npm install nyc
-  - nyc npm test
+  - nyc --reporter=lcov --reporter=text-lcov npm test
   - bash <(curl -s https://codecov.io/bash)
