@@ -24,7 +24,7 @@ My stretch goal if I can encourage you to help me (please!) is to add MultiMap a
 https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular2
 
 # Author
-Larry Diamond
+Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/
 
 # Design methodology
 The goal of this library is to provide a "as Java Collections" framework as possible so that developers can migrate their existing Java knowledge to TypeScript and be productive quicker.   It won't be possible to perfectly recreate the framework since the language is not the same, but the goal is to provide as many of the "normal" classes as possible with as many of the "normal" methods as possible.
