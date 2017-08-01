@@ -321,7 +321,6 @@ describe("Test ArrayList functionality", function() {
     expect (arraylist.indexOf (product3)).toEqual(-1);
   });
 
-
   it("Test duplicates in array", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
 
@@ -350,6 +349,19 @@ describe("Test ArrayList functionality", function() {
 
     expect (arraylist.removeElement (productNotAvailable)). toEqual (false);
   });
+
+  it("Test addall", function() {
+    let victim:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (arraylist.add (product1)).toEqual (true);
+    expect (arraylist.add (product2)).toEqual (true);
+    expect (arraylist.add (product3)).toEqual (true);
+    expect (arraylist.add (product1)).toEqual (true);
+    expect (arraylist.size ()).toEqual(4);
+    expect (victim.addAll (arraylist)).toEqual (true);
+  });
+
+
 
 /*
   it("Easy iteration", function () {

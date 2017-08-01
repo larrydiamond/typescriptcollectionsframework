@@ -59,18 +59,19 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     * @param {Collection} c collection containing elements to be added to this list
     * @return {boolean} true if this collection changed as a result of the call
     */
-    public addAll (index:number = -1, c:Collection<T>) : boolean {
+    public addAll (c:Collection<T>, index?:number) : boolean {
       if (c === null) return false;
       if (c === undefined) return false;
       if (c.size() < 1) return false;
-      let offsetToStartAt = index;
-      if (offsetToStartAt === -1) {
-        index = this.size();
+      let offsetToStartAt = this.size();
+      if (index) {
+        offsetToStartAt = index;
       }
 
       for (let iter = c.iterator(); iter.hasNext(); ) {
         let t:T = iter.next ();
-        this.add (t);
+        this.addElement (index, t);
+        index = index + 1;
       }
 
       return true;

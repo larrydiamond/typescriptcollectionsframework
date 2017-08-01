@@ -26,7 +26,7 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      * @param {Collection} c collection containing elements to be added to this list
      * @return {boolean} true if this collection changed as a result of the call
      */
-    addAll(index: number, c: Collection<T>): boolean;
+    addAll(c: Collection<T>, index?: number): boolean;
     /**
      * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
      * @param {number} index the index of the element to be removed

@@ -55,21 +55,21 @@ var ArrayList = (function () {
      * @param {Collection} c collection containing elements to be added to this list
      * @return {boolean} true if this collection changed as a result of the call
      */
-    ArrayList.prototype.addAll = function (index, c) {
-        if (index === void 0) { index = -1; }
+    ArrayList.prototype.addAll = function (c, index) {
         if (c === null)
             return false;
         if (c === undefined)
             return false;
         if (c.size() < 1)
             return false;
-        var offsetToStartAt = index;
-        if (offsetToStartAt === -1) {
-            index = this.size();
+        var offsetToStartAt = this.size();
+        if (index) {
+            offsetToStartAt = index;
         }
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.add(t);
+            this.addElement(index, t);
+            index = index + 1;
         }
         return true;
     };

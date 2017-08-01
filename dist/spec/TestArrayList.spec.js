@@ -271,6 +271,16 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.indexOf(product3)).toEqual(2);
         expect(arraylist.removeElement(productNotAvailable)).toEqual(false);
     });
+    it("Test addall", function () {
+        var victim = new ArrayList_1.ArrayList();
+        var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product3)).toEqual(true);
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.size()).toEqual(4);
+        expect(victim.addAll(arraylist)).toEqual(true);
+    });
     /*
       it("Easy iteration", function () {
         let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
