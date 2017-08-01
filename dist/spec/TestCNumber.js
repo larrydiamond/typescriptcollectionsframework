@@ -25,4 +25,12 @@ describe("Test CNumber", function () {
         var c = new CNumber_1.CNumber(undefined);
         expect(c.get() === undefined);
     });
+    it("Test equals integer", function () {
+        var a = new CNumber_1.CNumber(1);
+        var b = new CNumber_1.CNumber(1);
+        expect(a.equals(b));
+        expect(b.equals(a));
+        expect(a.equals(a));
+        expect(b.equals(b));
+    });
 });

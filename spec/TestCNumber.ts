@@ -30,4 +30,13 @@ describe("Test CNumber", function() {
     expect (c.get() === undefined);
   });
 
+  it("Test equals integer", function () {
+    let a:CNumber = new CNumber(1);
+    let b:CNumber = new CNumber(1);
+    expect (a.equals (b));
+    expect (b.equals (a));
+    expect (a.equals (a));
+    expect (b.equals (b));    
+  })
+
 });
