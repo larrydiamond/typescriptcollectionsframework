@@ -14,46 +14,47 @@ var TreeMap = (function () {
         this.mapComparator = null;
         this.mapComparator = iComparator;
     }
-    TreeMap.prototype.printMap = function () {
+    /* Debugging code
+      private printMap() : void {
         if (this.topNode === null) {
-            console.log("top node is null");
-            return;
+          console.log ("top node is null");
+          return;
         }
+    
         if (this.topNode === undefined) {
-            console.log("top node is undefined");
-            return;
+          console.log ("top node is undefined");
+          return;
         }
-        console.log("New Tree: size = " + this.size());
-        this.printMapNode(this.topNode);
-        console.log("End of Tree");
-    };
-    TreeMap.prototype.printMapNode = function (node) {
-        console.log("New Node: key = " + node.getKey() + " value = " + node.getValue());
+        console.log ("New Tree: size = " + this.size());
+        this.printMapNode (this.topNode);
+        console.log ("End of Tree");
+      }
+    
+      private printMapNode (node:TreeMapNode<K,V>) : void {
+        console.log ("New Node: key = " + node.getKey() + " value = " + node.getValue());
         if (node.getParentNode() !== null) {
-            console.log("Parent key = " + node.getParentNode().getKey());
-        }
-        else {
-            console.log("Parent node is null");
-        }
-        if (node.getLeftNode() !== null) {
-            console.log("Left key = " + node.getLeftNode().getKey());
-        }
-        else {
-            console.log("Left node is null");
-        }
-        if (node.getRightNode() !== null) {
-            console.log("Right key = " + node.getRightNode().getKey());
-        }
-        else {
-            console.log("Right node is null");
+          console.log ("Parent key = " + node.getParentNode().getKey());
+        } else {
+          console.log ("Parent node is null");
         }
         if (node.getLeftNode() !== null) {
-            this.printMapNode(node.getLeftNode());
+          console.log ("Left key = " + node.getLeftNode().getKey());
+        } else {
+          console.log ("Left node is null");
         }
         if (node.getRightNode() !== null) {
-            this.printMapNode(node.getRightNode());
+          console.log ("Right key = " + node.getRightNode().getKey());
+        } else {
+          console.log ("Right node is null");
         }
-    };
+        if (node.getLeftNode() !== null) {
+          this.printMapNode (node.getLeftNode());
+        }
+        if (node.getRightNode() !== null) {
+          this.printMapNode (node.getRightNode());
+        }
+      }
+      */
     TreeMap.prototype.validateMap = function () {
         if ((this.topNode === null) || (this.topNode === undefined)) {
             return true;
