@@ -341,6 +341,18 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(2);
   });
 
+  it("Test getNextHigherKey empty map", function() {
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
+  });
+
+  it("Test getNextHigherKey one element", function() {
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
+    expect (basicTypesMap1.getNextHigherKey ("AAAAA")).toEqual(null);
+  });
+
 
 
 

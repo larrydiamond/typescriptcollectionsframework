@@ -296,4 +296,14 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.remove("AAAAA")).toEqual(0.99);
         expect(basicTypesMap1.size()).toEqual(2);
     });
+    it("Test getNextHigherKey empty map", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.getNextHigherKey("Dog")).toEqual(null);
+    });
+    it("Test getNextHigherKey one element", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.getNextHigherKey("Dog")).toEqual(null);
+        expect(basicTypesMap1.getNextHigherKey("AAAAA")).toEqual(null);
+    });
 });
