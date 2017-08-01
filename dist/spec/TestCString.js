@@ -25,4 +25,12 @@ describe("Test CString", function () {
         var c = new CString_1.CString(undefined);
         expect(c.get() === undefined);
     });
+    it("Test equals string", function () {
+        var a = new CString_1.CString("test");
+        var b = new CString_1.CString("test");
+        expect(a.equals(b));
+        expect(b.equals(a));
+        expect(a.equals(a));
+        expect(b.equals(b));
+    });
 });

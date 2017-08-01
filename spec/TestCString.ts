@@ -30,4 +30,13 @@ describe("Test CString", function() {
     expect (c.get() === undefined);
   });
 
+  it("Test equals string", function () {
+    let a:CString = new CString("test");
+    let b:CString = new CString("test");
+    expect (a.equals (b));
+    expect (b.equals (a));
+    expect (a.equals (a));
+    expect (b.equals (b));
+  })
+
 });
