@@ -183,6 +183,44 @@ describe("Test TreeSet functionality", function() {
     expect (false).toEqual(TreeSet2.isEmpty ());
   });
 
+  it("Test pollfirst", function() {
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.pollFirst()).toEqual(null);
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect (TreeSet2.size ()).toEqual(1);
+    expect (TreeSet2.pollFirst()).toEqual("Hello");
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.pollFirst()).toEqual(null);
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.add ("Second")).toEqual(false);
+    expect (TreeSet2.add ("First")).toEqual(false);
+    expect (TreeSet2.pollFirst()).toEqual("First");
+    expect (TreeSet2.size ()).toEqual(1);
+    expect (TreeSet2.pollFirst()).toEqual("Second");
+    expect (TreeSet2.size ()).toEqual(0);
+  });
+
+  it("Test polllast", function() {
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.pollLast()).toEqual(null);
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.add ("Hello")).toEqual(false);
+    expect (TreeSet2.size ()).toEqual(1);
+    expect (TreeSet2.pollLast()).toEqual("Hello");
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.pollLast()).toEqual(null);
+    expect (TreeSet2.size ()).toEqual(0);
+    expect (TreeSet2.add ("Second")).toEqual(false);
+    expect (TreeSet2.add ("First")).toEqual(false);
+    expect (TreeSet2.pollLast()).toEqual("Second");
+    expect (TreeSet2.size ()).toEqual(1);
+    expect (TreeSet2.pollLast()).toEqual("First");
+    expect (TreeSet2.size ()).toEqual(0);
+  });
+
 
 
 });
