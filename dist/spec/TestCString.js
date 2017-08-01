@@ -33,4 +33,27 @@ describe("Test CString", function () {
         expect(a.equals(a));
         expect(b.equals(b));
     });
+    it("Test unequals string", function () {
+        var a = new CString_1.CString("test");
+        var b = new CString_1.CString("unequal");
+        expect(!(a.equals(b)));
+        expect(!(b.equals(a)));
+    });
+    it("Test equals null", function () {
+        var a = new CString_1.CString("test");
+        var b = new CString_1.CString(null);
+        expect(!(a.equals(b)));
+        expect(!(b.equals(a)));
+        expect(a.equals(a));
+        expect(b.equals(b));
+    });
+    it("Test hashCode string", function () {
+        var a = new CString_1.CString("test");
+        var b = new CString_1.CString("test");
+        var c = new CString_1.CString("unequal");
+        expect(a.hashCode() === b.hashCode());
+        expect(b.hashCode() === a.hashCode());
+        expect(c.hashCode() !== a.hashCode());
+        expect(c.hashCode() !== b.hashCode());
+    });
 });

@@ -37,6 +37,32 @@ describe("Test CString", function() {
     expect (b.equals (a));
     expect (a.equals (a));
     expect (b.equals (b));
+  });
+
+  it("Test unequals string", function () {
+    let a:CString = new CString("test");
+    let b:CString = new CString("unequal");
+    expect (!(a.equals (b)));
+    expect (!(b.equals (a)));
+  });
+
+  it("Test equals null", function () {
+    let a:CString = new CString("test");
+    let b:CString = new CString(null);
+    expect (!(a.equals (b)));
+    expect (!(b.equals (a)));
+    expect (a.equals (a));
+    expect (b.equals (b));
+  });
+
+  it("Test hashCode string", function () {
+    let a:CString = new CString("test");
+    let b:CString = new CString("test");
+    let c:CString = new CString("unequal");
+    expect (a.hashCode() === b.hashCode());
+    expect (b.hashCode() === a.hashCode());
+    expect (c.hashCode() !== a.hashCode());
+    expect (c.hashCode() !== b.hashCode());
   })
 
 });
