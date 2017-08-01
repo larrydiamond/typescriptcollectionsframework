@@ -13,7 +13,7 @@ describe("Test Comparator", function() {
 
   it ("get the string comparator", function () {
     let x:Comparator<string> = CollectionUtils.getStringComparator();
-    expect (x.compare ("x", "X") == 0);
+    expect (x.compare ("x", "X") === 0);
   });
 
 });

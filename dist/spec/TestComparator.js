@@ -11,6 +11,6 @@ var CollectionUtils_1 = require("../src/CollectionUtils");
 describe("Test Comparator", function () {
     it("get the string comparator", function () {
         var x = CollectionUtils_1.CollectionUtils.getStringComparator();
-        expect(x.compare("x", "X") == 0);
+        expect(x.compare("x", "X") === 0);
     });
 });
