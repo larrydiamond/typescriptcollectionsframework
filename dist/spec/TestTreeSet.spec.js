@@ -196,4 +196,20 @@ describe("Test TreeSet functionality", function () {
         expect(TreeSet2.pollLast()).toEqual("First");
         expect(TreeSet2.size()).toEqual(0);
     });
+    it("Test java iteration", function () {
+        var TreeSet2 = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
+        expect(TreeSet2.add(product1)).toEqual(false);
+        expect(TreeSet2.add(product2)).toEqual(false);
+        var offset = 0;
+        for (var iter = TreeSet2.iterator(); iter.hasNext();) {
+            var psp = iter.next();
+            if (offset === 0)
+                expect(psp.getProductName()).toEqual(product2.getProductName());
+            if (offset === 1)
+                expect(psp.getProductName()).toEqual(product1.getProductName());
+            if (offset > 1)
+                fail();
+            offset++;
+        }
+    });
 });

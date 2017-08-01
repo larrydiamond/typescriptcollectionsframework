@@ -221,6 +221,25 @@ describe("Test TreeSet functionality", function() {
     expect (TreeSet2.size ()).toEqual(0);
   });
 
+  it("Test java iteration", function() {
+    let TreeSet2:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
 
+    expect (TreeSet2.add (product1)).toEqual (false);
+    expect (TreeSet2.add (product2)).toEqual (false);
+
+    let offset:number = 0;
+    for (let iter = TreeSet2.iterator(); iter.hasNext(); ) {
+      let psp:PetStoreProduct = iter.next ();
+
+      if (offset === 0)
+        expect (psp.getProductName()).toEqual (product2.getProductName());
+      if (offset === 1)
+        expect (psp.getProductName()).toEqual (product1.getProductName());
+      if (offset > 1)
+        fail();
+
+       offset++;
+    }
+  });
 
 });
