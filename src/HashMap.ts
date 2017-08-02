@@ -11,11 +11,14 @@ import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
 import {Hashable} from "./Hashable";
 import {JMap} from "./JMap";
+import {List} from "./List";
 
 
 
 export class HashMap<K extends Hashable,V> implements JMap<K,V> {
-  private data:ArrayList<ArrayList<HashMapEntry<K,V>>> = null;
+  private data:ArrayList<List<HashMapEntry<K,V>>> = null;
+  private elementCount:number = 0;
+  private bucketCount:number = 0;
 
   public constructor () {
     this.data = new ArrayList();
@@ -31,11 +34,21 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     let mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
       let hashCode:number = key.hashCode();
-
-
-
-      return null; // TODO
-
+      let newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
+      newNode.setHashCode(hashCode);
+      if (this.data.size() === 0) {
+        let newList:List<HashMapEntry<K,V>> = new ArrayList<HashMapEntry<K,V>>();
+        this.data.add (newList);
+        newList.add (newNode);
+        this.bucketCount = this.bucketCount + 1;
+        this.elementCount = this.elementCount + 1;
+      } else {
+        let bucket = hashCode % this.bucketCount;
+        let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
+        thisList.add (newNode);
+        this.elementCount = this.elementCount + 1;
+      }
+      return undefined;
     } else {
       let tmp:V = mapEntry.getValue();
       mapEntry.setValue(value);
@@ -48,9 +61,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   * @return {number} the number of key-value mappings in this map
   */
   public size () : number {
-    let tmp:number = 0;
-
-    return tmp; // TODO
+    return this.elementCount;
   }
 
   /**
@@ -69,6 +80,13 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
 }
 
 class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
+  private hashCode:number;
+  getHashCode():number {
+    return this.hashCode;
+  }
+  setHashCode(iHashCode:number) {
+    this.hashCode = iHashCode;
+  }
   setValue (iValue:V) : void {
     this.value = iValue;
   }

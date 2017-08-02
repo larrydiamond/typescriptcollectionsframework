@@ -2,6 +2,8 @@ import { Hashable } from "./Hashable";
 import { JMap } from "./JMap";
 export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
     private data;
+    private elementCount;
+    private bucketCount;
     constructor();
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.

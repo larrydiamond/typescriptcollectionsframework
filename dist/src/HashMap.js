@@ -22,6 +22,8 @@ var BasicMapEntry_1 = require("./BasicMapEntry");
 var HashMap = (function () {
     function HashMap() {
         this.data = null;
+        this.elementCount = 0;
+        this.bucketCount = 0;
         this.data = new ArrayList_1.ArrayList();
     }
     /**
@@ -34,7 +36,22 @@ var HashMap = (function () {
         var mapEntry = this.getMapEntry(key);
         if (mapEntry === null) {
             var hashCode = key.hashCode();
-            return null; // TODO
+            var newNode = new HashMapEntry(key, value);
+            newNode.setHashCode(hashCode);
+            if (this.data.size() === 0) {
+                var newList = new ArrayList_1.ArrayList();
+                this.data.add(newList);
+                newList.add(newNode);
+                this.bucketCount = this.bucketCount + 1;
+                this.elementCount = this.elementCount + 1;
+            }
+            else {
+                var bucket = hashCode % this.bucketCount;
+                var thisList = this.data.get(bucket);
+                thisList.add(newNode);
+                this.elementCount = this.elementCount + 1;
+            }
+            return undefined;
         }
         else {
             var tmp = mapEntry.getValue();
@@ -47,8 +64,7 @@ var HashMap = (function () {
     * @return {number} the number of key-value mappings in this map
     */
     HashMap.prototype.size = function () {
-        var tmp = 0;
-        return tmp; // TODO
+        return this.elementCount;
     };
     /**
     * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
@@ -70,6 +86,12 @@ var HashMapEntry = (function (_super) {
     function HashMapEntry() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    HashMapEntry.prototype.getHashCode = function () {
+        return this.hashCode;
+    };
+    HashMapEntry.prototype.setHashCode = function (iHashCode) {
+        this.hashCode = iHashCode;
+    };
     HashMapEntry.prototype.setValue = function (iValue) {
         this.value = iValue;
     };

@@ -98,27 +98,13 @@ describe("Test HashMap functionality", function () {
     it("Test Creation state", function () {
         var myMap1 = new HashMap_1.HashMap();
         expect(myMap1.size()).toEqual(0);
-        /*
-            let myMap2:HashMap<string,number> = new HashMap<string,number>();
-            expect (myMap2.size ()).toEqual(0);
-        */
     });
-    /*
-      it("Test adding one entry native", function() {
-        let myMap1:HashMap<string,number> = new HashMap<string,number> ();
-        expect (myMap1.size ()).toEqual(0);
-        expect (undefined).toEqual(myMap1.put("Leash", 4.99));
-        expect (myMap1.size ()).toEqual(1);
-      });
-    */
-    /*
-      it("Test adding one entry", function() {
-        let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
-        expect (myMap1.size ()).toEqual(0);
-        expect (undefined).toEqual(myMap1.put(product1, new ValueClass()));
-        expect (myMap1.size ()).toEqual(1);
-      });
-    */
+    it("Test adding one entry", function () {
+        var myMap1 = new HashMap_1.HashMap();
+        expect(myMap1.size()).toEqual(0);
+        expect(undefined).toEqual(myMap1.put(product1, new ValueClass()));
+        expect(myMap1.size()).toEqual(1);
+    });
     /*
       it("Test adding two entries native", function() {
         let myMap1:HashMap<string,number> = new HashMap<string,number> ();
