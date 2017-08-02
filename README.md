@@ -1,5 +1,5 @@
 # Typescript Collections Framework
-TypeScript port of the Java Collections framework for use in AngularJS
+TypeScript Collections Framework - a port of the Java Collections framework for use with AngularJS
 
 [![NPM](https://nodei.co/npm/typescriptcollectionsframework.png?compact=true)](https://npmjs.org/typescriptcollectionsframework)
 [![Build Status](https://travis-ci.org/larrydiamond/typescriptcollectionsframework.svg?branch=master)](https://travis-ci.org/larrydiamond/typescriptcollectionsframework)
