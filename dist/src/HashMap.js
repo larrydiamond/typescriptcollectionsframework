@@ -20,11 +20,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("./ArrayList");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var HashMap = (function () {
-    function HashMap() {
+    function HashMap(initialElements, iInitialCapacity, iLoadFactor) {
+        if (initialElements === void 0) { initialElements = new HashMap(null, 20, 0.75); }
+        if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
+        if (iLoadFactor === void 0) { iLoadFactor = 0.75; }
+        this.initialElements = initialElements;
+        this.iInitialCapacity = iInitialCapacity;
+        this.iLoadFactor = iLoadFactor;
         this.data = null;
         this.elementCount = 0;
-        this.bucketCount = 0;
-        this.data = new ArrayList_1.ArrayList();
+        this.loadFactor = 0.75;
+        this.data = new ArrayList_1.ArrayList(iInitialCapacity);
+        this.loadFactor = iLoadFactor;
+        if (initialElements !== null) {
+            // TODO
+        }
     }
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
@@ -42,11 +52,10 @@ var HashMap = (function () {
                 var newList = new ArrayList_1.ArrayList();
                 this.data.add(newList);
                 newList.add(newNode);
-                this.bucketCount = this.bucketCount + 1;
                 this.elementCount = this.elementCount + 1;
             }
             else {
-                var bucket = hashCode % this.bucketCount;
+                var bucket = hashCode % this.data.size();
                 var thisList = this.data.get(bucket);
                 thisList.add(newNode);
                 this.elementCount = this.elementCount + 1;

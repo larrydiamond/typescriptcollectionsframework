@@ -1,10 +1,13 @@
 import { Hashable } from "./Hashable";
 import { JMap } from "./JMap";
 export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
+    private initialElements;
+    private iInitialCapacity;
+    private iLoadFactor;
     private data;
     private elementCount;
-    private bucketCount;
-    constructor();
+    private loadFactor;
+    constructor(initialElements?: JMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
     * @param {K} key key with which the specified value is to be associated

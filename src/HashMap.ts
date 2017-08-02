@@ -18,10 +18,14 @@ import {List} from "./List";
 export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   private data:ArrayList<List<HashMapEntry<K,V>>> = null;
   private elementCount:number = 0;
-  private bucketCount:number = 0;
+  private loadFactor:number = 0.75;
 
-  public constructor () {
-    this.data = new ArrayList();
+  public constructor (private initialElements:JMap<K, V> = new HashMap<K,V>(null, 20, 0.75), private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+    this.data = new ArrayList(iInitialCapacity);
+    this.loadFactor = iLoadFactor;
+    if (initialElements !== null) {
+      // TODO
+    }
   }
 
   /**
@@ -40,10 +44,9 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
         let newList:List<HashMapEntry<K,V>> = new ArrayList<HashMapEntry<K,V>>();
         this.data.add (newList);
         newList.add (newNode);
-        this.bucketCount = this.bucketCount + 1;
         this.elementCount = this.elementCount + 1;
       } else {
-        let bucket = hashCode % this.bucketCount;
+        let bucket = hashCode % this.data.size();
         let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
         thisList.add (newNode);
         this.elementCount = this.elementCount + 1;
