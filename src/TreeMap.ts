@@ -19,7 +19,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
     this.mapComparator = iComparator;
   }
 
-/* Debugging code */
+/* Debugging code
   public printMap() : void {
     if (this.topNode === null) {
       console.log ("top node is null");
