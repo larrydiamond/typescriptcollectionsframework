@@ -206,6 +206,11 @@ describe("Test TreeMap functionality", function () {
         basicTypesMap1.clear();
         expect(basicTypesMap1.size()).toEqual(0);
         expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 1.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(3);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
     });
     it("Test Adding some items", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct);
@@ -305,5 +310,21 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
         expect(basicTypesMap1.getNextHigherKey("Dog")).toEqual(null);
         expect(basicTypesMap1.getNextHigherKey("AAAAA")).toEqual(null);
+    });
+    it("Test getNextHigherKey more complex map", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
+        expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
+        expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
+        //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.getNextHigherKey("AAAAA")).toEqual("Catnip");
+        expect(basicTypesMap1.getNextHigherKey("Catnip")).toEqual("ChewToy");
+        expect(basicTypesMap1.getNextHigherKey("ChewToy")).toEqual("Dry Food");
+        expect(basicTypesMap1.getNextHigherKey("Dry Food")).toEqual("Leash");
+        expect(basicTypesMap1.getNextHigherKey("Leash")).toEqual("Wet Food");
+        expect(basicTypesMap1.getNextHigherKey("Wet Food")).toEqual(null);
     });
 });

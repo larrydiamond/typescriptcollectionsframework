@@ -14,47 +14,48 @@ var TreeMap = (function () {
         this.mapComparator = null;
         this.mapComparator = iComparator;
     }
-    /* Debugging code
-      private printMap() : void {
+    /* Debugging code */
+    TreeMap.prototype.printMap = function () {
         if (this.topNode === null) {
-          console.log ("top node is null");
-          return;
+            console.log("top node is null");
+            return;
         }
-    
         if (this.topNode === undefined) {
-          console.log ("top node is undefined");
-          return;
+            console.log("top node is undefined");
+            return;
         }
-        console.log ("New Tree: size = " + this.size());
-        this.printMapNode (this.topNode);
-        console.log ("End of Tree");
-      }
-    
-      private printMapNode (node:TreeMapNode<K,V>) : void {
-        console.log ("New Node: key = " + node.getKey() + " value = " + node.getValue());
+        console.log("New Tree: size = " + this.size());
+        this.printMapNode(this.topNode);
+        console.log("End of Tree");
+    };
+    TreeMap.prototype.printMapNode = function (node) {
+        console.log("New Node: key = " + node.getKey() + " value = " + node.getValue());
         if (node.getParentNode() !== null) {
-          console.log ("Parent key = " + node.getParentNode().getKey());
-        } else {
-          console.log ("Parent node is null");
+            console.log("Parent key = " + node.getParentNode().getKey());
+        }
+        else {
+            console.log("Parent node is null");
         }
         if (node.getLeftNode() !== null) {
-          console.log ("Left key = " + node.getLeftNode().getKey());
-        } else {
-          console.log ("Left node is null");
+            console.log("Left key = " + node.getLeftNode().getKey());
+        }
+        else {
+            console.log("Left node is null");
         }
         if (node.getRightNode() !== null) {
-          console.log ("Right key = " + node.getRightNode().getKey());
-        } else {
-          console.log ("Right node is null");
+            console.log("Right key = " + node.getRightNode().getKey());
+        }
+        else {
+            console.log("Right node is null");
         }
         if (node.getLeftNode() !== null) {
-          this.printMapNode (node.getLeftNode());
+            this.printMapNode(node.getLeftNode());
         }
         if (node.getRightNode() !== null) {
-          this.printMapNode (node.getRightNode());
+            this.printMapNode(node.getRightNode());
         }
-      }
-      */
+    };
+    /*  */
     TreeMap.prototype.validateMap = function () {
         if ((this.topNode === null) || (this.topNode === undefined)) {
             return true;
@@ -165,7 +166,12 @@ var TreeMap = (function () {
         if ((this.topNode === null) || (this.topNode === undefined)) {
             return null;
         }
-        var tmp = this.nextHigherNode(this.topNode);
+        var thisnode = this.getNode(this.topNode, key);
+        if (thisnode === undefined)
+            return null;
+        if (thisnode === null)
+            return null;
+        var tmp = this.nextHigherNode(thisnode);
         if (tmp === null)
             return null;
         return tmp.getKey();
@@ -197,6 +203,8 @@ var TreeMap = (function () {
         while ((tmp !== null) && (tmp.getParentNode() !== null) && (tmp.getParentNode().getRightNode() === tmp)) {
             tmp = tmp.getParentNode();
         }
+        if (tmp.getParentNode() === null)
+            return null;
         return tmp;
     };
     /**

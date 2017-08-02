@@ -19,8 +19,8 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
     this.mapComparator = iComparator;
   }
 
-/* Debugging code
-  private printMap() : void {
+/* Debugging code */
+  public printMap() : void {
     if (this.topNode === null) {
       console.log ("top node is null");
       return;
@@ -59,7 +59,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
       this.printMapNode (node.getRightNode());
     }
   }
-  */
+/*  */
 
   public validateMap() : boolean {
     if ((this.topNode === null) || (this.topNode === undefined)) {
@@ -186,7 +186,11 @@ public size () : number {
       return null;
     }
 
-    let tmp:TreeMapNode<K,V> = this.nextHigherNode(this.topNode);
+    let thisnode = this.getNode(this.topNode, key);
+    if (thisnode === undefined) return null;
+    if (thisnode === null) return null;
+
+    let tmp:TreeMapNode<K,V> = this.nextHigherNode(thisnode);
     if (tmp === null) return null;
     return tmp.getKey();
   }
@@ -222,7 +226,7 @@ public size () : number {
     while ((tmp !== null) && (tmp.getParentNode() !== null) && (tmp.getParentNode().getRightNode() === tmp)) {
       tmp = tmp.getParentNode();
     }
-
+    if (tmp.getParentNode() === null) return null;
     return tmp;
   }
 
