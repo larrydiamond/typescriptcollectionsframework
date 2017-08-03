@@ -131,18 +131,6 @@ describe("Test HashMap functionality", function() {
     expect (myMap1.size ()).toEqual(1);
   });
 
-/*
-  it("Test adding two entries native", function() {
-    let myMap1:HashMap<string,number> = new HashMap<string,number> ();
-    expect (myMap1.size ()).toEqual(0);
-    expect (undefined).toEqual(myMap1.put("Leash", 4.99));
-    expect (myMap1.size ()).toEqual(1);
-    expect (undefined).toEqual(myMap1.put("Catnip", 2.99));
-    expect (myMap1.size ()).toEqual(2);
-  });
-*/
-
-/*
   it("Test adding two entries", function() {
     let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
 //    myMap1.printMap();
@@ -168,35 +156,19 @@ describe("Test HashMap functionality", function() {
     petStoreMap2.put (product2, new ValueClass());
     expect (petStoreMap2.size ()).toEqual(2);
   });
-*/
 
-/*
-  it("Test native types", function() {
-    let basicTypesMap1:HashMap<string,number> = new HashMap<string,number>();
-    let basicTypesMap2:HashMap<number,string> = new HashMap<number,string>();
+  it("Test get", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    expect (petStoreMap1.get (product1)).toEqual(null);
 
-    basicTypesMap1.put ("ChewToy", 14.99);
-    basicTypesMap1.put ("Catnip", 4.99);
-    basicTypesMap1.put ("Goldfish", 9.99);
-    basicTypesMap1.put ("AAAAA", 0.99);
-    expect (basicTypesMap1.size ()).toEqual(4);
+    petStoreMap1.put (product1, new ValueClass());
+    expect (petStoreMap1.get (product1)).not.toEqual(null);
+    expect (petStoreMap1.get (product2)).toEqual(null);
 
-    let oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
-    expect (oldPrice).toEqual (14.99);
-    expect (basicTypesMap1.size ()).toEqual(4);
-
-    expect (basicTypesMap1.get ("Catnip")).toEqual (4.99);
-    expect (basicTypesMap1.put ("Catnip", 5.99)).toEqual (4.99);
-    expect (basicTypesMap1.size ()).toEqual(4);
-    expect (basicTypesMap1.get ("Catnip")).toEqual (5.99);
-
-    basicTypesMap2.put (14.99, "ChewToy");
-    basicTypesMap2.put (4.99, "Catnip");
-    basicTypesMap2.put (9.99, "Goldfish");
-    basicTypesMap2.put (0.99, "AAAAA");
-    basicTypesMap2.put (0.99, "BBBBB");
-    expect (basicTypesMap2.size ()).toEqual(4);
+    petStoreMap1.put (product2, new ValueClass());
+    expect (petStoreMap1.get (product1)).not.toEqual(null);
+    expect (petStoreMap1.get (product2)).not.toEqual(null);
+    expect (petStoreMap1.get (product3)).toEqual(null);
   });
-*/
 
 });

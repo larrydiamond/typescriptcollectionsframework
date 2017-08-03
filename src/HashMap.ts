@@ -66,7 +66,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   private rehash() : void {
     if ((this.elementCount * this.loadFactor) > this.data.size()) { // Not enough buckets
       // How many buckets should there be?   Lets go with doubling the number of buckets
-      let newBucketCount = this.elementCount * 2;
+      let newBucketCount = (this.elementCount * 2) + 1;
       let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>(newBucketCount);
       // Iterate through the nodes and add them all into newdata
       // TODO
@@ -89,12 +89,26 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
   */
   public get (key:K) : V {
-    let hashCode:number = key.hashCode();
-    return null; // TODO
+    let tmp:HashMapEntry<K,V> = this.getMapEntry(key);
+    if (tmp === null) return null;
+    if (tmp === undefined) return null;
+    return tmp.getValue();
   }
 
   private getMapEntry (key:K) : HashMapEntry<K,V> {
-    return null; // TODO
+    if (this.data === null) return null;
+    if (this.data === undefined) return null;
+    if (this.data.size () < 1) return null;
+    let hashCode:number = key.hashCode();
+    let numBuckets = this.data.size();
+    if (numBuckets < 1) numBuckets = 1;
+    let bucket = hashCode % numBuckets;
+    let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
+    for (let loop:number = 0; loop < thisList.size(); loop++) {
+      if (key.equals (thisList.get(loop).getKey()))
+        return thisList.get(loop);
+    }
+    return null;
   }
 }
 

@@ -75,7 +75,7 @@ var HashMap = (function () {
     HashMap.prototype.rehash = function () {
         if ((this.elementCount * this.loadFactor) > this.data.size()) {
             // How many buckets should there be?   Lets go with doubling the number of buckets
-            var newBucketCount = this.elementCount * 2;
+            var newBucketCount = (this.elementCount * 2) + 1;
             var newdata = new ArrayList_1.ArrayList(newBucketCount);
             // Iterate through the nodes and add them all into newdata
             // TODO
@@ -95,11 +95,31 @@ var HashMap = (function () {
     * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
     */
     HashMap.prototype.get = function (key) {
-        var hashCode = key.hashCode();
-        return null; // TODO
+        var tmp = this.getMapEntry(key);
+        if (tmp === null)
+            return null;
+        if (tmp === undefined)
+            return null;
+        return tmp.getValue();
     };
     HashMap.prototype.getMapEntry = function (key) {
-        return null; // TODO
+        if (this.data === null)
+            return null;
+        if (this.data === undefined)
+            return null;
+        if (this.data.size() < 1)
+            return null;
+        var hashCode = key.hashCode();
+        var numBuckets = this.data.size();
+        if (numBuckets < 1)
+            numBuckets = 1;
+        var bucket = hashCode % numBuckets;
+        var thisList = this.data.get(bucket);
+        for (var loop = 0; loop < thisList.size(); loop++) {
+            if (key.equals(thisList.get(loop).getKey()))
+                return thisList.get(loop);
+        }
+        return null;
     };
     return HashMap;
 }());
