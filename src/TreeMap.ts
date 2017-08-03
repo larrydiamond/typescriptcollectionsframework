@@ -363,7 +363,70 @@ public size () : number {
     return tmp.getValue();
   }
 
-  /**
+
+   /**
+    * Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
+    */
+    public ceilingEntry (key:K) : MapEntry<K,V> {
+      if (this.topNode === null)
+      return null;
+
+      if (this.topNode === undefined)
+      return null;
+
+      let tmp = this.ceilingNode(this.topNode, key, null);
+      return tmp.getMapEntry();
+    }
+
+     /**
+      * Returns the least key greater than or equal to the given key, or null if there is no such key.
+      * @param {K} key the key
+      * @return {K} the least key greater than or equal to key, or null if there is no such key
+      */
+      public ceilingKey (key:K) : K {
+        if (this.topNode === null)
+        return null;
+
+        if (this.topNode === undefined)
+        return null;
+
+        let tmp = this.ceilingNode(this.topNode, key, null);
+        return tmp.getKey();
+      }
+
+
+  private ceilingNode (node:TreeMapNode<K,V>, key:K, currentCeiling:TreeMapNode<K,V>) : TreeMapNode<K,V> {
+    if (node === null) {
+      return currentCeiling;
+    }
+    if (node === undefined) {
+      return currentCeiling;
+    }
+    let tmp = this.mapComparator.compare(node.getKey(), key);
+    if (tmp === 0) {
+      return node;
+    }
+    if (tmp < 0) { // too low, below key
+      return this.ceilingNode(node.getRightNode(), key, currentCeiling);
+    }
+
+    // above key
+    if (currentCeiling === null) { // no ceiling node found yet
+      return this.ceilingNode (node.getLeftNode(), key, node);
+    }
+
+    tmp = this.mapComparator.compare (node.getKey(), currentCeiling.getKey());
+    if (tmp > 0) { // this node is higher than the current ceiling
+      return this.ceilingNode (node.getLeftNode(), key, currentCeiling);
+    } else {
+      return this.ceilingNode (node.getLeftNode(), key, node);
+    }
+  }
+
+
+ /**
   * Returns the first (lowest) node currently in this map.
   * @return {TreeMapNode} the first (lowest) node currently in this map, returns null if the Map is empty
   */

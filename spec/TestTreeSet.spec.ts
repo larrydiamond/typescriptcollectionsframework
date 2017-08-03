@@ -260,7 +260,26 @@ describe("Test TreeSet functionality", function() {
     tmp = tsi.next();
     expect (tmp.done).toEqual(true);
 
+  });
 
+  it("Test ceiling", function() {
+    let TreeSet2:TreeSet<number> = new TreeSet<number>(CollectionUtils.getNumberComparator());
+    expect (TreeSet2.add (44)).toEqual(false);
+    expect (TreeSet2.add (5)).toEqual(false);
+    expect (TreeSet2.add (20)).toEqual(false);
+    expect (TreeSet2.add (88)).toEqual(false);
+    expect (TreeSet2.add (50)).toEqual(false);
+    expect (TreeSet2.add (30)).toEqual(false);
+    expect (TreeSet2.add (1)).toEqual(false);
+    expect (TreeSet2.add (48)).toEqual(false);
+    expect (TreeSet2.add (62)).toEqual(false);
+    expect (TreeSet2.add (78)).toEqual(false);
+    expect (TreeSet2.add (17)).toEqual(false);
+    expect (TreeSet2.add (70)).toEqual(false);
+    expect (TreeSet2.add (80)).toEqual(false);
+    expect (TreeSet2.add (32)).toEqual(false);
+    expect (TreeSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
+    expect (TreeSet2.ceiling (17)).toEqual(17); // 17 is there
   });
 
 });

@@ -66,6 +66,17 @@ var TreeSet = (function () {
         return true;
     };
     /**
+     * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+     * @param {K} item to find ceiling node for
+     * @return {K} the least element greater than or equal to item, or null if there is no such element
+     */
+    TreeSet.prototype.ceiling = function (item) {
+        var tmp = this.datastore.ceilingKey(item);
+        if (tmp === undefined)
+            return null;
+        return tmp;
+    };
+    /**
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
     */

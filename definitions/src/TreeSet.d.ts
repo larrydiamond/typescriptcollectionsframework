@@ -32,6 +32,12 @@ export declare class TreeSet<K> implements JSet<K> {
     */
     contains(item: K): boolean;
     /**
+     * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+     * @param {K} item to find ceiling node for
+     * @return {K} the least element greater than or equal to item, or null if there is no such element
+     */
+    ceiling(item: K): K;
+    /**
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
     */
