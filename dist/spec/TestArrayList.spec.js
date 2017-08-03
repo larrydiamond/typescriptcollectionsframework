@@ -294,6 +294,20 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.removeAll(removelist)).toEqual(false);
         expect(arraylist.size()).toEqual(1);
     });
+    it("Test equals", function () {
+        var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.add(product1)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        var list2 = new ArrayList_1.ArrayList();
+        expect(list2.add(product1)).toEqual(true);
+        expect(list2.add(product2)).toEqual(true);
+        expect(list2.add(product3)).toEqual(true);
+        expect(arraylist.equals(null)).toEqual(false);
+        expect(arraylist.equals(undefined)).toEqual(false);
+        expect(arraylist.equals(list2)).toEqual(false);
+        expect(arraylist.equals(arraylist)).toEqual(true);
+        expect(list2.equals(list2)).toEqual(true);
+    });
     /*
       it("Easy iteration", function () {
         let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
