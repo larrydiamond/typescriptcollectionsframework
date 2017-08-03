@@ -183,29 +183,18 @@ exports.TreeSetJIterator = TreeSetJIterator;
 var TreeSetIterator = (function () {
     function TreeSetIterator(iSet) {
         this.set = iSet;
-        this.location = null;
+        this.location = this.set.first();
     }
     TreeSetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
         if (this.location === undefined) {
-            var first = this.set.first();
-            if (first === undefined) {
-                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
-            }
-            else {
-                this.location = first;
-                return new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
-            }
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
-        else {
-            var tmp = this.set.getNextHigherKey(this.location);
-            if (tmp === null) {
-                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
-            }
-            else {
-                this.location = tmp;
-                return new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
-            }
-        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
+        this.location = this.set.getNextHigherKey(this.location);
+        return tmp;
     };
     return TreeSetIterator;
 }());

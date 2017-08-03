@@ -205,26 +205,18 @@ export class TreeSetIterator<T> implements Iterator<T> {
 
   constructor (iSet:TreeSet<T>) {
     this.set = iSet;
-    this.location = null;
+    this.location = this.set.first();
   }
 
   public next(value?: any): IteratorResult<T> {
-    if (this.location === undefined) { // first time caller
-      let first:T = this.set.first();
-      if (first === undefined) {
-        return new BasicIteratorResult(true, null);
-      } else {
-        this.location = first;
-        return new BasicIteratorResult(false, this.location);
-      }
-    } else { // we've already called this iterator before
-      let tmp:T = this.set.getNextHigherKey(this.location);
-      if (tmp === null) {
-        return new BasicIteratorResult(true, null);
-      } else {
-        this.location = tmp;
-        return new BasicIteratorResult(false, this.location);
-      }
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
     }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    let tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location);
+    this.location = this.set.getNextHigherKey (this.location);
+    return tmp;
   }
 }

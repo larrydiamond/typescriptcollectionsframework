@@ -204,12 +204,27 @@ describe("Test TreeSet functionality", function () {
         for (var iter = TreeSet2.iterator(); iter.hasNext();) {
             var psp = iter.next();
             if (offset === 0)
-                expect(psp.getProductName()).toEqual(product2.getProductName());
+                expect(psp.getProductName()).toEqual(product2.getProductName()); // Catnip before ChewToy
             if (offset === 1)
-                expect(psp.getProductName()).toEqual(product1.getProductName());
+                expect(psp.getProductName()).toEqual(product1.getProductName()); // Catnip before ChewToy
             if (offset > 1)
                 fail();
             offset++;
         }
+    });
+    it("Test typescript iteration", function () {
+        var TreeSet2 = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
+        expect(TreeSet2.add(product1)).toEqual(false);
+        expect(TreeSet2.add(product2)).toEqual(false);
+        var offset = 0;
+        var tsi = TreeSet2[Symbol.iterator]();
+        var tmp = tsi.next();
+        expect(tmp.done).toEqual(false);
+        expect(JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2)); // Catnip before ChewToy
+        tmp = tsi.next();
+        expect(tmp.done).toEqual(false);
+        expect(JSON.stringify(tmp.value)).toEqual(JSON.stringify(product1)); // Catnip before ChewToy
+        tmp = tsi.next();
+        expect(tmp.done).toEqual(true);
     });
 });

@@ -396,6 +396,24 @@ describe("Test ArrayList functionality", function() {
   });
 
 
+  it("Test typescript iteration", function() {
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+
+    expect (arraylist.add (product1)).toEqual (true);
+    expect (arraylist.add (product2)).toEqual (true);
+
+    let offset:number = 0;
+    let pspi:Iterator<PetStoreProduct> = arraylist[Symbol.iterator]();
+    let tmp:IteratorResult<PetStoreProduct> = pspi.next();
+    expect (tmp.done).toEqual(false);
+    expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product1));
+    tmp = pspi.next();
+    expect (tmp.done).toEqual(false);
+    expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2));
+    tmp = pspi.next();
+    expect (tmp.done).toEqual(true);
+  });
+
 
 /*
   it("Easy iteration", function () {
