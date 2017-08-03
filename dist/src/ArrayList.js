@@ -120,6 +120,23 @@ var ArrayList = (function () {
         return -1;
     };
     /**
+     * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+     * @param {T} t element to search for
+     * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+     */
+    ArrayList.prototype.lastIndexOf = function (t) {
+        if (this.elements === null)
+            return -1;
+        if (this.sizeValue <= 0)
+            return -1;
+        for (var loop = this.sizeValue - 1; loop >= 0; loop--) {
+            var e = this.get(loop);
+            if (e.equals(t))
+                return loop;
+        }
+        return -1;
+    };
+    /**
      * Returns true if this list contains the specified element.
      * @param {T} t element whose presence in this list is to be tested
      * @return {boolean} true if this list contains the specified element

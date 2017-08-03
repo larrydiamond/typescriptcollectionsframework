@@ -106,7 +106,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @param {number} index index of the element to return
  * @return {T} the element at the specified position in this list
  */
-  get(index:number):T {
+  public get(index:number):T {
     return this.elements [index];
   }
 
@@ -129,6 +129,28 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
 
     return -1;
   }
+
+
+ /**
+  * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+  * @param {T} t element to search for
+  * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+  */
+  public lastIndexOf (t:T) : number {
+    if (this.elements === null)
+      return -1;
+    if (this.sizeValue <= 0)
+      return -1;
+
+    for (let loop:number = this.sizeValue - 1; loop >= 0; loop--) {
+      let e = this.get (loop);
+      if (e.equals (t))
+        return loop;
+    }
+
+    return -1;
+  }
+
 
 /**
  * Returns true if this list contains the specified element.

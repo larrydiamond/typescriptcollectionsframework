@@ -50,6 +50,12 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      */
     indexOf(t: T): number;
     /**
+     * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+     * @param {T} t element to search for
+     * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+     */
+    lastIndexOf(t: T): number;
+    /**
      * Returns true if this list contains the specified element.
      * @param {T} t element whose presence in this list is to be tested
      * @return {boolean} true if this list contains the specified element

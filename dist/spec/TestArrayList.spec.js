@@ -123,9 +123,16 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList();
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
+        expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
         expect(arraylist.indexOf(product3)).toEqual(-1);
+        expect(arraylist.lastIndexOf(product1)).toEqual(0);
+        expect(arraylist.lastIndexOf(product3)).toEqual(-1);
+        expect(arraylist.lastIndexOf(product2)).toEqual(5);
     });
     it("Test set", function () {
         var arraylist = new ArrayList_1.ArrayList();
