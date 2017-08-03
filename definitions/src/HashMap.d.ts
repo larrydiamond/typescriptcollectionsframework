@@ -16,9 +16,13 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
     */
     put(key: K, value: V): V;
     /**
-    * Returns the number of key-value mappings in this map.
-    * @return {number} the number of key-value mappings in this map
-    */
+     * Rehashes the entire hashmap.... gonna be slow you've been warned
+     */
+    private rehash();
+    /**
+     * Returns the number of key-value mappings in this map.
+     * @return {number} the number of key-value mappings in this map
+     */
     size(): number;
     /**
     * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.

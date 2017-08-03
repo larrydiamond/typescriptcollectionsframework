@@ -45,6 +45,7 @@ var HashMap = (function () {
     HashMap.prototype.put = function (key, value) {
         var mapEntry = this.getMapEntry(key);
         if (mapEntry === null) {
+            this.rehash();
             var hashCode = key.hashCode();
             var newNode = new HashMapEntry(key, value);
             newNode.setHashCode(hashCode);
@@ -69,9 +70,22 @@ var HashMap = (function () {
         }
     };
     /**
-    * Returns the number of key-value mappings in this map.
-    * @return {number} the number of key-value mappings in this map
-    */
+     * Rehashes the entire hashmap.... gonna be slow you've been warned
+     */
+    HashMap.prototype.rehash = function () {
+        if ((this.elementCount * this.loadFactor) > this.data.size()) {
+            // How many buckets should there be?   Lets go with doubling the number of buckets
+            var newBucketCount = this.elementCount * 2;
+            var newdata = new ArrayList_1.ArrayList(newBucketCount);
+            // Iterate through the nodes and add them all into newdata
+            // TODO
+            // this.data = this.newdata;
+        }
+    };
+    /**
+     * Returns the number of key-value mappings in this map.
+     * @return {number} the number of key-value mappings in this map
+     */
     HashMap.prototype.size = function () {
         return this.elementCount;
     };

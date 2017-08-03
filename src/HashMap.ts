@@ -37,6 +37,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   public put (key:K, value:V) : V {
     let mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
+      this.rehash();
       let hashCode:number = key.hashCode();
       let newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
       newNode.setHashCode(hashCode);
@@ -59,7 +60,22 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     }
   }
 
-  /**
+ /**
+  * Rehashes the entire hashmap.... gonna be slow you've been warned
+  */
+  private rehash() : void {
+    if ((this.elementCount * this.loadFactor) > this.data.size()) { // Not enough buckets
+      // How many buckets should there be?   Lets go with doubling the number of buckets
+      let newBucketCount = this.elementCount * 2;
+      let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>(newBucketCount);
+      // Iterate through the nodes and add them all into newdata
+      // TODO
+
+      // this.data = this.newdata;
+    }
+  }
+
+ /**
   * Returns the number of key-value mappings in this map.
   * @return {number} the number of key-value mappings in this map
   */
