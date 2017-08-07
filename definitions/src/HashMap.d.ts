@@ -31,4 +31,8 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
     */
     get(key: K): V;
     private getMapEntry(key);
+    /**
+    * Removes all of the mappings from this map. The map will be empty after this call returns.
+    */
+    clear(): void;
 }

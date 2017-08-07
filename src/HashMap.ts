@@ -110,6 +110,14 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     }
     return null;
   }
+
+  /**
+  * Removes all of the mappings from this map. The map will be empty after this call returns.
+  */
+  public clear () : void {
+    this.data = new ArrayList<List<HashMapEntry<K,V>>>();
+    this.elementCount = 0;
+  }
 }
 
 class HashMapEntry<K,V> extends BasicMapEntry<K,V> {

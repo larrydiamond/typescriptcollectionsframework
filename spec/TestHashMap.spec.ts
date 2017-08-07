@@ -171,4 +171,29 @@ describe("Test HashMap functionality", function() {
     expect (petStoreMap1.get (product3)).toEqual(null);
   });
 
+  it("Test clear", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+
+    petStoreMap1.put (product1, new ValueClass());
+    petStoreMap1.put (product2, new ValueClass());
+    petStoreMap1.put (product3, new ValueClass());
+    expect (petStoreMap1.size ()).toEqual(3);
+    petStoreMap1.clear ();
+    expect (petStoreMap1.size ()).toEqual(0);
+    petStoreMap1.put (product1, new ValueClass());
+    petStoreMap1.put (product2, new ValueClass());
+    petStoreMap1.put (product3, new ValueClass());
+    expect (petStoreMap1.size ()).toEqual(3);
+
+    petStoreMap2.put (product1, new ValueClass());
+    petStoreMap2.put (product2, new ValueClass());
+    expect (petStoreMap2.size ()).toEqual(2);
+    petStoreMap2.clear ();
+    petStoreMap2.put (product1, new ValueClass());
+    petStoreMap2.put (product2, new ValueClass());
+    expect (petStoreMap2.size ()).toEqual(2);
+
+  });
+
 });
