@@ -14,7 +14,7 @@ also working in TypeScript have access to the Collections we all know and use on
 
 My hope is to get these classes available via NPM and include such classes as HashMap, SkipListMap, ArrayList, and other commonly used classes.
 
-ArrayList, TreeMap, and TreeSet are all live and available today.  PriorityQueue will also be available soon.   HashMap, SkipListMap, and LinkedList are next.
+ArrayList, LinkedList, TreeMap, and TreeSet are all live and available today.  PriorityQueue will also be available soon.   HashMap and  SkipListMap are next.
 
 My stretch goal if I can encourage you to help me (please!) is to add MultiMap and other collections classes that I've used from other places such as Apache Commons and Guava.
 
