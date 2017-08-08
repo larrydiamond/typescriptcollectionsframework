@@ -7,12 +7,6 @@ TypeScript Collections Framework - a port of the Java Collections framework for 
 [![Code Coverage](https://codecov.io/gh/larrydiamond/typescriptcollectionsframework/branch/master/graphs/badge.svg?branch=master)](
 https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
-# Installation instructions
-
-Install `typescriptcollectionsframework` from `npm`
-```bash
-npm install typescriptcollectionsframework --save-dev
-```
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
 My hope is to port Set, List, Map, and many of the implementations to TypeScript so that Java developers (like myself) 
@@ -28,6 +22,18 @@ My stretch goal if I can encourage you to help me (please!) is to add MultiMap a
 
 # Demo project with Angular 2
 https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular2
+
+# Installation instructions
+
+Install `typescriptcollectionsframework` from `npm`
+```bash
+npm install typescriptcollectionsframework --save-dev
+```
+
+# How to build for development
+ - clone repository
+ - `npm install`
+ - `npm test`
 
 # Author
 Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/
