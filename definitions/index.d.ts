@@ -17,6 +17,7 @@ export { HashMap } from "./src/HashMap";
 export { ImmutableMap } from "./src/ImmutableMap";
 export { ImmutableSet } from "./src/ImmutableSet";
 export { JIterator } from "./src/JIterator";
+export { LinkedList } from "./src/LinkedList";
 export { List } from "./src/List";
 export { JMap } from "./src/JMap";
 export { MapEntry } from "./src/MapEntry";
