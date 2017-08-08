@@ -9,9 +9,9 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 # Installation instructions
 
-Install `npm i typescriptcollectionsframework` from `npm`
+Install `typescriptcollectionsframework` from `npm`
 ```bash
-npm install npm i typescriptcollectionsframework --save-dev
+npm install typescriptcollectionsframework --save-dev
 ```
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
