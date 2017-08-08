@@ -7,6 +7,12 @@ TypeScript Collections Framework - a port of the Java Collections framework for 
 [![Code Coverage](https://codecov.io/gh/larrydiamond/typescriptcollectionsframework/branch/master/graphs/badge.svg?branch=master)](
 https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
+# Installation instructions
+
+Install `npm i typescriptcollectionsframework` from `npm`
+```bash
+npm install npm i typescriptcollectionsframework --save-dev
+```
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
 My hope is to port Set, List, Map, and many of the implementations to TypeScript so that Java developers (like myself) 
