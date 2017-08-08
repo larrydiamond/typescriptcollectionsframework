@@ -102,6 +102,19 @@ var HashMap = (function () {
             return null;
         return tmp.getValue();
     };
+    /**
+    * Returns true if this map contains a mapping for the specified key.
+    * @param {K} key The key whose presence in this map is to be tested
+    * @return {V} true if this map contains a mapping for the specified key.
+    */
+    HashMap.prototype.containsKey = function (key) {
+        var tmp = this.getMapEntry(key);
+        if (tmp === null)
+            return false;
+        if (tmp === undefined)
+            return false;
+        return true;
+    };
     HashMap.prototype.getMapEntry = function (key) {
         if (this.data === null)
             return null;

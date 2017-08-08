@@ -196,4 +196,24 @@ describe("Test HashMap functionality", function() {
 
   });
 
+  it("Test containskey", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    expect (petStoreMap1.get (product1)).toEqual(null);
+    expect (petStoreMap1.containsKey (product1)).toEqual(false);
+
+    petStoreMap1.put (product1, new ValueClass());
+    expect (petStoreMap1.get (product1)).not.toEqual(null);
+    expect (petStoreMap1.containsKey (product1)).toEqual(true);
+    expect (petStoreMap1.get (product2)).toEqual(null);
+    expect (petStoreMap1.containsKey (product2)).toEqual(false);
+
+    petStoreMap1.put (product2, new ValueClass());
+    expect (petStoreMap1.get (product1)).not.toEqual(null);
+    expect (petStoreMap1.containsKey (product1)).toEqual(true);
+    expect (petStoreMap1.get (product2)).not.toEqual(null);
+    expect (petStoreMap1.containsKey (product2)).toEqual(true);
+    expect (petStoreMap1.get (product3)).toEqual(null);
+    expect (petStoreMap1.containsKey (product3)).toEqual(false);
+  });
+
 });

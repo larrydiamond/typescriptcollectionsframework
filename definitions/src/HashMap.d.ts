@@ -30,6 +30,12 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
     * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
     */
     get(key: K): V;
+    /**
+    * Returns true if this map contains a mapping for the specified key.
+    * @param {K} key The key whose presence in this map is to be tested
+    * @return {V} true if this map contains a mapping for the specified key.
+    */
+    containsKey(key: K): boolean;
     private getMapEntry(key);
     /**
     * Removes all of the mappings from this map. The map will be empty after this call returns.

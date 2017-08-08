@@ -95,6 +95,18 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     return tmp.getValue();
   }
 
+  /**
+  * Returns true if this map contains a mapping for the specified key.
+  * @param {K} key The key whose presence in this map is to be tested
+  * @return {V} true if this map contains a mapping for the specified key.
+  */
+  public containsKey (key:K) : boolean {
+    let tmp:HashMapEntry<K,V> = this.getMapEntry(key);
+    if (tmp === null) return false;
+    if (tmp === undefined) return false;
+    return true;
+  }
+
   private getMapEntry (key:K) : HashMapEntry<K,V> {
     if (this.data === null) return null;
     if (this.data === undefined) return null;
