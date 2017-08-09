@@ -9,12 +9,12 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
+[ArrayList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/ArrayList), LinkedList, TreeMap, and TreeSet are all live and available today.  PriorityQueue will also be available soon.   HashMap and  SkipListMap are next.
+
 My hope is to port Set, List, Map, and many of the implementations to TypeScript so that Java developers (like myself) 
 also working in TypeScript have access to the Collections we all know and use on a daily basis.
 
 My hope is to get these classes available via NPM and include such classes as HashMap, SkipListMap, ArrayList, and other commonly used classes.
-
-ArrayList, LinkedList, TreeMap, and TreeSet are all live and available today.  PriorityQueue will also be available soon.   HashMap and  SkipListMap are next.
 
 My stretch goal if I can encourage you to help me (please!) is to add MultiMap and other collections classes that I've used from other places such as Apache Commons and Guava.
 
