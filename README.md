@@ -27,7 +27,7 @@ https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular2
 
 Install `typescriptcollectionsframework` from `npm`
 ```bash
-npm install typescriptcollectionsframework --save-dev
+npm install typescriptcollectionsframework --save
 ```
 
 # How to build for development
