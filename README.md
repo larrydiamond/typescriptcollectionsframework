@@ -11,12 +11,9 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 [ArrayList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/ArrayList), [LinkedList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/LinkedList), [TreeMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/TreeMap), and TreeSet are all live and available today.  PriorityQueue will also be available soon.   [HashMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/HashMap) and  SkipListMap are next.
 
-My hope is to port Set, List, Map, and many of the implementations to TypeScript so that Java developers (like myself) 
-also working in TypeScript have access to the Collections we all know and use on a daily basis.
+[List](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/List) and [NavigableMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/NavigableMap) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
 
-My hope is to get these classes available via NPM and include such classes as HashMap, SkipListMap, ArrayList, and other commonly used classes.
-
-My stretch goal if I can encourage you to help me (please!) is to add MultiMap and other collections classes that I've used from other places such as Apache Commons and Guava.
+My goal of this project is to port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript and to eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
