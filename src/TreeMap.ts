@@ -377,6 +377,7 @@ public size () : number {
       return null;
 
       let tmp = this.ceilingNode(this.topNode, key, null);
+      if (tmp === null) return null;
       return tmp.getMapEntry();
     }
 

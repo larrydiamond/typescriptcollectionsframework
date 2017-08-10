@@ -252,8 +252,6 @@ describe("Test HashMap functionality", function() {
 
     expect (petStoreMap1.containsKey (product1)).toEqual (false);
 
-
-
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
     petStoreMap1.put (product3, new ValueClass());

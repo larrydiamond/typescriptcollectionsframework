@@ -327,4 +327,17 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.getNextHigherKey("Leash")).toEqual("Wet Food");
         expect(basicTypesMap1.getNextHigherKey("Wet Food")).toEqual(null);
     });
+    it("Test ceilingEntry", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
+        expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
+        expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
+        //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.ceilingEntry("Beer")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
+        expect(basicTypesMap1.ceilingEntry("ChewToy")).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
+        expect(basicTypesMap1.ceilingEntry("ZZZZZ")).toEqual(null);
+    });
 });
