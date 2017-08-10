@@ -20,6 +20,11 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
      */
     private rehash();
     /**
+     * Returns true if this map contains no key-value mappings.
+     * @return {boolean} true if this map contains no key-value mappings
+     */
+    isEmpty(): boolean;
+    /**
      * Returns the number of key-value mappings in this map.
      * @return {number} the number of key-value mappings in this map
      */
@@ -31,10 +36,16 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
     */
     get(key: K): V;
     /**
-    * Returns true if this map contains a mapping for the specified key.
-    * @param {K} key The key whose presence in this map is to be tested
-    * @return {V} true if this map contains a mapping for the specified key.
-    */
+     * Removes the mapping for this key from this TreeMap if present.
+     * @param {K} key key for which mapping should be removed
+     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+     */
+    remove(key: K): V;
+    /**
+     * Returns true if this map contains a mapping for the specified key.
+     * @param {K} key The key whose presence in this map is to be tested
+     * @return {V} true if this map contains a mapping for the specified key.
+     */
     containsKey(key: K): boolean;
     private getMapEntry(key);
     /**

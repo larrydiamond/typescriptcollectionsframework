@@ -13,8 +13,6 @@ import {Hashable} from "./Hashable";
 import {JMap} from "./JMap";
 import {List} from "./List";
 
-
-
 export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   private data:ArrayList<List<HashMapEntry<K,V>>> = null;
   private elementCount:number = 0;
@@ -76,6 +74,15 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   }
 
  /**
+  * Returns true if this map contains no key-value mappings.
+  * @return {boolean} true if this map contains no key-value mappings
+  */
+  public isEmpty () : boolean {
+    if (this.elementCount < 1) return true;
+    return false;
+  }
+
+ /**
   * Returns the number of key-value mappings in this map.
   * @return {number} the number of key-value mappings in this map
   */
@@ -95,7 +102,30 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     return tmp.getValue();
   }
 
-  /**
+ /**
+  * Removes the mapping for this key from this TreeMap if present.
+  * @param {K} key key for which mapping should be removed
+  * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+  */
+  public remove (key:K) : V {
+    if (this.data === null) return null;
+    if (this.data === undefined) return null;
+    if (this.data.size () < 1) return null;
+    let hashCode:number = key.hashCode();
+    let numBuckets = this.data.size();
+    if (numBuckets < 1) numBuckets = 1;
+    let bucket = hashCode % numBuckets;
+    let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
+    for (let loop:number = 0; loop < thisList.size(); loop++) {
+      if (key.equals (thisList.get(loop).getKey())) {
+        this.elementCount = this.elementCount - 1;
+        return thisList.remove (loop).getValue();
+      }
+    }
+    return null;
+  }
+
+ /**
   * Returns true if this map contains a mapping for the specified key.
   * @param {K} key The key whose presence in this map is to be tested
   * @return {V} true if this map contains a mapping for the specified key.

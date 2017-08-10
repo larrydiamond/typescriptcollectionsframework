@@ -35,6 +35,7 @@ describe("Test HashMap functionality", function () {
     var product2 = new PetStoreProduct("ChewToy", 14.99);
     var product1 = new PetStoreProduct("Catnip", 4.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);
+    var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
     var alphabeticalSortPetStoreProduct = {
         compare: function (o1, o2) {
             if (o1 === o2)
@@ -98,23 +99,29 @@ describe("Test HashMap functionality", function () {
     it("Test Creation state", function () {
         var myMap1 = new HashMap_1.HashMap();
         expect(myMap1.size()).toEqual(0);
+        expect(myMap1.isEmpty()).toEqual(true);
     });
     it("Test adding one entry", function () {
         var myMap1 = new HashMap_1.HashMap();
         expect(myMap1.size()).toEqual(0);
+        expect(myMap1.isEmpty()).toEqual(true);
         expect(undefined).toEqual(myMap1.put(product1, new ValueClass()));
         expect(myMap1.size()).toEqual(1);
+        expect(myMap1.isEmpty()).toEqual(false);
     });
     it("Test adding two entries", function () {
         var myMap1 = new HashMap_1.HashMap();
         //    myMap1.printMap();
         expect(myMap1.size()).toEqual(0);
+        expect(myMap1.isEmpty()).toEqual(true);
         expect(undefined).toEqual(myMap1.put(product1, new ValueClass()));
         //    myMap1.printMap();
         expect(myMap1.size()).toEqual(1);
+        expect(myMap1.isEmpty()).toEqual(false);
         expect(undefined).toEqual(myMap1.put(product2, new ValueClass()));
         //    myMap1.printMap();
         expect(myMap1.size()).toEqual(2);
+        expect(myMap1.isEmpty()).toEqual(false);
     });
     it("Test Adding some items", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
@@ -123,9 +130,11 @@ describe("Test HashMap functionality", function () {
         petStoreMap1.put(product2, new ValueClass());
         petStoreMap1.put(product3, new ValueClass());
         expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
         petStoreMap2.put(product1, new ValueClass());
         petStoreMap2.put(product2, new ValueClass());
         expect(petStoreMap2.size()).toEqual(2);
+        expect(petStoreMap2.isEmpty()).toEqual(false);
     });
     it("Test get", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
@@ -145,19 +154,25 @@ describe("Test HashMap functionality", function () {
         petStoreMap1.put(product2, new ValueClass());
         petStoreMap1.put(product3, new ValueClass());
         expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
         petStoreMap1.clear();
         expect(petStoreMap1.size()).toEqual(0);
+        expect(petStoreMap1.isEmpty()).toEqual(true);
         petStoreMap1.put(product1, new ValueClass());
         petStoreMap1.put(product2, new ValueClass());
         petStoreMap1.put(product3, new ValueClass());
         expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
         petStoreMap2.put(product1, new ValueClass());
         petStoreMap2.put(product2, new ValueClass());
         expect(petStoreMap2.size()).toEqual(2);
+        expect(petStoreMap2.isEmpty()).toEqual(false);
         petStoreMap2.clear();
+        expect(petStoreMap2.isEmpty()).toEqual(true);
         petStoreMap2.put(product1, new ValueClass());
         petStoreMap2.put(product2, new ValueClass());
         expect(petStoreMap2.size()).toEqual(2);
+        expect(petStoreMap2.isEmpty()).toEqual(false);
     });
     it("Test containskey", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
@@ -175,5 +190,38 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap1.containsKey(product2)).toEqual(true);
         expect(petStoreMap1.get(product3)).toEqual(null);
         expect(petStoreMap1.containsKey(product3)).toEqual(false);
+    });
+    it("Test remove", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap2 = new HashMap_1.HashMap();
+        expect(petStoreMap1.remove(productNotAvailable)).toEqual(null);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        petStoreMap1.put(product3, new ValueClass());
+        expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
+        expect(petStoreMap1.remove(productNotAvailable)).toEqual(null);
+        expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
+        expect(petStoreMap1.containsKey(product1)).toEqual(true);
+        expect(petStoreMap1.remove(product1)).not.toEqual(null);
+        expect(petStoreMap1.size()).toEqual(2);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
+        expect(petStoreMap1.containsKey(product1)).toEqual(false);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        petStoreMap1.put(product3, new ValueClass());
+        expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.isEmpty()).toEqual(false);
+        petStoreMap2.put(product1, new ValueClass());
+        petStoreMap2.put(product2, new ValueClass());
+        expect(petStoreMap2.size()).toEqual(2);
+        expect(petStoreMap2.isEmpty()).toEqual(false);
+        petStoreMap2.clear();
+        expect(petStoreMap2.isEmpty()).toEqual(true);
+        petStoreMap2.put(product1, new ValueClass());
+        petStoreMap2.put(product2, new ValueClass());
+        expect(petStoreMap2.size()).toEqual(2);
+        expect(petStoreMap2.isEmpty()).toEqual(false);
     });
 });
