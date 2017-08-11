@@ -68,6 +68,18 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     * @return {K} the least key greater than or equal to key, or null if there is no such key
     */
     ceilingKey(key: K): K;
+    /**
+    * Returns the least key greater than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the least key greater than key, or null if there is no such key
+    */
+    higherKey(key: K): K;
+    /**
+    * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
+    */
+    higherEntry(key: K): MapEntry<K, V>;
     private ceilingNode(node, key, currentBest);
     private higherNode(node, key, currentBest);
     private lowerNode(node, key, currentBest);

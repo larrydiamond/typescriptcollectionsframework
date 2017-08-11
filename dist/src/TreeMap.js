@@ -366,6 +366,34 @@ var TreeMap = (function () {
         var tmp = this.ceilingNode(this.topNode, key, null);
         return tmp.getKey();
     };
+    /**
+    * Returns the least key greater than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the least key greater than key, or null if there is no such key
+    */
+    TreeMap.prototype.higherKey = function (key) {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var tmp = this.higherNode(this.topNode, key, null);
+        return tmp.getKey();
+    };
+    /**
+    * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
+    */
+    TreeMap.prototype.higherEntry = function (key) {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var tmp = this.higherNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
+        return tmp.getMapEntry();
+    };
     TreeMap.prototype.ceilingNode = function (node, key, currentBest) {
         if (node === null) {
             return currentBest;

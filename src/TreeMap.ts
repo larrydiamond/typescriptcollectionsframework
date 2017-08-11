@@ -392,6 +392,35 @@ public size () : number {
     return tmp.getKey();
   }
 
+  /**
+  * Returns the least key greater than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {K} the least key greater than key, or null if there is no such key
+  */
+  public higherKey (key:K) : K {
+    if (this.topNode === null) return null;
+
+    if (this.topNode === undefined) return null;
+
+    let tmp = this.higherNode(this.topNode, key, null);
+    return tmp.getKey();
+  }
+
+  /**
+  * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
+  */
+  public higherEntry (key:K) : MapEntry<K,V> {
+    if (this.topNode === null) return null;
+
+    if (this.topNode === undefined) return null;
+
+    let tmp = this.higherNode(this.topNode, key, null);
+    if (tmp === null) return null;
+    return tmp.getMapEntry();
+  }
+
   private ceilingNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
     if (node === null) {
       return currentBest;
