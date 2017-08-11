@@ -354,10 +354,10 @@ var TreeMap = (function () {
         return tmp.getMapEntry();
     };
     /**
-     * Returns the least key greater than or equal to the given key, or null if there is no such key.
-     * @param {K} key the key
-     * @return {K} the least key greater than or equal to key, or null if there is no such key
-     */
+    * Returns the least key greater than or equal to the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the least key greater than or equal to key, or null if there is no such key
+    */
     TreeMap.prototype.ceilingKey = function (key) {
         if (this.topNode === null)
             return null;
@@ -366,30 +366,108 @@ var TreeMap = (function () {
         var tmp = this.ceilingNode(this.topNode, key, null);
         return tmp.getKey();
     };
-    TreeMap.prototype.ceilingNode = function (node, key, currentCeiling) {
+    TreeMap.prototype.ceilingNode = function (node, key, currentBest) {
         if (node === null) {
-            return currentCeiling;
+            return currentBest;
         }
         if (node === undefined) {
-            return currentCeiling;
+            return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
         if (tmp === 0) {
             return node;
         }
         if (tmp < 0) {
-            return this.ceilingNode(node.getRightNode(), key, currentCeiling);
+            return this.ceilingNode(node.getRightNode(), key, currentBest);
         }
         // above key
-        if (currentCeiling === null) {
+        if (currentBest === null) {
             return this.ceilingNode(node.getLeftNode(), key, node);
         }
-        tmp = this.mapComparator.compare(node.getKey(), currentCeiling.getKey());
+        tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
         if (tmp > 0) {
-            return this.ceilingNode(node.getLeftNode(), key, currentCeiling);
+            return this.ceilingNode(node.getLeftNode(), key, currentBest);
         }
         else {
             return this.ceilingNode(node.getLeftNode(), key, node);
+        }
+    };
+    TreeMap.prototype.higherNode = function (node, key, currentBest) {
+        if (node === null) {
+            return currentBest;
+        }
+        if (node === undefined) {
+            return currentBest;
+        }
+        var tmp = this.mapComparator.compare(node.getKey(), key);
+        if (tmp === 0) {
+            return this.higherNode(node.getRightNode(), key, currentBest);
+        }
+        if (tmp < 0) {
+            return this.higherNode(node.getRightNode(), key, currentBest);
+        }
+        // above key
+        if (currentBest === null) {
+            return this.higherNode(node.getLeftNode(), key, node);
+        }
+        tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
+        if (tmp > 0) {
+            return this.higherNode(node.getLeftNode(), key, currentBest);
+        }
+        else {
+            return this.higherNode(node.getLeftNode(), key, node);
+        }
+    };
+    TreeMap.prototype.lowerNode = function (node, key, currentBest) {
+        if (node === null) {
+            return currentBest;
+        }
+        if (node === undefined) {
+            return currentBest;
+        }
+        var tmp = this.mapComparator.compare(node.getKey(), key);
+        if (tmp === 0) {
+            return this.lowerNode(node.getLeftNode(), key, currentBest);
+        }
+        if (tmp > 0) {
+            return this.lowerNode(node.getLeftNode(), key, currentBest);
+        }
+        // above key
+        if (currentBest === null) {
+            return this.lowerNode(node.getLeftNode(), key, node);
+        }
+        tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
+        if (tmp < 0) {
+            return this.lowerNode(node.getLeftNode(), key, currentBest);
+        }
+        else {
+            return this.lowerNode(node.getLeftNode(), key, node);
+        }
+    };
+    TreeMap.prototype.floorNode = function (node, key, currentBest) {
+        if (node === null) {
+            return currentBest;
+        }
+        if (node === undefined) {
+            return currentBest;
+        }
+        var tmp = this.mapComparator.compare(node.getKey(), key);
+        if (tmp === 0) {
+            return node;
+        }
+        if (tmp > 0) {
+            return this.floorNode(node.getLeftNode(), key, currentBest);
+        }
+        // above key
+        if (currentBest === null) {
+            return this.floorNode(node.getLeftNode(), key, node);
+        }
+        tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
+        if (tmp < 0) {
+            return this.floorNode(node.getLeftNode(), key, currentBest);
+        }
+        else {
+            return this.floorNode(node.getLeftNode(), key, node);
         }
     };
     /**

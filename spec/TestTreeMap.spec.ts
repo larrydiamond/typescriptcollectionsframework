@@ -380,6 +380,7 @@ describe("Test TreeMap functionality", function() {
 
   it("Test ceilingEntry", function() {
     let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    expect (basicTypesMap1.ceilingEntry ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);

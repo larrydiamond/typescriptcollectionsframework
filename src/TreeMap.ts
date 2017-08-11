@@ -363,69 +363,149 @@ public size () : number {
     return tmp.getValue();
   }
 
+ /**
+  * Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
+  */
+  public ceilingEntry (key:K) : MapEntry<K,V> {
+    if (this.topNode === null) return null;
 
-   /**
-    * Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.
-    * @param {K} key the key
-    * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
-    */
-    public ceilingEntry (key:K) : MapEntry<K,V> {
-      if (this.topNode === null)
-      return null;
+    if (this.topNode === undefined) return null;
 
-      if (this.topNode === undefined)
-      return null;
+    let tmp = this.ceilingNode(this.topNode, key, null);
+    if (tmp === null) return null;
+    return tmp.getMapEntry();
+  }
 
-      let tmp = this.ceilingNode(this.topNode, key, null);
-      if (tmp === null) return null;
-      return tmp.getMapEntry();
-    }
+  /**
+  * Returns the least key greater than or equal to the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {K} the least key greater than or equal to key, or null if there is no such key
+  */
+  public ceilingKey (key:K) : K {
+    if (this.topNode === null) return null;
 
-     /**
-      * Returns the least key greater than or equal to the given key, or null if there is no such key.
-      * @param {K} key the key
-      * @return {K} the least key greater than or equal to key, or null if there is no such key
-      */
-      public ceilingKey (key:K) : K {
-        if (this.topNode === null)
-        return null;
+    if (this.topNode === undefined) return null;
 
-        if (this.topNode === undefined)
-        return null;
+    let tmp = this.ceilingNode(this.topNode, key, null);
+    return tmp.getKey();
+  }
 
-        let tmp = this.ceilingNode(this.topNode, key, null);
-        return tmp.getKey();
-      }
-
-
-  private ceilingNode (node:TreeMapNode<K,V>, key:K, currentCeiling:TreeMapNode<K,V>) : TreeMapNode<K,V> {
+  private ceilingNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
     if (node === null) {
-      return currentCeiling;
+      return currentBest;
     }
     if (node === undefined) {
-      return currentCeiling;
+      return currentBest;
     }
     let tmp = this.mapComparator.compare(node.getKey(), key);
     if (tmp === 0) {
       return node;
     }
     if (tmp < 0) { // too low, below key
-      return this.ceilingNode(node.getRightNode(), key, currentCeiling);
+      return this.ceilingNode(node.getRightNode(), key, currentBest);
     }
 
     // above key
-    if (currentCeiling === null) { // no ceiling node found yet
+    if (currentBest === null) { // no best node found yet
       return this.ceilingNode (node.getLeftNode(), key, node);
     }
 
-    tmp = this.mapComparator.compare (node.getKey(), currentCeiling.getKey());
-    if (tmp > 0) { // this node is higher than the current ceiling
-      return this.ceilingNode (node.getLeftNode(), key, currentCeiling);
+    tmp = this.mapComparator.compare (node.getKey(), currentBest.getKey());
+    if (tmp > 0) { // this node is higher than the current best
+      return this.ceilingNode (node.getLeftNode(), key, currentBest);
     } else {
       return this.ceilingNode (node.getLeftNode(), key, node);
     }
   }
 
+  private higherNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
+    if (node === null) {
+      return currentBest;
+    }
+    if (node === undefined) {
+      return currentBest;
+    }
+    let tmp = this.mapComparator.compare(node.getKey(), key);
+    if (tmp === 0) { // looking for a higher key
+      return this.higherNode(node.getRightNode(), key, currentBest);
+    }
+
+    if (tmp < 0) { // too low, below key
+      return this.higherNode(node.getRightNode(), key, currentBest);
+    }
+
+    // above key
+    if (currentBest === null) { // no best node found yet
+      return this.higherNode (node.getLeftNode(), key, node);
+    }
+
+    tmp = this.mapComparator.compare (node.getKey(), currentBest.getKey());
+    if (tmp > 0) { // this node is higher than the current best
+      return this.higherNode (node.getLeftNode(), key, currentBest);
+    } else {
+      return this.higherNode (node.getLeftNode(), key, node);
+    }
+  }
+
+  private lowerNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
+    if (node === null) {
+      return currentBest;
+    }
+    if (node === undefined) {
+      return currentBest;
+    }
+    let tmp = this.mapComparator.compare(node.getKey(), key);
+    if (tmp === 0) { // looking for a lower key
+      return this.lowerNode(node.getLeftNode(), key, currentBest);
+    }
+
+    if (tmp > 0) { // too high, above key
+      return this.lowerNode(node.getLeftNode(), key, currentBest);
+    }
+
+    // above key
+    if (currentBest === null) { // no best node found yet
+      return this.lowerNode (node.getLeftNode(), key, node);
+    }
+
+    tmp = this.mapComparator.compare (node.getKey(), currentBest.getKey());
+    if (tmp < 0) { // this node is lower than the current best
+      return this.lowerNode (node.getLeftNode(), key, currentBest);
+    } else {
+      return this.lowerNode (node.getLeftNode(), key, node);
+    }
+  }
+
+  private floorNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
+    if (node === null) {
+      return currentBest;
+    }
+    if (node === undefined) {
+      return currentBest;
+    }
+    let tmp = this.mapComparator.compare(node.getKey(), key);
+    if (tmp === 0) {
+      return node;
+    }
+
+    if (tmp > 0) { // too high, above key
+      return this.floorNode(node.getLeftNode(), key, currentBest);
+    }
+
+    // above key
+    if (currentBest === null) { // no best node found yet
+      return this.floorNode (node.getLeftNode(), key, node);
+    }
+
+    tmp = this.mapComparator.compare (node.getKey(), currentBest.getKey());
+    if (tmp < 0) { // this node is lower than the current best
+      return this.floorNode (node.getLeftNode(), key, currentBest);
+    } else {
+      return this.floorNode (node.getLeftNode(), key, node);
+    }
+  }
 
  /**
   * Returns the first (lowest) node currently in this map.
