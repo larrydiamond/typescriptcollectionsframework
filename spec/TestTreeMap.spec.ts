@@ -390,7 +390,6 @@ describe("Test TreeMap functionality", function() {
 
 //    basicTypesMap1.printMap();
 
-
     expect (basicTypesMap1.ceilingEntry ("ChewToy")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
     expect (basicTypesMap1.ceilingEntry ("Catnip")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
     expect (basicTypesMap1.ceilingEntry ("AAAAA")).toEqual(new BasicMapEntry<string,number> ("AAAAA", 0.99));
@@ -410,20 +409,27 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.higherEntry ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
     expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
     expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
     expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
 
   //    basicTypesMap1.printMap();
 
+    expect (basicTypesMap1.higherEntry ("ZZZZZ")).toEqual(null);
+    expect (basicTypesMap1.higherEntry ("AAAAAA")).toEqual(new BasicMapEntry<string,number> ("BBBBBB", 0.99));
+
+    expect (basicTypesMap1.higherEntry ("ChewToy")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
+    expect (basicTypesMap1.higherEntry ("Catnip")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
+    expect (basicTypesMap1.higherEntry ("BBBBBB")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
+    expect (basicTypesMap1.higherEntry ("Leash")).toEqual(new BasicMapEntry<string,number> ("Wet Food", 7.49));
+    expect (basicTypesMap1.higherEntry ("Dry Food")).toEqual(new BasicMapEntry<string,number> ("Leash", 6.99));
+    expect (basicTypesMap1.higherEntry ("Wet Food")).toEqual(null);
+
     expect (basicTypesMap1.higherEntry ("Ceiling")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
     expect (basicTypesMap1.higherEntry ("Beer")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
     expect (basicTypesMap1.higherEntry ("Dalias")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
-    expect (basicTypesMap1.higherEntry ("ChewToy")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
-    expect (basicTypesMap1.higherEntry ("Leash")).toEqual(new BasicMapEntry<string,number> ("Wet Food", 7.49));
-    expect (basicTypesMap1.higherEntry ("AAAAA")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
-    expect (basicTypesMap1.higherEntry ("ZZZZZ")).toEqual(null);
+
   });
 
   it("Test lowerEntry", function() {
