@@ -394,6 +394,62 @@ var TreeMap = (function () {
             return null;
         return tmp.getMapEntry();
     };
+    /**
+    * Returns the highest key lower than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the highest key lower than key, or null if there is no such key
+    */
+    TreeMap.prototype.lowerKey = function (key) {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var tmp = this.lowerNode(this.topNode, key, null);
+        return tmp.getKey();
+    };
+    /**
+    * Returns a key-value mapping associated with the highest key lower than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
+    */
+    TreeMap.prototype.lowerEntry = function (key) {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var tmp = this.lowerNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
+        return tmp.getMapEntry();
+    };
+    /**
+    * Returns the greatest key less than or equal to the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the greatest key less than or equal to key, or null if there is no such key
+    */
+    TreeMap.prototype.floorKey = function (key) {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var tmp = this.floorNode(this.topNode, key, null);
+        return tmp.getKey();
+    };
+    /**
+    * Returns a key-value mapping associated with the greatest key less than or equal to the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
+    */
+    TreeMap.prototype.floorEntry = function (key) {
+        if (this.topNode === null)
+            return null;
+        if (this.topNode === undefined)
+            return null;
+        var tmp = this.floorNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
+        return tmp.getMapEntry();
+    };
     TreeMap.prototype.ceilingNode = function (node, key, currentBest) {
         if (node === null) {
             return currentBest;
@@ -462,14 +518,14 @@ var TreeMap = (function () {
         }
         // above key
         if (currentBest === null) {
-            return this.lowerNode(node.getLeftNode(), key, node);
+            return this.lowerNode(node.getRightNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
-        if (tmp < 0) {
-            return this.lowerNode(node.getLeftNode(), key, currentBest);
+        if (tmp > 0) {
+            return this.lowerNode(node.getRightNode(), key, currentBest);
         }
         else {
-            return this.lowerNode(node.getLeftNode(), key, node);
+            return this.lowerNode(node.getRightNode(), key, node);
         }
     };
     TreeMap.prototype.floorNode = function (node, key, currentBest) {
@@ -491,11 +547,11 @@ var TreeMap = (function () {
             return this.floorNode(node.getLeftNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
-        if (tmp < 0) {
-            return this.floorNode(node.getLeftNode(), key, currentBest);
+        if (tmp > 0) {
+            return this.floorNode(node.getRightNode(), key, currentBest);
         }
         else {
-            return this.floorNode(node.getLeftNode(), key, node);
+            return this.floorNode(node.getRightNode(), key, node);
         }
     };
     /**

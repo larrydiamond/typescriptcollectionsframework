@@ -337,8 +337,12 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
         expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
         //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.ceilingEntry("Ceiling")).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
         expect(basicTypesMap1.ceilingEntry("Beer")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
+        expect(basicTypesMap1.ceilingEntry("Dalias")).toEqual(new BasicMapEntry_1.BasicMapEntry("Dry Food", 7.99));
         expect(basicTypesMap1.ceilingEntry("ChewToy")).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
+        expect(basicTypesMap1.ceilingEntry("AAAAA")).toEqual(new BasicMapEntry_1.BasicMapEntry("AAAAA", 0.99));
+        expect(basicTypesMap1.ceilingEntry("Dry Food")).toEqual(new BasicMapEntry_1.BasicMapEntry("Dry Food", 7.99));
         expect(basicTypesMap1.ceilingEntry("ZZZZZ")).toEqual(null);
     });
     it("Test higherEntry", function () {
@@ -351,8 +355,40 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
         expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
         //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.higherEntry("Ceiling")).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
         expect(basicTypesMap1.higherEntry("Beer")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
+        expect(basicTypesMap1.higherEntry("Dalias")).toEqual(new BasicMapEntry_1.BasicMapEntry("Dry Food", 7.99));
         expect(basicTypesMap1.higherEntry("ChewToy")).toEqual(new BasicMapEntry_1.BasicMapEntry("Dry Food", 7.99));
+        expect(basicTypesMap1.higherEntry("Leash")).toEqual(new BasicMapEntry_1.BasicMapEntry("Wet Food", 7.49));
+        expect(basicTypesMap1.higherEntry("AAAAA")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
         expect(basicTypesMap1.higherEntry("ZZZZZ")).toEqual(null);
+    });
+    it("Test lowerEntry", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.lowerEntry("TheresNothingInThisMap")).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
+        expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
+        expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
+        //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.lowerEntry("Celery")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
+        //    expect (basicTypesMap1.lowerEntry ("Food I dunno")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
+        expect(basicTypesMap1.lowerEntry("AAAA")).toEqual(null);
+    });
+    it("Test floorEntry", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.floorEntry("TheresNothingInThisMap")).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
+        expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
+        expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
+        //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.floorEntry("Catnip")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
+        //    expect (basicTypesMap1.floorEntry ("Food I dunno")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
+        expect(basicTypesMap1.floorEntry("AAAA")).toEqual(null);
     });
 });

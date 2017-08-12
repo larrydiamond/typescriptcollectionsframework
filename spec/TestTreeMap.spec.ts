@@ -390,12 +390,14 @@ describe("Test TreeMap functionality", function() {
 
 //    basicTypesMap1.printMap();
 
+    expect (basicTypesMap1.ceilingEntry ("Ceiling")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
     expect (basicTypesMap1.ceilingEntry ("Beer")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
+    expect (basicTypesMap1.ceilingEntry ("Dalias")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
     expect (basicTypesMap1.ceilingEntry ("ChewToy")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
+    expect (basicTypesMap1.ceilingEntry ("AAAAA")).toEqual(new BasicMapEntry<string,number> ("AAAAA", 0.99));
+    expect (basicTypesMap1.ceilingEntry ("Dry Food")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
     expect (basicTypesMap1.ceilingEntry ("ZZZZZ")).toEqual(null);
   });
-
-
 
   it("Test higherEntry", function() {
     let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
@@ -409,9 +411,47 @@ describe("Test TreeMap functionality", function() {
 
   //    basicTypesMap1.printMap();
 
+    expect (basicTypesMap1.higherEntry ("Ceiling")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
     expect (basicTypesMap1.higherEntry ("Beer")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
+    expect (basicTypesMap1.higherEntry ("Dalias")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
     expect (basicTypesMap1.higherEntry ("ChewToy")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
+    expect (basicTypesMap1.higherEntry ("Leash")).toEqual(new BasicMapEntry<string,number> ("Wet Food", 7.49));
+    expect (basicTypesMap1.higherEntry ("AAAAA")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
     expect (basicTypesMap1.higherEntry ("ZZZZZ")).toEqual(null);
+  });
+
+  it("Test lowerEntry", function() {
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    expect (basicTypesMap1.lowerEntry ("TheresNothingInThisMap")).toEqual (null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+
+//    basicTypesMap1.printMap();
+
+    expect (basicTypesMap1.lowerEntry ("Celery")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
+//    expect (basicTypesMap1.lowerEntry ("Food I dunno")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
+    expect (basicTypesMap1.lowerEntry ("AAAA")).toEqual(null);
+  });
+
+  it("Test floorEntry", function() {
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    expect (basicTypesMap1.floorEntry ("TheresNothingInThisMap")).toEqual (null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+
+//    basicTypesMap1.printMap();
+
+    expect (basicTypesMap1.floorEntry ("Catnip")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
+//    expect (basicTypesMap1.floorEntry ("Food I dunno")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
+    expect (basicTypesMap1.floorEntry ("AAAA")).toEqual(null);
   });
 
 
