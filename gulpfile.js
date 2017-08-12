@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const jasmine = require('gulp-jasmine');
-const clean = require('gulp-clean');
 const runSequence = require('run-sequence');
 cover = require('gulp-coverage');
 
