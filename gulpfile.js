@@ -18,11 +18,6 @@ gulp.task('build', function() {
     ]);
 });
 
-gulp.task('clean', function () {
-    return gulp.src('dist', { read: false })
-        .pipe(clean());
-});
-
 gulp.task('test:run', function() {
     return gulp.src('dist/spec/**')
                 .pipe(cover.instrument({
