@@ -40,9 +40,9 @@ gulp.task('watch', ['default'], function() {
 });
 
 gulp.task('test', [], function(cb) {
-  runSequence('clean', 'build', 'test:run', cb);
+  runSequence('build', 'test:run', cb);
 });
 
 gulp.task('default', [], function(cb) {
-    runSequence('clean', 'build', cb);
+    runSequence('build', cb);
 });

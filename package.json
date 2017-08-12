@@ -33,7 +33,7 @@
     "definition": "definitions/index"
   },
   "scripts": {
-    "test": "gulp test",
+    "test": "rm -r -f dist && gulp test",
     "release": "standard-version",
     "tslint": "node_modules/tslint/bin/tslint -c tslint.json */*.ts"
   },

@@ -279,6 +279,7 @@ describe("Test TreeSet functionality", function() {
     expect (TreeSet2.add (80)).toEqual(false);
     expect (TreeSet2.add (32)).toEqual(false);
     expect (TreeSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
+    expect (TreeSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
     expect (TreeSet2.ceiling (17)).toEqual(17); // 17 is there
   });
 
