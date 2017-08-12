@@ -451,6 +451,7 @@ expect (basicTypesMap1.lowerEntry ("ChewToy")).toEqual(new BasicMapEntry<string,
 //    basicTypesMap1.printMap();
 
     expect (basicTypesMap1.floorEntry ("Catnip")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
+    expect (basicTypesMap1.floorEntry ("Celery")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
 //    expect (basicTypesMap1.floorEntry ("Food I dunno")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
     expect (basicTypesMap1.floorEntry ("AAAA")).toEqual(null);
   });

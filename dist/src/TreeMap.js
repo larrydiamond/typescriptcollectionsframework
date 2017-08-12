@@ -544,7 +544,7 @@ var TreeMap = (function () {
         }
         // above key
         if (currentBest === null) {
-            return this.floorNode(node.getLeftNode(), key, node);
+            return this.floorNode(node.getRightNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
         if (tmp > 0) {

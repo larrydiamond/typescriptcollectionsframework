@@ -389,6 +389,7 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
         //    basicTypesMap1.printMap();
         expect(basicTypesMap1.floorEntry("Catnip")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
+        expect(basicTypesMap1.floorEntry("Celery")).toEqual(new BasicMapEntry_1.BasicMapEntry("Catnip", 4.99));
         //    expect (basicTypesMap1.floorEntry ("Food I dunno")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
         expect(basicTypesMap1.floorEntry("AAAA")).toEqual(null);
     });

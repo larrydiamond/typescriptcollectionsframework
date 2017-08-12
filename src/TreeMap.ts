@@ -583,7 +583,7 @@ public size () : number {
 
     // above key
     if (currentBest === null) { // no best node found yet
-      return this.floorNode (node.getLeftNode(), key, node);
+      return this.floorNode (node.getRightNode(), key, node);
     }
 
     tmp = this.mapComparator.compare (node.getKey(), currentBest.getKey());
