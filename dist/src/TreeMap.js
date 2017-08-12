@@ -522,10 +522,10 @@ var TreeMap = (function () {
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
         if (tmp > 0) {
-            return this.lowerNode(node.getRightNode(), key, currentBest);
+            return this.lowerNode(node.getRightNode(), key, node);
         }
         else {
-            return this.lowerNode(node.getRightNode(), key, node);
+            return this.lowerNode(node.getRightNode(), key, currentBest);
         }
     };
     TreeMap.prototype.floorNode = function (node, key, currentBest) {
@@ -548,10 +548,10 @@ var TreeMap = (function () {
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
         if (tmp > 0) {
-            return this.floorNode(node.getRightNode(), key, currentBest);
+            return this.floorNode(node.getRightNode(), key, node);
         }
         else {
-            return this.floorNode(node.getRightNode(), key, node);
+            return this.floorNode(node.getRightNode(), key, currentBest);
         }
     };
     /**

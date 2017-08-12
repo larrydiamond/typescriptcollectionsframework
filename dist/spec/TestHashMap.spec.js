@@ -36,60 +36,6 @@ describe("Test HashMap functionality", function () {
     var product1 = new PetStoreProduct("Catnip", 4.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
-    var alphabeticalSortPetStoreProduct = {
-        compare: function (o1, o2) {
-            if (o1 === o2)
-                return 0;
-            if (o1 === null)
-                return -1;
-            if (o1 === undefined)
-                return -1;
-            if (o2 === null)
-                return 1;
-            if (o2 === undefined)
-                return 1;
-            if (o1.getProductName() === o2.getProductName())
-                return 0;
-            if (o1.getProductName() === null)
-                return -1;
-            if (o1.getProductName() === undefined)
-                return -1;
-            if (o2.getProductName() === null)
-                return 1;
-            if (o2.getProductName() === undefined)
-                return 1;
-            if (o1.getProductName() < o2.getProductName())
-                return -1;
-            return 1;
-        }
-    };
-    var priceSortPetStoreProduct = {
-        compare: function (o1, o2) {
-            if (o1 === o2)
-                return 0;
-            if (o1 === null)
-                return -1;
-            if (o1 === undefined)
-                return -1;
-            if (o2 === null)
-                return 1;
-            if (o2 === undefined)
-                return 1;
-            if (o1.getPrice() === o2.getPrice())
-                return 0;
-            if (o1.getPrice() === null)
-                return -1;
-            if (o1.getPrice() === undefined)
-                return -1;
-            if (o2.getPrice() === null)
-                return 1;
-            if (o2.getPrice() === undefined)
-                return 1;
-            if (o1.getPrice() < o2.getPrice())
-                return -1;
-            return 1;
-        }
-    };
     // Wanted to show a class in the value object but anything would work fine
     var ValueClass = (function () {
         function ValueClass() {
