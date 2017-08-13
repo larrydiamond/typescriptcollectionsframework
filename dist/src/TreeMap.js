@@ -364,6 +364,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.ceilingNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**

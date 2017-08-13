@@ -385,10 +385,10 @@ public size () : number {
   */
   public ceilingKey (key:K) : K {
     if (this.topNode === null) return null;
-
     if (this.topNode === undefined) return null;
 
     let tmp = this.ceilingNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 

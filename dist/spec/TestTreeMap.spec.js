@@ -353,6 +353,29 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.ceilingEntry("Dalias")).toEqual(new BasicMapEntry_1.BasicMapEntry("Dry Food", 7.99));
         expect(basicTypesMap1.ceilingEntry("ZZZZZ")).toEqual(null);
     });
+    it("Test ceilingKey", function () {
+        var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.ceilingKey("TheresNothingInThisMap")).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("BBBBBB", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
+        expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
+        expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
+        //    basicTypesMap1.printMap();
+        expect(basicTypesMap1.ceilingKey("ChewToy")).toEqual("ChewToy");
+        expect(basicTypesMap1.ceilingKey("Catnip")).toEqual("Catnip");
+        expect(basicTypesMap1.ceilingKey("BBBBBB")).toEqual("BBBBBB");
+        expect(basicTypesMap1.ceilingKey("Leash")).toEqual("Leash");
+        expect(basicTypesMap1.ceilingKey("Dry Food")).toEqual("Dry Food");
+        expect(basicTypesMap1.ceilingKey("Wet Food")).toEqual("Wet Food");
+        expect(basicTypesMap1.ceilingKey("AAAAAA")).toEqual("BBBBBB");
+        expect(basicTypesMap1.ceilingKey("Ceiling")).toEqual("ChewToy");
+        expect(basicTypesMap1.ceilingKey("Beer")).toEqual("Catnip");
+        expect(basicTypesMap1.ceilingKey("Dalias")).toEqual("Dry Food");
+        expect(basicTypesMap1.ceilingKey("VVVVV")).toEqual("Wet Food");
+        expect(basicTypesMap1.ceilingKey("ZZZZZ")).toEqual(null);
+    });
     it("Test higherEntry", function () {
         var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.higherEntry("TheresNothingInThisMap")).toEqual(null);
