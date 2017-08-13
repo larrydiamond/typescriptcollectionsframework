@@ -403,6 +403,7 @@ public size () : number {
     if (this.topNode === undefined) return null;
 
     let tmp = this.higherNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
