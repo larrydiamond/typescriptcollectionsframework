@@ -409,6 +409,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.lowerNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**
@@ -437,6 +439,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.floorNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**

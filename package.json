@@ -16,7 +16,7 @@
     "jasmine": "^2.7.0",
     "merge2": "^1.0.2",
     "run-sequence": "^2.1.0",
-    "standard-version": "^4.0.0",
+    "standard-version": "^4.2.0",
     "tslint": "^5.6.0",
     "typescript": "^2.4.2"
   },

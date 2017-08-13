@@ -433,6 +433,7 @@ public size () : number {
     if (this.topNode === undefined) return null;
 
     let tmp = this.lowerNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
@@ -462,6 +463,7 @@ public size () : number {
     if (this.topNode === undefined) return null;
 
     let tmp = this.floorNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
