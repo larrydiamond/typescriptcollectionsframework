@@ -292,6 +292,7 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.remove ("Bananas")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(0);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
   });
 
   it("Test Remove from one entry map", function() {
@@ -305,15 +306,18 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
     expect (basicTypesMap1.size ()).toEqual(0);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
     basicTypesMap1.clear();
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
     basicTypesMap1.clear();
     expect (basicTypesMap1.remove ("Bananas")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.remove ("ChewToy")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(0);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
   });
 
   it("Test Remove head both sides loaded", function() {
@@ -324,8 +328,10 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(4);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
     expect (basicTypesMap1.size ()).toEqual(3);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
   });
 
   it("Test Remove head left full right empty", function() {
@@ -335,8 +341,10 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(3);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
     expect (basicTypesMap1.size ()).toEqual(2);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
   });
 
   it("Test Remove head right full left empty", function() {
@@ -346,8 +354,28 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(3);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.remove ("AAAAA")).toEqual(0.99);
     expect (basicTypesMap1.size ()).toEqual(2);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
+  });
+
+  it ("Test remove cover all the cases", function () {
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
+    expect (basicTypesMap1.size ()).toEqual(6);
+    expect (basicTypesMap1.remove ("Wet Food")).toEqual(7.49);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
+    expect (basicTypesMap1.size ()).toEqual(5);
+    expect (basicTypesMap1.remove ("Catnip")).toEqual(4.99);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
+    expect (basicTypesMap1.size ()).toEqual(4);
   });
 
   it("Test getNextHigherKey empty map", function() {
