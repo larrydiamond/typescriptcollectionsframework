@@ -154,6 +154,7 @@ describe("Test TreeMap functionality", function () {
     });
     it("Test ContainsKey where the item is contained", function () {
         var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
+        expect(basicTypesMap1.containsKey("ZZZZZZ")).toEqual(false);
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
         expect(basicTypesMap1.containsKey("Catnip")).toEqual(true);
