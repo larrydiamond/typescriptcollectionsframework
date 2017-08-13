@@ -254,6 +254,8 @@ describe("Test TreeMap functionality", function() {
     let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
     let basicTypesMap2:TreeMap<number,string> = new TreeMap<number,string>(CollectionUtils.getNumberComparator());
 
+    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
     expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(null);
     expect (petStoreMap1.put (product3, new ValueClass())).toEqual(null);

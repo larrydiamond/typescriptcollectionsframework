@@ -218,6 +218,7 @@ describe("Test TreeMap functionality", function () {
         var petStoreMap2 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         var basicTypesMap2 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getNumberComparator());
+        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
         expect(petStoreMap1.put(product1, new ValueClass())).toEqual(null);
         expect(petStoreMap1.put(product2, new ValueClass(10))).toEqual(null);
         expect(petStoreMap1.put(product3, new ValueClass())).toEqual(null);
