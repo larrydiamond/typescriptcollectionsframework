@@ -315,17 +315,20 @@ describe("Test TreeMap functionality", function () {
         var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
-        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("BBBBBB", 0.99)).toEqual(null);
         expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
         expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
         expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
         //    basicTypesMap1.printMap();
-        expect(basicTypesMap1.getNextHigherKey("AAAAA")).toEqual("Catnip");
+        expect(basicTypesMap1.getNextHigherKey("BBBBBB")).toEqual("Catnip");
         expect(basicTypesMap1.getNextHigherKey("Catnip")).toEqual("ChewToy");
         expect(basicTypesMap1.getNextHigherKey("ChewToy")).toEqual("Dry Food");
         expect(basicTypesMap1.getNextHigherKey("Dry Food")).toEqual("Leash");
         expect(basicTypesMap1.getNextHigherKey("Leash")).toEqual("Wet Food");
         expect(basicTypesMap1.getNextHigherKey("Wet Food")).toEqual(null);
+        expect(basicTypesMap1.getNextHigherKey("AAAAAA")).toEqual(null);
+        expect(basicTypesMap1.getNextHigherKey("GGGGGG")).toEqual(null);
+        expect(basicTypesMap1.getNextHigherKey("ZZZZZZ")).toEqual(null);
     });
     it("Test ceilingEntry", function () {
         var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
