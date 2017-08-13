@@ -2,7 +2,6 @@ const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const jasmine = require('gulp-jasmine');
 const runSequence = require('run-sequence');
-cover = require('gulp-coverage');
 
 gulp.task('build', function() {
     const merge = require('merge2');
@@ -19,14 +18,7 @@ gulp.task('build', function() {
 
 gulp.task('test:run', function() {
     return gulp.src('dist/spec/**')
-                .pipe(cover.instrument({
-                    pattern: ['src/**/*.ts'],
-                    debugDirectory: 'debug'
-                }))
-      .pipe(jasmine())
-      .pipe(cover.gather())
-      .pipe(cover.format({ reporter: 'lcov' }))
-      .pipe(gulp.dest('reports'));
+      .pipe(jasmine());
 });
 
 gulp.task('watch', ['default'], function() {
