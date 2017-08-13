@@ -1,4 +1,6 @@
 # Typescript Collections Framework
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/larrydiamond/typescriptcollectionsframework.svg)](https://greenkeeper.io/)
 TypeScript Collections Framework - a port of the Java Collections framework for use with AngularJS
 
 [![NPM](https://nodei.co/npm/typescriptcollectionsframework.png?compact=true)](https://npmjs.org/typescriptcollectionsframework)
