@@ -10,7 +10,9 @@ import {ArrayList} from "./ArrayList";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
 import {Hashable} from "./Hashable";
+import {JIterator} from "./JIterator";
 import {JMap} from "./JMap";
+import {LinkedList} from "./LinkedList";
 import {List} from "./List";
 
 export class HashMap<K extends Hashable,V> implements JMap<K,V> {
@@ -35,7 +37,6 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   public put (key:K, value:V) : V {
     let mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
-      this.rehash();
       let hashCode:number = key.hashCode();
       let newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
       newNode.setHashCode(hashCode);
@@ -50,6 +51,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
         thisList.add (newNode);
         this.elementCount = this.elementCount + 1;
       }
+      this.rehash();
       return undefined;
     } else {
       let tmp:V = mapEntry.getValue();
@@ -64,12 +66,25 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   private rehash() : void {
     if ((this.elementCount * this.loadFactor) > this.data.size()) { // Not enough buckets
       // How many buckets should there be?   Lets go with doubling the number of buckets
-      let newBucketCount = (this.elementCount * 2) + 1;
-      let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>(newBucketCount);
-      // Iterate through the nodes and add them all into newdata
-      // TODO
 
-      // this.data = this.newdata;
+//      console.log ("Rehash");
+
+      let newBucketCount = (this.elementCount * 2) + 1;
+      let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>();
+      for (let loop:number = 0; loop < newBucketCount; loop++) {
+        newdata.add (new LinkedList<HashMapEntry<K,V>>());
+      }
+      // Iterate through the nodes and add them all into newdata
+      for (let bucketIter:JIterator<List<HashMapEntry<K,V>>> = this.data.iterator(); bucketIter.hasNext(); ) {
+        let bucket:List<HashMapEntry<K,V>> = bucketIter.next();
+        for (let entryIter:JIterator<HashMapEntry<K,V>> = bucket.iterator(); entryIter.hasNext(); ) {
+          let entry:HashMapEntry<K,V> = entryIter.next();
+          let hashCode:number = entry.getHashCode();
+          let hashBucket:number = hashCode % newBucketCount;
+          newdata.get (hashBucket).add (entry);
+        }
+      }
+      this.data = newdata;
     }
   }
 

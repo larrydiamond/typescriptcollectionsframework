@@ -19,6 +19,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("./ArrayList");
 var BasicMapEntry_1 = require("./BasicMapEntry");
+var LinkedList_1 = require("./LinkedList");
 var HashMap = (function () {
     function HashMap(initialElements, iInitialCapacity, iLoadFactor) {
         if (initialElements === void 0) { initialElements = new HashMap(null, 20, 0.75); }
@@ -45,7 +46,6 @@ var HashMap = (function () {
     HashMap.prototype.put = function (key, value) {
         var mapEntry = this.getMapEntry(key);
         if (mapEntry === null) {
-            this.rehash();
             var hashCode = key.hashCode();
             var newNode = new HashMapEntry(key, value);
             newNode.setHashCode(hashCode);
@@ -61,6 +61,7 @@ var HashMap = (function () {
                 thisList.add(newNode);
                 this.elementCount = this.elementCount + 1;
             }
+            this.rehash();
             return undefined;
         }
         else {
@@ -75,11 +76,23 @@ var HashMap = (function () {
     HashMap.prototype.rehash = function () {
         if ((this.elementCount * this.loadFactor) > this.data.size()) {
             // How many buckets should there be?   Lets go with doubling the number of buckets
+            //      console.log ("Rehash");
             var newBucketCount = (this.elementCount * 2) + 1;
-            var newdata = new ArrayList_1.ArrayList(newBucketCount);
+            var newdata = new ArrayList_1.ArrayList();
+            for (var loop = 0; loop < newBucketCount; loop++) {
+                newdata.add(new LinkedList_1.LinkedList());
+            }
             // Iterate through the nodes and add them all into newdata
-            // TODO
-            // this.data = this.newdata;
+            for (var bucketIter = this.data.iterator(); bucketIter.hasNext();) {
+                var bucket = bucketIter.next();
+                for (var entryIter = bucket.iterator(); entryIter.hasNext();) {
+                    var entry = entryIter.next();
+                    var hashCode = entry.getHashCode();
+                    var hashBucket = hashCode % newBucketCount;
+                    newdata.get(hashBucket).add(entry);
+                }
+            }
+            this.data = newdata;
         }
     };
     /**
