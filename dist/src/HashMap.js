@@ -31,7 +31,10 @@ var HashMap = (function () {
         this.data = null;
         this.elementCount = 0;
         this.loadFactor = 0.75;
-        this.data = new ArrayList_1.ArrayList(iInitialCapacity);
+        this.data = new ArrayList_1.ArrayList();
+        for (var loop = 0; loop < iInitialCapacity; loop++) {
+            this.data.add(new LinkedList_1.LinkedList());
+        }
         this.loadFactor = iLoadFactor;
         if (initialElements !== null) {
             // TODO
@@ -74,14 +77,14 @@ var HashMap = (function () {
      * Rehashes the entire hashmap.... gonna be slow you've been warned
      */
     HashMap.prototype.rehash = function () {
-        if ((this.elementCount * this.loadFactor) > this.data.size()) {
+        if (this.elementCount > (this.data.size() * this.loadFactor)) {
             // How many buckets should there be?   Lets go with doubling the number of buckets
             var newBucketCount = (this.data.size() * 2) + 1;
             var newdata = new ArrayList_1.ArrayList();
             for (var loop = 0; loop < newBucketCount; loop++) {
                 newdata.add(new LinkedList_1.LinkedList());
             }
-            //      console.log ("Rehash " + newBucketCount);
+            console.log("Rehash " + newBucketCount + " " + this.elementCount + " " + this.loadFactor + " " + this.data.size());
             // Iterate through the nodes and add them all into newdata
             for (var bucketIter = this.data.iterator(); bucketIter.hasNext();) {
                 var bucket = bucketIter.next();

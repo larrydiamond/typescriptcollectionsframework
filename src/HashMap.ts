@@ -21,7 +21,10 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   private loadFactor:number = 0.75;
 
   public constructor (private initialElements:JMap<K, V> = new HashMap<K,V>(null, 20, 0.75), private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
-    this.data = new ArrayList(iInitialCapacity);
+    this.data = new ArrayList();
+    for (let loop:number = 0; loop < iInitialCapacity; loop++) {
+      this.data.add (new LinkedList<HashMapEntry<K,V>>());
+    }
     this.loadFactor = iLoadFactor;
     if (initialElements !== null) {
       // TODO
@@ -64,7 +67,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   * Rehashes the entire hashmap.... gonna be slow you've been warned
   */
   private rehash() : void {
-    if ((this.elementCount * this.loadFactor) > this.data.size()) { // Not enough buckets
+    if (this.elementCount > (this.data.size() * this.loadFactor)) { // Not enough buckets
       // How many buckets should there be?   Lets go with doubling the number of buckets
 
       let newBucketCount = (this.data.size() * 2) + 1;
@@ -72,7 +75,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
       for (let loop:number = 0; loop < newBucketCount; loop++) {
         newdata.add (new LinkedList<HashMapEntry<K,V>>());
       }
-//      console.log ("Rehash " + newBucketCount);
+//      console.log ("Rehash " + newBucketCount + " " + this.elementCount + " " + this.loadFactor + " " + this.data.size());
 
       // Iterate through the nodes and add them all into newdata
       for (let bucketIter:JIterator<List<HashMapEntry<K,V>>> = this.data.iterator(); bucketIter.hasNext(); ) {
