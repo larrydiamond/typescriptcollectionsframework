@@ -121,6 +121,7 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test indexof", function () {
         var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.lastIndexOf(product1)).toEqual(-1);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
@@ -192,6 +193,7 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test remove at front of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.remove(0)).toEqual(undefined);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
@@ -282,6 +284,9 @@ describe("Test ArrayList functionality", function () {
     it("Test addall", function () {
         var victim = new ArrayList_1.ArrayList();
         var arraylist = new ArrayList_1.ArrayList();
+        expect(victim.addAll(null)).toEqual(false);
+        expect(victim.addAll(undefined)).toEqual(false);
+        expect(victim.addAll(new ArrayList_1.ArrayList())).toEqual(false);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);

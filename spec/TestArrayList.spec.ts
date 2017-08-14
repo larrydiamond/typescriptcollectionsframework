@@ -154,6 +154,7 @@ describe("Test ArrayList functionality", function() {
 
   it("Test indexof", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (arraylist.lastIndexOf(product1)).toEqual(-1);
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -245,6 +246,7 @@ describe("Test ArrayList functionality", function() {
 
   it("Test remove at front of list", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (arraylist.remove (0)).toEqual (undefined);
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -361,6 +363,9 @@ describe("Test ArrayList functionality", function() {
   it("Test addall", function() {
     let victim:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (victim.addAll (null)).toEqual (false);
+    expect (victim.addAll (undefined)).toEqual (false);
+    expect (victim.addAll (new ArrayList<PetStoreProduct>())).toEqual (false);
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
     expect (arraylist.add (product3)).toEqual (true);
