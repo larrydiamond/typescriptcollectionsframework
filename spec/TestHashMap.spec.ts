@@ -226,14 +226,22 @@ describe("Test HashMap functionality", function() {
 
     expect (petStoreMap1.size ()).toEqual(26 * 26 * 26);
     expect (petStoreMap1.isEmpty ()).toEqual(false);
-
-    let value1:PetStoreProduct = new PetStoreProduct ("aaa", 3);
-    expect (petStoreMap1.get (value1)).not.toEqual(null);
-
-    let value2:PetStoreProduct = new PetStoreProduct ("jjj", 30);
-    expect (petStoreMap1.get (value2)).not.toEqual(null);
-
     expect (petStoreMap1.get (product1)).toEqual(null);
+
+    for (let loop1 = 1; loop1 <= 26; loop1++) {
+      for (let loop2 = 1; loop2 <= 26; loop2++) {
+        for (let loop3 = 1; loop3 <= 26; loop3++) {
+          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+          expect (petStoreMap1.get (product)).not.toEqual(null);
+          expect (petStoreMap1.remove (product)).not.toEqual (null);
+        }
+      }
+    }
+
+
+    expect (petStoreMap1.size ()).toEqual(0);
+    expect (petStoreMap1.isEmpty ()).toEqual(true);
   });
 
 });
