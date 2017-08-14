@@ -225,6 +225,7 @@ describe("Test LinkedList functionality", function () {
     });
     it("Test removeElement at front of list", function () {
         var thelist = new LinkedList_1.LinkedList();
+        expect(thelist.removeElement(product1)).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -281,6 +282,9 @@ describe("Test LinkedList functionality", function () {
     it("Test addall", function () {
         var victim = new LinkedList_1.LinkedList();
         var thelist = new LinkedList_1.LinkedList();
+        expect(victim.addAll(null)).toEqual(false);
+        expect(victim.addAll(undefined)).toEqual(false);
+        expect(victim.addAll(new LinkedList_1.LinkedList())).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -290,6 +294,9 @@ describe("Test LinkedList functionality", function () {
     });
     it("Test removeall", function () {
         var thelist = new LinkedList_1.LinkedList();
+        expect(thelist.removeAll(null)).toEqual(false);
+        expect(thelist.removeAll(undefined)).toEqual(false);
+        expect(thelist.removeAll(new LinkedList_1.LinkedList())).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         var removelist = new LinkedList_1.LinkedList();

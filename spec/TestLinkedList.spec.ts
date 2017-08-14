@@ -287,6 +287,7 @@ describe("Test LinkedList functionality", function() {
 
     it("Test removeElement at front of list", function() {
       let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      expect (thelist.removeElement (product1)). toEqual (false);
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -359,6 +360,9 @@ describe("Test LinkedList functionality", function() {
     it("Test addall", function() {
       let victim:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
       let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      expect (victim.addAll (null)).toEqual (false);
+      expect (victim.addAll (undefined)).toEqual (false);
+      expect (victim.addAll (new LinkedList<PetStoreProduct> ())).toEqual (false);
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
       expect (thelist.add (product3)).toEqual (true);
@@ -369,6 +373,9 @@ describe("Test LinkedList functionality", function() {
 
     it("Test removeall", function() {
       let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      expect (thelist.removeAll (null)).toEqual (false);
+      expect (thelist.removeAll (undefined)).toEqual (false);
+      expect (thelist.removeAll (new LinkedList<PetStoreProduct>())).toEqual (false);
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
 
