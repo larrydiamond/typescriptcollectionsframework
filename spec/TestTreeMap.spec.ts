@@ -382,6 +382,9 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.remove ("Furry Food")).toEqual(0.49);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.size ()).toEqual(6);
+    expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
+    expect (basicTypesMap1.validateMap()).toEqual (true);
+    expect (basicTypesMap1.size ()).toEqual(5);
   });
 
   it("Test getNextHigherKey empty map", function() {
