@@ -225,6 +225,7 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test removeElement at front of list", function () {
         var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.removeElement(product1)).toEqual(false);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
@@ -290,9 +291,11 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test removeall", function () {
         var arraylist = new ArrayList_1.ArrayList();
+        expect(arraylist.removeAll(null)).toEqual(false);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         var removelist = new ArrayList_1.ArrayList();
+        expect(arraylist.removeAll(removelist)).toEqual(false);
         expect(removelist.add(product2)).toEqual(true);
         expect(removelist.add(product3)).toEqual(true);
         expect(arraylist.removeAll(removelist)).toEqual(true);

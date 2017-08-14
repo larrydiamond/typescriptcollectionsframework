@@ -288,6 +288,7 @@ describe("Test ArrayList functionality", function() {
 
   it("Test removeElement at front of list", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (arraylist.removeElement (product1)). toEqual (false);
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -370,10 +371,12 @@ describe("Test ArrayList functionality", function() {
 
   it("Test removeall", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (arraylist.removeAll(null)).toEqual(false);
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
 
     let removelist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (arraylist.removeAll(removelist)).toEqual(false);
     expect (removelist.add (product2)).toEqual (true);
     expect (removelist.add (product3)).toEqual (true);
 
