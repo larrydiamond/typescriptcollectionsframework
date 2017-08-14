@@ -76,12 +76,12 @@ var HashMap = (function () {
     HashMap.prototype.rehash = function () {
         if ((this.elementCount * this.loadFactor) > this.data.size()) {
             // How many buckets should there be?   Lets go with doubling the number of buckets
-            //      console.log ("Rehash");
-            var newBucketCount = (this.elementCount * 2) + 1;
+            var newBucketCount = (this.data.size() * 2) + 1;
             var newdata = new ArrayList_1.ArrayList();
             for (var loop = 0; loop < newBucketCount; loop++) {
                 newdata.add(new LinkedList_1.LinkedList());
             }
+            //      console.log ("Rehash " + newBucketCount);
             // Iterate through the nodes and add them all into newdata
             for (var bucketIter = this.data.iterator(); bucketIter.hasNext();) {
                 var bucket = bucketIter.next();

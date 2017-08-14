@@ -67,13 +67,13 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     if ((this.elementCount * this.loadFactor) > this.data.size()) { // Not enough buckets
       // How many buckets should there be?   Lets go with doubling the number of buckets
 
-//      console.log ("Rehash");
-
-      let newBucketCount = (this.elementCount * 2) + 1;
+      let newBucketCount = (this.data.size() * 2) + 1;
       let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>();
       for (let loop:number = 0; loop < newBucketCount; loop++) {
         newdata.add (new LinkedList<HashMapEntry<K,V>>());
       }
+//      console.log ("Rehash " + newBucketCount);
+
       // Iterate through the nodes and add them all into newdata
       for (let bucketIter:JIterator<List<HashMapEntry<K,V>>> = this.data.iterator(); bucketIter.hasNext(); ) {
         let bucket:List<HashMapEntry<K,V>> = bucketIter.next();

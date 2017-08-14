@@ -56,7 +56,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     if (index === 0) {
       let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
       newnode.nextNode = this.firstNode;
-      this.firstNode.previousNode = newnode;
+      if (this.firstNode !== null)
+        this.firstNode.previousNode = newnode;
       this.firstNode = newnode;
       this.numberElements = this.numberElements + 1;
       return;
@@ -284,7 +285,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
       let payload:T = this.firstNode.payload;
       this.firstNode = this.firstNode.nextNode;
       this.numberElements = this.numberElements - 1;
-      this.firstNode.previousNode = null;
+      if (this.firstNode !== null)
+        this.firstNode.previousNode = null;
       return payload;
     }
     if (index === (this.numberElements - 1)) {
@@ -302,7 +304,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
       if (index === offset) {
         let payload:T = node.payload;
         previous.nextNode = node.nextNode;
-        node.nextNode.previousNode = previous;
+        if (node.nextNode !== null)
+          node.nextNode.previousNode = previous;
         this.numberElements = this.numberElements - 1;
         return node.payload;
       } else {

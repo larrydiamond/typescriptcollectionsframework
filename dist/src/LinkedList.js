@@ -42,7 +42,8 @@ var LinkedList = (function () {
         if (index === 0) {
             var newnode = new LinkedListNode(t);
             newnode.nextNode = this.firstNode;
-            this.firstNode.previousNode = newnode;
+            if (this.firstNode !== null)
+                this.firstNode.previousNode = newnode;
             this.firstNode = newnode;
             this.numberElements = this.numberElements + 1;
             return;
@@ -254,7 +255,8 @@ var LinkedList = (function () {
             var payload = this.firstNode.payload;
             this.firstNode = this.firstNode.nextNode;
             this.numberElements = this.numberElements - 1;
-            this.firstNode.previousNode = null;
+            if (this.firstNode !== null)
+                this.firstNode.previousNode = null;
             return payload;
         }
         if (index === (this.numberElements - 1)) {
@@ -271,7 +273,8 @@ var LinkedList = (function () {
             if (index === offset) {
                 var payload = node.payload;
                 previous.nextNode = node.nextNode;
-                node.nextNode.previousNode = previous;
+                if (node.nextNode !== null)
+                    node.nextNode.previousNode = previous;
                 this.numberElements = this.numberElements - 1;
                 return node.payload;
             }
