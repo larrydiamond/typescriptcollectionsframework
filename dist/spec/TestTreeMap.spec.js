@@ -323,12 +323,18 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
         expect(basicTypesMap1.validateMap()).toEqual(true);
         expect(basicTypesMap1.size()).toEqual(6);
-        expect(basicTypesMap1.remove("Wet Food")).toEqual(7.49);
+        expect(basicTypesMap1.put("Furry Food", 0.49)).toEqual(null);
         expect(basicTypesMap1.validateMap()).toEqual(true);
-        expect(basicTypesMap1.size()).toEqual(5);
-        expect(basicTypesMap1.remove("Catnip")).toEqual(4.99);
+        expect(basicTypesMap1.size()).toEqual(7);
+        expect(basicTypesMap1.remove("Dry Food")).toEqual(7.99);
         expect(basicTypesMap1.validateMap()).toEqual(true);
-        expect(basicTypesMap1.size()).toEqual(4);
+        expect(basicTypesMap1.size()).toEqual(6);
+        expect(basicTypesMap1.put("Gaspacho   why would a pet store sell soup?   why not?", 9.49)).toEqual(null);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(7);
+        expect(basicTypesMap1.remove("Furry Food")).toEqual(0.49);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(6);
     });
     it("Test getNextHigherKey empty map", function () {
         var basicTypesMap1 = new TreeMap_1.TreeMap(CollectionUtils_1.CollectionUtils.getStringComparator());
