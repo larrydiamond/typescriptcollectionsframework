@@ -270,6 +270,7 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(4);
+    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
 
     let oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
     expect (oldPrice).toEqual (14.99);
