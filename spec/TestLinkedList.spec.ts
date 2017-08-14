@@ -149,10 +149,14 @@ describe("Test LinkedList functionality", function() {
       expect (product1.equals (index1)).toEqual(false);
       expect (product2.equals (index0)).toEqual(false);
       expect (product2.equals (index1)).toEqual(true);
+
+      expect (thelist.get (5000)).toEqual (null);
     });
 
     it("Test indexof", function() {
       let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      expect (thelist.indexOf (product1)).toEqual(-1);
+      expect (thelist.lastIndexOf(product1)).toEqual(-1);
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -244,6 +248,7 @@ describe("Test LinkedList functionality", function() {
 
     it("Test remove at front of list", function() {
       let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      expect (thelist.remove (0)).toEqual (undefined);
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -254,6 +259,7 @@ describe("Test LinkedList functionality", function() {
       expect (thelist.indexOf (product1)).toEqual(-1);
       expect (thelist.indexOf (product2)).toEqual(0);
       expect (thelist.indexOf (product3)).toEqual(1);
+      expect (thelist.remove (4000)).toEqual (undefined);
     });
 
     it("Test remove in middle of list", function() {
@@ -425,6 +431,14 @@ describe("Test LinkedList functionality", function() {
       expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2));
       tmp = pspi.next();
       expect (tmp.done).toEqual(true);
+    });
+
+    it("Test getfirst", function() {
+        let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+        expect (thelist.getFirst()).toEqual (null);
+        expect (thelist.add (product1)).toEqual (true);
+        expect (thelist.add (product2)).toEqual (true);
+        expect (thelist.getFirst()).toEqual (product1);
     });
 
 });
