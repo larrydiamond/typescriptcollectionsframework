@@ -197,6 +197,35 @@ public size () : number {
       let nextNode: TreeMapNode<K,V> = node.getRightNode();
       if (nextNode === null) {
         let newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, node);
+
+        if (node.getLeftNode() === null) { // parent currently has no children
+          let grandparent:TreeMapNode<K,V> = node.getParentNode();
+          if (grandparent !== null) {
+            if ((grandparent.getRightNode () === node) && (grandparent.getLeftNode () === null)) { // rebalance to make node parent of both grandparent and new node - right right right
+              node.setRightNode (newNode);
+              node.setLeftNode(grandparent);
+              node.setParentNode(grandparent.getParentNode());
+              grandparent.setRightNode (null);
+              grandparent.setLeftNode (null);
+              grandparent.setParentNode (node);
+              if (grandparent === this.topNode) { // reorg top of tree
+                // make node new parent with newnode as left node and grandparent as right node
+                this.topNode = node;
+              } else { // we're really checking the grandparent's parents but we already remapped above
+                if (node.getParentNode().getLeftNode() === grandparent) node.getParentNode().setLeftNode(node);
+                if (node.getParentNode().getRightNode() === grandparent) node.getParentNode().setRightNode(node);
+              }
+            } else { // TODO check to see if we have a right left left rebalance opportunity
+              node.setRightNode(newNode);
+            }
+          } else { // oh well we looked we tried
+            node.setRightNode(newNode);
+          }
+        } else { // oh well we looked we tried
+          node.setRightNode(newNode);
+        }
+
+
         node.setRightNode(newNode);
         return null;
       } else {

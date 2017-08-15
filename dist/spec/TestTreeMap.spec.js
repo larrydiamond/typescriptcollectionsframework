@@ -561,6 +561,7 @@ describe("Test TreeMap functionality", function () {
                 }
             }
         }
+        expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(26 * 26);
         //    expect (petStoreMap1.isEmpty ()).toEqual(false);
         expect(petStoreMap1.get(product1)).toEqual(null);
@@ -574,6 +575,7 @@ describe("Test TreeMap functionality", function () {
                 }
             }
         }
+        expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(0);
         //    expect (petStoreMap1.isEmpty ()).toEqual(true);
         for (var loop2 = 1; loop2 <= 26; loop2++) {
@@ -586,6 +588,7 @@ describe("Test TreeMap functionality", function () {
                 }
             }
         }
+        expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(26 * 26);
         //    expect (petStoreMap1.isEmpty ()).toEqual(false);
         expect(petStoreMap1.get(product1)).toEqual(null);
@@ -599,6 +602,7 @@ describe("Test TreeMap functionality", function () {
                 }
             }
         }
+        expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(0);
         //    expect (petStoreMap1.isEmpty ()).toEqual(true);
     });

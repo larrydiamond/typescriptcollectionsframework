@@ -182,6 +182,38 @@ var TreeMap = (function () {
             var nextNode = node.getRightNode();
             if (nextNode === null) {
                 var newNode = new TreeMapNode(key, value, node);
+                if (node.getLeftNode() === null) {
+                    var grandparent = node.getParentNode();
+                    if (grandparent !== null) {
+                        if ((grandparent.getRightNode() === node) && (grandparent.getLeftNode() === null)) {
+                            node.setRightNode(newNode);
+                            node.setLeftNode(grandparent);
+                            node.setParentNode(grandparent.getParentNode());
+                            grandparent.setRightNode(null);
+                            grandparent.setLeftNode(null);
+                            grandparent.setParentNode(node);
+                            if (grandparent === this.topNode) {
+                                // make node new parent with newnode as left node and grandparent as right node
+                                this.topNode = node;
+                            }
+                            else {
+                                if (node.getParentNode().getLeftNode() === grandparent)
+                                    node.getParentNode().setLeftNode(node);
+                                if (node.getParentNode().getRightNode() === grandparent)
+                                    node.getParentNode().setRightNode(node);
+                            }
+                        }
+                        else {
+                            node.setRightNode(newNode);
+                        }
+                    }
+                    else {
+                        node.setRightNode(newNode);
+                    }
+                }
+                else {
+                    node.setRightNode(newNode);
+                }
                 node.setRightNode(newNode);
                 return null;
             }
