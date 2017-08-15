@@ -109,6 +109,7 @@ describe("Test TreeMap functionality", function() {
   it("Test Creation state", function() {
     let TreeMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     expect (TreeMap1.size ()).toEqual(0);
+    expect (TreeMap1.isEmpty ()).toEqual(true);
     expect (TreeMap1.firstKey()).toEqual(null);
     expect (TreeMap1.firstEntry()).toEqual(null);
     expect (TreeMap1.lastKey()).toEqual(null);
@@ -126,6 +127,7 @@ describe("Test TreeMap functionality", function() {
     let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
     expect (petStoreMap1.size ()).toEqual(1);
+    expect (petStoreMap1.isEmpty ()).toEqual(false);
     expect (petStoreMap1.firstKey()).toEqual(product1);
     expect (petStoreMap1.firstEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
     expect (petStoreMap1.lastKey()).toEqual(product1);

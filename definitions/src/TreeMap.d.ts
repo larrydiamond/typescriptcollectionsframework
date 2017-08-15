@@ -21,6 +21,11 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     * @return {number} the number of key-value mappings in this map
     */
     size(): number;
+    /**
+     * Returns true if this map contains no key-value mappings.
+     * @return {boolean} true if this map contains no key-value mappings
+     */
+    isEmpty(): boolean;
     private sizeTree(n);
     /**
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.

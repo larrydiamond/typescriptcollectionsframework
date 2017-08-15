@@ -105,6 +105,15 @@ var TreeMap = (function () {
             return 0;
         return this.sizeTree(this.topNode.getLeftNode()) + this.sizeTree(this.topNode.getRightNode()) + 1;
     };
+    /**
+     * Returns true if this map contains no key-value mappings.
+     * @return {boolean} true if this map contains no key-value mappings
+     */
+    TreeMap.prototype.isEmpty = function () {
+        if (this.size() < 1)
+            return true;
+        return false;
+    };
     TreeMap.prototype.sizeTree = function (n) {
         if (n === null)
             return 0;

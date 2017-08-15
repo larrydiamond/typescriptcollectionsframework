@@ -19,4 +19,17 @@ export interface ImmutableMap<K,V> {
   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
   */
   get (key:K) : V;
+
+ /**
+  * Returns true if this map contains a mapping for the specified key.
+  * @param {K} key The key whose presence in this map is to be tested
+  * @return {V} true if this map contains a mapping for the specified key.
+  */
+  containsKey (key:K) : boolean;
+
+ /**
+  * Returns true if this map contains no key-value mappings.
+  * @return {boolean} true if this map contains no key-value mappings
+  */
+  isEmpty () : boolean;
 }

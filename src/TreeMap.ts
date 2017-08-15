@@ -121,6 +121,15 @@ public size () : number {
    return this.sizeTree (this.topNode.getLeftNode()) + this.sizeTree (this.topNode.getRightNode()) + 1;
  }
 
+/**
+ * Returns true if this map contains no key-value mappings.
+ * @return {boolean} true if this map contains no key-value mappings
+ */
+ public isEmpty () : boolean {
+   if (this.size() < 1) return true;
+   return false;
+ }
+
  private sizeTree (n:TreeMapNode<K,V>):number {
    if (n === null)
      return 0;
@@ -215,7 +224,7 @@ public size () : number {
                 if (node.getParentNode().getLeftNode() === grandparent) node.getParentNode().setLeftNode(node);
                 if (node.getParentNode().getRightNode() === grandparent) node.getParentNode().setRightNode(node);
               }
-            } else { // TODO check to see if we have a right left left rebalance opportunity
+            } else { // TODO check to see if we have a left right right rebalance opportunity
               node.setRightNode(newNode);
             }
           } else { // oh well we looked we tried
