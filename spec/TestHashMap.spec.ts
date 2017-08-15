@@ -228,8 +228,8 @@ describe("Test HashMap functionality", function() {
     expect (petStoreMap1.isEmpty ()).toEqual(false);
     expect (petStoreMap1.get (product1)).toEqual(null);
 
-    for (let loop1 = 1; loop1 <= 26; loop1++) {
-      for (let loop2 = 1; loop2 <= 26; loop2++) {
+    for (let loop2 = 1; loop2 <= 26; loop2++) {
+      for (let loop1 = 1; loop1 <= 26; loop1++) {
         for (let loop3 = 1; loop3 <= 26; loop3++) {
           let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
           let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);

@@ -159,7 +159,36 @@ public size () : number {
       let nextNode: TreeMapNode<K,V> = node.getLeftNode();
       if (nextNode === null) {
         let newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, node);
-        node.setLeftNode(newNode);
+        // Can we do a minor rebalance of the bottom nodes of the tree?
+        // if we are about to place a new node below a parent with no current children,
+        // check to see if the the "grandparent" only has the one child and if so do a local rebalance
+        if (node.getRightNode() === null) { // parent currently has no children
+          let grandparent:TreeMapNode<K,V> = node.getParentNode();
+          if (grandparent !== null) {
+            if ((grandparent.getLeftNode () === node) && (grandparent.getRightNode () === null)) { // rebalance to make node parent of both grandparent and new node - left left left
+              node.setLeftNode (newNode);
+              node.setRightNode(grandparent);
+              node.setParentNode(grandparent.getParentNode());
+              grandparent.setLeftNode (null);
+              grandparent.setRightNode (null);
+              grandparent.setParentNode (node);
+              if (grandparent === this.topNode) { // reorg top of tree
+                // make node new parent with newnode as left node and grandparent as right node
+                this.topNode = node;
+              } else { // we're really checking the grandparent's parents but we already remapped above
+                if (node.getParentNode().getLeftNode() === grandparent) node.getParentNode().setLeftNode(node);
+                if (node.getParentNode().getRightNode() === grandparent) node.getParentNode().setRightNode(node);
+              }
+            } else { // TODO check to see if we have a right left left rebalance opportunity
+              node.setLeftNode(newNode);
+            }
+          } else { // oh well we looked we tried
+            node.setLeftNode(newNode);
+          }
+        } else { // oh well we looked we tried
+          node.setLeftNode(newNode);
+        }
+
         return null;
       } else {
         return this.putNode (nextNode, key, value);
