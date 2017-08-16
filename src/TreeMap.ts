@@ -6,8 +6,11 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Comparator} from "./Comparator";
+import {ImmutableSet} from "./ImmutableSet";
+import {JIterator} from "./JIterator";
 import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 
@@ -746,6 +749,16 @@ public size () : number {
     return node.getMapEntry();
   }
 
+ /**
+  * Returns an ImmutableSet view of the keys contained in this map.
+  * The set is backed by the map, so changes to the map are reflected in the set.
+  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  public keySet () : ImmutableSet<K> {
+    return new ImmutableSetForTreeMap (this);
+  }
+
 }
 
 export class TreeMapNode<K,V> {
@@ -801,5 +814,92 @@ export class TreeMapNode<K,V> {
 
   public getMapEntry(): MapEntry<K,V> {
     return new BasicMapEntry(this.key, this.value);
+  }
+}
+
+export class ImmutableSetForTreeMap<K,V> implements ImmutableSet<K> {
+  private treeMap:TreeMap<K,V>;
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public size():number { return this.treeMap.size(); }
+
+  public isEmpty():boolean { return this.treeMap.isEmpty(); }
+
+  public contains(item:K) : boolean { return this.treeMap.containsKey (item); }
+
+  public iterator():JIterator<K> { return new TreeMapKeySetJIterator(this.treeMap); }
+
+  public [Symbol.iterator] ():Iterator<K> { return new TreeMapKeySetIterator (this.treeMap); }
+}
+
+
+/* Java style iterator */
+export class TreeMapKeySetJIterator<K,V> implements JIterator<K> {
+  private location:K;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      let first:K = this.treeMap.firstKey();
+      if (first === undefined)
+        return false;
+      return true;
+    } else { // we've already called this iterator before
+      let tmp:K = this.treeMap.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  public next():K {
+    if (this.location === undefined) { // first time caller
+      let first:K = this.treeMap.firstKey();
+      if (first === undefined) {
+        return null;
+      } else {
+        this.location = first;
+        return first;
+      }
+    } else { // we've already called this iterator before
+      let tmp:K = this.treeMap.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return null;
+      } else {
+        this.location = tmp;
+        return tmp;
+      }
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class TreeMapKeySetIterator<K,V> implements Iterator<K> {
+  private location:K;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+    this.location = this.treeMap.firstKey();
+  }
+
+  public next(value?: any): IteratorResult<K> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    let tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location);
+    this.location = this.treeMap.getNextHigherKey(this.location);
+    return tmp;
   }
 }

@@ -1,4 +1,6 @@
 import { Comparator } from "./Comparator";
+import { ImmutableSet } from "./ImmutableSet";
+import { JIterator } from "./JIterator";
 import { MapEntry } from "./MapEntry";
 import { NavigableMap } from "./NavigableMap";
 export declare class TreeMap<K, V> implements NavigableMap<K, V> {
@@ -143,6 +145,13 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
      * @return {MapEntry} an entry with the greatest key, or null if this map is empty
      */
     lastEntry(): MapEntry<K, V>;
+    /**
+     * Returns an ImmutableSet view of the keys contained in this map.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    keySet(): ImmutableSet<K>;
 }
 export declare class TreeMapNode<K, V> {
     private key;
@@ -161,4 +170,26 @@ export declare class TreeMapNode<K, V> {
     getParentNode(): TreeMapNode<K, V>;
     setParentNode(n: TreeMapNode<K, V>): void;
     getMapEntry(): MapEntry<K, V>;
+}
+export declare class ImmutableSetForTreeMap<K, V> implements ImmutableSet<K> {
+    private treeMap;
+    constructor(iTreeMap: TreeMap<K, V>);
+    size(): number;
+    isEmpty(): boolean;
+    contains(item: K): boolean;
+    iterator(): JIterator<K>;
+    [Symbol.iterator](): Iterator<K>;
+}
+export declare class TreeMapKeySetJIterator<K, V> implements JIterator<K> {
+    private location;
+    private treeMap;
+    constructor(iTreeMap: TreeMap<K, V>);
+    hasNext(): boolean;
+    next(): K;
+}
+export declare class TreeMapKeySetIterator<K, V> implements Iterator<K> {
+    private location;
+    private treeMap;
+    constructor(iTreeMap: TreeMap<K, V>);
+    next(value?: any): IteratorResult<K>;
 }

@@ -13,6 +13,7 @@ import {TreeMap} from "./TreeMap";
 import {JSet} from "./JSet";
 
 export class TreeSet<K> implements JSet<K> {
+
   private datastore:TreeMap<K,number> = null;
 
   constructor(iComparator:Comparator<K>) {

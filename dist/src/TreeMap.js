@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var TreeMap = (function () {
     function TreeMap(iComparator) {
@@ -707,6 +708,15 @@ var TreeMap = (function () {
             return null;
         return node.getMapEntry();
     };
+    /**
+     * Returns an ImmutableSet view of the keys contained in this map.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    TreeMap.prototype.keySet = function () {
+        return new ImmutableSetForTreeMap(this);
+    };
     return TreeMap;
 }());
 exports.TreeMap = TreeMap;
@@ -751,3 +761,82 @@ var TreeMapNode = (function () {
     return TreeMapNode;
 }());
 exports.TreeMapNode = TreeMapNode;
+var ImmutableSetForTreeMap = (function () {
+    function ImmutableSetForTreeMap(iTreeMap) {
+        this.treeMap = iTreeMap;
+    }
+    ImmutableSetForTreeMap.prototype.size = function () { return this.treeMap.size(); };
+    ImmutableSetForTreeMap.prototype.isEmpty = function () { return this.treeMap.isEmpty(); };
+    ImmutableSetForTreeMap.prototype.contains = function (item) { return this.treeMap.containsKey(item); };
+    ImmutableSetForTreeMap.prototype.iterator = function () { return new TreeMapKeySetJIterator(this.treeMap); };
+    ImmutableSetForTreeMap.prototype[Symbol.iterator] = function () { return new TreeMapKeySetIterator(this.treeMap); };
+    return ImmutableSetForTreeMap;
+}());
+exports.ImmutableSetForTreeMap = ImmutableSetForTreeMap;
+/* Java style iterator */
+var TreeMapKeySetJIterator = (function () {
+    function TreeMapKeySetJIterator(iTreeMap) {
+        this.treeMap = iTreeMap;
+    }
+    TreeMapKeySetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var first = this.treeMap.firstKey();
+            if (first === undefined)
+                return false;
+            return true;
+        }
+        else {
+            var tmp = this.treeMap.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    };
+    TreeMapKeySetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var first = this.treeMap.firstKey();
+            if (first === undefined) {
+                return null;
+            }
+            else {
+                this.location = first;
+                return first;
+            }
+        }
+        else {
+            var tmp = this.treeMap.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return null;
+            }
+            else {
+                this.location = tmp;
+                return tmp;
+            }
+        }
+    };
+    return TreeMapKeySetJIterator;
+}());
+exports.TreeMapKeySetJIterator = TreeMapKeySetJIterator;
+/* TypeScript iterator */
+var TreeMapKeySetIterator = (function () {
+    function TreeMapKeySetIterator(iTreeMap) {
+        this.treeMap = iTreeMap;
+        this.location = this.treeMap.firstKey();
+    }
+    TreeMapKeySetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
+        this.location = this.treeMap.getNextHigherKey(this.location);
+        return tmp;
+    };
+    return TreeMapKeySetIterator;
+}());
+exports.TreeMapKeySetIterator = TreeMapKeySetIterator;
