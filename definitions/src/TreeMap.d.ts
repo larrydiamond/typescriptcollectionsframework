@@ -147,11 +147,21 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     lastEntry(): MapEntry<K, V>;
     /**
      * Returns an ImmutableSet view of the keys contained in this map.
+     * The set's iterator returns the keys in ascending order.
      * The set is backed by the map, so changes to the map are reflected in the set.
      * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
      * @return {MapEntry} an entry with the greatest key, or null if this map is empty
      */
     keySet(): ImmutableSet<K>;
+    /**
+     * Returns an ImmutableSet view of the mappings contained in this map.
+     * The set's iterator returns the mappings in ascending key order.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * The contains method on this entrySet will only compare keys not values.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    entrySet(): ImmutableSet<MapEntry<K, V>>;
 }
 export declare class TreeMapNode<K, V> {
     private key;
@@ -171,7 +181,7 @@ export declare class TreeMapNode<K, V> {
     setParentNode(n: TreeMapNode<K, V>): void;
     getMapEntry(): MapEntry<K, V>;
 }
-export declare class ImmutableSetForTreeMap<K, V> implements ImmutableSet<K> {
+export declare class ImmutableKeySetForTreeMap<K, V> implements ImmutableSet<K> {
     private treeMap;
     constructor(iTreeMap: TreeMap<K, V>);
     size(): number;
@@ -192,4 +202,26 @@ export declare class TreeMapKeySetIterator<K, V> implements Iterator<K> {
     private treeMap;
     constructor(iTreeMap: TreeMap<K, V>);
     next(value?: any): IteratorResult<K>;
+}
+export declare class ImmutableEntrySetForTreeMap<K, V> implements ImmutableSet<MapEntry<K, V>> {
+    private treeMap;
+    constructor(iTreeMap: TreeMap<K, V>);
+    size(): number;
+    isEmpty(): boolean;
+    contains(item: MapEntry<K, V>): boolean;
+    iterator(): JIterator<MapEntry<K, V>>;
+    [Symbol.iterator](): Iterator<MapEntry<K, V>>;
+}
+export declare class TreeMapEntrySetJIterator<K, V> implements JIterator<MapEntry<K, V>> {
+    private location;
+    private treeMap;
+    constructor(iTreeMap: TreeMap<K, V>);
+    hasNext(): boolean;
+    next(): MapEntry<K, V>;
+}
+export declare class TreeMapEntrySetIterator<K, V> implements Iterator<MapEntry<K, V>> {
+    private location;
+    private treeMap;
+    constructor(iTreeMap: TreeMap<K, V>);
+    next(value?: any): IteratorResult<MapEntry<K, V>>;
 }

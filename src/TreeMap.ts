@@ -751,12 +751,25 @@ public size () : number {
 
  /**
   * Returns an ImmutableSet view of the keys contained in this map.
+  * The set's iterator returns the keys in ascending order.
   * The set is backed by the map, so changes to the map are reflected in the set.
   * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
   public keySet () : ImmutableSet<K> {
-    return new ImmutableSetForTreeMap (this);
+    return new ImmutableKeySetForTreeMap (this);
+  }
+
+ /**
+  * Returns an ImmutableSet view of the mappings contained in this map.
+  * The set's iterator returns the mappings in ascending key order.
+  * The set is backed by the map, so changes to the map are reflected in the set.
+  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * The contains method on this entrySet will only compare keys not values.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  public entrySet () : ImmutableSet<MapEntry<K,V>> {
+    return new ImmutableEntrySetForTreeMap(this);
   }
 
 }
@@ -817,7 +830,7 @@ export class TreeMapNode<K,V> {
   }
 }
 
-export class ImmutableSetForTreeMap<K,V> implements ImmutableSet<K> {
+export class ImmutableKeySetForTreeMap<K,V> implements ImmutableSet<K> {
   private treeMap:TreeMap<K,V>;
   constructor(iTreeMap:TreeMap<K,V>) {
     this.treeMap = iTreeMap;
@@ -900,6 +913,95 @@ export class TreeMapKeySetIterator<K,V> implements Iterator<K> {
     }
     let tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location);
     this.location = this.treeMap.getNextHigherKey(this.location);
+    return tmp;
+  }
+}
+
+
+
+export class ImmutableEntrySetForTreeMap<K,V> implements ImmutableSet<MapEntry<K,V>> {
+  private treeMap:TreeMap<K,V>;
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public size():number { return this.treeMap.size(); }
+
+  public isEmpty():boolean { return this.treeMap.isEmpty(); }
+
+  public contains(item:MapEntry<K,V>) : boolean { return this.treeMap.containsKey (item.getKey()); }
+
+  public iterator():JIterator<MapEntry<K,V>> { return new TreeMapEntrySetJIterator(this.treeMap); }
+
+  public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new TreeMapEntrySetIterator (this.treeMap); }
+}
+
+
+/* Java style iterator */
+export class TreeMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
+  private location:MapEntry<K,V>;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      let first:MapEntry<K,V> = this.treeMap.firstEntry();
+      if (first === undefined)
+        return false;
+      return true;
+    } else { // we've already called this iterator before
+      let tmp:MapEntry<K,V> = this.treeMap.higherEntry(this.location.getKey());
+      if (tmp === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  public next():MapEntry<K,V> {
+    if (this.location === undefined) { // first time caller
+      let first:MapEntry<K,V> = this.treeMap.firstEntry();
+      if (first === undefined) {
+        return null;
+      } else {
+        this.location = first;
+        return first;
+      }
+    } else { // we've already called this iterator before
+      let tmp:MapEntry<K,V> = this.treeMap.higherEntry(this.location.getKey());
+      if (tmp === null) {
+        return null;
+      } else {
+        this.location = tmp;
+        return tmp;
+      }
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class TreeMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
+  private location:MapEntry<K,V>;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+    this.location = this.treeMap.firstEntry();
+  }
+
+  public next(value?: any): IteratorResult<MapEntry<K,V>> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    let tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location);
+    this.location = this.treeMap.higherEntry(this.location.getKey());
     return tmp;
   }
 }
