@@ -18,6 +18,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("./ArrayList");
+var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var LinkedList_1 = require("./LinkedList");
 var HashMap = (function () {
@@ -128,7 +129,7 @@ var HashMap = (function () {
         return tmp.getValue();
     };
     /**
-     * Removes the mapping for this key from this TreeMap if present.
+     * Removes the mapping for this key from this Map if present.
      * @param {K} key key for which mapping should be removed
      * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
      */
@@ -192,9 +193,99 @@ var HashMap = (function () {
         this.data = new ArrayList_1.ArrayList();
         this.elementCount = 0;
     };
+    /**
+     * Returns an ImmutableSet view of the keys contained in this map.
+     * The set's iterator returns the keys in ascending order.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    HashMap.prototype.keySet = function () {
+        return new ImmutableKeySetForHashMap(this);
+    };
+    /**
+     * Returns an ImmutableSet view of the mappings contained in this map.
+     * The set's iterator returns the mappings in ascending key order.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * The contains method on this entrySet will only compare keys not values.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    HashMap.prototype.entrySet = function () {
+        return new ImmutableEntrySetForHashMap(this);
+    };
+    /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+    HashMap.prototype.deprecatedGetFirstEntryForIterator = function () {
+        if (this.data === null)
+            return null;
+        if (this.data === undefined)
+            return null;
+        for (var offset = 0; offset < this.data.size(); offset++) {
+            var tmpbucket = this.data[offset];
+            if (tmpbucket !== null) {
+                var tmpentry = tmpbucket.get(0);
+                if (tmpentry !== null) {
+                    var tmp = new HashMapIteratorLocationTracker();
+                    tmp.bucket = offset;
+                    tmp.offset = 0;
+                    tmp.entry = tmpentry;
+                    return tmp;
+                }
+            }
+        }
+        return null;
+    };
+    /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+    HashMap.prototype.deprecatedGetNextEntryForIterator = function (current) {
+        if (this.data === null)
+            return null;
+        if (this.data === undefined)
+            return null;
+        // did the hashmap shrink?
+        if (current.bucket > this.data.size())
+            return null;
+        // get the next node in the current bucket if possible
+        var tmpbucket = this.data[current.bucket];
+        if (tmpbucket.size() < current.offset) {
+            var tmp = new HashMapIteratorLocationTracker();
+            tmp.bucket = current.bucket;
+            tmp.offset = tmp.offset + 1;
+            tmp.entry = tmpbucket.get(tmp.offset);
+            return tmp;
+        }
+        // get the first node you can find in the next populated bucket if any exists
+        var bucket = current.bucket + 1;
+        while (bucket < this.data.size()) {
+            var tmpbucket_1 = this.data[bucket];
+            if (tmpbucket_1 !== null) {
+                var tmpentry = tmpbucket_1.get(0);
+                if (tmpentry !== null) {
+                    var tmp = new HashMapIteratorLocationTracker();
+                    tmp.bucket = bucket;
+                    tmp.offset = 0;
+                    tmp.entry = tmpentry;
+                    return tmp;
+                }
+            }
+            bucket = bucket + 1;
+        }
+        return null;
+    };
     return HashMap;
 }());
 exports.HashMap = HashMap;
+var HashMapIteratorLocationTracker = (function () {
+    function HashMapIteratorLocationTracker() {
+    }
+    return HashMapIteratorLocationTracker;
+}());
+exports.HashMapIteratorLocationTracker = HashMapIteratorLocationTracker;
 var HashMapEntry = (function (_super) {
     __extends(HashMapEntry, _super);
     function HashMapEntry() {
@@ -211,3 +302,200 @@ var HashMapEntry = (function (_super) {
     };
     return HashMapEntry;
 }(BasicMapEntry_1.BasicMapEntry));
+exports.HashMapEntry = HashMapEntry;
+var ImmutableKeySetForHashMap = (function () {
+    function ImmutableKeySetForHashMap(iHashMap) {
+        this.map = iHashMap;
+    }
+    ImmutableKeySetForHashMap.prototype.size = function () { return this.map.size(); };
+    ImmutableKeySetForHashMap.prototype.isEmpty = function () { return this.map.isEmpty(); };
+    ImmutableKeySetForHashMap.prototype.contains = function (item) { return this.map.containsKey(item); };
+    ImmutableKeySetForHashMap.prototype.iterator = function () { return new HashMapKeySetJIterator(this.map); };
+    ImmutableKeySetForHashMap.prototype[Symbol.iterator] = function () { return new HashMapKeySetIterator(this.map); };
+    return ImmutableKeySetForHashMap;
+}());
+exports.ImmutableKeySetForHashMap = ImmutableKeySetForHashMap;
+/* Java style iterator */
+var HashMapKeySetJIterator = (function () {
+    function HashMapKeySetJIterator(iHashMap) {
+        this.map = iHashMap;
+    }
+    HashMapKeySetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
+            if (firstEntry === null)
+                return false;
+            if (firstEntry === undefined)
+                return false;
+            if (firstEntry.entry === null)
+                return false;
+            if (firstEntry.entry === undefined)
+                return false;
+            var first = firstEntry.entry.getKey();
+            return true;
+        }
+        else {
+            var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
+            if (tmpEntry === null)
+                return false;
+            if (tmpEntry === undefined)
+                return false;
+            if (tmpEntry.entry === null)
+                return false;
+            if (tmpEntry.entry === undefined)
+                return false;
+            var tmp = tmpEntry.entry.getKey();
+            return true;
+        }
+    };
+    HashMapKeySetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
+            if (firstEntry === null)
+                return null;
+            if (firstEntry === undefined)
+                return null;
+            if (firstEntry.entry === null)
+                return null;
+            if (firstEntry.entry === undefined)
+                return null;
+            var first = firstEntry.entry.getKey();
+            this.location = firstEntry;
+            return first;
+        }
+        else {
+            var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
+            if (tmpEntry === null)
+                return null;
+            if (tmpEntry === undefined)
+                return null;
+            if (tmpEntry.entry === null)
+                return null;
+            if (tmpEntry.entry === undefined)
+                return null;
+            var tmp = tmpEntry.entry.getKey();
+            this.location = tmpEntry;
+            return tmp;
+        }
+    };
+    return HashMapKeySetJIterator;
+}());
+exports.HashMapKeySetJIterator = HashMapKeySetJIterator;
+/* TypeScript iterator */
+var HashMapKeySetIterator = (function () {
+    function HashMapKeySetIterator(iHashMap) {
+        this.map = iHashMap;
+        this.location = this.map.deprecatedGetFirstEntryForIterator();
+    }
+    HashMapKeySetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.entry.getKey());
+        this.location = this.map.deprecatedGetNextEntryForIterator(this.location);
+        return tmp;
+    };
+    return HashMapKeySetIterator;
+}());
+exports.HashMapKeySetIterator = HashMapKeySetIterator;
+var ImmutableEntrySetForHashMap = (function () {
+    function ImmutableEntrySetForHashMap(iHashMap) {
+        this.map = iHashMap;
+    }
+    ImmutableEntrySetForHashMap.prototype.size = function () { return this.map.size(); };
+    ImmutableEntrySetForHashMap.prototype.isEmpty = function () { return this.map.isEmpty(); };
+    ImmutableEntrySetForHashMap.prototype.contains = function (item) { return this.map.containsKey(item.getKey()); };
+    ImmutableEntrySetForHashMap.prototype.iterator = function () { return new HashMapEntrySetJIterator(this.map); };
+    ImmutableEntrySetForHashMap.prototype[Symbol.iterator] = function () { return new HashMapEntrySetIterator(this.map); };
+    return ImmutableEntrySetForHashMap;
+}());
+exports.ImmutableEntrySetForHashMap = ImmutableEntrySetForHashMap;
+/* Java style iterator */
+var HashMapEntrySetJIterator = (function () {
+    function HashMapEntrySetJIterator(iHashMap) {
+        this.map = iHashMap;
+    }
+    HashMapEntrySetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
+            if (firstEntry === null)
+                return false;
+            if (firstEntry === undefined)
+                return false;
+            if (firstEntry.entry === null)
+                return false;
+            if (firstEntry.entry === undefined)
+                return false;
+            var first = firstEntry.entry.getKey();
+            return true;
+        }
+        else {
+            var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
+            if (tmpEntry === null)
+                return false;
+            if (tmpEntry === undefined)
+                return false;
+            if (tmpEntry.entry === null)
+                return false;
+            if (tmpEntry.entry === undefined)
+                return false;
+            var tmp = tmpEntry.entry.getKey();
+            return true;
+        }
+    };
+    HashMapEntrySetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
+            if (firstEntry === null)
+                return null;
+            if (firstEntry === undefined)
+                return null;
+            if (firstEntry.entry === null)
+                return null;
+            if (firstEntry.entry === undefined)
+                return null;
+            var first = firstEntry.entry;
+            this.location = firstEntry;
+            return first;
+        }
+        else {
+            var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
+            if (tmpEntry === null)
+                return null;
+            if (tmpEntry === undefined)
+                return null;
+            if (tmpEntry.entry === null)
+                return null;
+            if (tmpEntry.entry === undefined)
+                return null;
+            var tmp = tmpEntry.entry;
+            this.location = tmpEntry;
+            return tmp;
+        }
+    };
+    return HashMapEntrySetJIterator;
+}());
+exports.HashMapEntrySetJIterator = HashMapEntrySetJIterator;
+/* TypeScript iterator */
+var HashMapEntrySetIterator = (function () {
+    function HashMapEntrySetIterator(iHashMap) {
+        this.map = iHashMap;
+        this.location = this.map.deprecatedGetFirstEntryForIterator();
+    }
+    HashMapEntrySetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.entry);
+        this.location = this.map.deprecatedGetNextEntryForIterator(this.location);
+        return tmp;
+    };
+    return HashMapEntrySetIterator;
+}());
+exports.HashMapEntrySetIterator = HashMapEntrySetIterator;
