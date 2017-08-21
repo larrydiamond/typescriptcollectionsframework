@@ -12,6 +12,7 @@ import {HashMap} from "../src/HashMap";
 import {Hashable} from "../src/Hashable";
 import {ImmutableSet} from "../src/ImmutableSet";
 import {JIterator} from "../src/JIterator";
+import {MapEntry} from "../src/MapEntry";
 
 describe("Test HashMap functionality", function() {
 
@@ -253,6 +254,18 @@ describe("Test HashMap functionality", function() {
     let iter:JIterator<PetStoreProduct> = keyset.iterator();
     for (; iter.hasNext(); ) {
       let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+  });
+
+  it("Test entryset basics", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
+    let count:number = 0;
+    let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
       count = count + 1;
     }
     expect (count).toEqual (0);

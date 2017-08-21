@@ -78,7 +78,6 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
       for (let loop:number = 0; loop < newBucketCount; loop++) {
         newdata.add (new LinkedList<HashMapEntry<K,V>>());
       }
-//      console.log ("Rehash " + newBucketCount + " " + this.elementCount + " " + this.loadFactor + " " + this.data.size());
 
       // Iterate through the nodes and add them all into newdata
       for (let bucketIter:JIterator<List<HashMapEntry<K,V>>> = this.data.iterator(); bucketIter.hasNext(); ) {
@@ -257,7 +256,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     let bucket:number = current.bucket + 1;
     while (bucket < this.data.size()) {
       let tmpbucket:List<HashMapEntry<K,V>> = this.data [bucket];
-      if (tmpbucket !== null) {
+      if ((tmpbucket !== null) && (tmpbucket !== undefined)){
         let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
         if (tmpentry !== null) {
           let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();

@@ -209,4 +209,15 @@ describe("Test HashMap functionality", function () {
         }
         expect(count).toEqual(0);
     });
+    it("Test entryset basics", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+    });
 });

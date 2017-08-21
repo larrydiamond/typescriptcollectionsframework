@@ -85,7 +85,6 @@ var HashMap = (function () {
             for (var loop = 0; loop < newBucketCount; loop++) {
                 newdata.add(new LinkedList_1.LinkedList());
             }
-            //      console.log ("Rehash " + newBucketCount + " " + this.elementCount + " " + this.loadFactor + " " + this.data.size());
             // Iterate through the nodes and add them all into newdata
             for (var bucketIter = this.data.iterator(); bucketIter.hasNext();) {
                 var bucket = bucketIter.next();
@@ -265,7 +264,7 @@ var HashMap = (function () {
         var bucket = current.bucket + 1;
         while (bucket < this.data.size()) {
             var tmpbucket_1 = this.data[bucket];
-            if (tmpbucket_1 !== null) {
+            if ((tmpbucket_1 !== null) && (tmpbucket_1 !== undefined)) {
                 var tmpentry = tmpbucket_1.get(0);
                 if (tmpentry !== null) {
                     var tmp = new HashMapIteratorLocationTracker();
