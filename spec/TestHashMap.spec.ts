@@ -10,6 +10,8 @@ import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
 import {HashMap} from "../src/HashMap";
 import {Hashable} from "../src/Hashable";
+import {ImmutableSet} from "../src/ImmutableSet";
+import {JIterator} from "../src/JIterator";
 
 describe("Test HashMap functionality", function() {
 
@@ -242,6 +244,18 @@ describe("Test HashMap functionality", function() {
 
     expect (petStoreMap1.size ()).toEqual(0);
     expect (petStoreMap1.isEmpty ()).toEqual(true);
+  });
+
+  it("Test keyset basics", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
+    let count:number = 0;
+    let iter:JIterator<PetStoreProduct> = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
   });
 
 });

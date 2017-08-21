@@ -215,14 +215,16 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
 
     for (let offset:number = 0; offset < this.data.size(); offset++) {
       let tmpbucket:List<HashMapEntry<K,V>> = this.data [offset];
-      if (tmpbucket !== null) {
-        let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
-        if (tmpentry !== null) {
-          let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
-          tmp.bucket = offset;
-          tmp.offset = 0;
-          tmp.entry = tmpentry;
-          return tmp;
+      if ((tmpbucket !== null) && (tmpbucket !== undefined)){
+        if (tmpbucket.size() > 0) {
+          let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
+          if (tmpentry !== null) {
+            let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
+            tmp.bucket = offset;
+            tmp.offset = 0;
+            tmp.entry = tmpentry;
+            return tmp;
+          }
         }
       }
     }

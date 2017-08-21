@@ -225,14 +225,16 @@ var HashMap = (function () {
             return null;
         for (var offset = 0; offset < this.data.size(); offset++) {
             var tmpbucket = this.data[offset];
-            if (tmpbucket !== null) {
-                var tmpentry = tmpbucket.get(0);
-                if (tmpentry !== null) {
-                    var tmp = new HashMapIteratorLocationTracker();
-                    tmp.bucket = offset;
-                    tmp.offset = 0;
-                    tmp.entry = tmpentry;
-                    return tmp;
+            if ((tmpbucket !== null) && (tmpbucket !== undefined)) {
+                if (tmpbucket.size() > 0) {
+                    var tmpentry = tmpbucket.get(0);
+                    if (tmpentry !== null) {
+                        var tmp = new HashMapIteratorLocationTracker();
+                        tmp.bucket = offset;
+                        tmp.offset = 0;
+                        tmp.entry = tmpentry;
+                        return tmp;
+                    }
                 }
             }
         }

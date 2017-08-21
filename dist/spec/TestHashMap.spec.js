@@ -198,4 +198,15 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap1.size()).toEqual(0);
         expect(petStoreMap1.isEmpty()).toEqual(true);
     });
+    it("Test keyset basics", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+    });
 });
