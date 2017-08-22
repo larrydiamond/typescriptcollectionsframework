@@ -275,11 +275,23 @@ describe("Test HashMap functionality", function () {
         count = 0;
         keyset = petStoreMap1.keySet();
         iter = keyset.iterator();
+        var found1 = false;
+        var found2 = false;
         for (; iter.hasNext();) {
             var p = iter.next();
             count = count + 1;
+            if (p.equals(product1)) {
+                found1 = true;
+            }
+            else {
+                if (p.equals(product2)) {
+                    found2 = true;
+                }
+            }
         }
         expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
     });
     it("Test entryset two entry", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
@@ -296,10 +308,22 @@ describe("Test HashMap functionality", function () {
         entryset = petStoreMap1.entrySet();
         count = 0;
         iter = entryset.iterator();
+        var found1 = false;
+        var found2 = false;
         for (; iter.hasNext();) {
             var p = iter.next();
             count = count + 1;
+            if (p.getKey().equals(product1)) {
+                found1 = true;
+            }
+            else {
+                if (p.getKey().equals(product2)) {
+                    found2 = true;
+                }
+            }
         }
         expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
     });
 });
