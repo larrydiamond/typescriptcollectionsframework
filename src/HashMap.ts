@@ -213,7 +213,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     if (this.data === undefined) return null;
 
     for (let offset:number = 0; offset < this.data.size(); offset++) {
-      let tmpbucket:List<HashMapEntry<K,V>> = this.data [offset];
+      let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (offset);
       if ((tmpbucket !== null) && (tmpbucket !== undefined)){
         if (tmpbucket.size() > 0) {
           let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
@@ -243,7 +243,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     if (current.bucket > this.data.size()) return null;
 
     // get the next node in the current bucket if possible
-    let tmpbucket:List<HashMapEntry<K,V>> = this.data [current.bucket];
+    let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (current.bucket);
     if (tmpbucket.size() < current.offset) {
       let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
       tmp.bucket = current.bucket;
@@ -255,7 +255,7 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     // get the first node you can find in the next populated bucket if any exists
     let bucket:number = current.bucket + 1;
     while (bucket < this.data.size()) {
-      let tmpbucket:List<HashMapEntry<K,V>> = this.data [bucket];
+      let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (bucket);
       if ((tmpbucket !== null) && (tmpbucket !== undefined)){
         let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
         if (tmpentry !== null) {

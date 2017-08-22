@@ -271,4 +271,48 @@ describe("Test HashMap functionality", function() {
     expect (count).toEqual (0);
   });
 
+  it("Test keyset one entry", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
+    let count:number = 0;
+    let iter:JIterator<PetStoreProduct> = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+
+    petStoreMap1.put (product1, new ValueClass());
+    count = 0;
+    keyset = petStoreMap1.keySet();
+    iter = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (1);
+  });
+
+  it("Test entryset one entry", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
+    let count:number = 0;
+    let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+
+    petStoreMap1.put (product1, new ValueClass());
+    entryset = petStoreMap1.entrySet();
+    count = 0;
+    iter = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (1);
+  });
+
 });

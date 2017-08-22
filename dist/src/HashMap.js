@@ -223,7 +223,7 @@ var HashMap = (function () {
         if (this.data === undefined)
             return null;
         for (var offset = 0; offset < this.data.size(); offset++) {
-            var tmpbucket = this.data[offset];
+            var tmpbucket = this.data.get(offset);
             if ((tmpbucket !== null) && (tmpbucket !== undefined)) {
                 if (tmpbucket.size() > 0) {
                     var tmpentry = tmpbucket.get(0);
@@ -252,7 +252,7 @@ var HashMap = (function () {
         if (current.bucket > this.data.size())
             return null;
         // get the next node in the current bucket if possible
-        var tmpbucket = this.data[current.bucket];
+        var tmpbucket = this.data.get(current.bucket);
         if (tmpbucket.size() < current.offset) {
             var tmp = new HashMapIteratorLocationTracker();
             tmp.bucket = current.bucket;
@@ -263,7 +263,7 @@ var HashMap = (function () {
         // get the first node you can find in the next populated bucket if any exists
         var bucket = current.bucket + 1;
         while (bucket < this.data.size()) {
-            var tmpbucket_1 = this.data[bucket];
+            var tmpbucket_1 = this.data.get(bucket);
             if ((tmpbucket_1 !== null) && (tmpbucket_1 !== undefined)) {
                 var tmpentry = tmpbucket_1.get(0);
                 if (tmpentry !== null) {
