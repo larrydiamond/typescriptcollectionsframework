@@ -795,6 +795,8 @@ var TreeMapKeySetJIterator = (function () {
             var first = this.treeMap.firstKey();
             if (first === undefined)
                 return false;
+            if (first === null)
+                return false;
             return true;
         }
         else {
@@ -873,6 +875,8 @@ var TreeMapEntrySetJIterator = (function () {
         if (this.location === undefined) {
             var first = this.treeMap.firstEntry();
             if (first === undefined)
+                return false;
+            if (first === null)
                 return false;
             return true;
         }

@@ -11,6 +11,9 @@ import {Collectable} from "../src/Collectable";
 import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
 import {TreeMap} from "../src/TreeMap";
+import {ImmutableSet} from "../src/ImmutableSet";
+import {JIterator} from "../src/JIterator";
+import {MapEntry} from "../src/MapEntry";
 
 describe("Test TreeMap functionality", function() {
 
@@ -715,7 +718,141 @@ describe("Test TreeMap functionality", function() {
 //    expect (petStoreMap1.isEmpty ()).toEqual(true);
   });
 
+  it("Test keyset basics", function() {
+    let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
+    let count:number = 0;
+    let iter:JIterator<PetStoreProduct> = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+  });
 
+  it("Test entryset basics", function() {
+    let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
+    let count:number = 0;
+    let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+  });
+
+  it("Test keyset one entry", function() {
+    let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
+    let count:number = 0;
+    let iter:JIterator<PetStoreProduct> = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+
+    petStoreMap1.put (product1, new ValueClass());
+    count = 0;
+    keyset = petStoreMap1.keySet();
+    iter = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (1);
+  });
+
+  it("Test entryset one entry", function() {
+    let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
+    let count:number = 0;
+    let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+
+    petStoreMap1.put (product1, new ValueClass());
+    entryset = petStoreMap1.entrySet();
+    count = 0;
+    iter = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (1);
+  });
+
+  it("Test keyset two entry", function() {
+    let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
+    let count:number = 0;
+    let iter:JIterator<PetStoreProduct> = keyset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+
+    petStoreMap1.put (product1, new ValueClass());
+    petStoreMap1.put (product2, new ValueClass());
+    count = 0;
+    keyset = petStoreMap1.keySet();
+    iter = keyset.iterator();
+    let found1:boolean = false;
+    let found2:boolean = false;
+    for (; iter.hasNext(); ) {
+      let p:PetStoreProduct = iter.next();
+      count = count + 1;
+      if (p.getPrice() === (product1.getPrice())) {
+        found1 = true;
+      } else {
+        if (p.getPrice() === (product2.getPrice())) {
+          found2 = true;
+        }
+      }
+    }
+    expect (count).toEqual (2);
+    expect (found1).toEqual (true);
+    expect (found2).toEqual (true);
+  });
+
+  it("Test entryset two entry", function() {
+    let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+    let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
+    let count:number = 0;
+    let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+    }
+    expect (count).toEqual (0);
+
+    petStoreMap1.put (product1, new ValueClass());
+    petStoreMap1.put (product2, new ValueClass());
+    entryset = petStoreMap1.entrySet();
+    count = 0;
+    iter = entryset.iterator();
+    let found1:boolean = false;
+    let found2:boolean = false;
+    for (; iter.hasNext(); ) {
+      let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
+      count = count + 1;
+      if (p.getKey().getPrice() === (product1.getPrice())) {
+        found1 = true;
+      } else {
+        if (p.getKey().getPrice() === (product2.getPrice())) {
+          found2 = true;
+        }
+      }
+    }
+    expect (count).toEqual (2);
+    expect (found1).toEqual (true);
+    expect (found2).toEqual (true);
+  });
 
 
 });

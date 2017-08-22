@@ -862,6 +862,8 @@ export class TreeMapKeySetJIterator<K,V> implements JIterator<K> {
       let first:K = this.treeMap.firstKey();
       if (first === undefined)
         return false;
+      if (first === null)
+        return false;
       return true;
     } else { // we've already called this iterator before
       let tmp:K = this.treeMap.getNextHigherKey(this.location);
@@ -950,6 +952,8 @@ export class TreeMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
     if (this.location === undefined) { // first time caller
       let first:MapEntry<K,V> = this.treeMap.firstEntry();
       if (first === undefined)
+        return false;
+      if (first === null)
         return false;
       return true;
     } else { // we've already called this iterator before
