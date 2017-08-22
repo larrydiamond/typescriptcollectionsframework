@@ -260,4 +260,46 @@ describe("Test HashMap functionality", function () {
         }
         expect(count).toEqual(1);
     });
+    it("Test keyset two entry", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(2);
+    });
+    it("Test entryset two entry", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        entryset = petStoreMap1.entrySet();
+        count = 0;
+        iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(2);
+    });
 });
