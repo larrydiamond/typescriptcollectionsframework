@@ -198,7 +198,7 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap1.size()).toEqual(0);
         expect(petStoreMap1.isEmpty()).toEqual(true);
     });
-    it("Test keyset basics", function () {
+    it("Test keyset jiterator basics", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
         var keyset = petStoreMap1.keySet();
         var count = 0;
@@ -209,7 +209,19 @@ describe("Test HashMap functionality", function () {
         }
         expect(count).toEqual(0);
     });
-    it("Test entryset basics", function () {
+    it("Test keyset iterator basics", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test entryset jiterator basics", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
         var entryset = petStoreMap1.entrySet();
         var count = 0;
@@ -217,6 +229,18 @@ describe("Test HashMap functionality", function () {
         for (; iter.hasNext();) {
             var p = iter.next();
             count = count + 1;
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test entryset iterator basics", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
         }
         expect(count).toEqual(0);
     });

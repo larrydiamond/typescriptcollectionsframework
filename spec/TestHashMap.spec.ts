@@ -247,7 +247,7 @@ describe("Test HashMap functionality", function() {
     expect (petStoreMap1.isEmpty ()).toEqual(true);
   });
 
-  it("Test keyset basics", function() {
+  it("Test keyset jiterator basics", function() {
     let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
@@ -259,7 +259,20 @@ describe("Test HashMap functionality", function() {
     expect (count).toEqual (0);
   });
 
-  it("Test entryset basics", function() {
+  it("Test keyset iterator basics", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
+    let count:number = 0;
+    let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
+    let tmp:IteratorResult<PetStoreProduct> = tsi.next();
+    while (!tmp.done) {
+      count = count + 1;
+      tmp = tsi.next();
+    }
+    expect (count).toEqual (0);
+  });
+
+  it("Test entryset jiterator basics", function() {
     let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
@@ -267,6 +280,19 @@ describe("Test HashMap functionality", function() {
     for (; iter.hasNext(); ) {
       let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
       count = count + 1;
+    }
+    expect (count).toEqual (0);
+  });
+
+  it("Test entryset iterator basics", function() {
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
+    let count:number = 0;
+    let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
+    let tmp:IteratorResult<MapEntry<PetStoreProduct,ValueClass>> = tsi.next();
+    while (!tmp.done) {
+      count = count + 1;
+      tmp = tsi.next();
     }
     expect (count).toEqual (0);
   });
