@@ -244,7 +244,7 @@ describe("Test HashMap functionality", function () {
         }
         expect(count).toEqual(0);
     });
-    it("Test keyset one entry", function () {
+    it("Test keyset jiterator one entry", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
         var keyset = petStoreMap1.keySet();
         var count = 0;
@@ -264,7 +264,29 @@ describe("Test HashMap functionality", function () {
         }
         expect(count).toEqual(1);
     });
-    it("Test entryset one entry", function () {
+    it("Test keyset iterator one entry", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        tsi = keyset[Symbol.iterator]();
+        tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test entryset jiterator one entry", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
         var entryset = petStoreMap1.entrySet();
         var count = 0;
@@ -284,7 +306,29 @@ describe("Test HashMap functionality", function () {
         }
         expect(count).toEqual(1);
     });
-    it("Test keyset two entry", function () {
+    it("Test entryset iterator one entry", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        entryset = petStoreMap1.entrySet();
+        tsi = entryset[Symbol.iterator]();
+        tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test keyset jiterator two entry", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
         var keyset = petStoreMap1.keySet();
         var count = 0;
@@ -317,7 +361,43 @@ describe("Test HashMap functionality", function () {
         expect(found1).toEqual(true);
         expect(found2).toEqual(true);
     });
-    it("Test entryset two entry", function () {
+    it("Test keyset iterator two entry", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        tsi = keyset[Symbol.iterator]();
+        tmp = tsi.next();
+        var found1 = false;
+        var found2 = false;
+        while (!tmp.done) {
+            var p = tmp.value;
+            if (p.equals(product1)) {
+                found1 = true;
+            }
+            else {
+                if (p.equals(product2)) {
+                    found2 = true;
+                }
+            }
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test entryset jiterator two entry", function () {
         var petStoreMap1 = new HashMap_1.HashMap();
         var entryset = petStoreMap1.entrySet();
         var count = 0;
@@ -345,6 +425,42 @@ describe("Test HashMap functionality", function () {
                     found2 = true;
                 }
             }
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test entryset iterator two entry", function () {
+        var petStoreMap1 = new HashMap_1.HashMap();
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        entryset = petStoreMap1.entrySet();
+        tsi = entryset[Symbol.iterator]();
+        tmp = tsi.next();
+        var found1 = false;
+        var found2 = false;
+        while (!tmp.done) {
+            var p = tmp.value.getKey();
+            if (p.equals(product1)) {
+                found1 = true;
+            }
+            else {
+                if (p.equals(product2)) {
+                    found2 = true;
+                }
+            }
+            count = count + 1;
+            tmp = tsi.next();
         }
         expect(count).toEqual(2);
         expect(found1).toEqual(true);
