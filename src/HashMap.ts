@@ -255,9 +255,9 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     // get the first node you can find in the next populated bucket if any exists
     let bucket:number = current.bucket + 1;
     while (bucket < this.data.size()) {
-      let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (bucket);
-      if ((tmpbucket !== null) && (tmpbucket !== undefined)){
-        let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
+      let tmpb:List<HashMapEntry<K,V>> = this.data.get (bucket);
+      if ((tmpb !== null) && (tmpb !== undefined)){
+        let tmpentry:HashMapEntry<K,V> = tmpb.get (0);
         if (tmpentry !== null) {
           let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
           tmp.bucket = bucket;

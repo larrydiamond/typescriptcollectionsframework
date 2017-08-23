@@ -263,9 +263,9 @@ var HashMap = (function () {
         // get the first node you can find in the next populated bucket if any exists
         var bucket = current.bucket + 1;
         while (bucket < this.data.size()) {
-            var tmpbucket_1 = this.data.get(bucket);
-            if ((tmpbucket_1 !== null) && (tmpbucket_1 !== undefined)) {
-                var tmpentry = tmpbucket_1.get(0);
+            var tmpb = this.data.get(bucket);
+            if ((tmpb !== null) && (tmpb !== undefined)) {
+                var tmpentry = tmpb.get(0);
                 if (tmpentry !== null) {
                     var tmp = new HashMapIteratorLocationTracker();
                     tmp.bucket = bucket;

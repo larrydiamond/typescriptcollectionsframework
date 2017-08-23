@@ -608,7 +608,7 @@ describe("Test TreeMap functionality", function () {
         expect(petStoreMap1.size()).toEqual(0);
         //    expect (petStoreMap1.isEmpty ()).toEqual(true);
     });
-    it("Test keyset basics", function () {
+    it("Test keyset jiterator basics", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var keyset = petStoreMap1.keySet();
         var count = 0;
@@ -619,7 +619,19 @@ describe("Test TreeMap functionality", function () {
         }
         expect(count).toEqual(0);
     });
-    it("Test entryset basics", function () {
+    it("Test keyset iterator basics", function () {
+        var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test entryset jiterator basics", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var entryset = petStoreMap1.entrySet();
         var count = 0;
@@ -630,7 +642,19 @@ describe("Test TreeMap functionality", function () {
         }
         expect(count).toEqual(0);
     });
-    it("Test keyset one entry", function () {
+    it("Test entryset iterator basics", function () {
+        var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test keyset jiterator one entry", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var keyset = petStoreMap1.keySet();
         var count = 0;
@@ -650,7 +674,29 @@ describe("Test TreeMap functionality", function () {
         }
         expect(count).toEqual(1);
     });
-    it("Test entryset one entry", function () {
+    it("Test keyset iterator one entry", function () {
+        var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        tsi = keyset[Symbol.iterator]();
+        tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test entryset jiterator one entry", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var entryset = petStoreMap1.entrySet();
         var count = 0;
@@ -670,7 +716,29 @@ describe("Test TreeMap functionality", function () {
         }
         expect(count).toEqual(1);
     });
-    it("Test keyset two entry", function () {
+    it("Test entryset iterator one entry", function () {
+        var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        entryset = petStoreMap1.entrySet();
+        tsi = entryset[Symbol.iterator]();
+        tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test keyset jiterator two entry", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var keyset = petStoreMap1.keySet();
         var count = 0;
@@ -703,7 +771,43 @@ describe("Test TreeMap functionality", function () {
         expect(found1).toEqual(true);
         expect(found2).toEqual(true);
     });
-    it("Test entryset two entry", function () {
+    it("Test keyset iterator two entry", function () {
+        var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        tsi = keyset[Symbol.iterator]();
+        tmp = tsi.next();
+        var found1 = false;
+        var found2 = false;
+        while (!tmp.done) {
+            var p = tmp.value;
+            if (p.getPrice() === (product1.getPrice())) {
+                found1 = true;
+            }
+            else {
+                if (p.getPrice() === (product2.getPrice())) {
+                    found2 = true;
+                }
+            }
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test entryset jiterator two entry", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var entryset = petStoreMap1.entrySet();
         var count = 0;
@@ -731,6 +835,42 @@ describe("Test TreeMap functionality", function () {
                     found2 = true;
                 }
             }
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test entryset iterator two entry", function () {
+        var petStoreMap1 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        entryset = petStoreMap1.entrySet();
+        tsi = entryset[Symbol.iterator]();
+        tmp = tsi.next();
+        var found1 = false;
+        var found2 = false;
+        while (!tmp.done) {
+            var p = tmp.value.getKey();
+            if (p.getPrice() === (product1.getPrice())) {
+                found1 = true;
+            }
+            else {
+                if (p.getPrice() === (product2.getPrice())) {
+                    found2 = true;
+                }
+            }
+            count = count + 1;
+            tmp = tsi.next();
         }
         expect(count).toEqual(2);
         expect(found1).toEqual(true);
