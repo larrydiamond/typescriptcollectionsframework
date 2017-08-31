@@ -14,7 +14,6 @@ var ArrayList = (function () {
         this.initialElements = initialElements;
         this.elements = null;
         this.sizeValue = 0;
-        // we currently do not do anything with the initialCapacity..... yet
         if (initialElements !== null) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var t = iter.next();
