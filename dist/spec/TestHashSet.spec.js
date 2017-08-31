@@ -69,6 +69,17 @@ describe("Test HashSet functionality", function () {
         expect(myMap1.size()).toEqual(2);
         expect(myMap1.isEmpty()).toEqual(false);
     });
+    it("Test adding duplicates", function () {
+        var myMap1 = new HashSet_1.HashSet();
+        expect(myMap1.size()).toEqual(0);
+        expect(myMap1.isEmpty()).toEqual(true);
+        expect(true).toEqual(myMap1.add(product1));
+        expect(myMap1.size()).toEqual(1);
+        expect(myMap1.isEmpty()).toEqual(false);
+        expect(false).toEqual(myMap1.add(product1));
+        expect(myMap1.size()).toEqual(1);
+        expect(myMap1.isEmpty()).toEqual(false);
+    });
     /* iteration isnt ready yet :(
     
       it("Test java iteration", function() {

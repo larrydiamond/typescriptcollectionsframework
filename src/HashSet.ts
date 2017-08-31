@@ -32,11 +32,11 @@ export class HashSet<K extends Hashable> implements JSet<K> {
   */
   public add (element:K) : boolean {
     let tmp:number = this.datastore.put(element, 1);
-    if (tmp === null) {
-      return false;
+    if (tmp === undefined) {
+      return true;
     }
 
-    return true;
+    return false;
   }
 
   /**

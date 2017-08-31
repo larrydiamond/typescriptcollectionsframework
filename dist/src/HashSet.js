@@ -30,10 +30,10 @@ var HashSet = (function () {
     */
     HashSet.prototype.add = function (element) {
         var tmp = this.datastore.put(element, 1);
-        if (tmp === null) {
-            return false;
+        if (tmp === undefined) {
+            return true;
         }
-        return true;
+        return false;
     };
     /**
     * Returns the number of elements in this set (its cardinality).
