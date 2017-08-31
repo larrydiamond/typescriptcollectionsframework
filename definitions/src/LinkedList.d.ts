@@ -3,10 +3,11 @@ import { Collection } from "./Collection";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class LinkedList<T extends Collectable> implements List<T>, Iterable<T> {
+    private initialElements;
     private firstNode;
     private lastNode;
     private numberElements;
-    constructor();
+    constructor(initialElements?: Collection<T>);
     /**
      * Appends the specified element to the end of this list
      * @param {T} t element to Append

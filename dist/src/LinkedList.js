@@ -9,10 +9,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var LinkedList = (function () {
-    function LinkedList() {
+    function LinkedList(initialElements) {
+        if (initialElements === void 0) { initialElements = null; }
+        this.initialElements = initialElements;
         this.firstNode = null;
         this.lastNode = null;
         this.numberElements = 0;
+        if (initialElements !== null) {
+            for (var iter = initialElements.iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.add(t);
+            }
+        }
     }
     /**
      * Appends the specified element to the end of this list

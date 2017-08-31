@@ -17,10 +17,17 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
 
-  constructor() {
+  constructor(private initialElements:Collection<T> = null) {
     this.firstNode = null;
     this.lastNode = null;
     this.numberElements = 0;
+
+    if (initialElements !== null) {
+      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
+        let t:T = iter.next ();
+        this.add (t);
+      }
+    }
   }
 
 
