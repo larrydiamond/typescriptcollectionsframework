@@ -8,6 +8,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("../src/ArrayList");
+var LinkedList_1 = require("../src/LinkedList");
 describe("Test ArrayList functionality", function () {
     // PetStoreProduct will be used in testing
     var PetStoreProduct = (function () {
@@ -338,25 +339,18 @@ describe("Test ArrayList functionality", function () {
         tmp = pspi.next();
         expect(tmp.done).toEqual(true);
     });
-    /*
-      it("Easy iteration", function () {
-        let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
-    
-        arraylist.add (product1);
-        arraylist.add (product2);
-    
-        let offset:number = 0;
-    
-        arraylist.for (thisElement => {
-          if (offset === 0)
-            expect (thisElement.productName).toEqual (product1.productName);
-          if (offset === 1)
-            expect (thisElement.productName).toEqual (product2.productName);
-          if (offset > 1)
-            fail();
-    
-            offset++;
-        });
-      });
-    */
+    it("Test constructing with elements from an ArrayList", function () {
+        var sourceList = new ArrayList_1.ArrayList();
+        expect(sourceList.add(product1)).toEqual(true);
+        expect(sourceList.add(product2)).toEqual(true);
+        var arraylist = new ArrayList_1.ArrayList(sourceList);
+        expect(arraylist.size()).toEqual(sourceList.size());
+    });
+    it("Test constructing with elements from a LinkedList", function () {
+        var sourceList = new LinkedList_1.LinkedList();
+        expect(sourceList.add(product1)).toEqual(true);
+        expect(sourceList.add(product2)).toEqual(true);
+        var arraylist = new ArrayList_1.ArrayList(sourceList);
+        expect(arraylist.size()).toEqual(sourceList.size());
+    });
 });

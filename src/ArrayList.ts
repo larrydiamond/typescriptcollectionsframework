@@ -16,7 +16,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   elements:T[] = null;
   sizeValue:number = 0;
 
-  constructor (private initialCapacity:number = 10, private initialElements:Collection<T> = null) {
+  constructor (private initialElements:Collection<T> = null) {
     // we currently do not do anything with the initialCapacity..... yet
     if (initialElements !== null) {
       for (let iter = initialElements.iterator(); iter.hasNext(); ) {

@@ -9,10 +9,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var ArrayList = (function () {
-    function ArrayList(initialCapacity, initialElements) {
-        if (initialCapacity === void 0) { initialCapacity = 10; }
+    function ArrayList(initialElements) {
         if (initialElements === void 0) { initialElements = null; }
-        this.initialCapacity = initialCapacity;
         this.initialElements = initialElements;
         this.elements = null;
         this.sizeValue = 0;

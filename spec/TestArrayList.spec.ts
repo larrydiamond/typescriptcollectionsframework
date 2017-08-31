@@ -10,6 +10,7 @@ import {ArrayList} from "../src/ArrayList";
 import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
 import {JIterator} from "../src/JIterator";
+import {LinkedList} from "../src/LinkedList";
 import {List} from "../src/List";
 
 describe("Test ArrayList functionality", function() {
@@ -410,7 +411,6 @@ describe("Test ArrayList functionality", function() {
       expect (list2.equals (list2)).toEqual(true);
   });
 
-
   it("Test typescript iteration", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
 
@@ -429,27 +429,22 @@ describe("Test ArrayList functionality", function() {
     expect (tmp.done).toEqual(true);
   });
 
+  it("Test constructing with elements from an ArrayList", function() {
+    let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
+    expect (sourceList.add (product1)).toEqual (true);
+    expect (sourceList.add (product2)).toEqual (true);
 
-/*
-  it("Easy iteration", function () {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> ();
-
-    arraylist.add (product1);
-    arraylist.add (product2);
-
-    let offset:number = 0;
-
-    arraylist.for (thisElement => {
-      if (offset === 0)
-        expect (thisElement.productName).toEqual (product1.productName);
-      if (offset === 1)
-        expect (thisElement.productName).toEqual (product2.productName);
-      if (offset > 1)
-        fail();
-
-        offset++;
-    });
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList);
+    expect (arraylist.size ()).toEqual(sourceList.size());
   });
-*/
+
+  it("Test constructing with elements from a LinkedList", function() {
+    let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+    expect (sourceList.add (product1)).toEqual (true);
+    expect (sourceList.add (product2)).toEqual (true);
+
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList);
+    expect (arraylist.size ()).toEqual(sourceList.size());
+  });
 
 });
