@@ -9,7 +9,7 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
-[ArrayList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/ArrayList), [LinkedList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/LinkedList), [TreeMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/TreeMap), and TreeSet are all live and available today.  PriorityQueue will also be available soon.   [HashMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/HashMap) and  SkipListMap are next.
+[ArrayList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/ArrayList), [LinkedList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/LinkedList), [HashMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/HashMap), [TreeMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/TreeMap), and TreeSet are all live and available today.  PriorityQueue will also be available soon.  HashSet and SkipListMap are next.
 
 [List](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/List) and [NavigableMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/NavigableMap) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
 
