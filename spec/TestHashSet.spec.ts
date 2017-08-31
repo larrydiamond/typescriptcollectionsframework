@@ -71,30 +71,57 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test adding two entries", function() {
-    let myMap1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
-  //    myMap1.printMap();
-    expect (myMap1.size ()).toEqual(0);
-    expect (myMap1.isEmpty ()).toEqual(true);
-    expect (true).toEqual(myMap1.add(product1));
-  //    myMap1.printMap();
-    expect (myMap1.size ()).toEqual(1);
-    expect (myMap1.isEmpty ()).toEqual(false);
-    expect (true).toEqual(myMap1.add(product2));
-  //    myMap1.printMap();
-    expect (myMap1.size ()).toEqual(2);
-    expect (myMap1.isEmpty ()).toEqual(false);
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+  //    mySet1.printMap();
+    expect (mySet1.size ()).toEqual(0);
+    expect (mySet1.isEmpty ()).toEqual(true);
+    expect (true).toEqual(mySet1.add(product1));
+  //    mySet1.printMap();
+    expect (mySet1.size ()).toEqual(1);
+    expect (mySet1.isEmpty ()).toEqual(false);
+    expect (true).toEqual(mySet1.add(product2));
+  //    mySet1.printMap();
+    expect (mySet1.size ()).toEqual(2);
+    expect (mySet1.isEmpty ()).toEqual(false);
   });
-  
+
   it("Test adding duplicates", function() {
-    let myMap1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
-    expect (myMap1.size ()).toEqual(0);
-    expect (myMap1.isEmpty ()).toEqual(true);
-    expect (true).toEqual(myMap1.add(product1));
-    expect (myMap1.size ()).toEqual(1);
-    expect (myMap1.isEmpty ()).toEqual(false);
-    expect (false).toEqual(myMap1.add(product1));
-    expect (myMap1.size ()).toEqual(1);
-    expect (myMap1.isEmpty ()).toEqual(false);
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    expect (mySet1.size ()).toEqual(0);
+    expect (mySet1.isEmpty ()).toEqual(true);
+    expect (true).toEqual(mySet1.add(product1));
+    expect (mySet1.size ()).toEqual(1);
+    expect (mySet1.isEmpty ()).toEqual(false);
+    expect (false).toEqual(mySet1.add(product1));
+    expect (mySet1.size ()).toEqual(1);
+    expect (mySet1.isEmpty ()).toEqual(false);
+  });
+
+  it("Test contains", function() {
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    expect (mySet1.size ()).toEqual(0);
+    expect (mySet1.isEmpty ()).toEqual(true);
+    expect (true).toEqual(mySet1.add(product1));
+    expect (mySet1.size ()).toEqual(1);
+    expect (mySet1.isEmpty ()).toEqual(false);
+    expect (true).toEqual(mySet1.contains(product1));
+    expect (false).toEqual(mySet1.contains(product2));
+  });
+
+  it("Test clear", function() {
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    expect (mySet1.size ()).toEqual(0);
+    expect (mySet1.isEmpty ()).toEqual(true);
+    expect (true).toEqual(mySet1.add(product1));
+    expect (mySet1.size ()).toEqual(1);
+    expect (mySet1.isEmpty ()).toEqual(false);
+    expect (true).toEqual(mySet1.contains(product1));
+    expect (false).toEqual(mySet1.contains(product2));
+    mySet1.clear();
+    expect (mySet1.size ()).toEqual(0);
+    expect (mySet1.isEmpty ()).toEqual(true);
+    expect (false).toEqual(mySet1.contains(product1));
+    expect (false).toEqual(mySet1.contains(product2));
   });
 
 /* iteration isnt ready yet :(
