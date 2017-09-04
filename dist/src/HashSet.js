@@ -74,6 +74,20 @@ var HashSet = (function () {
         return this.datastore.clear();
     };
     /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+    HashSet.prototype.deprecatedGetFirstEntryForIterator = function () {
+        return this.datastore.deprecatedGetFirstEntryForIterator();
+    };
+    /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+    HashSet.prototype.deprecatedGetNextEntryForIterator = function (current) {
+        return this.datastore.deprecatedGetNextEntryForIterator(current);
+    };
+    /**
      * Returns a Java style iterator
      * @return {JIterator<K>} the Java style iterator
      */
@@ -97,13 +111,17 @@ var HashSetJIterator = (function () {
     }
     HashSetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) {
-            var first = null; // TODO this.set.first();
-            if (first === undefined)
+            var first = this.set.deprecatedGetFirstEntryForIterator();
+            if (first === undefined) {
                 return false;
+            }
+            if (first === null) {
+                return false;
+            }
             return true;
         }
         else {
-            var tmp = null; // TODO this.set.getNextHigherKey(this.location);
+            var tmp = this.set.deprecatedGetNextEntryForIterator(this.location);
             if (tmp === null) {
                 return false;
             }
@@ -114,23 +132,24 @@ var HashSetJIterator = (function () {
     };
     HashSetJIterator.prototype.next = function () {
         if (this.location === undefined) {
-            var first = null; // TODO this.set.first();
+            var first = this.set.deprecatedGetFirstEntryForIterator();
             if (first === undefined) {
                 return null;
             }
-            else {
-                this.location = first;
-                return first;
+            if (first === null) {
+                return null;
             }
+            this.location = first;
+            return first.entry.getKey();
         }
         else {
-            var tmp = null; // TODO this.set.getNextHigherKey(this.location);
+            var tmp = this.set.deprecatedGetNextEntryForIterator(this.location);
             if (tmp === null) {
                 return null;
             }
             else {
                 this.location = tmp;
-                return tmp;
+                return tmp.entry.getKey();
             }
         }
     };
@@ -141,7 +160,7 @@ exports.HashSetJIterator = HashSetJIterator;
 var HashSetIterator = (function () {
     function HashSetIterator(iSet) {
         this.set = iSet;
-        this.location = null; // TODO this.set.first();
+        this.location = this.set.deprecatedGetFirstEntryForIterator();
     }
     HashSetIterator.prototype.next = function (value) {
         if (this.location === null) {
@@ -150,8 +169,8 @@ var HashSetIterator = (function () {
         if (this.location === undefined) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
-        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
-        this.location = null; // TODO this.set.getNextHigherKey (this.location);
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.entry.getKey());
+        this.location = this.set.deprecatedGetNextEntryForIterator(this.location);
         return tmp;
     };
     return HashSetIterator;

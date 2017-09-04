@@ -105,76 +105,65 @@ describe("Test HashSet functionality", function () {
         expect(false).toEqual(mySet1.contains(product1));
         expect(false).toEqual(mySet1.contains(product2));
     });
-    /* iteration isnt ready yet :(
-    
-      it("Test java iteration", function() {
-        let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
-    
-        expect (set2.add (product1)).toEqual (true);
-        expect (set2.add (product2)).toEqual (true);
-    
-        let found1:boolean = false;
-        let found2:boolean = false;
-    
-        for (let iter = set2.iterator(); iter.hasNext(); ) {
-          let psp:PetStoreProduct = iter.next ();
-    
-          if (product1.equals (psp)) {
-            found1 = true;
-          } else {
-            if (product2.equals (psp)) {
-              found2 = true;
-            } else {
-              fail("Found something that wasnt product1 or product2");
+    it("Test java iteration", function () {
+        var set2 = new HashSet_1.HashSet();
+        expect(set2.add(product1)).toEqual(true);
+        expect(set2.add(product2)).toEqual(true);
+        var found1 = false;
+        var found2 = false;
+        for (var iter = set2.iterator(); iter.hasNext();) {
+            var psp = iter.next();
+            if (product1.equals(psp)) {
+                found1 = true;
             }
-          }
+            else {
+                if (product2.equals(psp)) {
+                    found2 = true;
+                }
+                else {
+                    fail("Found something that wasnt product1 or product2");
+                }
+            }
         }
-    
-        expect (found1).toEqual (true);
-        expect (found2).toEqual (true);
-      });
-    
-      it("Test typescript iteration", function() {
-        let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
-    
-        expect (set2.add (product1)).toEqual (true);
-        expect (set2.add (product2)).toEqual (true);
-    
-        let found1:boolean = false;
-        let found2:boolean = false;
-    
-        let tsi:Iterator<PetStoreProduct> = set2[Symbol.iterator]();
-        let tmp:IteratorResult<PetStoreProduct> = tsi.next();
-        expect (tmp.done).toEqual(false);
-    
-        if (product1.equals (tmp.value)) {
-          found1 = true;
-        } else {
-          if (product2.equals (tmp.value)) {
-            found2 = true;
-          } else {
-            fail("Found something that wasnt product1 or product2");
-          }
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test typescript iteration", function () {
+        var set2 = new HashSet_1.HashSet();
+        expect(set2.add(product1)).toEqual(true);
+        expect(set2.add(product2)).toEqual(true);
+        var found1 = false;
+        var found2 = false;
+        var tsi = set2[Symbol.iterator]();
+        var tmp = tsi.next();
+        expect(tmp.done).toEqual(false);
+        if (product1.equals(tmp.value)) {
+            found1 = true;
         }
-    
+        else {
+            if (product2.equals(tmp.value)) {
+                found2 = true;
+            }
+            else {
+                fail("Found something that wasnt product1 or product2");
+            }
+        }
         tmp = tsi.next();
-        expect (tmp.done).toEqual(false);
-    
-        if (product1.equals (tmp.value)) {
-          found1 = true;
-        } else {
-          if (product2.equals (tmp.value)) {
-            found2 = true;
-          } else {
-            fail("Found something that wasnt product1 or product2");
-          }
+        expect(tmp.done).toEqual(false);
+        if (product1.equals(tmp.value)) {
+            found1 = true;
         }
-    
+        else {
+            if (product2.equals(tmp.value)) {
+                found2 = true;
+            }
+            else {
+                fail("Found something that wasnt product1 or product2");
+            }
+        }
         tmp = tsi.next();
-        expect (tmp.done).toEqual(true);
-    
-        expect (found1).toEqual (true);
-        expect (found2).toEqual (true);
-      });
-      */
+        expect(tmp.done).toEqual(true);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
 });

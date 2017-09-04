@@ -81,6 +81,24 @@ export class HashSet<K extends Hashable> implements JSet<K> {
     return this.datastore.clear();
   }
 
+
+   /**
+    * This method is deprecated and will be removed in a future revision.
+    * @deprecated
+    */
+    public deprecatedGetFirstEntryForIterator ():HashMapIteratorLocationTracker<K,number> {
+      return this.datastore.deprecatedGetFirstEntryForIterator();
+    }
+
+
+    /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+     public deprecatedGetNextEntryForIterator (current:HashMapIteratorLocationTracker<K,number>):HashMapIteratorLocationTracker<K,number> {
+         return this.datastore.deprecatedGetNextEntryForIterator(current);
+     }
+
  /**
   * Returns a Java style iterator
   * @return {JIterator<K>} the Java style iterator
@@ -101,7 +119,7 @@ export class HashSet<K extends Hashable> implements JSet<K> {
 
 /* Java style iterator */
 export class HashSetJIterator<T extends Hashable> implements JIterator<T> {
-  private location:T;
+  private location:HashMapIteratorLocationTracker<T,number>;
   private set:HashSet<T>;
 
   constructor (iSet:HashSet<T>) {
@@ -110,12 +128,16 @@ export class HashSetJIterator<T extends Hashable> implements JIterator<T> {
 
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
-      let first:T = null; // TODO this.set.first();
-      if (first === undefined)
+      let first:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetFirstEntryForIterator();
+      if (first === undefined) {
         return false;
+      }
+      if (first === null) {
+        return false;
+      }
       return true;
     } else { // we've already called this iterator before
-      let tmp:T = null; // TODO this.set.getNextHigherKey(this.location);
+      let tmp:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetNextEntryForIterator(this.location);
       if (tmp === null) {
         return false;
       } else {
@@ -126,20 +148,22 @@ export class HashSetJIterator<T extends Hashable> implements JIterator<T> {
 
   public next():T {
     if (this.location === undefined) { // first time caller
-      let first:T = null; // TODO this.set.first();
+      let first:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetFirstEntryForIterator();
       if (first === undefined) {
         return null;
-      } else {
-        this.location = first;
-        return first;
       }
+      if (first === null) {
+        return null;
+      }
+      this.location = first;
+      return first.entry.getKey();
     } else { // we've already called this iterator before
-      let tmp:T = null; // TODO this.set.getNextHigherKey(this.location);
+      let tmp:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetNextEntryForIterator(this.location);
       if (tmp === null) {
         return null;
       } else {
         this.location = tmp;
-        return tmp;
+        return tmp.entry.getKey();
       }
     }
   }
@@ -147,12 +171,12 @@ export class HashSetJIterator<T extends Hashable> implements JIterator<T> {
 
 /* TypeScript iterator */
 export class HashSetIterator<T extends Hashable> implements Iterator<T> {
-  private location:T;
+  private location:HashMapIteratorLocationTracker<T,number>;
   private set:HashSet<T>;
 
   constructor (iSet:HashSet<T>) {
     this.set = iSet;
-    this.location = null; // TODO this.set.first();
+    this.location = this.set.deprecatedGetFirstEntryForIterator();
   }
 
   public next(value?: any): IteratorResult<T> {
@@ -162,8 +186,8 @@ export class HashSetIterator<T extends Hashable> implements Iterator<T> {
     if (this.location === undefined) {
       return new BasicIteratorResult(true, null);
     }
-    let tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location);
-    this.location = null; // TODO this.set.getNextHigherKey (this.location);
+    let tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location.entry.getKey());
+    this.location = this.set.deprecatedGetNextEntryForIterator(this.location);
     return tmp;
   }
 }

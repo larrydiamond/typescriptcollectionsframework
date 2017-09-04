@@ -124,8 +124,6 @@ describe("Test HashSet functionality", function() {
     expect (false).toEqual(mySet1.contains(product2));
   });
 
-/* iteration isnt ready yet :(
-
   it("Test java iteration", function() {
     let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
 
@@ -195,6 +193,5 @@ describe("Test HashSet functionality", function() {
     expect (found1).toEqual (true);
     expect (found2).toEqual (true);
   });
-  */
 
 });

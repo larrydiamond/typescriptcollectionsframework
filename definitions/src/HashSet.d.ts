@@ -1,5 +1,6 @@
 import { JIterator } from "./JIterator";
 import { Hashable } from "./Hashable";
+import { HashMapIteratorLocationTracker } from "./HashMap";
 import { JSet } from "./JSet";
 export declare class HashSet<K extends Hashable> implements JSet<K> {
     private initialElements;
@@ -33,6 +34,16 @@ export declare class HashSet<K extends Hashable> implements JSet<K> {
     * Removes all of the elements from this set. The set will be empty after this call returns.
     */
     clear(): void;
+    /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+    deprecatedGetFirstEntryForIterator(): HashMapIteratorLocationTracker<K, number>;
+    /**
+     * This method is deprecated and will be removed in a future revision.
+     * @deprecated
+     */
+    deprecatedGetNextEntryForIterator(current: HashMapIteratorLocationTracker<K, number>): HashMapIteratorLocationTracker<K, number>;
     /**
      * Returns a Java style iterator
      * @return {JIterator<K>} the Java style iterator
