@@ -9,11 +9,8 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
-import {HashSet} from "./HashSet";
 import {JIterator} from "./JIterator";
-import {LinkedList} from "../src/LinkedList";
 import {List} from "./List";
-import {TreeSet} from "./TreeSet";
 
 export class ArrayList<T> implements List<T>, Iterable<T> {
   elements:T[] = null;
@@ -27,49 +24,32 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
         let t:T = iter.next ();
         this.add (t);
       }
-    } else {
-      if (iEquals instanceof ArrayList) {
-        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
-          let t:T = iter.next ();
-          this.add (t);
-        }
-      }
-      if (iEquals instanceof LinkedList) {
-        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
-          let t:T = iter.next ();
-          this.add (t);
-        }
-      }
-      if (iEquals instanceof HashSet) {
-        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
-          let t:T = iter.next ();
-          this.add (t);
-        }
-      }
-      if (iEquals instanceof HashSet) {
-        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
-          let t:T = iter.next ();
-          this.add (t);
-        }
-      }
     }
   }
 
   /**
-   * Appends the specified element to the end of this list
-   * @param {T} t element to Append
-   * @return {boolean} true if this collection changed as a result of the call
-   */
-    public add (t:T) : boolean {
-      if (this.elements === null) {
-        this.elements = new Array<T>();
-      }
-      this.elements.push (t);
-      this.sizeValue = this.sizeValue + 1;
-      return true;
-    }
+  * Returns the Collectible
+  * @return {Collectable}
+  */
+  public getCollectable () : Collectable<T> {
+    return this.equality;
+  }
 
-   /**
+  /**
+  * Appends the specified element to the end of this list
+  * @param {T} t element to Append
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public add (t:T) : boolean {
+    if (this.elements === null) {
+      this.elements = new Array<T>();
+    }
+    this.elements.push (t);
+    this.sizeValue = this.sizeValue + 1;
+    return true;
+  }
+
+  /**
     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
     * @param {number} index index at which the specified element is to be inserted
     * @param {T} t element to be inserted
@@ -258,48 +238,6 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
     this.elements [index] = element;
     return tmp;
   }
-
- /**
-  * Indicates whether some other object is "equal to" this one.
-  * The equals method implements an equivalence relation on non-null object references:
-  * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-  * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-  * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-  * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-  * For any non-null reference value x, x.equals(null) should return false.
-  * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-  * @param {T} t element to compare
-  * @return {boolean} true if the other element is "equal" to this one
-  */
-  public equals (t:any) : boolean {
-    if (t === null) return false;
-    if (t === undefined) return false;
-    if (t instanceof ArrayList) {
-      if (this.size() === t.size()) {
-        if (this.size() === 0) {
-          return true;
-        }
-
-        for (let loop:number = 0; loop < this.size(); loop++) {
-          let thisentry:T = this.get (loop);
-          let thatentry:T = t.get (loop);
-          if (this.equality.equals (thisentry, thatentry)) {
-            // keep going
-          } else {
-            return false;
-          }
-        }
-
-        return true;
-
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
 
 /**
  * Returns the number of elements in this list.

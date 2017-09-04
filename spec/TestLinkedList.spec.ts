@@ -6,6 +6,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {ArrayList} from "../src/ArrayList";
 import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
 import {GenericCollectable} from "../src/CollectionUtils";
@@ -392,24 +393,6 @@ describe("Test LinkedList functionality", function() {
       expect (thelist.size ()).toEqual(1);
     });
 
-    it("Test equals", function() {
-        let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
-        expect (thelist.add (product1)).toEqual (true);
-        expect (thelist.add (product2)).toEqual (true);
-
-        let list2:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
-        expect (list2.add (product1)).toEqual (true);
-        expect (list2.add (product2)).toEqual (true);
-        expect (list2.add (product3)).toEqual (true);
-
-        expect (thelist.equals (null)).toEqual(false);
-        expect (thelist.equals (undefined)).toEqual(false);
-        expect (thelist.equals (list2)).toEqual(false);
-        expect (thelist.equals (thelist)).toEqual(true);
-        expect (list2.equals (list2)).toEqual(true);
-    });
-
-
     it("Test typescript iteration", function() {
       let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
@@ -434,6 +417,24 @@ describe("Test LinkedList functionality", function() {
         expect (thelist.add (product1)).toEqual (true);
         expect (thelist.add (product2)).toEqual (true);
         expect (thelist.getFirst()).toEqual (product1);
+    });
+
+    it("Test constructing with elements from an ArrayList", function() {
+      let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+      expect (sourceList.add (product1)).toEqual (true);
+      expect (sourceList.add (product2)).toEqual (true);
+
+      let list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (sourceList.getCollectable(), sourceList);
+      expect (list.size ()).toEqual(sourceList.size());
+    });
+
+    it("Test constructing with elements from a LinkedList", function() {
+      let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+      expect (sourceList.add (product1)).toEqual (true);
+      expect (sourceList.add (product2)).toEqual (true);
+
+      let list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (sourceList.getCollectable(), sourceList);
+      expect (list.size ()).toEqual(sourceList.size());
     });
 
 });

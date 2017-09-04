@@ -305,20 +305,6 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.removeAll(removelist)).toEqual(false);
         expect(arraylist.size()).toEqual(1);
     });
-    it("Test equals", function () {
-        var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
-        expect(arraylist.add(product1)).toEqual(true);
-        expect(arraylist.add(product2)).toEqual(true);
-        var list2 = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
-        expect(list2.add(product1)).toEqual(true);
-        expect(list2.add(product2)).toEqual(true);
-        expect(list2.add(product3)).toEqual(true);
-        expect(arraylist.equals(null)).toEqual(false);
-        expect(arraylist.equals(undefined)).toEqual(false);
-        expect(arraylist.equals(list2)).toEqual(false);
-        expect(arraylist.equals(arraylist)).toEqual(true);
-        expect(list2.equals(list2)).toEqual(true);
-    });
     it("Test typescript iteration", function () {
         var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
         expect(arraylist.add(product1)).toEqual(true);
@@ -338,14 +324,14 @@ describe("Test ArrayList functionality", function () {
         var sourceList = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
         expect(sourceList.add(product1)).toEqual(true);
         expect(sourceList.add(product2)).toEqual(true);
-        var arraylist = new ArrayList_1.ArrayList(sourceList);
+        var arraylist = new ArrayList_1.ArrayList(sourceList.getCollectable(), sourceList);
         expect(arraylist.size()).toEqual(sourceList.size());
     });
     it("Test constructing with elements from a LinkedList", function () {
         var sourceList = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
         expect(sourceList.add(product1)).toEqual(true);
         expect(sourceList.add(product2)).toEqual(true);
-        var arraylist = new ArrayList_1.ArrayList(sourceList);
+        var arraylist = new ArrayList_1.ArrayList(sourceList.getCollectable(), sourceList);
         expect(arraylist.size()).toEqual(sourceList.size());
     });
 });

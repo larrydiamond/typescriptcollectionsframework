@@ -389,23 +389,6 @@ describe("Test ArrayList functionality", function() {
     expect (arraylist.size ()).toEqual(1);
   });
 
-  it("Test equals", function() {
-      let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
-      expect (arraylist.add (product1)).toEqual (true);
-      expect (arraylist.add (product2)).toEqual (true);
-
-      let list2:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
-      expect (list2.add (product1)).toEqual (true);
-      expect (list2.add (product2)).toEqual (true);
-      expect (list2.add (product3)).toEqual (true);
-
-      expect (arraylist.equals (null)).toEqual(false);
-      expect (arraylist.equals (undefined)).toEqual(false);
-      expect (arraylist.equals (list2)).toEqual(false);
-      expect (arraylist.equals (arraylist)).toEqual(true);
-      expect (list2.equals (list2)).toEqual(true);
-  });
-
   it("Test typescript iteration", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
@@ -429,7 +412,7 @@ describe("Test ArrayList functionality", function() {
     expect (sourceList.add (product1)).toEqual (true);
     expect (sourceList.add (product2)).toEqual (true);
 
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList);
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList.getCollectable(), sourceList);
     expect (arraylist.size ()).toEqual(sourceList.size());
   });
 
@@ -438,7 +421,7 @@ describe("Test ArrayList functionality", function() {
     expect (sourceList.add (product1)).toEqual (true);
     expect (sourceList.add (product2)).toEqual (true);
 
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList);
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList.getCollectable(), sourceList);
     expect (arraylist.size ()).toEqual(sourceList.size());
   });
 

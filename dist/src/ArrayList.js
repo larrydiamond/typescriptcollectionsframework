@@ -8,8 +8,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
-var HashSet_1 = require("./HashSet");
-var LinkedList_1 = require("../src/LinkedList");
 var ArrayList = (function () {
     function ArrayList(iEquals, initialElements) {
         this.initialElements = initialElements;
@@ -22,38 +20,19 @@ var ArrayList = (function () {
                 this.add(t);
             }
         }
-        else {
-            if (iEquals instanceof ArrayList) {
-                for (var iter = iEquals.iterator(); iter.hasNext();) {
-                    var t = iter.next();
-                    this.add(t);
-                }
-            }
-            if (iEquals instanceof LinkedList_1.LinkedList) {
-                for (var iter = iEquals.iterator(); iter.hasNext();) {
-                    var t = iter.next();
-                    this.add(t);
-                }
-            }
-            if (iEquals instanceof HashSet_1.HashSet) {
-                for (var iter = iEquals.iterator(); iter.hasNext();) {
-                    var t = iter.next();
-                    this.add(t);
-                }
-            }
-            if (iEquals instanceof HashSet_1.HashSet) {
-                for (var iter = iEquals.iterator(); iter.hasNext();) {
-                    var t = iter.next();
-                    this.add(t);
-                }
-            }
-        }
     }
     /**
-     * Appends the specified element to the end of this list
-     * @param {T} t element to Append
-     * @return {boolean} true if this collection changed as a result of the call
-     */
+    * Returns the Collectible
+    * @return {Collectable}
+    */
+    ArrayList.prototype.getCollectable = function () {
+        return this.equality;
+    };
+    /**
+    * Appends the specified element to the end of this list
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
     ArrayList.prototype.add = function (t) {
         if (this.elements === null) {
             this.elements = new Array();
@@ -63,10 +42,10 @@ var ArrayList = (function () {
         return true;
     };
     /**
-     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
-     * @param {number} index index at which the specified element is to be inserted
-     * @param {T} t element to be inserted
-     */
+      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+      * @param {number} index index at which the specified element is to be inserted
+      * @param {T} t element to be inserted
+      */
     ArrayList.prototype.addElement = function (index, t) {
         if (this.elements === null) {
             this.elements = new Array();
@@ -230,48 +209,6 @@ var ArrayList = (function () {
         var tmp = this.elements[index];
         this.elements[index] = element;
         return tmp;
-    };
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     * The equals method implements an equivalence relation on non-null object references:
-     * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-     * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-     * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-     * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-     * For any non-null reference value x, x.equals(null) should return false.
-     * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-     * @param {T} t element to compare
-     * @return {boolean} true if the other element is "equal" to this one
-     */
-    ArrayList.prototype.equals = function (t) {
-        if (t === null)
-            return false;
-        if (t === undefined)
-            return false;
-        if (t instanceof ArrayList) {
-            if (this.size() === t.size()) {
-                if (this.size() === 0) {
-                    return true;
-                }
-                for (var loop = 0; loop < this.size(); loop++) {
-                    var thisentry = this.get(loop);
-                    var thatentry = t.get(loop);
-                    if (this.equality.equals(thisentry, thatentry)) {
-                        // keep going
-                    }
-                    else {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
     };
     /**
      * Returns the number of elements in this list.

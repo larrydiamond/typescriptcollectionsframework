@@ -7,6 +7,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var ArrayList_1 = require("../src/ArrayList");
 var CollectionUtils_1 = require("../src/CollectionUtils");
 var LinkedList_1 = require("../src/LinkedList");
 describe("Test LinkedList functionality", function () {
@@ -308,20 +309,6 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.removeAll(removelist)).toEqual(false);
         expect(thelist.size()).toEqual(1);
     });
-    it("Test equals", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
-        expect(thelist.add(product1)).toEqual(true);
-        expect(thelist.add(product2)).toEqual(true);
-        var list2 = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
-        expect(list2.add(product1)).toEqual(true);
-        expect(list2.add(product2)).toEqual(true);
-        expect(list2.add(product3)).toEqual(true);
-        expect(thelist.equals(null)).toEqual(false);
-        expect(thelist.equals(undefined)).toEqual(false);
-        expect(thelist.equals(list2)).toEqual(false);
-        expect(thelist.equals(thelist)).toEqual(true);
-        expect(list2.equals(list2)).toEqual(true);
-    });
     it("Test typescript iteration", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
         expect(thelist.add(product1)).toEqual(true);
@@ -343,5 +330,19 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.getFirst()).toEqual(product1);
+    });
+    it("Test constructing with elements from an ArrayList", function () {
+        var sourceList = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
+        expect(sourceList.add(product1)).toEqual(true);
+        expect(sourceList.add(product2)).toEqual(true);
+        var list = new LinkedList_1.LinkedList(sourceList.getCollectable(), sourceList);
+        expect(list.size()).toEqual(sourceList.size());
+    });
+    it("Test constructing with elements from a LinkedList", function () {
+        var sourceList = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        expect(sourceList.add(product1)).toEqual(true);
+        expect(sourceList.add(product2)).toEqual(true);
+        var list = new LinkedList_1.LinkedList(sourceList.getCollectable(), sourceList);
+        expect(list.size()).toEqual(sourceList.size());
     });
 });
