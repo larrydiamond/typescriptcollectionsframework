@@ -9,12 +9,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("./src/ArrayList");
 exports.ArrayList = ArrayList_1.ArrayList;
-var CNumber_1 = require("./src/CNumber");
-exports.CNumber = CNumber_1.CNumber;
 var CollectionUtils_1 = require("./src/CollectionUtils");
 exports.CollectionUtils = CollectionUtils_1.CollectionUtils;
-var CString_1 = require("./src/CString");
-exports.CString = CString_1.CString;
+var CollectionUtils_2 = require("./src/CollectionUtils");
+exports.GenericCollectable = CollectionUtils_2.GenericCollectable;
+var CollectionUtils_3 = require("./src/CollectionUtils");
+exports.GenericHashable = CollectionUtils_3.GenericHashable;
 var HashMap_1 = require("./src/HashMap");
 exports.HashMap = HashMap_1.HashMap;
 var HashSet_1 = require("./src/HashSet");

@@ -12,12 +12,14 @@ import {Collection} from "./Collection";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
 
-export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> {
+export class LinkedList<T> implements List<T>, Iterable<T> {
   private firstNode:LinkedListNode<T>;
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
+  equality:Collectable<T>;
 
-  constructor(private initialElements:Collection<T> = null) {
+  constructor(iEquals:Collectable<T>, private initialElements:Collection<T> = null) {
+    this.equality = iEquals;
     this.firstNode = null;
     this.lastNode = null;
     this.numberElements = 0;
@@ -150,7 +152,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   private getNode(t:T) : LinkedListNode<T> {
     let node = this.firstNode;
     while (node !== null) {
-      if (node.payload.equals(t)) {
+      if (this.equality.equals (node.payload, t)) {
         return node;
       } else {
         node = node.nextNode;
@@ -175,7 +177,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
 
     let node:LinkedListNode<T> = this.firstNode;
     while (node !== null) {
-      if (node.payload.equals(t)) {
+      if (this.equality.equals (node.payload, t)) {
         let previous:LinkedListNode<T> = node.previousNode;
         let following:LinkedListNode<T> = node.nextNode;
         if (previous !== null) {
@@ -264,7 +266,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
     while (node !== null) {
-      if (node.payload.equals(t)) {
+      if (this.equality.equals (node.payload, t)) {
         return offset;
       } else {
         node = node.nextNode;
@@ -341,7 +343,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     let offset:number = this.numberElements - 1;
     let node:LinkedListNode<T> = this.lastNode;
     while (node !== null) {
-      if (node.payload.equals(t)) {
+      if (this.equality.equals (node.payload, t)) {
         return offset;
       } else {
         node = node.previousNode;
@@ -434,7 +436,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
         }
         let thisNode:LinkedListNode<T> = this.getFirstNode();
         let thatNode:LinkedListNode<T> = t.getFirstNode();
-        while ((thisNode !== null) && (thatNode !== null) && (thisNode.payload.equals(thatNode.payload))) {
+
+        while ((thisNode !== null) && (thatNode !== null) && (this.equality.equals (thisNode.payload, thatNode.payload))) {
           thisNode = thisNode.nextNode;
           thatNode = thatNode.nextNode;
         }
@@ -467,7 +470,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
 
 }
 
-export class LinkedListNode<T extends Collectable> {
+export class LinkedListNode<T> {
   previousNode:LinkedListNode<T>;
   nextNode:LinkedListNode<T>;
   payload:T;
@@ -481,7 +484,7 @@ export class LinkedListNode<T extends Collectable> {
 
 
 /* Java style iterator */
-export class LinkedListJIterator<T extends Collectable> implements JIterator<T> {
+export class LinkedListJIterator<T> implements JIterator<T> {
   private node:LinkedListNode<T>;
 
   constructor (iList:LinkedList<T>) {
@@ -504,7 +507,7 @@ export class LinkedListJIterator<T extends Collectable> implements JIterator<T> 
 
 
 /* TypeScript iterator */
-export class LinkedListIterator<T extends Collectable> implements Iterator<T> {
+export class LinkedListIterator<T> implements Iterator<T> {
   private node:LinkedListNode<T>;
 
   constructor (iList:LinkedList<T>) {

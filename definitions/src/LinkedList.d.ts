@@ -2,12 +2,13 @@ import { Collectable } from "./Collectable";
 import { Collection } from "./Collection";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
-export declare class LinkedList<T extends Collectable> implements List<T>, Iterable<T> {
+export declare class LinkedList<T> implements List<T>, Iterable<T> {
     private initialElements;
     private firstNode;
     private lastNode;
     private numberElements;
-    constructor(initialElements?: Collection<T>);
+    equality: Collectable<T>;
+    constructor(iEquals: Collectable<T>, initialElements?: Collection<T>);
     /**
      * Appends the specified element to the end of this list
      * @param {T} t element to Append
@@ -121,19 +122,19 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      */
     [Symbol.iterator](): Iterator<T>;
 }
-export declare class LinkedListNode<T extends Collectable> {
+export declare class LinkedListNode<T> {
     previousNode: LinkedListNode<T>;
     nextNode: LinkedListNode<T>;
     payload: T;
     constructor(t: T);
 }
-export declare class LinkedListJIterator<T extends Collectable> implements JIterator<T> {
+export declare class LinkedListJIterator<T> implements JIterator<T> {
     private node;
     constructor(iList: LinkedList<T>);
     hasNext(): boolean;
     next(): T;
 }
-export declare class LinkedListIterator<T extends Collectable> implements Iterator<T> {
+export declare class LinkedListIterator<T> implements Iterator<T> {
     private node;
     constructor(iList: LinkedList<T>);
     next(value?: any): IteratorResult<T>;

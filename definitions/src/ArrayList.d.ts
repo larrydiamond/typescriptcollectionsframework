@@ -2,11 +2,12 @@ import { Collectable } from "./Collectable";
 import { Collection } from "./Collection";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
-export declare class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
+export declare class ArrayList<T> implements List<T>, Iterable<T> {
     private initialElements;
     elements: T[];
     sizeValue: number;
-    constructor(initialElements?: Collection<T>);
+    equality: Collectable<T>;
+    constructor(iEquals: Collectable<T>, initialElements?: Collection<T>);
     /**
      * Appends the specified element to the end of this list
      * @param {T} t element to Append
@@ -113,14 +114,14 @@ export declare class ArrayList<T extends Collectable> implements List<T>, Iterab
      */
     [Symbol.iterator](): Iterator<T>;
 }
-export declare class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
+export declare class ArrayListJIterator<T> implements JIterator<T> {
     private offset;
     private arraylist;
     constructor(iArrayList: ArrayList<T>);
     hasNext(): boolean;
     next(): T;
 }
-export declare class ArrayListIterator<T extends Collectable> implements Iterator<T> {
+export declare class ArrayListIterator<T> implements Iterator<T> {
     private offset;
     private arraylist;
     constructor(iArrayList: ArrayList<T>);

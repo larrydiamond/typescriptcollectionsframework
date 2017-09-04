@@ -4,14 +4,17 @@ import { ImmutableSet } from "./ImmutableSet";
 import { JIterator } from "./JIterator";
 import { JMap } from "./JMap";
 import { MapEntry } from "./MapEntry";
-export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
+export declare class HashMap<K, V> implements JMap<K, V> {
     private initialElements;
     private iInitialCapacity;
     private iLoadFactor;
     private data;
     private elementCount;
     private loadFactor;
-    constructor(initialElements?: JMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
+    private hashMethods;
+    private MapEntryHashMethods;
+    private ListMapEntryMethods;
+    constructor(iHash: Hashable<K>, initialElements?: JMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
     * @param {K} key key with which the specified value is to be associated
@@ -53,8 +56,8 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
     containsKey(key: K): boolean;
     private getMapEntry(key);
     /**
-    * Removes all of the mappings from this map. The map will be empty after this call returns.
-    */
+     * Removes all of the mappings from this map. The map will be empty after this call returns.
+     */
     clear(): void;
     /**
      * Returns an ImmutableSet view of the keys contained in this map.
@@ -83,6 +86,8 @@ export declare class HashMap<K extends Hashable, V> implements JMap<K, V> {
      * @deprecated
      */
     deprecatedGetNextEntryForIterator(current: HashMapIteratorLocationTracker<K, V>): HashMapIteratorLocationTracker<K, V>;
+    private getHashMapEntryHashable(iHash);
+    private getListHashMapEntryHashable(iHash);
 }
 export declare class HashMapIteratorLocationTracker<K, V> {
     bucket: number;
@@ -95,7 +100,7 @@ export declare class HashMapEntry<K, V> extends BasicMapEntry<K, V> {
     setHashCode(iHashCode: number): void;
     setValue(iValue: V): void;
 }
-export declare class ImmutableKeySetForHashMap<K extends Hashable, V> implements ImmutableSet<K> {
+export declare class ImmutableKeySetForHashMap<K, V> implements ImmutableSet<K> {
     private map;
     constructor(iHashMap: HashMap<K, V>);
     size(): number;
@@ -104,20 +109,20 @@ export declare class ImmutableKeySetForHashMap<K extends Hashable, V> implements
     iterator(): JIterator<K>;
     [Symbol.iterator](): Iterator<K>;
 }
-export declare class HashMapKeySetJIterator<K extends Hashable, V> implements JIterator<K> {
+export declare class HashMapKeySetJIterator<K, V> implements JIterator<K> {
     private location;
     private map;
     constructor(iHashMap: HashMap<K, V>);
     hasNext(): boolean;
     next(): K;
 }
-export declare class HashMapKeySetIterator<K extends Hashable, V> implements Iterator<K> {
+export declare class HashMapKeySetIterator<K, V> implements Iterator<K> {
     private location;
     private map;
     constructor(iHashMap: HashMap<K, V>);
     next(value?: any): IteratorResult<K>;
 }
-export declare class ImmutableEntrySetForHashMap<K extends Hashable, V> implements ImmutableSet<MapEntry<K, V>> {
+export declare class ImmutableEntrySetForHashMap<K, V> implements ImmutableSet<MapEntry<K, V>> {
     private map;
     constructor(iHashMap: HashMap<K, V>);
     size(): number;
@@ -126,14 +131,14 @@ export declare class ImmutableEntrySetForHashMap<K extends Hashable, V> implemen
     iterator(): JIterator<MapEntry<K, V>>;
     [Symbol.iterator](): Iterator<MapEntry<K, V>>;
 }
-export declare class HashMapEntrySetJIterator<K extends Hashable, V> implements JIterator<MapEntry<K, V>> {
+export declare class HashMapEntrySetJIterator<K, V> implements JIterator<MapEntry<K, V>> {
     private location;
     private map;
     constructor(iHashMap: HashMap<K, V>);
     hasNext(): boolean;
     next(): MapEntry<K, V>;
 }
-export declare class HashMapEntrySetIterator<K extends Hashable, V> implements Iterator<MapEntry<K, V>> {
+export declare class HashMapEntrySetIterator<K, V> implements Iterator<MapEntry<K, V>> {
     private location;
     private map;
     constructor(iHashMap: HashMap<K, V>);

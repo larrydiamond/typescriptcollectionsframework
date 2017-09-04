@@ -8,12 +8,13 @@
 
 import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
+import {GenericCollectable} from "../src/CollectionUtils";
 import {LinkedList} from "../src/LinkedList";
 import {List} from "../src/List";
 
 describe("Test LinkedList functionality", function() {
     // PetStoreProduct will be used in testing
-    class PetStoreProduct implements Collectable {
+    class PetStoreProduct {
       private productName:string;
       private price:number;
 
@@ -21,12 +22,6 @@ describe("Test LinkedList functionality", function() {
         this.productName = iName;
         this.price = iPrice;
       }
-
-      public equals (t:any) : boolean {
-        if (JSON.stringify(this) === JSON.stringify(t))
-          return true;
-        return false;
-      };
 
       public getProductName ():string {
         return this.productName;
@@ -44,7 +39,7 @@ describe("Test LinkedList functionality", function() {
 
 
     it("Test Creation state", function() {
-      let list:List<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let list:List<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (list.isEmpty ()).toEqual(true);
       expect (list.size ()).toEqual(0);
 
@@ -54,7 +49,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test Adding some items", function() {
-      let ll:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let ll:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       let list:List<PetStoreProduct> = ll;
       let collection:Collection<PetStoreProduct> = list;
 
@@ -74,7 +69,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test clearing the LinkedList", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       let list:List<PetStoreProduct> = thelist;
       let collection:Collection<PetStoreProduct> = list;
 
@@ -137,7 +132,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test get", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -145,16 +140,16 @@ describe("Test LinkedList functionality", function() {
       let index0:PetStoreProduct = thelist.get (0);
       let index1:PetStoreProduct = thelist.get (1);
 
-      expect (product1.equals (index0)).toEqual(true);
-      expect (product1.equals (index1)).toEqual(false);
-      expect (product2.equals (index0)).toEqual(false);
-      expect (product2.equals (index1)).toEqual(true);
+      expect (product1.getProductName()).toEqual (index0.getProductName());
+      expect (product2.getProductName()).toEqual (index1.getProductName());
+      expect (product1.getPrice()).toEqual (index0.getPrice());
+      expect (product2.getPrice()).toEqual (index1.getPrice());
 
       expect (thelist.get (5000)).toEqual (null);
     });
 
     it("Test indexof", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (thelist.indexOf (product1)).toEqual(-1);
       expect (thelist.lastIndexOf(product1)).toEqual(-1);
 
@@ -174,7 +169,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test set", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -187,7 +182,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test java iteration", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -208,7 +203,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test addElement at front of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -221,7 +216,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test addElement in middle of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -234,7 +229,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test addElement at end of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -247,7 +242,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test remove at front of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (thelist.remove (0)).toEqual (undefined);
 
       expect (thelist.add (product1)).toEqual (true);
@@ -263,7 +258,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test remove in middle of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -277,7 +272,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test remove at end of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -292,7 +287,7 @@ describe("Test LinkedList functionality", function() {
 
 
     it("Test removeElement at front of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (thelist.removeElement (product1)). toEqual (false);
 
       expect (thelist.add (product1)).toEqual (true);
@@ -307,7 +302,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test removeElement in middle of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -321,7 +316,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test removeElement at end of list", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -335,7 +330,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test duplicates in array", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -364,11 +359,11 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test addall", function() {
-      let victim:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let victim:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (victim.addAll (null)).toEqual (false);
       expect (victim.addAll (undefined)).toEqual (false);
-      expect (victim.addAll (new LinkedList<PetStoreProduct> ())).toEqual (false);
+      expect (victim.addAll (new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>()))).toEqual (false);
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
       expect (thelist.add (product3)).toEqual (true);
@@ -378,14 +373,14 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test removeall", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (thelist.removeAll (null)).toEqual (false);
       expect (thelist.removeAll (undefined)).toEqual (false);
-      expect (thelist.removeAll (new LinkedList<PetStoreProduct>())).toEqual (false);
+      expect (thelist.removeAll (new LinkedList<PetStoreProduct>(new GenericCollectable<PetStoreProduct>()))).toEqual (false);
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
 
-      let removelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let removelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
       expect (removelist.add (product2)).toEqual (true);
       expect (removelist.add (product3)).toEqual (true);
 
@@ -398,11 +393,11 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test equals", function() {
-        let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+        let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
         expect (thelist.add (product1)).toEqual (true);
         expect (thelist.add (product2)).toEqual (true);
 
-        let list2:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+        let list2:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
         expect (list2.add (product1)).toEqual (true);
         expect (list2.add (product2)).toEqual (true);
         expect (list2.add (product3)).toEqual (true);
@@ -416,7 +411,7 @@ describe("Test LinkedList functionality", function() {
 
 
     it("Test typescript iteration", function() {
-      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
 
       expect (thelist.add (product1)).toEqual (true);
       expect (thelist.add (product2)).toEqual (true);
@@ -434,7 +429,7 @@ describe("Test LinkedList functionality", function() {
     });
 
     it("Test getfirst", function() {
-        let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+        let thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
         expect (thelist.getFirst()).toEqual (null);
         expect (thelist.add (product1)).toEqual (true);
         expect (thelist.add (product2)).toEqual (true);

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var CollectionUtils_1 = require("../src/CollectionUtils");
 var HashMap_1 = require("../src/HashMap");
 describe("Test HashMap functionality", function () {
     // PetStoreProduct will be used in testing
@@ -13,21 +14,6 @@ describe("Test HashMap functionality", function () {
         };
         PetStoreProduct.prototype.getPrice = function () {
             return this.price;
-        };
-        PetStoreProduct.prototype.equals = function (t) {
-            if (t instanceof PetStoreProduct) {
-                if ((this.productName === t.getProductName()) && (this.price === t.getPrice()))
-                    return true;
-            }
-            return false;
-        };
-        PetStoreProduct.prototype.hashCode = function () {
-            if (this.price === undefined)
-                return 1;
-            if (this.price === null)
-                return 1;
-            var tmp = Math.abs(this.price);
-            return Math.ceil(tmp);
         };
         return PetStoreProduct;
     }());
@@ -43,12 +29,12 @@ describe("Test HashMap functionality", function () {
         return ValueClass;
     }());
     it("Test Creation state", function () {
-        var myMap1 = new HashMap_1.HashMap();
+        var myMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         expect(myMap1.size()).toEqual(0);
         expect(myMap1.isEmpty()).toEqual(true);
     });
     it("Test adding one entry", function () {
-        var myMap1 = new HashMap_1.HashMap();
+        var myMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         expect(myMap1.size()).toEqual(0);
         expect(myMap1.isEmpty()).toEqual(true);
         expect(undefined).toEqual(myMap1.put(product1, new ValueClass()));
@@ -56,7 +42,7 @@ describe("Test HashMap functionality", function () {
         expect(myMap1.isEmpty()).toEqual(false);
     });
     it("Test adding two entries", function () {
-        var myMap1 = new HashMap_1.HashMap();
+        var myMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         //    myMap1.printMap();
         expect(myMap1.size()).toEqual(0);
         expect(myMap1.isEmpty()).toEqual(true);
@@ -70,8 +56,8 @@ describe("Test HashMap functionality", function () {
         expect(myMap1.isEmpty()).toEqual(false);
     });
     it("Test Adding some items", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
-        var petStoreMap2 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
+        var petStoreMap2 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         petStoreMap1.put(product1, new ValueClass());
         petStoreMap1.put(product2, new ValueClass());
         petStoreMap1.put(product3, new ValueClass());
@@ -83,7 +69,7 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap2.isEmpty()).toEqual(false);
     });
     it("Test get", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         expect(petStoreMap1.get(product1)).toEqual(null);
         petStoreMap1.put(product1, new ValueClass());
         expect(petStoreMap1.get(product1)).not.toEqual(null);
@@ -94,8 +80,8 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap1.get(product3)).toEqual(null);
     });
     it("Test clear", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
-        var petStoreMap2 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
+        var petStoreMap2 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         petStoreMap1.put(product1, new ValueClass());
         petStoreMap1.put(product2, new ValueClass());
         petStoreMap1.put(product3, new ValueClass());
@@ -121,7 +107,7 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap2.isEmpty()).toEqual(false);
     });
     it("Test containskey", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         expect(petStoreMap1.get(product1)).toEqual(null);
         expect(petStoreMap1.containsKey(product1)).toEqual(false);
         petStoreMap1.put(product1, new ValueClass());
@@ -138,8 +124,8 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap1.containsKey(product3)).toEqual(false);
     });
     it("Test remove", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
-        var petStoreMap2 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
+        var petStoreMap2 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         expect(petStoreMap1.remove(productNotAvailable)).toEqual(null);
         petStoreMap1.put(product1, new ValueClass());
         petStoreMap1.put(product2, new ValueClass());
@@ -171,7 +157,7 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap2.isEmpty()).toEqual(false);
     });
     it("Test rehash", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         for (var loop1 = 1; loop1 <= 26; loop1++) {
             for (var loop2 = 1; loop2 <= 26; loop2++) {
                 for (var loop3 = 1; loop3 <= 26; loop3++) {
@@ -199,7 +185,7 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap1.isEmpty()).toEqual(true);
     });
     it("Test keyset jiterator basics", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var keyset = petStoreMap1.keySet();
         var count = 0;
         var iter = keyset.iterator();
@@ -210,7 +196,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(0);
     });
     it("Test keyset iterator basics", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var keyset = petStoreMap1.keySet();
         var count = 0;
         var tsi = keyset[Symbol.iterator]();
@@ -222,7 +208,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(0);
     });
     it("Test entryset jiterator basics", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var entryset = petStoreMap1.entrySet();
         var count = 0;
         var iter = entryset.iterator();
@@ -233,7 +219,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(0);
     });
     it("Test entryset iterator basics", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var entryset = petStoreMap1.entrySet();
         var count = 0;
         var tsi = entryset[Symbol.iterator]();
@@ -245,7 +231,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(0);
     });
     it("Test keyset jiterator one entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var keyset = petStoreMap1.keySet();
         var count = 0;
         var iter = keyset.iterator();
@@ -265,7 +251,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(1);
     });
     it("Test keyset iterator one entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var keyset = petStoreMap1.keySet();
         var count = 0;
         var tsi = keyset[Symbol.iterator]();
@@ -287,7 +273,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(1);
     });
     it("Test entryset jiterator one entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var entryset = petStoreMap1.entrySet();
         var count = 0;
         var iter = entryset.iterator();
@@ -307,7 +293,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(1);
     });
     it("Test entryset iterator one entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var entryset = petStoreMap1.entrySet();
         var count = 0;
         var tsi = entryset[Symbol.iterator]();
@@ -329,7 +315,7 @@ describe("Test HashMap functionality", function () {
         expect(count).toEqual(1);
     });
     it("Test keyset jiterator two entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var keyset = petStoreMap1.keySet();
         var count = 0;
         var iter = keyset.iterator();
@@ -348,11 +334,11 @@ describe("Test HashMap functionality", function () {
         for (; iter.hasNext();) {
             var p = iter.next();
             count = count + 1;
-            if (p.equals(product1)) {
+            if (p.getProductName() === product1.getProductName()) {
                 found1 = true;
             }
             else {
-                if (p.equals(product2)) {
+                if (p.getProductName() === product2.getProductName()) {
                     found2 = true;
                 }
             }
@@ -362,7 +348,7 @@ describe("Test HashMap functionality", function () {
         expect(found2).toEqual(true);
     });
     it("Test keyset iterator two entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var keyset = petStoreMap1.keySet();
         var count = 0;
         var tsi = keyset[Symbol.iterator]();
@@ -382,11 +368,11 @@ describe("Test HashMap functionality", function () {
         var found2 = false;
         while (!tmp.done) {
             var p = tmp.value;
-            if (p.equals(product1)) {
+            if (p.getProductName() === product1.getProductName()) {
                 found1 = true;
             }
             else {
-                if (p.equals(product2)) {
+                if (p.getProductName() === product2.getProductName()) {
                     found2 = true;
                 }
             }
@@ -398,7 +384,7 @@ describe("Test HashMap functionality", function () {
         expect(found2).toEqual(true);
     });
     it("Test entryset jiterator two entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var entryset = petStoreMap1.entrySet();
         var count = 0;
         var iter = entryset.iterator();
@@ -417,11 +403,11 @@ describe("Test HashMap functionality", function () {
         for (; iter.hasNext();) {
             var p = iter.next();
             count = count + 1;
-            if (p.getKey().equals(product1)) {
+            if (p.getKey().getProductName() === product1.getProductName()) {
                 found1 = true;
             }
             else {
-                if (p.getKey().equals(product2)) {
+                if (p.getKey().getProductName() === product2.getProductName()) {
                     found2 = true;
                 }
             }
@@ -431,7 +417,7 @@ describe("Test HashMap functionality", function () {
         expect(found2).toEqual(true);
     });
     it("Test entryset iterator two entry", function () {
-        var petStoreMap1 = new HashMap_1.HashMap();
+        var petStoreMap1 = new HashMap_1.HashMap(new CollectionUtils_1.GenericHashable());
         var entryset = petStoreMap1.entrySet();
         var count = 0;
         var tsi = entryset[Symbol.iterator]();
@@ -451,11 +437,11 @@ describe("Test HashMap functionality", function () {
         var found2 = false;
         while (!tmp.done) {
             var p = tmp.value.getKey();
-            if (p.equals(product1)) {
+            if (p.getProductName() === product1.getProductName()) {
                 found1 = true;
             }
             else {
-                if (p.equals(product2)) {
+                if (p.getProductName() === product2.getProductName()) {
                     found2 = true;
                 }
             }

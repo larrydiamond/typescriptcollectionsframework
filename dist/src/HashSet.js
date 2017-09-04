@@ -10,15 +10,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var HashMap_1 = require("./HashMap");
 var HashSet = (function () {
-    function HashSet(initialElements, iInitialCapacity, iLoadFactor) {
-        if (initialElements === void 0) { initialElements = new HashSet(null, 20, 0.75); }
+    function HashSet(iHash, initialElements, iInitialCapacity, iLoadFactor) {
+        if (initialElements === void 0) { initialElements = null; }
         if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
         if (iLoadFactor === void 0) { iLoadFactor = 0.75; }
         this.initialElements = initialElements;
         this.iInitialCapacity = iInitialCapacity;
         this.iLoadFactor = iLoadFactor;
         this.datastore = null;
-        this.datastore = new HashMap_1.HashMap(null, iInitialCapacity, iLoadFactor);
+        this.hashMethods = iHash;
+        this.datastore = new HashMap_1.HashMap(this.hashMethods, null, iInitialCapacity, iLoadFactor);
         if (initialElements !== null) {
             // TODO
         }

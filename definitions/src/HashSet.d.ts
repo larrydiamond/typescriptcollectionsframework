@@ -2,12 +2,13 @@ import { JIterator } from "./JIterator";
 import { Hashable } from "./Hashable";
 import { HashMapIteratorLocationTracker } from "./HashMap";
 import { JSet } from "./JSet";
-export declare class HashSet<K extends Hashable> implements JSet<K> {
+export declare class HashSet<K> implements JSet<K> {
     private initialElements;
     private iInitialCapacity;
     private iLoadFactor;
     private datastore;
-    constructor(initialElements?: JSet<K>, iInitialCapacity?: number, iLoadFactor?: number);
+    private hashMethods;
+    constructor(iHash: Hashable<K>, initialElements?: JSet<K>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
@@ -55,14 +56,14 @@ export declare class HashSet<K extends Hashable> implements JSet<K> {
     */
     [Symbol.iterator](): Iterator<K>;
 }
-export declare class HashSetJIterator<T extends Hashable> implements JIterator<T> {
+export declare class HashSetJIterator<T> implements JIterator<T> {
     private location;
     private set;
     constructor(iSet: HashSet<T>);
     hasNext(): boolean;
     next(): T;
 }
-export declare class HashSetIterator<T extends Hashable> implements Iterator<T> {
+export declare class HashSetIterator<T> implements Iterator<T> {
     private location;
     private set;
     constructor(iSet: HashSet<T>);

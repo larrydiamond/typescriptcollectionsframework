@@ -7,12 +7,12 @@
  */
 
 export {ArrayList} from "./src/ArrayList";
-export {CNumber} from "./src/CNumber";
 export {Collectable} from "./src/Collectable";
 export {Collection} from "./src/Collection";
 export {CollectionUtils} from "./src/CollectionUtils";
 export {Comparator} from "./src/Comparator";
-export {CString} from "./src/CString";
+export {GenericCollectable} from "./src/CollectionUtils";
+export {GenericHashable} from "./src/CollectionUtils";
 export {Hashable} from "./src/Hashable";
 export {HashMap} from "./src/HashMap";
 export {HashSet} from "./src/HashSet";

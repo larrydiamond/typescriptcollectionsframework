@@ -10,13 +10,14 @@ import {BasicMapEntry} from "../src/BasicMapEntry";
 import {Collectable} from "../src/Collectable";
 import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
+import {GenericHashable} from "../src/CollectionUtils";
 import {Hashable} from "../src/Hashable";
 import {HashSet} from "../src/HashSet";
 
 describe("Test HashSet functionality", function() {
 
   // PetStoreProduct will be used in testing
-  class PetStoreProduct implements Hashable {
+  class PetStoreProduct {
     private productName:string;
     private price:number;
 
@@ -32,23 +33,6 @@ describe("Test HashSet functionality", function() {
     public getPrice():number {
       return this.price;
     }
-
-    equals (t:any) : boolean {
-      if (t instanceof PetStoreProduct) {
-        if ((this.productName === t.getProductName()) && (this.price === t.getPrice()))
-          return true;
-      }
-      return false;
-    }
-
-    hashCode () : number {
-      if (this.price === undefined)
-        return 1;
-      if (this.price === null)
-        return 1;
-      let tmp:number = Math.abs (this.price);
-      return Math.ceil (tmp);
-    }
   };
 
   let product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
@@ -56,13 +40,13 @@ describe("Test HashSet functionality", function() {
   let product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
 
   it("Test Creation state", function() {
-    let set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
     expect (set1.size ()).toEqual(0);
     expect (set1.isEmpty ()).toEqual(true);
   });
 
   it("Test Adding one item", function() {
-    let set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
     expect (set1.size ()).toEqual(0);
     expect (set1.isEmpty ()).toEqual(true);
     expect (set1.add (product1)).toEqual(true);
@@ -71,7 +55,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test adding two entries", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
   //    mySet1.printMap();
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
@@ -86,7 +70,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test adding duplicates", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
     expect (true).toEqual(mySet1.add(product1));
@@ -98,7 +82,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test contains", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
     expect (true).toEqual(mySet1.add(product1));
@@ -109,7 +93,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test clear", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
     expect (true).toEqual(mySet1.add(product1));
@@ -125,7 +109,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test java iteration", function() {
-    let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
 
     expect (set2.add (product1)).toEqual (true);
     expect (set2.add (product2)).toEqual (true);
@@ -136,10 +120,10 @@ describe("Test HashSet functionality", function() {
     for (let iter = set2.iterator(); iter.hasNext(); ) {
       let psp:PetStoreProduct = iter.next ();
 
-      if (product1.equals (psp)) {
+      if (psp.getProductName() === product1.getProductName()) {
         found1 = true;
       } else {
-        if (product2.equals (psp)) {
+      if (psp.getProductName() === product2.getProductName()) {
           found2 = true;
         } else {
           fail("Found something that wasnt product1 or product2");
@@ -152,7 +136,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test typescript iteration", function() {
-    let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> ();
+    let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
 
     expect (set2.add (product1)).toEqual (true);
     expect (set2.add (product2)).toEqual (true);
@@ -164,10 +148,10 @@ describe("Test HashSet functionality", function() {
     let tmp:IteratorResult<PetStoreProduct> = tsi.next();
     expect (tmp.done).toEqual(false);
 
-    if (product1.equals (tmp.value)) {
+    if (tmp.value.getProductName() === product1.getProductName()) {
       found1 = true;
     } else {
-      if (product2.equals (tmp.value)) {
+      if (tmp.value.getProductName() === product2.getProductName()) {
         found2 = true;
       } else {
         fail("Found something that wasnt product1 or product2");
@@ -177,10 +161,10 @@ describe("Test HashSet functionality", function() {
     tmp = tsi.next();
     expect (tmp.done).toEqual(false);
 
-    if (product1.equals (tmp.value)) {
+    if (tmp.value.getProductName() === product1.getProductName()) {
       found1 = true;
     } else {
-      if (product2.equals (tmp.value)) {
+      if (tmp.value.getProductName() === product2.getProductName()) {
         found2 = true;
       } else {
         fail("Found something that wasnt product1 or product2");

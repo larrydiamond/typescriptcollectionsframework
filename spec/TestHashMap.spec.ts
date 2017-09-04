@@ -8,6 +8,7 @@
 import {Collectable} from "../src/Collectable";
 import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
+import {GenericHashable} from "../src/CollectionUtils";
 import {HashMap} from "../src/HashMap";
 import {Hashable} from "../src/Hashable";
 import {ImmutableSet} from "../src/ImmutableSet";
@@ -17,7 +18,7 @@ import {MapEntry} from "../src/MapEntry";
 describe("Test HashMap functionality", function() {
 
   // PetStoreProduct will be used in testing
-  class PetStoreProduct implements Hashable {
+  class PetStoreProduct {
     private productName:string;
     private price:number;
 
@@ -33,23 +34,6 @@ describe("Test HashMap functionality", function() {
     public getPrice():number {
       return this.price;
     }
-
-    equals (t:any) : boolean {
-      if (t instanceof PetStoreProduct) {
-        if ((this.productName === t.getProductName()) && (this.price === t.getPrice()))
-          return true;
-      }
-      return false;
-    }
-
-    hashCode () : number {
-      if (this.price === undefined)
-        return 1;
-      if (this.price === null)
-        return 1;
-      let tmp:number = Math.abs (this.price);
-      return Math.ceil (tmp);
-    }
   };
 
   let product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
@@ -64,13 +48,13 @@ describe("Test HashMap functionality", function() {
   }
 
   it("Test Creation state", function() {
-    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     expect (myMap1.size ()).toEqual(0);
     expect (myMap1.isEmpty ()).toEqual(true);
   });
 
   it("Test adding one entry", function() {
-    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     expect (myMap1.size ()).toEqual(0);
     expect (myMap1.isEmpty ()).toEqual(true);
     expect (undefined).toEqual(myMap1.put(product1, new ValueClass()));
@@ -79,7 +63,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test adding two entries", function() {
-    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let myMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
 //    myMap1.printMap();
     expect (myMap1.size ()).toEqual(0);
     expect (myMap1.isEmpty ()).toEqual(true);
@@ -94,8 +78,8 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test Adding some items", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
-    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
+    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
 
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
@@ -110,7 +94,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test get", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     expect (petStoreMap1.get (product1)).toEqual(null);
 
     petStoreMap1.put (product1, new ValueClass());
@@ -124,8 +108,8 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test clear", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
-    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
+    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
 
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
@@ -154,7 +138,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test containskey", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     expect (petStoreMap1.get (product1)).toEqual(null);
     expect (petStoreMap1.containsKey (product1)).toEqual(false);
 
@@ -174,8 +158,8 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test remove", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
-    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
+    let petStoreMap2:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
 
     expect (petStoreMap1.remove (productNotAvailable)).toEqual (null);
 
@@ -214,7 +198,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test rehash", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
 
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
@@ -248,7 +232,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test keyset jiterator basics", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
     let iter:JIterator<PetStoreProduct> = keyset.iterator();
@@ -260,7 +244,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test keyset iterator basics", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
     let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
@@ -273,7 +257,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test entryset jiterator basics", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
     let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
@@ -285,7 +269,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test entryset iterator basics", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
     let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
@@ -298,7 +282,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test keyset jiterator one entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
     let iter:JIterator<PetStoreProduct> = keyset.iterator();
@@ -320,7 +304,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test keyset iterator one entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
     let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
@@ -344,7 +328,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test entryset jiterator one entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
     let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
@@ -366,7 +350,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test entryset iterator one entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
     let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
@@ -390,7 +374,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test keyset jiterator two entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
     let iter:JIterator<PetStoreProduct> = keyset.iterator();
@@ -410,10 +394,10 @@ describe("Test HashMap functionality", function() {
     for (; iter.hasNext(); ) {
       let p:PetStoreProduct = iter.next();
       count = count + 1;
-      if (p.equals (product1)) {
+      if (p.getProductName() === product1.getProductName()) {
         found1 = true;
       } else {
-        if (p.equals (product2)) {
+        if (p.getProductName() === product2.getProductName()) {
           found2 = true;
         }
       }
@@ -424,7 +408,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test keyset iterator two entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
     let count:number = 0;
     let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
@@ -445,10 +429,10 @@ describe("Test HashMap functionality", function() {
     let found2:boolean = false;
     while (!tmp.done) {
       let p:PetStoreProduct = tmp.value;
-      if (p.equals (product1)) {
+      if (p.getProductName() === product1.getProductName()) {
         found1 = true;
       } else {
-        if (p.equals (product2)) {
+        if (p.getProductName() === product2.getProductName()) {
           found2 = true;
         }
       }
@@ -461,7 +445,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test entryset jiterator two entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
     let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
@@ -481,10 +465,10 @@ describe("Test HashMap functionality", function() {
     for (; iter.hasNext(); ) {
       let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
       count = count + 1;
-      if (p.getKey().equals (product1)) {
+      if (p.getKey().getProductName() === product1.getProductName()) {
         found1 = true;
       } else {
-        if (p.getKey().equals (product2)) {
+        if (p.getKey().getProductName() === product2.getProductName()) {
           found2 = true;
         }
       }
@@ -495,7 +479,7 @@ describe("Test HashMap functionality", function() {
   });
 
   it("Test entryset iterator two entry", function() {
-    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> ();
+    let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new GenericHashable<PetStoreProduct>());
     let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
     let count:number = 0;
     let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
@@ -516,10 +500,10 @@ describe("Test HashMap functionality", function() {
     let found2:boolean = false;
     while (!tmp.done) {
       let p:PetStoreProduct = tmp.value.getKey();
-      if (p.equals (product1)) {
+      if (p.getProductName() === product1.getProductName()) {
         found1 = true;
       } else {
-        if (p.equals (product2)) {
+        if (p.getProductName() === product2.getProductName()) {
           found2 = true;
         }
       }

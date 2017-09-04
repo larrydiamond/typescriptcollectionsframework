@@ -9,6 +9,6 @@
 import {Collection} from "./Collection";
 import {Collectable} from "./Collectable";
 
-export interface Queue<K extends Collectable> extends Collection<K> {
+export interface Queue<K> extends Collection<K> {
   // A very talented volunteer stepped up to write Queue.   Im preparing some files for him.   Thank you very much!
 }

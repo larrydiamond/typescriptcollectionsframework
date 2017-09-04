@@ -8,8 +8,8 @@
 
  import {Collectable} from "./Collectable";
  import {Queue} from "./Queue";
- 
- export interface PriorityQueue<K extends Collectable> extends Queue<K> {
+
+ export interface PriorityQueue<K> extends Queue<K> {
    // A very talented volunteer stepped up to write PriorityQueue.   Im preparing some files for him.   Thank you very much!
 
    // Hi Frank I just made this temporarily an interface instead of a class so that the library would compile.

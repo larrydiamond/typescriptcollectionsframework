@@ -14,12 +14,14 @@ import {HashMap} from "./HashMap";
 import {HashMapIteratorLocationTracker} from "./HashMap";
 import {JSet} from "./JSet";
 
-export class HashSet<K extends Hashable> implements JSet<K> {
+export class HashSet<K> implements JSet<K> {
 
   private datastore:HashMap<K,number> = null;
+  private hashMethods:Hashable<K>;
 
-  constructor(private initialElements:JSet<K> = new HashSet<K>(null, 20, 0.75), private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
-    this.datastore = new HashMap<K,number>(null, iInitialCapacity, iLoadFactor);
+  constructor(iHash:Hashable<K>, private initialElements:JSet<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+    this.hashMethods = iHash;
+    this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
     if (initialElements !== null) {
       // TODO
     }
@@ -118,7 +120,7 @@ export class HashSet<K extends Hashable> implements JSet<K> {
 
 
 /* Java style iterator */
-export class HashSetJIterator<T extends Hashable> implements JIterator<T> {
+export class HashSetJIterator<T> implements JIterator<T> {
   private location:HashMapIteratorLocationTracker<T,number>;
   private set:HashSet<T>;
 
@@ -170,7 +172,7 @@ export class HashSetJIterator<T extends Hashable> implements JIterator<T> {
 }
 
 /* TypeScript iterator */
-export class HashSetIterator<T extends Hashable> implements Iterator<T> {
+export class HashSetIterator<T> implements Iterator<T> {
   private location:HashMapIteratorLocationTracker<T,number>;
   private set:HashSet<T>;
 

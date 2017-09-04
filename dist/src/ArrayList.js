@@ -8,16 +8,44 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
+var HashSet_1 = require("./HashSet");
+var LinkedList_1 = require("../src/LinkedList");
 var ArrayList = (function () {
-    function ArrayList(initialElements) {
-        if (initialElements === void 0) { initialElements = null; }
+    function ArrayList(iEquals, initialElements) {
         this.initialElements = initialElements;
         this.elements = null;
         this.sizeValue = 0;
-        if (initialElements !== null) {
+        this.equality = iEquals;
+        if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var t = iter.next();
                 this.add(t);
+            }
+        }
+        else {
+            if (iEquals instanceof ArrayList) {
+                for (var iter = iEquals.iterator(); iter.hasNext();) {
+                    var t = iter.next();
+                    this.add(t);
+                }
+            }
+            if (iEquals instanceof LinkedList_1.LinkedList) {
+                for (var iter = iEquals.iterator(); iter.hasNext();) {
+                    var t = iter.next();
+                    this.add(t);
+                }
+            }
+            if (iEquals instanceof HashSet_1.HashSet) {
+                for (var iter = iEquals.iterator(); iter.hasNext();) {
+                    var t = iter.next();
+                    this.add(t);
+                }
+            }
+            if (iEquals instanceof HashSet_1.HashSet) {
+                for (var iter = iEquals.iterator(); iter.hasNext();) {
+                    var t = iter.next();
+                    this.add(t);
+                }
             }
         }
     }
@@ -111,7 +139,7 @@ var ArrayList = (function () {
             return -1;
         for (var loop = 0; loop < this.sizeValue; loop++) {
             var e = this.get(loop);
-            if (e.equals(t))
+            if (this.equality.equals(e, t))
                 return loop;
         }
         return -1;
@@ -128,7 +156,7 @@ var ArrayList = (function () {
             return -1;
         for (var loop = this.sizeValue - 1; loop >= 0; loop--) {
             var e = this.get(loop);
-            if (e.equals(t))
+            if (this.equality.equals(e, t))
                 return loop;
         }
         return -1;
@@ -228,7 +256,7 @@ var ArrayList = (function () {
                 for (var loop = 0; loop < this.size(); loop++) {
                     var thisentry = this.get(loop);
                     var thatentry = t.get(loop);
-                    if (thisentry.equals(thatentry)) {
+                    if (this.equality.equals(thisentry, thatentry)) {
                         // keep going
                     }
                     else {

@@ -18,15 +18,22 @@ import {LinkedList} from "./LinkedList";
 import {List} from "./List";
 import {MapEntry} from "./MapEntry";
 
-export class HashMap<K extends Hashable,V> implements JMap<K,V> {
+export class HashMap<K,V> implements JMap<K,V> {
   private data:ArrayList<List<HashMapEntry<K,V>>> = null;
   private elementCount:number = 0;
   private loadFactor:number = 0.75;
+  private hashMethods:Hashable<K>;
+  private MapEntryHashMethods:Hashable<HashMapEntry<K, V>>;
+  private ListMapEntryMethods:Collectable<List<HashMapEntry<K, V>>>;
 
-  public constructor (private initialElements:JMap<K, V> = new HashMap<K,V>(null, 20, 0.75), private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
-    this.data = new ArrayList();
+  public constructor (iHash:Hashable<K>, private initialElements:JMap<K, V> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+    this.hashMethods = iHash;
+    this.MapEntryHashMethods = this.getHashMapEntryHashable(this.hashMethods);
+    this.ListMapEntryMethods = this.getListHashMapEntryHashable(this.hashMethods);
+
+    this.data = new ArrayList<List<HashMapEntry<K,V>>>(this.ListMapEntryMethods);
     for (let loop:number = 0; loop < iInitialCapacity; loop++) {
-      this.data.add (new LinkedList<HashMapEntry<K,V>>());
+      this.data.add (new LinkedList<HashMapEntry<K,V>>(this.MapEntryHashMethods));
     }
     this.loadFactor = iLoadFactor;
     if (initialElements !== null) {
@@ -43,11 +50,11 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
   public put (key:K, value:V) : V {
     let mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
-      let hashCode:number = key.hashCode();
+      let hashCode:number = this.hashMethods.hashCode(key);
       let newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
       newNode.setHashCode(hashCode);
       if (this.data.size() === 0) {
-        let newList:List<HashMapEntry<K,V>> = new ArrayList<HashMapEntry<K,V>>();
+        let newList:List<HashMapEntry<K,V>> = new ArrayList<HashMapEntry<K,V>>(this.MapEntryHashMethods);
         this.data.add (newList);
         newList.add (newNode);
         this.elementCount = this.elementCount + 1;
@@ -74,9 +81,9 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
       // How many buckets should there be?   Lets go with doubling the number of buckets
 
       let newBucketCount = (this.data.size() * 2) + 1;
-      let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>();
+      let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>(this.ListMapEntryMethods);
       for (let loop:number = 0; loop < newBucketCount; loop++) {
-        newdata.add (new LinkedList<HashMapEntry<K,V>>());
+        newdata.add (new LinkedList<HashMapEntry<K,V>>(this.MapEntryHashMethods));
       }
 
       // Iterate through the nodes and add them all into newdata
@@ -131,13 +138,13 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     if (this.data === null) return null;
     if (this.data === undefined) return null;
     if (this.data.size () < 1) return null;
-    let hashCode:number = key.hashCode();
+    let hashCode:number = this.hashMethods.hashCode (key);
     let numBuckets = this.data.size();
     if (numBuckets < 1) numBuckets = 1;
     let bucket = hashCode % numBuckets;
     let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
     for (let loop:number = 0; loop < thisList.size(); loop++) {
-      if (key.equals (thisList.get(loop).getKey())) {
+      if (this.hashMethods.equals (key, thisList.get(loop).getKey())) {
         this.elementCount = this.elementCount - 1;
         return thisList.remove (loop).getValue();
       }
@@ -161,23 +168,24 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     if (this.data === null) return null;
     if (this.data === undefined) return null;
     if (this.data.size () < 1) return null;
-    let hashCode:number = key.hashCode();
+    let hashCode:number = this.hashMethods.hashCode (key);
     let numBuckets = this.data.size();
     if (numBuckets < 1) numBuckets = 1;
     let bucket = hashCode % numBuckets;
     let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
     for (let loop:number = 0; loop < thisList.size(); loop++) {
-      if (key.equals (thisList.get(loop).getKey()))
+      if (this.hashMethods.equals (key, thisList.get(loop).getKey())) {
         return thisList.get(loop);
+      }
     }
     return null;
   }
 
-  /**
+ /**
   * Removes all of the mappings from this map. The map will be empty after this call returns.
   */
   public clear () : void {
-    this.data = new ArrayList<List<HashMapEntry<K,V>>>();
+    this.data = new ArrayList<List<HashMapEntry<K,V>>>(this.ListMapEntryMethods);
     this.elementCount = 0;
   }
 
@@ -270,6 +278,59 @@ export class HashMap<K extends Hashable,V> implements JMap<K,V> {
     }
     return null;
   }
+
+  private getHashMapEntryHashable(iHash:Hashable<K>) : Hashable<HashMapEntry<K, V>> {
+    let thisHash:Hashable<HashMapEntry<K,V>> = {
+      hashCode (o:HashMapEntry<K,V>) : number {
+        return iHash.hashCode (o.getKey());
+      },
+      equals (o1:HashMapEntry<K,V>, o2:HashMapEntry<K,V>) : boolean {
+        return iHash.equals (o1.getKey(), o2.getKey());
+      }
+    };
+    return thisHash;
+  }
+
+  private getListHashMapEntryHashable(iHash:Hashable<K>) : Collectable<List<HashMapEntry<K, V>>> {
+    let thisHash:Collectable<List<HashMapEntry<K,V>>> = {
+      equals (o1:List<HashMapEntry<K,V>>, o2:List<HashMapEntry<K,V>>) : boolean {
+        if (o1 === undefined) {
+          if (o2 === undefined) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        if (o1 === null) {
+          if (o2 === null) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        if ((o2 === null) || (o2 === undefined)) {
+          return false;
+        }
+
+        if (o1.size() !== o2.size()) {
+          return false;
+        }
+
+        for (let loop:number = 0; loop < this.size(); loop++) {
+          let thisentry:HashMapEntry<K,V> = o1.get (loop);
+          let thatentry:HashMapEntry<K,V> = o2.get (loop);
+          if (this.equality.equals (thisentry, thatentry)) {
+            // keep going
+          } else {
+            return false;
+          }
+        }
+
+        return true;
+      }
+    };
+    return thisHash;
+  }
 }
 
 export class HashMapIteratorLocationTracker<K,V> {
@@ -291,7 +352,7 @@ export class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
   }
 }
 
-export class ImmutableKeySetForHashMap<K extends Hashable,V> implements ImmutableSet<K> {
+export class ImmutableKeySetForHashMap<K,V> implements ImmutableSet<K> {
   private map:HashMap<K,V>;
   constructor(iHashMap:HashMap<K,V>) {
     this.map = iHashMap;
@@ -309,7 +370,7 @@ export class ImmutableKeySetForHashMap<K extends Hashable,V> implements Immutabl
 }
 
 /* Java style iterator */
-export class HashMapKeySetJIterator<K extends Hashable,V> implements JIterator<K> {
+export class HashMapKeySetJIterator<K,V> implements JIterator<K> {
   private location:HashMapIteratorLocationTracker<K,V>;
   private map:HashMap<K,V>;
 
@@ -361,7 +422,7 @@ export class HashMapKeySetJIterator<K extends Hashable,V> implements JIterator<K
 }
 
 /* TypeScript iterator */
-export class HashMapKeySetIterator<K extends Hashable,V> implements Iterator<K> {
+export class HashMapKeySetIterator<K,V> implements Iterator<K> {
   private location:HashMapIteratorLocationTracker<K,V>;
   private map:HashMap<K,V>;
 
@@ -384,7 +445,7 @@ export class HashMapKeySetIterator<K extends Hashable,V> implements Iterator<K> 
 }
 
 
-export class ImmutableEntrySetForHashMap<K extends Hashable,V> implements ImmutableSet<MapEntry<K,V>> {
+export class ImmutableEntrySetForHashMap<K,V> implements ImmutableSet<MapEntry<K,V>> {
   private map:HashMap<K,V>;
   constructor(iHashMap:HashMap<K,V>) {
     this.map = iHashMap;
@@ -402,7 +463,7 @@ export class ImmutableEntrySetForHashMap<K extends Hashable,V> implements Immuta
 }
 
 /* Java style iterator */
-export class HashMapEntrySetJIterator<K extends Hashable,V> implements JIterator<MapEntry<K,V>> {
+export class HashMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
   private location:HashMapIteratorLocationTracker<K,V>;
   private map:HashMap<K,V>;
 
@@ -454,7 +515,7 @@ export class HashMapEntrySetJIterator<K extends Hashable,V> implements JIterator
 }
 
 /* TypeScript iterator */
-export class HashMapEntrySetIterator<K extends Hashable,V> implements Iterator<MapEntry<K,V>> {
+export class HashMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
   private location:HashMapIteratorLocationTracker<K,V>;
   private map:HashMap<K,V>;
 

@@ -9,9 +9,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var LinkedList = (function () {
-    function LinkedList(initialElements) {
+    function LinkedList(iEquals, initialElements) {
         if (initialElements === void 0) { initialElements = null; }
         this.initialElements = initialElements;
+        this.equality = iEquals;
         this.firstNode = null;
         this.lastNode = null;
         this.numberElements = 0;
@@ -128,7 +129,7 @@ var LinkedList = (function () {
     LinkedList.prototype.getNode = function (t) {
         var node = this.firstNode;
         while (node !== null) {
-            if (node.payload.equals(t)) {
+            if (this.equality.equals(node.payload, t)) {
                 return node;
             }
             else {
@@ -151,7 +152,7 @@ var LinkedList = (function () {
         }
         var node = this.firstNode;
         while (node !== null) {
-            if (node.payload.equals(t)) {
+            if (this.equality.equals(node.payload, t)) {
                 var previous = node.previousNode;
                 var following = node.nextNode;
                 if (previous !== null) {
@@ -237,7 +238,7 @@ var LinkedList = (function () {
         var offset = 0;
         var node = this.firstNode;
         while (node !== null) {
-            if (node.payload.equals(t)) {
+            if (this.equality.equals(node.payload, t)) {
                 return offset;
             }
             else {
@@ -309,7 +310,7 @@ var LinkedList = (function () {
         var offset = this.numberElements - 1;
         var node = this.lastNode;
         while (node !== null) {
-            if (node.payload.equals(t)) {
+            if (this.equality.equals(node.payload, t)) {
                 return offset;
             }
             else {
@@ -400,7 +401,7 @@ var LinkedList = (function () {
                 }
                 var thisNode = this.getFirstNode();
                 var thatNode = t.getFirstNode();
-                while ((thisNode !== null) && (thatNode !== null) && (thisNode.payload.equals(thatNode.payload))) {
+                while ((thisNode !== null) && (thatNode !== null) && (this.equality.equals(thisNode.payload, thatNode.payload))) {
                     thisNode = thisNode.nextNode;
                     thatNode = thatNode.nextNode;
                 }

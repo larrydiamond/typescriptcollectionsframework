@@ -6,6 +6,5 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 import { Collection } from "./Collection";
-import { Collectable } from "./Collectable";
-export interface Queue<K extends Collectable> extends Collection<K> {
+export interface Queue<K> extends Collection<K> {
 }

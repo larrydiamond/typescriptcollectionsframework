@@ -6,10 +6,9 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
-import {Collectable} from "./Collectable";
 import {JIterator} from "./JIterator";
 
-export interface Collection<T extends Collectable> extends Collectable {
+export interface Collection<T> {
 
   /**
    * Ensures that this collection contains the specified element (optional operation).

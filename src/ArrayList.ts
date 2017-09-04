@@ -9,18 +9,48 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {HashSet} from "./HashSet";
 import {JIterator} from "./JIterator";
+import {LinkedList} from "../src/LinkedList";
 import {List} from "./List";
+import {TreeSet} from "./TreeSet";
 
-export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
+export class ArrayList<T> implements List<T>, Iterable<T> {
   elements:T[] = null;
   sizeValue:number = 0;
+  equality:Collectable<T>;
 
-  constructor (private initialElements:Collection<T> = null) {
-    if (initialElements !== null) {
+  constructor (iEquals:Collectable<T>, private initialElements?:Collection<T>) {
+    this.equality = iEquals;
+    if ((initialElements !== null) && (initialElements !== undefined)){
       for (let iter = initialElements.iterator(); iter.hasNext(); ) {
         let t:T = iter.next ();
         this.add (t);
+      }
+    } else {
+      if (iEquals instanceof ArrayList) {
+        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
+          let t:T = iter.next ();
+          this.add (t);
+        }
+      }
+      if (iEquals instanceof LinkedList) {
+        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
+          let t:T = iter.next ();
+          this.add (t);
+        }
+      }
+      if (iEquals instanceof HashSet) {
+        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
+          let t:T = iter.next ();
+          this.add (t);
+        }
+      }
+      if (iEquals instanceof HashSet) {
+        for (let iter = iEquals.iterator(); iter.hasNext(); ) {
+          let t:T = iter.next ();
+          this.add (t);
+        }
       }
     }
   }
@@ -122,7 +152,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
 
     for (let loop:number = 0; loop < this.sizeValue; loop++) {
       let e = this.get (loop);
-      if (e.equals (t))
+      if (this.equality.equals (e, t))
         return loop;
     }
 
@@ -143,7 +173,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
 
     for (let loop:number = this.sizeValue - 1; loop >= 0; loop--) {
       let e = this.get (loop);
-      if (e.equals (t))
+      if (this.equality.equals (e, t))
         return loop;
     }
 
@@ -253,7 +283,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
         for (let loop:number = 0; loop < this.size(); loop++) {
           let thisentry:T = this.get (loop);
           let thatentry:T = t.get (loop);
-          if (thisentry.equals (thatentry)) {
+          if (this.equality.equals (thisentry, thatentry)) {
             // keep going
           } else {
             return false;
@@ -298,7 +328,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
 }
 
 /* Java style iterator */
-export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
+export class ArrayListJIterator<T> implements JIterator<T> {
   private offset:number = 0;
   private arraylist:ArrayList<T>;
 
@@ -318,7 +348,7 @@ export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
 }
 
 /* TypeScript iterator */
-export class ArrayListIterator<T extends Collectable> implements Iterator<T> {
+export class ArrayListIterator<T> implements Iterator<T> {
   private offset:number = 0;
   private arraylist:ArrayList<T>;
 

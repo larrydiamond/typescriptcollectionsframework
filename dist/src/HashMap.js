@@ -22,8 +22,8 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var LinkedList_1 = require("./LinkedList");
 var HashMap = (function () {
-    function HashMap(initialElements, iInitialCapacity, iLoadFactor) {
-        if (initialElements === void 0) { initialElements = new HashMap(null, 20, 0.75); }
+    function HashMap(iHash, initialElements, iInitialCapacity, iLoadFactor) {
+        if (initialElements === void 0) { initialElements = null; }
         if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
         if (iLoadFactor === void 0) { iLoadFactor = 0.75; }
         this.initialElements = initialElements;
@@ -32,9 +32,12 @@ var HashMap = (function () {
         this.data = null;
         this.elementCount = 0;
         this.loadFactor = 0.75;
-        this.data = new ArrayList_1.ArrayList();
+        this.hashMethods = iHash;
+        this.MapEntryHashMethods = this.getHashMapEntryHashable(this.hashMethods);
+        this.ListMapEntryMethods = this.getListHashMapEntryHashable(this.hashMethods);
+        this.data = new ArrayList_1.ArrayList(this.ListMapEntryMethods);
         for (var loop = 0; loop < iInitialCapacity; loop++) {
-            this.data.add(new LinkedList_1.LinkedList());
+            this.data.add(new LinkedList_1.LinkedList(this.MapEntryHashMethods));
         }
         this.loadFactor = iLoadFactor;
         if (initialElements !== null) {
@@ -50,11 +53,11 @@ var HashMap = (function () {
     HashMap.prototype.put = function (key, value) {
         var mapEntry = this.getMapEntry(key);
         if (mapEntry === null) {
-            var hashCode = key.hashCode();
+            var hashCode = this.hashMethods.hashCode(key);
             var newNode = new HashMapEntry(key, value);
             newNode.setHashCode(hashCode);
             if (this.data.size() === 0) {
-                var newList = new ArrayList_1.ArrayList();
+                var newList = new ArrayList_1.ArrayList(this.MapEntryHashMethods);
                 this.data.add(newList);
                 newList.add(newNode);
                 this.elementCount = this.elementCount + 1;
@@ -81,9 +84,9 @@ var HashMap = (function () {
         if (this.elementCount > (this.data.size() * this.loadFactor)) {
             // How many buckets should there be?   Lets go with doubling the number of buckets
             var newBucketCount = (this.data.size() * 2) + 1;
-            var newdata = new ArrayList_1.ArrayList();
+            var newdata = new ArrayList_1.ArrayList(this.ListMapEntryMethods);
             for (var loop = 0; loop < newBucketCount; loop++) {
-                newdata.add(new LinkedList_1.LinkedList());
+                newdata.add(new LinkedList_1.LinkedList(this.MapEntryHashMethods));
             }
             // Iterate through the nodes and add them all into newdata
             for (var bucketIter = this.data.iterator(); bucketIter.hasNext();) {
@@ -139,14 +142,14 @@ var HashMap = (function () {
             return null;
         if (this.data.size() < 1)
             return null;
-        var hashCode = key.hashCode();
+        var hashCode = this.hashMethods.hashCode(key);
         var numBuckets = this.data.size();
         if (numBuckets < 1)
             numBuckets = 1;
         var bucket = hashCode % numBuckets;
         var thisList = this.data.get(bucket);
         for (var loop = 0; loop < thisList.size(); loop++) {
-            if (key.equals(thisList.get(loop).getKey())) {
+            if (this.hashMethods.equals(key, thisList.get(loop).getKey())) {
                 this.elementCount = this.elementCount - 1;
                 return thisList.remove(loop).getValue();
             }
@@ -173,23 +176,24 @@ var HashMap = (function () {
             return null;
         if (this.data.size() < 1)
             return null;
-        var hashCode = key.hashCode();
+        var hashCode = this.hashMethods.hashCode(key);
         var numBuckets = this.data.size();
         if (numBuckets < 1)
             numBuckets = 1;
         var bucket = hashCode % numBuckets;
         var thisList = this.data.get(bucket);
         for (var loop = 0; loop < thisList.size(); loop++) {
-            if (key.equals(thisList.get(loop).getKey()))
+            if (this.hashMethods.equals(key, thisList.get(loop).getKey())) {
                 return thisList.get(loop);
+            }
         }
         return null;
     };
     /**
-    * Removes all of the mappings from this map. The map will be empty after this call returns.
-    */
+     * Removes all of the mappings from this map. The map will be empty after this call returns.
+     */
     HashMap.prototype.clear = function () {
-        this.data = new ArrayList_1.ArrayList();
+        this.data = new ArrayList_1.ArrayList(this.ListMapEntryMethods);
         this.elementCount = 0;
     };
     /**
@@ -277,6 +281,57 @@ var HashMap = (function () {
             bucket = bucket + 1;
         }
         return null;
+    };
+    HashMap.prototype.getHashMapEntryHashable = function (iHash) {
+        var thisHash = {
+            hashCode: function (o) {
+                return iHash.hashCode(o.getKey());
+            },
+            equals: function (o1, o2) {
+                return iHash.equals(o1.getKey(), o2.getKey());
+            }
+        };
+        return thisHash;
+    };
+    HashMap.prototype.getListHashMapEntryHashable = function (iHash) {
+        var thisHash = {
+            equals: function (o1, o2) {
+                if (o1 === undefined) {
+                    if (o2 === undefined) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                if (o1 === null) {
+                    if (o2 === null) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                if ((o2 === null) || (o2 === undefined)) {
+                    return false;
+                }
+                if (o1.size() !== o2.size()) {
+                    return false;
+                }
+                for (var loop = 0; loop < this.size(); loop++) {
+                    var thisentry = o1.get(loop);
+                    var thatentry = o2.get(loop);
+                    if (this.equality.equals(thisentry, thatentry)) {
+                        // keep going
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        };
+        return thisHash;
     };
     return HashMap;
 }());
