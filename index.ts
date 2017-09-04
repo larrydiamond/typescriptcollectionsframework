@@ -15,6 +15,7 @@ export {Comparator} from "./src/Comparator";
 export {CString} from "./src/CString";
 export {Hashable} from "./src/Hashable";
 export {HashMap} from "./src/HashMap";
+export {HashSet} from "./src/HashSet";
 export {ImmutableMap} from "./src/ImmutableMap";
 export {ImmutableSet} from "./src/ImmutableSet";
 export {JIterator} from "./src/JIterator";
