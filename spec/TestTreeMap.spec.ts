@@ -106,6 +106,7 @@ describe("Test TreeMap functionality", function() {
     blah2:string;
 
     constructor (blah1 = 100) {
+      this.blah2 = "blah";
     }
   }
 

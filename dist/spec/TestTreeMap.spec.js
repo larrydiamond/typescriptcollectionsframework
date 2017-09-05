@@ -87,6 +87,7 @@ describe("Test TreeMap functionality", function () {
     var ValueClass = (function () {
         function ValueClass(blah1) {
             if (blah1 === void 0) { blah1 = 100; }
+            this.blah2 = "blah";
         }
         return ValueClass;
     }());
