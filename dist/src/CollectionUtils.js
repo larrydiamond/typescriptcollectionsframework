@@ -8,13 +8,13 @@ var CollectionUtils = (function () {
             compare: function (o1, o2) {
                 if (o1 === o2)
                     return 0;
-                if (o1 === null)
-                    return -1;
                 if (o1 === undefined)
                     return -1;
-                if (o2 === null)
-                    return 1;
+                if (o1 === null)
+                    return -1;
                 if (o2 === undefined)
+                    return 1;
+                if (o2 === null)
                     return 1;
                 if (o1 < o2)
                     return -1;
@@ -28,13 +28,13 @@ var CollectionUtils = (function () {
             compare: function (o1, o2) {
                 if (o1 === o2)
                     return 0;
-                if (o1 === null)
-                    return -1;
                 if (o1 === undefined)
                     return -1;
-                if (o2 === null)
-                    return 1;
+                if (o1 === null)
+                    return -1;
                 if (o2 === undefined)
+                    return 1;
+                if (o2 === null)
                     return 1;
                 if (o1 < o2)
                     return -1;

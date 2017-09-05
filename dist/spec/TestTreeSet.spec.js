@@ -247,4 +247,20 @@ describe("Test TreeSet functionality", function () {
         expect(TreeSet2.ceiling(16)).toEqual(17); // 16 isnt there, 17 is
         expect(TreeSet2.ceiling(17)).toEqual(17); // 17 is there
     });
+    it("Test lots", function () {
+        var tset = new TreeSet_1.TreeSet(CollectionUtils_1.CollectionUtils.getStringComparator());
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2);
+                tset.add(txt);
+            }
+        }
+        expect(tset.size()).toEqual(26 * 26);
+        var count = 0;
+        for (var iter = tset.iterator(); iter.hasNext();) {
+            count = count + 1;
+            var psp = iter.next();
+        }
+        expect(count).toEqual(26 * 26);
+    });
 });

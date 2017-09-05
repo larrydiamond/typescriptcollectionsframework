@@ -283,4 +283,22 @@ describe("Test TreeSet functionality", function() {
     expect (TreeSet2.ceiling (17)).toEqual(17); // 17 is there
   });
 
+  it ("Test lots", function () {
+    let tset = new TreeSet<string>(CollectionUtils.getStringComparator());
+    for (let loop1 = 1; loop1 <= 26; loop1++) {
+      for (let loop2 = 1; loop2 <= 26; loop2++) {
+        let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2);
+        tset.add (txt);
+      }
+    }
+    expect (tset.size ()).toEqual(26 * 26);
+
+    let count:number = 0;
+    for (let iter = tset.iterator(); iter.hasNext(); ) {
+      count = count + 1;
+      let psp:string = iter.next ();
+    }
+    expect (count).toEqual (26 * 26);
+  });
+
 });
