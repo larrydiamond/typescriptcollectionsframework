@@ -40,8 +40,11 @@ var HashMap = (function () {
             this.data.add(new LinkedList_1.LinkedList(this.MapEntryHashMethods));
         }
         this.loadFactor = iLoadFactor;
-        if (initialElements !== null) {
-            // TODO
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.put(t.getKey(), t.getValue());
+            }
         }
     }
     /**
@@ -208,7 +211,7 @@ var HashMap = (function () {
     };
     /**
      * Returns an ImmutableSet view of the mappings contained in this map.
-     * The set's iterator returns the mappings in ascending key order.
+     * The set's iterator returns the mappings in random key order.
      * The set is backed by the map, so changes to the map are reflected in the set.
      * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
      * The contains method on this entrySet will only compare keys not values.

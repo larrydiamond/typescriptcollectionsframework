@@ -10,10 +10,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var TreeMap = (function () {
-    function TreeMap(iComparator) {
+    function TreeMap(iComparator, initialElements) {
+        if (initialElements === void 0) { initialElements = null; }
+        this.initialElements = initialElements;
         this.topNode = null;
         this.mapComparator = null;
         this.mapComparator = iComparator;
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.put(t.getKey(), t.getValue());
+            }
+        }
     }
     /* Debugging code
       public printMap() : void {

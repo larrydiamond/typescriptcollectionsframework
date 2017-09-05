@@ -36,8 +36,11 @@ export class HashMap<K,V> implements JMap<K,V> {
       this.data.add (new LinkedList<HashMapEntry<K,V>>(this.MapEntryHashMethods));
     }
     this.loadFactor = iLoadFactor;
-    if (initialElements !== null) {
-      // TODO
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
+        let t:MapEntry<K,V> = iter.next ();
+        this.put (t.getKey(), t.getValue());
+      }
     }
   }
 
@@ -202,7 +205,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
  /**
   * Returns an ImmutableSet view of the mappings contained in this map.
-  * The set's iterator returns the mappings in ascending key order.
+  * The set's iterator returns the mappings in random key order.
   * The set is backed by the map, so changes to the map are reflected in the set.
   * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
   * The contains method on this entrySet will only compare keys not values.

@@ -11,6 +11,7 @@ import {BasicMapEntry} from "./BasicMapEntry";
 import {Comparator} from "./Comparator";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
+import {JMap} from "./JMap";
 import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 
@@ -18,8 +19,14 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
   private topNode:TreeMapNode<K,V> = null;
   private mapComparator:Comparator<K> = null;
 
-  constructor(iComparator:Comparator<K>) {
+  constructor(iComparator:Comparator<K>, private initialElements:JMap<K, V> = null) {
     this.mapComparator = iComparator;
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
+        let t:MapEntry<K,V> = iter.next ();
+        this.put (t.getKey(), t.getValue());
+      }
+    }
   }
 
 /* Debugging code
