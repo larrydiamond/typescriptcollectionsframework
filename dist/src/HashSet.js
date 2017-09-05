@@ -20,8 +20,11 @@ var HashSet = (function () {
         this.datastore = null;
         this.hashMethods = iHash;
         this.datastore = new HashMap_1.HashMap(this.hashMethods, null, iInitialCapacity, iLoadFactor);
-        if (initialElements !== null) {
-            // TODO
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.add(t);
+            }
         }
     }
     /**

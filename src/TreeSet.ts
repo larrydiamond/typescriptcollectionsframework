@@ -16,8 +16,15 @@ export class TreeSet<K> implements JSet<K> {
 
   private datastore:TreeMap<K,number> = null;
 
-  constructor(iComparator:Comparator<K>) {
+  constructor(iComparator:Comparator<K>, private initialElements?:JSet<K>) {
     this.datastore = new TreeMap<K,number>(iComparator);
+
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
+        let t:K = iter.next ();
+        this.add (t);
+      }
+    }
   }
 
   /**

@@ -22,8 +22,12 @@ export class HashSet<K> implements JSet<K> {
   constructor(iHash:Hashable<K>, private initialElements:JSet<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
     this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
-    if (initialElements !== null) {
-      // TODO
+
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
+        let t:K = iter.next ();
+        this.add (t);
+      }
     }
   }
 

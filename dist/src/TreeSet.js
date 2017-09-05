@@ -10,9 +10,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var TreeMap_1 = require("./TreeMap");
 var TreeSet = (function () {
-    function TreeSet(iComparator) {
+    function TreeSet(iComparator, initialElements) {
+        this.initialElements = initialElements;
         this.datastore = null;
         this.datastore = new TreeMap_1.TreeMap(iComparator);
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.add(t);
+            }
+        }
     }
     /**
     * Adds the specified element to this set if it is not already present.

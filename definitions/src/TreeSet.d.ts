@@ -2,8 +2,9 @@ import { Comparator } from "./Comparator";
 import { JIterator } from "./JIterator";
 import { JSet } from "./JSet";
 export declare class TreeSet<K> implements JSet<K> {
+    private initialElements;
     private datastore;
-    constructor(iComparator: Comparator<K>);
+    constructor(iComparator: Comparator<K>, initialElements?: JSet<K>);
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
