@@ -218,4 +218,24 @@ describe("Test HashSet functionality", function() {
     expect (foundsquirrel).toEqual (true);
   });
 
+  it ("Test lots", function () {
+    let hset = new HashSet<string>(new GenericHashable<string>());
+    for (let loop1 = 1; loop1 <= 26; loop1++) {
+      for (let loop2 = 1; loop2 <= 26; loop2++) {
+        for (let loop3 = 1; loop3 <= 26; loop3++) {
+          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          hset.add (txt);
+        }
+      }
+    }
+    expect (hset.size ()).toEqual(26 * 26 * 26);
+
+    let count:number = 0;
+    for (let iter = hset.iterator(); iter.hasNext(); ) {
+      count = count + 1;
+      let psp:string = iter.next ();
+    }
+    expect (count).toEqual (26 * 26 * 26);
+  });
+
 });

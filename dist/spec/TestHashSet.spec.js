@@ -188,4 +188,22 @@ describe("Test HashSet functionality", function () {
         expect(founddog).toEqual(true);
         expect(foundsquirrel).toEqual(true);
     });
+    it("Test lots", function () {
+        var hset = new HashSet_1.HashSet(new CollectionUtils_1.GenericHashable());
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                for (var loop3 = 1; loop3 <= 26; loop3++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    hset.add(txt);
+                }
+            }
+        }
+        expect(hset.size()).toEqual(26 * 26 * 26);
+        var count = 0;
+        for (var iter = hset.iterator(); iter.hasNext();) {
+            count = count + 1;
+            var psp = iter.next();
+        }
+        expect(count).toEqual(26 * 26 * 26);
+    });
 });
