@@ -32,6 +32,14 @@ export class HashSet<K> implements JSet<K> {
   }
 
   /**
+  * Returns the Hashable
+  * @return {Hashable}
+  */
+  public getHashable () : Hashable<K> {
+    return this.hashMethods;
+  }
+
+  /**
   * Adds the specified element to this set if it is not already present.
   * @param {K} element element to be added to this set
   * @return {boolean} true if this set did not already contain the specified element

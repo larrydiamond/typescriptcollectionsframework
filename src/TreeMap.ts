@@ -21,7 +21,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
 
   constructor(iComparator:Comparator<K>, private initialElements:JMap<K, V> = null) {
     this.mapComparator = iComparator;
-    if ((initialElements !== null) && (initialElements !== undefined)){
+    if ((initialElements !== null) && (initialElements !== undefined)) {
       for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
         let t:MapEntry<K,V> = iter.next ();
         this.put (t.getKey(), t.getValue());

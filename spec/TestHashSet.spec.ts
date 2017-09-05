@@ -178,4 +178,44 @@ describe("Test HashSet functionality", function() {
     expect (found2).toEqual (true);
   });
 
+  it ("Test native strings", function () {
+    let hset = new HashSet<string>(new GenericHashable<string>());
+    hset.add ("Cat");
+    hset.add ("Dog");
+    hset.add ("Squirrel");
+
+    expect (hset.size ()).toEqual(3);
+    expect (hset.isEmpty ()).toEqual(false);
+
+    let foundcat:boolean = false;
+    let founddog:boolean = false;
+    let foundsquirrel:boolean = false;
+
+    let count:number = 0;
+
+    for (let iter = hset.iterator(); iter.hasNext(); ) {
+      count = count + 1;
+      let psp:string = iter.next ();
+
+      if (psp === "Cat") {
+        foundcat = true;
+      } else {
+        if (psp === "Dog") {
+          founddog = true;
+        } else {
+          if (psp === "Squirrel") {
+            foundsquirrel = true;
+          } else {
+            fail("Found something that wasnt added");
+          }
+        }
+      }
+    }
+
+    expect (count).toEqual (3);
+    expect (foundcat).toEqual (true);
+    expect (founddog).toEqual (true);
+    expect (foundsquirrel).toEqual (true);
+  });
+
 });

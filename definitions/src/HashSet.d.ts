@@ -10,6 +10,11 @@ export declare class HashSet<K> implements JSet<K> {
     private hashMethods;
     constructor(iHash: Hashable<K>, initialElements?: JSet<K>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
+    * Returns the Hashable
+    * @return {Hashable}
+    */
+    getHashable(): Hashable<K>;
+    /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
     * @return {boolean} true if this set did not already contain the specified element

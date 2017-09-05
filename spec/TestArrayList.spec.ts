@@ -10,9 +10,12 @@ import {ArrayList} from "../src/ArrayList";
 import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
 import {GenericCollectable} from "../src/CollectionUtils";
+import {GenericHashable} from "../src/CollectionUtils";
+import {HashSet} from "../src/HashSet";
 import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
 import {List} from "../src/List";
+import {TreeSet} from "../src/TreeSet";
 
 describe("Test ArrayList functionality", function() {
 
@@ -424,5 +427,25 @@ describe("Test ArrayList functionality", function() {
     let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (sourceList.getCollectable(), sourceList);
     expect (arraylist.size ()).toEqual(sourceList.size());
   });
+
+  it("Test constructing with elements from an HashSet", function() {
+    let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
+    expect (source.add (product1)).toEqual (true);
+    expect (source.add (product2)).toEqual (true);
+
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (source.getHashable(), source);
+    expect (arraylist.size ()).toEqual(source.size());
+  });
+
+/*
+  it("Test constructing with elements from a TreeSet", function() {
+    let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    expect (source.add (product1)).toEqual (true);
+    expect (source.add (product2)).toEqual (true);
+
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (source.getCollectable(), source);
+    expect (arraylist.size ()).toEqual(source.size());
+  });
+*/
 
 });

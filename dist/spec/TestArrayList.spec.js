@@ -9,6 +9,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("../src/ArrayList");
 var CollectionUtils_1 = require("../src/CollectionUtils");
+var CollectionUtils_2 = require("../src/CollectionUtils");
+var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 describe("Test ArrayList functionality", function () {
     // PetStoreProduct will be used in testing
@@ -334,4 +336,21 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList(sourceList.getCollectable(), sourceList);
         expect(arraylist.size()).toEqual(sourceList.size());
     });
+    it("Test constructing with elements from an HashSet", function () {
+        var source = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        expect(source.add(product1)).toEqual(true);
+        expect(source.add(product2)).toEqual(true);
+        var arraylist = new ArrayList_1.ArrayList(source.getHashable(), source);
+        expect(arraylist.size()).toEqual(source.size());
+    });
+    /*
+      it("Test constructing with elements from a TreeSet", function() {
+        let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+        expect (source.add (product1)).toEqual (true);
+        expect (source.add (product2)).toEqual (true);
+    
+        let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (source.getCollectable(), source);
+        expect (arraylist.size ()).toEqual(source.size());
+      });
+    */
 });

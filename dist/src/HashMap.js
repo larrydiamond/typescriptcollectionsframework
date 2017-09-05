@@ -260,10 +260,10 @@ var HashMap = (function () {
             return null;
         // get the next node in the current bucket if possible
         var tmpbucket = this.data.get(current.bucket);
-        if (tmpbucket.size() < current.offset) {
+        if (tmpbucket.size() > (current.offset + 1)) {
             var tmp = new HashMapIteratorLocationTracker();
             tmp.bucket = current.bucket;
-            tmp.offset = tmp.offset + 1;
+            tmp.offset = current.offset + 1;
             tmp.entry = tmpbucket.get(tmp.offset);
             return tmp;
         }

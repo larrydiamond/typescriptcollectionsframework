@@ -36,7 +36,7 @@ export class HashMap<K,V> implements JMap<K,V> {
       this.data.add (new LinkedList<HashMapEntry<K,V>>(this.MapEntryHashMethods));
     }
     this.loadFactor = iLoadFactor;
-    if ((initialElements !== null) && (initialElements !== undefined)){
+    if ((initialElements !== null) && (initialElements !== undefined)) {
       for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
         let t:MapEntry<K,V> = iter.next ();
         this.put (t.getKey(), t.getValue());
@@ -255,10 +255,10 @@ export class HashMap<K,V> implements JMap<K,V> {
 
     // get the next node in the current bucket if possible
     let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (current.bucket);
-    if (tmpbucket.size() < current.offset) {
+    if (tmpbucket.size() > (current.offset + 1)) {
       let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
       tmp.bucket = current.bucket;
-      tmp.offset = tmp.offset + 1;
+      tmp.offset = current.offset + 1;
       tmp.entry = tmpbucket.get (tmp.offset);
       return tmp;
     }
