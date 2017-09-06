@@ -7,7 +7,12 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var ArrayList_1 = require("../src/ArrayList");
 var CollectionUtils_1 = require("../src/CollectionUtils");
+var CollectionUtils_2 = require("../src/CollectionUtils");
+var CollectionUtils_3 = require("../src/CollectionUtils");
+var HashSet_1 = require("../src/HashSet");
+var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
 describe("Test TreeSet functionality", function () {
     // PetStoreProduct will be used in testing
@@ -262,5 +267,33 @@ describe("Test TreeSet functionality", function () {
             var psp = iter.next();
         }
         expect(count).toEqual(26 * 26);
+    });
+    it("Test constructing with elements from an ArrayList", function () {
+        var sourceList = new ArrayList_1.ArrayList(new CollectionUtils_2.GenericCollectable());
+        expect(sourceList.add(product1)).toEqual(true);
+        expect(sourceList.add(product2)).toEqual(true);
+        var tset = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct, sourceList);
+        expect(tset.size()).toEqual(sourceList.size());
+    });
+    it("Test constructing with elements from a LinkedList", function () {
+        var sourceList = new LinkedList_1.LinkedList(new CollectionUtils_2.GenericCollectable());
+        expect(sourceList.add(product1)).toEqual(true);
+        expect(sourceList.add(product2)).toEqual(true);
+        var tset = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct, sourceList);
+        expect(tset.size()).toEqual(sourceList.size());
+    });
+    it("Test constructing with elements from an HashSet", function () {
+        var source = new HashSet_1.HashSet(new CollectionUtils_3.GenericHashable());
+        expect(source.add(product1)).toEqual(true);
+        expect(source.add(product2)).toEqual(true);
+        var tset = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct, source);
+        expect(tset.size()).toEqual(source.size());
+    });
+    it("Test constructing with elements from a TreeSet", function () {
+        var source = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
+        expect(source.add(product1)).toEqual(false);
+        expect(source.add(product2)).toEqual(false);
+        var tset = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct, source);
+        expect(tset.size()).toEqual(source.size());
     });
 });

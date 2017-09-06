@@ -6,10 +6,15 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {ArrayList} from "../src/ArrayList";
 import {BasicMapEntry} from "../src/BasicMapEntry";
 import {Collectable} from "../src/Collectable";
 import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
+import {GenericCollectable} from "../src/CollectionUtils";
+import {GenericHashable} from "../src/CollectionUtils";
+import {HashSet} from "../src/HashSet";
+import {LinkedList} from "../src/LinkedList";
 import {TreeSet} from "../src/TreeSet";
 
 describe("Test TreeSet functionality", function() {
@@ -300,5 +305,42 @@ describe("Test TreeSet functionality", function() {
     }
     expect (count).toEqual (26 * 26);
   });
+
+
+  it("Test constructing with elements from an ArrayList", function() {
+    let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    expect (sourceList.add (product1)).toEqual (true);
+    expect (sourceList.add (product2)).toEqual (true);
+
+    let tset:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, sourceList);
+    expect (tset.size ()).toEqual(sourceList.size());
+  });
+
+  it("Test constructing with elements from a LinkedList", function() {
+    let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    expect (sourceList.add (product1)).toEqual (true);
+    expect (sourceList.add (product2)).toEqual (true);
+
+    let tset:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, sourceList);
+    expect (tset.size ()).toEqual(sourceList.size());
+  });
+
+  it("Test constructing with elements from an HashSet", function() {
+    let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
+    expect (source.add (product1)).toEqual (true);
+    expect (source.add (product2)).toEqual (true);
+
+    let tset:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, source);
+    expect (tset.size ()).toEqual(source.size());
+  });
+
+it("Test constructing with elements from a TreeSet", function() {
+  let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
+  expect (source.add (product1)).toEqual (false);
+  expect (source.add (product2)).toEqual (false);
+
+  let tset:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, source);
+  expect (tset.size ()).toEqual(source.size());
+});
 
 });
