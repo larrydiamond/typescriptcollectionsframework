@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("../src/ArrayList");
 var CollectionUtils_1 = require("../src/CollectionUtils");
 var LinkedList_1 = require("../src/LinkedList");
+var TreeSet_1 = require("../src/TreeSet");
 describe("Test LinkedList functionality", function () {
     // PetStoreProduct will be used in testing
     var PetStoreProduct = (function () {
@@ -344,5 +345,39 @@ describe("Test LinkedList functionality", function () {
         expect(sourceList.add(product2)).toEqual(true);
         var list = new LinkedList_1.LinkedList(sourceList.getCollectable(), sourceList);
         expect(list.size()).toEqual(sourceList.size());
+    });
+    var alphabeticalSortPetStoreProduct = {
+        compare: function (o1, o2) {
+            if (o1 === o2)
+                return 0;
+            if (o1 === null)
+                return -1;
+            if (o1 === undefined)
+                return -1;
+            if (o2 === null)
+                return 1;
+            if (o2 === undefined)
+                return 1;
+            if (o1.getProductName() === o2.getProductName())
+                return 0;
+            if (o1.getProductName() === undefined)
+                return -1;
+            if (o1.getProductName() === null)
+                return -1;
+            if (o2.getProductName() === undefined)
+                return 1;
+            if (o2.getProductName() === null)
+                return 1;
+            if (o1.getProductName() < o2.getProductName())
+                return -1;
+            return 1;
+        }
+    };
+    it("Test constructing with elements from a TreeSet", function () {
+        var source = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
+        expect(source.add(product1)).toEqual(false);
+        expect(source.add(product2)).toEqual(false);
+        var list = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable(), source);
+        expect(list.size()).toEqual(source.size());
     });
 });

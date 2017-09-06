@@ -9,9 +9,12 @@
 import {ArrayList} from "../src/ArrayList";
 import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
+import {Comparator} from "../src/Comparator";
 import {GenericCollectable} from "../src/CollectionUtils";
+import {HashSet} from "../src/HashSet";
 import {LinkedList} from "../src/LinkedList";
 import {List} from "../src/List";
+import {TreeSet} from "../src/TreeSet";
 
 describe("Test LinkedList functionality", function() {
     // PetStoreProduct will be used in testing
@@ -436,5 +439,44 @@ describe("Test LinkedList functionality", function() {
       let list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (sourceList.getCollectable(), sourceList);
       expect (list.size ()).toEqual(sourceList.size());
     });
+
+        let alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
+          compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
+            if (o1 === o2)
+            return 0;
+            if (o1 === null)
+            return -1;
+            if (o1 === undefined)
+            return -1;
+            if (o2 === null)
+            return 1;
+            if (o2 === undefined)
+            return 1;
+            if (o1.getProductName() === o2.getProductName())
+            return 0;
+            if (o1.getProductName() === undefined)
+            return -1;
+            if (o1.getProductName() === null)
+            return -1;
+            if (o2.getProductName() === undefined)
+            return 1;
+            if (o2.getProductName() === null)
+            return 1;
+
+            if (o1.getProductName() < o2.getProductName())
+            return -1;
+
+            return 1;
+          }
+        }
+
+      it("Test constructing with elements from a TreeSet", function() {
+        let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
+        expect (source.add (product1)).toEqual (false);
+        expect (source.add (product2)).toEqual (false);
+
+        let list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>(), source);
+        expect (list.size ()).toEqual(source.size());
+      });
 
 });
