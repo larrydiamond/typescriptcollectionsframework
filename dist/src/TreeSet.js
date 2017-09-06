@@ -21,6 +21,9 @@ var TreeSet = (function () {
             }
         }
     }
+    TreeSet.prototype.validateSet = function () {
+        return this.datastore.validateMap();
+    };
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set

@@ -304,7 +304,7 @@ public size () : number {
       tmp = tmp.getParentNode();
     }
     if (tmp.getParentNode() === null) return null;
-    return tmp;
+    return tmp.getParentNode();
   }
 
  /**
@@ -686,7 +686,7 @@ public size () : number {
       return null;
 
     let node:TreeMapNode<K,V> = this.topNode;
-    while (node.getLeftNode() !== null) {
+    while ((node.getLeftNode() !== null) && (node.getLeftNode() !== undefined)) {
       node = node.getLeftNode();
     }
 
@@ -699,7 +699,7 @@ public size () : number {
   */
   public firstKey () : K {
     let node:TreeMapNode<K,V> = this.firstMapNode();
-    if (node === null)
+    if ((node === null) || (node === undefined))
       return null;
     return node.getKey();
   }
@@ -710,7 +710,7 @@ public size () : number {
   */
   public firstEntry () : MapEntry<K,V> {
     let node:TreeMapNode<K,V> = this.firstMapNode();
-    if (node === null)
+    if ((node === null) || (node === undefined))
       return null;
     return node.getMapEntry();
   }
@@ -727,7 +727,7 @@ public size () : number {
       return null;
 
     let node:TreeMapNode<K,V> = this.topNode;
-    while (node.getRightNode() !== null) {
+    while ((node.getRightNode() !== null) && (node.getRightNode() !== undefined)) {
       node = node.getRightNode();
     }
 
@@ -740,7 +740,7 @@ public size () : number {
   */
   public lastKey () : K {
     let node:TreeMapNode<K,V> = this.lastMapNode();
-    if (node === null)
+    if ((node === null) || (node === undefined))
       return null;
     return node.getKey();
   }
@@ -751,7 +751,7 @@ public size () : number {
   */
   public lastEntry () : MapEntry<K,V> {
     let node:TreeMapNode<K,V> = this.lastMapNode();
-    if (node === null)
+    if ((node === null) || (node === undefined))
       return null;
     return node.getMapEntry();
   }

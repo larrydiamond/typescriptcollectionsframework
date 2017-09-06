@@ -27,6 +27,10 @@ export class TreeSet<K> implements JSet<K> {
     }
   }
 
+  public validateSet() : boolean {
+    return this.datastore.validateMap();
+  }
+
   /**
   * Adds the specified element to this set if it is not already present.
   * @param {K} element element to be added to this set

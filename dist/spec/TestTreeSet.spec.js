@@ -268,6 +268,23 @@ describe("Test TreeSet functionality", function () {
         }
         expect(count).toEqual(26 * 26);
     });
+    it("Test lots2", function () {
+        var tset = new TreeSet_1.TreeSet(CollectionUtils_1.CollectionUtils.getStringComparator());
+        for (var loop2 = 1; loop2 <= 26; loop2++) {
+            for (var loop1 = 1; loop1 <= 26; loop1++) {
+                var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2);
+                tset.add(txt);
+            }
+        }
+        expect(tset.validateSet()).toEqual(true);
+        expect(tset.size()).toEqual(26 * 26);
+        var count = 0;
+        for (var iter = tset.iterator(); iter.hasNext();) {
+            count = count + 1;
+            var psp = iter.next();
+        }
+        expect(count).toEqual(26 * 26);
+    });
     it("Test constructing with elements from an ArrayList", function () {
         var sourceList = new ArrayList_1.ArrayList(new CollectionUtils_2.GenericCollectable());
         expect(sourceList.add(product1)).toEqual(true);

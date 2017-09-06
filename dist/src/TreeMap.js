@@ -288,7 +288,7 @@ var TreeMap = (function () {
         }
         if (tmp.getParentNode() === null)
             return null;
-        return tmp;
+        return tmp.getParentNode();
     };
     /**
      * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
@@ -656,7 +656,7 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var node = this.topNode;
-        while (node.getLeftNode() !== null) {
+        while ((node.getLeftNode() !== null) && (node.getLeftNode() !== undefined)) {
             node = node.getLeftNode();
         }
         return node;
@@ -667,7 +667,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.firstKey = function () {
         var node = this.firstMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getKey();
     };
@@ -677,7 +677,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.firstEntry = function () {
         var node = this.firstMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getMapEntry();
     };
@@ -691,7 +691,7 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var node = this.topNode;
-        while (node.getRightNode() !== null) {
+        while ((node.getRightNode() !== null) && (node.getRightNode() !== undefined)) {
             node = node.getRightNode();
         }
         return node;
@@ -702,7 +702,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.lastKey = function () {
         var node = this.lastMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getKey();
     };
@@ -712,7 +712,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.lastEntry = function () {
         var node = this.lastMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getMapEntry();
     };
