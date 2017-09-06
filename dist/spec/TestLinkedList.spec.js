@@ -9,6 +9,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var ArrayList_1 = require("../src/ArrayList");
 var CollectionUtils_1 = require("../src/CollectionUtils");
+var CollectionUtils_2 = require("../src/CollectionUtils");
+var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
 describe("Test LinkedList functionality", function () {
@@ -378,6 +380,13 @@ describe("Test LinkedList functionality", function () {
         expect(source.add(product1)).toEqual(false);
         expect(source.add(product2)).toEqual(false);
         var list = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable(), source);
+        expect(list.size()).toEqual(source.size());
+    });
+    it("Test constructing with elements from an HashSet", function () {
+        var source = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        expect(source.add(product1)).toEqual(true);
+        expect(source.add(product2)).toEqual(true);
+        var list = new LinkedList_1.LinkedList(source.getHashable(), source);
         expect(list.size()).toEqual(source.size());
     });
 });

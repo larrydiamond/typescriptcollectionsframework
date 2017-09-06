@@ -11,6 +11,7 @@ import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
 import {Comparator} from "../src/Comparator";
 import {GenericCollectable} from "../src/CollectionUtils";
+import {GenericHashable} from "../src/CollectionUtils";
 import {HashSet} from "../src/HashSet";
 import {LinkedList} from "../src/LinkedList";
 import {List} from "../src/List";
@@ -476,6 +477,15 @@ describe("Test LinkedList functionality", function() {
         expect (source.add (product2)).toEqual (false);
 
         let list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>(), source);
+        expect (list.size ()).toEqual(source.size());
+      });
+
+      it("Test constructing with elements from an HashSet", function() {
+        let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
+        expect (source.add (product1)).toEqual (true);
+        expect (source.add (product2)).toEqual (true);
+
+        let list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (source.getHashable(), source);
         expect (list.size ()).toEqual(source.size());
       });
 
