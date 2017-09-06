@@ -34,7 +34,7 @@ var ArrayList = (function () {
     * @return {boolean} true if this collection changed as a result of the call
     */
     ArrayList.prototype.add = function (t) {
-        if (this.elements === null) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             this.elements = new Array();
         }
         this.elements.push(t);
@@ -47,7 +47,7 @@ var ArrayList = (function () {
       * @param {T} t element to be inserted
       */
     ArrayList.prototype.addElement = function (index, t) {
-        if (this.elements === null) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             this.elements = new Array();
         }
         this.elements.splice(index, 0, t);
@@ -83,7 +83,7 @@ var ArrayList = (function () {
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
     ArrayList.prototype.remove = function (index) {
-        if (this.elements === null) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             return undefined;
         }
         var element = this.elements[index];
@@ -112,7 +112,7 @@ var ArrayList = (function () {
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     ArrayList.prototype.indexOf = function (t) {
-        if (this.elements === null)
+        if ((this.elements === null) || (this.elements === undefined))
             return -1;
         if (this.sizeValue <= 0)
             return -1;
@@ -129,7 +129,7 @@ var ArrayList = (function () {
      * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     ArrayList.prototype.lastIndexOf = function (t) {
-        if (this.elements === null)
+        if ((this.elements === null) || (this.elements === undefined))
             return -1;
         if (this.sizeValue <= 0)
             return -1;
@@ -156,10 +156,7 @@ var ArrayList = (function () {
      * @return {T} true if this list contained the specified element
      */
     ArrayList.prototype.removeElement = function (t) {
-        if (this.elements === null) {
-            return false;
-        }
-        if (this.elements === undefined) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             return false;
         }
         var offset = this.indexOf(t);

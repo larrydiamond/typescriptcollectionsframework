@@ -41,7 +41,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   * @return {boolean} true if this collection changed as a result of the call
   */
   public add (t:T) : boolean {
-    if (this.elements === null) {
+    if ((this.elements === null) || (this.elements === undefined)) {
       this.elements = new Array<T>();
     }
     this.elements.push (t);
@@ -55,7 +55,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
     * @param {T} t element to be inserted
     */
     public addElement (index:number, t:T) : void {
-      if (this.elements === null) {
+      if ((this.elements === null) || (this.elements === undefined)) {
         this.elements = new Array<T>();
       }
       this.elements.splice (index, 0, t);
@@ -92,7 +92,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
     * @return {T} the element that was removed from the list, undefined if the element does not exist
     */
     public remove (index:number) : T {
-      if (this.elements === null) {
+      if ((this.elements === null) || (this.elements === undefined)) {
         return undefined;
       }
       let element:T = this.elements [index];
@@ -125,7 +125,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
  * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
  */
   public indexOf (t:T) : number {
-    if (this.elements === null)
+    if ((this.elements === null) || (this.elements === undefined))
       return -1;
     if (this.sizeValue <= 0)
       return -1;
@@ -146,7 +146,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
   public lastIndexOf (t:T) : number {
-    if (this.elements === null)
+    if ((this.elements === null) || (this.elements === undefined))
       return -1;
     if (this.sizeValue <= 0)
       return -1;
@@ -178,11 +178,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   * @return {T} true if this list contained the specified element
   */
   public removeElement (t:T) : boolean {
-    if (this.elements === null) {
-      return false;
-    }
-
-    if (this.elements === undefined) {
+    if ((this.elements === null) || (this.elements === undefined)) {
       return false;
     }
 
