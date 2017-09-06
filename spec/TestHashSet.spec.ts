@@ -6,13 +6,17 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {ArrayList} from "../src/ArrayList";
 import {BasicMapEntry} from "../src/BasicMapEntry";
 import {Collectable} from "../src/Collectable";
 import {CollectionUtils} from "../src/CollectionUtils";
 import {Comparator} from "../src/Comparator";
+import {GenericCollectable} from "../src/CollectionUtils";
 import {GenericHashable} from "../src/CollectionUtils";
 import {Hashable} from "../src/Hashable";
 import {HashSet} from "../src/HashSet";
+import {LinkedList} from "../src/LinkedList";
+import {TreeSet} from "../src/TreeSet";
 
 describe("Test HashSet functionality", function() {
 
@@ -236,6 +240,63 @@ describe("Test HashSet functionality", function() {
       let psp:string = iter.next ();
     }
     expect (count).toEqual (26 * 26 * 26);
+  });
+
+    it("Test constructing with elements from an ArrayList", function() {
+      let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+      expect (sourceList.add (product1)).toEqual (true);
+      expect (sourceList.add (product2)).toEqual (true);
+
+      let tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>(), sourceList);
+      expect (tset.size ()).toEqual(sourceList.size());
+    });
+
+    it("Test constructing with elements from a LinkedList", function() {
+      let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+      expect (sourceList.add (product1)).toEqual (true);
+      expect (sourceList.add (product2)).toEqual (true);
+
+      let tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>(), sourceList);
+      expect (tset.size ()).toEqual(sourceList.size());
+    });
+
+        let alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
+          compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
+            if (o1 === o2)
+            return 0;
+            if (o1 === undefined)
+            return -1;
+            if (o1 === null)
+            return -1;
+            if (o2 === undefined)
+            return 1;
+            if (o2 === null)
+            return 1;
+            if (o1.getProductName() === o2.getProductName())
+            return 0;
+            if (o1.getProductName() === undefined)
+            return -1;
+            if (o1.getProductName() === null)
+            return -1;
+            if (o2.getProductName() === undefined)
+            return 1;
+            if (o2.getProductName() === null)
+            return 1;
+
+            if (o1.getProductName() < o2.getProductName())
+            return -1;
+
+            return 1;
+          }
+        }
+        
+  it("Test constructing with elements from a TreeSet", function() {
+    let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
+    expect (source.add (product1)).toEqual (false);
+    expect (source.add (product2)).toEqual (false);
+
+    let tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>(), source);
+    expect (tset.size ()).toEqual(source.size());
   });
 
 });

@@ -443,13 +443,13 @@ describe("Test ArrayList functionality", function() {
       compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
         if (o1 === o2)
         return 0;
-        if (o1 === null)
-        return -1;
         if (o1 === undefined)
         return -1;
-        if (o2 === null)
-        return 1;
+        if (o1 === null)
+        return -1;
         if (o2 === undefined)
+        return 1;
+        if (o2 === null)
         return 1;
         if (o1.getProductName() === o2.getProductName())
         return 0;
