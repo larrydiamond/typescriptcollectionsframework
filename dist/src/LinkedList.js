@@ -36,7 +36,7 @@ var LinkedList = (function () {
      */
     LinkedList.prototype.add = function (t) {
         var lln = new LinkedListNode(t);
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             this.firstNode = lln;
             this.lastNode = lln;
             this.numberElements = 1;
@@ -76,7 +76,7 @@ var LinkedList = (function () {
         var offset = 0;
         var node = this.firstNode;
         var previousnode = null;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 var newnode = new LinkedListNode(t);
                 newnode.nextNode = node;
@@ -101,7 +101,7 @@ var LinkedList = (function () {
      * @return {boolean} true if this list contains no elements
      */
     LinkedList.prototype.isEmpty = function () {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return true;
         }
         return false;
@@ -134,7 +134,7 @@ var LinkedList = (function () {
     };
     LinkedList.prototype.getNode = function (t) {
         var node = this.firstNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (this.equality.equals(node.payload, t)) {
                 return node;
             }
@@ -150,14 +150,11 @@ var LinkedList = (function () {
      * @return {T} true if this list contained the specified element
      */
     LinkedList.prototype.removeElement = function (t) {
-        if (this.firstNode === null) {
-            return false;
-        }
-        if (this.firstNode === undefined) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return false;
         }
         var node = this.firstNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (this.equality.equals(node.payload, t)) {
                 var previous = node.previousNode;
                 var following = node.nextNode;
@@ -235,7 +232,7 @@ var LinkedList = (function () {
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     LinkedList.prototype.indexOf = function (t) {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return -1;
         }
         if (this.numberElements <= 0) {
@@ -243,7 +240,7 @@ var LinkedList = (function () {
         }
         var offset = 0;
         var node = this.firstNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (this.equality.equals(node.payload, t)) {
                 return offset;
             }
@@ -260,7 +257,7 @@ var LinkedList = (function () {
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
     LinkedList.prototype.remove = function (index) {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return undefined;
         }
         if (this.numberElements <= 0) {
@@ -284,7 +281,7 @@ var LinkedList = (function () {
         var offset = 0;
         var node = this.firstNode;
         var previous = null;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 var payload = node.payload;
                 previous.nextNode = node.nextNode;
@@ -307,7 +304,7 @@ var LinkedList = (function () {
      * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     LinkedList.prototype.lastIndexOf = function (t) {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return -1;
         }
         if (this.numberElements <= 0) {
@@ -315,7 +312,7 @@ var LinkedList = (function () {
         }
         var offset = this.numberElements - 1;
         var node = this.lastNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (this.equality.equals(node.payload, t)) {
                 return offset;
             }
@@ -332,13 +329,13 @@ var LinkedList = (function () {
      */
     LinkedList.prototype.getFirst = function () {
         var node = this.firstNode;
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.payload;
     };
     LinkedList.prototype.getFirstNode = function () {
         var node = this.firstNode;
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node;
     };
@@ -350,7 +347,7 @@ var LinkedList = (function () {
     LinkedList.prototype.get = function (index) {
         var offset = 0;
         var node = this.firstNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 return node.payload;
             }
@@ -370,7 +367,7 @@ var LinkedList = (function () {
     LinkedList.prototype.set = function (index, element) {
         var offset = 0;
         var node = this.firstNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 var tmp = node.payload;
                 node.payload = element;
@@ -415,7 +412,7 @@ var LinkedListJIterator = (function () {
         this.node = iList.getFirstNode();
     }
     LinkedListJIterator.prototype.hasNext = function () {
-        if (this.node === null) {
+        if ((this.node === null) || (this.node === undefined)) {
             return false;
         }
         return true;
@@ -434,7 +431,7 @@ var LinkedListIterator = (function () {
         this.node = iList.getFirstNode();
     }
     LinkedListIterator.prototype.next = function (value) {
-        if (this.node === null) {
+        if ((this.node === null) || (this.node === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         else {

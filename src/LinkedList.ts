@@ -48,7 +48,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   public add (t:T) : boolean {
     let lln:LinkedListNode<T> = new LinkedListNode<T>(t);
 
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       this.firstNode = lln;
       this.lastNode = lln;
       this.numberElements = 1;
@@ -91,7 +91,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
     let previousnode:LinkedListNode<T> = null;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
         let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
         newnode.nextNode = node;
@@ -117,7 +117,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {boolean} true if this list contains no elements
   */
   public isEmpty () : boolean {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return true;
     }
 
@@ -158,7 +158,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 
   private getNode(t:T) : LinkedListNode<T> {
     let node = this.firstNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (this.equality.equals (node.payload, t)) {
         return node;
       } else {
@@ -174,16 +174,12 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {T} true if this list contained the specified element
   */
   public removeElement (t:T) : boolean {
-    if (this.firstNode === null) {
-      return false;
-    }
-
-    if (this.firstNode === undefined) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return false;
     }
 
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (this.equality.equals (node.payload, t)) {
         let previous:LinkedListNode<T> = node.previousNode;
         let following:LinkedListNode<T> = node.nextNode;
@@ -263,7 +259,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
   public indexOf (t:T) : number {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return -1;
     }
     if (this.numberElements <= 0) {
@@ -272,7 +268,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (this.equality.equals (node.payload, t)) {
         return offset;
       } else {
@@ -290,7 +286,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {T} the element that was removed from the list, undefined if the element does not exist
   */
   public remove (index:number) : T {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return undefined;
     }
     if (this.numberElements <= 0) {
@@ -316,7 +312,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
     let previous:LinkedListNode<T> = null;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
         let payload:T = node.payload;
         previous.nextNode = node.nextNode;
@@ -340,7 +336,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
   public lastIndexOf (t:T) : number {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return -1;
     }
     if (this.numberElements <= 0) {
@@ -349,7 +345,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 
     let offset:number = this.numberElements - 1;
     let node:LinkedListNode<T> = this.lastNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (this.equality.equals (node.payload, t)) {
         return offset;
       } else {
@@ -367,13 +363,13 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   */
   public getFirst () : T {
     let node = this.firstNode;
-    if (node === null) return null;
+    if ((node === null) || (node === undefined)) return null;
     return node.payload;
   }
 
   public getFirstNode () : LinkedListNode<T> {
     let node = this.firstNode;
-    if (node === null) return null;
+    if ((node === null) || (node === undefined)) return null;
     return node;
   }
 
@@ -386,7 +382,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   public get(index:number):T {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
         return node.payload;
       } else {
@@ -407,7 +403,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   public set(index:number, element:T) : T {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
         let tmp:T = node.payload;
         node.payload = element;
@@ -461,7 +457,7 @@ export class LinkedListJIterator<T> implements JIterator<T> {
   }
 
   public hasNext():boolean {
-    if (this.node === null) {
+    if ((this.node === null) || (this.node === undefined)) {
       return false;
     }
     return true;
@@ -484,7 +480,7 @@ export class LinkedListIterator<T> implements Iterator<T> {
   }
 
   public next(value?: any): IteratorResult<T> {
-    if (this.node === null) {
+    if ((this.node === null) || (this.node === undefined)) { 
       return new BasicIteratorResult(true, null);
     } else {
       let tmp:T = this.node.payload;
