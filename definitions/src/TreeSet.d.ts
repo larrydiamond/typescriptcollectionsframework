@@ -50,6 +50,12 @@ export declare class TreeSet<K> implements JSet<K> {
     */
     last(): K;
     /**
+    * Removes the specified element from this set if it is present.
+    * @param {K} element element to be removed from this set
+    * @return {boolean} true if the set contained the specified element
+    */
+    remove(element: K): boolean;
+    /**
     * Removes all of the elements from this set. The set will be empty after this call returns.
     */
     clear(): void;

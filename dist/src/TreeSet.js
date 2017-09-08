@@ -101,6 +101,18 @@ var TreeSet = (function () {
         return this.datastore.lastKey();
     };
     /**
+    * Removes the specified element from this set if it is present.
+    * @param {K} element element to be removed from this set
+    * @return {boolean} true if the set contained the specified element
+    */
+    TreeSet.prototype.remove = function (element) {
+        var tmp = this.datastore.remove(element);
+        if (tmp === null) {
+            return false;
+        }
+        return true;
+    };
+    /**
     * Removes all of the elements from this set. The set will be empty after this call returns.
     */
     TreeSet.prototype.clear = function () {
