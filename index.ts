@@ -16,6 +16,8 @@ export {GenericHashable} from "./src/CollectionUtils";
 export {Hashable} from "./src/Hashable";
 export {HashMap} from "./src/HashMap";
 export {HashSet} from "./src/HashSet";
+export {ImmutableCollection} from "./src/ImmutableCollection";
+export {ImmutableList} from "./src/ImmutableList";
 export {ImmutableMap} from "./src/ImmutableMap";
 export {ImmutableSet} from "./src/ImmutableSet";
 export {JIterator} from "./src/JIterator";
