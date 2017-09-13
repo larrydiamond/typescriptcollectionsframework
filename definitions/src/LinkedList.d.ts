@@ -1,5 +1,5 @@
 import { Collectable } from "./Collectable";
-import { Collection } from "./Collection";
+import { ImmutableCollection } from "./ImmutableCollection";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class LinkedList<T> implements List<T>, Iterable<T> {
@@ -8,7 +8,7 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
     private lastNode;
     private numberElements;
     equality: Collectable<T>;
-    constructor(iEquals: Collectable<T>, initialElements?: Collection<T>);
+    constructor(iEquals: Collectable<T>, initialElements?: ImmutableCollection<T>);
     /**
     * Returns the Collectible
     * @return {Collectable}
@@ -58,14 +58,14 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @param {Collection} c collection containing elements to be removed from this list
      * @return {boolean} true if this list changed as a result of the call
      */
-    removeAll(c: Collection<T>): boolean;
+    removeAll(c: ImmutableCollection<T>): boolean;
     /**
      * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
      * @param {number} index index at which to insert the first element from the specified collection
      * @param {Collection} c collection containing elements to be added to this list
      * @return {boolean} true if this collection changed as a result of the call
      */
-    addAll(c: Collection<T>, index?: number): boolean;
+    addAll(c: ImmutableCollection<T>, index?: number): boolean;
     /**
      * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
      * @param {T} t element to search for

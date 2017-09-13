@@ -12,6 +12,7 @@ import {JIterator} from "./JIterator";
 import {Hashable} from "./Hashable";
 import {HashMap} from "./HashMap";
 import {HashMapIteratorLocationTracker} from "./HashMap";
+import {ImmutableCollection} from "./ImmutableCollection";
 import {JSet} from "./JSet";
 
 export class HashSet<K> implements JSet<K> {
@@ -19,7 +20,7 @@ export class HashSet<K> implements JSet<K> {
   private datastore:HashMap<K,number> = null;
   private hashMethods:Hashable<K>;
 
-  constructor(iHash:Hashable<K>, private initialElements:JSet<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+  constructor(iHash:Hashable<K>, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
     this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
 

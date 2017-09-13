@@ -1,6 +1,7 @@
 import { JIterator } from "./JIterator";
 import { Hashable } from "./Hashable";
 import { HashMapIteratorLocationTracker } from "./HashMap";
+import { ImmutableCollection } from "./ImmutableCollection";
 import { JSet } from "./JSet";
 export declare class HashSet<K> implements JSet<K> {
     private initialElements;
@@ -8,7 +9,7 @@ export declare class HashSet<K> implements JSet<K> {
     private iLoadFactor;
     private datastore;
     private hashMethods;
-    constructor(iHash: Hashable<K>, initialElements?: JSet<K>, iInitialCapacity?: number, iLoadFactor?: number);
+    constructor(iHash: Hashable<K>, initialElements?: ImmutableCollection<K>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Returns the Hashable
     * @return {Hashable}

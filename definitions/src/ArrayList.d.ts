@@ -1,5 +1,5 @@
 import { Collectable } from "./Collectable";
-import { Collection } from "./Collection";
+import { ImmutableCollection } from "./ImmutableCollection";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class ArrayList<T> implements List<T>, Iterable<T> {
@@ -7,7 +7,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
     elements: T[];
     sizeValue: number;
     equality: Collectable<T>;
-    constructor(iEquals: Collectable<T>, initialElements?: Collection<T>);
+    constructor(iEquals: Collectable<T>, initialElements?: ImmutableCollection<T>);
     /**
     * Returns the Collectible
     * @return {Collectable}
@@ -31,7 +31,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
      * @param {Collection} c collection containing elements to be added to this list
      * @return {boolean} true if this collection changed as a result of the call
      */
-    addAll(c: Collection<T>, index?: number): boolean;
+    addAll(c: ImmutableCollection<T>, index?: number): boolean;
     /**
      * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
      * @param {number} index the index of the element to be removed
@@ -77,7 +77,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
      * @param {Collection} c collection containing elements to be removed from this list
      * @return {boolean} true if this list changed as a result of the call
      */
-    removeAll(c: Collection<T>): boolean;
+    removeAll(c: ImmutableCollection<T>): boolean;
     /**
      * Returns true if this list contains no elements.
      * @return {boolean} true if this list contains no elements

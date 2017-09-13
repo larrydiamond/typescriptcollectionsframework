@@ -1,10 +1,11 @@
 import { Comparator } from "./Comparator";
+import { ImmutableCollection } from "./ImmutableCollection";
 import { JIterator } from "./JIterator";
 import { JSet } from "./JSet";
 export declare class TreeSet<K> implements JSet<K> {
     private initialElements;
     private datastore;
-    constructor(iComparator: Comparator<K>, initialElements?: JSet<K>);
+    constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
     validateSet(): boolean;
     /**
     * Adds the specified element to this set if it is not already present.

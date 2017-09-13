@@ -8,6 +8,7 @@
 
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
+import {ImmutableCollection} from "./ImmutableCollection";
 import {JIterator} from "./JIterator";
 import {TreeMap} from "./TreeMap";
 import {JSet} from "./JSet";
@@ -16,7 +17,7 @@ export class TreeSet<K> implements JSet<K> {
 
   private datastore:TreeMap<K,number> = null;
 
-  constructor(iComparator:Comparator<K>, private initialElements?:JSet<K>) {
+  constructor(iComparator:Comparator<K>, private initialElements?:ImmutableCollection<K>) {
     this.datastore = new TreeMap<K,number>(iComparator);
 
     if ((initialElements !== null) && (initialElements !== undefined)){

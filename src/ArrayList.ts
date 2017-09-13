@@ -9,6 +9,7 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {ImmutableCollection} from "./ImmutableCollection";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
 
@@ -17,7 +18,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   sizeValue:number = 0;
   equality:Collectable<T>;
 
-  constructor (iEquals:Collectable<T>, private initialElements?:Collection<T>) {
+  constructor (iEquals:Collectable<T>, private initialElements?:ImmutableCollection<T>) {
     this.equality = iEquals;
     if ((initialElements !== null) && (initialElements !== undefined)){
       for (let iter = initialElements.iterator(); iter.hasNext(); ) {
@@ -68,7 +69,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
     * @param {Collection} c collection containing elements to be added to this list
     * @return {boolean} true if this collection changed as a result of the call
     */
-    public addAll (c:Collection<T>, index?:number) : boolean {
+    public addAll (c:ImmutableCollection<T>, index?:number) : boolean {
       if (c === null) return false;
       if (c === undefined) return false;
       if (c.size() < 1) return false;
@@ -196,7 +197,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   * @param {Collection} c collection containing elements to be removed from this list
   * @return {boolean} true if this list changed as a result of the call
   */
-  public removeAll (c:Collection<T>) : boolean {
+  public removeAll (c:ImmutableCollection<T>) : boolean {
     if (c === null) return false;
     if (c === undefined) return false;
     if (c.size() < 1) return false;
