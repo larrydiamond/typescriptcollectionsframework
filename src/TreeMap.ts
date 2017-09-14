@@ -9,6 +9,7 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Comparator} from "./Comparator";
+import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 import {JMap} from "./JMap";
@@ -19,7 +20,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
   private topNode:TreeMapNode<K,V> = null;
   private mapComparator:Comparator<K> = null;
 
-  constructor(iComparator:Comparator<K>, private initialElements:JMap<K, V> = null) {
+  constructor(iComparator:Comparator<K>, private initialElements:ImmutableMap<K, V> = null) {
     this.mapComparator = iComparator;
     if ((initialElements !== null) && (initialElements !== undefined)) {
       for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
@@ -243,7 +244,6 @@ public size () : number {
         } else { // oh well we looked we tried
           node.setRightNode(newNode);
         }
-
 
         node.setRightNode(newNode);
         return null;

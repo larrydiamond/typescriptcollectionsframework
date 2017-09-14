@@ -1,5 +1,6 @@
 import { BasicMapEntry } from "./BasicMapEntry";
 import { Hashable } from "./Hashable";
+import { ImmutableMap } from "./ImmutableMap";
 import { ImmutableSet } from "./ImmutableSet";
 import { JIterator } from "./JIterator";
 import { JMap } from "./JMap";
@@ -14,7 +15,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     private hashMethods;
     private MapEntryHashMethods;
     private ListMapEntryMethods;
-    constructor(iHash: Hashable<K>, initialElements?: JMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
+    constructor(iHash: Hashable<K>, initialElements?: ImmutableMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
     * @param {K} key key with which the specified value is to be associated

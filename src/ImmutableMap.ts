@@ -6,6 +6,9 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {ImmutableSet} from "./ImmutableSet";
+import {MapEntry} from "./MapEntry";
+
 export interface ImmutableMap<K,V> {
   /**
   * Returns the number of key-value mappings in this map.
@@ -32,4 +35,23 @@ export interface ImmutableMap<K,V> {
   * @return {boolean} true if this map contains no key-value mappings
   */
   isEmpty () : boolean;
+
+ /**
+  * Returns an ImmutableSet view of the keys contained in this map.
+  * The set's iterator returns the keys in ascending order.
+  * The set is backed by the map, so changes to the map are reflected in the set.
+  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  keySet () : ImmutableSet<K>;
+
+ /**
+  * Returns an ImmutableSet view of the mappings contained in this map.
+  * The set's iterator returns the mappings in ascending key order.
+  * The set is backed by the map, so changes to the map are reflected in the set.
+  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * The contains method on this entrySet will only compare keys not values.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  entrySet () : ImmutableSet<MapEntry<K,V>>;
 }

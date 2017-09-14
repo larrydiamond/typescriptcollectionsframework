@@ -11,6 +11,7 @@ import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
 import {Hashable} from "./Hashable";
+import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 import {JMap} from "./JMap";
@@ -26,7 +27,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   private MapEntryHashMethods:Hashable<HashMapEntry<K, V>>;
   private ListMapEntryMethods:Collectable<List<HashMapEntry<K, V>>>;
 
-  public constructor (iHash:Hashable<K>, private initialElements:JMap<K, V> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+  public constructor (iHash:Hashable<K>, private initialElements:ImmutableMap<K, V> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
     this.MapEntryHashMethods = this.getHashMapEntryHashable(this.hashMethods);
     this.ListMapEntryMethods = this.getListHashMapEntryHashable(this.hashMethods);
