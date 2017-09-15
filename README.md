@@ -19,6 +19,7 @@ My goal of this project is to port over as many of the classes and interfaces I'
 
 # Demo project with Angular 2
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular2/dist/
+
 Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular2
 
 # Installation instructions
