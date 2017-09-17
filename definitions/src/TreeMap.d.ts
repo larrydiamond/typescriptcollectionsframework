@@ -9,6 +9,8 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     private topNode;
     private mapComparator;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableMap<K, V>);
+    printMap(): void;
+    private printMapNode(node);
     validateMap(): boolean;
     private validateNode(node);
     /**

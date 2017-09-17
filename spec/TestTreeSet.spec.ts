@@ -353,13 +353,59 @@ describe("Test TreeSet functionality", function() {
     expect (tset.size ()).toEqual(source.size());
   });
 
-it("Test constructing with elements from a TreeSet", function() {
-  let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
-  expect (source.add (product1)).toEqual (false);
-  expect (source.add (product2)).toEqual (false);
+  it("Test constructing with elements from a TreeSet", function() {
+    let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
+    expect (source.add (product1)).toEqual (false);
+    expect (source.add (product2)).toEqual (false);
 
-  let tset:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, source);
-  expect (tset.size ()).toEqual(source.size());
-});
+    let tset:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, source);
+    expect (tset.size ()).toEqual(source.size());
+  });
+
+  it("Focused test on reproducable error 0.8.0 16 Sep 2017", function() {
+    let tsData:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    tsData.add ("Cat");
+    tsData.add ("Squirrel");
+    tsData.add ("Dog");
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(3);
+    expect (tsData.remove ("Dog")).toEqual (true);
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(2);
+    tsData.add ("hvhli");
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(3);
+    expect (tsData.remove ("Cat")).toEqual (true);
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(2);
+    tsData.add ("dybtc");
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(3);
+    expect (tsData.remove ("dybtc")).toEqual (true);
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(2);
+    tsData.add ("xuaqo");
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(3);
+    expect (tsData.remove ("xuaqo")).toEqual (true);
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(2);
+    tsData.add ("ktwky");
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(3);
+//    tsData.printSet ();
+    expect (tsData.remove ("hvhli")).toEqual (true);
+//    tsData.printSet ();
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(2);
+    tsData.add ("cnnlv");
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(3);
+//    tsData.printSet ();
+    expect (tsData.remove ("Squirrel")).toEqual (true);
+//    tsData.printSet ();
+    expect (tsData.validateSet()).toEqual (true);
+    expect (tsData.size ()).toEqual(2);
+  });
 
 });

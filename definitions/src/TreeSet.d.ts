@@ -76,6 +76,7 @@ export declare class TreeSet<K> implements JSet<K> {
      * @return {K} the least key greater than key, or null if there is no such key
      */
     getNextHigherKey(key: K): K;
+    printSet(): void;
     /**
      * Returns a Java style iterator
      * @return {JIterator<K>} the Java style iterator

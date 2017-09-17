@@ -30,7 +30,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
     }
   }
 
-/* Debugging code
+/* Debugging code */
   public printMap() : void {
     if (this.topNode === null) {
       console.log ("top node is null");
@@ -41,9 +41,11 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
       console.log ("top node is undefined");
       return;
     }
-    console.log ("New Tree: size = " + this.size());
+    console.log ("");
+    console.log ("Tree size = " + this.size());
     this.printMapNode (this.topNode);
     console.log ("End of Tree");
+    console.log ("");
   }
 
   private printMapNode (node:TreeMapNode<K,V>) : void {
@@ -428,7 +430,8 @@ public size () : number {
             parent.setRightNode(left);
           }
         }
-
+        left.setParentNode(parent);
+        
         let parentOfRight:TreeMapNode<K,V> = tmp.getLeftNode();
         while (parentOfRight.getRightNode() !== null)
           parentOfRight = parentOfRight.getRightNode();

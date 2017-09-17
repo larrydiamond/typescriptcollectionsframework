@@ -175,6 +175,10 @@ export class TreeSet<K> implements JSet<K> {
     return this.datastore.getNextHigherKey(key);
   }
 
+  public printSet () {
+    return this.datastore.printMap();
+  }
+
  /**
   * Returns a Java style iterator
   * @return {JIterator<K>} the Java style iterator
