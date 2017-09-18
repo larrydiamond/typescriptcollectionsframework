@@ -17,6 +17,12 @@ My goal of this project is to port over as many of the classes and interfaces I'
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
+# Demo project with Angular 4
+Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular4/dist/
+
+Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular4
+
+
 # Demo project with Angular 2
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular2/dist/
 
