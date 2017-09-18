@@ -1,6 +1,52 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+<a name="0.8.1"></a>
+# [0.8.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.8.0...v0.8.1)
+* TreeMap bug fix, also affected TreeSet. Upgrading recommended
+
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.9...v0.8.0)
+* JSet Mutability
+
+<a name="0.7.9"></a>
+# [0.7.9](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.8...v0.7.9)
+* Refactoring to use ImmutableMap
+
+<a name="0.7.8"></a>
+# [0.7.8](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.7...v0.7.8)
+* Refactoring to use Immutability
+
+<a name="0.7.7"></a>
+# [0.7.7](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.6...v0.7.7)
+* Set now extends Collection
+
+<a name="0.7.6"></a>
+# [0.7.6](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.5...v0.7.6)
+* Immutable Collections and Lists
+
+<a name="0.7.5"></a>
+# [0.7.5](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.4...v0.7.5)
+* set.remove
+
+<a name="0.7.4"></a>
+# [0.7.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.3...v0.7.4)
+* Tree iteration patch
+
+<a name="0.7.3"></a>
+# [0.7.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.2...v0.7.3)
+* Explicitly making undefined less than null which is less than any value
+
+<a name="0.7.2"></a>
+# [0.7.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.1...v0.7.2)
+* Hash iteration patch
+
+<a name="0.7.1"></a>
+# [0.7.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.0...v0.7.1)
+* Bug fixes removing equals methods no longer needed
+
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.6.0...v0.7.0)
+* Eliminated the need for classes to extend a bogus base object, allows strings and numbers to be keys in ArrayList, LinkedList, HashSet, and HashMap.
 
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.7...v0.6.0)
