@@ -148,9 +148,11 @@ var TreeSet = (function () {
     TreeSet.prototype.getNextHigherKey = function (key) {
         return this.datastore.getNextHigherKey(key);
     };
-    TreeSet.prototype.printSet = function () {
+    /*
+      public printSet () {
         return this.datastore.printMap();
-    };
+      }
+    /* */
     /**
      * Returns a Java style iterator
      * @return {JIterator<K>} the Java style iterator

@@ -30,7 +30,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
     }
   }
 
-/* Debugging code */
+/* Debugging code 
   public printMap() : void {
     if (this.topNode === null) {
       console.log ("top node is null");
@@ -431,7 +431,7 @@ public size () : number {
           }
         }
         left.setParentNode(parent);
-        
+
         let parentOfRight:TreeMapNode<K,V> = tmp.getLeftNode();
         while (parentOfRight.getRightNode() !== null)
           parentOfRight = parentOfRight.getRightNode();
