@@ -1,6 +1,112 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+<a name="0.8.1"></a>
+# [0.8.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.8.0...v0.8.1)
+* TreeMap bug fix, also affected TreeSet. Upgrading recommended
+
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.9...v0.8.0)
+* JSet Mutability
+
+<a name="0.7.9"></a>
+# [0.7.9](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.8...v0.7.9)
+* Refactoring to use ImmutableMap
+
+<a name="0.7.8"></a>
+# [0.7.8](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.7...v0.7.8)
+* Refactoring to use Immutability
+
+<a name="0.7.7"></a>
+# [0.7.7](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.6...v0.7.7)
+* Set now extends Collection
+
+<a name="0.7.6"></a>
+# [0.7.6](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.5...v0.7.6)
+* Immutable Collections and Lists
+
+<a name="0.7.5"></a>
+# [0.7.5](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.4...v0.7.5)
+* set.remove
+
+<a name="0.7.4"></a>
+# [0.7.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.3...v0.7.4)
+* Tree iteration patch
+
+<a name="0.7.3"></a>
+# [0.7.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.2...v0.7.3)
+* Explicitly making undefined less than null which is less than any value
+
+<a name="0.7.2"></a>
+# [0.7.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.1...v0.7.2)
+* Hash iteration patch
+
+<a name="0.7.1"></a>
+# [0.7.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.7.0...v0.7.1)
+* Bug fixes removing equals methods no longer needed
+
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.6.0...v0.7.0)
+* Eliminated the need for classes to extend a bogus base object, allows strings and numbers to be keys in ArrayList, LinkedList, HashSet, and HashMap.
+
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.7...v0.6.0)
+* HashSet is ready for real use
+
+<a name="0.5.7"></a>
+# [0.5.7](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.6...v0.5.7)
+* HashSet patches
+
+<a name="0.5.6"></a>
+# [0.5.6](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.5...v0.5.6)
+* HashSet patches
+
+<a name="0.5.5"></a>
+# [0.5.5](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.4...v0.5.5)
+* Mistake re-release
+
+<a name="0.5.4"></a>
+# [0.5.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.3...v0.5.4)
+* HashSet
+
+<a name="0.5.3"></a>
+# [0.5.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.2...v0.5.3)
+* Performance improvements for HashMap
+
+<a name="0.5.2"></a>
+# [0.5.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.1...v0.5.2)
+* NavigableMap methods for TreeMap
+
+<a name="0.5.1"></a>
+# [0.5.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.5.0...v0.5.1)
+* Patch release to expose LinkedList class, sigh not the first time I've forgotten to expose a class once it's ready
+
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.4.5...v0.5.0)
+* Minor release for LinkedList class
+
+<a name="0.4.5"></a>
+# [0.4.5](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.4.4...v0.4.5)
+* Patch release HashMap first few methods
+
+<a name="0.4.4"></a>
+# [0.4.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.4.3...v0.4.4)
+* Patch release new ceiling methods for TreeMap and TreeSet. Floor, higher, and lower to follow in future patches
+
+<a name="0.4.3"></a>
+# [0.4.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.4.2...v0.4.3)
+* Patch release fixing TreeMap iteration
+
+<a name="0.4.2"></a>
+# [0.4.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.4.1...v0.4.2)
+* Patch release fixing parameters for ArrayList.addAll()
+
+<a name="0.4.1"></a>
+# [0.4.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.4.0...v0.4.1)
+* Patch release making Comparator visible so that TreeMaps and TreeSets are truly accessible
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.3.6...v0.4.0)
+* ArrayList, TreeMap, and TreeSet are all available for use now.
 
 <a name="0.3.6"></a>
 # [0.3.6](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.2.0...v0.3.6) (2017-07-27)

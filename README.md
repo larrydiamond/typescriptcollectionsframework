@@ -17,6 +17,12 @@ My goal of this project is to port over as many of the classes and interfaces I'
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
+# Demo project with Angular 4
+Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular4/dist/
+
+Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular4
+
+
 # Demo project with Angular 2
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular2/dist/
 
@@ -45,7 +51,7 @@ Semver will be adopted once we are at version 1.0 of this framework.
 In TypeScript all objects do not inherit from Object (which we do not control anyway), so we made added a parameter to the constructors of each class to compare objects and calculate hash codes.   As a result, anything can be put into the Collections, even string, number, and classes from other packages.   There is no String class to wrap string, no Number class to wrap number, and no Boolean class to wrap boolean.   No autoboxing and no autounboxing.
 
 # Thank you for all the support.   
-The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days, 600 in the first week. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  Almost 1800 in less than a month.
+The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days, 600 in the first week. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  The volume has been steadily increasing each month since then.
 
 Please feel free to email me at ldiamond at ldiamond dot com with feature requests.  I love to hear from people putting my effort to good use.   :)
 
