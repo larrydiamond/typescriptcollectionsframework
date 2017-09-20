@@ -1,8 +1,8 @@
 import { Comparator } from "./Comparator";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { JIterator } from "./JIterator";
-import { JSet } from "./JSet";
-export declare class TreeSet<K> implements JSet<K> {
+import { NavigableSet } from "./NavigableSet";
+export declare class TreeSet<K> implements NavigableSet<K> {
     private initialElements;
     private datastore;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);

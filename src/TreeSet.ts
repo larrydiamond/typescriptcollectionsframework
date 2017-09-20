@@ -10,10 +10,11 @@ import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {JIterator} from "./JIterator";
-import {TreeMap} from "./TreeMap";
 import {JSet} from "./JSet";
+import {NavigableSet} from "./NavigableSet";
+import {TreeMap} from "./TreeMap";
 
-export class TreeSet<K> implements JSet<K> {
+export class TreeSet<K> implements NavigableSet<K> {
 
   private datastore:TreeMap<K,number> = null;
 
