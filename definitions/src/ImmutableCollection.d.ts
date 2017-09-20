@@ -22,4 +22,15 @@ export interface ImmutableCollection<T> {
      * @return {JIterator<T>} the Java style iterator
      */
     iterator(): JIterator<T>;
+    /**
+     * Returns a TypeScript style iterator
+     * @return {Iterator<T>} the TypeScript style iterator
+     */
+    [Symbol.iterator](): Iterator<T>;
+    /**
+     * Returns true if this collection contains the specified element.
+     * @param {T} t element whose presence in this collection is to be tested
+     * @return {boolean} true if this collection contains the specified element
+     */
+    contains(t: T): boolean;
 }

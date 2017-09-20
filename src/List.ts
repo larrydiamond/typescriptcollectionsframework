@@ -26,7 +26,7 @@ export interface List<T> extends ImmutableList<T>, Collection<T> {
   * @param {number} index the index of the element to be removed
   * @return {T} the element that was removed from the list, undefined if the element does not exist
   */
-  remove (index:number) : T;
+  removeIndex (index:number) : T;
 
   /**
   * Appends the specified element to the end of this list
@@ -40,7 +40,7 @@ export interface List<T> extends ImmutableList<T>, Collection<T> {
   * @param {number} index index at which the specified element is to be inserted
   * @param {T} t element to be inserted
   */
-  addElement (index:number, t:T) : void;
+  addIndex (index:number, t:T) : void;
 
   /**
   * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
@@ -54,13 +54,6 @@ export interface List<T> extends ImmutableList<T>, Collection<T> {
   * Removes all of the elements from this list. The list will be empty after this call returns.
   */
   clear () : void;
-
-  /**
-  * Removes the first occurrence of the specified element from this list, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
-  * @param {T} t element to be removed from this list, if present
-  * @return {T} true if this list contained the specified element
-  */
-  removeElement (t:T) : boolean;
 
   /**
   * Removes from this list all of its elements that are contained in the specified collection.

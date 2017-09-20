@@ -25,7 +25,7 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @param {number} index index at which the specified element is to be inserted
      * @param {T} t element to be inserted
      */
-    addElement(index: number, t: T): void;
+    addIndex(index: number, t: T): void;
     /**
      * Returns true if this list contains no elements.
      * @return {boolean} true if this list contains no elements
@@ -52,7 +52,7 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    removeElement(t: T): boolean;
+    remove(t: T): boolean;
     /**
      * Removes from this list all of its elements that are contained in the specified collection.
      * @param {Collection} c collection containing elements to be removed from this list
@@ -77,7 +77,7 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    remove(index: number): T;
+    removeIndex(index: number): T;
     /**
      * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      * @param {T} t element to search for

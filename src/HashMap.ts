@@ -150,7 +150,7 @@ export class HashMap<K,V> implements JMap<K,V> {
     for (let loop:number = 0; loop < thisList.size(); loop++) {
       if (this.hashMethods.equals (key, thisList.get(loop).getKey())) {
         this.elementCount = this.elementCount - 1;
-        return thisList.remove (loop).getValue();
+        return thisList.removeIndex (loop).getValue();
       }
     }
     return null;

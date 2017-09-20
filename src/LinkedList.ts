@@ -69,7 +69,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @param {number} index index at which the specified element is to be inserted
   * @param {T} t element to be inserted
   */
-  public addElement (index:number, t:T) : void {
+  public addIndex (index:number, t:T) : void {
     if (index === 0) {
       let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
       newnode.nextNode = this.firstNode;
@@ -174,7 +174,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @param {T} t element to be removed from this list, if present
   * @return {T} true if this list contained the specified element
   */
-  public removeElement (t:T) : boolean {
+  public remove (t:T) : boolean {
     if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return false;
     }
@@ -221,7 +221,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 
     for (let iter = c.iterator(); iter.hasNext(); ) {
       let t:T = iter.next ();
-      let tmp = this.removeElement(t);
+      let tmp = this.remove(t);
       if (tmp === true) changed = true;
     }
 
@@ -246,7 +246,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 
     for (let iter = c.iterator(); iter.hasNext(); ) {
       let t:T = iter.next ();
-      this.addElement (index, t);
+      this.addIndex (index, t);
       index = index + 1;
     }
 
@@ -286,7 +286,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @param {number} index the index of the element to be removed
   * @return {T} the element that was removed from the list, undefined if the element does not exist
   */
-  public remove (index:number) : T {
+  public removeIndex (index:number) : T {
     if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return undefined;
     }

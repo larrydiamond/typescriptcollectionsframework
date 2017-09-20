@@ -53,7 +53,7 @@ var LinkedList = (function () {
      * @param {number} index index at which the specified element is to be inserted
      * @param {T} t element to be inserted
      */
-    LinkedList.prototype.addElement = function (index, t) {
+    LinkedList.prototype.addIndex = function (index, t) {
         if (index === 0) {
             var newnode = new LinkedListNode(t);
             newnode.nextNode = this.firstNode;
@@ -149,7 +149,7 @@ var LinkedList = (function () {
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    LinkedList.prototype.removeElement = function (t) {
+    LinkedList.prototype.remove = function (t) {
         if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return false;
         }
@@ -196,7 +196,7 @@ var LinkedList = (function () {
         var changed = false;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            var tmp = this.removeElement(t);
+            var tmp = this.remove(t);
             if (tmp === true)
                 changed = true;
         }
@@ -221,7 +221,7 @@ var LinkedList = (function () {
         }
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.addElement(index, t);
+            this.addIndex(index, t);
             index = index + 1;
         }
         return true;
@@ -256,7 +256,7 @@ var LinkedList = (function () {
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    LinkedList.prototype.remove = function (index) {
+    LinkedList.prototype.removeIndex = function (index) {
         if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return undefined;
         }

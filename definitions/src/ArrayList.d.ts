@@ -24,7 +24,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
       * @param {number} index index at which the specified element is to be inserted
       * @param {T} t element to be inserted
       */
-    addElement(index: number, t: T): void;
+    addIndex(index: number, t: T): void;
     /**
      * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
      * @param {number} index index at which to insert the first element from the specified collection
@@ -37,7 +37,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    remove(index: number): T;
+    removeIndex(index: number): T;
     /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
@@ -71,7 +71,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    removeElement(t: T): boolean;
+    remove(t: T): boolean;
     /**
      * Removes from this list all of its elements that are contained in the specified collection.
      * @param {Collection} c collection containing elements to be removed from this list

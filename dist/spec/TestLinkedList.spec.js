@@ -166,7 +166,7 @@ describe("Test LinkedList functionality", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
-        thelist.addElement(0, product3);
+        thelist.addIndex(0, product3);
         expect(thelist.size()).toEqual(3);
         expect(thelist.indexOf(product1)).toEqual(1);
         expect(thelist.indexOf(product2)).toEqual(2);
@@ -176,7 +176,7 @@ describe("Test LinkedList functionality", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
-        thelist.addElement(1, product3);
+        thelist.addIndex(1, product3);
         expect(thelist.size()).toEqual(3);
         expect(thelist.indexOf(product1)).toEqual(0);
         expect(thelist.indexOf(product2)).toEqual(2);
@@ -186,7 +186,7 @@ describe("Test LinkedList functionality", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
-        thelist.addElement(2, product3);
+        thelist.addIndex(2, product3);
         expect(thelist.size()).toEqual(3);
         expect(thelist.indexOf(product1)).toEqual(0);
         expect(thelist.indexOf(product2)).toEqual(1);
@@ -194,23 +194,23 @@ describe("Test LinkedList functionality", function () {
     });
     it("Test remove at front of list", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
-        expect(thelist.remove(0)).toEqual(undefined);
+        expect(thelist.removeIndex(0)).toEqual(undefined);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
-        expect(thelist.remove(0)).toEqual(product1);
+        expect(thelist.removeIndex(0)).toEqual(product1);
         expect(thelist.size()).toEqual(2);
         expect(thelist.indexOf(product1)).toEqual(-1);
         expect(thelist.indexOf(product2)).toEqual(0);
         expect(thelist.indexOf(product3)).toEqual(1);
-        expect(thelist.remove(4000)).toEqual(undefined);
+        expect(thelist.removeIndex(4000)).toEqual(undefined);
     });
     it("Test remove in middle of list", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
-        expect(thelist.remove(1)).toEqual(product2);
+        expect(thelist.removeIndex(1)).toEqual(product2);
         expect(thelist.size()).toEqual(2);
         expect(thelist.indexOf(product1)).toEqual(0);
         expect(thelist.indexOf(product2)).toEqual(-1);
@@ -221,7 +221,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
-        expect(thelist.remove(2)).toEqual(product3);
+        expect(thelist.removeIndex(2)).toEqual(product3);
         expect(thelist.size()).toEqual(2);
         expect(thelist.indexOf(product1)).toEqual(0);
         expect(thelist.indexOf(product2)).toEqual(1);
@@ -229,11 +229,11 @@ describe("Test LinkedList functionality", function () {
     });
     it("Test removeElement at front of list", function () {
         var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
-        expect(thelist.removeElement(product1)).toEqual(false);
+        expect(thelist.remove(product1)).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
-        expect(thelist.removeElement(product1)).toEqual(true);
+        expect(thelist.remove(product1)).toEqual(true);
         expect(thelist.size()).toEqual(2);
         expect(thelist.indexOf(product1)).toEqual(-1);
         expect(thelist.indexOf(product2)).toEqual(0);
@@ -244,7 +244,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
-        expect(thelist.removeElement(product2)).toEqual(true);
+        expect(thelist.remove(product2)).toEqual(true);
         expect(thelist.size()).toEqual(2);
         expect(thelist.indexOf(product1)).toEqual(0);
         expect(thelist.indexOf(product2)).toEqual(-1);
@@ -255,7 +255,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
-        expect(thelist.removeElement(product3)).toEqual(true);
+        expect(thelist.remove(product3)).toEqual(true);
         expect(thelist.size()).toEqual(2);
         expect(thelist.indexOf(product1)).toEqual(0);
         expect(thelist.indexOf(product2)).toEqual(1);
@@ -268,7 +268,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.add(product3)).toEqual(true);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.size()).toEqual(4);
-        expect(thelist.removeElement(product1)).toEqual(true);
+        expect(thelist.remove(product1)).toEqual(true);
         expect(thelist.size()).toEqual(3);
         expect(thelist.indexOf(product1)).toEqual(2);
         expect(thelist.indexOf(product2)).toEqual(0);
@@ -276,12 +276,12 @@ describe("Test LinkedList functionality", function () {
         thelist.add(product3);
         expect(thelist.size()).toEqual(4);
         expect(thelist.indexOf(product3)).toEqual(1);
-        expect(thelist.removeElement(product3)).toEqual(true);
+        expect(thelist.remove(product3)).toEqual(true);
         expect(thelist.size()).toEqual(3);
         expect(thelist.indexOf(product1)).toEqual(1);
         expect(thelist.indexOf(product2)).toEqual(0);
         expect(thelist.indexOf(product3)).toEqual(2);
-        expect(thelist.removeElement(productNotAvailable)).toEqual(false);
+        expect(thelist.remove(productNotAvailable)).toEqual(false);
     });
     it("Test addall", function () {
         var victim = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());

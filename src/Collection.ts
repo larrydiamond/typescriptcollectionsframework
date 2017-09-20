@@ -24,4 +24,11 @@ export interface Collection<T> extends ImmutableCollection<T> {
    * Removes all of the elements from this collection. The list collection be empty after this call returns.
    */
   clear ();
+
+ /**
+  * Removes the first occurrence of the specified element from this collection, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
+  * @param {T} t element to be removed from this collection, if present
+  * @return {T} true if this collection contained the specified element
+  */
+  remove (t:T) : boolean;
 }

@@ -164,7 +164,7 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
-        arraylist.addElement(0, product3);
+        arraylist.addIndex(0, product3);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(1);
         expect(arraylist.indexOf(product2)).toEqual(2);
@@ -174,7 +174,7 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
-        arraylist.addElement(1, product3);
+        arraylist.addIndex(1, product3);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(2);
@@ -184,7 +184,7 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
-        arraylist.addElement(2, product3);
+        arraylist.addIndex(2, product3);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
@@ -192,11 +192,11 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test remove at front of list", function () {
         var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
-        expect(arraylist.remove(0)).toEqual(undefined);
+        expect(arraylist.removeIndex(0)).toEqual(undefined);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
-        expect(arraylist.remove(0)).toEqual(product1);
+        expect(arraylist.removeIndex(0)).toEqual(product1);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(-1);
         expect(arraylist.indexOf(product2)).toEqual(0);
@@ -207,7 +207,7 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
-        expect(arraylist.remove(1)).toEqual(product2);
+        expect(arraylist.removeIndex(1)).toEqual(product2);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(-1);
@@ -218,7 +218,7 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
-        expect(arraylist.remove(2)).toEqual(product3);
+        expect(arraylist.removeIndex(2)).toEqual(product3);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
@@ -226,11 +226,11 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test removeElement at front of list", function () {
         var arraylist = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
-        expect(arraylist.removeElement(product1)).toEqual(false);
+        expect(arraylist.remove(product1)).toEqual(false);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
-        expect(arraylist.removeElement(product1)).toEqual(true);
+        expect(arraylist.remove(product1)).toEqual(true);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(-1);
         expect(arraylist.indexOf(product2)).toEqual(0);
@@ -241,7 +241,7 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
-        expect(arraylist.removeElement(product2)).toEqual(true);
+        expect(arraylist.remove(product2)).toEqual(true);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(-1);
@@ -252,7 +252,7 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         expect(arraylist.add(product3)).toEqual(true);
-        expect(arraylist.removeElement(product3)).toEqual(true);
+        expect(arraylist.remove(product3)).toEqual(true);
         expect(arraylist.size()).toEqual(2);
         expect(arraylist.indexOf(product1)).toEqual(0);
         expect(arraylist.indexOf(product2)).toEqual(1);
@@ -265,7 +265,7 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.add(product3)).toEqual(true);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.size()).toEqual(4);
-        expect(arraylist.removeElement(product1)).toEqual(true);
+        expect(arraylist.remove(product1)).toEqual(true);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(2);
         expect(arraylist.indexOf(product2)).toEqual(0);
@@ -273,12 +273,12 @@ describe("Test ArrayList functionality", function () {
         arraylist.add(product3);
         expect(arraylist.size()).toEqual(4);
         expect(arraylist.indexOf(product3)).toEqual(1);
-        expect(arraylist.removeElement(product3)).toEqual(true);
+        expect(arraylist.remove(product3)).toEqual(true);
         expect(arraylist.size()).toEqual(3);
         expect(arraylist.indexOf(product1)).toEqual(1);
         expect(arraylist.indexOf(product2)).toEqual(0);
         expect(arraylist.indexOf(product3)).toEqual(2);
-        expect(arraylist.removeElement(productNotAvailable)).toEqual(false);
+        expect(arraylist.remove(productNotAvailable)).toEqual(false);
     });
     it("Test addall", function () {
         var victim = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());

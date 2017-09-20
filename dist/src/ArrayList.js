@@ -46,7 +46,7 @@ var ArrayList = (function () {
       * @param {number} index index at which the specified element is to be inserted
       * @param {T} t element to be inserted
       */
-    ArrayList.prototype.addElement = function (index, t) {
+    ArrayList.prototype.addIndex = function (index, t) {
         if ((this.elements === null) || (this.elements === undefined)) {
             this.elements = new Array();
         }
@@ -72,7 +72,7 @@ var ArrayList = (function () {
         }
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.addElement(index, t);
+            this.addIndex(index, t);
             index = index + 1;
         }
         return true;
@@ -82,7 +82,7 @@ var ArrayList = (function () {
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    ArrayList.prototype.remove = function (index) {
+    ArrayList.prototype.removeIndex = function (index) {
         if ((this.elements === null) || (this.elements === undefined)) {
             return undefined;
         }
@@ -155,7 +155,7 @@ var ArrayList = (function () {
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    ArrayList.prototype.removeElement = function (t) {
+    ArrayList.prototype.remove = function (t) {
         if ((this.elements === null) || (this.elements === undefined)) {
             return false;
         }
@@ -163,7 +163,7 @@ var ArrayList = (function () {
         if (offset === -1) {
             return false;
         }
-        this.remove(offset);
+        this.removeIndex(offset);
         return true;
     };
     /**
@@ -181,7 +181,7 @@ var ArrayList = (function () {
         var changed = false;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            var tmp = this.removeElement(t);
+            var tmp = this.remove(t);
             if (tmp === true)
                 changed = true;
         }
