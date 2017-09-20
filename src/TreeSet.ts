@@ -90,6 +90,17 @@ export class TreeSet<K> implements NavigableSet<K> {
     return true;
   }
 
+ /**
+  * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+  * @param {K} item to find floor node for
+  * @return {K} the greatest element less than or equal to e, or null if there is no such element
+  */
+  public floor (item:K) : K {
+    let tmp:K = this.datastore.floorKey(item);
+    if (tmp === undefined)
+      return null;
+    return tmp;
+  }
 
  /**
   * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.

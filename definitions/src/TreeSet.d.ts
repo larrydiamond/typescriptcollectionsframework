@@ -35,6 +35,12 @@ export declare class TreeSet<K> implements NavigableSet<K> {
     */
     contains(item: K): boolean;
     /**
+     * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+     * @param {K} item to find floor node for
+     * @return {K} the greatest element less than or equal to e, or null if there is no such element
+     */
+    floor(item: K): K;
+    /**
      * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
      * @param {K} item to find ceiling node for
      * @return {K} the least element greater than or equal to item, or null if there is no such element
