@@ -5,9 +5,9 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
-import { SortedMap } from "./SortedMap";
+import { JMap } from "./JMap";
 import { MapEntry } from "./MapEntry";
-export interface NavigableMap<K, V> extends SortedMap<K, V> {
+export interface NavigableMap<K, V> extends JMap<K, V> {
     /**
     * Returns the first (lowest) key currently in this map.
     * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty

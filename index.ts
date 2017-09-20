@@ -29,6 +29,5 @@ export {NavigableMap} from "./src/NavigableMap";
 export {PriorityQueue} from "./src/PriorityQueue";
 export {Queue} from "./src/Queue";
 export {JSet} from "./src/JSet";
-export {SortedMap} from "./src/SortedMap";
 export {TreeMap} from "./src/TreeMap";
 export {TreeSet} from "./src/TreeSet";
