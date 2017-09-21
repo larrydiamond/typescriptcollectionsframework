@@ -18,6 +18,7 @@
     "run-sequence": "^2.1.0",
     "standard-version": "^4.2.0",
     "tslint": "^5.6.0",
+    "typedoc": "^0.8.0",
     "typescript": "^2.4.2"
   },
   "main": "dist/index.js",
@@ -33,7 +34,8 @@
   "scripts": {
     "test": "rm -r -f dist && gulp test",
     "release": "standard-version",
-    "tslint": "node_modules/tslint/bin/tslint -c tslint.json */*.ts"
+    "tslint": "tslint -c tslint.json */*.ts",
+    "typedoc": "typedoc --target ES5 --readme none --excludePrivate --out typedoc/ src/*.ts  -excludeExternals spec/*.spec.ts"
   },
   "repository": {
     "type": "git",
