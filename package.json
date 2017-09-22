@@ -35,7 +35,7 @@
     "test": "rm -r -f dist && gulp test",
     "release": "standard-version",
     "tslint": "tslint -c tslint.json */*.ts",
-    "typedoc": "typedoc --target ES5 --readme none --excludePrivate --out typedoc/ src/*.ts  -excludeExternals spec/*.spec.ts"
+    "typedoc": "typedoc --target ES5 --readme none --excludePrivate --out typedoc/ src/*.ts  --excludeExternals spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'"
   },
   "repository": {
     "type": "git",
