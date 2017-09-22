@@ -9,11 +9,13 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
-Documentation for the entire framework can be found at https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
+Class level ocumentation for the entire framework can be found at https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 
-[ArrayList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/ArrayList), [LinkedList](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/LinkedList), [HashMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/HashMap), [TreeMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/TreeMap), and TreeSet are all live and available today.  PriorityQueue will also be available soon.  HashSet and SkipListMap are next.
+[ArrayList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_arraylist_.arraylist.html), [LinkedList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_linkedlist_.linkedlist.html), [TreeSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treeset_.treeset.html), [HashSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashset_.hashset.html), 
+[HashMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashmap_.hashmap.html), and [TreeMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treemap_.treemap.html) are all live and available today.  Version 2 goals include PriorityQueue and SkipListMap and much more documentation
 
-[List](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/List) and [NavigableMap](https://github.com/larrydiamond/typescriptcollectionsframework/wiki/NavigableMap) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
+[Collection](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_collection_.collection.html), 
+[List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jset_.jset.html), and [Map](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jmap_.jmap.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
 
 My goal of this project is to port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript and to eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
 
