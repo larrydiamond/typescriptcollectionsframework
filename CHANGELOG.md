@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="0.9.1"></a>
+# [0.9.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.9.0...v0.9.1) (2017-09-24)
+* Immutable methods added to make an immutable version of concrete objects
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.8.1...v0.9.0) (2017-09-22)
 * Breaking changes (sorry) in order to consistently match the class hierarchy and get consistent on the method names
