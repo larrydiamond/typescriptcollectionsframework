@@ -124,6 +124,20 @@ var HashSet = (function () {
     HashSet.prototype[Symbol.iterator] = function () {
         return new HashSetIterator(this);
     };
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    HashSet.prototype.immutableCollection = function () {
+        return this;
+    };
+    ;
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    HashSet.prototype.immutableSet = function () {
+        return this;
+    };
+    ;
     return HashSet;
 }());
 exports.HashSet = HashSet;

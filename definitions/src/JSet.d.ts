@@ -14,4 +14,8 @@ export interface JSet<K> extends ImmutableSet<K>, Collection<K> {
     * @return {boolean} true if this set did not already contain the specified element
     */
     add(element: K): boolean;
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    immutableSet(): ImmutableSet<K>;
 }

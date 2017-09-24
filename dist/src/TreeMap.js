@@ -740,6 +740,13 @@ var TreeMap = (function () {
     TreeMap.prototype.entrySet = function () {
         return new ImmutableEntrySetForTreeMap(this);
     };
+    /**
+    * Returns an ImmutableMap backed by Map
+    */
+    TreeMap.prototype.immutableMap = function () {
+        return this;
+    };
+    ;
     return TreeMap;
 }());
 exports.TreeMap = TreeMap;

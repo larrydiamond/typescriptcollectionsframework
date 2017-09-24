@@ -178,6 +178,20 @@ var TreeSet = (function () {
     TreeSet.prototype[Symbol.iterator] = function () {
         return new TreeSetIterator(this);
     };
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    TreeSet.prototype.immutableCollection = function () {
+        return this;
+    };
+    ;
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    TreeSet.prototype.immutableSet = function () {
+        return this;
+    };
+    ;
     return TreeSet;
 }());
 exports.TreeSet = TreeSet;

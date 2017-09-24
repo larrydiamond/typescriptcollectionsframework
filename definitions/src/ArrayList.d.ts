@@ -1,5 +1,6 @@
 import { Collectable } from "./Collectable";
 import { ImmutableCollection } from "./ImmutableCollection";
+import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class ArrayList<T> implements List<T>, Iterable<T> {
@@ -105,6 +106,14 @@ export declare class ArrayList<T> implements List<T>, Iterable<T> {
      * @return {Iterator<T>} the TypeScript style iterator
      */
     [Symbol.iterator](): Iterator<T>;
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    immutableList(): ImmutableList<T>;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    immutableCollection(): ImmutableCollection<T>;
 }
 export declare class ArrayListJIterator<T> implements JIterator<T> {
     private offset;

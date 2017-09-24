@@ -2,6 +2,7 @@ import { JIterator } from "./JIterator";
 import { Hashable } from "./Hashable";
 import { HashMapIteratorLocationTracker } from "./HashMap";
 import { ImmutableCollection } from "./ImmutableCollection";
+import { ImmutableSet } from "./ImmutableSet";
 import { JSet } from "./JSet";
 export declare class HashSet<K> implements JSet<K> {
     private initialElements;
@@ -67,6 +68,14 @@ export declare class HashSet<K> implements JSet<K> {
     * @return {Iterator<K>} the TypeScript style iterator
     */
     [Symbol.iterator](): Iterator<K>;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    immutableCollection(): ImmutableCollection<K>;
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    immutableSet(): ImmutableSet<K>;
 }
 export declare class HashSetJIterator<T> implements JIterator<T> {
     private location;

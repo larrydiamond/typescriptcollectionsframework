@@ -1,5 +1,6 @@
 import { Collectable } from "./Collectable";
 import { ImmutableCollection } from "./ImmutableCollection";
+import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class LinkedList<T> implements List<T>, Iterable<T> {
@@ -113,6 +114,14 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @return {Iterator<T>} the TypeScript style iterator
      */
     [Symbol.iterator](): Iterator<T>;
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    immutableList(): ImmutableList<T>;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    immutableCollection(): ImmutableCollection<T>;
 }
 export declare class LinkedListNode<T> {
     previousNode: LinkedListNode<T>;

@@ -34,4 +34,8 @@ export interface JMap<K, V> extends ImmutableMap<K, V> {
      * @return {MapEntry} an entry with the greatest key, or null if this map is empty
      */
     entrySet(): ImmutableSet<MapEntry<K, V>>;
+    /**
+    * Returns an ImmutableMap backed by this Map
+    */
+    immutableMap(): ImmutableMap<K, V>;
 }

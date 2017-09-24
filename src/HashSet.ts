@@ -13,6 +13,7 @@ import {Hashable} from "./Hashable";
 import {HashMap} from "./HashMap";
 import {HashMapIteratorLocationTracker} from "./HashMap";
 import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableSet} from "./ImmutableSet";
 import {JSet} from "./JSet";
 
 export class HashSet<K> implements JSet<K> {
@@ -143,6 +144,20 @@ export class HashSet<K> implements JSet<K> {
   public [Symbol.iterator] ():Iterator<K> {
     return new HashSetIterator (this);
   }
+
+  /**
+  * Returns an ImmutableCollection backed by this Collection
+  */
+  public immutableCollection () : ImmutableCollection<K> {
+    return this;
+  };
+
+  /**
+  * Returns an ImmutableSet backed by this Set
+  */
+  immutableSet () : ImmutableSet<K> {
+    return this;
+  };
 }
 
 

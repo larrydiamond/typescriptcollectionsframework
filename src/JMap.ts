@@ -40,4 +40,9 @@ export interface JMap<K,V> extends ImmutableMap<K,V> {
   */
   entrySet () : ImmutableSet<MapEntry<K,V>>;
 
+  /**
+  * Returns an ImmutableMap backed by this Map
+  */
+  immutableMap () : ImmutableMap<K,V>;
+
 }

@@ -394,6 +394,20 @@ var LinkedList = (function () {
     LinkedList.prototype[Symbol.iterator] = function () {
         return new LinkedListIterator(this);
     };
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    LinkedList.prototype.immutableList = function () {
+        return this;
+    };
+    ;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    LinkedList.prototype.immutableCollection = function () {
+        return this;
+    };
+    ;
     return LinkedList;
 }());
 exports.LinkedList = LinkedList;

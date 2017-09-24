@@ -10,6 +10,7 @@ import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
 import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
 
@@ -259,6 +260,20 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   public [Symbol.iterator] ():Iterator<T> {
     return new ArrayListIterator (this);
   }
+
+  /**
+  * Returns an ImmutableList backed by this List
+  */
+  public immutableList () : ImmutableList<T> {
+    return this;
+  };
+
+  /**
+  * Returns an ImmutableCollection backed by this Collection
+  */
+  public immutableCollection () : ImmutableCollection<T> {
+    return this;
+  };
 
 }
 

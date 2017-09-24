@@ -221,6 +221,13 @@ var HashMap = (function () {
         return new ImmutableEntrySetForHashMap(this);
     };
     /**
+    * Returns an ImmutableMap backed by Map
+    */
+    HashMap.prototype.immutableMap = function () {
+        return this;
+    };
+    ;
+    /**
      * This method is deprecated and will be removed in a future revision.
      * @deprecated
      */

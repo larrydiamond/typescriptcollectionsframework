@@ -1,5 +1,6 @@
 import { Comparator } from "./Comparator";
 import { ImmutableCollection } from "./ImmutableCollection";
+import { ImmutableSet } from "./ImmutableSet";
 import { JIterator } from "./JIterator";
 import { NavigableSet } from "./NavigableSet";
 export declare class TreeSet<K> implements NavigableSet<K> {
@@ -92,6 +93,14 @@ export declare class TreeSet<K> implements NavigableSet<K> {
     * @return {Iterator<K>} the TypeScript style iterator
     */
     [Symbol.iterator](): Iterator<K>;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    immutableCollection(): ImmutableCollection<K>;
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    immutableSet(): ImmutableSet<K>;
 }
 export declare class TreeSetJIterator<T> implements JIterator<T> {
     private location;

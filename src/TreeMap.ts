@@ -30,7 +30,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
     }
   }
 
-/* Debugging code 
+/* Debugging code
   public printMap() : void {
     if (this.topNode === null) {
       console.log ("top node is null");
@@ -781,6 +781,13 @@ public size () : number {
   public entrySet () : ImmutableSet<MapEntry<K,V>> {
     return new ImmutableEntrySetForTreeMap(this);
   }
+
+  /**
+  * Returns an ImmutableMap backed by Map
+  */
+  public immutableMap () : ImmutableMap<K,V> {
+    return this;
+  };
 
 }
 

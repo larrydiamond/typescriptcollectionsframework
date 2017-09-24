@@ -61,4 +61,9 @@ export interface List<T> extends ImmutableList<T>, Collection<T> {
   * @return {boolean} true if this list changed as a result of the call
   */
   removeAll (c:ImmutableCollection<T>) : boolean;
+
+  /**
+  * Returns an ImmutableList backed by this List
+  */
+  immutableList () : ImmutableList<T>;
 }

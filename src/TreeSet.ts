@@ -9,6 +9,7 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
 import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 import {JSet} from "./JSet";
 import {NavigableSet} from "./NavigableSet";
@@ -208,6 +209,20 @@ export class TreeSet<K> implements NavigableSet<K> {
   public [Symbol.iterator] ():Iterator<K> {
     return new TreeSetIterator (this);
   }
+
+  /**
+  * Returns an ImmutableCollection backed by this Collection
+  */
+  public immutableCollection () : ImmutableCollection<K> {
+    return this;
+  };
+
+  /**
+  * Returns an ImmutableSet backed by this Set
+  */
+  immutableSet () : ImmutableSet<K> {
+    return this;
+  };
 }
 
 

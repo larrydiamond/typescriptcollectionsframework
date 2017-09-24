@@ -164,6 +164,10 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
      * @return {MapEntry} an entry with the greatest key, or null if this map is empty
      */
     entrySet(): ImmutableSet<MapEntry<K, V>>;
+    /**
+    * Returns an ImmutableMap backed by Map
+    */
+    immutableMap(): ImmutableMap<K, V>;
 }
 export declare class TreeMapNode<K, V> {
     private key;

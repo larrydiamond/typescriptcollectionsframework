@@ -228,6 +228,20 @@ var ArrayList = (function () {
     ArrayList.prototype[Symbol.iterator] = function () {
         return new ArrayListIterator(this);
     };
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    ArrayList.prototype.immutableList = function () {
+        return this;
+    };
+    ;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    ArrayList.prototype.immutableCollection = function () {
+        return this;
+    };
+    ;
     return ArrayList;
 }());
 exports.ArrayList = ArrayList;

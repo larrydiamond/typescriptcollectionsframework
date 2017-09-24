@@ -216,6 +216,13 @@ export class HashMap<K,V> implements JMap<K,V> {
     return new ImmutableEntrySetForHashMap(this);
   }
 
+  /**
+  * Returns an ImmutableMap backed by Map
+  */
+  public immutableMap () : ImmutableMap<K,V> {
+    return this;
+  };
+
  /**
   * This method is deprecated and will be removed in a future revision.
   * @deprecated
