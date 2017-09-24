@@ -17,7 +17,7 @@ export interface Collection<T> extends ImmutableCollection<T> {
     */
     add(t: T): boolean;
     /**
-    * Removes all of the elements from this collection. The list collection be empty after this call returns.
+    * Removes all of the elements from this collection. The collection be empty after this call returns.
     */
     clear(): any;
     /**
