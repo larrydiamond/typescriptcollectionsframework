@@ -18,9 +18,10 @@ Class level ocumentation for the entire framework can be found at https://larryd
 [List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jset_.jset.html), and [Map](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jmap_.jmap.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
 
 # My goals of this project 
-* Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript and to eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
+* Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript
 * Support putting "stuff" from other libraries into Collections without having to box and unbox objects.
-* Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.   
+* Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
+* Eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
