@@ -7,9 +7,9 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
+var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var ArrayList_1 = require("../src/ArrayList");
-var CollectionUtils_1 = require("../src/CollectionUtils");
-var CollectionUtils_2 = require("../src/CollectionUtils");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
@@ -34,7 +34,7 @@ describe("Test LinkedList functionality", function () {
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     var productNotAvailable = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
     it("Test Creation state", function () {
-        var list = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var list = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(list.isEmpty()).toEqual(true);
         expect(list.size()).toEqual(0);
         var collection = list;
@@ -42,7 +42,7 @@ describe("Test LinkedList functionality", function () {
         expect(collection.size()).toEqual(0);
     });
     it("Test Adding some items", function () {
-        var ll = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         var list = ll;
         var collection = list;
         expect(ll.contains(product3)).toEqual(false);
@@ -58,7 +58,7 @@ describe("Test LinkedList functionality", function () {
         expect(collection.size()).toEqual(2);
     });
     it("Test clearing the LinkedList", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         var list = thelist;
         var collection = list;
         expect(thelist.add(product1)).toEqual(true);
@@ -108,7 +108,7 @@ describe("Test LinkedList functionality", function () {
         expect(collection.size()).toEqual(0);
     });
     it("Test get", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         var index0 = thelist.get(0);
@@ -120,7 +120,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.get(5000)).toEqual(null);
     });
     it("Test indexof", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.indexOf(product1)).toEqual(-1);
         expect(thelist.lastIndexOf(product1)).toEqual(-1);
         expect(thelist.add(product1)).toEqual(true);
@@ -137,7 +137,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.lastIndexOf(product2)).toEqual(5);
     });
     it("Test set", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         var oldElement = thelist.set(1, product3);
@@ -147,7 +147,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(1);
     });
     it("Test java iteration", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         var offset = 0;
@@ -163,7 +163,7 @@ describe("Test LinkedList functionality", function () {
         }
     });
     it("Test addElement at front of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         thelist.addIndex(0, product3);
@@ -173,7 +173,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(0);
     });
     it("Test addElement in middle of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         thelist.addIndex(1, product3);
@@ -183,7 +183,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(1);
     });
     it("Test addElement at end of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         thelist.addIndex(2, product3);
@@ -193,7 +193,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(2);
     });
     it("Test remove at front of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.removeIndex(0)).toEqual(undefined);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
@@ -206,7 +206,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.removeIndex(4000)).toEqual(undefined);
     });
     it("Test remove in middle of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -217,7 +217,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(1);
     });
     it("Test remove at end of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -228,7 +228,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(-1);
     });
     it("Test removeElement at front of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.remove(product1)).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
@@ -240,7 +240,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(1);
     });
     it("Test removeElement in middle of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -251,7 +251,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(1);
     });
     it("Test removeElement at end of list", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -262,7 +262,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.indexOf(product3)).toEqual(-1);
     });
     it("Test duplicates in array", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -284,11 +284,11 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.remove(productNotAvailable)).toEqual(false);
     });
     it("Test addall", function () {
-        var victim = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var victim = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(victim.addAll(null)).toEqual(false);
         expect(victim.addAll(undefined)).toEqual(false);
-        expect(victim.addAll(new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable()))).toEqual(false);
+        expect(victim.addAll(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()))).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.add(product3)).toEqual(true);
@@ -297,13 +297,13 @@ describe("Test LinkedList functionality", function () {
         expect(victim.addAll(thelist)).toEqual(true);
     });
     it("Test removeall", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.removeAll(null)).toEqual(false);
         expect(thelist.removeAll(undefined)).toEqual(false);
-        expect(thelist.removeAll(new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable()))).toEqual(false);
+        expect(thelist.removeAll(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()))).toEqual(false);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
-        var removelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var removelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(removelist.add(product2)).toEqual(true);
         expect(removelist.add(product3)).toEqual(true);
         expect(thelist.removeAll(removelist)).toEqual(true);
@@ -313,7 +313,7 @@ describe("Test LinkedList functionality", function () {
         expect(thelist.size()).toEqual(1);
     });
     it("Test typescript iteration", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         var offset = 0;
@@ -328,21 +328,21 @@ describe("Test LinkedList functionality", function () {
         expect(tmp.done).toEqual(true);
     });
     it("Test getfirst", function () {
-        var thelist = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(thelist.getFirst()).toEqual(null);
         expect(thelist.add(product1)).toEqual(true);
         expect(thelist.add(product2)).toEqual(true);
         expect(thelist.getFirst()).toEqual(product1);
     });
     it("Test constructing with elements from an ArrayList", function () {
-        var sourceList = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
+        var sourceList = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(sourceList.add(product1)).toEqual(true);
         expect(sourceList.add(product2)).toEqual(true);
         var list = new LinkedList_1.LinkedList(sourceList.getCollectable(), sourceList);
         expect(list.size()).toEqual(sourceList.size());
     });
     it("Test constructing with elements from a LinkedList", function () {
-        var sourceList = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var sourceList = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(sourceList.add(product1)).toEqual(true);
         expect(sourceList.add(product2)).toEqual(true);
         var list = new LinkedList_1.LinkedList(sourceList.getCollectable(), sourceList);
@@ -379,11 +379,11 @@ describe("Test LinkedList functionality", function () {
         var source = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
         expect(source.add(product1)).toEqual(false);
         expect(source.add(product2)).toEqual(false);
-        var list = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable(), source);
+        var list = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable(), source);
         expect(list.size()).toEqual(source.size());
     });
     it("Test constructing with elements from an HashSet", function () {
-        var source = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var source = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(source.add(product1)).toEqual(true);
         expect(source.add(product2)).toEqual(true);
         var list = new LinkedList_1.LinkedList(source.getHashable(), source);

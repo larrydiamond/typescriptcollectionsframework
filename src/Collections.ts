@@ -6,6 +6,8 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {AllFieldCollectable} from "./AllFieldCollectable";
+import {AllFieldHashable} from "./AllFieldHashable";
 import {ArrayList} from "./ArrayList";
 import {Collectable} from "./Collectable";
 import {Comparator} from "./Comparator";
@@ -14,7 +16,7 @@ import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 
-export class CollectionUtils {
+export class Collections {
 
   public static getStringComparator():Comparator<string> {
     let sortString:Comparator<string> = {
@@ -109,7 +111,7 @@ export class CollectionUtils {
   }
 
   public stringList (... values : string []) : ImmutableList<string> {
-    let list : ArrayList<string> = new ArrayList<string>(new GenericCollectable<string>());
+    let list : ArrayList<string> = new ArrayList<string>(new AllFieldCollectable<string>());
     for (let loop : number = 0; loop < values.length; loop++) {
       let tmp : string = values [loop];
       list.add (tmp);
@@ -118,82 +120,11 @@ export class CollectionUtils {
   }
 
   public numberList (... values : number []) : ImmutableList<number> {
-    let list : ArrayList<number> = new ArrayList<number>(new GenericCollectable<number>());
+    let list : ArrayList<number> = new ArrayList<number>(new AllFieldCollectable<number>());
     for (let loop : number = 0; loop < values.length; loop++) {
       let tmp : number = values [loop];
       list.add (tmp);
     }
     return list.immutableList();
   }
-
-
-
-
-}
-
-export class GenericCollectable<T> implements Collectable<T> {
-  equals (o1: T, o2: T) {
-    if (o1 === undefined) {
-      if (o2 === undefined) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if (o1 === null) {
-      if (o2 === null) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if ((o2 === null) || (o2 === undefined)) {
-      return false;
-    }
-
-    if (JSON.stringify(o1) === JSON.stringify(o2))
-      return true;
-    return false;
-  }
-}
-
-export class GenericHashable<T> implements Hashable<T> {
-  equals (o1: T, o2: T) : boolean {
-    if (o1 === undefined) {
-      if (o2 === undefined) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if (o1 === null) {
-      if (o2 === null) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if ((o2 === null) || (o2 === undefined)) {
-      return false;
-    }
-
-    if (JSON.stringify(o1) === JSON.stringify(o2))
-      return true;
-    return false;
-  };
-  hashCode (o:T) : number {
-    if (o === undefined) {
-      return 0;
-    }
-    if (o === null) {
-      return 0;
-    }
-    let tmp:string = JSON.stringify (o);
-    let hash: number = 0;
-    for (let loop = 0; loop < tmp.length; loop++) {
-      let n:number = tmp.charCodeAt (loop);
-      hash = ((hash * 256) + n) % 1000000000;
-    }
-    return hash;
-  };
 }

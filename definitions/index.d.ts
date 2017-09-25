@@ -5,13 +5,13 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
+export { AllFieldCollectable } from "./src/AllFieldCollectable";
+export { AllFieldHashable } from "./src/AllFieldHashable";
 export { ArrayList } from "./src/ArrayList";
 export { Collectable } from "./src/Collectable";
 export { Collection } from "./src/Collection";
-export { CollectionUtils } from "./src/CollectionUtils";
+export { Collections } from "./src/Collections";
 export { Comparator } from "./src/Comparator";
-export { GenericCollectable } from "./src/CollectionUtils";
-export { GenericHashable } from "./src/CollectionUtils";
 export { Hashable } from "./src/Hashable";
 export { HashMap } from "./src/HashMap";
 export { HashSet } from "./src/HashSet";

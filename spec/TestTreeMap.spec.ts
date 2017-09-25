@@ -8,7 +8,7 @@
 
 import {BasicMapEntry} from "../src/BasicMapEntry";
 import {Collectable} from "../src/Collectable";
-import {CollectionUtils} from "../src/CollectionUtils";
+import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
 import {TreeMap} from "../src/TreeMap";
 import {ImmutableSet} from "../src/ImmutableSet";
@@ -119,7 +119,7 @@ describe("Test TreeMap functionality", function() {
     expect (TreeMap1.lastKey()).toEqual(null);
     expect (TreeMap1.lastEntry()).toEqual(null);
 
-    let TreeMap2:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let TreeMap2:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (TreeMap2.size ()).toEqual(0);
     expect (TreeMap2.firstKey()).toEqual(null);
     expect (TreeMap2.firstEntry()).toEqual(null);
@@ -139,7 +139,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Adding one native item", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
@@ -166,7 +166,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Adding two native items", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
@@ -183,7 +183,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test ContainsKey where the item is contained", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.containsKey ("ZZZZZZ")).toEqual (false);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -191,28 +191,28 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test ContainsKey where the item is not contained", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.containsKey ("Bananas")).toEqual (false);  // I guess we have no bananas today
   });
 
   it("Test ContainsKey where the item is contained", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.containsKey ("Catnip")).toEqual (true);
   });
 
   it("Test ContainsKey where the item is not contained", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.containsKey ("Bananas")).toEqual (false);  // I guess we have no bananas today
   });
 
   it("Test Adding three native items", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     basicTypesMap1.clear();
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.validateMap ()).toEqual(true);
@@ -257,8 +257,8 @@ describe("Test TreeMap functionality", function() {
   it("Test Adding some items", function() {
     let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     let petStoreMap2:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
-    let basicTypesMap2:TreeMap<number,string> = new TreeMap<number,string>(CollectionUtils.getNumberComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
+    let basicTypesMap2:TreeMap<number,string> = new TreeMap<number,string>(Collections.getNumberComparator());
 
     expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
 
@@ -295,7 +295,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Remove from empty", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.remove ("Bananas")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -303,7 +303,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Remove from one entry map", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.remove ("Bananas")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -328,7 +328,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Remove head both sides loaded", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -342,7 +342,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Remove head left full right empty", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -355,7 +355,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test Remove head right full left empty", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
@@ -368,7 +368,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it ("Test remove cover all the cases", function () {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
@@ -395,19 +395,19 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test getNextHigherKey empty map", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
   });
 
   it("Test getNextHigherKey one element", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
     expect (basicTypesMap1.getNextHigherKey ("AAAAA")).toEqual(null);
   });
 
   it("Test getNextHigherKey more complex map", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
@@ -430,7 +430,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test ceilingEntry", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingEntry ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -456,7 +456,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test ceilingKey", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingKey ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -484,7 +484,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test higherEntry", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.higherEntry ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -512,7 +512,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test higherKey", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.higherKey ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -540,7 +540,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test lowerEntry", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.lowerEntry ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -565,7 +565,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test floorEntry", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.floorEntry ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -595,7 +595,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test lowerKey", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.lowerKey ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -620,7 +620,7 @@ describe("Test TreeMap functionality", function() {
   });
 
   it("Test floorKey", function() {
-    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(CollectionUtils.getStringComparator());
+    let basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.floorKey ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);

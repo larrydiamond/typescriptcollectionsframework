@@ -6,12 +6,12 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {AllFieldCollectable} from "../src/AllFieldCollectable";
+import {AllFieldHashable} from "../src/AllFieldHashable";
 import {ArrayList} from "../src/ArrayList";
 import {Collectable} from "../src/Collectable";
 import {Collection} from "../src/Collection";
 import {Comparator} from "../src/Comparator";
-import {GenericCollectable} from "../src/CollectionUtils";
-import {GenericHashable} from "../src/CollectionUtils";
 import {HashSet} from "../src/HashSet";
 import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
@@ -46,7 +46,7 @@ describe("Test ArrayList functionality", function() {
 
 
   it("Test Creation state", function() {
-    let list:List<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let list:List<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (list.isEmpty ()).toEqual(true);
     expect (list.size ()).toEqual(0);
 
@@ -56,7 +56,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test Adding some items", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     let list:List<PetStoreProduct> = arraylist;
     let collection:Collection<PetStoreProduct> = list;
 
@@ -75,7 +75,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test clearing the ArrayList", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     let list:List<PetStoreProduct> = arraylist;
     let collection:Collection<PetStoreProduct> = list;
 
@@ -138,7 +138,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test get", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -153,7 +153,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test indexof", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (arraylist.lastIndexOf(product1)).toEqual(-1);
 
     expect (arraylist.add (product1)).toEqual (true);
@@ -172,7 +172,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test set", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -185,7 +185,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test java iteration", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -206,7 +206,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test addElement at front of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -219,7 +219,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test addElement in middle of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -232,7 +232,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test addElement at end of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -245,7 +245,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test remove at front of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (arraylist.removeIndex (0)).toEqual (undefined);
 
     expect (arraylist.add (product1)).toEqual (true);
@@ -260,7 +260,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test remove in middle of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -274,7 +274,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test remove at end of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -289,7 +289,7 @@ describe("Test ArrayList functionality", function() {
 
 
   it("Test removeElement at front of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (arraylist.remove (product1)). toEqual (false);
 
     expect (arraylist.add (product1)).toEqual (true);
@@ -304,7 +304,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test removeElement in middle of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -318,7 +318,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test removeElement at end of list", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -332,7 +332,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test duplicates in array", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -361,11 +361,11 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test addall", function() {
-    let victim:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let victim:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (victim.addAll (null)).toEqual (false);
     expect (victim.addAll (undefined)).toEqual (false);
-    expect (victim.addAll (new ArrayList<PetStoreProduct>(new GenericCollectable<PetStoreProduct>()))).toEqual (false);
+    expect (victim.addAll (new ArrayList<PetStoreProduct>(new AllFieldCollectable<PetStoreProduct>()))).toEqual (false);
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
     expect (arraylist.add (product3)).toEqual (true);
@@ -375,12 +375,12 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test removeall", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (arraylist.removeAll(null)).toEqual(false);
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
 
-    let removelist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let removelist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (arraylist.removeAll(removelist)).toEqual(false);
     expect (removelist.add (product2)).toEqual (true);
     expect (removelist.add (product3)).toEqual (true);
@@ -394,7 +394,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test typescript iteration", function() {
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
 
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
@@ -412,7 +412,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test constructing with elements from an ArrayList", function() {
-    let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (sourceList.add (product1)).toEqual (true);
     expect (sourceList.add (product2)).toEqual (true);
 
@@ -421,7 +421,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test constructing with elements from a LinkedList", function() {
-    let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (sourceList.add (product1)).toEqual (true);
     expect (sourceList.add (product2)).toEqual (true);
 
@@ -430,7 +430,7 @@ describe("Test ArrayList functionality", function() {
   });
 
   it("Test constructing with elements from an HashSet", function() {
-    let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
+    let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (source.add (product1)).toEqual (true);
     expect (source.add (product2)).toEqual (true);
 
@@ -474,7 +474,7 @@ describe("Test ArrayList functionality", function() {
     expect (source.add (product1)).toEqual (false);
     expect (source.add (product2)).toEqual (false);
 
-    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>(), source);
+    let arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>(), source);
     expect (arraylist.size ()).toEqual(source.size());
   });
 

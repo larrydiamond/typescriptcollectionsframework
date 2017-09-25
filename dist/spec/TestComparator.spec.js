@@ -7,10 +7,10 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-var CollectionUtils_1 = require("../src/CollectionUtils");
+var Collections_1 = require("../src/Collections");
 describe("Test Comparator", function () {
     it("get the string comparator", function () {
-        var x = CollectionUtils_1.CollectionUtils.getStringComparator();
+        var x = Collections_1.Collections.getStringComparator();
         expect(x.compare("x", "X") === 0);
     });
 });

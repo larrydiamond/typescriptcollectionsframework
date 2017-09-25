@@ -7,9 +7,9 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
+var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var ArrayList_1 = require("../src/ArrayList");
-var CollectionUtils_1 = require("../src/CollectionUtils");
-var CollectionUtils_2 = require("../src/CollectionUtils");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
@@ -33,12 +33,12 @@ describe("Test HashSet functionality", function () {
     var product2 = new PetStoreProduct("Catnip", 4.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     it("Test Creation state", function () {
-        var set1 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var set1 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(set1.size()).toEqual(0);
         expect(set1.isEmpty()).toEqual(true);
     });
     it("Test Adding one item", function () {
-        var set1 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var set1 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(set1.size()).toEqual(0);
         expect(set1.isEmpty()).toEqual(true);
         expect(set1.add(product1)).toEqual(true);
@@ -46,7 +46,7 @@ describe("Test HashSet functionality", function () {
         expect(false).toEqual(set1.isEmpty());
     });
     it("Test adding two entries", function () {
-        var mySet1 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var mySet1 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         //    mySet1.printMap();
         expect(mySet1.size()).toEqual(0);
         expect(mySet1.isEmpty()).toEqual(true);
@@ -60,7 +60,7 @@ describe("Test HashSet functionality", function () {
         expect(mySet1.isEmpty()).toEqual(false);
     });
     it("Test adding duplicates", function () {
-        var mySet1 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var mySet1 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(mySet1.size()).toEqual(0);
         expect(mySet1.isEmpty()).toEqual(true);
         expect(true).toEqual(mySet1.add(product1));
@@ -71,7 +71,7 @@ describe("Test HashSet functionality", function () {
         expect(mySet1.isEmpty()).toEqual(false);
     });
     it("Test contains", function () {
-        var mySet1 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var mySet1 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(mySet1.size()).toEqual(0);
         expect(mySet1.isEmpty()).toEqual(true);
         expect(true).toEqual(mySet1.add(product1));
@@ -81,7 +81,7 @@ describe("Test HashSet functionality", function () {
         expect(false).toEqual(mySet1.contains(product2));
     });
     it("Test clear", function () {
-        var mySet1 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var mySet1 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(mySet1.size()).toEqual(0);
         expect(mySet1.isEmpty()).toEqual(true);
         expect(true).toEqual(mySet1.add(product1));
@@ -96,7 +96,7 @@ describe("Test HashSet functionality", function () {
         expect(false).toEqual(mySet1.contains(product2));
     });
     it("Test java iteration", function () {
-        var set2 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var set2 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(set2.add(product1)).toEqual(true);
         expect(set2.add(product2)).toEqual(true);
         var found1 = false;
@@ -119,7 +119,7 @@ describe("Test HashSet functionality", function () {
         expect(found2).toEqual(true);
     });
     it("Test typescript iteration", function () {
-        var set2 = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var set2 = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         expect(set2.add(product1)).toEqual(true);
         expect(set2.add(product2)).toEqual(true);
         var found1 = false;
@@ -157,7 +157,7 @@ describe("Test HashSet functionality", function () {
         expect(found2).toEqual(true);
     });
     it("Test native strings", function () {
-        var hset = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var hset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         hset.add("Cat");
         hset.add("Dog");
         hset.add("Squirrel");
@@ -193,7 +193,7 @@ describe("Test HashSet functionality", function () {
         expect(foundsquirrel).toEqual(true);
     });
     it("Test lots", function () {
-        var hset = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable());
+        var hset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
         for (var loop1 = 1; loop1 <= 26; loop1++) {
             for (var loop2 = 1; loop2 <= 26; loop2++) {
                 for (var loop3 = 1; loop3 <= 26; loop3++) {
@@ -211,17 +211,17 @@ describe("Test HashSet functionality", function () {
         expect(count).toEqual(26 * 26 * 26);
     });
     it("Test constructing with elements from an ArrayList", function () {
-        var sourceList = new ArrayList_1.ArrayList(new CollectionUtils_1.GenericCollectable());
+        var sourceList = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(sourceList.add(product1)).toEqual(true);
         expect(sourceList.add(product2)).toEqual(true);
-        var tset = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable(), sourceList);
+        var tset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable(), sourceList);
         expect(tset.size()).toEqual(sourceList.size());
     });
     it("Test constructing with elements from a LinkedList", function () {
-        var sourceList = new LinkedList_1.LinkedList(new CollectionUtils_1.GenericCollectable());
+        var sourceList = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(sourceList.add(product1)).toEqual(true);
         expect(sourceList.add(product2)).toEqual(true);
-        var tset = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable(), sourceList);
+        var tset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable(), sourceList);
         expect(tset.size()).toEqual(sourceList.size());
     });
     var alphabeticalSortPetStoreProduct = {
@@ -255,7 +255,7 @@ describe("Test HashSet functionality", function () {
         var source = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
         expect(source.add(product1)).toEqual(false);
         expect(source.add(product2)).toEqual(false);
-        var tset = new HashSet_1.HashSet(new CollectionUtils_2.GenericHashable(), source);
+        var tset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable(), source);
         expect(tset.size()).toEqual(source.size());
     });
 });

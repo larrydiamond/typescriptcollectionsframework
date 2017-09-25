@@ -6,13 +6,13 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {AllFieldCollectable} from "../src/AllFieldCollectable";
+import {AllFieldHashable} from "../src/AllFieldHashable";
 import {ArrayList} from "../src/ArrayList";
 import {BasicMapEntry} from "../src/BasicMapEntry";
 import {Collectable} from "../src/Collectable";
-import {CollectionUtils} from "../src/CollectionUtils";
+import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
-import {GenericCollectable} from "../src/CollectionUtils";
-import {GenericHashable} from "../src/CollectionUtils";
 import {HashSet} from "../src/HashSet";
 import {LinkedList} from "../src/LinkedList";
 import {TreeSet} from "../src/TreeSet";
@@ -107,7 +107,7 @@ describe("Test TreeSet functionality", function() {
     expect (TreeSet1.size ()).toEqual(0);
     expect (TreeSet1.isEmpty ()).toEqual(true);
 
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
   });
@@ -122,7 +122,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test Adding one item basic datatypes", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
     expect (TreeSet2.add ("Hello")).toEqual(false);
@@ -131,7 +131,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test Adding two items basic datatypes", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
     expect (TreeSet2.add ("Hello")).toEqual(false);
@@ -143,7 +143,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test Adding two items basic datatypessame value", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
     expect (TreeSet2.add ("Hello")).toEqual(false);
@@ -155,7 +155,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test contains basic datatypessame value", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (false).toEqual(TreeSet2.contains ("Hello"));
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
@@ -170,7 +170,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test first basic datatypes", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.isEmpty ()).toEqual(true);
     expect (null).toEqual(TreeSet2.first());
@@ -189,7 +189,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test pollfirst", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.pollFirst()).toEqual(null);
     expect (TreeSet2.size ()).toEqual(0);
@@ -208,7 +208,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test polllast", function() {
-    let TreeSet2:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);
     expect (TreeSet2.pollLast()).toEqual(null);
     expect (TreeSet2.size ()).toEqual(0);
@@ -268,7 +268,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test ceiling", function() {
-    let TreeSet2:TreeSet<number> = new TreeSet<number>(CollectionUtils.getNumberComparator());
+    let TreeSet2:TreeSet<number> = new TreeSet<number>(Collections.getNumberComparator());
     expect (TreeSet2.add (44)).toEqual(false);
     expect (TreeSet2.add (5)).toEqual(false);
     expect (TreeSet2.add (20)).toEqual(false);
@@ -289,7 +289,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it ("Test lots", function () {
-    let tset = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let tset = new TreeSet<string>(Collections.getStringComparator());
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
         let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2);
@@ -307,7 +307,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it ("Test lots2", function () {
-    let tset = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let tset = new TreeSet<string>(Collections.getStringComparator());
     for (let loop2 = 1; loop2 <= 26; loop2++) {
       for (let loop1 = 1; loop1 <= 26; loop1++) {
         let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2);
@@ -327,7 +327,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test constructing with elements from an ArrayList", function() {
-    let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (sourceList.add (product1)).toEqual (true);
     expect (sourceList.add (product2)).toEqual (true);
 
@@ -336,7 +336,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test constructing with elements from a LinkedList", function() {
-    let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new GenericCollectable<PetStoreProduct>());
+    let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (sourceList.add (product1)).toEqual (true);
     expect (sourceList.add (product2)).toEqual (true);
 
@@ -345,7 +345,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Test constructing with elements from an HashSet", function() {
-    let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new GenericHashable<PetStoreProduct>());
+    let source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (source.add (product1)).toEqual (true);
     expect (source.add (product2)).toEqual (true);
 
@@ -363,7 +363,7 @@ describe("Test TreeSet functionality", function() {
   });
 
   it("Focused test on reproducable error 0.8.0 16 Sep 2017", function() {
-    let tsData:TreeSet<string> = new TreeSet<string>(CollectionUtils.getStringComparator());
+    let tsData:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     tsData.add ("Cat");
     tsData.add ("Squirrel");
     tsData.add ("Dog");

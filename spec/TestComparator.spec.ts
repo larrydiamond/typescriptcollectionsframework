@@ -6,13 +6,13 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
-import {CollectionUtils} from "../src/CollectionUtils";
+import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
 
 describe("Test Comparator", function() {
 
   it ("get the string comparator", function () {
-    let x:Comparator<string> = CollectionUtils.getStringComparator();
+    let x:Comparator<string> = Collections.getStringComparator();
     expect (x.compare ("x", "X") === 0);
   });
 

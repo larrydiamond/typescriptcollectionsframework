@@ -7,14 +7,14 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldCollectable_1 = require("./src/AllFieldCollectable");
+exports.AllFieldCollectable = AllFieldCollectable_1.AllFieldCollectable;
+var AllFieldHashable_1 = require("./src/AllFieldHashable");
+exports.AllFieldHashable = AllFieldHashable_1.AllFieldHashable;
 var ArrayList_1 = require("./src/ArrayList");
 exports.ArrayList = ArrayList_1.ArrayList;
-var CollectionUtils_1 = require("./src/CollectionUtils");
-exports.CollectionUtils = CollectionUtils_1.CollectionUtils;
-var CollectionUtils_2 = require("./src/CollectionUtils");
-exports.GenericCollectable = CollectionUtils_2.GenericCollectable;
-var CollectionUtils_3 = require("./src/CollectionUtils");
-exports.GenericHashable = CollectionUtils_3.GenericHashable;
+var Collections_1 = require("./src/Collections");
+exports.Collections = Collections_1.Collections;
 var HashMap_1 = require("./src/HashMap");
 exports.HashMap = HashMap_1.HashMap;
 var HashSet_1 = require("./src/HashSet");
