@@ -1,6 +1,18 @@
+/**
+ * @license
+ * Copyright Larry Diamond 2017 All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+ */
+
+import {ArrayList} from "./ArrayList";
 import {Collectable} from "./Collectable";
 import {Comparator} from "./Comparator";
 import {Hashable} from "./Hashable";
+import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableList} from "./ImmutableList";
+import {JIterator} from "./JIterator";
 
 export class CollectionUtils {
 
@@ -48,6 +60,74 @@ export class CollectionUtils {
     }
     return sortNumber;
   }
+
+  public getHashCodeForString (o:string) : number {
+    if (o === undefined) {
+      return 0;
+    }
+    if (o === null) {
+      return 0;
+    }
+    let tmp:string = JSON.stringify (o);
+    let hash: number = 0;
+    for (let loop = 0; loop < tmp.length; loop++) {
+      let n:number = tmp.charCodeAt (loop);
+      hash = ((hash * 256) + n) % 1000000000;
+    }
+    return hash;
+  }
+
+  public getHashCodeForStrings (o:ImmutableCollection<string>) : number {
+    if (o === undefined) {
+      return 0;
+    }
+    if (o === null) {
+      return 0;
+    }
+    let tmp:number = 0;
+    for (let iter:JIterator<string> = o.iterator(); iter.hasNext(); ) {
+      let ostr:string = iter.next();
+      tmp = ((tmp * 256) + this.getHashCodeForString (ostr)) % 1000000000;
+    }
+    return tmp;
+  }
+
+  public getHashCodeForNumber (o:number) : number {
+    if (o === undefined) {
+      return 0;
+    }
+    if (o === null) {
+      return 0;
+    }
+
+    let tmp:number = o;
+    while ((tmp < 1000000000) && (Math.floor (tmp) !== tmp)) {
+      tmp = tmp * 10;
+    }
+
+    return tmp;
+  }
+
+  public stringList (... values : string []) : ImmutableList<string> {
+    let list : ArrayList<string> = new ArrayList<string>(new GenericCollectable<string>());
+    for (let loop : number = 0; loop < values.length; loop++) {
+      let tmp : string = values [loop];
+      list.add (tmp);
+    }
+    return list.immutableList();
+  }
+
+  public numberList (... values : number []) : ImmutableList<number> {
+    let list : ArrayList<number> = new ArrayList<number>(new GenericCollectable<number>());
+    for (let loop : number = 0; loop < values.length; loop++) {
+      let tmp : number = values [loop];
+      list.add (tmp);
+    }
+    return list.immutableList();
+  }
+
+
+
 
 }
 
