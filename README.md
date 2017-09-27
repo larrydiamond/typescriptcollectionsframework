@@ -1,4 +1,3 @@
-# Typescript Collections Framework
 **"If you know the Java Collections Framework, you know the Typescript Collections Framework.   It's the same API (mostly)"**
 
 [![NPM](https://nodei.co/npm/typescriptcollectionsframework.png?compact=true)](https://npmjs.org/typescriptcollectionsframework)
