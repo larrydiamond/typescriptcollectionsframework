@@ -6,6 +6,7 @@ TypeScript Collections Framework - a port of the Java Collections framework for 
 [![devDependencies Status](https://david-dm.org/larrydiamond/typescriptcollectionsframework/dev-status.svg)](https://david-dm.org/larrydiamond/typescriptcollectionsframework?type=dev)
 [![Code Coverage](https://codecov.io/gh/larrydiamond/typescriptcollectionsframework/branch/master/graphs/badge.svg?branch=master)](
 https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
+[![quality badge](https://img.shields.io/badge/cuteness-overload-orange.svg)](http://www.emergencykitten.com/)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
