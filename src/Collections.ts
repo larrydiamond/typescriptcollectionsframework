@@ -12,8 +12,12 @@ import {ArrayList} from "./ArrayList";
 import {Collectable} from "./Collectable";
 import {Comparator} from "./Comparator";
 import {Hashable} from "./Hashable";
+import {HashMap} from "./HashMap";
+import {HashSet} from "./HashSet";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
+import {ImmutableMap} from "./ImmutableMap";
+import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 
 export class Collections {
@@ -63,7 +67,7 @@ export class Collections {
     return sortNumber;
   }
 
-  public getHashCodeForString (o:string) : number {
+  public static getHashCodeForString (o:string) : number {
     if (o === undefined) {
       return 0;
     }
@@ -79,7 +83,7 @@ export class Collections {
     return hash;
   }
 
-  public getHashCodeForStrings (o:ImmutableCollection<string>) : number {
+  public static getHashCodeForStrings (o:ImmutableCollection<string>) : number {
     if (o === undefined) {
       return 0;
     }
@@ -94,7 +98,7 @@ export class Collections {
     return tmp;
   }
 
-  public getHashCodeForNumber (o:number) : number {
+  public static getHashCodeForNumber (o:number) : number {
     if (o === undefined) {
       return 0;
     }
@@ -110,21 +114,28 @@ export class Collections {
     return tmp;
   }
 
-  public stringList (... values : string []) : ImmutableList<string> {
-    let list : ArrayList<string> = new ArrayList<string>(new AllFieldCollectable<string>());
+  public static list<T> (... values : T[]) : ImmutableList<T> {
+    let list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
     for (let loop : number = 0; loop < values.length; loop++) {
-      let tmp : string = values [loop];
+      let tmp : T = values [loop];
       list.add (tmp);
     }
     return list.immutableList();
   }
 
-  public numberList (... values : number []) : ImmutableList<number> {
-    let list : ArrayList<number> = new ArrayList<number>(new AllFieldCollectable<number>());
-    for (let loop : number = 0; loop < values.length; loop++) {
-      let tmp : number = values [loop];
-      list.add (tmp);
-    }
+  public static emptyList<T> () : ImmutableList<T> {
+    let list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
     return list.immutableList();
   }
+
+  public static emptySet<T> () : ImmutableSet<T> {
+    let tmp : HashSet<T> = new HashSet<T>(new AllFieldHashable<T>());
+    return tmp.immutableSet();
+  }
+
+  public static emptyMap<K,V> () : ImmutableMap<K,V> {
+    let tmp : HashMap<K,V> = new HashMap<K,V>(new AllFieldHashable<K>());
+    return tmp.immutableMap();
+  }
+
 }

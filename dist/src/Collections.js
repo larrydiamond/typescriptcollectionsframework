@@ -8,7 +8,10 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
+var AllFieldHashable_1 = require("./AllFieldHashable");
 var ArrayList_1 = require("./ArrayList");
+var HashMap_1 = require("./HashMap");
+var HashSet_1 = require("./HashSet");
 var Collections = (function () {
     function Collections() {
     }
@@ -52,7 +55,7 @@ var Collections = (function () {
         };
         return sortNumber;
     };
-    Collections.prototype.getHashCodeForString = function (o) {
+    Collections.getHashCodeForString = function (o) {
         if (o === undefined) {
             return 0;
         }
@@ -67,7 +70,7 @@ var Collections = (function () {
         }
         return hash;
     };
-    Collections.prototype.getHashCodeForStrings = function (o) {
+    Collections.getHashCodeForStrings = function (o) {
         if (o === undefined) {
             return 0;
         }
@@ -81,7 +84,7 @@ var Collections = (function () {
         }
         return tmp;
     };
-    Collections.prototype.getHashCodeForNumber = function (o) {
+    Collections.getHashCodeForNumber = function (o) {
         if (o === undefined) {
             return 0;
         }
@@ -94,7 +97,7 @@ var Collections = (function () {
         }
         return tmp;
     };
-    Collections.prototype.stringList = function () {
+    Collections.list = function () {
         var values = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             values[_i] = arguments[_i];
@@ -106,17 +109,17 @@ var Collections = (function () {
         }
         return list.immutableList();
     };
-    Collections.prototype.numberList = function () {
-        var values = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            values[_i] = arguments[_i];
-        }
+    Collections.emptyList = function () {
         var list = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        for (var loop = 0; loop < values.length; loop++) {
-            var tmp = values[loop];
-            list.add(tmp);
-        }
         return list.immutableList();
+    };
+    Collections.emptySet = function () {
+        var tmp = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
+        return tmp.immutableSet();
+    };
+    Collections.emptyMap = function () {
+        var tmp = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
+        return tmp.immutableMap();
     };
     return Collections;
 }());

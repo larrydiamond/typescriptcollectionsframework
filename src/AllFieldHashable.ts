@@ -6,7 +6,8 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
- import {Hashable} from "./Hashable";
+import {Collections} from "./Collections";
+import {Hashable} from "./Hashable";
 
  export class AllFieldHashable<T> implements Hashable<T> {
    equals (o1: T, o2: T) : boolean {
@@ -40,11 +41,6 @@
        return 0;
      }
      let tmp:string = JSON.stringify (o);
-     let hash: number = 0;
-     for (let loop = 0; loop < tmp.length; loop++) {
-       let n:number = tmp.charCodeAt (loop);
-       hash = ((hash * 256) + n) % 1000000000;
-     }
-     return hash;
+     return Collections.getHashCodeForString(tmp);
    };
  }

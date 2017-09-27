@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var Collections_1 = require("./Collections");
 var AllFieldHashable = (function () {
     function AllFieldHashable() {
     }
@@ -43,12 +44,7 @@ var AllFieldHashable = (function () {
             return 0;
         }
         var tmp = JSON.stringify(o);
-        var hash = 0;
-        for (var loop = 0; loop < tmp.length; loop++) {
-            var n = tmp.charCodeAt(loop);
-            hash = ((hash * 256) + n) % 1000000000;
-        }
-        return hash;
+        return Collections_1.Collections.getHashCodeForString(tmp);
     };
     ;
     return AllFieldHashable;
