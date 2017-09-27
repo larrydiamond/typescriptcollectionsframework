@@ -11,20 +11,6 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
-Class level documentation for the entire framework can be found at https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
-
-[ArrayList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_arraylist_.arraylist.html), [LinkedList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_linkedlist_.linkedlist.html), [TreeSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treeset_.treeset.html), [HashSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashset_.hashset.html), 
-[HashMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashmap_.hashmap.html), and [TreeMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treemap_.treemap.html) are all live and available today.  Version 2 goals include PriorityQueue and SkipListMap and much more documentation
-
-[Collection](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_collection_.collection.html), 
-[List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jset_.jset.html), and [Map](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jmap_.jmap.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
-
-# My goals of this project 
-* Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript
-* Support putting "stuff" from other libraries into Collections without having to box and unbox objects.
-* Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
-* Eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
-
 # Demo & Tutorial project with Angular 4
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular4/dist/
 
@@ -38,6 +24,18 @@ Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-
 
 # Classes documentation
 https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
+
+[ArrayList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_arraylist_.arraylist.html), [LinkedList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_linkedlist_.linkedlist.html), [TreeSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treeset_.treeset.html), [HashSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashset_.hashset.html), 
+[HashMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashmap_.hashmap.html), and [TreeMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treemap_.treemap.html) are all live and available today.  Version 2 goals include PriorityQueue and SkipListMap and much more documentation
+
+[Collection](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_collection_.collection.html), 
+[List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jset_.jset.html), and [Map](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jmap_.jmap.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
+
+# My goals of this project 
+* Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript
+* Support putting "stuff" from other libraries into Collections without having to box and unbox objects.
+* Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
+* Eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
 
 # Installation instructions
 
