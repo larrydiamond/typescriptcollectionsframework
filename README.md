@@ -1,5 +1,6 @@
 **"If you know the Java Collections Framework, you know the Typescript Collections Framework.   It's the same API (mostly)"**
-It is designed for (and by) Java coders who also needed to do TypeScript programming.
+
+It is designed for and written by Java coders who also needed to do TypeScript programming.
 
 [![NPM](https://nodei.co/npm/typescriptcollectionsframework.png?compact=true)](https://npmjs.org/typescriptcollectionsframework)
 [![Build Status](https://travis-ci.org/larrydiamond/typescriptcollectionsframework.svg?branch=master)](https://travis-ci.org/larrydiamond/typescriptcollectionsframework)
