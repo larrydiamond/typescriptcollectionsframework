@@ -7,6 +7,7 @@ It is designed for and written by Java coders who also needed to do TypeScript p
 [![devDependencies Status](https://david-dm.org/larrydiamond/typescriptcollectionsframework/dev-status.svg)](https://david-dm.org/larrydiamond/typescriptcollectionsframework?type=dev)
 [![Code Coverage](https://codecov.io/gh/larrydiamond/typescriptcollectionsframework/branch/master/graphs/badge.svg?branch=master)](
 https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
+[![NSP Status](https://nodesecurity.io/orgs/ldiamond/projects/42e5c9e8-7ade-41c4-b367-9e6aef26804f/badge)](https://nodesecurity.io/orgs/ldiamond/projects/42e5c9e8-7ade-41c4-b367-9e6aef26804f)
 [![quality badge](https://img.shields.io/badge/cuteness-overload-orange.svg)](http://www.emergencykitten.com/)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
