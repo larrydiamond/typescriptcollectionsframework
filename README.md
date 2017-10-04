@@ -63,7 +63,7 @@ The number of NPM downloads has been way higher than I expected.  150 in the fir
 Please feel free to email me at ldiamond at ldiamond dot com with feature requests.  I love to hear from people putting my effort to good use.   :)
 
 # Author
-Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/
+Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at ldiamond dot com    Please feel free to contact me for training or with questions
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
