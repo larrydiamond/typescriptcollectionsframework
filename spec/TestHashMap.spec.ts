@@ -94,6 +94,15 @@ describe("Test HashMap functionality", function() {
     expect (petStoreMap2.isEmpty ()).toEqual(false);
   });
 
+  it ("Test adding initial elements", function () {
+    let sourceMap:HashMap<string,string> = new HashMap<string,string>(new AllFieldHashable<string>());
+    expect (sourceMap.put ("A", "B")).toEqual(undefined);
+    expect (sourceMap.put ("C", "D")).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(2);
+    let destinationMap:HashMap<string,string> = new HashMap<string,string>(new AllFieldHashable<string>(), sourceMap);
+    expect (destinationMap.size ()).toEqual(2);
+  });
+
   it("Test get", function() {
     let petStoreMap1:HashMap<PetStoreProduct,ValueClass> = new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>());
     expect (petStoreMap1.get (product1)).toEqual(null);

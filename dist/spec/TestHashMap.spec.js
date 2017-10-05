@@ -75,6 +75,14 @@ describe("Test HashMap functionality", function () {
         expect(petStoreMap2.size()).toEqual(2);
         expect(petStoreMap2.isEmpty()).toEqual(false);
     });
+    it("Test adding initial elements", function () {
+        var sourceMap = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
+        expect(sourceMap.put("A", "B")).toEqual(undefined);
+        expect(sourceMap.put("C", "D")).toEqual(undefined);
+        expect(sourceMap.size()).toEqual(2);
+        var destinationMap = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable(), sourceMap);
+        expect(destinationMap.size()).toEqual(2);
+    });
     it("Test get", function () {
         var petStoreMap1 = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
         expect(petStoreMap1.get(product1)).toEqual(null);
