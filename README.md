@@ -40,6 +40,7 @@ https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 
 # Class Hierarchy
 ![Class Hierarchy](TypeScriptCollectionFramework.png "Class Hierarchy")
+![Map Class Hierarchy](MapClasses.png "Class Hierarchy")
 
 # Installation instructions
 
