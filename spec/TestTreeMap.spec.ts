@@ -148,6 +148,15 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
   });
 
+  it ("Test adding initial elements", function () {
+    let sourceMap:TreeMap<string,string> = new TreeMap<string,string>(Collections.getStringComparator());
+    expect (sourceMap.put ("A", "B")).toEqual(null);
+    expect (sourceMap.put ("C", "D")).toEqual(null);
+    expect (sourceMap.size ()).toEqual(2);
+    let destinationMap:TreeMap<string,string> = new TreeMap<string,string>(Collections.getStringComparator(), sourceMap);
+    expect (destinationMap.size ()).toEqual(2);
+  });
+
   it("Test Adding two items", function() {
     let petStoreMap1:TreeMap<PetStoreProduct,ValueClass> = new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);

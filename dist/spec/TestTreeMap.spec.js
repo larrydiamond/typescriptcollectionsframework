@@ -125,6 +125,14 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.lastKey()).toEqual("ChewToy");
         expect(basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry_1.BasicMapEntry("ChewToy", 14.99));
     });
+    it("Test adding initial elements", function () {
+        var sourceMap = new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator());
+        expect(sourceMap.put("A", "B")).toEqual(null);
+        expect(sourceMap.put("C", "D")).toEqual(null);
+        expect(sourceMap.size()).toEqual(2);
+        var destinationMap = new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator(), sourceMap);
+        expect(destinationMap.size()).toEqual(2);
+    });
     it("Test Adding two items", function () {
         var petStoreMap1 = new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct);
         expect(petStoreMap1.put(product1, new ValueClass())).toEqual(null);
