@@ -459,4 +459,11 @@ describe("Test HashMap functionality", function () {
         expect(found1).toEqual(true);
         expect(found2).toEqual(true);
     });
+    it("Test map entry replacement", function () {
+        var basicTypesMap1 = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(undefined);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(undefined);
+        expect(basicTypesMap1.put("Catnip", 9.99)).toEqual(4.99);
+        expect(basicTypesMap1.get("Catnip")).toEqual(9.99); // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
+    });
 });
