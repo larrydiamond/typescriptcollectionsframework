@@ -61,8 +61,11 @@ Semver was adopted as of version 1.0 of this framework.
 
 In TypeScript all objects do not inherit from Object (which we do not control anyway), so we made added a parameter to the constructors of each class to compare objects and calculate hash codes.   As a result, anything can be put into the Collections, even string, number, and classes from other packages.   There is no String class to wrap string, no Number class to wrap number, and no Boolean class to wrap boolean.   No autoboxing and no autounboxing.
 
+# Immutability
+I am a big proponent of Immutability.   Google Guava explains this very well [Google Guava Immutable Collections Explained] (https://github.com/google/guava/wiki/ImmutableCollectionsExplained).   Our implementations differ significantly.   Collection subclasses ImmutableCollection.   Every object created from this framework has an Immutable interface that is safe to pass around confident that the object cannot be changed via the methods exposed by the Immutable interface.   All Sets inherit from ImmutableSet and have an immutableSet method that returns an ImmutableSet.    All Maps inherit from ImmutableMap and have an immutableMap method that returns an ImmutableMap.   All Lists inherit from ImmutableList and have an immutableList method that returns an ImmutableList.   These interfaces provide immutable versions of the real Collection or Map that you can pass to methods confident that your Collection or Map will not be modified by that method.   You can also write a method that takes an Immutable object and let your callers know that you promise not to modify the object you receive.
+
 # Thank you for all the support.   
-The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days, 600 in the first week. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  The volume has been steadily increasing each month since then.
+The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days, 600 in the first week. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  The volume has been steadily increasing since then every month.   
 
 Please feel free to email me at ldiamond at ldiamond dot com with feature requests.  I love to hear from people putting my effort to good use.   :)
 
