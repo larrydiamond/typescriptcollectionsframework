@@ -38,6 +38,9 @@ https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 * Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
 * Eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
 
+# Class Hierarchy
+![Class Hierarchy](TypeScriptCollectionFramework.png "Class Hierarchy")
+
 # Installation instructions
 
 Install `typescriptcollectionsframework` from `npm`
