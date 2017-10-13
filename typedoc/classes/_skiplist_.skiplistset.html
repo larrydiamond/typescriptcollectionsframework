@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HashSet | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>SkipListSet | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_hashset_.html">&quot;HashSet&quot;</a>
+					<a href="../modules/_skiplist_.html">&quot;SkipList&quot;</a>
 				</li>
 				<li>
-					<a href="_hashset_.hashset.html">HashSet</a>
+					<a href="_skiplist_.skiplistset.html">SkipListSet</a>
 				</li>
 			</ul>
-			<h1>Class HashSet&lt;K&gt;</h1>
+			<h1>Class SkipListSet&lt;K&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -79,14 +79,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HashSet</span>
+						<span class="target">SkipListSet</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_jset_.jset.html" class="tsd-signature-type">JSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/_navigableset_.navigableset.html" class="tsd-signature-type">NavigableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -96,25 +96,31 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_hashset_.hashset.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#contains" class="tsd-kind-icon">contains</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#iterator" class="tsd-kind-icon">iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#ceiling" class="tsd-kind-icon">ceiling</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#comparator" class="tsd-kind-icon">comparator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#first" class="tsd-kind-icon">first</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#floor" class="tsd-kind-icon">floor</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#getnexthigherkey" class="tsd-kind-icon">get<wbr>Next<wbr>Higher<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#iterator" class="tsd-kind-icon">iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#last" class="tsd-kind-icon">last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#pollfirst" class="tsd-kind-icon">poll<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#polllast" class="tsd-kind-icon">poll<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistset.html#validateset" class="tsd-kind-icon">validate<wbr>Set</a></li>
 							</ul>
 						</section>
 					</div>
@@ -126,31 +132,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Hash<wbr>Set<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacity<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Set<span class="tsd-signature-symbol">(</span>iComparator<span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistset.html" class="tsd-signature-type">SkipListSet</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L22">HashSet.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L328">SkipList.ts:328</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iHash: <a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iComparator: <a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialElements: <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iInitialCapacity: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iLoadFactor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> initialElements: <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_skiplist_.skiplistset.html" class="tsd-signature-type">SkipListSet</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -166,9 +166,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#___iterator">__@iterator</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L144">HashSet.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L473">SkipList.ts:473</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,9 +190,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#add">add</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L49">HashSet.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L342">SkipList.ts:342</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -215,6 +215,39 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ceiling" class="tsd-anchor"></a>
+					<h3>ceiling</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ceiling<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#ceiling">ceiling</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L393">SkipList.ts:393</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the least element in this set greater than or equal to the given element, or null if there is no such element.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>item: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>to find ceiling node for</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the least element greater than or equal to item, or null if there is no such element</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="clear" class="tsd-anchor"></a>
 					<h3>clear</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -223,9 +256,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#clear">clear</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L110">HashSet.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L426">SkipList.ts:426</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,6 +271,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="comparator" class="tsd-anchor"></a>
+					<h3>comparator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">comparator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L358">SkipList.ts:358</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the comparator used to order the keys in this set</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the comparator used to order the keys in this set</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="contains" class="tsd-anchor"></a>
 					<h3>contains</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -246,9 +302,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#contains">contains</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L100">HashSet.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L375">SkipList.ts:375</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,82 +327,91 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="deprecatedgetfirstentryforiterator" class="tsd-anchor"></a>
-					<h3>deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</h3>
+					<a name="first" class="tsd-anchor"></a>
+					<h3>first</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">first<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L119">HashSet.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L402">SkipList.ts:402</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is deprecated and will be removed in a future revision.</p>
+									<p>Returns the first (lowest) element currently in this set.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd></dd>
-								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the first (lowest) element currently in this set, undefined if there are no elements in this set</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="deprecatedgetnextentryforiterator" class="tsd-anchor"></a>
-					<h3>deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</h3>
+					<a name="floor" class="tsd-anchor"></a>
+					<h3>floor</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span>current<span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">floor<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#floor">floor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L128">HashSet.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L384">SkipList.ts:384</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is deprecated and will be removed in a future revision.</p>
+									<p>Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd></dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>current: <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>item: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>to find floor node for</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the greatest element less than or equal to e, or null if there is no such element</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gethashable" class="tsd-anchor"></a>
-					<h3>get<wbr>Hashable</h3>
+					<a name="getnexthigherkey" class="tsd-anchor"></a>
+					<h3>get<wbr>Next<wbr>Higher<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Hashable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Next<wbr>Higher<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L40">HashSet.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L451">SkipList.ts:451</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the Hashable</p>
+									<p>Needed For Iterator</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the given key</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the least key greater than key, or null if there is no such key</p>
 						</li>
 					</ul>
 				</section>
@@ -359,9 +424,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#immutablecollection">immutableCollection</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L151">HashSet.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L480">SkipList.ts:480</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,9 +447,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#immutableset">immutableSet</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#immutableset">immutableSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L158">HashSet.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L487">SkipList.ts:487</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -405,9 +470,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#isempty">isEmpty</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L86">HashSet.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L366">SkipList.ts:366</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,9 +494,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#iterator">iterator</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L136">HashSet.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L465">SkipList.ts:465</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -445,6 +510,78 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="last" class="tsd-anchor"></a>
+					<h3>last</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">last<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#last">last</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L410">SkipList.ts:410</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the last (highest) element currently in this set.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the last (highest) element currently in this set, undefined if there are no elements in this set</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="pollfirst" class="tsd-anchor"></a>
+					<h3>poll<wbr>First</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">poll<wbr>First<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#pollfirst">pollFirst</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L434">SkipList.ts:434</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves and removes the first (lowest) element, or returns null if this set is empty.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the first (lowest) element, or null if this set is empty</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="polllast" class="tsd-anchor"></a>
+					<h3>poll<wbr>Last</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">poll<wbr>Last<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#polllast">pollLast</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L442">SkipList.ts:442</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves and removes the last (highest) element, or returns null if this set is empty.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+							<p>the last (highest) element, or null if this set is empty</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="remove" class="tsd-anchor"></a>
 					<h3>remove</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -453,14 +590,14 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#remove">remove</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L63">HashSet.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L419">SkipList.ts:419</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>RemoveElement the specified element from this set if it is present.</p>
+									<p>Removes the specified element from this set if it is present.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -486,9 +623,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#size">size</a></p>
+								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/HashSet.ts#L76">HashSet.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L350">SkipList.ts:350</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -501,6 +638,23 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="validateset" class="tsd-anchor"></a>
+					<h3>validate<wbr>Set</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L333">SkipList.ts:333</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -510,69 +664,90 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_hashset_.html">"<wbr>Hash<wbr>Set"</a>
+						<a href="../modules/_skiplist_.html">"<wbr>Skip<wbr>List"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmap.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="_skiplist_.skiplistmapimpl.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistnode.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Node</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashset.html" class="tsd-kind-icon">Hash<wbr>Set</a>
+						<a href="_skiplist_.skiplistset.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_skiplist_.skiplistset.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+								<a href="_skiplist_.skiplistset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#add" class="tsd-kind-icon">add</a>
+								<a href="_skiplist_.skiplistset.html#add" class="tsd-kind-icon">add</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#clear" class="tsd-kind-icon">clear</a>
+								<a href="_skiplist_.skiplistset.html#ceiling" class="tsd-kind-icon">ceiling</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#contains" class="tsd-kind-icon">contains</a>
+								<a href="_skiplist_.skiplistset.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a>
+								<a href="_skiplist_.skiplistset.html#comparator" class="tsd-kind-icon">comparator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a>
+								<a href="_skiplist_.skiplistset.html#contains" class="tsd-kind-icon">contains</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a>
+								<a href="_skiplist_.skiplistset.html#first" class="tsd-kind-icon">first</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
+								<a href="_skiplist_.skiplistset.html#floor" class="tsd-kind-icon">floor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a>
+								<a href="_skiplist_.skiplistset.html#getnexthigherkey" class="tsd-kind-icon">get<wbr>Next<wbr>Higher<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+								<a href="_skiplist_.skiplistset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#iterator" class="tsd-kind-icon">iterator</a>
+								<a href="_skiplist_.skiplistset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#remove" class="tsd-kind-icon">remove</a>
+								<a href="_skiplist_.skiplistset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#size" class="tsd-kind-icon">size</a>
+								<a href="_skiplist_.skiplistset.html#iterator" class="tsd-kind-icon">iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistset.html#last" class="tsd-kind-icon">last</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistset.html#pollfirst" class="tsd-kind-icon">poll<wbr>First</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistset.html#polllast" class="tsd-kind-icon">poll<wbr>Last</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistset.html#remove" class="tsd-kind-icon">remove</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistset.html#size" class="tsd-kind-icon">size</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistset.html#validateset" class="tsd-kind-icon">validate<wbr>Set</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashsetiterator.html" class="tsd-kind-icon">Hash<wbr>Set<wbr>Iterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashsetjiterator.html" class="tsd-kind-icon">Hash<wbr>SetJIterator</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

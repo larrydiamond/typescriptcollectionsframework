@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ImmutableMap | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>SkipListMapImpl | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_immutablemap_.html">&quot;ImmutableMap&quot;</a>
+					<a href="../modules/_skiplist_.html">&quot;SkipList&quot;</a>
 				</li>
 				<li>
-					<a href="_immutablemap_.immutablemap.html">ImmutableMap</a>
+					<a href="_skiplist_.skiplistmapimpl.html">SkipListMapImpl</a>
 				</li>
 			</ul>
-			<h1>Interface ImmutableMap&lt;K, V&gt;</h1>
+			<h1>Class SkipListMapImpl&lt;K, V&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -82,12 +82,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ImmutableMap</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="_jmap_.jmap.html" class="tsd-signature-type">JMap</a>
-							</li>
-						</ul>
+						<span class="target">SkipListMapImpl</span>
 					</li>
 				</ul>
 			</section>
@@ -95,124 +90,112 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported"><a href="_skiplist_.skiplistmapimpl.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_immutablemap_.immutablemap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_immutablemap_.immutablemap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_immutablemap_.immutablemap.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_immutablemap_.immutablemap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_immutablemap_.immutablemap.html#keyset" class="tsd-kind-icon">key<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_immutablemap_.immutablemap.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_skiplist_.skiplistmapimpl.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_skiplist_.skiplistmapimpl.html#comparator" class="tsd-kind-icon">comparator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_skiplist_.skiplistmapimpl.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_skiplist_.skiplistmapimpl.html#put" class="tsd-kind-icon">put</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_skiplist_.skiplistmapimpl.html#size" class="tsd-kind-icon">size</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Map<wbr>Impl<span class="tsd-signature-symbol">(</span>iComparator<span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistmapimpl.html" class="tsd-signature-type">SkipListMapImpl</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L241">SkipList.ts:241</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iComparator: <a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>initialElements: <a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_skiplist_.skiplistmapimpl.html" class="tsd-signature-type">SkipListMapImpl</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="containskey" class="tsd-anchor"></a>
-					<h3>contains<wbr>Key</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">contains<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="clear" class="tsd-anchor"></a>
+					<h3>clear</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/ImmutableMap.ts#L31">ImmutableMap.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L256">SkipList.ts:256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if this map contains a mapping for the specified key.</p>
+									<p>Removes all of the mappings from this map. The map will be empty after this call returns.</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The key whose presence in this map is to be tested</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this map contains a mapping for the specified key.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="entryset" class="tsd-anchor"></a>
-					<h3>entry<wbr>Set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">entry<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="comparator" class="tsd-anchor"></a>
+					<h3>comparator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">comparator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/ImmutableMap.ts#L56">ImmutableMap.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L264">SkipList.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet view of the mappings contained in this map.
-										The set&#39;s iterator returns the mappings in ascending key order.
-										The set is backed by the map, so changes to the map are reflected in the set.
-										If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-									The contains method on this entrySet will only compare keys not values.</p>
+									<p>Returns the comparator used to order the keys in this map</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an entry with the greatest key, or null if this map is empty</p>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the comparator used to order the keys in this map</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="get" class="tsd-anchor"></a>
-					<h3>get</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/ImmutableMap.ts#L24">ImmutableMap.ts:24</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key whose associated value is to be returned</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
-							<p>the value to which the specified key is mapped, or null if this map contains no mapping for the key</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 					<a name="isempty" class="tsd-anchor"></a>
 					<h3>is<wbr>Empty</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/ImmutableMap.ts#L37">ImmutableMap.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L286">SkipList.ts:286</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -225,43 +208,55 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="keyset" class="tsd-anchor"></a>
-					<h3>key<wbr>Set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">key<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="put" class="tsd-anchor"></a>
+					<h3>put</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">put<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/ImmutableMap.ts#L46">ImmutableMap.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L297">SkipList.ts:297</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet view of the keys contained in this map.
-										The set&#39;s iterator returns the keys in ascending order.
-										The set is backed by the map, so changes to the map are reflected in the set.
-									If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
+									<p>Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>an entry with the greatest key, or null if this map is empty</p>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>key with which the specified value is to be associated</p>
+									</div>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">V</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>value to be associated with the specified key</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
+							<p>the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 					<a name="size" class="tsd-anchor"></a>
 					<h3>size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 						<li class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/ImmutableMap.ts#L17">ImmutableMap.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L272">SkipList.ts:272</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,39 +278,48 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_immutablemap_.html">"<wbr>Immutable<wbr>Map"</a>
+						<a href="../modules/_skiplist_.html">"<wbr>Skip<wbr>List"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmap.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_immutablemap_.immutablemap.html" class="tsd-kind-icon">Immutable<wbr>Map</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="_skiplist_.skiplistmapimpl.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Impl</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_immutablemap_.immutablemap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_skiplist_.skiplistmapimpl.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_immutablemap_.immutablemap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_skiplist_.skiplistmapimpl.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_immutablemap_.immutablemap.html#get" class="tsd-kind-icon">get</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_skiplist_.skiplistmapimpl.html#comparator" class="tsd-kind-icon">comparator</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_immutablemap_.immutablemap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_skiplist_.skiplistmapimpl.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_immutablemap_.immutablemap.html#keyset" class="tsd-kind-icon">key<wbr>Set</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_skiplist_.skiplistmapimpl.html#put" class="tsd-kind-icon">put</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_immutablemap_.immutablemap.html#size" class="tsd-kind-icon">size</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_skiplist_.skiplistmapimpl.html#size" class="tsd-kind-icon">size</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistnode.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistset.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

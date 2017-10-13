@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BasicMapEntry | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>SkipListNode | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_basicmapentry_.html">&quot;BasicMapEntry&quot;</a>
+					<a href="../modules/_skiplist_.html">&quot;SkipList&quot;</a>
 				</li>
 				<li>
-					<a href="_basicmapentry_.basicmapentry.html">BasicMapEntry</a>
+					<a href="_skiplist_.skiplistnode.html">SkipListNode</a>
 				</li>
 			</ul>
-			<h1>Class BasicMapEntry&lt;K, V&gt;</h1>
+			<h1>Class SkipListNode&lt;K, V&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -82,13 +82,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">BasicMapEntry</span>
+						<a href="_basicmapentry_.basicmapentry.html" class="tsd-signature-type">BasicMapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_hashmap_.hashmapentry.html" class="tsd-signature-type">HashMapEntry</a>
-							</li>
-							<li>
-								<a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a>
+								<span class="target">SkipListNode</span>
 							</li>
 						</ul>
 					</li>
@@ -107,20 +104,22 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_basicmapentry_.basicmapentry.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_skiplist_.skiplistnode.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private-protected">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_basicmapentry_.basicmapentry.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_skiplist_.skiplistnode.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_basicmapentry_.basicmapentry.html#getkey" class="tsd-kind-icon">get<wbr>Key</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_basicmapentry_.basicmapentry.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_skiplist_.skiplistnode.html#getkey" class="tsd-kind-icon">get<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistnode.html#getlastnodearray" class="tsd-kind-icon">get<wbr>Last<wbr>Node<wbr>Array</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistnode.html#getnextnodearray" class="tsd-kind-icon">get<wbr>Next<wbr>Node<wbr>Array</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_skiplist_.skiplistnode.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -128,40 +127,45 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Basic<wbr>Map<wbr>Entry<span class="tsd-signature-symbol">(</span>iKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, iValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_basicmapentry_.basicmapentry.html" class="tsd-signature-type">BasicMapEntry</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Node<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_basicmapentry_.basicmapentry.html">BasicMapEntry</a>.<a href="_basicmapentry_.basicmapentry.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/BasicMapEntry.ts#L13">BasicMapEntry.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L315">SkipList.ts:315</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iKey: <span class="tsd-signature-type">K</span></h5>
+									<h5>key: <span class="tsd-signature-type">K</span></h5>
 								</li>
 								<li>
-									<h5>iValue: <span class="tsd-signature-type">V</span></h5>
+									<h5>value: <span class="tsd-signature-type">V</span></h5>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_basicmapentry_.basicmapentry.html" class="tsd-signature-type">BasicMapEntry</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="value" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> value</h3>
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">V</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="_basicmapentry_.basicmapentry.html">BasicMapEntry</a>.<a href="_basicmapentry_.basicmapentry.html#value">value</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/BasicMapEntry.ts#L13">BasicMapEntry.ts:13</a></li>
 						</ul>
@@ -170,16 +174,17 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getkey" class="tsd-anchor"></a>
 					<h3>get<wbr>Key</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Key<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_mapentry_.mapentry.html">MapEntry</a>.<a href="../interfaces/_mapentry_.mapentry.html#getkey">getKey</a></p>
+								<p>Inherited from <a href="_basicmapentry_.basicmapentry.html">BasicMapEntry</a>.<a href="_basicmapentry_.basicmapentry.html#getkey">getKey</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/BasicMapEntry.ts#L24">BasicMapEntry.ts:24</a></li>
 								</ul>
@@ -195,15 +200,50 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getlastnodearray" class="tsd-anchor"></a>
+					<h3>get<wbr>Last<wbr>Node<wbr>Array</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Last<wbr>Node<wbr>Array<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_arraylist_.arraylist.html" class="tsd-signature-type">ArrayList</a><span class="tsd-signature-symbol">&lt;</span><a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L309">SkipList.ts:309</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_arraylist_.arraylist.html" class="tsd-signature-type">ArrayList</a><span class="tsd-signature-symbol">&lt;</span><a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getnextnodearray" class="tsd-anchor"></a>
+					<h3>get<wbr>Next<wbr>Node<wbr>Array</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Next<wbr>Node<wbr>Array<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_arraylist_.arraylist.html" class="tsd-signature-type">ArrayList</a><span class="tsd-signature-symbol">&lt;</span><a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/SkipList.ts#L313">SkipList.ts:313</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_arraylist_.arraylist.html" class="tsd-signature-type">ArrayList</a><span class="tsd-signature-symbol">&lt;</span><a href="_skiplist_.skiplistnode.html" class="tsd-signature-type">SkipListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getvalue" class="tsd-anchor"></a>
 					<h3>get<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_mapentry_.mapentry.html">MapEntry</a>.<a href="../interfaces/_mapentry_.mapentry.html#getvalue">getValue</a></p>
+								<p>Inherited from <a href="_basicmapentry_.basicmapentry.html">BasicMapEntry</a>.<a href="_basicmapentry_.basicmapentry.html#getvalue">getValue</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/febda40/src/BasicMapEntry.ts#L32">BasicMapEntry.ts:32</a></li>
 								</ul>
@@ -227,33 +267,48 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_basicmapentry_.html">"<wbr>Basic<wbr>Map<wbr>Entry"</a>
+						<a href="../modules/_skiplist_.html">"<wbr>Skip<wbr>List"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmap.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="_skiplist_.skiplistmapimpl.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Impl</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_basicmapentry_.basicmapentry.html" class="tsd-kind-icon">Basic<wbr>Map<wbr>Entry</a>
+						<a href="_skiplist_.skiplistnode.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Node</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_basicmapentry_.basicmapentry.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_skiplist_.skiplistnode.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="_basicmapentry_.basicmapentry.html#value" class="tsd-kind-icon">value</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_skiplist_.skiplistnode.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_skiplist_.skiplistnode.html#getkey" class="tsd-kind-icon">get<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_basicmapentry_.basicmapentry.html#getkey" class="tsd-kind-icon">get<wbr>Key</a>
+								<a href="_skiplist_.skiplistnode.html#getlastnodearray" class="tsd-kind-icon">get<wbr>Last<wbr>Node<wbr>Array</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_basicmapentry_.basicmapentry.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
+								<a href="_skiplist_.skiplistnode.html#getnextnodearray" class="tsd-kind-icon">get<wbr>Next<wbr>Node<wbr>Array</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_skiplist_.skiplistnode.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistset.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
