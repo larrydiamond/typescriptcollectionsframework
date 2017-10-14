@@ -17,7 +17,130 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var ArrayList_1 = require("./ArrayList");
 var BasicMapEntry_1 = require("./BasicMapEntry");
+var Collections_1 = require("./Collections");
+var SkipListMapImpl = (function () {
+    function SkipListMapImpl(iComparator, initialElements) {
+        this.initialElements = initialElements;
+        this.nodeList = null;
+        this.height = 10;
+        this.mapComparator = null;
+        this.mapCollectable = null;
+        this.numberElements = 0;
+        this.skipListNodeComparator = null;
+        this.skipListNodeCollectable = null;
+        this.mapComparator = iComparator;
+        //  this.skipListNodeComparator = new SkipListNodeComparator<K,V>(this.mapComparator);
+        this.mapCollectable = Collections_1.Collections.collectableFromComparator(iComparator);
+        this.skipListNodeCollectable = new SkipListNodeCollectable(this.mapCollectable);
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.put(t.getKey(), t.getValue());
+            }
+        }
+    }
+    /**
+    * Removes all of the mappings from this map. The map will be empty after this call returns.
+    */
+    SkipListMapImpl.prototype.clear = function () {
+        this.nodeList = null;
+        this.numberElements = 0;
+    };
+    /**
+    * Returns the comparator used to order the keys in this map
+    * @return {Comparator} the comparator used to order the keys in this map
+    */
+    SkipListMapImpl.prototype.comparator = function () {
+        return this.mapComparator;
+    };
+    /**
+    * Returns the number of key-value mappings in this map.
+    * @return {number} the number of key-value mappings in this map
+    */
+    SkipListMapImpl.prototype.size = function () {
+        if (this.nodeList === null)
+            return 0;
+        if (this.nodeList === undefined)
+            return 0;
+        return this.numberElements;
+    };
+    /**
+    * Returns true if this map contains no key-value mappings.
+    * @return {boolean} true if this map contains no key-value mappings
+    */
+    SkipListMapImpl.prototype.isEmpty = function () {
+        if (this.size() < 1)
+            return true;
+        return false;
+    };
+    /**
+     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
+     * @param {K} key key with which the specified value is to be associated
+     * @param {V} value value to be associated with the specified key
+     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+     */
+    SkipListMapImpl.prototype.put = function (key, value) {
+        if ((this.nodeList === undefined) || (this.nodeList === null)) {
+            var newnode = new SkipListNode(key, value, this.height, this.skipListNodeCollectable);
+            return value;
+        }
+        else {
+            return undefined;
+        }
+    };
+    return SkipListMapImpl;
+}());
+var SkipListNode = (function (_super) {
+    __extends(SkipListNode, _super);
+    function SkipListNode(key, value, height, iNodeCollectable) {
+        var _this = _super.call(this, key, value) || this;
+        _this.lastNodeArray = null;
+        _this.nextNodeArray = null;
+        _this.lastNodeArray = new ArrayList_1.ArrayList(iNodeCollectable);
+        return _this;
+    }
+    SkipListNode.prototype.getLastNodeArray = function () {
+        return this.lastNodeArray;
+    };
+    SkipListNode.prototype.getNextNodeArray = function () {
+        return this.nextNodeArray;
+    };
+    return SkipListNode;
+}(BasicMapEntry_1.BasicMapEntry));
+var SkipListNodeCollectable = (function () {
+    function SkipListNodeCollectable(iColl) {
+        this.coll = null;
+        this.coll = iColl;
+    }
+    SkipListNodeCollectable.prototype.equals = function (o1, o2) {
+        if (o1 === undefined) {
+            if (o2 === undefined) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        if (o1 === null) {
+            if (o2 === null) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        if ((o2 === null) || (o2 === undefined)) {
+            return false;
+        }
+        if (this.coll.equals(o1.getKey(), o2.getKey())) {
+            return true;
+        }
+        return false;
+    };
+    return SkipListNodeCollectable;
+}());
 var SkipListMap = (function () {
     function SkipListMap(comp, iInitial) {
         this.impl = null;
@@ -28,7 +151,7 @@ var SkipListMap = (function () {
     * @return {number} the number of key-value mappings in this map
     */
     SkipListMap.prototype.size = function () {
-        return undefined;
+        return this.impl.size();
     };
     /**
     * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
@@ -39,38 +162,43 @@ var SkipListMap = (function () {
         return undefined;
     };
     /**
-     * Returns true if this map contains a mapping for the specified key.
-     * @param {K} key The key whose presence in this map is to be tested
-     * @return {V} true if this map contains a mapping for the specified key.
-     */
+    * Returns true if this map contains a mapping for the specified key.
+    * @param {K} key The key whose presence in this map is to be tested
+    * @return {V} true if this map contains a mapping for the specified key.
+    */
     SkipListMap.prototype.containsKey = function (key) {
         return undefined;
     };
     /**
-     * Returns true if this map contains no key-value mappings.
-     * @return {boolean} true if this map contains no key-value mappings
-     */
+    * Returns true if this map contains no key-value mappings.
+    * @return {boolean} true if this map contains no key-value mappings
+    */
     SkipListMap.prototype.isEmpty = function () {
-        return undefined;
+        if (1 < this.impl.size()) {
+            return false;
+        }
+        else {
+            return true;
+        }
     };
     /**
-     * Returns an ImmutableSet view of the keys contained in this map.
-     * The set's iterator returns the keys in ascending order.
-     * The set is backed by the map, so changes to the map are reflected in the set.
-     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
-     */
+    * Returns an ImmutableSet view of the keys contained in this map.
+    * The set's iterator returns the keys in ascending order.
+    * The set is backed by the map, so changes to the map are reflected in the set.
+    * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+    * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+    */
     SkipListMap.prototype.keySet = function () {
         return undefined;
     };
     /**
-     * Returns an ImmutableSet view of the mappings contained in this map.
-     * The set's iterator returns the mappings in ascending key order.
-     * The set is backed by the map, so changes to the map are reflected in the set.
-     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-     * The contains method on this entrySet will only compare keys not values.
-     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
-     */
+    * Returns an ImmutableSet view of the mappings contained in this map.
+    * The set's iterator returns the mappings in ascending key order.
+    * The set is backed by the map, so changes to the map are reflected in the set.
+    * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+    * The contains method on this entrySet will only compare keys not values.
+    * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+    */
     SkipListMap.prototype.entrySet = function () {
         return undefined;
     };
@@ -101,7 +229,7 @@ var SkipListMap = (function () {
     * Returns an ImmutableMap backed by this Map
     */
     SkipListMap.prototype.immutableMap = function () {
-        return undefined;
+        return this;
     };
     /**
     * Returns the first (lowest) key currently in this map.
@@ -111,17 +239,17 @@ var SkipListMap = (function () {
         return undefined;
     };
     /**
-     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
-     * @return {MapEntry} an entry with the least key, or null if this map is empty
-     */
+    * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+    * @return {MapEntry} an entry with the least key, or null if this map is empty
+    */
     SkipListMap.prototype.firstEntry = function () {
         return undefined;
     };
     /**
-     * Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.
-     * @param {K} key the key
-     * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
-     */
+    * Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
+    */
     SkipListMap.prototype.ceilingEntry = function (key) {
         return undefined;
     };
@@ -182,102 +310,27 @@ var SkipListMap = (function () {
         return undefined;
     };
     /**
-     * Returns the last (highest) key currently in this map.
-     * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
-     */
+    * Returns the last (highest) key currently in this map.
+    * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
+    */
     SkipListMap.prototype.lastKey = function () {
         return undefined;
     };
     /**
-     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
-     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
-     */
+    * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+    * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+    */
     SkipListMap.prototype.lastEntry = function () {
         return undefined;
     };
     return SkipListMap;
 }());
 exports.SkipListMap = SkipListMap;
-var SkipListMapImpl = (function () {
-    function SkipListMapImpl(iComparator, initialElements) {
-        this.initialElements = initialElements;
-        this.nodeList = null;
-        this.height = 10;
-        this.mapComparator = null;
-        this.numberElements = 0;
-        this.mapComparator = iComparator;
-        if ((initialElements !== null) && (initialElements !== undefined)) {
-            for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
-                var t = iter.next();
-                this.put(t.getKey(), t.getValue());
-            }
-        }
-    }
-    /**
-    * Removes all of the mappings from this map. The map will be empty after this call returns.
-    */
-    SkipListMapImpl.prototype.clear = function () {
-        this.nodeList = null;
-    };
-    /**
-    * Returns the comparator used to order the keys in this map
-    * @return {Comparator} the comparator used to order the keys in this map
-    */
-    SkipListMapImpl.prototype.comparator = function () {
-        return this.mapComparator;
-    };
-    /**
-    * Returns the number of key-value mappings in this map.
-    * @return {number} the number of key-value mappings in this map
-    */
-    SkipListMapImpl.prototype.size = function () {
-        if (this.nodeList === null)
-            return 0;
-        if (this.nodeList === undefined)
-            return 0;
-        return this.numberElements;
-    };
-    /**
-    * Returns true if this map contains no key-value mappings.
-    * @return {boolean} true if this map contains no key-value mappings
-    */
-    SkipListMapImpl.prototype.isEmpty = function () {
-        if (this.size() < 1)
-            return true;
-        return false;
-    };
-    /**
-     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
-     * @param {K} key key with which the specified value is to be associated
-     * @param {V} value value to be associated with the specified key
-     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
-     */
-    SkipListMapImpl.prototype.put = function (key, value) {
-        return undefined;
-    };
-    return SkipListMapImpl;
-}());
-var SkipListNode = (function (_super) {
-    __extends(SkipListNode, _super);
-    function SkipListNode(key, value, height) {
-        var _this = _super.call(this, key, value) || this;
-        _this.lastNodeArray = null;
-        _this.nextNodeArray = null;
-        return _this;
-    }
-    SkipListNode.prototype.getLastNodeArray = function () {
-        return this.lastNodeArray;
-    };
-    SkipListNode.prototype.getNextNodeArray = function () {
-        return this.nextNodeArray;
-    };
-    return SkipListNode;
-}(BasicMapEntry_1.BasicMapEntry));
-exports.SkipListNode = SkipListNode;
 var SkipListSet = (function () {
     function SkipListSet(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.impl = null;
+        this.impl = new SkipListMapImpl(iComparator, null);
     }
     SkipListSet.prototype.validateSet = function () {
         return undefined;
@@ -295,12 +348,12 @@ var SkipListSet = (function () {
     * @return {number} the number of elements in this set (its cardinality)
     */
     SkipListSet.prototype.size = function () {
-        return undefined;
+        return this.impl.size();
     };
     /**
-     * Returns the comparator used to order the keys in this set
-     * @return {Comparator} the comparator used to order the keys in this set
-     */
+    * Returns the comparator used to order the keys in this set
+    * @return {Comparator} the comparator used to order the keys in this set
+    */
     SkipListSet.prototype.comparator = function () {
         return undefined;
     };
@@ -309,7 +362,12 @@ var SkipListSet = (function () {
     * @return {boolean} true if this set contains no elements
     */
     SkipListSet.prototype.isEmpty = function () {
-        return undefined;
+        if (1 < this.impl.size()) {
+            return false;
+        }
+        else {
+            return true;
+        }
     };
     /**
     * Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals
@@ -320,18 +378,18 @@ var SkipListSet = (function () {
         return undefined;
     };
     /**
-     * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
-     * @param {K} item to find floor node for
-     * @return {K} the greatest element less than or equal to e, or null if there is no such element
-     */
+    * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+    * @param {K} item to find floor node for
+    * @return {K} the greatest element less than or equal to e, or null if there is no such element
+    */
     SkipListSet.prototype.floor = function (item) {
         return undefined;
     };
     /**
-     * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
-     * @param {K} item to find ceiling node for
-     * @return {K} the least element greater than or equal to item, or null if there is no such element
-     */
+    * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
+    * @param {K} item to find ceiling node for
+    * @return {K} the least element greater than or equal to item, or null if there is no such element
+    */
     SkipListSet.prototype.ceiling = function (item) {
         return undefined;
     };
@@ -364,36 +422,31 @@ var SkipListSet = (function () {
         return undefined;
     };
     /**
-     * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
-     * @return {K} the first (lowest) element, or null if this set is empty
-     */
+    * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
+    * @return {K} the first (lowest) element, or null if this set is empty
+    */
     SkipListSet.prototype.pollFirst = function () {
         return undefined;
     };
     /**
-     * Retrieves and removes the last (highest) element, or returns null if this set is empty.
-     * @return {K} the last (highest) element, or null if this set is empty
-     */
+    * Retrieves and removes the last (highest) element, or returns null if this set is empty.
+    * @return {K} the last (highest) element, or null if this set is empty
+    */
     SkipListSet.prototype.pollLast = function () {
         return undefined;
     };
     /**
-     * Needed For Iterator
-     * @param {K} key the given key
-     * @return {K} the least key greater than key, or null if there is no such key
-     */
+    * Needed For Iterator
+    * @param {K} key the given key
+    * @return {K} the least key greater than key, or null if there is no such key
+    */
     SkipListSet.prototype.getNextHigherKey = function (key) {
         return undefined;
     };
-    /*
-      public printSet () {
-        return this.datastore.printMap();
-      }
-    /* */
     /**
-     * Returns a Java style iterator
-     * @return {JIterator<K>} the Java style iterator
-     */
+    * Returns a Java style iterator
+    * @return {JIterator<K>} the Java style iterator
+    */
     SkipListSet.prototype.iterator = function () {
         return undefined;
     };
@@ -408,14 +461,14 @@ var SkipListSet = (function () {
     * Returns an ImmutableCollection backed by this Collection
     */
     SkipListSet.prototype.immutableCollection = function () {
-        return undefined;
+        return this;
     };
     ;
     /**
     * Returns an ImmutableSet backed by this Set
     */
     SkipListSet.prototype.immutableSet = function () {
-        return undefined;
+        return this;
     };
     ;
     return SkipListSet;

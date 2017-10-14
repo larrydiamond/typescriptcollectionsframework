@@ -15,6 +15,9 @@ var HashSet_1 = require("./HashSet");
 var Collections = (function () {
     function Collections() {
     }
+    /**
+     * Returns a Comparator that works correctly for string native objects
+     */
     Collections.getStringComparator = function () {
         var sortString = {
             compare: function (o1, o2) {
@@ -35,6 +38,9 @@ var Collections = (function () {
         };
         return sortString;
     };
+    /**
+     * Returns a Comparator that works correctly for number native objects
+     */
     Collections.getNumberComparator = function () {
         var sortNumber = {
             compare: function (o1, o2) {
@@ -55,6 +61,9 @@ var Collections = (function () {
         };
         return sortNumber;
     };
+    /**
+     * Returns a hash code good for string objects
+     */
     Collections.getHashCodeForString = function (o) {
         if (o === undefined) {
             return 0;
@@ -70,6 +79,9 @@ var Collections = (function () {
         }
         return hash;
     };
+    /**
+     * Returns a hash code good for Collections for objects
+     */
     Collections.getHashCodeForStrings = function (o) {
         if (o === undefined) {
             return 0;
@@ -84,6 +96,9 @@ var Collections = (function () {
         }
         return tmp;
     };
+    /**
+     * Returns a hash code good for number objects
+     */
     Collections.getHashCodeForNumber = function (o) {
         if (o === undefined) {
             return 0;
@@ -97,6 +112,9 @@ var Collections = (function () {
         }
         return tmp;
     };
+    /**
+     * Returns an ImmutableList of the entries passed in, using an AllFieldCollectable as the Collectable
+     */
     Collections.list = function () {
         var values = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -120,6 +138,20 @@ var Collections = (function () {
     Collections.emptyMap = function () {
         var tmp = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
         return tmp.immutableMap();
+    };
+    /**
+     * Returns an Collectable made from the Comparator passed in
+     */
+    Collections.collectableFromComparator = function (iComp) {
+        var tmp = {
+            equals: function (o1, o2) {
+                if (0 === iComp.compare(o1, o2))
+                    return true;
+                else
+                    return false;
+            }
+        };
+        return tmp;
     };
     return Collections;
 }());

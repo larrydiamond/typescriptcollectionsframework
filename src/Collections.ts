@@ -22,6 +22,9 @@ import {JIterator} from "./JIterator";
 
 export class Collections {
 
+  /**
+   * Returns a Comparator that works correctly for string native objects
+   */
   public static getStringComparator():Comparator<string> {
     let sortString:Comparator<string> = {
       compare(o1:string, o2:string) : number {
@@ -45,6 +48,9 @@ export class Collections {
     return sortString;
   }
 
+  /**
+   * Returns a Comparator that works correctly for number native objects
+   */
   public static getNumberComparator():Comparator<number> {
     let sortNumber:Comparator<number> = {
       compare(o1:number, o2:number) : number {
@@ -67,6 +73,9 @@ export class Collections {
     return sortNumber;
   }
 
+  /**
+   * Returns a hash code good for string objects
+   */
   public static getHashCodeForString (o:string) : number {
     if (o === undefined) {
       return 0;
@@ -83,6 +92,9 @@ export class Collections {
     return hash;
   }
 
+  /**
+   * Returns a hash code good for Collections for objects
+   */
   public static getHashCodeForStrings (o:ImmutableCollection<string>) : number {
     if (o === undefined) {
       return 0;
@@ -98,6 +110,9 @@ export class Collections {
     return tmp;
   }
 
+  /**
+   * Returns a hash code good for number objects
+   */
   public static getHashCodeForNumber (o:number) : number {
     if (o === undefined) {
       return 0;
@@ -114,6 +129,9 @@ export class Collections {
     return tmp;
   }
 
+  /**
+   * Returns an ImmutableList of the entries passed in, using an AllFieldCollectable as the Collectable
+   */
   public static list<T> (... values : T[]) : ImmutableList<T> {
     let list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
     for (let loop : number = 0; loop < values.length; loop++) {
@@ -136,6 +154,21 @@ export class Collections {
   public static emptyMap<K,V> () : ImmutableMap<K,V> {
     let tmp : HashMap<K,V> = new HashMap<K,V>(new AllFieldHashable<K>());
     return tmp.immutableMap();
+  }
+
+  /**
+   * Returns an Collectable made from the Comparator passed in
+   */
+  public static collectableFromComparator<K> (iComp:Comparator<K>): Collectable <K> {
+    let tmp : Collectable<K> = {
+      equals (o1:K, o2:K) : boolean {
+        if (0 === iComp.compare (o1, o2))
+          return true;
+        else
+          return false;
+      }
+    }
+    return tmp;
   }
 
 }
