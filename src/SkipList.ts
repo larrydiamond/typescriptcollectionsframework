@@ -365,7 +365,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   private impl:SkipListMapImpl<K,number> = null;
 
   constructor(iComparator:Comparator<K>, private initialElements?:ImmutableCollection<K>) {
-    this.impl = new SkipListMapImpl(iComparator, null);
+    this.impl = new SkipListMapImpl<K,number>(iComparator, null);
   }
 
   public validateSet() : boolean {
