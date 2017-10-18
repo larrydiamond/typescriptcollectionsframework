@@ -32,7 +32,7 @@
     "definition": "definitions/index"
   },
   "scripts": {
-    "test": "rm -r -f dist && gulp test",
+    "test": "gulp test",
     "release": "standard-version",
     "tslint": "tslint -c tslint.json */*.ts",
     "typedoc": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out typedoc/ src/*.ts  --exclude **/spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'"

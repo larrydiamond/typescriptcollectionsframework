@@ -8,6 +8,7 @@
 
 import {AllFieldCollectable} from "./AllFieldCollectable";
 import {ArrayList} from "./ArrayList";
+import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
 import {Collections} from "./Collections";
@@ -22,9 +23,8 @@ import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 import {NavigableSet} from "./NavigableSet";
 
-
-class SkipListMapImpl<K,V> {
-  private nodeList:LinkedList<SkipListNode<K,V>> = null;
+export class SkipListMapImpl<K,V> {
+  private head:ArrayList<SkipListNode<K,V>> = null;
   private height:number = 10;
   private mapComparator:Comparator<K> = null;
   private mapCollectable:Collectable<K> = null;
@@ -32,11 +32,16 @@ class SkipListMapImpl<K,V> {
   private skipListNodeComparator:Comparator<SkipListNode<K,V>> = null;
   private skipListNodeCollectable:Collectable<SkipListNode<K,V>> = null;
 
-  constructor(iComparator:Comparator<K>, private initialElements:ImmutableMap<K, V>) {
+  constructor(iComparator:Comparator<K>, private initialElements:ImmutableMap<K, V> = null) {
     this.mapComparator = iComparator;
-  //  this.skipListNodeComparator = new SkipListNodeComparator<K,V>(this.mapComparator);
+    this.skipListNodeComparator = new SkipListNodeComparator<K,V>(this.mapComparator);
     this.mapCollectable = Collections.collectableFromComparator(iComparator);
     this.skipListNodeCollectable = new SkipListNodeCollectable<K,V>(this.mapCollectable);
+
+    this.head = new ArrayList<SkipListNode<K,V>>(this.skipListNodeCollectable);
+    for (let loop:number = 0; loop < this.height; loop++) {
+      this.head.add (null);
+    }
 
     if ((initialElements !== null) && (initialElements !== undefined)) {
       for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
@@ -46,12 +51,57 @@ class SkipListMapImpl<K,V> {
     }
   }
 
+  public getSkipListNodeComparator() : Comparator<SkipListNode<K,V>> { return this.skipListNodeComparator; }
+  public getSkipListNodeCollectable() : Collectable<SkipListNode<K,V>> { return this.skipListNodeCollectable; }
+
+  /**
+  * Removes the mapping for this key from this Map if present.
+  * @param {K} key key for which mapping should be removed
+  * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+  */
+  public remove (key:K) : V {
+    let tmp : SkipListNode<K,V> = this.getEntry (key);
+    if ((tmp === null) || (tmp === undefined)) {
+      return null;
+    }
+    this.removeElement (tmp);
+    return tmp.getValue();
+  }
+
+  /**
+  * Removes this node from the Map
+  * @param {MapEntry<K,V>} node node to remove
+  */
+  public removeElement (node:SkipListNode<K,V>) : void {
+    let size : number = node.getNextNodeArray().size();
+    let lna:ArrayList<SkipListNode<K,V>> = node.getLastNodeArray();
+    let nna:ArrayList<SkipListNode<K,V>> = node.getNextNodeArray();
+    for (let loop:number = 0; loop < size; loop++) {
+      let ln:SkipListNode<K,V> = lna.get (loop);
+      let nn:SkipListNode<K,V> = nna.get (loop);
+
+      if ((ln !== null) && (ln !== undefined)) {
+        ln.getNextNodeArray().set(loop, nn);
+      }
+      if ((nn !== null) && (nn !== undefined)) {
+        nn.getNextNodeArray().set(loop, ln);
+      }
+      if (this.head.get (loop) === node) {
+        this.head.set(loop, nn);
+      }
+    }
+    return;
+  }
+
   /**
   * Removes all of the mappings from this map. The map will be empty after this call returns.
   */
   public clear () : void {
-    this.nodeList = null;
     this.numberElements = 0;
+    this.head = new ArrayList<SkipListNode<K,V>>(this.skipListNodeCollectable);
+    for (let loop:number = 0; loop < this.height; loop++) {
+      this.head.add (null);
+    }
   }
 
   /**
@@ -67,12 +117,6 @@ class SkipListMapImpl<K,V> {
   * @return {number} the number of key-value mappings in this map
   */
   public size () : number {
-    if (this.nodeList === null)
-      return 0;
-
-    if (this.nodeList === undefined)
-      return 0;
-
     return this.numberElements;
   }
 
@@ -81,8 +125,11 @@ class SkipListMapImpl<K,V> {
   * @return {boolean} true if this map contains no key-value mappings
   */
   public isEmpty () : boolean {
-    if (this.size() < 1) return true;
-    return false;
+    if (this.size() > 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   /**
@@ -92,16 +139,212 @@ class SkipListMapImpl<K,V> {
    * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
    */
   public put (key:K, value:V) : V {
-    if ((this.nodeList === undefined) || (this.nodeList === null)) {
+    if (this.numberElements < 1) {
       let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, this.height, this.skipListNodeCollectable);
-      return value;
+      for (let loop:number = 0; loop < this.height; loop++) {
+        this.head.set (loop, newnode);
+      }
+      this.numberElements = 1;
+      return null;
     } else {
-      return undefined;
+      let tmp:SkipListNode<K,V> = this.floorEntry(key);
+      if ((tmp === null) || (tmp === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
+        let nodeHeight = Math.random() * (this.height - 1) + 1;  // Random number between 1 and this.height (both inclusive)
+        let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
+        for (let loop:number = 0; loop < this.height; loop++) {
+          this.head.set (loop, newnode);
+        }
+        this.numberElements++;
+        return null;
+      } else {
+        if (this.mapComparator.compare (key, tmp.getKey()) === 0) {
+          let lastValue : V = tmp.getValue();
+          tmp.setValue (value);
+          return lastValue;
+        } else {  // This node will immediately preceed the new node
+          let nodeHeight = Math.random() * (this.height - 1) + 1;  // Random number between 1 and this.height (both inclusive)
+          return undefined;  // TODO
+        }
+      }
     }
   }
+
+  /**
+  * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+  * @return {SkipListNode} an entry with the least key, or null if this map is empty
+  */
+  public firstEntry () : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+    return this.head.get (0);
+  }
+
+  /**
+  * Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
+  */
+  public ceilingEntry (key:K) : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+    return undefined;   // TODO
+  }
+
+  /**
+  * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
+  */
+  public higherEntry (key:K) : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+
+    return undefined;   // TODO
+  }
+
+  /**
+  * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
+  */
+  public nextHigherNode (node : SkipListNode<K,V>) : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+
+    return undefined;   // TODO
+  }
+
+  /**
+  * Returns a key-value mapping associated with the highest key lower than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
+  */
+  public lowerEntry (key:K) : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+    return undefined;   // TODO
+  }
+
+  /**
+  * Returns a key-value mapping associated with the greatest key less than or equal to the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
+  */
+  public floorEntry (key:K) : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+    return undefined;   // TODO
+  }
+
+  /**
+  * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  public lastEntry () : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+
+    // Get a first node
+    let node:SkipListNode<K,V> = null;
+    for (let loop:number = 0; ((loop < this.height) && (node === null)); loop++) {
+      node = this.head.get ((this.height - 1) - loop);
+    }
+
+    if ((node === null) && (node === undefined)) {
+      return null;
+    }
+
+    // get to the last node
+    while (node.getNextNodeArray().get (0) !== null) {
+      let foundNext : boolean = false;
+      for (let loop : number = 0; ((foundNext === false) && (loop < node.getNextNodeArray().size())); loop++) {
+        if (node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1) !== null) {
+          foundNext = true;
+          node = node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1);
+        }
+      }
+    }
+
+    return node;
+  }
+
+  /**
+  * Returns a key-value mapping associated with the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {MapEntry} an entry with the key, or null if there is no such key
+  */
+  public getEntry (key:K) : SkipListNode<K,V> {
+    if (this.numberElements < 1) {
+      return null;
+    }
+
+    // Get a first node, highest -1 entry
+    let node:SkipListNode<K,V> = null;
+    for (let loop:number = 0; ((loop < this.height) && (node === null)); loop++) {
+      let tmp:SkipListNode<K,V> = this.head.get ((this.height - 1) - loop);
+      if ((tmp !== null) && (tmp !== undefined)) {
+        let cmp:number = this.mapComparator.compare (key, tmp.getKey());
+        if (cmp === 0) {
+          return tmp;
+        }
+        if (cmp === -1) {
+          node = tmp;
+        }
+      }
+    }
+    if (node === null) { // we only got here if every element was higher than this one
+      return null;
+    }
+
+    // keep moving forward until we find the node or cant find any node less than it
+    while (node.getNextNodeArray().get (0) !== null) {
+      let cmp:number = this.mapComparator.compare (key, node.getKey());
+      if (cmp === 0) {
+        return node;
+      }
+      if (cmp === 1) { // the next node is past the desired node
+        return null;
+      }
+
+      let nextNode : SkipListNode<K,V> = null;
+      for (let loop : number = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
+        let tmp : SkipListNode<K,V> = node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1);
+        if (tmp !== null) {
+          cmp = this.mapComparator.compare (key, tmp.getKey());
+          if (cmp === 0) {
+            return tmp;
+          }
+          if (cmp === -1) {
+            nextNode = tmp;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
 }
 
-class SkipListNode<K,V> extends BasicMapEntry<K,V> {
+export class SkipListNode<K,V> extends BasicMapEntry<K,V> {
+  constructor (key:K, value:V, height:number, iNodeCollectable:Collectable<SkipListNode<K,V>>) {
+    super(key, value);
+    this.lastNodeArray = new ArrayList<SkipListNode<K,V>>(iNodeCollectable);
+    this.nextNodeArray = new ArrayList<SkipListNode<K,V>>(iNodeCollectable);
+    for (let loop:number = 0; loop < height; loop++) {
+      this.nextNodeArray.add (null);
+      this.lastNodeArray.add (null);
+    }
+  }
+  setValue (iValue:V) : void {
+    this.value = iValue;
+  }
   private lastNodeArray:ArrayList<SkipListNode<K,V>> = null;
   public getLastNodeArray () : ArrayList<SkipListNode<K,V>> {
     return this.lastNodeArray;
@@ -109,10 +352,6 @@ class SkipListNode<K,V> extends BasicMapEntry<K,V> {
   private nextNodeArray:ArrayList<SkipListNode<K,V>> = null;
   public getNextNodeArray () : ArrayList<SkipListNode<K,V>> {
     return this.nextNodeArray;
-  }
-  constructor (key:K, value:V, height:number, iNodeCollectable:Collectable<SkipListNode<K,V>>) {
-    super(key, value);
-    this.lastNodeArray = new ArrayList<SkipListNode<K,V>>(iNodeCollectable);
   }
 }
 
@@ -147,24 +386,44 @@ class SkipListNodeCollectable<K,V> implements Collectable<SkipListNode<K,V>> {
   }
 }
 
+class SkipListNodeComparator<K,V> implements Comparator<SkipListNode<K,V>> {
+  private comp:Comparator<K> = null;
 
+  constructor(iComp:Comparator<K>) {
+    this.comp = iComp;
+  }
 
-
-
+  compare (o1:SkipListNode<K,V>, o2:SkipListNode<K,V>) : number {
+    if (o1 === o2) {
+      return 0;
+    }
+    if ((o1 === undefined) || (o1 === null)) {
+      return -1;
+    }
+    if ((o2 === undefined) || (o2 === null)) {
+      return 1;
+    }
+    return this.comp.compare (o1.getKey(), o2.getKey());
+  }
+}
 
 
 export class SkipListMap<K,V> implements NavigableMap<K,V> {
   private impl:SkipListMapImpl<K,V> = null;
 
-  constructor (comp:Comparator<K>, iInitial:ImmutableMap<K,V>) {
+  constructor (comp:Comparator<K>, iInitial:ImmutableMap<K,V> = null) {
     this.impl = new SkipListMapImpl(comp, iInitial);
   }
+
+  validateMap () : boolean { return undefined; }
+
+  getNextHigherKey (key : K) { return undefined; }
 
   /**
   * Returns the number of key-value mappings in this map.
   * @return {number} the number of key-value mappings in this map
   */
-  size () : number {
+  public size () : number {
     return this.impl.size();
   }
 
@@ -173,8 +432,12 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key whose associated value is to be returned
   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
   */
-  get (key:K) : V {
-    return undefined;
+  public get (key:K) : V {
+    let node : SkipListNode<K,V> = this.impl.getEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getValue();
   }
 
   /**
@@ -182,16 +445,20 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key The key whose presence in this map is to be tested
   * @return {V} true if this map contains a mapping for the specified key.
   */
-  containsKey (key:K) : boolean {
-    return undefined;
+  public containsKey (key:K) : boolean {
+    let node : SkipListNode<K,V> = this.impl.getEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return false;
+    }
+    return true;
   }
 
   /**
   * Returns true if this map contains no key-value mappings.
   * @return {boolean} true if this map contains no key-value mappings
   */
-  isEmpty () : boolean {
-    if (1 < this.impl.size()) {
+  public isEmpty () : boolean {
+    if (this.impl.size() > 0) {
       return false;
     } else {
       return true;
@@ -205,8 +472,8 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
-  keySet () : ImmutableSet<K> {
-    return undefined;
+  public keySet () : ImmutableSet<K> {
+    return undefined;   // TODO
   }
 
   /**
@@ -217,8 +484,8 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * The contains method on this entrySet will only compare keys not values.
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
-  entrySet () : ImmutableSet<MapEntry<K,V>> {
-    return undefined;
+  public entrySet () : ImmutableSet<MapEntry<K,V>> {
+    return new ImmutableEntrySetForSkipListMapImpl(this.impl);
   }
 
   /**
@@ -227,8 +494,8 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {V} value value to be associated with the specified key
   * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
   */
-  put (key:K, value:V) : V {
-    return undefined;
+  public put (key:K, value:V) : V {
+    return this.impl.put(key, value);
   }
 
   /**
@@ -236,21 +503,21 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key key for which mapping should be removed
   * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
   */
-  remove (key:K) : V {
-    return undefined;
+  public remove (key:K) : V {
+    return this.impl.remove(key);
   }
 
   /**
   * Removes all of the mappings from this map. The map will be empty after this call returns.
   */
-  clear () : void {
-    return undefined;
+  public clear () : void {
+    this.impl.clear();
   }
 
   /**
   * Returns an ImmutableMap backed by this Map
   */
-  immutableMap () : ImmutableMap<K,V> {
+  public immutableMap () : ImmutableMap<K,V> {
     return this;
   }
 
@@ -258,16 +525,24 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * Returns the first (lowest) key currently in this map.
   * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
   */
-  firstKey () : K {
-    return undefined;
+  public firstKey () : K {
+    let firstNode : SkipListNode<K,V> = this.impl.firstEntry();
+    if ((firstNode === undefined) || (firstNode === null)) {
+      return null;
+    }
+    return firstNode.getKey();
   }
 
   /**
   * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
   * @return {MapEntry} an entry with the least key, or null if this map is empty
   */
-  firstEntry () : BasicMapEntry<K,V> {
-    return undefined;
+  public firstEntry () : BasicMapEntry<K,V> {
+    let firstNode : SkipListNode<K,V> = this.impl.firstEntry();
+    if ((firstNode === undefined) || (firstNode === null)) {
+      return null;
+    }
+    return firstNode;
   }
 
   /**
@@ -275,8 +550,12 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
   */
-  ceilingEntry (key:K) : MapEntry<K,V> {
-    return undefined;
+  public ceilingEntry (key:K) : MapEntry<K,V> {
+    let node : SkipListNode<K,V> = this.impl.ceilingEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node;
   }
 
   /**
@@ -284,8 +563,12 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {K} the least key greater than or equal to key, or null if there is no such key
   */
-  ceilingKey (key:K) : K {
-    return undefined;
+  public ceilingKey (key:K) : K {
+    let node : SkipListNode<K,V> = this.impl.ceilingEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -293,8 +576,12 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {K} the least key greater than key, or null if there is no such key
   */
-  higherKey (key:K) : K {
-    return undefined;
+  public higherKey (key:K) : K {
+    let node : SkipListNode<K,V> = this.impl.higherEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -302,18 +589,25 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
   */
-  higherEntry (key:K) : MapEntry<K,V> {
-    return undefined;
+  public higherEntry (key:K) : MapEntry<K,V> {
+    let node : SkipListNode<K,V> = this.impl.higherEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node;
   }
-
 
   /**
   * Returns the highest key lower than the given key, or null if there is no such key.
   * @param {K} key the key
   * @return {K} the highest key lower than key, or null if there is no such key
   */
-  lowerKey (key:K) : K {
-    return undefined;
+  public lowerKey (key:K) : K {
+    let node : SkipListNode<K,V> = this.impl.lowerEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -321,8 +615,12 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
   */
-  lowerEntry (key:K) : MapEntry<K,V> {
-    return undefined;
+  public lowerEntry (key:K) : MapEntry<K,V> {
+    let node : SkipListNode<K,V> = this.impl.lowerEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node;
   }
 
   /**
@@ -330,8 +628,12 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {K} the greatest key less than or equal to key, or null if there is no such key
   */
-  floorKey (key:K) : K {
-    return undefined;
+  public floorKey (key:K) : K {
+    let node : SkipListNode<K,V> = this.impl.floorEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -339,26 +641,133 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @param {K} key the key
   * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
   */
-  floorEntry (key:K) : MapEntry<K,V> {
-    return undefined;
+  public floorEntry (key:K) : MapEntry<K,V> {
+    let node : SkipListNode<K,V> = this.impl.floorEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node;
   }
 
   /**
   * Returns the last (highest) key currently in this map.
   * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
   */
-  lastKey () : K {
-    return undefined;
+  public lastKey () : K {
+    let node : SkipListNode<K,V> = this.impl.lastEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
   * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
-  lastEntry () : MapEntry<K,V> {
-    return undefined;
+  public lastEntry () : MapEntry<K,V> {
+    let node : SkipListNode<K,V> = this.impl.lastEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node;
   }
 }
+
+
+export class ImmutableEntrySetForSkipListMapImpl<K,V> implements ImmutableSet<MapEntry<K,V>> {
+  private map:SkipListMapImpl<K,V>;
+  constructor(iMap:SkipListMapImpl<K,V>) {
+    this.map = iMap;
+  }
+
+  public size():number { return this.map.size(); }
+
+  public isEmpty():boolean { return this.map.isEmpty(); }
+
+  public contains(item:MapEntry<K,V>) : boolean {
+    if (item === null) return false;
+    if (item === undefined) return false;
+    let node : SkipListNode<K,V> = this.map.getEntry(item.getKey());
+    if ((node === undefined) || (node === null)) {
+      return false;
+    }
+    return true;
+  }
+
+  public iterator():JIterator<MapEntry<K,V>> { return new SkipListMapEntrySetJIterator(this.map); }
+
+  public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new SkipListMapEntrySetIterator (this.map); }
+}
+
+/* Java style iterator */
+export class SkipListMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
+  private location:SkipListNode<K,V>;
+  private map:SkipListMapImpl<K,V>;
+
+  constructor(iMap:SkipListMapImpl<K,V>) {
+    this.map = iMap;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      let firstEntry:SkipListNode<K,V> = this.map.firstEntry();
+      if (firstEntry === null) return false;
+      if (firstEntry === undefined) return false;
+      let first:K = firstEntry.getKey();
+      return true;
+    } else { // we've already called this iterator before
+      let tmpEntry:SkipListNode<K,V> = this.map.nextHigherNode(this.location);
+      if (tmpEntry === null) return false;
+      if (tmpEntry === undefined) return false;
+      let tmp:K = tmpEntry.getKey();
+      return true;
+    }
+  }
+
+  public next():MapEntry<K,V> {
+    if (this.location === undefined) { // first time caller
+      let firstEntry:SkipListNode<K,V> = this.map.firstEntry();
+      if (firstEntry === null) return null;
+      if (firstEntry === undefined) return null;
+      this.location = firstEntry;
+      return firstEntry;
+    } else { // we've already called this iterator before
+      let tmpEntry:SkipListNode<K,V> = this.map.nextHigherNode(this.location);
+      if (tmpEntry === null) return null;
+      if (tmpEntry === undefined) return null;
+      this.location = tmpEntry;
+      return tmpEntry;
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class SkipListMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
+  private location:SkipListNode<K,V>;
+  private map:SkipListMapImpl<K,V>;
+
+  constructor(iMap:SkipListMapImpl<K,V>) {
+    this.map = iMap;
+    this.location = this.map.firstEntry();
+  }
+
+  public next(value?: any): IteratorResult<MapEntry<K,V>> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    let tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location);
+    this.location = this.map.nextHigherNode(this.location);
+    return tmp;
+  }
+}
+
+
+
+
 
 
 export class SkipListSet<K> implements NavigableSet<K> {
@@ -366,10 +775,12 @@ export class SkipListSet<K> implements NavigableSet<K> {
 
   constructor(iComparator:Comparator<K>, private initialElements?:ImmutableCollection<K>) {
     this.impl = new SkipListMapImpl<K,number>(iComparator, null);
-  }
-
-  public validateSet() : boolean {
-    return undefined;
+    if ((initialElements !== null) && (initialElements !== undefined)) {
+      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
+        let key:K = iter.next ();
+        this.impl.put (key, 0);
+      }
+    }
   }
 
   /**
@@ -378,7 +789,11 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {boolean} true if this set did not already contain the specified element
   */
   public add (element:K) : boolean {
-    return undefined;
+    let tmp:number = this.impl.put (element, 0);
+    if (tmp === 0) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -390,19 +805,11 @@ export class SkipListSet<K> implements NavigableSet<K> {
   }
 
   /**
-  * Returns the comparator used to order the keys in this set
-  * @return {Comparator} the comparator used to order the keys in this set
-  */
-  public comparator () : Comparator<K> {
-    return undefined;
-  }
-
-  /**
   * Returns true if this set contains no elements.
   * @return {boolean} true if this set contains no elements
   */
   public isEmpty () : boolean {
-    if (1 < this.impl.size()) {
+    if (this.impl.size() > 0) {
       return false;
     } else {
       return true;
@@ -414,8 +821,12 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @param {K} item object to be checked for containment in this set
   * @return {boolean} true if this set contains the specified element
   */
-  public contains (item:K) : boolean {
-    return undefined;
+  public contains (key:K) : boolean {
+    let node : SkipListNode<K,number> = this.impl.getEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -423,8 +834,12 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @param {K} item to find floor node for
   * @return {K} the greatest element less than or equal to e, or null if there is no such element
   */
-  public floor (item:K) : K {
-    return undefined;
+  public floor (key:K) : K {
+    let node : SkipListNode<K,number> = this.impl.floorEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey()
   }
 
   /**
@@ -432,8 +847,12 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @param {K} item to find ceiling node for
   * @return {K} the least element greater than or equal to item, or null if there is no such element
   */
-  public ceiling (item:K) : K {
-    return undefined;
+  public ceiling (key:K) : K {
+    let node : SkipListNode<K,number> = this.impl.ceilingEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
 
@@ -442,7 +861,11 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
   */
   public first () : K {
-    return undefined;
+    let node : SkipListNode<K,number> = this.impl.firstEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -450,7 +873,11 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
   */
   public last () : K {
-    return undefined;
+    let node : SkipListNode<K,number> = this.impl.lastEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -459,14 +886,19 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {boolean} true if the set contained the specified element
   */
   public remove (element:K) : boolean {
-    return undefined;
+    let tmp:number = this.impl.remove(element);
+    if ((tmp === undefined) || (tmp === null)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   /**
   * Removes all of the elements from this set. The set will be empty after this call returns.
   */
   public clear () : void {
-    return undefined;
+    this.impl.clear();
   }
 
   /**
@@ -474,7 +906,14 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {K} the first (lowest) element, or null if this set is empty
   */
   public pollFirst () : K {
-    return undefined;
+    let node : SkipListNode<K, number> = this.impl.firstEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    } else {
+      let tmp:K = node.getKey();
+      this.impl.removeElement(node);
+      return tmp;
+    }
   }
 
   /**
@@ -482,7 +921,14 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {K} the last (highest) element, or null if this set is empty
   */
   public pollLast () : K {
-    return undefined;
+    let node : SkipListNode<K, number> = this.impl.lastEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    } else {
+      let tmp:K = node.getKey();
+      this.impl.removeElement(node);
+      return tmp;
+    }
   }
 
   /**
@@ -491,7 +937,11 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {K} the least key greater than key, or null if there is no such key
   */
   public getNextHigherKey (key:K) : K {
-    return undefined;
+    let node : SkipListNode<K,number> = this.impl.higherEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
   }
 
   /**
@@ -499,7 +949,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {JIterator<K>} the Java style iterator
   */
   public iterator():JIterator<K> {
-    return undefined;
+    return undefined;   // TODO
   }
 
   /**
@@ -507,7 +957,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {Iterator<K>} the TypeScript style iterator
   */
   public [Symbol.iterator] ():Iterator<K> {
-    return undefined;
+    return undefined;   // TODO
   }
 
   /**
@@ -520,7 +970,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   /**
   * Returns an ImmutableSet backed by this Set
   */
-  immutableSet () : ImmutableSet<K> {
+  public immutableSet () : ImmutableSet<K> {
     return this;
   };
 }
