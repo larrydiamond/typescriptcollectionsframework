@@ -127,6 +127,9 @@ describe("Test SkipListMap functionality", function() {
     expect (SkipListMap2.lastEntry()).toEqual(null);
   });
 
+/*
+
+
   it("Test Adding one item", function() {
     let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
@@ -1021,6 +1024,6 @@ describe("Test SkipListMap functionality", function() {
     expect (basicTypesMap1.get ("Catnip")).toEqual (9.99);  // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
 
   });
-
+*/
 
 });
