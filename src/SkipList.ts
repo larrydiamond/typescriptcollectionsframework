@@ -44,8 +44,10 @@ export class SkipListMapImpl<K,V> {
     }
 
     if ((initialElements !== null) && (initialElements !== undefined)) {
+//      console.log ("skiplist::constructor initial has " + initialElements.size());
       for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
         let t:MapEntry<K,V> = iter.next ();
+        console.log ("skiplist::constructor adding " + t.getKey());
         this.put (t.getKey(), t.getValue());
       }
     }
@@ -53,6 +55,65 @@ export class SkipListMapImpl<K,V> {
 
   public getSkipListNodeComparator() : Comparator<SkipListNode<K,V>> { return this.skipListNodeComparator; }
   public getSkipListNodeCollectable() : Collectable<SkipListNode<K,V>> { return this.skipListNodeCollectable; }
+
+  public validateDisplay () : boolean {
+    console.log ("Start::Size of SkipListMap = " + this.numberElements);
+    let count : number = 0;
+    let tmp : SkipListNode<K,V> = this.head.get (0);
+    if ((tmp !== null) && (tmp !== undefined)) {
+      console.log (JSON.stringify(tmp.getKey()));
+      count++;
+    }
+    while ((tmp !== null) && (tmp !== undefined)) {
+      let next : SkipListNode<K,V> = tmp.getNextNodeArray().get(0);
+      if ((next !== null) && (next !== undefined)) {
+        console.log (JSON.stringify(next.getKey()));
+        count++;
+        let prev : SkipListNode<K,V> = next.getLastNodeArray().get (0);
+        if (prev !== null) {
+          let cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
+          if (cmp !== 0) {
+            console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
+            return false;
+          }
+        }
+      }
+      tmp = next;
+    }
+    console.log ("End::Size of SkipListMap = " + this.numberElements + " found " + count);
+    if (this.numberElements === count) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public validate () : boolean {
+    let count : number = 0;
+    let tmp : SkipListNode<K,V> = this.head.get (0);
+    if ((tmp !== null) && (tmp !== undefined)) {
+      count++;
+    }
+    while ((tmp !== null) && (tmp !== undefined)) {
+      let next : SkipListNode<K,V> = tmp.getNextNodeArray().get(0);
+      if ((next !== null) && (next !== undefined)) {
+        count++;
+        let prev : SkipListNode<K,V> = next.getLastNodeArray().get (0);
+        if (prev !== null) {
+          let cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
+          if (cmp !== 0) {
+            return false;
+          }
+        }
+      }
+      tmp = next;
+    }
+    if (this.numberElements === count) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   /**
   * Removes the mapping for this key from this Map if present.
@@ -140,6 +201,7 @@ export class SkipListMapImpl<K,V> {
    */
   public put (key:K, value:V) : V {
     if (this.numberElements < 1) {
+//      console.log ("SkipListImpl::put empty insert " + JSON.stringify(key));
       let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, this.height, this.skipListNodeCollectable);
       for (let loop:number = 0; loop < this.height; loop++) {
         this.head.set (loop, newnode);
@@ -149,12 +211,18 @@ export class SkipListMapImpl<K,V> {
     } else {
       let tmp:SkipListNode<K,V> = this.floorEntry(key);
       if ((tmp === null) || (tmp === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
+//        console.log ("SkipListImpl::put least element insert " + JSON.stringify(key));
         let nodeHeight = Math.random() * (this.height - 1) + 1;  // Random number between 1 and this.height (both inclusive)
         let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
         for (let loop:number = 0; loop < this.height; loop++) {
+          let existingNode : SkipListNode<K,V> = this.head.get (loop);
+          newnode.getNextNodeArray().set(loop, existingNode);
+            if ((existingNode !== null) && (existingNode !== undefined)) {
+              existingNode.getLastNodeArray().set(loop, newnode);
+            }
           this.head.set (loop, newnode);
         }
-        this.numberElements++;
+        this.numberElements = this.numberElements + 1;
         return null;
       } else {
         if (this.mapComparator.compare (key, tmp.getKey()) === 0) {
@@ -162,7 +230,10 @@ export class SkipListMapImpl<K,V> {
           tmp.setValue (value);
           return lastValue;
         } else {  // This node will immediately preceed the new node
+          console.log ("SkipList::put Incomplete code");
           let nodeHeight = Math.random() * (this.height - 1) + 1;  // Random number between 1 and this.height (both inclusive)
+          let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
+          console.log ("SkipList::put unwritten code");
           return undefined;  // TODO
         }
       }
@@ -189,6 +260,7 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements < 1) {
       return null;
     }
+    console.log ("SkipList::ceilingEntry unwritten code");
     return undefined;   // TODO
   }
 
@@ -202,6 +274,7 @@ export class SkipListMapImpl<K,V> {
       return null;
     }
 
+    console.log ("SkipList::higherEntry unwritten code");
     return undefined;   // TODO
   }
 
@@ -214,8 +287,12 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements < 1) {
       return null;
     }
-
-    return undefined;   // TODO
+    if ((node === null) || (node === undefined)) return null;
+    let ta:ArrayList<SkipListNode<K,V>> = node.getNextNodeArray();
+    if ((ta === null) || (ta === undefined)) return null;
+    let tmpn = ta.get(0);
+    if ((tmpn === null) || (tmpn === undefined)) return null;
+    return tmpn;
   }
 
   /**
@@ -227,7 +304,50 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements < 1) {
       return null;
     }
-    return undefined;   // TODO
+
+    // Get a first node, highest -1 entry
+    let node:SkipListNode<K,V> = null;
+    for (let loop:number = 0; ((loop < this.height) && (node === null)); loop++) {
+      let tmp:SkipListNode<K,V> = this.head.get ((this.height - 1) - loop);
+      if ((tmp !== null) && (tmp !== undefined)) {
+        let cmp:number = this.mapComparator.compare (tmp.getKey(), key);
+        if (cmp === -1) {
+          node = tmp;
+        }
+      }
+    }
+    if (node === null) { // we only got here if every element was higher than or equal this one
+      return null;
+    }
+
+    // keep moving forward until we every node in the next array is equal to or past the key
+    let keepGoing : boolean = true;
+    while (keepGoing === true) {
+      if (node.getNextNodeArray().get(0) === null) {
+        keepGoing = false;
+      } else {
+        if (node.getNextNodeArray().get(0) === undefined) {
+          keepGoing = false;
+        } else {
+          let nextNode : SkipListNode<K,V> = null;
+          for (let loop : number = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
+            let tmp : SkipListNode<K,V> = node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1);
+            if (tmp !== null) {
+              let cmp : number = this.mapComparator.compare (key, tmp.getKey());
+              if (cmp === -1) {
+                nextNode = tmp;
+              }
+            }
+          }
+          if (nextNode === null) {
+              keepGoing = false;
+          } else {
+            node = nextNode;
+          }
+        }
+      }
+    }
+    return node;
   }
 
   /**
@@ -237,9 +357,62 @@ export class SkipListMapImpl<K,V> {
   */
   public floorEntry (key:K) : SkipListNode<K,V> {
     if (this.numberElements < 1) {
+//      console.log ("SkipList::FloorEntry no nodes");
       return null;
     }
-    return undefined;   // TODO
+
+    // Get a first node, highest -1 entry
+    let node:SkipListNode<K,V> = null;
+    for (let loop:number = 0; ((loop < this.height) && (node === null)); loop++) {
+      let tmp:SkipListNode<K,V> = this.head.get ((this.height - 1) - loop);
+      if ((tmp !== null) && (tmp !== undefined)) {
+        let cmp:number = this.mapComparator.compare (tmp.getKey(), key);
+//        console.log ("SkipList::FloorEntry compared " + key + " and " + tmp.getKey() + " returned " + cmp);
+        if (cmp === 0) {
+          return tmp;
+        }
+        if (cmp === -1) {
+          node = tmp;
+        }
+      }
+    }
+    if (node === null) { // we only got here if every element was higher than this one
+//      console.log ("SkipList::FloorEntry all elements are higher");
+      return null;
+    }
+
+    // keep moving forward until we every node in the next array is past the key
+    let keepGoing : boolean = true;
+    while (keepGoing === true) {
+      if (node.getNextNodeArray().get(0) === null) {
+        keepGoing = false;
+      } else {
+        if (node.getNextNodeArray().get(0) === undefined) {
+          keepGoing = false;
+        } else {
+          let nextNode : SkipListNode<K,V> = null;
+          for (let loop : number = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
+            let tmp : SkipListNode<K,V> = node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1);
+            if (tmp !== null) {
+              let cmp : number = this.mapComparator.compare (key, tmp.getKey());
+              if (cmp === 0) {
+                return tmp;
+              }
+              if (cmp === -1) {
+                nextNode = tmp;
+              }
+            }
+          }
+          if (nextNode === null) {
+              keepGoing = false;
+          } else {
+            node = nextNode;
+          }
+        }
+      }
+    }
+    console.log ("SkipList::FloorEntry returning " + node.getKey());
+    return node;
   }
 
   /**
@@ -415,7 +588,8 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
     this.impl = new SkipListMapImpl(comp, iInitial);
   }
 
-  validateMap () : boolean { return undefined; }
+  validateMap () : boolean { return this.impl.validate(); }
+  validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
 
   getNextHigherKey (key : K) { return undefined; }
 
@@ -473,6 +647,7 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
   public keySet () : ImmutableSet<K> {
+    console.log ("SkipList::keyset unwritten code");
     return undefined;   // TODO
   }
 
@@ -710,22 +885,22 @@ export class SkipListMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V
   }
 
   public hasNext():boolean {
+//    console.log ("SkipListMapEntrySetJIterator::hasNext");
     if (this.location === undefined) { // first time caller
       let firstEntry:SkipListNode<K,V> = this.map.firstEntry();
       if (firstEntry === null) return false;
       if (firstEntry === undefined) return false;
-      let first:K = firstEntry.getKey();
       return true;
     } else { // we've already called this iterator before
       let tmpEntry:SkipListNode<K,V> = this.map.nextHigherNode(this.location);
       if (tmpEntry === null) return false;
       if (tmpEntry === undefined) return false;
-      let tmp:K = tmpEntry.getKey();
       return true;
     }
   }
 
   public next():MapEntry<K,V> {
+//    console.log ("SkipListMapEntrySetJIterator::next");
     if (this.location === undefined) { // first time caller
       let firstEntry:SkipListNode<K,V> = this.map.firstEntry();
       if (firstEntry === null) return null;
@@ -949,6 +1124,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {JIterator<K>} the Java style iterator
   */
   public iterator():JIterator<K> {
+    console.log ("SkipList::jiterator unwritten code");
     return undefined;   // TODO
   }
 
@@ -957,6 +1133,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {Iterator<K>} the TypeScript style iterator
   */
   public [Symbol.iterator] ():Iterator<K> {
+    console.log ("SkipList::iterator unwritten code");
     return undefined;   // TODO
   }
 

@@ -21,6 +21,8 @@ export declare class SkipListMapImpl<K, V> {
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableMap<K, V>);
     getSkipListNodeComparator(): Comparator<SkipListNode<K, V>>;
     getSkipListNodeCollectable(): Collectable<SkipListNode<K, V>>;
+    validateDisplay(): boolean;
+    validate(): boolean;
     /**
     * Removes the mapping for this key from this Map if present.
     * @param {K} key key for which mapping should be removed
@@ -117,6 +119,7 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     private impl;
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
     validateMap(): boolean;
+    validateMapDisplay(): boolean;
     getNextHigherKey(key: K): any;
     /**
     * Returns the number of key-value mappings in this map.
