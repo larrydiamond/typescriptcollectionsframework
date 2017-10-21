@@ -13,12 +13,15 @@
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-misused-new": true,
+        "no-reference": true,
         "no-shadowed-variable": true,
         "no-switch-case-fall-through": true,
         "no-unused-expression": true,
         "no-var-keyword": true,
+        "no-var-requires": true,
         "switch-default": true,
         "triple-equals": true,
+        "typedef": true,
         "use-isnan": true
     }
 }

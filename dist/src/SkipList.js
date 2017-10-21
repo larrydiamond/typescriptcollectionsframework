@@ -97,6 +97,7 @@ var SkipListMapImpl = (function () {
                 if (prev !== null) {
                     var cmp = this.mapComparator.compare(prev.getKey(), tmp.getKey());
                     if (cmp !== 0) {
+                        console.log("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
                         return false;
                     }
                 }
@@ -107,6 +108,7 @@ var SkipListMapImpl = (function () {
             return true;
         }
         else {
+            console.log("End::Size of SkipListMap = " + this.numberElements + " found " + count);
             return false;
         }
     };

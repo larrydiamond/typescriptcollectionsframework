@@ -102,6 +102,7 @@ export class SkipListMapImpl<K,V> {
         if (prev !== null) {
           let cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
           if (cmp !== 0) {
+            console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
             return false;
           }
         }
@@ -111,6 +112,7 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements === count) {
       return true;
     } else {
+      console.log ("End::Size of SkipListMap = " + this.numberElements + " found " + count);
       return false;
     }
   }
