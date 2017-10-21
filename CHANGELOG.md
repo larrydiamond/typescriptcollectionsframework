@@ -1,5 +1,17 @@
 # Change Log
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.0.3...v1.1.0) (2017-10-21)
+* Improving editor documentation
+
+<a name="1.0.2"></a>
+# [1.0.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.0.1...v1.0.2) (2017-10-12)
+* Skiplist progress
+
+<a name="1.0.1"></a>
+# [1.0.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.0.0...v1.0.1) (2017-10-10)
+* Starting Skiplist
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v0.9.3...v1.0.0) (2017-10-05)
 * Official 1.0 release!   Woo hoo milestone!
