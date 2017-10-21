@@ -209,32 +209,63 @@ export class SkipListMapImpl<K,V> {
       this.numberElements = 1;
       return null;
     } else {
-      let tmp:SkipListNode<K,V> = this.floorEntry(key);
-      if ((tmp === null) || (tmp === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
+      let lastNode:SkipListNode<K,V> = this.floorEntry(key);
+      if ((lastNode === null) || (lastNode === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
 //        console.log ("SkipListImpl::put least element insert " + JSON.stringify(key));
-        let nodeHeight = Math.random() * (this.height - 1) + 1;  // Random number between 1 and this.height (both inclusive)
+        let nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
         let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
-        for (let loop:number = 0; loop < this.height; loop++) {
+        for (let loop:number = 0; loop < nodeHeight; loop++) {
           let existingNode : SkipListNode<K,V> = this.head.get (loop);
           newnode.getNextNodeArray().set(loop, existingNode);
-            if ((existingNode !== null) && (existingNode !== undefined)) {
-              existingNode.getLastNodeArray().set(loop, newnode);
-            }
+          if ((existingNode !== null) && (existingNode !== undefined)) {
+            existingNode.getLastNodeArray().set(loop, newnode);
+          }
           this.head.set (loop, newnode);
         }
         this.numberElements = this.numberElements + 1;
         return null;
       } else {
-        if (this.mapComparator.compare (key, tmp.getKey()) === 0) {
-          let lastValue : V = tmp.getValue();
-          tmp.setValue (value);
+        if (this.mapComparator.compare (key, lastNode.getKey()) === 0) {
+          let lastValue : V = lastNode.getValue();
+          lastNode.setValue (value);
           return lastValue;
         } else {  // This node will immediately preceed the new node
-          console.log ("SkipList::put Incomplete code");
-          let nodeHeight = Math.random() * (this.height - 1) + 1;  // Random number between 1 and this.height (both inclusive)
+          let nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
           let newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
-          console.log ("SkipList::put unwritten code");
-          return undefined;  // TODO
+
+          
+
+          let nextNode = lastNode.getNextNodeArray().get(0);
+          newnode.getNextNodeArray().set(0, nextNode);
+          lastNode.getNextNodeArray().set(0, newnode);
+          if ((nextNode !== null) && (nextNode !== undefined)) {
+            nextNode.getLastNodeArray().set(0, newnode);
+          }
+          // Hook up last array
+          let doneSoFar:number = 0;
+          while (doneSoFar < (nodeHeight - 1)) {
+            let thisOffset:number = doneSoFar + 1;
+            if (lastNode.getNextNodeArray().size() > thisOffset) {
+              let linkedNode : SkipListNode<K,V> = lastNode.getNextNodeArray().get(thisOffset);
+              newnode.getNextNodeArray().set(thisOffset, linkedNode);
+              lastNode.getNextNodeArray().set(thisOffset, newnode);
+              linkedNode.getLastNodeArray().set(thisOffset, newnode);
+              newnode.getLastNodeArray().set (thisOffset, lastNode);
+              doneSoFar++;
+            } else {
+              console.log ("Unwritten code"); // TODO
+            }
+          }
+
+          console.log ("Unwritten code");
+
+          // Hook up next array
+          doneSoFar = 0;
+          while (doneSoFar < (nodeHeight - 1)) {
+
+          }
+          this.numberElements = this.numberElements + 1;
+          return null;
         }
       }
     }
