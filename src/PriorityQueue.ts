@@ -18,49 +18,49 @@ export class PriorityQueue<K> implements Queue<K> {
   * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions, returning true upon success
   * and returning false if no space is currently available or if the implementation does not permit duplicates and already contains the specified element
   */
-  add (k:K) : boolean {
+  public add (k:K) : boolean {
     return undefined;
   }
 
   /**
   * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
   */
-  offer (k:K) : boolean {
+  public offer (k:K) : boolean {
     return undefined;
   }
 
   /*
   * Retrieves and removes the head of this queue, or returns null if this queue is empty.
   */
-  poll () : K {
+  public poll () : K {
     return undefined;
   }
 
   /*
   * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
   */
-  removeQueue () : K {
+  public removeQueue () : K {
     return undefined;
   }
 
   /*
   * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
   */
-  peek () : K {
+  public peek () : K {
     return undefined;
   }
 
   /*
   * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
   */
-  element () : K {
+  public element () : K {
     return undefined;
   }
 
   /**
   * Removes all of the elements from this collection. The collection be empty after this call returns.
   */
-  clear () {
+  public clear () {
     ;
   }
 
@@ -69,14 +69,14 @@ export class PriorityQueue<K> implements Queue<K> {
   * @param {K} t element to be removed from this collection, if present
   * @return {K} true if this collection contained the specified element
   */
-  remove (k:K) : boolean {
+  public remove (k:K) : boolean {
     return undefined;
   }
 
   /**
   * Returns an ImmutableCollection backed by this Collection
   */
-  immutableCollection () : ImmutableCollection<K> {
+  public immutableCollection () : ImmutableCollection<K> {
     return this;
   }
 
@@ -84,7 +84,7 @@ export class PriorityQueue<K> implements Queue<K> {
     * Returns the number of elements in this collection.
     * @return {number} the number of elements in this collection
     */
-    size () : number {
+    public size () : number {
       return undefined;
     }
 
@@ -92,7 +92,7 @@ export class PriorityQueue<K> implements Queue<K> {
     * Returns true if this collection contains no elements.
     * @return {boolean} true if this collection contains no elements
     */
-    isEmpty () : boolean {
+    public isEmpty () : boolean {
       return undefined;
     }
 
@@ -100,7 +100,7 @@ export class PriorityQueue<K> implements Queue<K> {
     * Returns a Java style iterator
     * @return {JIterator<K>} the Java style iterator
     */
-    iterator():JIterator<K> {
+    public iterator():JIterator<K> {
       return undefined;
     }
 
@@ -108,7 +108,7 @@ export class PriorityQueue<K> implements Queue<K> {
      * Returns a TypeScript style iterator
      * @return {Iterator<K>} the TypeScript style iterator
      */
-    [Symbol.iterator] ():Iterator<K> {
+    public [Symbol.iterator] ():Iterator<K> {
       return undefined;
     }
 
@@ -117,7 +117,7 @@ export class PriorityQueue<K> implements Queue<K> {
      * @param {K} t element whose presence in this collection is to be tested
      * @return {boolean} true if this collection contains the specified element
      */
-    contains (k:K) : boolean {
+    public contains (k:K) : boolean {
       return undefined;
     }
 

@@ -15,9 +15,9 @@ import {JIterator} from "./JIterator";
 import {List} from "./List";
 
 export class ArrayList<T> implements List<T>, Iterable<T> {
-  elements:T[] = null;
-  sizeValue:number = 0;
-  equality:Collectable<T>;
+  private elements:T[] = null;
+  private sizeValue:number = 0;
+  private equality:Collectable<T>;
 
   constructor (iEquals:Collectable<T>, private initialElements?:ImmutableCollection<T>) {
     this.equality = iEquals;

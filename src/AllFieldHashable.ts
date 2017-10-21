@@ -10,7 +10,7 @@ import {Collections} from "./Collections";
 import {Hashable} from "./Hashable";
 
  export class AllFieldHashable<T> implements Hashable<T> {
-   equals (o1: T, o2: T) : boolean {
+   public equals (o1: T, o2: T) : boolean {
      if (o1 === undefined) {
        if (o2 === undefined) {
          return true;
@@ -33,7 +33,7 @@ import {Hashable} from "./Hashable";
        return true;
      return false;
    };
-   hashCode (o:T) : number {
+   public hashCode (o:T) : number {
      if (o === undefined) {
        return 0;
      }

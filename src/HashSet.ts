@@ -155,7 +155,7 @@ export class HashSet<K> implements JSet<K> {
   /**
   * Returns an ImmutableSet backed by this Set
   */
-  immutableSet () : ImmutableSet<K> {
+  public immutableSet () : ImmutableSet<K> {
     return this;
   };
 }

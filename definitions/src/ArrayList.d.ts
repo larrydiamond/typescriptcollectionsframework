@@ -5,9 +5,9 @@ import { JIterator } from "./JIterator";
 import { List } from "./List";
 export declare class ArrayList<T> implements List<T>, Iterable<T> {
     private initialElements;
-    elements: T[];
-    sizeValue: number;
-    equality: Collectable<T>;
+    private elements;
+    private sizeValue;
+    private equality;
     constructor(iEquals: Collectable<T>, initialElements?: ImmutableCollection<T>);
     /**
     * Returns the Collectible

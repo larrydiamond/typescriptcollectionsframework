@@ -220,7 +220,7 @@ export class TreeSet<K> implements NavigableSet<K> {
   /**
   * Returns an ImmutableSet backed by this Set
   */
-  immutableSet () : ImmutableSet<K> {
+  public immutableSet () : ImmutableSet<K> {
     return this;
   };
 }

@@ -8,7 +8,7 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
     private firstNode;
     private lastNode;
     private numberElements;
-    equality: Collectable<T>;
+    private equality;
     constructor(iEquals: Collectable<T>, initialElements?: ImmutableCollection<T>);
     /**
     * Returns the Collectible

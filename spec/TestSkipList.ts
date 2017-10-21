@@ -164,8 +164,8 @@ describe("Test SkipListMap functionality", function() {
 
   // Wanted to show a class in the value object but anything would work fine
   class ValueClass {
-    blah1:number;
-    blah2:string;
+    private blah1:number;
+    private blah2:string;
 
     constructor (blah1 = 100) {
       this.blah2 = "blah";
@@ -200,7 +200,7 @@ describe("Test SkipListMap functionality", function() {
 //    expect (petStoreMap1.firstEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
     expect (petStoreMap1.lastKey()).toEqual(product1);
 //    expect (petStoreMap1.lastEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
-    test.equals ("Validate map failed", true, petStoreMap1.validateMap());
+    testBoolean.equalsTrue ("Validate map failed", petStoreMap1.validateMap());
   });
 
   it("Test Adding one native item", function() {
@@ -211,40 +211,48 @@ describe("Test SkipListMap functionality", function() {
 //    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
 //    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
-    test.equals ("Validate map failed", true, basicTypesMap1.validateMap());
+    testBoolean.equalsTrue ("Validate map failed", basicTypesMap1.validateMap());
   });
 
   it ("Test adding initial elements out of order", function () {
     let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
     test.equals ("Adding C to empty map", null, sourceMap.put ("C", "D"));
     test.equals ("Adding A to 1 entry map", null, sourceMap.put ("A", "B"));
-    test.equals ("Expected sourceMap size incorrect", 2, sourceMap.size());
-    test.equals ("Validate sourceMap failed", true, sourceMap.validateMap());
+    testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
+    testBoolean.equalsTrue ("Validate sourceMap failed", sourceMap.validateMap());
   });
 
-/*
   it ("Test adding initial elements in order ", function () {
     let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
     test.equals ("Adding A to empty map", null, sourceMap.put ("A", "B"));
     test.equals ("Adding C to 1 entry map", null, sourceMap.put ("C", "D"));
-    test.equals ("Expected sourceMap size incorrect", 2, sourceMap.size());
-    test.equals ("Validate sourceMap failed", true, sourceMap.validateMapDisplay());
+    testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
+    testBoolean.equalsTrue ("Validate sourceMap failed", sourceMap.validateMap());
+  });
+
+  /*
+  it ("Test adding and copying initial elements in order ", function () {
+    let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
+    test.equals ("Adding A to empty map", null, sourceMap.put ("A", "B"));
+    test.equals ("Adding C to 1 entry map", null, sourceMap.put ("C", "D"));
+    testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
+    testBoolean.equalsTrue ("Validate sourceMap failed", sourceMap.validateMapDisplay());
 
     let destinationMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator(), sourceMap);
-    test.equals ("Expected destination Map size incorrect", 2, destinationMap.size());
-    test.equals ("Validate destinationMap failed", true, destinationMap.validateMapDisplay());
+    testNumber.equals ("Expected destination Map size incorrect", destinationMap.size(), 2);
+    testBoolean.equalsTrue ("Validate destinationMap failed", destinationMap.validateMapDisplay());
   });
 
   it ("Test adding and copying initial elements out of order", function () {
     let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
     test.equals ("Adding C to empty map", null, sourceMap.put ("C", "D"));
     test.equals ("Adding A to 1 entry map", null, sourceMap.put ("A", "B"));
-    test.equals ("Expected sourceMap size incorrect", 2, sourceMap.size());
-    test.equals ("Validate sourceMap failed", true, sourceMap.validateMap());
+    testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
+    testBoolean.equalsTrue ("Validate sourceMap failed", true, sourceMap.validateMap());
 
     let destinationMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator(), sourceMap);
-    test.equals ("Expected destination Map size incorrect", 2, destinationMap.size());
-    test.equals ("Validate destinationMap failed", true, destinationMap.validateMap());
+    testNumber.equals ("Expected destination Map size incorrect", destinationMap.size(), 2);
+    testBoolean.equalsTrue ("Validate destinationMap failed", true, destinationMap.validateMap());
   });
 
   it("Test Adding two items", function() {

@@ -345,20 +345,20 @@ export class HashMap<K,V> implements JMap<K,V> {
 }
 
 export class HashMapIteratorLocationTracker<K,V> {
-  bucket:number;
-  offset:number;
-  entry:HashMapEntry<K,V>;
+  public bucket:number;
+  public offset:number;
+  public entry:HashMapEntry<K,V>;
 }
 
 export class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
   private hashCode:number;
-  getHashCode():number {
+  public getHashCode():number {
     return this.hashCode;
   }
-  setHashCode(iHashCode:number) {
+  public setHashCode(iHashCode:number) {
     this.hashCode = iHashCode;
   }
-  setValue (iValue:V) : void {
+  public setValue (iValue:V) : void {
     this.value = iValue;
   }
 }

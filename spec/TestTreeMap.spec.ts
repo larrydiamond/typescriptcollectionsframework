@@ -102,8 +102,8 @@ describe("Test TreeMap functionality", function() {
 
   // Wanted to show a class in the value object but anything would work fine
   class ValueClass {
-    blah1:number;
-    blah2:string;
+    private blah1:number;
+    private blah2:string;
 
     constructor (blah1 = 100) {
       this.blah2 = "blah";

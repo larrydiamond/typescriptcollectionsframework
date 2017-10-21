@@ -60,6 +60,7 @@ export declare class SkipListMapImpl<K, V> {
      * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
      */
     put(key: K, value: V): V;
+    private hookUpNodePointers(newNode, immediatePreceedingNode);
     /**
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
     * @return {SkipListNode} an entry with the least key, or null if this map is empty

@@ -18,7 +18,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   private firstNode:LinkedListNode<T>;
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
-  equality:Collectable<T>;
+  private equality:Collectable<T>;
 
   constructor(iEquals:Collectable<T>, private initialElements?:ImmutableCollection<T>) {
     this.equality = iEquals;
@@ -452,9 +452,9 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 }
 
 export class LinkedListNode<T> {
-  previousNode:LinkedListNode<T>;
-  nextNode:LinkedListNode<T>;
-  payload:T;
+  public previousNode:LinkedListNode<T>;
+  public nextNode:LinkedListNode<T>;
+  public payload:T;
 
   constructor (t:T) {
     this.payload = t;

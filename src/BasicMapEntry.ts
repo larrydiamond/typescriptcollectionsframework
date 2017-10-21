@@ -21,7 +21,7 @@ export class BasicMapEntry<K,V> implements MapEntry<K,V> {
   * Returns the key corresponding to this entry.
   * @return {K} the key corresponding to this entry
   */
-  getKey () : K {
+  public getKey () : K {
     return this.key;
   }
 
@@ -29,8 +29,8 @@ export class BasicMapEntry<K,V> implements MapEntry<K,V> {
   * Returns the value corresponding to this entry. If the mapping has been removed from the backing map (by the iterator's remove operation), the results of this call are undefined.
   * @return {V} the value corresponding to this entry
   */
-  getValue () : V {
+  public getValue () : V {
     return this.value;
   }
-  
+
 }

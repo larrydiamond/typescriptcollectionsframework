@@ -44,7 +44,7 @@ var SkipListMapImpl = (function () {
             //      console.log ("skiplist::constructor initial has " + initialElements.size());
             for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
                 var t = iter.next();
-                console.log("skiplist::constructor adding " + t.getKey());
+                //        console.log ("skiplist::constructor adding " + t.getKey());
                 this.put(t.getKey(), t.getValue());
             }
         }
@@ -224,38 +224,69 @@ var SkipListMapImpl = (function () {
                 else {
                     var nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1); // Random number between 1 and this.height (both inclusive)
                     var newnode = new SkipListNode(key, value, nodeHeight, this.skipListNodeCollectable);
-                    var nextNode = lastNode.getNextNodeArray().get(0);
-                    newnode.getNextNodeArray().set(0, nextNode);
-                    lastNode.getNextNodeArray().set(0, newnode);
-                    if ((nextNode !== null) && (nextNode !== undefined)) {
-                        nextNode.getLastNodeArray().set(0, newnode);
-                    }
-                    // Hook up last array
-                    var doneSoFar = 0;
-                    while (doneSoFar < (nodeHeight - 1)) {
-                        var thisOffset = doneSoFar + 1;
-                        if (lastNode.getNextNodeArray().size() > thisOffset) {
-                            var linkedNode = lastNode.getNextNodeArray().get(thisOffset);
-                            newnode.getNextNodeArray().set(thisOffset, linkedNode);
-                            lastNode.getNextNodeArray().set(thisOffset, newnode);
-                            linkedNode.getLastNodeArray().set(thisOffset, newnode);
-                            newnode.getLastNodeArray().set(thisOffset, lastNode);
-                            doneSoFar++;
-                        }
-                        else {
-                            console.log("Unwritten code"); // TODO
-                        }
-                    }
-                    console.log("Unwritten code");
-                    // Hook up next array
-                    doneSoFar = 0;
-                    while (doneSoFar < (nodeHeight - 1)) {
-                    }
+                    this.hookUpNodePointers(newnode, lastNode);
                     this.numberElements = this.numberElements + 1;
                     return null;
                 }
             }
         }
+    };
+    SkipListMapImpl.prototype.hookUpNodePointers = function (newNode, immediatePreceedingNode) {
+        var lastNode = immediatePreceedingNode;
+        var nodeHeight = newNode.getNextNodeArray().size();
+        for (var height = 0; height < newNode.getNextNodeArray().size() - 1; height++) {
+            if ((lastNode !== null) && (lastNode !== undefined)) {
+                if (lastNode.getNextNodeArray().size() > height) {
+                    var nextNode = lastNode.getNextNodeArray().get(height);
+                    if ((nextNode === null) || (nextNode === undefined)) {
+                        lastNode.getNextNodeArray().set(height, newNode);
+                        newNode.getLastNodeArray().set(height, lastNode);
+                    }
+                    else {
+                        newNode.getLastNodeArray().set(height, lastNode);
+                        newNode.getNextNodeArray().set(height, nextNode);
+                        lastNode.getNextNodeArray().set(height, newNode);
+                        nextNode.getLastNodeArray().set(height, newNode);
+                    }
+                }
+                else {
+                    // find the new last node if it exists
+                    console.log("Unwritten code");
+                }
+            }
+            else {
+                this.head.set(height, newNode); // nothing before us so set the head to our node
+            }
+        }
+        /*
+        
+        
+                      let nextNode = lastNode.getNextNodeArray().get(0);
+                      newnode.getNextNodeArray().set(0, nextNode);
+                      lastNode.getNextNodeArray().set(0, newnode);
+                      if ((nextNode !== null) && (nextNode !== undefined)) {
+                        nextNode.getLastNodeArray().set(0, newnode);
+                      }
+                      // Hook up last array
+                      let doneSoFar:number = 0;
+                      while (doneSoFar < (nodeHeight - 1)) {
+                        let thisOffset:number = doneSoFar + 1;
+                        if (lastNode.getNextNodeArray().size() > thisOffset) {
+                          let linkedNode : SkipListNode<K,V> = lastNode.getNextNodeArray().get(thisOffset);
+                          newnode.getNextNodeArray().set(thisOffset, linkedNode);
+                          lastNode.getNextNodeArray().set(thisOffset, newnode);
+                          linkedNode.getLastNodeArray().set(thisOffset, newnode);
+                          newnode.getLastNodeArray().set (thisOffset, lastNode);
+                          doneSoFar++;
+                        } else {
+                          console.log ("Unwritten code"); // TODO
+                        }
+                      }
+        
+                      console.log ("Unwritten code");
+        
+        
+                      */
     };
     /**
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
@@ -427,7 +458,7 @@ var SkipListMapImpl = (function () {
                 }
             }
         }
-        console.log("SkipList::FloorEntry returning " + node.getKey());
+        //    console.log ("SkipList::FloorEntry returning " + node.getKey());
         return node;
     };
     /**
@@ -597,7 +628,10 @@ var SkipListMap = (function () {
     }
     SkipListMap.prototype.validateMap = function () { return this.impl.validate(); };
     SkipListMap.prototype.validateMapDisplay = function () { return this.impl.validateDisplay(); };
-    SkipListMap.prototype.getNextHigherKey = function (key) { return undefined; };
+    SkipListMap.prototype.getNextHigherKey = function (key) {
+        console.log("unwritten code");
+        return undefined;
+    };
     /**
     * Returns the number of key-value mappings in this map.
     * @return {number} the number of key-value mappings in this map

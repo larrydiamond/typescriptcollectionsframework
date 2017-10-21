@@ -9,7 +9,7 @@
  import {Collectable} from "./Collectable";
 
  export class AllFieldCollectable<T> implements Collectable<T> {
-   equals (o1: T, o2: T) {
+   public equals (o1: T, o2: T) {
      if (o1 === undefined) {
        if (o2 === undefined) {
          return true;
