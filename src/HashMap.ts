@@ -38,8 +38,8 @@ export class HashMap<K,V> implements JMap<K,V> {
     }
     this.loadFactor = iLoadFactor;
     if ((initialElements !== null) && (initialElements !== undefined)) {
-      for (let iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
-        let t:MapEntry<K,V> = iter.next ();
+      for (const iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
+        const t:MapEntry<K,V> = iter.next ();
         this.put (t.getKey(), t.getValue());
       }
     }
@@ -52,26 +52,26 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
   */
   public put (key:K, value:V) : V {
-    let mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
+    const mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
-      let hashCode:number = this.hashMethods.hashCode(key);
-      let newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
+      const hashCode:number = this.hashMethods.hashCode(key);
+      const newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
       newNode.setHashCode(hashCode);
       if (this.data.size() === 0) {
-        let newList:List<HashMapEntry<K,V>> = new ArrayList<HashMapEntry<K,V>>(this.MapEntryHashMethods);
+        const newList:List<HashMapEntry<K,V>> = new ArrayList<HashMapEntry<K,V>>(this.MapEntryHashMethods);
         this.data.add (newList);
         newList.add (newNode);
         this.elementCount = this.elementCount + 1;
       } else {
-        let bucket = hashCode % this.data.size();
-        let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
+        const bucket = hashCode % this.data.size();
+        const thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
         thisList.add (newNode);
         this.elementCount = this.elementCount + 1;
       }
       this.rehash();
       return undefined;
     } else {
-      let tmp:V = mapEntry.getValue();
+      const tmp:V = mapEntry.getValue();
       mapEntry.setValue(value);
       return tmp;
     }
@@ -84,19 +84,19 @@ export class HashMap<K,V> implements JMap<K,V> {
     if (this.elementCount > (this.data.size() * this.loadFactor)) { // Not enough buckets
       // How many buckets should there be?   Lets go with doubling the number of buckets
 
-      let newBucketCount = (this.data.size() * 2) + 1;
-      let newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>(this.ListMapEntryMethods);
+      const newBucketCount = (this.data.size() * 2) + 1;
+      const newdata:ArrayList<List<HashMapEntry<K,V>>> = new ArrayList<List<HashMapEntry<K,V>>>(this.ListMapEntryMethods);
       for (let loop:number = 0; loop < newBucketCount; loop++) {
         newdata.add (new LinkedList<HashMapEntry<K,V>>(this.MapEntryHashMethods));
       }
 
       // Iterate through the nodes and add them all into newdata
-      for (let bucketIter:JIterator<List<HashMapEntry<K,V>>> = this.data.iterator(); bucketIter.hasNext(); ) {
-        let bucket:List<HashMapEntry<K,V>> = bucketIter.next();
-        for (let entryIter:JIterator<HashMapEntry<K,V>> = bucket.iterator(); entryIter.hasNext(); ) {
-          let entry:HashMapEntry<K,V> = entryIter.next();
-          let hashCode:number = entry.getHashCode();
-          let hashBucket:number = hashCode % newBucketCount;
+      for (const bucketIter:JIterator<List<HashMapEntry<K,V>>> = this.data.iterator(); bucketIter.hasNext(); ) {
+        const bucket:List<HashMapEntry<K,V>> = bucketIter.next();
+        for (const entryIter:JIterator<HashMapEntry<K,V>> = bucket.iterator(); entryIter.hasNext(); ) {
+          const entry:HashMapEntry<K,V> = entryIter.next();
+          const hashCode:number = entry.getHashCode();
+          const hashBucket:number = hashCode % newBucketCount;
           newdata.get (hashBucket).add (entry);
         }
       }
@@ -127,7 +127,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
   */
   public get (key:K) : V {
-    let tmp:HashMapEntry<K,V> = this.getMapEntry(key);
+    const tmp:HashMapEntry<K,V> = this.getMapEntry(key);
     if (tmp === null) return null;
     if (tmp === undefined) return null;
     return tmp.getValue();
@@ -142,11 +142,11 @@ export class HashMap<K,V> implements JMap<K,V> {
     if (this.data === null) return null;
     if (this.data === undefined) return null;
     if (this.data.size () < 1) return null;
-    let hashCode:number = this.hashMethods.hashCode (key);
+    const hashCode:number = this.hashMethods.hashCode (key);
     let numBuckets = this.data.size();
     if (numBuckets < 1) numBuckets = 1;
-    let bucket = hashCode % numBuckets;
-    let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
+    const bucket = hashCode % numBuckets;
+    const thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
     for (let loop:number = 0; loop < thisList.size(); loop++) {
       if (this.hashMethods.equals (key, thisList.get(loop).getKey())) {
         this.elementCount = this.elementCount - 1;
@@ -162,7 +162,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} true if this map contains a mapping for the specified key.
   */
   public containsKey (key:K) : boolean {
-    let tmp:HashMapEntry<K,V> = this.getMapEntry(key);
+    const tmp:HashMapEntry<K,V> = this.getMapEntry(key);
     if (tmp === null) return false;
     if (tmp === undefined) return false;
     return true;
@@ -172,11 +172,11 @@ export class HashMap<K,V> implements JMap<K,V> {
     if (this.data === null) return null;
     if (this.data === undefined) return null;
     if (this.data.size () < 1) return null;
-    let hashCode:number = this.hashMethods.hashCode (key);
+    const hashCode:number = this.hashMethods.hashCode (key);
     let numBuckets = this.data.size();
     if (numBuckets < 1) numBuckets = 1;
-    let bucket = hashCode % numBuckets;
-    let thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
+    const bucket = hashCode % numBuckets;
+    const thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
     for (let loop:number = 0; loop < thisList.size(); loop++) {
       if (this.hashMethods.equals (key, thisList.get(loop).getKey())) {
         return thisList.get(loop);
@@ -232,12 +232,12 @@ export class HashMap<K,V> implements JMap<K,V> {
     if (this.data === undefined) return null;
 
     for (let offset:number = 0; offset < this.data.size(); offset++) {
-      let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (offset);
+      const tmpbucket:List<HashMapEntry<K,V>> = this.data.get (offset);
       if ((tmpbucket !== null) && (tmpbucket !== undefined)){
         if (tmpbucket.size() > 0) {
-          let tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
+          const tmpentry:HashMapEntry<K,V> = tmpbucket.get (0);
           if (tmpentry !== null) {
-            let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
+            const tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
             tmp.bucket = offset;
             tmp.offset = 0;
             tmp.entry = tmpentry;
@@ -262,9 +262,9 @@ export class HashMap<K,V> implements JMap<K,V> {
     if (current.bucket > this.data.size()) return null;
 
     // get the next node in the current bucket if possible
-    let tmpbucket:List<HashMapEntry<K,V>> = this.data.get (current.bucket);
+    const tmpbucket:List<HashMapEntry<K,V>> = this.data.get (current.bucket);
     if (tmpbucket.size() > (current.offset + 1)) {
-      let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
+      const tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
       tmp.bucket = current.bucket;
       tmp.offset = current.offset + 1;
       tmp.entry = tmpbucket.get (tmp.offset);
@@ -274,11 +274,11 @@ export class HashMap<K,V> implements JMap<K,V> {
     // get the first node you can find in the next populated bucket if any exists
     let bucket:number = current.bucket + 1;
     while (bucket < this.data.size()) {
-      let tmpb:List<HashMapEntry<K,V>> = this.data.get (bucket);
+      const tmpb:List<HashMapEntry<K,V>> = this.data.get (bucket);
       if ((tmpb !== null) && (tmpb !== undefined)){
-        let tmpentry:HashMapEntry<K,V> = tmpb.get (0);
+        const tmpentry:HashMapEntry<K,V> = tmpb.get (0);
         if (tmpentry !== null) {
-          let tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
+          const tmp:HashMapIteratorLocationTracker<K,V> = new HashMapIteratorLocationTracker<K,V>();
           tmp.bucket = bucket;
           tmp.offset = 0;
           tmp.entry = tmpentry;
@@ -291,7 +291,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   }
 
   private getHashMapEntryHashable(iHash:Hashable<K>) : Hashable<HashMapEntry<K, V>> {
-    let thisHash:Hashable<HashMapEntry<K,V>> = {
+    const thisHash:Hashable<HashMapEntry<K,V>> = {
       hashCode (o:HashMapEntry<K,V>) : number {
         return iHash.hashCode (o.getKey());
       },
@@ -303,7 +303,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   }
 
   private getListHashMapEntryHashable(iHash:Hashable<K>) : Collectable<List<HashMapEntry<K, V>>> {
-    let thisHash:Collectable<List<HashMapEntry<K,V>>> = {
+    const thisHash:Collectable<List<HashMapEntry<K,V>>> = {
       equals (o1:List<HashMapEntry<K,V>>, o2:List<HashMapEntry<K,V>>) : boolean {
         if (o1 === undefined) {
           if (o2 === undefined) {
@@ -328,8 +328,8 @@ export class HashMap<K,V> implements JMap<K,V> {
         }
 
         for (let loop:number = 0; loop < this.size(); loop++) {
-          let thisentry:HashMapEntry<K,V> = o1.get (loop);
-          let thatentry:HashMapEntry<K,V> = o2.get (loop);
+          const thisentry:HashMapEntry<K,V> = o1.get (loop);
+          const thatentry:HashMapEntry<K,V> = o2.get (loop);
           if (this.equality.equals (thisentry, thatentry)) {
             // keep going
           } else {
@@ -391,41 +391,41 @@ export class HashMapKeySetJIterator<K,V> implements JIterator<K> {
 
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
-      let firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
+      const firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
       if (firstEntry === null) return false;
       if (firstEntry === undefined) return false;
       if (firstEntry.entry === null) return false;
       if (firstEntry.entry === undefined) return false;
-      let first:K = firstEntry.entry.getKey();
+      const first:K = firstEntry.entry.getKey();
       return true;
     } else { // we've already called this iterator before
-      let tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
+      const tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
       if (tmpEntry === null) return false;
       if (tmpEntry === undefined) return false;
       if (tmpEntry.entry === null) return false;
       if (tmpEntry.entry === undefined) return false;
-      let tmp:K = tmpEntry.entry.getKey();
+      const tmp:K = tmpEntry.entry.getKey();
       return true;
     }
   }
 
   public next():K {
     if (this.location === undefined) { // first time caller
-      let firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
+      const firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
       if (firstEntry === null) return null;
       if (firstEntry === undefined) return null;
       if (firstEntry.entry === null) return null;
       if (firstEntry.entry === undefined) return null;
-      let first:K = firstEntry.entry.getKey();
+      const first:K = firstEntry.entry.getKey();
       this.location = firstEntry;
       return first;
     } else { // we've already called this iterator before
-      let tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
+      const tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
       if (tmpEntry === null) return null;
       if (tmpEntry === undefined) return null;
       if (tmpEntry.entry === null) return null;
       if (tmpEntry.entry === undefined) return null;
-      let tmp:K = tmpEntry.entry.getKey();
+      const tmp:K = tmpEntry.entry.getKey();
       this.location = tmpEntry;
       return tmp;
     }
@@ -450,7 +450,7 @@ export class HashMapKeySetIterator<K,V> implements Iterator<K> {
     if (this.location === undefined) {
       return new BasicIteratorResult(true, null);
     }
-    let tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location.entry.getKey());
+    const tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location.entry.getKey());
     this.location = this.map.deprecatedGetNextEntryForIterator(this.location);
     return tmp;
   }
@@ -485,41 +485,41 @@ export class HashMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
 
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
-      let firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
+      const firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
       if (firstEntry === null) return false;
       if (firstEntry === undefined) return false;
       if (firstEntry.entry === null) return false;
       if (firstEntry.entry === undefined) return false;
-      let first:K = firstEntry.entry.getKey();
+      const first:K = firstEntry.entry.getKey();
       return true;
     } else { // we've already called this iterator before
-      let tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
+      const tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
       if (tmpEntry === null) return false;
       if (tmpEntry === undefined) return false;
       if (tmpEntry.entry === null) return false;
       if (tmpEntry.entry === undefined) return false;
-      let tmp:K = tmpEntry.entry.getKey();
+      const tmp:K = tmpEntry.entry.getKey();
       return true;
     }
   }
 
   public next():MapEntry<K,V> {
     if (this.location === undefined) { // first time caller
-      let firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
+      const firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
       if (firstEntry === null) return null;
       if (firstEntry === undefined) return null;
       if (firstEntry.entry === null) return null;
       if (firstEntry.entry === undefined) return null;
-      let first:MapEntry<K,V> = firstEntry.entry;
+      const first:MapEntry<K,V> = firstEntry.entry;
       this.location = firstEntry;
       return first;
     } else { // we've already called this iterator before
-      let tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
+      const tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
       if (tmpEntry === null) return null;
       if (tmpEntry === undefined) return null;
       if (tmpEntry.entry === null) return null;
       if (tmpEntry.entry === undefined) return null;
-      let tmp:MapEntry<K,V> = tmpEntry.entry;
+      const tmp:MapEntry<K,V> = tmpEntry.entry;
       this.location = tmpEntry;
       return tmp;
     }
@@ -544,7 +544,7 @@ export class HashMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
     if (this.location === undefined) {
       return new BasicIteratorResult(true, null);
     }
-    let tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location.entry);
+    const tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location.entry);
     this.location = this.map.deprecatedGetNextEntryForIterator(this.location);
     return tmp;
   }

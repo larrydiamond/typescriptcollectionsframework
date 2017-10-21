@@ -26,7 +26,7 @@ export class Collections {
    * Returns a Comparator that works correctly for string native objects
    */
   public static getStringComparator():Comparator<string> {
-    let sortString:Comparator<string> = {
+    const sortString:Comparator<string> = {
       compare(o1:string, o2:string) : number {
         if (o1 === o2)
           return 0;
@@ -52,7 +52,7 @@ export class Collections {
    * Returns a Comparator that works correctly for number native objects
    */
   public static getNumberComparator():Comparator<number> {
-    let sortNumber:Comparator<number> = {
+    const sortNumber:Comparator<number> = {
       compare(o1:number, o2:number) : number {
         if (o1 === o2)
           return 0;
@@ -83,10 +83,10 @@ export class Collections {
     if (o === null) {
       return 0;
     }
-    let tmp:string = JSON.stringify (o);
+    const tmp:string = JSON.stringify (o);
     let hash: number = 0;
     for (let loop = 0; loop < tmp.length; loop++) {
-      let n:number = tmp.charCodeAt (loop);
+      const n:number = tmp.charCodeAt (loop);
       hash = ((hash * 256) + n) % 1000000000;
     }
     return hash;
@@ -103,8 +103,8 @@ export class Collections {
       return 0;
     }
     let tmp:number = 0;
-    for (let iter:JIterator<string> = o.iterator(); iter.hasNext(); ) {
-      let ostr:string = iter.next();
+    for (const iter:JIterator<string> = o.iterator(); iter.hasNext(); ) {
+      const ostr:string = iter.next();
       tmp = ((tmp * 256) + this.getHashCodeForString (ostr)) % 1000000000;
     }
     return tmp;
@@ -133,26 +133,26 @@ export class Collections {
    * Returns an ImmutableList of the entries passed in, using an AllFieldCollectable as the Collectable
    */
   public static list<T> (... values : T[]) : ImmutableList<T> {
-    let list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
+    const list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
     for (let loop : number = 0; loop < values.length; loop++) {
-      let tmp : T = values [loop];
+      const tmp : T = values [loop];
       list.add (tmp);
     }
     return list.immutableList();
   }
 
   public static emptyList<T> () : ImmutableList<T> {
-    let list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
+    const list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
     return list.immutableList();
   }
 
   public static emptySet<T> () : ImmutableSet<T> {
-    let tmp : HashSet<T> = new HashSet<T>(new AllFieldHashable<T>());
+    const tmp : HashSet<T> = new HashSet<T>(new AllFieldHashable<T>());
     return tmp.immutableSet();
   }
 
   public static emptyMap<K,V> () : ImmutableMap<K,V> {
-    let tmp : HashMap<K,V> = new HashMap<K,V>(new AllFieldHashable<K>());
+    const tmp : HashMap<K,V> = new HashMap<K,V>(new AllFieldHashable<K>());
     return tmp.immutableMap();
   }
 
@@ -160,7 +160,7 @@ export class Collections {
    * Returns an Collectable made from the Comparator passed in
    */
   public static collectableFromComparator<K> (iComp:Comparator<K>): Collectable <K> {
-    let tmp : Collectable<K> = {
+    const tmp : Collectable<K> = {
       equals (o1:K, o2:K) : boolean {
         if (0 === iComp.compare (o1, o2))
           return true;

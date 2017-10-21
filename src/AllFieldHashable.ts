@@ -40,7 +40,7 @@ import {Hashable} from "./Hashable";
      if (o === null) {
        return 0;
      }
-     let tmp:string = JSON.stringify (o);
+     const tmp:string = JSON.stringify (o);
      return Collections.getHashCodeForString(tmp);
    };
  }

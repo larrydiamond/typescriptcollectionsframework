@@ -26,8 +26,8 @@ export class HashSet<K> implements JSet<K> {
     this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
 
     if ((initialElements !== null) && (initialElements !== undefined)){
-      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
-        let t:K = iter.next ();
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:K = iter.next ();
         this.add (t);
       }
     }
@@ -47,7 +47,7 @@ export class HashSet<K> implements JSet<K> {
   * @return {boolean} true if this set did not already contain the specified element
   */
   public add (element:K) : boolean {
-    let tmp:number = this.datastore.put(element, 1);
+    const tmp:number = this.datastore.put(element, 1);
     if (tmp === undefined) {
       return true;
     }
@@ -61,7 +61,7 @@ export class HashSet<K> implements JSet<K> {
   * @return {boolean} true if the set contained the specified element
   */
   public remove (element:K) : boolean {
-    let tmp:number = this.datastore.remove(element);
+    const tmp:number = this.datastore.remove(element);
     if (tmp === null) {
       return false;
     }
@@ -86,7 +86,7 @@ export class HashSet<K> implements JSet<K> {
   public isEmpty () : boolean {
     if (this.datastore === null)
       return true;
-    let tmp:number = this.datastore.size();
+    const tmp:number = this.datastore.size();
     if (tmp === 0)
       return true;
     return false;
@@ -98,7 +98,7 @@ export class HashSet<K> implements JSet<K> {
   * @return {boolean} true if this set contains the specified element
   */
   public contains (item:K) : boolean {
-    let tmp:number = this.datastore.get(item);
+    const tmp:number = this.datastore.get(item);
     if (tmp === null)
       return false;
     return true;
@@ -172,7 +172,7 @@ export class HashSetJIterator<T> implements JIterator<T> {
 
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
-      let first:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetFirstEntryForIterator();
+      const first:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetFirstEntryForIterator();
       if (first === undefined) {
         return false;
       }
@@ -181,7 +181,7 @@ export class HashSetJIterator<T> implements JIterator<T> {
       }
       return true;
     } else { // we've already called this iterator before
-      let tmp:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetNextEntryForIterator(this.location);
+      const tmp:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetNextEntryForIterator(this.location);
       if (tmp === null) {
         return false;
       } else {
@@ -192,7 +192,7 @@ export class HashSetJIterator<T> implements JIterator<T> {
 
   public next():T {
     if (this.location === undefined) { // first time caller
-      let first:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetFirstEntryForIterator();
+      const first:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetFirstEntryForIterator();
       if (first === undefined) {
         return null;
       }
@@ -202,7 +202,7 @@ export class HashSetJIterator<T> implements JIterator<T> {
       this.location = first;
       return first.entry.getKey();
     } else { // we've already called this iterator before
-      let tmp:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetNextEntryForIterator(this.location);
+      const tmp:HashMapIteratorLocationTracker<T,number> = this.set.deprecatedGetNextEntryForIterator(this.location);
       if (tmp === null) {
         return null;
       } else {
@@ -231,7 +231,7 @@ export class HashSetIterator<T> implements Iterator<T> {
     if (this.location === undefined) {
       return new BasicIteratorResult(true, null);
     }
-    let tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location.entry.getKey());
+    const tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location.entry.getKey());
     this.location = this.set.deprecatedGetNextEntryForIterator(this.location);
     return tmp;
   }

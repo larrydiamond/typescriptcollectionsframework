@@ -22,8 +22,8 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   constructor (iEquals:Collectable<T>, private initialElements?:ImmutableCollection<T>) {
     this.equality = iEquals;
     if ((initialElements !== null) && (initialElements !== undefined)){
-      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
-        let t:T = iter.next ();
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:T = iter.next ();
         this.add (t);
       }
     }
@@ -79,8 +79,8 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
         offsetToStartAt = index;
       }
 
-      for (let iter = c.iterator(); iter.hasNext(); ) {
-        let t:T = iter.next ();
+      for (const iter = c.iterator(); iter.hasNext(); ) {
+        const t:T = iter.next ();
         this.addIndex (index, t);
         index = index + 1;
       }
@@ -97,7 +97,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
       if ((this.elements === null) || (this.elements === undefined)) {
         return undefined;
       }
-      let element:T = this.elements [index];
+      const element:T = this.elements [index];
       this.elements.splice (index, 1);
       this.sizeValue = this.sizeValue - 1;
       return element;
@@ -133,7 +133,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
       return -1;
 
     for (let loop:number = 0; loop < this.sizeValue; loop++) {
-      let e = this.get (loop);
+      const e = this.get (loop);
       if (this.equality.equals (e, t))
         return loop;
     }
@@ -154,7 +154,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
       return -1;
 
     for (let loop:number = this.sizeValue - 1; loop >= 0; loop--) {
-      let e = this.get (loop);
+      const e = this.get (loop);
       if (this.equality.equals (e, t))
         return loop;
     }
@@ -184,7 +184,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
       return false;
     }
 
-    let offset:number = this.indexOf (t);
+    const offset:number = this.indexOf (t);
     if (offset === -1) {
       return false;
     }
@@ -205,9 +205,9 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
 
     let changed:boolean = false;
 
-    for (let iter = c.iterator(); iter.hasNext(); ) {
-      let t:T = iter.next ();
-      let tmp = this.remove(t);
+    for (const iter = c.iterator(); iter.hasNext(); ) {
+      const t:T = iter.next ();
+      const tmp = this.remove(t);
       if (tmp === true) changed = true;
     }
 
@@ -232,7 +232,7 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
  * @return {number} the element previously at the specified position
  */
   public set(index:number, element:T) : T {
-    let tmp:T = this.elements [index];
+    const tmp:T = this.elements [index];
     this.elements [index] = element;
     return tmp;
   }

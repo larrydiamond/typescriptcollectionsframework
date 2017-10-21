@@ -39,18 +39,18 @@ describe("Test HashSet functionality", function() {
     }
   };
 
-  let product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
-  let product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
-  let product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
+  const product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+  const product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+  const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
 
   it("Test Creation state", function() {
-    let set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (set1.size ()).toEqual(0);
     expect (set1.isEmpty ()).toEqual(true);
   });
 
   it("Test Adding one item", function() {
-    let set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const set1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (set1.size ()).toEqual(0);
     expect (set1.isEmpty ()).toEqual(true);
     expect (set1.add (product1)).toEqual(true);
@@ -59,7 +59,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test adding two entries", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
   //    mySet1.printMap();
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
@@ -74,7 +74,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test adding duplicates", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
     expect (true).toEqual(mySet1.add(product1));
@@ -86,7 +86,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test contains", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
     expect (true).toEqual(mySet1.add(product1));
@@ -97,7 +97,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test clear", function() {
-    let mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const mySet1:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     expect (mySet1.size ()).toEqual(0);
     expect (mySet1.isEmpty ()).toEqual(true);
     expect (true).toEqual(mySet1.add(product1));
@@ -113,7 +113,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test java iteration", function() {
-    let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
 
     expect (set2.add (product1)).toEqual (true);
     expect (set2.add (product2)).toEqual (true);
@@ -121,8 +121,8 @@ describe("Test HashSet functionality", function() {
     let found1:boolean = false;
     let found2:boolean = false;
 
-    for (let iter = set2.iterator(); iter.hasNext(); ) {
-      let psp:PetStoreProduct = iter.next ();
+    for (const iter = set2.iterator(); iter.hasNext(); ) {
+      const psp:PetStoreProduct = iter.next ();
 
       if (psp.getProductName() === product1.getProductName()) {
         found1 = true;
@@ -140,7 +140,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it("Test typescript iteration", function() {
-    let set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    const set2:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
 
     expect (set2.add (product1)).toEqual (true);
     expect (set2.add (product2)).toEqual (true);
@@ -148,7 +148,7 @@ describe("Test HashSet functionality", function() {
     let found1:boolean = false;
     let found2:boolean = false;
 
-    let tsi:Iterator<PetStoreProduct> = set2[Symbol.iterator]();
+    const tsi:Iterator<PetStoreProduct> = set2[Symbol.iterator]();
     let tmp:IteratorResult<PetStoreProduct> = tsi.next();
     expect (tmp.done).toEqual(false);
 
@@ -183,7 +183,7 @@ describe("Test HashSet functionality", function() {
   });
 
   it ("Test native strings", function () {
-    let hset = new HashSet<string>(new AllFieldHashable<string>());
+    const hset = new HashSet<string>(new AllFieldHashable<string>());
     hset.add ("Cat");
     hset.add ("Dog");
     hset.add ("Squirrel");
@@ -197,9 +197,9 @@ describe("Test HashSet functionality", function() {
 
     let count:number = 0;
 
-    for (let iter = hset.iterator(); iter.hasNext(); ) {
+    for (const iter = hset.iterator(); iter.hasNext(); ) {
       count = count + 1;
-      let psp:string = iter.next ();
+      const psp:string = iter.next ();
 
       if (psp === "Cat") {
         foundcat = true;
@@ -223,11 +223,11 @@ describe("Test HashSet functionality", function() {
   });
 
   it ("Test lots", function () {
-    let hset = new HashSet<string>(new AllFieldHashable<string>());
+    const hset = new HashSet<string>(new AllFieldHashable<string>());
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
         for (let loop3 = 1; loop3 <= 26; loop3++) {
-          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
           hset.add (txt);
         }
       }
@@ -235,32 +235,32 @@ describe("Test HashSet functionality", function() {
     expect (hset.size ()).toEqual(26 * 26 * 26);
 
     let count:number = 0;
-    for (let iter = hset.iterator(); iter.hasNext(); ) {
+    for (const iter = hset.iterator(); iter.hasNext(); ) {
       count = count + 1;
-      let psp:string = iter.next ();
+      const psp:string = iter.next ();
     }
     expect (count).toEqual (26 * 26 * 26);
   });
 
     it("Test constructing with elements from an ArrayList", function() {
-      let sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+      const sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
       expect (sourceList.add (product1)).toEqual (true);
       expect (sourceList.add (product2)).toEqual (true);
 
-      let tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), sourceList);
+      const tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), sourceList);
       expect (tset.size ()).toEqual(sourceList.size());
     });
 
     it("Test constructing with elements from a LinkedList", function() {
-      let sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+      const sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
       expect (sourceList.add (product1)).toEqual (true);
       expect (sourceList.add (product2)).toEqual (true);
 
-      let tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), sourceList);
+      const tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), sourceList);
       expect (tset.size ()).toEqual(sourceList.size());
     });
 
-        let alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
+        const alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
           compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
             if (o1 === o2)
             return 0;
@@ -291,11 +291,11 @@ describe("Test HashSet functionality", function() {
         }
 
   it("Test constructing with elements from a TreeSet", function() {
-    let source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
+    const source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
     expect (source.add (product1)).toEqual (false);
     expect (source.add (product2)).toEqual (false);
 
-    let tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), source);
+    const tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), source);
     expect (tset.size ()).toEqual(source.size());
   });
 

@@ -27,8 +27,8 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     this.numberElements = 0;
 
     if ((initialElements !== null) && (initialElements !== undefined)){
-      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
-        let t:T = iter.next ();
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:T = iter.next ();
         this.add (t);
       }
     }
@@ -48,7 +48,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {boolean} true if this collection changed as a result of the call
   */
   public add (t:T) : boolean {
-    let lln:LinkedListNode<T> = new LinkedListNode<T>(t);
+    const lln:LinkedListNode<T> = new LinkedListNode<T>(t);
 
     if ((this.firstNode === null) || (this.firstNode === undefined)) {
       this.firstNode = lln;
@@ -72,7 +72,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   */
   public addIndex (index:number, t:T) : void {
     if (index === 0) {
-      let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
+      const newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
       newnode.nextNode = this.firstNode;
       if (this.firstNode !== null)
         this.firstNode.previousNode = newnode;
@@ -81,7 +81,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
       return;
     }
     if (index >= this.numberElements) {
-      let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
+      const newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
       if (this.lastNode !== null) {
         this.lastNode.nextNode = newnode;
       }
@@ -95,7 +95,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     let previousnode:LinkedListNode<T> = null;
     while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
+        const newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
         newnode.nextNode = node;
         newnode.previousNode = previousnode;
         node.previousNode = newnode;
@@ -152,7 +152,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {boolean} true if this list contains the specified element
   */
   public contains (t:T) : boolean {
-    let lln:LinkedListNode<T> = this.getNode(t);
+    const lln:LinkedListNode<T> = this.getNode(t);
     if (lln === null)
       return false;
     return true;
@@ -183,8 +183,8 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     let node:LinkedListNode<T> = this.firstNode;
     while ((node !== null) && (node !== undefined)) {
       if (this.equality.equals (node.payload, t)) {
-        let previous:LinkedListNode<T> = node.previousNode;
-        let following:LinkedListNode<T> = node.nextNode;
+        const previous:LinkedListNode<T> = node.previousNode;
+        const following:LinkedListNode<T> = node.nextNode;
         if (previous !== null) {
           previous.nextNode = following;
         } else {
@@ -220,9 +220,9 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
 
     let changed:boolean = false;
 
-    for (let iter = c.iterator(); iter.hasNext(); ) {
-      let t:T = iter.next ();
-      let tmp = this.remove(t);
+    for (const iter = c.iterator(); iter.hasNext(); ) {
+      const t:T = iter.next ();
+      const tmp = this.remove(t);
       if (tmp === true) changed = true;
     }
 
@@ -245,8 +245,8 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
       offsetToStartAt = index;
     }
 
-    for (let iter = c.iterator(); iter.hasNext(); ) {
-      let t:T = iter.next ();
+    for (const iter = c.iterator(); iter.hasNext(); ) {
+      const t:T = iter.next ();
       this.addIndex (index, t);
       index = index + 1;
     }
@@ -296,7 +296,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     }
 
     if (index === 0) {
-      let payload:T = this.firstNode.payload;
+      const payload:T = this.firstNode.payload;
       this.firstNode = this.firstNode.nextNode;
       this.numberElements = this.numberElements - 1;
       if (this.firstNode !== null)
@@ -304,7 +304,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
       return payload;
     }
     if (index === (this.numberElements - 1)) {
-      let payload:T = this.lastNode.payload;
+      const payload:T = this.lastNode.payload;
       this.lastNode = this.lastNode.previousNode;
       this.numberElements = this.numberElements - 1;
       this.lastNode.nextNode = null;
@@ -316,7 +316,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     let previous:LinkedListNode<T> = null;
     while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        let payload:T = node.payload;
+        const payload:T = node.payload;
         previous.nextNode = node.nextNode;
         if (node.nextNode !== null)
           node.nextNode.previousNode = previous;
@@ -364,13 +364,13 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
   * @return {T} the first element in this list, null if the list is empty
   */
   public getFirst () : T {
-    let node = this.firstNode;
+    const node = this.firstNode;
     if ((node === null) || (node === undefined)) return null;
     return node.payload;
   }
 
   public getFirstNode () : LinkedListNode<T> {
-    let node = this.firstNode;
+    const node = this.firstNode;
     if ((node === null) || (node === undefined)) return null;
     return node;
   }
@@ -407,7 +407,7 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     let node:LinkedListNode<T> = this.firstNode;
     while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        let tmp:T = node.payload;
+        const tmp:T = node.payload;
         node.payload = element;
         return tmp;
       } else {
@@ -480,7 +480,7 @@ export class LinkedListJIterator<T> implements JIterator<T> {
   }
 
   public next():T {
-    let tmp:T = this.node.payload;
+    const tmp:T = this.node.payload;
     this.node = this.node.nextNode;
     return tmp;
   }
@@ -500,7 +500,7 @@ export class LinkedListIterator<T> implements Iterator<T> {
     if ((this.node === null) || (this.node === undefined)) {
       return new BasicIteratorResult(true, null);
     } else {
-      let tmp:T = this.node.payload;
+      const tmp:T = this.node.payload;
       this.node = this.node.nextNode;
       return new BasicIteratorResult(false, tmp);
     }

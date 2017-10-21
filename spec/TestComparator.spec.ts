@@ -12,7 +12,7 @@ import {Comparator} from "../src/Comparator";
 describe("Test Comparator", function() {
 
   it ("get the string comparator", function () {
-    let x:Comparator<string> = Collections.getStringComparator();
+    const x:Comparator<string> = Collections.getStringComparator();
     expect (x.compare ("x", "X") === 0);
   });
 

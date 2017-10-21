@@ -100,11 +100,11 @@ describe("Test SkipListMap functionality", function() {
     }
   };
 
-  let product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
-  let product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
-  let product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
+  const product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+  const product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+  const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
 
-  let alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
+  const alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
     compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
       if (o1 === o2)
         return 0;
@@ -134,7 +134,7 @@ describe("Test SkipListMap functionality", function() {
     }
   }
 
-  let priceSortPetStoreProduct:Comparator<PetStoreProduct> = {
+  const priceSortPetStoreProduct:Comparator<PetStoreProduct> = {
     compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
       if (o1 === o2)
         return 0;
@@ -175,7 +175,7 @@ describe("Test SkipListMap functionality", function() {
   }
 
   it("Test Creation state", function() {
-    let SkipListMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
+    const SkipListMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     testNumber.equals("Expected newly constructed SkipListMap to be empty", SkipListMap1.size (), 0);
     testBoolean.equalsTrue("Expected isempty to return true for new SkipListMap", SkipListMap1.isEmpty ());
     expect (SkipListMap1.firstKey()).toEqual(null);
@@ -184,7 +184,7 @@ describe("Test SkipListMap functionality", function() {
     expect (SkipListMap1.lastEntry()).toEqual(null);
     test.equals ("Validate map", true, SkipListMap1.validateMap());
 
-    let SkipListMap2:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
+    const SkipListMap2:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     testNumber.equals("Expected newly constructed SkipListMap to be empty", SkipListMap2.size (), 0);
     expect (SkipListMap2.firstKey()).toEqual(null);
     expect (SkipListMap2.firstEntry()).toEqual(null);
@@ -194,7 +194,7 @@ describe("Test SkipListMap functionality", function() {
   });
 
   it("Test Adding one item", function() {
-    let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
+    const petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
     expect (petStoreMap1.size ()).toEqual(1);
     expect (petStoreMap1.isEmpty ()).toEqual(false);
@@ -206,7 +206,7 @@ describe("Test SkipListMap functionality", function() {
   });
 
   it("Test Adding one native item", function() {
-    let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
+    const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
@@ -217,7 +217,7 @@ describe("Test SkipListMap functionality", function() {
   });
 
   it ("Test adding initial elements out of order", function () {
-    let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
+    const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
     test.equals ("Adding C to empty map", null, sourceMap.put ("C", "D"));
     test.equals ("Adding A to 1 entry map", null, sourceMap.put ("A", "B"));
     testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
@@ -225,7 +225,7 @@ describe("Test SkipListMap functionality", function() {
   });
 
   it ("Test adding initial elements in order ", function () {
-    let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
+    const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
     test.equals ("Adding A to empty map", null, sourceMap.put ("A", "B"));
     test.equals ("Adding C to 1 entry map", null, sourceMap.put ("C", "D"));
     testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
