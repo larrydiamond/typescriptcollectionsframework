@@ -453,6 +453,7 @@ var HashMapKeySetIterator = (function () {
         this.map = iHashMap;
         this.location = this.map.deprecatedGetFirstEntryForIterator();
     }
+    // tslint:disable-next-line:no-any
     HashMapKeySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
@@ -551,6 +552,7 @@ var HashMapEntrySetIterator = (function () {
         this.map = iHashMap;
         this.location = this.map.deprecatedGetFirstEntryForIterator();
     }
+    // tslint:disable-next-line:no-any
     HashMapEntrySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);

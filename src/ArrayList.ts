@@ -306,6 +306,7 @@ export class ArrayListIterator<T> implements Iterator<T> {
     this.arraylist = iArrayList;
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
     if (this.offset < this.arraylist.size()) {
       return new BasicIteratorResult(false, this.arraylist.get (this.offset++));

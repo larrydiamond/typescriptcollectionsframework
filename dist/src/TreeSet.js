@@ -248,6 +248,7 @@ var TreeSetIterator = (function () {
         this.set = iSet;
         this.location = this.set.first();
     }
+    // tslint:disable-next-line:no-any
     TreeSetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);

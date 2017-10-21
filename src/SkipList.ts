@@ -987,6 +987,7 @@ export class SkipListMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>>
     this.location = this.map.firstEntry();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<MapEntry<K,V>> {
     if (this.location === null) {
       return new BasicIteratorResult(true, null);
@@ -999,11 +1000,6 @@ export class SkipListMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>>
     return tmp;
   }
 }
-
-
-
-
-
 
 export class SkipListSet<K> implements NavigableSet<K> {
   private impl:SkipListMapImpl<K,number> = null;

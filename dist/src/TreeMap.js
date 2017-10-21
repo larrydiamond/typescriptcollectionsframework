@@ -858,6 +858,7 @@ var TreeMapKeySetIterator = (function () {
         this.treeMap = iTreeMap;
         this.location = this.treeMap.firstKey();
     }
+    // tslint:disable-next-line:no-any
     TreeMapKeySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
@@ -939,6 +940,7 @@ var TreeMapEntrySetIterator = (function () {
         this.treeMap = iTreeMap;
         this.location = this.treeMap.firstEntry();
     }
+    // tslint:disable-next-line:no-any
     TreeMapEntrySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);

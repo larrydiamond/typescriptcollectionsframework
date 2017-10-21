@@ -70,11 +70,13 @@ exports.testBoolean = testBoolean;
 var test = (function () {
     function test() {
     }
+    // tslint:disable-next-line:no-any
     test.equals = function (failMessage, val, expected) {
         if (val !== expected) {
             fail(failMessage + " - value was " + val + " expected " + expected);
         }
     };
+    // tslint:disable-next-line:no-any
     test.notNullOrUndefined = function (failMessage, val) {
         if ((val === null) || (val === undefined)) {
             fail(failMessage + " - expected not null or undefined value was " + val);

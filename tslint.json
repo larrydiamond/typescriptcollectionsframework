@@ -2,6 +2,7 @@
     "rules": {
         "ban-comma-operator": true,
         "member-access": true,
+        "no-any": true,
         "no-empty-interface": true,
         "no-import-side-effect": true,
         "no-bitwise": true,

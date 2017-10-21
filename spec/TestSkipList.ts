@@ -65,11 +65,13 @@ export class testBoolean {
 }
 
 export class test {
+  // tslint:disable-next-line:no-any
   public static equals (failMessage:string, val:any, expected:any) : void {
     if (val !== expected) {
       fail (failMessage + " - value was " + val + " expected " + expected);
     }
   }
+  // tslint:disable-next-line:no-any
   public static notNullOrUndefined (failMessage:string, val:any) : void {
     if ((val === null) || (val === undefined)) {
       fail (failMessage + " - expected not null or undefined value was " + val);

@@ -945,6 +945,7 @@ var SkipListMapEntrySetIterator = (function () {
         this.map = iMap;
         this.location = this.map.firstEntry();
     }
+    // tslint:disable-next-line:no-any
     SkipListMapEntrySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);

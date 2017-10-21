@@ -444,6 +444,7 @@ var LinkedListIterator = (function () {
     function LinkedListIterator(iList) {
         this.node = iList.getFirstNode();
     }
+    // tslint:disable-next-line:no-any
     LinkedListIterator.prototype.next = function (value) {
         if ((this.node === null) || (this.node === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);

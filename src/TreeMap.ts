@@ -923,6 +923,7 @@ export class TreeMapKeySetIterator<K,V> implements Iterator<K> {
     this.location = this.treeMap.firstKey();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<K> {
     if (this.location === null) {
       return new BasicIteratorResult(true, null);
@@ -1014,6 +1015,7 @@ export class TreeMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
     this.location = this.treeMap.firstEntry();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<MapEntry<K,V>> {
     if (this.location === null) {
       return new BasicIteratorResult(true, null);

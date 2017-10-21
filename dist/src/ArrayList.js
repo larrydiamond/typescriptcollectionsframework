@@ -268,6 +268,7 @@ var ArrayListIterator = (function () {
         this.offset = 0;
         this.arraylist = iArrayList;
     }
+    // tslint:disable-next-line:no-any
     ArrayListIterator.prototype.next = function (value) {
         if (this.offset < this.arraylist.size()) {
             return new BasicIteratorResult_1.BasicIteratorResult(false, this.arraylist.get(this.offset++));

@@ -282,6 +282,7 @@ export class TreeSetIterator<T> implements Iterator<T> {
     this.location = this.set.first();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
     if (this.location === null) {
       return new BasicIteratorResult(true, null);

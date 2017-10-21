@@ -495,6 +495,7 @@ export class LinkedListIterator<T> implements Iterator<T> {
     this.node = iList.getFirstNode();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
     if ((this.node === null) || (this.node === undefined)) {
       return new BasicIteratorResult(true, null);

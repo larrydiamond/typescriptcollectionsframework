@@ -223,6 +223,7 @@ export class HashSetIterator<T> implements Iterator<T> {
     this.location = this.set.deprecatedGetFirstEntryForIterator();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
     if (this.location === null) {
       return new BasicIteratorResult(true, null);
