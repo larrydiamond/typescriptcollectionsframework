@@ -260,35 +260,6 @@ var SkipListMapImpl = (function () {
                 this.head.set(height, newNode); // nothing before us so set the head to our node
             }
         }
-        /*
-        
-        
-                      let nextNode = lastNode.getNextNodeArray().get(0);
-                      newnode.getNextNodeArray().set(0, nextNode);
-                      lastNode.getNextNodeArray().set(0, newnode);
-                      if ((nextNode !== null) && (nextNode !== undefined)) {
-                        nextNode.getLastNodeArray().set(0, newnode);
-                      }
-                      // Hook up last array
-                      let doneSoFar:number = 0;
-                      while (doneSoFar < (nodeHeight - 1)) {
-                        let thisOffset:number = doneSoFar + 1;
-                        if (lastNode.getNextNodeArray().size() > thisOffset) {
-                          let linkedNode : SkipListNode<K,V> = lastNode.getNextNodeArray().get(thisOffset);
-                          newnode.getNextNodeArray().set(thisOffset, linkedNode);
-                          lastNode.getNextNodeArray().set(thisOffset, newnode);
-                          linkedNode.getLastNodeArray().set(thisOffset, newnode);
-                          newnode.getLastNodeArray().set (thisOffset, lastNode);
-                          doneSoFar++;
-                        } else {
-                          console.log ("Unwritten code"); // TODO
-                        }
-                      }
-        
-                      console.log ("Unwritten code");
-        
-        
-                      */
     };
     /**
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
