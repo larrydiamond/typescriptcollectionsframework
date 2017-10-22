@@ -227,19 +227,17 @@ describe("Test SkipListMap functionality", function () {
         testNumber.equals("Expected destination Map size incorrect", destinationMap.size(), 2);
         testBoolean.equalsTrue("Validate destinationMap", destinationMap.validateMap());
     });
-    /*
-    it ("Test adding and copying initial elements out of order", function () {
-      let sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
-      test.equals ("Adding C to empty map", null, sourceMap.put ("C", "D"));
-      test.equals ("Adding A to 1 entry map", null, sourceMap.put ("A", "B"));
-      testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
-      testBoolean.equalsTrue ("Validate sourceMap", true, sourceMap.validateMap());
-  
-      let destinationMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator(), sourceMap);
-      testNumber.equals ("Expected destination Map size incorrect", destinationMap.size(), 2);
-      testBoolean.equalsTrue ("Validate destinationMap", true, destinationMap.validateMap());
+    it("Test adding and copying initial elements out of order", function () {
+        var sourceMap = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+        test.equals("Adding C to empty map", null, sourceMap.put("C", "D"));
+        test.equals("Adding A to 1 entry map", null, sourceMap.put("A", "B"));
+        testNumber.equals("Expected sourceMap size incorrect", sourceMap.size(), 2);
+        testBoolean.equalsTrue("Validate sourceMap", sourceMap.validateMap());
+        var destinationMap = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator(), sourceMap);
+        testNumber.equals("Expected destination Map size incorrect", destinationMap.size(), 2);
+        testBoolean.equalsTrue("Validate destinationMap", destinationMap.validateMap());
     });
-  
+    /*
     it("Test Adding two items", function() {
       let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
       expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);

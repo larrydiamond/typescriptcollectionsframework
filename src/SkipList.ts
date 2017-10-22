@@ -1179,4 +1179,5 @@ export class SkipListSet<K> implements NavigableSet<K> {
   public immutableSet () : ImmutableSet<K> {
     return this;
   }
+  
 }
