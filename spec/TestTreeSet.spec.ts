@@ -36,7 +36,7 @@ describe("Test TreeSet functionality", function() {
     public getPrice():number {
       return this.price;
     }
-  };
+  }
 
   const product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
   const product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
@@ -71,7 +71,7 @@ describe("Test TreeSet functionality", function() {
 
       return 1;
     }
-  }
+  };
 
   const priceSortPetStoreProduct:Comparator<PetStoreProduct> = {
     compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
@@ -101,7 +101,7 @@ describe("Test TreeSet functionality", function() {
 
       return 1;
     }
-  }
+  };
 
   it("Test Creation state", function() {
     const TreeSet1:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);

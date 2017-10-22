@@ -35,7 +35,6 @@ var AllFieldHashable = (function () {
             return true;
         return false;
     };
-    ;
     AllFieldHashable.prototype.hashCode = function (o) {
         if (o === undefined) {
             return 0;
@@ -46,7 +45,6 @@ var AllFieldHashable = (function () {
         var tmp = JSON.stringify(o);
         return Collections_1.Collections.getHashCodeForString(tmp);
     };
-    ;
     return AllFieldHashable;
 }());
 exports.AllFieldHashable = AllFieldHashable;

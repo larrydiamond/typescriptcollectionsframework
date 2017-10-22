@@ -1147,14 +1147,12 @@ var SkipListSet = (function () {
     SkipListSet.prototype.immutableCollection = function () {
         return this;
     };
-    ;
     /**
     * Returns an ImmutableSet backed by this Set
     */
     SkipListSet.prototype.immutableSet = function () {
         return this;
     };
-    ;
     return SkipListSet;
 }());
 exports.SkipListSet = SkipListSet;

@@ -29,7 +29,6 @@ describe("Test TreeSet functionality", function () {
         };
         return PetStoreProduct;
     }());
-    ;
     var product1 = new PetStoreProduct("ChewToy", 14.99);
     var product2 = new PetStoreProduct("Catnip", 4.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);

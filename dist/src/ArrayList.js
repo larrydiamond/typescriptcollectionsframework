@@ -234,14 +234,12 @@ var ArrayList = (function () {
     ArrayList.prototype.immutableList = function () {
         return this;
     };
-    ;
     /**
     * Returns an ImmutableCollection backed by this Collection
     */
     ArrayList.prototype.immutableCollection = function () {
         return this;
     };
-    ;
     return ArrayList;
 }());
 exports.ArrayList = ArrayList;

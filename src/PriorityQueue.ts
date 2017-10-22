@@ -61,7 +61,7 @@ export class PriorityQueue<K> implements Queue<K> {
   * Removes all of the elements from this collection. The collection be empty after this call returns.
   */
   public clear () {
-    ;
+    return;
   }
 
   /**

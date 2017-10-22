@@ -36,7 +36,7 @@ export interface ImmutableList<T> extends ImmutableCollection<T> {
   * @param {T} t element whose presence in this list is to be tested
   * @return {boolean} true if this list contains the specified element
   */
-  contains (t:T) : boolean
+  contains (t:T) : boolean;
 
   /**
   * Returns true if this list contains no elements.

@@ -150,14 +150,14 @@ export class HashSet<K> implements JSet<K> {
   */
   public immutableCollection () : ImmutableCollection<K> {
     return this;
-  };
+  }
 
   /**
   * Returns an ImmutableSet backed by this Set
   */
   public immutableSet () : ImmutableSet<K> {
     return this;
-  };
+  }
 }
 
 

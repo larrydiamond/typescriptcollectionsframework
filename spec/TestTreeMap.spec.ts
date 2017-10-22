@@ -34,7 +34,7 @@ describe("Test TreeMap functionality", function() {
     public getPrice():number {
       return this.price;
     }
-  };
+  }
 
   const product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
   const product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
@@ -68,7 +68,7 @@ describe("Test TreeMap functionality", function() {
 
       return 1;
     }
-  }
+  };
 
   const priceSortPetStoreProduct:Comparator<PetStoreProduct> = {
     compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
@@ -98,7 +98,7 @@ describe("Test TreeMap functionality", function() {
 
       return 1;
     }
-  }
+  };
 
   // Wanted to show a class in the value object but anything would work fine
   class ValueClass {

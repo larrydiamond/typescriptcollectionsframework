@@ -52,7 +52,7 @@ var PriorityQueue = (function () {
     * Removes all of the elements from this collection. The collection be empty after this call returns.
     */
     PriorityQueue.prototype.clear = function () {
-        ;
+        return;
     };
     /**
     * Removes the first occurrence of the specified element from this collection, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).

@@ -226,7 +226,6 @@ var HashMap = (function () {
     HashMap.prototype.immutableMap = function () {
         return this;
     };
-    ;
     /**
      * This method is deprecated and will be removed in a future revision.
      * @deprecated

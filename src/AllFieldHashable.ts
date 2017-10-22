@@ -32,7 +32,7 @@ import {Hashable} from "./Hashable";
      if (JSON.stringify(o1) === JSON.stringify(o2))
        return true;
      return false;
-   };
+   }
    public hashCode (o:T) : number {
      if (o === undefined) {
        return 0;
@@ -42,5 +42,5 @@ import {Hashable} from "./Hashable";
      }
      const tmp:string = JSON.stringify (o);
      return Collections.getHashCodeForString(tmp);
-   };
+   }
  }

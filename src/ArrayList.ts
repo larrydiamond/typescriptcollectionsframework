@@ -266,14 +266,14 @@ export class ArrayList<T> implements List<T>, Iterable<T> {
   */
   public immutableList () : ImmutableList<T> {
     return this;
-  };
+  }
 
   /**
   * Returns an ImmutableCollection backed by this Collection
   */
   public immutableCollection () : ImmutableCollection<T> {
     return this;
-  };
+  }
 
 }
 

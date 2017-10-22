@@ -35,7 +35,7 @@ describe("Test HashMap functionality", function() {
     public getPrice():number {
       return this.price;
     }
-  };
+  }
 
   const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
   const product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);

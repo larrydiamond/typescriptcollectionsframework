@@ -787,7 +787,7 @@ public size () : number {
   */
   public immutableMap () : ImmutableMap<K,V> {
     return this;
-  };
+  }
 
 }
 

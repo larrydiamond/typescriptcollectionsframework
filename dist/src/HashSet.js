@@ -130,14 +130,12 @@ var HashSet = (function () {
     HashSet.prototype.immutableCollection = function () {
         return this;
     };
-    ;
     /**
     * Returns an ImmutableSet backed by this Set
     */
     HashSet.prototype.immutableSet = function () {
         return this;
     };
-    ;
     return HashSet;
 }());
 exports.HashSet = HashSet;

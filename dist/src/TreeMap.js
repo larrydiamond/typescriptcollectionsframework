@@ -746,7 +746,6 @@ var TreeMap = (function () {
     TreeMap.prototype.immutableMap = function () {
         return this;
     };
-    ;
     return TreeMap;
 }());
 exports.TreeMap = TreeMap;

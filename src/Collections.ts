@@ -43,7 +43,7 @@ export class Collections {
 
         return 1;
       }
-    }
+    };
 
     return sortString;
   }
@@ -69,7 +69,7 @@ export class Collections {
 
         return 1;
       }
-    }
+    };
     return sortNumber;
   }
 
@@ -167,7 +167,7 @@ export class Collections {
         else
           return false;
       }
-    }
+    };
     return tmp;
   }
 

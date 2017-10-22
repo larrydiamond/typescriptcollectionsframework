@@ -1072,7 +1072,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
     if ((node === undefined) || (node === null)) {
       return null;
     }
-    return node.getKey()
+    return node.getKey();
   }
 
   /**
@@ -1200,12 +1200,12 @@ export class SkipListSet<K> implements NavigableSet<K> {
   */
   public immutableCollection () : ImmutableCollection<K> {
     return this;
-  };
+  }
 
   /**
   * Returns an ImmutableSet backed by this Set
   */
   public immutableSet () : ImmutableSet<K> {
     return this;
-  };
+  }
 }

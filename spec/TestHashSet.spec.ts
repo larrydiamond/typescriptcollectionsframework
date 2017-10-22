@@ -37,7 +37,7 @@ describe("Test HashSet functionality", function() {
     public getPrice():number {
       return this.price;
     }
-  };
+  }
 
   const product1:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
   const product2:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
@@ -288,7 +288,7 @@ describe("Test HashSet functionality", function() {
 
             return 1;
           }
-        }
+        };
 
   it("Test constructing with elements from a TreeSet", function() {
     const source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
