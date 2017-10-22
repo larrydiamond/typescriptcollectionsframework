@@ -210,13 +210,15 @@ describe("Test SkipListMap functionality", function () {
         testNumber.equals("Expected sourceMap size incorrect", sourceMap.size(), 2);
         testBoolean.equalsTrue("Validate sourceMap", sourceMap.validateMap());
     });
-    it("Test adding initial elements in order ", function () {
-        var sourceMap = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
-        test.equals("Adding A to empty map", null, sourceMap.put("A", "B"));
-        test.equals("Adding C to 1 entry map", null, sourceMap.put("C", "D"));
-        testNumber.equals("Expected sourceMap size incorrect", sourceMap.size(), 2);
-        testBoolean.equalsTrue("Validate sourceMap", sourceMap.validateMap());
-    });
+    /*
+      it ("Test adding initial elements in order ", function () {
+        const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
+        test.equals ("Adding A to empty map", null, sourceMap.put ("A", "B"));
+        test.equals ("Adding C to 1 entry map", null, sourceMap.put ("C", "D"));
+        testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
+        testBoolean.equalsTrue ("Validate sourceMap", sourceMap.validateMap());
+      });
+    */
     it("Test adding and copying initial elements in order ", function () {
         var sourceMap = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
         test.equals("Adding A to empty map", null, sourceMap.put("A", "B"));
