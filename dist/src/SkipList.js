@@ -22,9 +22,7 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var Collections_1 = require("./Collections");
 var SkipListMapImpl = (function () {
-    function SkipListMapImpl(iComparator, initialElements) {
-        if (initialElements === void 0) { initialElements = null; }
-        this.initialElements = initialElements;
+    function SkipListMapImpl(iComparator) {
         this.head = null;
         this.height = 10;
         this.mapComparator = null;
@@ -39,14 +37,6 @@ var SkipListMapImpl = (function () {
         this.head = new ArrayList_1.ArrayList(this.skipListNodeCollectable);
         for (var loop = 0; loop < this.height; loop++) {
             this.head.add(null);
-        }
-        if ((initialElements !== null) && (initialElements !== undefined)) {
-            //      console.log ("skiplist::constructor initial has " + initialElements.size());
-            for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
-                var t = iter.next();
-                //        console.log ("skiplist::constructor adding " + t.getKey());
-                this.put(t.getKey(), t.getValue());
-            }
         }
     }
     SkipListMapImpl.prototype.getSkipListNodeComparator = function () { return this.skipListNodeComparator; };
@@ -597,7 +587,15 @@ var SkipListMap = (function () {
     function SkipListMap(comp, iInitial) {
         if (iInitial === void 0) { iInitial = null; }
         this.impl = null;
-        this.impl = new SkipListMapImpl(comp, iInitial);
+        this.impl = new SkipListMapImpl(comp);
+        if ((iInitial !== null) && (iInitial !== undefined)) {
+            //      console.log ("skiplist::constructor initial has " + initialElements.size());
+            for (var iter = iInitial.entrySet().iterator(); iter.hasNext();) {
+                var t = iter.next();
+                //        console.log ("skiplist::constructor adding " + t.getKey());
+                this.impl.put(t.getKey(), t.getValue());
+            }
+        }
     }
     SkipListMap.prototype.validateMap = function () { return this.impl.validate(); };
     SkipListMap.prototype.validateMapDisplay = function () { return this.impl.validateDisplay(); };
@@ -937,7 +935,7 @@ var SkipListSet = (function () {
     function SkipListSet(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.impl = null;
-        this.impl = new SkipListMapImpl(iComparator, null);
+        this.impl = new SkipListMapImpl(iComparator);
         if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var key = iter.next();

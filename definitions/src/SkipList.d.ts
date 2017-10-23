@@ -10,7 +10,6 @@ import { MapEntry } from "./MapEntry";
 import { NavigableMap } from "./NavigableMap";
 import { NavigableSet } from "./NavigableSet";
 export declare class SkipListMapImpl<K, V> {
-    private initialElements;
     private head;
     private height;
     private mapComparator;
@@ -18,7 +17,7 @@ export declare class SkipListMapImpl<K, V> {
     private numberElements;
     private skipListNodeComparator;
     private skipListNodeCollectable;
-    constructor(iComparator: Comparator<K>, initialElements?: ImmutableMap<K, V>);
+    constructor(iComparator: Comparator<K>);
     getSkipListNodeComparator(): Comparator<SkipListNode<K, V>>;
     getSkipListNodeCollectable(): Collectable<SkipListNode<K, V>>;
     validateDisplay(): boolean;

@@ -32,7 +32,7 @@ export class SkipListMapImpl<K,V> {
   private skipListNodeComparator:Comparator<SkipListNode<K,V>> = null;
   private skipListNodeCollectable:Collectable<SkipListNode<K,V>> = null;
 
-  constructor(iComparator:Comparator<K>, private initialElements:ImmutableMap<K, V> = null) {
+  constructor(iComparator:Comparator<K>) {
     this.mapComparator = iComparator;
     this.skipListNodeComparator = new SkipListNodeComparator<K,V>(this.mapComparator);
     this.mapCollectable = Collections.collectableFromComparator(iComparator);
@@ -41,15 +41,6 @@ export class SkipListMapImpl<K,V> {
     this.head = new ArrayList<SkipListNode<K,V>>(this.skipListNodeCollectable);
     for (let loop:number = 0; loop < this.height; loop++) {
       this.head.add (null);
-    }
-
-    if ((initialElements !== null) && (initialElements !== undefined)) {
-//      console.log ("skiplist::constructor initial has " + initialElements.size());
-      for (const iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
-        const t:MapEntry<K,V> = iter.next ();
-//        console.log ("skiplist::constructor adding " + t.getKey());
-        this.put (t.getKey(), t.getValue());
-      }
     }
   }
 
@@ -615,7 +606,17 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   private impl:SkipListMapImpl<K,V> = null;
 
   constructor (comp:Comparator<K>, iInitial:ImmutableMap<K,V> = null) {
-    this.impl = new SkipListMapImpl(comp, iInitial);
+    this.impl = new SkipListMapImpl(comp);
+
+
+    if ((iInitial !== null) && (iInitial !== undefined)) {
+    //      console.log ("skiplist::constructor initial has " + initialElements.size());
+      for (const iter = iInitial.entrySet().iterator(); iter.hasNext(); ) {
+        const t:MapEntry<K,V> = iter.next ();
+    //        console.log ("skiplist::constructor adding " + t.getKey());
+        this.impl.put (t.getKey(), t.getValue());
+      }
+    }
   }
 
   public validateMap () : boolean { return this.impl.validate(); }
@@ -978,7 +979,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   private impl:SkipListMapImpl<K,number> = null;
 
   constructor(iComparator:Comparator<K>, private initialElements?:ImmutableCollection<K>) {
-    this.impl = new SkipListMapImpl<K,number>(iComparator, null);
+    this.impl = new SkipListMapImpl<K,number>(iComparator);
     if ((initialElements !== null) && (initialElements !== undefined)) {
       for (const iter = initialElements.iterator(); iter.hasNext(); ) {
         const key:K = iter.next ();
@@ -1179,5 +1180,5 @@ export class SkipListSet<K> implements NavigableSet<K> {
   public immutableSet () : ImmutableSet<K> {
     return this;
   }
-  
+
 }
