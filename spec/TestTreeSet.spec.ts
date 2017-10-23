@@ -163,7 +163,7 @@ describe("Test TreeSet functionality", function() {
     expect (1).toEqual(TreeSet1.size ());
     expect (false).toEqual(TreeSet1.isEmpty ());
   });
-  
+
   it("Test Adding repeatedly one item basic datatypes", function() {
     const TreeSet2:TreeSet<string> = new TreeSet<string>(Collections.getStringComparator());
     expect (TreeSet2.size ()).toEqual(0);

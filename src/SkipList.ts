@@ -205,7 +205,8 @@ export class SkipListMapImpl<K,V> {
       const lastNode:SkipListNode<K,V> = this.floorEntry(key);
       if ((lastNode === null) || (lastNode === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
 //        console.log ("SkipListImpl::put least element insert " + JSON.stringify(key));
-        const nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
+        const nodeHeight : number = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
+//        console.log ("New node height = " + nodeHeight);
         const newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
         for (let loop:number = 0; loop < nodeHeight; loop++) {
           const existingNode : SkipListNode<K,V> = this.head.get (loop);
@@ -223,7 +224,8 @@ export class SkipListMapImpl<K,V> {
           lastNode.setValue (value);
           return lastValue;
         } else {  // This node will immediately preceed the new node
-          const nodeHeight:number = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
+          const nodeHeight : number = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
+//          console.log ("New node height = " + nodeHeight);
           const newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
           this.hookUpNodePointers (newnode, lastNode);
 
@@ -475,7 +477,9 @@ export class SkipListMapImpl<K,V> {
   * @return {MapEntry} an entry with the key, or null if there is no such key
   */
   public getEntry (key:K) : SkipListNode<K,V> {
+    console.log ("getEntry called on " + key);
     if (this.numberElements < 1) {
+      console.log ("this.numberElements = " + this.numberElements);
       return null;
     }
 
@@ -485,6 +489,7 @@ export class SkipListMapImpl<K,V> {
       const tmp:SkipListNode<K,V> = this.head.get ((this.height - 1) - loop);
       if ((tmp !== null) && (tmp !== undefined)) {
         const cmp:number = this.mapComparator.compare (key, tmp.getKey());
+        console.log ("first compared " + key + " to " + tmp.getKey() + " " + cmp);
         if (cmp === 0) {
           return tmp;
         }
@@ -494,12 +499,14 @@ export class SkipListMapImpl<K,V> {
       }
     }
     if (node === null) { // we only got here if every element was higher than this one
+      console.log ("no node was found");
       return null;
     }
 
     // keep moving forward until we find the node or cant find any node less than it
     while (node.getNextNodeArray().get (0) !== null) {
       let cmp:number = this.mapComparator.compare (key, node.getKey());
+      console.log ("while compared " + key + " to " + node.getKey() + " " + cmp);
       if (cmp === 0) {
         return node;
       }
@@ -511,6 +518,7 @@ export class SkipListMapImpl<K,V> {
       for (let loop : number = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
         const tmp : SkipListNode<K,V> = node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1);
         if (tmp !== null) {
+          console.log ("for compared " + key + " to " + tmp.getKey() + " " + cmp);
           cmp = this.mapComparator.compare (key, tmp.getKey());
           if (cmp === 0) {
             return tmp;
@@ -521,6 +529,7 @@ export class SkipListMapImpl<K,V> {
         }
       }
     }
+    console.log ("returning null");
     return null;
   }
 
@@ -607,7 +616,6 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
 
   constructor (comp:Comparator<K>, iInitial:ImmutableMap<K,V> = null) {
     this.impl = new SkipListMapImpl(comp);
-
 
     if ((iInitial !== null) && (iInitial !== undefined)) {
     //      console.log ("skiplist::constructor initial has " + initialElements.size());
@@ -983,10 +991,13 @@ export class SkipListSet<K> implements NavigableSet<K> {
     if ((initialElements !== null) && (initialElements !== undefined)) {
       for (const iter = initialElements.iterator(); iter.hasNext(); ) {
         const key:K = iter.next ();
-        this.impl.put (key, 0);
+        this.impl.put (key, 1);
       }
     }
   }
+
+  public validateSet () : boolean { return this.impl.validate(); }
+  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
 
   /**
   * Adds the specified element to this set if it is not already present.
@@ -994,8 +1005,8 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {boolean} true if this set did not already contain the specified element
   */
   public add (element:K) : boolean {
-    const tmp:number = this.impl.put (element, 0);
-    if (tmp === 0) {
+    const tmp:number = this.impl.put (element, 1);
+    if (tmp === 1) {
       return false;
     }
     return true;

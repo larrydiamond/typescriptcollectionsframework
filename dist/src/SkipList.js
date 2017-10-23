@@ -195,6 +195,7 @@ var SkipListMapImpl = (function () {
             if ((lastNode === null) || (lastNode === undefined)) {
                 //        console.log ("SkipListImpl::put least element insert " + JSON.stringify(key));
                 var nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1); // Random number between 1 and this.height (both inclusive)
+                //        console.log ("New node height = " + nodeHeight);
                 var newnode = new SkipListNode(key, value, nodeHeight, this.skipListNodeCollectable);
                 for (var loop = 0; loop < nodeHeight; loop++) {
                     var existingNode = this.head.get(loop);
@@ -215,6 +216,7 @@ var SkipListMapImpl = (function () {
                 }
                 else {
                     var nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1); // Random number between 1 and this.height (both inclusive)
+                    //          console.log ("New node height = " + nodeHeight);
                     var newnode = new SkipListNode(key, value, nodeHeight, this.skipListNodeCollectable);
                     this.hookUpNodePointers(newnode, lastNode);
                     this.numberElements = this.numberElements + 1;
@@ -458,7 +460,9 @@ var SkipListMapImpl = (function () {
     * @return {MapEntry} an entry with the key, or null if there is no such key
     */
     SkipListMapImpl.prototype.getEntry = function (key) {
+        console.log("getEntry called on " + key);
         if (this.numberElements < 1) {
+            console.log("this.numberElements = " + this.numberElements);
             return null;
         }
         // Get a first node, highest -1 entry
@@ -467,6 +471,7 @@ var SkipListMapImpl = (function () {
             var tmp = this.head.get((this.height - 1) - loop);
             if ((tmp !== null) && (tmp !== undefined)) {
                 var cmp = this.mapComparator.compare(key, tmp.getKey());
+                console.log("first compared " + key + " to " + tmp.getKey() + " " + cmp);
                 if (cmp === 0) {
                     return tmp;
                 }
@@ -476,11 +481,13 @@ var SkipListMapImpl = (function () {
             }
         }
         if (node === null) {
+            console.log("no node was found");
             return null;
         }
         // keep moving forward until we find the node or cant find any node less than it
         while (node.getNextNodeArray().get(0) !== null) {
             var cmp = this.mapComparator.compare(key, node.getKey());
+            console.log("while compared " + key + " to " + node.getKey() + " " + cmp);
             if (cmp === 0) {
                 return node;
             }
@@ -491,6 +498,7 @@ var SkipListMapImpl = (function () {
             for (var loop = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
                 var tmp = node.getNextNodeArray().get(node.getNextNodeArray().size() - loop - 1);
                 if (tmp !== null) {
+                    console.log("for compared " + key + " to " + tmp.getKey() + " " + cmp);
                     cmp = this.mapComparator.compare(key, tmp.getKey());
                     if (cmp === 0) {
                         return tmp;
@@ -501,6 +509,7 @@ var SkipListMapImpl = (function () {
                 }
             }
         }
+        console.log("returning null");
         return null;
     };
     return SkipListMapImpl;
@@ -939,18 +948,20 @@ var SkipListSet = (function () {
         if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var key = iter.next();
-                this.impl.put(key, 0);
+                this.impl.put(key, 1);
             }
         }
     }
+    SkipListSet.prototype.validateSet = function () { return this.impl.validate(); };
+    SkipListSet.prototype.validateSetDisplay = function () { return this.impl.validateDisplay(); };
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
     * @return {boolean} true if this set did not already contain the specified element
     */
     SkipListSet.prototype.add = function (element) {
-        var tmp = this.impl.put(element, 0);
-        if (tmp === 0) {
+        var tmp = this.impl.put(element, 1);
+        if (tmp === 1) {
             return false;
         }
         return true;

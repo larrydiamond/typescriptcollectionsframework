@@ -276,6 +276,8 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     private initialElements;
     private impl;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
+    validateSet(): boolean;
+    validateSetDisplay(): boolean;
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
