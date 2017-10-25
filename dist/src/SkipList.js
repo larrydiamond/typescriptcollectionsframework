@@ -90,14 +90,15 @@ var SkipListMapImpl = (function () {
             return true;
         }
         else {
+            console.log("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
             return false;
         }
     };
     SkipListMapImpl.prototype.validate = function () {
-        var count = 0;
+        var count = 0.0;
         var tmp = this.firstEntry();
         if ((tmp !== null) && (tmp !== undefined)) {
-            count++;
+            count = 1.0;
         }
         // each of the head elements needs to be at least as big as the prior element or null
         for (var loop = 1.0; loop < this.head.size() - 1.0; loop++) {
@@ -122,7 +123,6 @@ var SkipListMapImpl = (function () {
                     console.log("last node array null");
                     return false;
                 }
-                count++;
                 var prev = next.getLastNodeArray().get(Math.round(0));
                 if (prev !== null) {
                     var cmp = this.mapComparator.compare(prev.getKey(), tmp.getKey());
@@ -131,6 +131,7 @@ var SkipListMapImpl = (function () {
                         return false;
                     }
                 }
+                count = count + 1.0;
             }
             tmp = next;
         }
@@ -138,7 +139,7 @@ var SkipListMapImpl = (function () {
             return true;
         }
         else {
-            console.log("End::Size of SkipListMap = " + this.numberElements + " found " + count);
+            console.log("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
             return false;
         }
     };
@@ -316,8 +317,19 @@ var SkipListMapImpl = (function () {
         if (this.numberElements < 1) {
             return null;
         }
-        console.log("SkipList::ceilingEntry unwritten code");
-        return undefined; // TODO
+        var node = this.floorEntry(key);
+        if ((node === null) || (node === undefined)) {
+            node = this.firstEntry();
+            return node;
+        }
+        else {
+            if (this.comparator().compare(node.getKey(), key) === 0) {
+                return node;
+            }
+            else {
+                return this.nextHigherNode(node); // the highest key less than or equal to this node is less than this node
+            }
+        }
     };
     /**
     * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
@@ -328,8 +340,14 @@ var SkipListMapImpl = (function () {
         if (this.numberElements < 1) {
             return null;
         }
-        console.log("SkipList::higherEntry unwritten code");
-        return undefined; // TODO
+        var node = this.floorEntry(key);
+        if ((node === null) || (node === undefined)) {
+            node = this.firstEntry();
+            return node;
+        }
+        else {
+            return this.nextHigherNode(node);
+        }
     };
     /**
     * Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.
@@ -657,8 +675,15 @@ var SkipListMap = (function () {
     SkipListMap.prototype.validateMap = function () { return this.impl.validate(); };
     SkipListMap.prototype.validateMapDisplay = function () { return this.impl.validateDisplay(); };
     SkipListMap.prototype.getNextHigherKey = function (key) {
-        console.log("unwritten code");
-        return undefined;
+        var node = this.impl.getEntry(key);
+        if ((node === undefined) || (node === null)) {
+            return null;
+        }
+        var nn = this.impl.nextHigherNode(node);
+        if ((nn === undefined) || (nn === null)) {
+            return null;
+        }
+        return nn.getKey();
     };
     /**
     * Returns the number of key-value mappings in this map.

@@ -120,7 +120,7 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
     validateMap(): boolean;
     validateMapDisplay(): boolean;
-    getNextHigherKey(key: K): any;
+    getNextHigherKey(key: K): K;
     /**
     * Returns the number of key-value mappings in this map.
     * @return {number} the number of key-value mappings in this map

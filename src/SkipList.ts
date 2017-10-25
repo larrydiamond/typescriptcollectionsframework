@@ -95,16 +95,17 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements === count) {
       return true;
     } else {
+      console.log ("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
       return false;
     }
   }
 
   public validate () : boolean {
-    let count : number = 0;
+    let count : number = 0.0;
 
     let tmp : SkipListNode<K,V> = this.firstEntry();
     if ((tmp !== null) && (tmp !== undefined)) {
-      count++;
+      count = 1.0;
     }
     // each of the head elements needs to be at least as big as the prior element or null
     for (let loop:number = 1.0; loop < this.head.size() - 1.0; loop++) {
@@ -130,7 +131,6 @@ export class SkipListMapImpl<K,V> {
           console.log ("last node array null");
           return false;
         }
-        count++;
         const prev : SkipListNode<K,V> = next.getLastNodeArray().get (Math.round (0));
         if (prev !== null) {
           const cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
@@ -139,13 +139,14 @@ export class SkipListMapImpl<K,V> {
             return false;
           }
         }
+        count = count + 1.0;
       }
       tmp = next;
     }
     if (this.numberElements === count) {
       return true;
     } else {
-      console.log ("End::Size of SkipListMap = " + this.numberElements + " found " + count);
+      console.log ("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
       return false;
     }
   }
@@ -296,6 +297,7 @@ export class SkipListMapImpl<K,V> {
             nextNode.getLastNodeArray().set (Math.round (height), newNode);
           }
         } else {
+          
           // find the new last node if it exists
           console.log ("Unwritten code");
         }
@@ -325,8 +327,18 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements < 1) {
       return null;
     }
-    console.log ("SkipList::ceilingEntry unwritten code");
-    return undefined;   // TODO
+
+    let node:SkipListNode<K,V> = this.floorEntry(key);
+    if ((node === null) || (node === undefined)) { // no node less than or equal to this key
+      node = this.firstEntry();
+      return node;
+    } else {
+      if (this.comparator().compare(node.getKey(), key) === 0) { // the highest key less than or equal to this node is this node
+        return node;
+      } else {
+        return this.nextHigherNode(node); // the highest key less than or equal to this node is less than this node
+      }
+    }
   }
 
   /**
@@ -339,8 +351,13 @@ export class SkipListMapImpl<K,V> {
       return null;
     }
 
-    console.log ("SkipList::higherEntry unwritten code");
-    return undefined;   // TODO
+    let node:SkipListNode<K,V> = this.floorEntry(key);
+    if ((node === null) || (node === undefined)) { // no node less than or equal to this key
+      node = this.firstEntry();
+      return node;
+    } else {
+      return this.nextHigherNode(node);
+    }
   }
 
   /**
@@ -677,8 +694,15 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
 
   public getNextHigherKey (key : K) {
-    console.log ("unwritten code");
-    return undefined;
+    const node : SkipListNode<K,V> = this.impl.getEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    const nn : SkipListNode<K,V> = this.impl.nextHigherNode(node);
+    if ((nn === undefined) || (nn === null)) {
+      return null;
+    }
+    return nn.getKey();
   }
 
   /**
