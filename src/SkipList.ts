@@ -187,6 +187,7 @@ export class SkipListMapImpl<K,V> {
         this.head.set(Math.round (loop), nn);
       }
     }
+    this.numberElements--;
     return;
   }
 
@@ -297,7 +298,7 @@ export class SkipListMapImpl<K,V> {
             nextNode.getLastNodeArray().set (Math.round (height), newNode);
           }
         } else {
-          
+
           // find the new last node if it exists
           console.log ("Unwritten code");
         }

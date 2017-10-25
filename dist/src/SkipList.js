@@ -177,6 +177,7 @@ var SkipListMapImpl = (function () {
                 this.head.set(Math.round(loop), nn);
             }
         }
+        this.numberElements--;
         return;
     };
     /**
