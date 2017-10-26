@@ -284,7 +284,7 @@ export class SkipListMapImpl<K,V> {
   }
 
   private hookUpNodePointers (newNode:SkipListNode<K,V>, immediatePreceedingNode:SkipListNode<K,V>) : void {
-    const lastNode:SkipListNode<K,V> = immediatePreceedingNode;
+    let lastNode:SkipListNode<K,V> = immediatePreceedingNode;
     const nodeHeight:number = newNode.getNextNodeArray().size();
     for (let height:number = 0.0; height < newNode.getNextNodeArray().size(); height++) {
       if ((lastNode !== null) && (lastNode !== undefined)) {
@@ -297,9 +297,9 @@ export class SkipListMapImpl<K,V> {
             nextNode.getLastNodeArray().set (Math.round (height), newNode);
           }
         } else {
-
           // find the new last node if it exists
-          console.error ("Unwritten code");
+          lastNode = lastNode.getLastNodeArray().get (lastNode.getLastNodeArray().size() - 1);
+          console.error ("Unwritten code hookUpNodePointers");
         }
       } else {
         this.head.set (Math.round (height), newNode); // nothing before us so set the head to our node

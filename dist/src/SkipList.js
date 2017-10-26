@@ -291,7 +291,8 @@ var SkipListMapImpl = (function () {
                 }
                 else {
                     // find the new last node if it exists
-                    console.error("Unwritten code");
+                    lastNode = lastNode.getLastNodeArray().get(lastNode.getLastNodeArray().size() - 1);
+                    console.error("Unwritten code hookUpNodePointers");
                 }
             }
             else {
