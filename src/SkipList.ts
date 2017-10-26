@@ -25,10 +25,10 @@ import {NavigableSet} from "./NavigableSet";
 
 export class SkipListMapImpl<K,V> {
   private head:ArrayList<SkipListNode<K,V>> = null;
-  private height:number = 10;
+  private height:number = 3;
   private mapComparator:Comparator<K> = null;
   private mapCollectable:Collectable<K> = null;
-  private numberElements: number = 0;
+  private numberElements: number = 0.0;
   private skipListNodeComparator:Comparator<SkipListNode<K,V>> = null;
   private skipListNodeCollectable:Collectable<SkipListNode<K,V>> = null;
 
@@ -95,7 +95,7 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements === count) {
       return true;
     } else {
-      console.log ("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
+      console.log ("Inconsistent size of display SkipListMap = " + this.numberElements + " found " + count);
       return false;
     }
   }
@@ -237,19 +237,19 @@ export class SkipListMapImpl<K,V> {
    * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
    */
   public put (key:K, value:V) : V {
-    if (this.numberElements < 1) {
+    if (Math.round(this.numberElements) < 1.0) {
+      this.numberElements = 1.0;
 //      console.log ("SkipListImpl::put empty insert " + JSON.stringify(key));
       const newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, this.height, this.skipListNodeCollectable);
       for (let loop:number = 0.0; loop < this.height; loop++) {
         this.head.set (Math.round (loop), newnode);
       }
-      this.numberElements = 1.0;
       return null;
     } else {
       const lastNode:SkipListNode<K,V> = this.floorEntry(key);
       if ((lastNode === null) || (lastNode === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
 //        console.log ("SkipListImpl::put least element insert " + JSON.stringify(key));
-        let nodeHeight : number = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
+        let nodeHeight : number = Math.round (Math.floor(Math.random() * (this.height - 1) + 1));  // Random number between 1 and this.height (both inclusive)
         if (nodeHeight < 1.0) nodeHeight = 1.0;
         if (nodeHeight > this.height) nodeHeight = this.height;
 //        console.log ("New node height = " + nodeHeight);
@@ -262,7 +262,7 @@ export class SkipListMapImpl<K,V> {
           }
           this.head.set (Math.round (loop), newnode);
         }
-        this.numberElements = this.numberElements + 1.0;
+        this.numberElements++;
         return null;
       } else {
         if (this.mapComparator.compare (key, lastNode.getKey()) === 0) {
@@ -270,14 +270,13 @@ export class SkipListMapImpl<K,V> {
           lastNode.setValue (value);
           return lastValue;
         } else {  // This node will immediately preceed the new node
-          let nodeHeight : number = Math.floor(Math.random() * (this.height - 1) + 1);  // Random number between 1 and this.height (both inclusive)
+          this.numberElements++;
+          let nodeHeight : number = Math.round (Math.floor(Math.random() * (this.height - 1) + 1));  // Random number between 1 and this.height (both inclusive)
           if (nodeHeight < 1.0) nodeHeight = 1.0;
           if (nodeHeight > this.height) nodeHeight = this.height;
 //          console.log ("New node height = " + nodeHeight);
           const newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, nodeHeight, this.skipListNodeCollectable);
           this.hookUpNodePointers (newnode, lastNode);
-
-          this.numberElements = this.numberElements + 1.0;
           return null;
         }
       }
@@ -287,7 +286,7 @@ export class SkipListMapImpl<K,V> {
   private hookUpNodePointers (newNode:SkipListNode<K,V>, immediatePreceedingNode:SkipListNode<K,V>) : void {
     const lastNode:SkipListNode<K,V> = immediatePreceedingNode;
     const nodeHeight:number = newNode.getNextNodeArray().size();
-    for (let height:number = 0.0; height < newNode.getNextNodeArray().size() - 1.0; height++) {
+    for (let height:number = 0.0; height < newNode.getNextNodeArray().size(); height++) {
       if ((lastNode !== null) && (lastNode !== undefined)) {
         if (lastNode.getNextNodeArray().size() > height) {
           const nextNode:SkipListNode<K,V> = lastNode.getNextNodeArray().get(height);
@@ -300,7 +299,7 @@ export class SkipListMapImpl<K,V> {
         } else {
 
           // find the new last node if it exists
-          console.log ("Unwritten code");
+          console.error ("Unwritten code");
         }
       } else {
         this.head.set (Math.round (height), newNode); // nothing before us so set the head to our node
@@ -370,11 +369,20 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements < 1) {
       return null;
     }
-    if ((node === null) || (node === undefined)) return null;
+    if ((node === null) || (node === undefined)) {
+//      console.log ("NextHigherNode returning null since this node is bogus");
+      return null;
+    }
     const ta:ArrayList<SkipListNode<K,V>> = node.getNextNodeArray();
-    if ((ta === null) || (ta === undefined)) return null;
+    if ((ta === null) || (ta === undefined)) {
+//      console.log ("NextHigherNode returning null since nextnodearray is bogus");
+      return null;
+    }
     const tmpn = ta.get(0);
-    if ((tmpn === null) || (tmpn === undefined)) return null;
+    if ((tmpn === null) || (tmpn === undefined)) {
+//      console.log ("NextHigherNode returning null since element 0 is bogus");
+      return null;
+    }
     return tmpn;
   }
 
@@ -608,6 +616,7 @@ export class SkipListNode<K,V> extends BasicMapEntry<K,V> {
       this.nextNodeArray.add (null);
       this.lastNodeArray.add (null);
     }
+//    console.log ("Adding node of size " + height);
   }
   public setValue (iValue:V) : void {
     this.value = iValue;

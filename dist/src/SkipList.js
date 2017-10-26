@@ -24,10 +24,10 @@ var Collections_1 = require("./Collections");
 var SkipListMapImpl = (function () {
     function SkipListMapImpl(iComparator) {
         this.head = null;
-        this.height = 10;
+        this.height = 3;
         this.mapComparator = null;
         this.mapCollectable = null;
-        this.numberElements = 0;
+        this.numberElements = 0.0;
         this.skipListNodeComparator = null;
         this.skipListNodeCollectable = null;
         this.mapComparator = iComparator;
@@ -90,7 +90,7 @@ var SkipListMapImpl = (function () {
             return true;
         }
         else {
-            console.log("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
+            console.log("Inconsistent size of display SkipListMap = " + this.numberElements + " found " + count);
             return false;
         }
     };
@@ -223,20 +223,20 @@ var SkipListMapImpl = (function () {
      * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
      */
     SkipListMapImpl.prototype.put = function (key, value) {
-        if (this.numberElements < 1) {
+        if (Math.round(this.numberElements) < 1.0) {
+            this.numberElements = 1.0;
             //      console.log ("SkipListImpl::put empty insert " + JSON.stringify(key));
             var newnode = new SkipListNode(key, value, this.height, this.skipListNodeCollectable);
             for (var loop = 0.0; loop < this.height; loop++) {
                 this.head.set(Math.round(loop), newnode);
             }
-            this.numberElements = 1.0;
             return null;
         }
         else {
             var lastNode = this.floorEntry(key);
             if ((lastNode === null) || (lastNode === undefined)) {
                 //        console.log ("SkipListImpl::put least element insert " + JSON.stringify(key));
-                var nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1); // Random number between 1 and this.height (both inclusive)
+                var nodeHeight = Math.round(Math.floor(Math.random() * (this.height - 1) + 1)); // Random number between 1 and this.height (both inclusive)
                 if (nodeHeight < 1.0)
                     nodeHeight = 1.0;
                 if (nodeHeight > this.height)
@@ -251,7 +251,7 @@ var SkipListMapImpl = (function () {
                     }
                     this.head.set(Math.round(loop), newnode);
                 }
-                this.numberElements = this.numberElements + 1.0;
+                this.numberElements++;
                 return null;
             }
             else {
@@ -261,7 +261,8 @@ var SkipListMapImpl = (function () {
                     return lastValue;
                 }
                 else {
-                    var nodeHeight = Math.floor(Math.random() * (this.height - 1) + 1); // Random number between 1 and this.height (both inclusive)
+                    this.numberElements++;
+                    var nodeHeight = Math.round(Math.floor(Math.random() * (this.height - 1) + 1)); // Random number between 1 and this.height (both inclusive)
                     if (nodeHeight < 1.0)
                         nodeHeight = 1.0;
                     if (nodeHeight > this.height)
@@ -269,7 +270,6 @@ var SkipListMapImpl = (function () {
                     //          console.log ("New node height = " + nodeHeight);
                     var newnode = new SkipListNode(key, value, nodeHeight, this.skipListNodeCollectable);
                     this.hookUpNodePointers(newnode, lastNode);
-                    this.numberElements = this.numberElements + 1.0;
                     return null;
                 }
             }
@@ -278,7 +278,7 @@ var SkipListMapImpl = (function () {
     SkipListMapImpl.prototype.hookUpNodePointers = function (newNode, immediatePreceedingNode) {
         var lastNode = immediatePreceedingNode;
         var nodeHeight = newNode.getNextNodeArray().size();
-        for (var height = 0.0; height < newNode.getNextNodeArray().size() - 1.0; height++) {
+        for (var height = 0.0; height < newNode.getNextNodeArray().size(); height++) {
             if ((lastNode !== null) && (lastNode !== undefined)) {
                 if (lastNode.getNextNodeArray().size() > height) {
                     var nextNode = lastNode.getNextNodeArray().get(height);
@@ -291,7 +291,7 @@ var SkipListMapImpl = (function () {
                 }
                 else {
                     // find the new last node if it exists
-                    console.log("Unwritten code");
+                    console.error("Unwritten code");
                 }
             }
             else {
@@ -359,14 +359,20 @@ var SkipListMapImpl = (function () {
         if (this.numberElements < 1) {
             return null;
         }
-        if ((node === null) || (node === undefined))
+        if ((node === null) || (node === undefined)) {
+            //      console.log ("NextHigherNode returning null since this node is bogus");
             return null;
+        }
         var ta = node.getNextNodeArray();
-        if ((ta === null) || (ta === undefined))
+        if ((ta === null) || (ta === undefined)) {
+            //      console.log ("NextHigherNode returning null since nextnodearray is bogus");
             return null;
+        }
         var tmpn = ta.get(0);
-        if ((tmpn === null) || (tmpn === undefined))
+        if ((tmpn === null) || (tmpn === undefined)) {
+            //      console.log ("NextHigherNode returning null since element 0 is bogus");
             return null;
+        }
         return tmpn;
     };
     /**
@@ -595,6 +601,7 @@ var SkipListNode = (function (_super) {
             _this.lastNodeArray.add(null);
         }
         return _this;
+        //    console.log ("Adding node of size " + height);
     }
     SkipListNode.prototype.setValue = function (iValue) {
         this.value = iValue;
