@@ -420,7 +420,6 @@ describe("Test SkipList functionality", function() {
 
   }, 2000);
 
-  /*
   it("Test Remove from empty", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -454,6 +453,8 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.validateMap()).toEqual (true);
   });
 
+/*
+
   it("Test Remove head both sides loaded", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -462,11 +463,14 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(4);
-    expect (basicTypesMap1.validateMap()).toEqual (true);
+    testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMapDisplay());
+
     expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
     expect (basicTypesMap1.size ()).toEqual(3);
-    expect (basicTypesMap1.validateMap()).toEqual (true);
+    testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMapDisplay());
   });
+
+  /*
 
   it("Map Test Remove head left full right empty", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
@@ -1140,6 +1144,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Catnip", 9.99)).toEqual(4.99);
     expect (basicTypesMap1.get ("Catnip")).toEqual (9.99);  // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
   });
+*/
 
   it("Set Test Creation state", function() {
     const SkipListSet1:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
