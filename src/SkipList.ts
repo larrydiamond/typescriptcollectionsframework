@@ -52,7 +52,7 @@ export class SkipListMapImpl<K,V> {
     let count : number = 0;
     let tmp : SkipListNode<K,V> = this.firstEntry();
     if ((tmp !== null) && (tmp !== undefined)) {
-      console.log (JSON.stringify(tmp.getKey()));
+      console.log (JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()));
       count++;
     }
     // each of the head elements needs to be at least as big as the prior element or null
@@ -78,7 +78,7 @@ export class SkipListMapImpl<K,V> {
           console.log ("last node array null");
           return false;
         }
-        console.log (JSON.stringify(next.getKey()));
+        console.log (JSON.stringify(next.getKey()) + " - " + JSON.stringify(next.getValue()));
         count++;
         const prev : SkipListNode<K,V> = next.getLastNodeArray().get (Math.round (0));
         if (prev !== null) {
@@ -563,7 +563,7 @@ export class SkipListMapImpl<K,V> {
           return tmp;
         }
         if (cmp === -1) {
-//          console.log ("Setting first");
+//          console.log ("Setting first " + node.getKey());
           node = tmp;
         }
       }
@@ -581,21 +581,24 @@ export class SkipListMapImpl<K,V> {
 //        console.log ("found it in search");
         return node;
       }
-      if (cmp === 1) { // the next node is past the desired node
+      if (cmp === -1) { // the next node is past the desired node
 //        console.log ("Next Node is past");
         return null;
       }
 
       let nextNode : SkipListNode<K,V> = null;
       for (let loop : number = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
+//        console.log ("loop " + loop + " - " + key);
         const tmp : SkipListNode<K,V> = node.getNextNodeArray().get (node.getNextNodeArray().size() - loop - 1);
         if (tmp !== null) {
-//          console.log ("for compared " + key + " to " + tmp.getKey() + " " + cmp);
+//          console.log ("for " + loop + " compared " + key + " to " + tmp.getKey() + " " + cmp);
           cmp = this.mapComparator.compare (key, tmp.getKey());
           if (cmp === 0) {
+//            console.log ("found it in compare");
             return tmp;
           }
           if (cmp === -1) {
+//            console.log ("Passed it " + loop + " - " + key + " " + tmp.getKey());
             nextNode = tmp;
           }
         }

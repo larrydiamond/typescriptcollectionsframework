@@ -317,14 +317,14 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.containsKey ("Catnip")).toEqual (true);
-  });
+  }, 2000);
 
   it("Map Test ContainsKey where the item is not contained", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.containsKey ("Bananas")).toEqual (false);  // I guess we have no bananas today
-  });
+  }, 2000);
 
   it("Test Adding three native items", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
@@ -366,27 +366,14 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(3);
     testBoolean.equalsTrue ("Validate map6", basicTypesMap1.validateMap());
-  });
-  
-/*
+  }, 2000);
+
+  /*
   it("Test Adding some items", function() {
-    let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
-    let petStoreMap2:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     let basicTypesMap2:SkipListMap<number,string> = new SkipListMap<number,string>(Collections.getNumberComparator());
 
     expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
-
-    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
-    expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(null);
-    expect (petStoreMap1.put (product3, new ValueClass())).toEqual(null);
-    expect (petStoreMap1.size ()).toEqual(3);
-    testBoolean.equalsTrue ("Validate map1", petStoreMap1.validateMap());
-
-    expect (petStoreMap2.put (product1, new ValueClass())).toEqual(null);
-    expect (petStoreMap2.put (product2, new ValueClass())).toEqual(null);
-    expect (petStoreMap2.size ()).toEqual(2);
-    testBoolean.equalsTrue ("Validate map2", petStoreMap2.validateMap());
 
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
@@ -403,7 +390,7 @@ describe("Test SkipList functionality", function() {
     testNumber.equals ("Catnip was 4.99 now is 5.99", basicTypesMap1.put ("Catnip", 5.99), 4.99);
     expect (basicTypesMap1.size ()).toEqual(4);
     testNumber.equals ("Catnip was previously inserted at 5.99", basicTypesMap1.get ("Catnip"), 5.99);
-    testBoolean.equalsTrue ("Validate map4", basicTypesMap1.validateMap());
+    testBoolean.equalsTrue ("Validate map4", basicTypesMap1.validateMapDisplay());
 
     expect (basicTypesMap2.put (14.99, "ChewToy")).toEqual(null);
     expect (basicTypesMap2.put (4.99, "Catnip")).toEqual(null);
@@ -411,8 +398,27 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap2.put (0.99, "AAAAA")).toEqual(null);
     expect (basicTypesMap2.put (0.99, "BBBBB")).toEqual("AAAAA");
     expect (basicTypesMap2.size ()).toEqual(4);
-    testBoolean.equalsTrue ("Validate map5", basicTypesMap2.validateMap());
-  });
+    testBoolean.equalsTrue ("Validate map5", basicTypesMap2.validateMapDisplay());
+
+  }, 2000);
+*/
+
+  it("Test Adding some items typed", function() {
+    let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
+    let petStoreMap2:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
+
+    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
+    expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(null);
+    expect (petStoreMap1.put (product3, new ValueClass())).toEqual(null);
+    expect (petStoreMap1.size ()).toEqual(3);
+    testBoolean.equalsTrue ("Validate map1", petStoreMap1.validateMap());
+
+    expect (petStoreMap2.put (product1, new ValueClass())).toEqual(null);
+    expect (petStoreMap2.put (product2, new ValueClass())).toEqual(null);
+    expect (petStoreMap2.size ()).toEqual(2);
+    testBoolean.equalsTrue ("Validate map2", petStoreMap2.validateMap());
+
+  }, 2000);
 
   /*
   it("Test Remove from empty", function() {
@@ -1435,7 +1441,7 @@ describe("Test SkipList functionality", function() {
 
     const tset:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, sourceList);
     expect (tset.size ()).toEqual(sourceList.size());
-  });
+  }, 2000);
 
   it("Set Test constructing with elements from a LinkedList", function() {
     const sourceList:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
@@ -1444,7 +1450,7 @@ describe("Test SkipList functionality", function() {
 
     const tset:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, sourceList);
     expect (tset.size ()).toEqual(sourceList.size());
-  });
+  }, 2000);
 
   it("Set Test constructing with elements from an HashSet", function() {
     const source:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
@@ -1453,7 +1459,7 @@ describe("Test SkipList functionality", function() {
 
     const tset:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, source);
     expect (tset.size ()).toEqual(source.size());
-  });
+  }, 2000);
 
 /*
   it("Set Test constructing with elements from a SkipListSet", function() {

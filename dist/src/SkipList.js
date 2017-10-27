@@ -46,7 +46,7 @@ var SkipListMapImpl = (function () {
         var count = 0;
         var tmp = this.firstEntry();
         if ((tmp !== null) && (tmp !== undefined)) {
-            console.log(JSON.stringify(tmp.getKey()));
+            console.log(JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()));
             count++;
         }
         // each of the head elements needs to be at least as big as the prior element or null
@@ -72,7 +72,7 @@ var SkipListMapImpl = (function () {
                     console.log("last node array null");
                     return false;
                 }
-                console.log(JSON.stringify(next.getKey()));
+                console.log(JSON.stringify(next.getKey()) + " - " + JSON.stringify(next.getValue()));
                 count++;
                 var prev = next.getLastNodeArray().get(Math.round(0));
                 if (prev !== null) {
@@ -547,7 +547,7 @@ var SkipListMapImpl = (function () {
                     return tmp;
                 }
                 if (cmp === -1) {
-                    //          console.log ("Setting first");
+                    //          console.log ("Setting first " + node.getKey());
                     node = tmp;
                 }
             }
@@ -564,20 +564,23 @@ var SkipListMapImpl = (function () {
                 //        console.log ("found it in search");
                 return node;
             }
-            if (cmp === 1) {
+            if (cmp === -1) {
                 //        console.log ("Next Node is past");
                 return null;
             }
             var nextNode = null;
             for (var loop = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
+                //        console.log ("loop " + loop + " - " + key);
                 var tmp = node.getNextNodeArray().get(node.getNextNodeArray().size() - loop - 1);
                 if (tmp !== null) {
-                    //          console.log ("for compared " + key + " to " + tmp.getKey() + " " + cmp);
+                    //          console.log ("for " + loop + " compared " + key + " to " + tmp.getKey() + " " + cmp);
                     cmp = this.mapComparator.compare(key, tmp.getKey());
                     if (cmp === 0) {
+                        //            console.log ("found it in compare");
                         return tmp;
                     }
                     if (cmp === -1) {
+                        //            console.log ("Passed it " + loop + " - " + key + " " + tmp.getKey());
                         nextNode = tmp;
                     }
                 }
