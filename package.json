@@ -9,10 +9,10 @@
   "dependencines": {},
   "devDependencies": {
     "@types/jasmine": "^2.6.0",
-    "@types/node": "^8.0.46",
+    "@types/node": "^8.0.47",
     "gulp": "^3.9.1",
     "gulp-jasmine": "^2.4.2",
-    "gulp-typescript": "^3.2.2",
+    "gulp-typescript": "^3.2.3",
     "jasmine": "^2.8.0",
     "merge2": "^1.2.0",
     "run-sequence": "^2.2.0",

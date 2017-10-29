@@ -299,7 +299,7 @@ export class SkipListMapImpl<K,V> {
         } else {
           // find the new last node if it exists
           lastNode = lastNode.getLastNodeArray().get (lastNode.getLastNodeArray().size() - 1);
-          console.error ("Unwritten code hookUpNodePointers");
+//          console.error ("Unwritten code hookUpNodePointers");
         }
       } else {
         this.head.set (Math.round (height), newNode); // nothing before us so set the head to our node
@@ -447,6 +447,7 @@ export class SkipListMapImpl<K,V> {
   * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
   */
   public floorEntry (key:K) : SkipListNode<K,V> {
+//    console.log ("SkipList::FloorEntry looking for " + key);
     if (this.numberElements < 1) {
 //      console.log ("SkipList::FloorEntry no nodes");
       return null;

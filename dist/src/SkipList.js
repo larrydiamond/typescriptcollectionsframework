@@ -292,7 +292,7 @@ var SkipListMapImpl = (function () {
                 else {
                     // find the new last node if it exists
                     lastNode = lastNode.getLastNodeArray().get(lastNode.getLastNodeArray().size() - 1);
-                    console.error("Unwritten code hookUpNodePointers");
+                    //          console.error ("Unwritten code hookUpNodePointers");
                 }
             }
             else {
@@ -437,6 +437,7 @@ var SkipListMapImpl = (function () {
     * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
     */
     SkipListMapImpl.prototype.floorEntry = function (key) {
+        //    console.log ("SkipList::FloorEntry looking for " + key);
         if (this.numberElements < 1) {
             //      console.log ("SkipList::FloorEntry no nodes");
             return null;
