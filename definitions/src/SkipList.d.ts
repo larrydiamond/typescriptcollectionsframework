@@ -367,3 +367,16 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     */
     immutableSet(): ImmutableSet<K>;
 }
+export declare class SkipListSetJIterator<T> implements JIterator<T> {
+    private location;
+    private impl;
+    constructor(implI: SkipListMapImpl<T, number>);
+    hasNext(): boolean;
+    next(): T;
+}
+export declare class SkipListSetIterator<T> implements Iterator<T> {
+    private location;
+    private impl;
+    constructor(implI: SkipListMapImpl<T, number>);
+    next(value?: any): IteratorResult<T>;
+}

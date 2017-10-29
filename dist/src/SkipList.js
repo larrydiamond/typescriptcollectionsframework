@@ -1195,16 +1195,14 @@ var SkipListSet = (function () {
     * @return {JIterator<K>} the Java style iterator
     */
     SkipListSet.prototype.iterator = function () {
-        console.log("SkipList::jiterator unwritten code");
-        return undefined; // TODO
+        return new SkipListSetJIterator(this.impl);
     };
     /**
     * Returns a TypeScript style iterator
     * @return {Iterator<K>} the TypeScript style iterator
     */
     SkipListSet.prototype[Symbol.iterator] = function () {
-        console.log("SkipList::iterator unwritten code");
-        return undefined; // TODO
+        return new SkipListSetIterator(this.impl);
     };
     /**
     * Returns an ImmutableCollection backed by this Collection
@@ -1221,3 +1219,75 @@ var SkipListSet = (function () {
     return SkipListSet;
 }());
 exports.SkipListSet = SkipListSet;
+/* Java style iterator */
+var SkipListSetJIterator = (function () {
+    function SkipListSetJIterator(implI) {
+        this.impl = implI;
+    }
+    SkipListSetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var first = this.impl.firstEntry();
+            if (first === undefined) {
+                return false;
+            }
+            if (first === null) {
+                return false;
+            }
+            return true;
+        }
+        else {
+            var tmp = this.impl.nextHigherNode(this.location);
+            if (tmp === null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    };
+    SkipListSetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var first = this.impl.firstEntry();
+            if (first === undefined) {
+                return null;
+            }
+            if (first === null) {
+                return null;
+            }
+            this.location = first;
+            return first.getKey();
+        }
+        else {
+            var tmp = this.impl.nextHigherNode(this.location);
+            if (tmp === null) {
+                return null;
+            }
+            else {
+                this.location = tmp;
+                return tmp.getKey();
+            }
+        }
+    };
+    return SkipListSetJIterator;
+}());
+exports.SkipListSetJIterator = SkipListSetJIterator;
+/* TypeScript iterator */
+var SkipListSetIterator = (function () {
+    function SkipListSetIterator(implI) {
+        this.impl = implI;
+    }
+    // tslint:disable-next-line:no-any
+    SkipListSetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.getKey());
+        this.location = this.impl.nextHigherNode(this.location);
+        return tmp;
+    };
+    return SkipListSetIterator;
+}());
+exports.SkipListSetIterator = SkipListSetIterator;

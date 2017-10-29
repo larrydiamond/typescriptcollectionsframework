@@ -1248,8 +1248,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {JIterator<K>} the Java style iterator
   */
   public iterator():JIterator<K> {
-    console.log ("SkipList::jiterator unwritten code");
-    return undefined;   // TODO
+    return new SkipListSetJIterator(this.impl);
   }
 
   /**
@@ -1257,8 +1256,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {Iterator<K>} the TypeScript style iterator
   */
   public [Symbol.iterator] ():Iterator<K> {
-    console.log ("SkipList::iterator unwritten code");
-    return undefined;   // TODO
+    return new SkipListSetIterator(this.impl);
   }
 
   /**
@@ -1275,4 +1273,79 @@ export class SkipListSet<K> implements NavigableSet<K> {
     return this;
   }
 
+}
+
+/* Java style iterator */
+export class SkipListSetJIterator<T> implements JIterator<T> {
+  private location:SkipListNode<T,number>;
+  private impl:SkipListMapImpl<T,number>;
+
+  constructor (implI:SkipListMapImpl<T,number>) {
+    this.impl = implI;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      const first:SkipListNode<T,number> = this.impl.firstEntry();
+      if (first === undefined) {
+        return false;
+      }
+      if (first === null) {
+        return false;
+      }
+      return true;
+    } else { // we've already called this iterator before
+      const tmp:SkipListNode<T,number> = this.impl.nextHigherNode(this.location);
+      if (tmp === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  public next():T {
+    if (this.location === undefined) { // first time caller
+      const first:SkipListNode<T,number> = this.impl.firstEntry();
+      if (first === undefined) {
+        return null;
+      }
+      if (first === null) {
+        return null;
+      }
+      this.location = first;
+      return first.getKey();
+    } else { // we've already called this iterator before
+      const tmp:SkipListNode<T,number> = this.impl.nextHigherNode(this.location);
+      if (tmp === null) {
+        return null;
+      } else {
+        this.location = tmp;
+        return tmp.getKey();
+      }
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class SkipListSetIterator<T> implements Iterator<T> {
+  private location:SkipListNode<T,number>;
+  private impl:SkipListMapImpl<T,number>;
+
+  constructor (implI:SkipListMapImpl<T,number>) {
+    this.impl = implI;
+  }
+
+  // tslint:disable-next-line:no-any
+  public next(value?: any): IteratorResult<T> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    const tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location.getKey());
+    this.location = this.impl.nextHigherNode(this.location);
+    return tmp;
+  }
 }
