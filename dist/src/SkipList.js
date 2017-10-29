@@ -748,8 +748,7 @@ var SkipListMap = (function () {
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
     SkipListMap.prototype.keySet = function () {
-        console.log("SkipList::keyset unwritten code");
-        return undefined; // TODO
+        return new ImmutableKeySetForSkipListMap(this.impl);
     };
     /**
     * Returns an ImmutableSet view of the mappings contained in this map.
@@ -934,6 +933,85 @@ var SkipListMap = (function () {
     return SkipListMap;
 }());
 exports.SkipListMap = SkipListMap;
+var ImmutableKeySetForSkipListMap = (function () {
+    function ImmutableKeySetForSkipListMap(iSkipListMapImpl) {
+        this.impl = iSkipListMapImpl;
+    }
+    ImmutableKeySetForSkipListMap.prototype.size = function () { return this.size(); };
+    ImmutableKeySetForSkipListMap.prototype.isEmpty = function () { return this.isEmpty(); };
+    ImmutableKeySetForSkipListMap.prototype.contains = function (item) { return this.contains(item); };
+    ImmutableKeySetForSkipListMap.prototype.iterator = function () { return new SkipListMapKeySetJIterator(this.impl); };
+    ImmutableKeySetForSkipListMap.prototype[Symbol.iterator] = function () { return new SkipListMapKeySetIterator(this.impl); };
+    return ImmutableKeySetForSkipListMap;
+}());
+exports.ImmutableKeySetForSkipListMap = ImmutableKeySetForSkipListMap;
+/* Java style iterator */
+var SkipListMapKeySetJIterator = (function () {
+    function SkipListMapKeySetJIterator(implI) {
+        this.impl = implI;
+    }
+    SkipListMapKeySetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var firstEntry = this.impl.firstEntry();
+            if (firstEntry === null)
+                return false;
+            if (firstEntry === undefined)
+                return false;
+            return true;
+        }
+        else {
+            var tmpEntry = this.impl.nextHigherNode(this.location);
+            if (tmpEntry === null)
+                return false;
+            if (tmpEntry === undefined)
+                return false;
+            return true;
+        }
+    };
+    SkipListMapKeySetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var firstEntry = this.impl.firstEntry();
+            if (firstEntry === null)
+                return null;
+            if (firstEntry === undefined)
+                return null;
+            this.location = firstEntry;
+            return firstEntry.getKey();
+        }
+        else {
+            var tmpEntry = this.impl.nextHigherNode(this.location);
+            if (tmpEntry === null)
+                return null;
+            if (tmpEntry === undefined)
+                return null;
+            this.location = tmpEntry;
+            return tmpEntry.getKey();
+        }
+    };
+    return SkipListMapKeySetJIterator;
+}());
+exports.SkipListMapKeySetJIterator = SkipListMapKeySetJIterator;
+/* TypeScript iterator */
+var SkipListMapKeySetIterator = (function () {
+    function SkipListMapKeySetIterator(implI) {
+        this.impl = implI;
+        this.location = this.impl.firstEntry();
+    }
+    // tslint:disable-next-line:no-any
+    SkipListMapKeySetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.getKey());
+        this.location = this.impl.nextHigherNode(this.location);
+        return tmp;
+    };
+    return SkipListMapKeySetIterator;
+}());
+exports.SkipListMapKeySetIterator = SkipListMapKeySetIterator;
 var ImmutableEntrySetForSkipListMapImpl = (function () {
     function ImmutableEntrySetForSkipListMapImpl(iMap) {
         this.map = iMap;

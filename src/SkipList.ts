@@ -772,9 +772,9 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
   public keySet () : ImmutableSet<K> {
-    console.log ("SkipList::keyset unwritten code");
-    return undefined;   // TODO
+    return new ImmutableKeySetForSkipListMap (this.impl);
   }
+
 
   /**
   * Returns an ImmutableSet view of the mappings contained in this map.
@@ -973,6 +973,94 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
     return node;
   }
 }
+
+
+export class ImmutableKeySetForSkipListMap<K,V> implements ImmutableSet<K> {
+  private impl:SkipListMapImpl<K,V>;
+  constructor(iSkipListMapImpl:SkipListMapImpl<K,V>) {
+    this.impl = iSkipListMapImpl;
+  }
+
+  public size():number { return this.size(); }
+
+  public isEmpty():boolean { return this.isEmpty(); }
+
+  public contains(item:K) : boolean { return this.contains (item); }
+
+  public iterator():JIterator<K> { return new SkipListMapKeySetJIterator(this.impl); }
+
+  public [Symbol.iterator] ():Iterator<K> { return new SkipListMapKeySetIterator (this.impl); }
+}
+
+/* Java style iterator */
+export class SkipListMapKeySetJIterator<K,V> implements JIterator<K> {
+  private location:SkipListNode<K,V>;
+  private impl:SkipListMapImpl<K,V>;
+
+  constructor(implI:SkipListMapImpl<K,V>) {
+    this.impl = implI;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      const firstEntry:SkipListNode<K,V> = this.impl.firstEntry();
+      if (firstEntry === null) return false;
+      if (firstEntry === undefined) return false;
+      return true;
+    } else { // we've already called this iterator before
+      const tmpEntry:SkipListNode<K,V> = this.impl.nextHigherNode(this.location);
+      if (tmpEntry === null) return false;
+      if (tmpEntry === undefined) return false;
+      return true;
+    }
+  }
+
+  public next():K {
+    if (this.location === undefined) { // first time caller
+      const firstEntry:SkipListNode<K,V> = this.impl.firstEntry();
+      if (firstEntry === null) return null;
+      if (firstEntry === undefined) return null;
+      this.location = firstEntry;
+      return firstEntry.getKey();
+    } else { // we've already called this iterator before
+      const tmpEntry:SkipListNode<K,V> = this.impl.nextHigherNode(this.location);
+      if (tmpEntry === null) return null;
+      if (tmpEntry === undefined) return null;
+      this.location = tmpEntry;
+      return tmpEntry.getKey();
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class SkipListMapKeySetIterator<K,V> implements Iterator<K> {
+  private location:SkipListNode<K,V>;
+  private impl:SkipListMapImpl<K,V>;
+
+  constructor(implI:SkipListMapImpl<K,V>) {
+    this.impl = implI;
+    this.location = this.impl.firstEntry();
+  }
+
+  // tslint:disable-next-line:no-any
+  public next(value?: any): IteratorResult<K> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    const tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location.getKey());
+    this.location = this.impl.nextHigherNode(this.location);
+    return tmp;
+  }
+}
+
+
+
+
+
+
 
 
 export class ImmutableEntrySetForSkipListMapImpl<K,V> implements ImmutableSet<MapEntry<K,V>> {

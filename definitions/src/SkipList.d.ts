@@ -250,6 +250,28 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     */
     lastEntry(): MapEntry<K, V>;
 }
+export declare class ImmutableKeySetForSkipListMap<K, V> implements ImmutableSet<K> {
+    private impl;
+    constructor(iSkipListMapImpl: SkipListMapImpl<K, V>);
+    size(): number;
+    isEmpty(): boolean;
+    contains(item: K): boolean;
+    iterator(): JIterator<K>;
+    [Symbol.iterator](): Iterator<K>;
+}
+export declare class SkipListMapKeySetJIterator<K, V> implements JIterator<K> {
+    private location;
+    private impl;
+    constructor(implI: SkipListMapImpl<K, V>);
+    hasNext(): boolean;
+    next(): K;
+}
+export declare class SkipListMapKeySetIterator<K, V> implements Iterator<K> {
+    private location;
+    private impl;
+    constructor(implI: SkipListMapImpl<K, V>);
+    next(value?: any): IteratorResult<K>;
+}
 export declare class ImmutableEntrySetForSkipListMapImpl<K, V> implements ImmutableSet<MapEntry<K, V>> {
     private map;
     constructor(iMap: SkipListMapImpl<K, V>);
