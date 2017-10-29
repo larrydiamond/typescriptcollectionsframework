@@ -1354,12 +1354,13 @@ describe("Test SkipList functionality", function() {
     }
   });
 
+
 /*
   it("Set Test typescript iteration", function() {
     const SkipListSet2:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
 
-    expect (SkipListSet2.add (product1)).toEqual (false);
-    expect (SkipListSet2.add (product2)).toEqual (false);
+    expect (SkipListSet2.add (product1)).toEqual (true);
+    expect (SkipListSet2.add (product2)).toEqual (true);
 
     const offset:number = 0;
 
