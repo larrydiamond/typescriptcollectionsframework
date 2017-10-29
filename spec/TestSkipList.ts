@@ -1333,12 +1333,11 @@ describe("Test SkipList functionality", function() {
     expect (SkipListSet2.size ()).toEqual(0);
   });
 
-  /*
   it("Set Test java iteration", function() {
     const SkipListSet2:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
 
-    expect (SkipListSet2.add (product1)).toEqual (false);
-    expect (SkipListSet2.add (product2)).toEqual (false);
+    expect (SkipListSet2.add (product1)).toEqual (true);
+    expect (SkipListSet2.add (product2)).toEqual (true);
 
     let offset:number = 0;
     for (const iter = SkipListSet2.iterator(); iter.hasNext(); ) {
