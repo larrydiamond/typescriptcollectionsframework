@@ -1354,8 +1354,8 @@ describe("Test SkipList functionality", function() {
     }
   });
 
+  /*
 
-/*
   it("Set Test typescript iteration", function() {
     const SkipListSet2:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
 
@@ -1466,7 +1466,6 @@ describe("Test SkipList functionality", function() {
     expect (tset.size ()).toEqual(source.size());
   }, 2000);
 
-/*
   it("Set Test constructing with elements from a SkipListSet", function() {
     const source:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
     expect (source.add (product1)).toEqual (true);
@@ -1475,7 +1474,7 @@ describe("Test SkipList functionality", function() {
     const tset:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct, source);
     expect (tset.size ()).toEqual(source.size());
   });
-*/
+
 /*
   it("Set Focused test on reproducable error 0.8.0 16 Sep 2017", function() {
     const tsData:SkipListSet<string> = new SkipListSet<string>(Collections.getStringComparator());
