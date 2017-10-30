@@ -299,7 +299,6 @@ export class SkipListMapImpl<K,V> {
         } else {
           // find the new last node if it exists
           lastNode = lastNode.getLastNodeArray().get (lastNode.getLastNodeArray().size() - 1);
-//          console.error ("Unwritten code hookUpNodePointers");
         }
       } else {
         this.head.set (Math.round (height), newNode); // nothing before us so set the head to our node
