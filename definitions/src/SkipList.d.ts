@@ -52,6 +52,7 @@ export declare class SkipListMapImpl<K, V> {
     * @return {boolean} true if this map contains no key-value mappings
     */
     isEmpty(): boolean;
+    private newNodeSize();
     /**
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
      * @param {K} key key with which the specified value is to be associated
