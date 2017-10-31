@@ -478,9 +478,8 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(3);
     testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMapDisplay());
   });
-
-  /*
-
+*/
+/*
   it("Map Test Remove head left full right empty", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -493,7 +492,8 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(2);
     expect (basicTypesMap1.validateMap()).toEqual (true);
   });
-
+*/
+/*
   it("Map Test Remove head right full left empty", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -534,6 +534,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(5);
   });
 
+*/
   it("Map Test getNextHigherKey empty map", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
@@ -546,6 +547,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.getNextHigherKey ("AAAAA")).toEqual(null);
   });
 
+/*
   it("Test getNextHigherKey more complex map", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
@@ -570,7 +572,6 @@ describe("Test SkipList functionality", function() {
   });
 */
 
-/*
   it("Map Test ceilingEntry", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingEntry ("TheresNothingInThisMap")).toEqual (null);
@@ -596,11 +597,8 @@ describe("Test SkipList functionality", function() {
 
     expect (basicTypesMap1.ceilingEntry ("ZZZZZ")).toEqual(null);
   });
-*/
 
-/*
   it("Test ceilingKey", function() {
-    console.log ("Starting CeilingKey");
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingKey ("TheresNothingInThisMap")).toEqual (null);
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
@@ -609,7 +607,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
     expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
     expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
-    testBoolean.equalsTrue("Validate Map before running CeilingKey", basicTypesMap1.validateMapDisplay());
+    testBoolean.equalsTrue("Validate Map before running CeilingKey", basicTypesMap1.validateMap());
 
 //    basicTypesMap1.printMap();
 
@@ -629,7 +627,6 @@ describe("Test SkipList functionality", function() {
 
     expect (basicTypesMap1.ceilingKey ("ZZZZZ")).toEqual(null);
   });
-*/
 
 /*
   it("Map Test higherEntry", function() {
