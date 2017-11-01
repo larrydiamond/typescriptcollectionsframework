@@ -83,6 +83,18 @@ export class test {
       fail (failMessage + " - expected not null or undefined value was " + val);
     }
   }
+  // tslint:disable-next-line:no-any
+  public static notNull (failMessage:string, val:any) : void {
+    if (val === null) {
+      fail (failMessage + " - expected not null value was " + val);
+    }
+  }
+  // tslint:disable-next-line:no-any
+  public static notUndefined (failMessage:string, val:any) : void {
+    if (val === undefined) {
+      fail (failMessage + " - expected not undefined value was " + val);
+    }
+  }
 }
 
 describe("Test SkipList functionality", function() {
@@ -825,8 +837,10 @@ describe("Test SkipList functionality", function() {
         for (let loop3 = 1; loop3 <= 1; loop3++) {
           let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
           let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-          expect (petStoreMap1.get (product)).not.toEqual(null);
-          expect (petStoreMap1.remove (product)).not.toEqual (null);
+          test.notNull ("Expected Get to not be null", petStoreMap1.get (product));
+//          expect (petStoreMap1.get (product)).not.toEqual(null);
+          test.notNull ("Expected Remove to not be null", petStoreMap1.remove (product));
+//          expect (petStoreMap1.remove (product)).not.toEqual (null);
         }
       }
     }
@@ -869,6 +883,7 @@ describe("Test SkipList functionality", function() {
     expect (petStoreMap1.size ()).toEqual(0);
 //    expect (petStoreMap1.isEmpty ()).toEqual(true);
   });
+*/
 
   it("Test keyset jiterator basics", function() {
     let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
@@ -1162,7 +1177,6 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Catnip", 9.99)).toEqual(4.99);
     expect (basicTypesMap1.get ("Catnip")).toEqual (9.99);  // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
   });
-*/
 
   it("Set Test Creation state", function() {
     const SkipListSet1:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);

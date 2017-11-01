@@ -15,4 +15,6 @@ export declare class testBoolean {
 export declare class test {
     static equals(failMessage: string, val: any, expected: any): void;
     static notNullOrUndefined(failMessage: string, val: any): void;
+    static notNull(failMessage: string, val: any): void;
+    static notUndefined(failMessage: string, val: any): void;
 }

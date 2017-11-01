@@ -88,6 +88,18 @@ var test = (function () {
             fail(failMessage + " - expected not null or undefined value was " + val);
         }
     };
+    // tslint:disable-next-line:no-any
+    test.notNull = function (failMessage, val) {
+        if (val === null) {
+            fail(failMessage + " - expected not null value was " + val);
+        }
+    };
+    // tslint:disable-next-line:no-any
+    test.notUndefined = function (failMessage, val) {
+        if (val === undefined) {
+            fail(failMessage + " - expected not undefined value was " + val);
+        }
+    };
     return test;
 }());
 exports.test = test;
@@ -742,8 +754,10 @@ describe("Test SkipList functionality", function () {
             for (let loop3 = 1; loop3 <= 1; loop3++) {
               let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
               let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-              expect (petStoreMap1.get (product)).not.toEqual(null);
-              expect (petStoreMap1.remove (product)).not.toEqual (null);
+              test.notNull ("Expected Get to not be null", petStoreMap1.get (product));
+    //          expect (petStoreMap1.get (product)).not.toEqual(null);
+              test.notNull ("Expected Remove to not be null", petStoreMap1.remove (product));
+    //          expect (petStoreMap1.remove (product)).not.toEqual (null);
             }
           }
         }
@@ -786,300 +800,283 @@ describe("Test SkipList functionality", function () {
         expect (petStoreMap1.size ()).toEqual(0);
     //    expect (petStoreMap1.isEmpty ()).toEqual(true);
       });
-    
-      it("Test keyset jiterator basics", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
-        let count:number = 0;
-        let iter:JIterator<PetStoreProduct> = keyset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:PetStoreProduct = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (0);
-      });
-    
-      it("Test keyset iterator basics", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
-        let count:number = 0;
-        let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
-        let tmp:IteratorResult<PetStoreProduct> = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (0);
-      });
-    
-      it("Test entryset jiterator basics", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
-        let count:number = 0;
-        let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (0);
-      });
-    
-      it("Test entryset iterator basics", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
-        let count:number = 0;
-        let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
-        let tmp:IteratorResult<MapEntry<PetStoreProduct,ValueClass>> = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (0);
-      });
-    
-      it("Test keyset jiterator one entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
-        let count:number = 0;
-        let iter:JIterator<PetStoreProduct> = keyset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:PetStoreProduct = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        count = 0;
-        keyset = petStoreMap1.keySet();
-        iter = keyset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:PetStoreProduct = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (1);
-      });
-    
-      it("Test keyset iterator one entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
-        let count:number = 0;
-        let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
-        let tmp:IteratorResult<PetStoreProduct> = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        count = 0;
-        keyset = petStoreMap1.keySet();
-        tsi = keyset[Symbol.iterator]();
-        tmp = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (1);
-      });
-    
-      it("Test entryset jiterator one entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
-        let count:number = 0;
-        let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        entryset = petStoreMap1.entrySet();
-        count = 0;
-        iter = entryset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (1);
-      });
-    
-      it("Test entryset iterator one entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
-        let count:number = 0;
-        let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
-        let tmp:IteratorResult<MapEntry<PetStoreProduct,ValueClass>> = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        count = 0;
-        entryset = petStoreMap1.entrySet();
-        tsi = entryset[Symbol.iterator]();
-        tmp = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (1);
-      });
-    
-      it("Test keyset jiterator two entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
-        let count:number = 0;
-        let iter:JIterator<PetStoreProduct> = keyset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:PetStoreProduct = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        petStoreMap1.put (product2, new ValueClass());
-        count = 0;
-        keyset = petStoreMap1.keySet();
-        iter = keyset.iterator();
-        let found1:boolean = false;
-        let found2:boolean = false;
-        for (; iter.hasNext(); ) {
-          let p:PetStoreProduct = iter.next();
-          count = count + 1;
-          if (p.getPrice() === (product1.getPrice())) {
-            found1 = true;
-          } else {
-            if (p.getPrice() === (product2.getPrice())) {
-              found2 = true;
-            }
-          }
-        }
-        expect (count).toEqual (2);
-        expect (found1).toEqual (true);
-        expect (found2).toEqual (true);
-      });
-    
-      it("Test keyset iterator two entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let keyset:ImmutableSet<PetStoreProduct> = petStoreMap1.keySet();
-        let count:number = 0;
-        let tsi:Iterator<PetStoreProduct> = keyset[Symbol.iterator]();
-        let tmp:IteratorResult<PetStoreProduct> = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        petStoreMap1.put (product2, new ValueClass());
-        count = 0;
-        keyset = petStoreMap1.keySet();
-        tsi = keyset[Symbol.iterator]();
-        tmp = tsi.next();
-        let found1:boolean = false;
-        let found2:boolean = false;
-        while (!tmp.done) {
-          let p:PetStoreProduct = tmp.value;
-          if (p.getPrice() === (product1.getPrice())) {
-            found1 = true;
-          } else {
-            if (p.getPrice() === (product2.getPrice())) {
-              found2 = true;
-            }
-          }
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (2);
-        expect (found1).toEqual (true);
-        expect (found2).toEqual (true);
-      });
-    
-      it("Test entryset jiterator two entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
-        let count:number = 0;
-        let iter:JIterator<MapEntry<PetStoreProduct,ValueClass>> = entryset.iterator();
-        for (; iter.hasNext(); ) {
-          let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
-          count = count + 1;
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        petStoreMap1.put (product2, new ValueClass());
-        entryset = petStoreMap1.entrySet();
-        count = 0;
-        iter = entryset.iterator();
-        let found1:boolean = false;
-        let found2:boolean = false;
-        for (; iter.hasNext(); ) {
-          let p:MapEntry<PetStoreProduct,ValueClass> = iter.next();
-          count = count + 1;
-          if (p.getKey().getPrice() === (product1.getPrice())) {
-            found1 = true;
-          } else {
-            if (p.getKey().getPrice() === (product2.getPrice())) {
-              found2 = true;
-            }
-          }
-        }
-        expect (count).toEqual (2);
-        expect (found1).toEqual (true);
-        expect (found2).toEqual (true);
-      });
-    
-      it("Test entryset iterator two entry", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
-        let entryset:ImmutableSet<MapEntry<PetStoreProduct,ValueClass>> = petStoreMap1.entrySet();
-        let count:number = 0;
-        let tsi:Iterator<MapEntry<PetStoreProduct,ValueClass>> = entryset[Symbol.iterator]();
-        let tmp:IteratorResult<MapEntry<PetStoreProduct,ValueClass>> = tsi.next();
-        while (!tmp.done) {
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (0);
-    
-        petStoreMap1.put (product1, new ValueClass());
-        petStoreMap1.put (product2, new ValueClass());
-        count = 0;
-        entryset = petStoreMap1.entrySet();
-        tsi = entryset[Symbol.iterator]();
-        tmp = tsi.next();
-        let found1:boolean = false;
-        let found2:boolean = false;
-        while (!tmp.done) {
-          let p:PetStoreProduct = tmp.value.getKey();
-          if (p.getPrice() === (product1.getPrice())) {
-            found1 = true;
-          } else {
-            if (p.getPrice() === (product2.getPrice())) {
-              found2 = true;
-            }
-          }
-          count = count + 1;
-          tmp = tsi.next();
-        }
-        expect (count).toEqual (2);
-        expect (found1).toEqual (true);
-        expect (found2).toEqual (true);
-      });
-    
-      it("Test map entry replacement", function() {
-        let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-        expect (basicTypesMap1.ceilingKey ("TheresNothingInThisMap")).toEqual (null);
-        expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Catnip", 9.99)).toEqual(4.99);
-        expect (basicTypesMap1.get ("Catnip")).toEqual (9.99);  // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
-      });
     */
+    it("Test keyset jiterator basics", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test keyset iterator basics", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test entryset jiterator basics", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test entryset iterator basics", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+    });
+    it("Test keyset jiterator one entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test keyset iterator one entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        tsi = keyset[Symbol.iterator]();
+        tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test entryset jiterator one entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        entryset = petStoreMap1.entrySet();
+        count = 0;
+        iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test entryset iterator one entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        count = 0;
+        entryset = petStoreMap1.entrySet();
+        tsi = entryset[Symbol.iterator]();
+        tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(1);
+    });
+    it("Test keyset jiterator two entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var iter = keyset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        iter = keyset.iterator();
+        var found1 = false;
+        var found2 = false;
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+            if (p.getPrice() === (product1.getPrice())) {
+                found1 = true;
+            }
+            else {
+                if (p.getPrice() === (product2.getPrice())) {
+                    found2 = true;
+                }
+            }
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test keyset iterator two entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var keyset = petStoreMap1.keySet();
+        var count = 0;
+        var tsi = keyset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        keyset = petStoreMap1.keySet();
+        tsi = keyset[Symbol.iterator]();
+        tmp = tsi.next();
+        var found1 = false;
+        var found2 = false;
+        while (!tmp.done) {
+            var p = tmp.value;
+            if (p.getPrice() === (product1.getPrice())) {
+                found1 = true;
+            }
+            else {
+                if (p.getPrice() === (product2.getPrice())) {
+                    found2 = true;
+                }
+            }
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test entryset jiterator two entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var iter = entryset.iterator();
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        entryset = petStoreMap1.entrySet();
+        count = 0;
+        iter = entryset.iterator();
+        var found1 = false;
+        var found2 = false;
+        for (; iter.hasNext();) {
+            var p = iter.next();
+            count = count + 1;
+            if (p.getKey().getPrice() === (product1.getPrice())) {
+                found1 = true;
+            }
+            else {
+                if (p.getKey().getPrice() === (product2.getPrice())) {
+                    found2 = true;
+                }
+            }
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test entryset iterator two entry", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
+        var entryset = petStoreMap1.entrySet();
+        var count = 0;
+        var tsi = entryset[Symbol.iterator]();
+        var tmp = tsi.next();
+        while (!tmp.done) {
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(0);
+        petStoreMap1.put(product1, new ValueClass());
+        petStoreMap1.put(product2, new ValueClass());
+        count = 0;
+        entryset = petStoreMap1.entrySet();
+        tsi = entryset[Symbol.iterator]();
+        tmp = tsi.next();
+        var found1 = false;
+        var found2 = false;
+        while (!tmp.done) {
+            var p = tmp.value.getKey();
+            if (p.getPrice() === (product1.getPrice())) {
+                found1 = true;
+            }
+            else {
+                if (p.getPrice() === (product2.getPrice())) {
+                    found2 = true;
+                }
+            }
+            count = count + 1;
+            tmp = tsi.next();
+        }
+        expect(count).toEqual(2);
+        expect(found1).toEqual(true);
+        expect(found2).toEqual(true);
+    });
+    it("Test map entry replacement", function () {
+        var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+        expect(basicTypesMap1.ceilingKey("TheresNothingInThisMap")).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 9.99)).toEqual(4.99);
+        expect(basicTypesMap1.get("Catnip")).toEqual(9.99); // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
+    });
     it("Set Test Creation state", function () {
         var SkipListSet1 = new SkipList_2.SkipListSet(alphabeticalSortPetStoreProduct);
         expect(SkipListSet1.size()).toEqual(0);
