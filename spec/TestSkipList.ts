@@ -769,7 +769,6 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.lowerKey ("Wet Kibble wow am I out of ideas for text")).toEqual("Wet Food");
   });
 
-/*
   it("Test floorKey", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.floorKey ("TheresNothingInThisMap")).toEqual (null);
@@ -800,6 +799,7 @@ describe("Test SkipList functionality", function() {
 
   });
 
+/*
   it("Test lots", function() {
     let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
 
