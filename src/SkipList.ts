@@ -58,7 +58,7 @@ export class SkipListMapImpl<K,V> {
     }
 
     for (let loop:number = 0.0; loop < this.head.size(); loop++) {
-      let hn : SkipListNode<K,V> = this.head.get(loop);
+      const hn : SkipListNode<K,V> = this.head.get(loop);
       if ((hn !== null) && (hn !== undefined)) {
         console.log ("Head" + loop + " " + JSON.stringify(hn.getKey()) + " - " + JSON.stringify(hn.getValue()));
       }
@@ -68,13 +68,13 @@ export class SkipListMapImpl<K,V> {
     while ((tmp !== null) && (tmp !== undefined)) {
       console.log ("Node " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()) + " " + tmp.getLastNodeArray().size() + " " + tmp.getNextNodeArray().size());
       for (let loop:number = 0.0; loop < this.head.size(); loop++) {
-        let ln : SkipListNode<K,V> = tmp.getLastNodeArray().get(loop);
+        const ln : SkipListNode<K,V> = tmp.getLastNodeArray().get(loop);
         if ((ln !== null) && (ln !== undefined)) {
           console.log ("Last" + loop + " " + JSON.stringify(ln.getKey()) + " - " + JSON.stringify(ln.getValue()));
         }
       }
       for (let loop:number = 0.0; loop < this.head.size(); loop++) {
-        let nn : SkipListNode<K,V> = tmp.getNextNodeArray().get(loop);
+        const nn : SkipListNode<K,V> = tmp.getNextNodeArray().get(loop);
         if ((nn !== null) && (nn !== undefined)) {
           console.log ("Next" + loop + " " + JSON.stringify(nn.getKey()) + " - " + JSON.stringify(nn.getValue()));
         }
@@ -85,8 +85,8 @@ export class SkipListMapImpl<K,V> {
 
     // each of the head elements needs to be at least as big as the prior element or null
     for (let loop:number = 1.0; loop < this.head.size() - 1.0; loop++) {
-      let lower : SkipListNode<K,V> = this.head.get (Math.round (loop - 1.0));
-      let higher : SkipListNode<K,V> = this.head.get (loop);
+      const lower : SkipListNode<K,V> = this.head.get (Math.round (loop - 1.0));
+      const higher : SkipListNode<K,V> = this.head.get (loop);
       if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
         const cmp:number = this.mapComparator.compare(lower.getKey(), higher.getKey());
         if (cmp === 1) {
@@ -137,8 +137,8 @@ export class SkipListMapImpl<K,V> {
     }
     // each of the head elements needs to be at least as big as the prior element or null
     for (let loop:number = 1.0; loop < this.head.size() - 1.0; loop++) {
-      let lower : SkipListNode<K,V> = this.head.get (Math.round (loop - 1.0));
-      let higher : SkipListNode<K,V> = this.head.get (loop);
+      const lower : SkipListNode<K,V> = this.head.get (Math.round (loop - 1.0));
+      const higher : SkipListNode<K,V> = this.head.get (loop);
       if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
         const cmp:number = this.mapComparator.compare(lower.getKey(), higher.getKey());
         if (cmp === 1) {
@@ -517,7 +517,7 @@ export class SkipListMapImpl<K,V> {
     }
 
     // keep moving forward until we every node in the next array is past the key
-    let keepGoing : boolean = true;
+    const keepGoing : boolean = true;
     while (keepGoing === true) {
       let nextNode = null;
 
