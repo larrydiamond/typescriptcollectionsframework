@@ -354,28 +354,36 @@ describe("Test SkipList functionality", function () {
         expect(basicTypesMap1.size()).toEqual(3);
         testBoolean.equalsTrue("Validate map6", basicTypesMap1.validateMap());
     }, 2000);
-    it("Test Adding some items", function () {
-        var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+    /*
+      it("Test Adding some items string number", function() {
+        let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
+    
+        expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+    
+        expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+        testBoolean.equalsTrue ("Validate map0", basicTypesMap1.validateMap());
+        expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+        testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMapDisplay());
+        expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
+        testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMapDisplay());
+    
+        expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+        expect (basicTypesMap1.size ()).toEqual(4);
+        expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+        testBoolean.equalsTrue ("Validate map3", basicTypesMap1.validateMap());
+    
+        let oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
+        expect (oldPrice).toEqual (14.99);
+        expect (basicTypesMap1.size ()).toEqual(4);
+        testNumber.equals ("Catnip was previously inserted at 4.99", basicTypesMap1.get ("Catnip"), 4.99);
+        testNumber.equals ("Catnip was 4.99 now is 5.99", basicTypesMap1.put ("Catnip", 5.99), 4.99);
+        expect (basicTypesMap1.size ()).toEqual(4);
+        testNumber.equals ("Catnip was previously inserted at 5.99", basicTypesMap1.get ("Catnip"), 5.99);
+        testBoolean.equalsTrue ("Validate map4", basicTypesMap1.validateMap());
+      }, 2);
+    */
+    it("Test Adding some items number string", function () {
         var basicTypesMap2 = new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator());
-        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
-        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
-        testBoolean.equalsTrue("Validate map0", basicTypesMap1.validateMap());
-        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
-        testBoolean.equalsTrue("Validate map1", basicTypesMap1.validateMap());
-        expect(basicTypesMap1.put("Goldfish", 9.99)).toEqual(null);
-        testBoolean.equalsTrue("Validate map2", basicTypesMap1.validateMap());
-        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
-        expect(basicTypesMap1.size()).toEqual(4);
-        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
-        testBoolean.equalsTrue("Validate map3", basicTypesMap1.validateMap());
-        var oldPrice = basicTypesMap1.put("ChewToy", 9.99);
-        expect(oldPrice).toEqual(14.99);
-        expect(basicTypesMap1.size()).toEqual(4);
-        testNumber.equals("Catnip was previously inserted at 4.99", basicTypesMap1.get("Catnip"), 4.99);
-        testNumber.equals("Catnip was 4.99 now is 5.99", basicTypesMap1.put("Catnip", 5.99), 4.99);
-        expect(basicTypesMap1.size()).toEqual(4);
-        testNumber.equals("Catnip was previously inserted at 5.99", basicTypesMap1.get("Catnip"), 5.99);
-        testBoolean.equalsTrue("Validate map4", basicTypesMap1.validateMap());
         expect(basicTypesMap2.put(14.99, "ChewToy")).toEqual(null);
         expect(basicTypesMap2.put(4.99, "Catnip")).toEqual(null);
         expect(basicTypesMap2.put(9.99, "Goldfish")).toEqual(null);
@@ -428,78 +436,69 @@ describe("Test SkipList functionality", function () {
         expect(basicTypesMap1.size()).toEqual(0);
         expect(basicTypesMap1.validateMap()).toEqual(true);
     });
-    /*
-      it("Test Remove head both sides loaded", function() {
-        let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-        expect (basicTypesMap1.size ()).toEqual(0);
-        expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
-        expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
-        expect (basicTypesMap1.size ()).toEqual(4);
-        testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMapDisplay());
-    
-        expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
-        expect (basicTypesMap1.size ()).toEqual(3);
-        testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMapDisplay());
-      });
-    */
-    /*
-      it("Map Test Remove head left full right empty", function() {
-        let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-        expect (basicTypesMap1.size ()).toEqual(0);
-        expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-        expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
-        expect (basicTypesMap1.size ()).toEqual(3);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
-        expect (basicTypesMap1.size ()).toEqual(2);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-      });
-    */
-    /*
-      it("Map Test Remove head right full left empty", function() {
-        let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-        expect (basicTypesMap1.size ()).toEqual(0);
-        expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
-        expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-        expect (basicTypesMap1.size ()).toEqual(3);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.remove ("AAAAA")).toEqual(0.99);
-        expect (basicTypesMap1.size ()).toEqual(2);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-      });
-    
-      it ("Test remove cover all the cases", function () {
-        let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-        expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-        expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-        expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.size ()).toEqual(6);
-        expect (basicTypesMap1.put ("Furry Food", 0.49)).toEqual(null);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.size ()).toEqual(7);
-        expect (basicTypesMap1.remove ("Dry Food")).toEqual(7.99);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.size ()).toEqual(6);
-        expect (basicTypesMap1.put ("Gaspacho   why would a pet store sell soup?   why not?", 9.49)).toEqual(null);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.size ()).toEqual(7);
-        expect (basicTypesMap1.remove ("Furry Food")).toEqual(0.49);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.size ()).toEqual(6);
-        expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
-        expect (basicTypesMap1.validateMap()).toEqual (true);
-        expect (basicTypesMap1.size ()).toEqual(5);
-      });
-    
-    */
+    it("Test Remove head both sides loaded", function () {
+        var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("ChewToys", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("Goldfish", 9.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(4);
+        testBoolean.equalsTrue("Validate map1", basicTypesMap1.validateMap());
+        expect(basicTypesMap1.remove("ChewToys")).toEqual(14.99);
+        testBoolean.equalsTrue("Validate map2", basicTypesMap1.validateMap());
+        expect(basicTypesMap1.size()).toEqual(3);
+    });
+    it("Map Test Remove head left full right empty", function () {
+        var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(3);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.remove("ChewToy")).toEqual(14.99);
+        expect(basicTypesMap1.size()).toEqual(2);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+    });
+    it("Map Test Remove head right full left empty", function () {
+        var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+        expect(basicTypesMap1.size()).toEqual(0);
+        expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.size()).toEqual(3);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.remove("AAAAA")).toEqual(0.99);
+        expect(basicTypesMap1.size()).toEqual(2);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+    });
+    it("Test remove cover all the cases", function () {
+        var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
+        expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(null);
+        expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(null);
+        expect(basicTypesMap1.put("BBBBBB", 0.99)).toEqual(null);
+        expect(basicTypesMap1.put("Leash", 6.99)).toEqual(null);
+        expect(basicTypesMap1.put("Dry Food", 7.99)).toEqual(null);
+        expect(basicTypesMap1.put("Wet Food", 7.49)).toEqual(null);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(6);
+        expect(basicTypesMap1.put("Furry Food", 0.49)).toEqual(null);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(7);
+        expect(basicTypesMap1.remove("Dry Food")).toEqual(7.99);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(6);
+        expect(basicTypesMap1.put("Gaspacho   why would a pet store sell soup?   why not?", 9.49)).toEqual(null);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(7);
+        expect(basicTypesMap1.remove("Furry Food")).toEqual(0.49);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(6);
+        expect(basicTypesMap1.remove("ChewToy")).toEqual(14.99);
+        expect(basicTypesMap1.validateMap()).toEqual(true);
+        expect(basicTypesMap1.size()).toEqual(5);
+    });
     it("Map Test getNextHigherKey empty map", function () {
         var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
         expect(basicTypesMap1.getNextHigherKey("Dog")).toEqual(null);
@@ -1291,67 +1290,60 @@ describe("Test SkipList functionality", function () {
     });
   
   
-    it("Set Test ceiling", function() {
-      const SkipListSet2:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
-      expect (SkipListSet2.add (44)).toEqual(true);
-      expect (SkipListSet2.add (5)).toEqual(true);
-      expect (SkipListSet2.add (20)).toEqual(true);
-      expect (SkipListSet2.add (88)).toEqual(true);
-      expect (SkipListSet2.add (50)).toEqual(true);
-      expect (SkipListSet2.add (30)).toEqual(true);
-      expect (SkipListSet2.add (1)).toEqual(true);
-      expect (SkipListSet2.add (48)).toEqual(true);
-      expect (SkipListSet2.add (62)).toEqual(true);
-      expect (SkipListSet2.add (78)).toEqual(true);
-      expect (SkipListSet2.add (17)).toEqual(true);
-      expect (SkipListSet2.add (70)).toEqual(true);
-      expect (SkipListSet2.add (80)).toEqual(true);
-      expect (SkipListSet2.add (32)).toEqual(true);
-      expect (SkipListSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
-      expect (SkipListSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
-      expect (SkipListSet2.ceiling (17)).toEqual(17); // 17 is there
-    });
-  
-  /*
-    it ("Set Test lots", function () {
-      const tset = new SkipListSet<string>(Collections.getStringComparator());
-      for (let loop1 = 1; loop1 <= 26; loop1++) {
-        for (let loop2 = 1; loop2 <= 26; loop2++) {
-          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2);
-          tset.add (txt);
-        }
-      }
-      expect (tset.size ()).toEqual(26 * 26);
-  
-      let count:number = 0;
-      for (const iter = tset.iterator(); iter.hasNext(); ) {
-        count = count + 1;
-        const psp:string = iter.next ();
-      }
-      expect (count).toEqual (26 * 26);
-    });
   */
-    /*
-      it ("Set Test lots2", function () {
-        const tset = new SkipListSet<string>(Collections.getStringComparator());
-        for (let loop2 = 1; loop2 <= 26; loop2++) {
-          for (let loop1 = 1; loop1 <= 26; loop1++) {
-            const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2);
-            tset.add (txt);
-          }
+    it("Set Test ceiling", function () {
+        var SkipListSet2 = new SkipList_2.SkipListSet(Collections_1.Collections.getNumberComparator());
+        expect(SkipListSet2.add(44)).toEqual(true);
+        expect(SkipListSet2.add(5)).toEqual(true);
+        expect(SkipListSet2.add(20)).toEqual(true);
+        expect(SkipListSet2.add(88)).toEqual(true);
+        expect(SkipListSet2.add(50)).toEqual(true);
+        expect(SkipListSet2.add(30)).toEqual(true);
+        expect(SkipListSet2.add(1)).toEqual(true);
+        expect(SkipListSet2.add(48)).toEqual(true);
+        expect(SkipListSet2.add(62)).toEqual(true);
+        expect(SkipListSet2.add(78)).toEqual(true);
+        expect(SkipListSet2.add(17)).toEqual(true);
+        expect(SkipListSet2.add(70)).toEqual(true);
+        expect(SkipListSet2.add(80)).toEqual(true);
+        expect(SkipListSet2.add(32)).toEqual(true);
+        expect(SkipListSet2.ceiling(16)).toEqual(17); // 16 isnt there, 17 is
+        expect(SkipListSet2.ceiling(16)).toEqual(17); // 16 isnt there, 17 is
+        expect(SkipListSet2.ceiling(17)).toEqual(17); // 17 is there
+    });
+    it("Set Test lots", function () {
+        var tset = new SkipList_2.SkipListSet(Collections_1.Collections.getStringComparator());
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2);
+                tset.add(txt);
+            }
         }
-    
-        expect (tset.validateSet()).toEqual (true);
-        expect (tset.size ()).toEqual(26 * 26);
-    
-        let count:number = 0;
-        for (const iter = tset.iterator(); iter.hasNext(); ) {
-          count = count + 1;
-          const psp:string = iter.next ();
+        expect(tset.size()).toEqual(26 * 26);
+        var count = 0;
+        for (var iter = tset.iterator(); iter.hasNext();) {
+            count = count + 1;
+            var psp = iter.next();
         }
-        expect (count).toEqual (26 * 26);
-      });
-    */
+        expect(count).toEqual(26 * 26);
+    });
+    it("Set Test lots2", function () {
+        var tset = new SkipList_2.SkipListSet(Collections_1.Collections.getStringComparator());
+        for (var loop2 = 1; loop2 <= 26; loop2++) {
+            for (var loop1 = 1; loop1 <= 26; loop1++) {
+                var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2);
+                tset.add(txt);
+            }
+        }
+        expect(tset.validateSet()).toEqual(true);
+        expect(tset.size()).toEqual(26 * 26);
+        var count = 0;
+        for (var iter = tset.iterator(); iter.hasNext();) {
+            count = count + 1;
+            var psp = iter.next();
+        }
+        expect(count).toEqual(26 * 26);
+    });
     it("Set Test constructing with elements from an ArrayList", function () {
         var sourceList = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(sourceList.add(product1)).toEqual(true);
@@ -1380,51 +1372,49 @@ describe("Test SkipList functionality", function () {
         var tset = new SkipList_2.SkipListSet(alphabeticalSortPetStoreProduct, source);
         expect(tset.size()).toEqual(source.size());
     });
-    /*
-      it("Set Focused test on reproducable error 0.8.0 16 Sep 2017", function() {
-        const tsData:SkipListSet<string> = new SkipListSet<string>(Collections.getStringComparator());
-        tsData.add ("Cat");
-        tsData.add ("Squirrel");
-        tsData.add ("Dog");
+    it("Set Focused test on reproducable error 0.8.0 16 Sep 2017", function () {
+        var tsData = new SkipList_2.SkipListSet(Collections_1.Collections.getStringComparator());
+        tsData.add("Cat");
+        tsData.add("Squirrel");
+        tsData.add("Dog");
         testBoolean.equalsTrue("Validate Set 1 ", tsData.validateSet());
-        testNumber.equals ("Size a", tsData.size(), 3);
-        testBoolean.equalsTrue ("Remove dog is in set", tsData.remove ("Dog"));
+        testNumber.equals("Size a", tsData.size(), 3);
+        testBoolean.equalsTrue("Remove dog is in set", tsData.remove("Dog"));
         testBoolean.equalsTrue("Validate Set 1a ", tsData.validateSet());
-        testNumber.equals ("Size b", tsData.size(), 2);
-        tsData.add ("hvhli");
+        testNumber.equals("Size b", tsData.size(), 2);
+        tsData.add("hvhli");
         testBoolean.equalsTrue("Validate Set 2 ", tsData.validateSet());
-        testNumber.equals ("Size c", tsData.size(), 3);
-        expect (tsData.remove ("Cat")).toEqual (true);
+        testNumber.equals("Size c", tsData.size(), 3);
+        expect(tsData.remove("Cat")).toEqual(true);
         testBoolean.equalsTrue("Validate Set 2a ", tsData.validateSet());
-        testNumber.equals ("Size d", tsData.size(), 2);
-        tsData.add ("dybtc");
+        testNumber.equals("Size d", tsData.size(), 2);
+        tsData.add("dybtc");
         testBoolean.equalsTrue("Validate Set 3 ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(3);
-        expect (tsData.remove ("dybtc")).toEqual (true);
+        expect(tsData.size()).toEqual(3);
+        expect(tsData.remove("dybtc")).toEqual(true);
         testBoolean.equalsTrue("Validate Set 3a ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(2);
-        tsData.add ("xuaqo");
+        expect(tsData.size()).toEqual(2);
+        tsData.add("xuaqo");
         testBoolean.equalsTrue("Validate Set 4 ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(3);
-        expect (tsData.remove ("xuaqo")).toEqual (true);
+        expect(tsData.size()).toEqual(3);
+        expect(tsData.remove("xuaqo")).toEqual(true);
         testBoolean.equalsTrue("Validate Set 4a ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(2);
-        tsData.add ("ktwky");
+        expect(tsData.size()).toEqual(2);
+        tsData.add("ktwky");
         testBoolean.equalsTrue("Validate Set 5 ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(3);
-    //    tsData.printSet ();
-        expect (tsData.remove ("hvhli")).toEqual (true);
-    //    tsData.printSet ();
+        expect(tsData.size()).toEqual(3);
+        //    tsData.printSet ();
+        expect(tsData.remove("hvhli")).toEqual(true);
+        //    tsData.printSet ();
         testBoolean.equalsTrue("Validate Set 6 ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(2);
-        tsData.add ("cnnlv");
+        expect(tsData.size()).toEqual(2);
+        tsData.add("cnnlv");
         testBoolean.equalsTrue("Validate Set 7 ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(3);
-    //    tsData.printSet ();
-        expect (tsData.remove ("Squirrel")).toEqual (true);
-    //    tsData.printSet ();
+        expect(tsData.size()).toEqual(3);
+        //    tsData.printSet ();
+        expect(tsData.remove("Squirrel")).toEqual(true);
+        //    tsData.printSet ();
         testBoolean.equalsTrue("Validate Set 8 ", tsData.validateSet());
-        expect (tsData.size ()).toEqual(2);
-      });
-    */
+        expect(tsData.size()).toEqual(2);
+    });
 });

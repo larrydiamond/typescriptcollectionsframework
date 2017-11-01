@@ -195,7 +195,7 @@ var SkipListMapImpl = (function () {
                 ln.getNextNodeArray().set(loop, nn);
             }
             if ((nn !== null) && (nn !== undefined)) {
-                nn.getNextNodeArray().set(loop, ln);
+                nn.getLastNodeArray().set(loop, ln);
             }
             if (this.head.get(loop) === node) {
                 this.head.set(loop, nn);
@@ -418,7 +418,6 @@ var SkipListMapImpl = (function () {
         if (this.numberElements < 1) {
             return null;
         }
-        //    console.log ("LowerEntry of " + JSON.stringify(key));
         // Get a first node, highest entry below the target entry
         var node = null;
         for (var loop = 0; ((loop < this.height) && (node === null)); loop++) {
@@ -433,7 +432,6 @@ var SkipListMapImpl = (function () {
         if (node === null) {
             return null;
         }
-        //    console.log ("Starting at node " + JSON.stringify(node.getKey()));
         // keep moving forward until we every node in the next array is equal to or past the key
         while (true) {
             // Check next node 0.
@@ -443,10 +441,8 @@ var SkipListMapImpl = (function () {
             if ((tmp === null) || (tmp === undefined)) {
                 return node;
             }
-            //      console.log ("Next node " + JSON.stringify(node.getNextNodeArray().get (0).getKey()));
             var cmp = this.mapComparator.compare(tmp.getKey(), key);
             if ((cmp === 1) || (cmp === 0)) {
-                //        console.log ("temp node = " + JSON.stringify (tmp.getKey()) + " vs target " + JSON.stringify(key));
                 return node;
             }
             var done = false;
@@ -457,7 +453,6 @@ var SkipListMapImpl = (function () {
                 }
                 else {
                     var cmp_1 = this.mapComparator.compare(nn.getKey(), key);
-                    //          console.log ("node = " + JSON.stringify (node.getKey()) + " next node = " + JSON.stringify (nn.getKey()) + " vs target " + JSON.stringify(key) + " " + height + " " + cmp);
                     if (cmp_1 === -1) {
                         node = nn;
                         done = true;
@@ -564,64 +559,60 @@ var SkipListMapImpl = (function () {
     * @return {MapEntry} an entry with the key, or null if there is no such key
     */
     SkipListMapImpl.prototype.getEntry = function (key) {
-        //    console.log ("getEntry called on " + key);
         if (this.numberElements < 1) {
-            //      console.log ("this.numberElements = " + this.numberElements);
             return null;
         }
-        // Get a first node, highest -1 entry
+        // Get a first node, highest entry below the target entry
         var node = null;
         for (var loop = 0; ((loop < this.height) && (node === null)); loop++) {
             var tmp = this.head.get((this.height - 1) - loop);
             if ((tmp !== null) && (tmp !== undefined)) {
                 var cmp = this.mapComparator.compare(tmp.getKey(), key);
-                //        console.log ("first compared " + key + " to " + tmp.getKey() + " " + cmp);
                 if (cmp === 0) {
-                    //          console.log ("found it on first");
                     return tmp;
                 }
                 if (cmp === -1) {
-                    //          console.log ("Setting first " + node.getKey());
                     node = tmp;
                 }
             }
         }
         if (node === null) {
-            //      console.log ("no node was found");
             return null;
         }
-        // keep moving forward until we find the node or cant find any node less than it
-        while (node.getNextNodeArray().get(0) !== null) {
-            var cmp = this.mapComparator.compare(key, node.getKey());
-            //      console.log ("while compared " + key + " to " + node.getKey() + " " + cmp);
-            if (cmp === 0) {
-                //        console.log ("found it in search");
+        // keep moving forward until we every node in the next array is equal to or past the key
+        while (true) {
+            // Check next node 0.
+            // If that key is equal to or greater than (or null or undefined) the target value then this is the highest node below the target
+            // If it's under, then loop from the top on down until you find a node below target and restart the while loop
+            var tmp = node.getNextNodeArray().get(0);
+            if ((tmp === null) || (tmp === undefined)) {
                 return node;
             }
-            if (cmp === -1) {
-                //        console.log ("Next Node is past");
+            var cmp = this.mapComparator.compare(tmp.getKey(), key);
+            if (cmp === 0) {
+                return tmp;
+            }
+            if (cmp === 1) {
                 return null;
             }
-            var nextNode = null;
-            for (var loop = 0; ((nextNode === null) && (loop < node.getNextNodeArray().size())); loop++) {
-                //        console.log ("loop " + loop + " - " + key);
-                var tmp = node.getNextNodeArray().get(node.getNextNodeArray().size() - loop - 1);
-                if (tmp !== null) {
-                    //          console.log ("for " + loop + " compared " + key + " to " + tmp.getKey() + " " + cmp);
-                    cmp = this.mapComparator.compare(key, tmp.getKey());
-                    if (cmp === 0) {
-                        //            console.log ("found it in compare");
-                        return tmp;
+            var done = false;
+            for (var height = 0.0; ((done === false) && (height < node.getNextNodeArray().size())); height++) {
+                var nn = node.getNextNodeArray().get(node.getNextNodeArray().size() - height - 1);
+                if ((nn === null) || (nn === undefined)) {
+                    ;
+                }
+                else {
+                    var cmp_2 = this.mapComparator.compare(nn.getKey(), key);
+                    if (cmp_2 === 0) {
+                        return nn;
                     }
-                    if (cmp === -1) {
-                        //            console.log ("Passed it " + loop + " - " + key + " " + tmp.getKey());
-                        nextNode = tmp;
+                    if (cmp_2 === -1) {
+                        node = nn;
+                        done = true;
                     }
                 }
             }
         }
-        //    console.log ("returning null");
-        return null;
     };
     return SkipListMapImpl;
 }());

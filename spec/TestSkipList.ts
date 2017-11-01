@@ -388,18 +388,18 @@ describe("Test SkipList functionality", function() {
     testBoolean.equalsTrue ("Validate map6", basicTypesMap1.validateMap());
   }, 2000);
 
-  it("Test Adding some items", function() {
+/*
+  it("Test Adding some items string number", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    let basicTypesMap2:SkipListMap<number,string> = new SkipListMap<number,string>(Collections.getNumberComparator());
 
     expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
 
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     testBoolean.equalsTrue ("Validate map0", basicTypesMap1.validateMap());
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMap());
+    testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMapDisplay());
     expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
-    testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMap());
+    testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMapDisplay());
 
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(4);
@@ -414,6 +414,11 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(4);
     testNumber.equals ("Catnip was previously inserted at 5.99", basicTypesMap1.get ("Catnip"), 5.99);
     testBoolean.equalsTrue ("Validate map4", basicTypesMap1.validateMap());
+  }, 2);
+*/
+
+  it("Test Adding some items number string", function() {
+    let basicTypesMap2:SkipListMap<number,string> = new SkipListMap<number,string>(Collections.getNumberComparator());
 
     expect (basicTypesMap2.put (14.99, "ChewToy")).toEqual(null);
     expect (basicTypesMap2.put (4.99, "Catnip")).toEqual(null);
@@ -422,7 +427,6 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap2.put (0.99, "BBBBB")).toEqual("AAAAA");
     expect (basicTypesMap2.size ()).toEqual(4);
     testBoolean.equalsTrue ("Validate map5", basicTypesMap2.validateMap());
-
   }, 2);
 
   it("Test Adding some items typed", function() {
@@ -475,23 +479,21 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.validateMap()).toEqual (true);
   });
 
-/*
   it("Test Remove head both sides loaded", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToys", 14.99)).toEqual(null);
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(4);
-    testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMapDisplay());
+    testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
+    expect (basicTypesMap1.remove ("ChewToys")).toEqual(14.99);
+    testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMap());
     expect (basicTypesMap1.size ()).toEqual(3);
-    testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMapDisplay());
   });
-*/
-/*
+
   it("Map Test Remove head left full right empty", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -504,8 +506,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(2);
     expect (basicTypesMap1.validateMap()).toEqual (true);
   });
-*/
-/*
+
   it("Map Test Remove head right full left empty", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
@@ -546,7 +547,6 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(5);
   });
 
-*/
   it("Map Test getNextHigherKey empty map", function() {
     let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
@@ -1409,6 +1409,7 @@ describe("Test SkipList functionality", function() {
   });
 
 
+*/
   it("Set Test ceiling", function() {
     const SkipListSet2:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
     expect (SkipListSet2.add (44)).toEqual(true);
@@ -1430,7 +1431,7 @@ describe("Test SkipList functionality", function() {
     expect (SkipListSet2.ceiling (17)).toEqual(17); // 17 is there
   });
 
-/*
+
   it ("Set Test lots", function () {
     const tset = new SkipListSet<string>(Collections.getStringComparator());
     for (let loop1 = 1; loop1 <= 26; loop1++) {
@@ -1448,8 +1449,8 @@ describe("Test SkipList functionality", function() {
     }
     expect (count).toEqual (26 * 26);
   });
-*/
-/*
+
+
   it ("Set Test lots2", function () {
     const tset = new SkipListSet<string>(Collections.getStringComparator());
     for (let loop2 = 1; loop2 <= 26; loop2++) {
@@ -1469,7 +1470,7 @@ describe("Test SkipList functionality", function() {
     }
     expect (count).toEqual (26 * 26);
   });
-*/
+
 
   it("Set Test constructing with elements from an ArrayList", function() {
     const sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
@@ -1507,7 +1508,7 @@ describe("Test SkipList functionality", function() {
     expect (tset.size ()).toEqual(source.size());
   });
 
-/*
+
   it("Set Focused test on reproducable error 0.8.0 16 Sep 2017", function() {
     const tsData:SkipListSet<string> = new SkipListSet<string>(Collections.getStringComparator());
     tsData.add ("Cat");
@@ -1553,5 +1554,5 @@ describe("Test SkipList functionality", function() {
     testBoolean.equalsTrue("Validate Set 8 ", tsData.validateSet());
     expect (tsData.size ()).toEqual(2);
   });
-*/
+
 });
