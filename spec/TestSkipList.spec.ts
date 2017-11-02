@@ -786,18 +786,52 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
 
     expect (basicTypesMap1.lowerEntry ("AAAAAA")).toEqual(null);
-//    expect (basicTypesMap1.lowerEntry ("Dry Food")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
-//    expect (basicTypesMap1.lowerEntry ("ChewToy")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
-//    expect (basicTypesMap1.lowerEntry ("Catnip")).toEqual(new BasicMapEntry<string,number> ("BBBBBB", 0.99));
-//    expect (basicTypesMap1.lowerEntry ("Wet Food")).toEqual(new BasicMapEntry<string,number> ("Leash", 6.99));
-//    expect (basicTypesMap1.lowerEntry ("Leash")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
 
-//    expect (basicTypesMap1.lowerEntry ("Chia")).toEqual(new BasicMapEntry<string,number> ("ChewToy", 14.99));
-//    expect (basicTypesMap1.lowerEntry ("Center")).toEqual(new BasicMapEntry<string,number> ("Catnip", 4.99));
-//    expect (basicTypesMap1.lowerEntry ("BCCCCC")).toEqual(new BasicMapEntry<string,number> ("BBBBBB", 0.99));
-//    expect (basicTypesMap1.lowerEntry ("LongLeash")).toEqual(new BasicMapEntry<string,number> ("Leash", 6.99));
-//    expect (basicTypesMap1.lowerEntry ("Dry Kibble")).toEqual(new BasicMapEntry<string,number> ("Dry Food", 7.99));
-//    expect (basicTypesMap1.lowerEntry ("Wet Kibble wow am I out of ideas for text")).toEqual(new BasicMapEntry<string,number> ("Wet Food", 7.49));
+
+    test.notNullOrUndefined ("lower Entry to Dry Food is valid", basicTypesMap1.lowerEntry ("Dry Food"));
+    testString.equals ("lower Entry to Dry Food key name", basicTypesMap1.lowerEntry ("Dry Food").getKey(), "ChewToy");
+    testNumber.equals ("lower Entry to Dry Food key number", basicTypesMap1.lowerEntry ("Dry Food").getValue(), 14.99);
+
+    test.notNullOrUndefined ("lower Entry to ChewToy is valid", basicTypesMap1.lowerEntry ("ChewToy"));
+    testString.equals ("lower Entry to ChewToy key name", basicTypesMap1.lowerEntry ("ChewToy").getKey(), "Catnip");
+    testNumber.equals ("lower Entry to ChewToy key number", basicTypesMap1.lowerEntry ("ChewToy").getValue(), 4.99);
+
+    test.notNullOrUndefined ("lower Entry to Catnip is valid", basicTypesMap1.lowerEntry ("Catnip"));
+    testString.equals ("lower Entry to Catnip key name", basicTypesMap1.lowerEntry ("Catnip").getKey(), "BBBBBB");
+    testNumber.equals ("lower Entry to Catnip key number", basicTypesMap1.lowerEntry ("Catnip").getValue(), 0.99);
+
+    test.notNullOrUndefined ("lower Entry to Wet Food is valid", basicTypesMap1.lowerEntry ("Wet Food"));
+    testString.equals ("lower Entry to Wet Food key name", basicTypesMap1.lowerEntry ("Wet Food").getKey(), "Leash");
+    testNumber.equals ("lower Entry to Wet Food key number", basicTypesMap1.lowerEntry ("Wet Food").getValue(), 6.99);
+
+    test.notNullOrUndefined ("lower Entry to Leash is valid", basicTypesMap1.lowerEntry ("Leash"));
+    testString.equals ("lower Entry to Leash key name", basicTypesMap1.lowerEntry ("Leash").getKey(), "Dry Food");
+    testNumber.equals ("lower Entry to Leash key number", basicTypesMap1.lowerEntry ("Leash").getValue(), 7.99);
+
+
+    test.notNullOrUndefined ("lower Entry to Chia is valid", basicTypesMap1.lowerEntry ("Chia"));
+    testString.equals ("lower Entry to Chia key name", basicTypesMap1.lowerEntry ("Chia").getKey(), "ChewToy");
+    testNumber.equals ("lower Entry to Chia key number", basicTypesMap1.lowerEntry ("Chia").getValue(), 14.99);
+
+    test.notNullOrUndefined ("lower Entry to Center is valid", basicTypesMap1.lowerEntry ("Center"));
+    testString.equals ("lower Entry to Center key name", basicTypesMap1.lowerEntry ("Center").getKey(), "Catnip");
+    testNumber.equals ("lower Entry to Center key number", basicTypesMap1.lowerEntry ("Center").getValue(), 4.99);
+
+    test.notNullOrUndefined ("lower Entry to BCCCCC is valid", basicTypesMap1.lowerEntry ("BCCCCC"));
+    testString.equals ("lower Entry to BCCCCC key name", basicTypesMap1.lowerEntry ("BCCCCC").getKey(), "BBBBBB");
+    testNumber.equals ("lower Entry to BCCCCC key number", basicTypesMap1.lowerEntry ("BCCCCC").getValue(), 0.99);
+
+    test.notNullOrUndefined ("lower Entry to LongLeash is valid", basicTypesMap1.lowerEntry ("LongLeash"));
+    testString.equals ("lower Entry to LongLeash key name", basicTypesMap1.lowerEntry ("LongLeash").getKey(), "Leash");
+    testNumber.equals ("lower Entry to LongLeash key number", basicTypesMap1.lowerEntry ("LongLeash").getValue(), 6.99);
+
+    test.notNullOrUndefined ("lower Entry to Dry Kibble is valid", basicTypesMap1.lowerEntry ("Dry Kibble"));
+    testString.equals ("lower Entry to Dry Kibble key name", basicTypesMap1.lowerEntry ("Dry Kibble").getKey(), "Dry Food");
+    testNumber.equals ("lower Entry to Dry Kibble key number", basicTypesMap1.lowerEntry ("Dry Kibble").getValue(), 7.99);
+
+    test.notNullOrUndefined ("lower Entry to YYYYYYY is valid", basicTypesMap1.lowerEntry ("YYYYYYY"));
+    testString.equals ("lower Entry to YYYYYYY key name", basicTypesMap1.lowerEntry ("YYYYYYY").getKey(), "Wet Food");
+    testNumber.equals ("lower Entry to YYYYYYY key number", basicTypesMap1.lowerEntry ("YYYYYYY").getValue(), 7.49);
   });
 
   it("Test floorEntry", function() {
@@ -809,8 +843,6 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
     expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
     expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
-
-//    basicTypesMap1.printMap();
 
     expect (basicTypesMap1.floorEntry ("AAAAAA")).toEqual(null);
 
