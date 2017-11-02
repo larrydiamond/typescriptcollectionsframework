@@ -217,9 +217,13 @@ describe("Test SkipList functionality", function() {
     expect (petStoreMap1.size ()).toEqual(1);
     expect (petStoreMap1.isEmpty ()).toEqual(false);
     expect (petStoreMap1.firstKey()).toEqual(product1);
-//    expect (petStoreMap1.firstEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
+    test.notNullOrUndefined ("First Entry is valid", petStoreMap1.firstEntry());
+    test.equals ("First Entry is product1a", petStoreMap1.firstEntry().getKey().getProductName(), product1.getProductName());
+    test.equals ("First Entry is product1b", petStoreMap1.firstEntry().getKey().getPrice(), product1.getPrice());
     expect (petStoreMap1.lastKey()).toEqual(product1);
-//    expect (petStoreMap1.lastEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
+    test.notNullOrUndefined ("Last Entry is valid", petStoreMap1.lastEntry());
+    test.equals ("Last Entry is product1a", petStoreMap1.lastEntry().getKey().getProductName(), product1.getProductName());
+    test.equals ("Last Entry is product1b", petStoreMap1.lastEntry().getKey().getPrice(), product1.getPrice());
     testBoolean.equalsTrue ("Validate map", petStoreMap1.validateMap());
   });
 
@@ -228,9 +232,13 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
+    testString.equals ("First entry key name", basicTypesMap1.firstEntry().getKey(), "ChewToy");
+    testNumber.equals ("First entry key number", basicTypesMap1.firstEntry().getValue(), 14.99);
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("Last Entry is valid", basicTypesMap1.lastEntry());
+    testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "ChewToy");
+    testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
     testBoolean.equalsTrue ("Validate map", basicTypesMap1.validateMap());
   });
 
@@ -279,16 +287,24 @@ describe("Test SkipList functionality", function() {
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
     expect (petStoreMap1.size ()).toEqual(1);
     expect (petStoreMap1.firstKey()).toEqual(product1);
-//    expect (petStoreMap1.firstEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
+    test.notNullOrUndefined ("First Entry is valid", petStoreMap1.firstEntry());
+    test.equals ("First Entry is product1a", petStoreMap1.firstEntry().getKey().getProductName(), product1.getProductName());
+    test.equals ("First Entry is product1b", petStoreMap1.firstEntry().getKey().getPrice(), product1.getPrice());
     expect (petStoreMap1.lastKey()).toEqual(product1);
-//    expect (petStoreMap1.lastEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
+    test.notNullOrUndefined ("Last Entry is valid", petStoreMap1.lastEntry());
+    test.equals ("Last Entry is product1a", petStoreMap1.lastEntry().getKey().getProductName(), product1.getProductName());
+    test.equals ("Last Entry is product1b", petStoreMap1.lastEntry().getKey().getPrice(), product1.getPrice());
 
     expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(null);
     expect (petStoreMap1.size ()).toEqual(2);
     expect (petStoreMap1.firstKey()).toEqual(product2);
-//    expect (petStoreMap1.firstEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product2, new ValueClass(10)));
+    test.notNullOrUndefined ("First Entry is valid", petStoreMap1.firstEntry());
+    test.equals ("First Entry is product1a", petStoreMap1.firstEntry().getKey().getProductName(), product2.getProductName());
+    test.equals ("First Entry is product1b", petStoreMap1.firstEntry().getKey().getPrice(), product2.getPrice());
     expect (petStoreMap1.lastKey()).toEqual(product1);
-//    expect (petStoreMap1.lastEntry()).toEqual(new BasicMapEntry<PetStoreProduct,ValueClass>(product1, new ValueClass()));
+    test.notNullOrUndefined ("Last Entry is valid", petStoreMap1.lastEntry());
+    test.equals ("Last Entry is product1a", petStoreMap1.lastEntry().getKey().getProductName(), product1.getProductName());
+    test.equals ("Last Entry is product1b", petStoreMap1.lastEntry().getKey().getPrice(), product1.getPrice());
   });
 
   it("Map Test Adding two native items", function() {
@@ -296,16 +312,24 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
+    testString.equals ("First entry key name", basicTypesMap1.firstEntry().getKey(), "ChewToy");
+    testNumber.equals ("First entry key number", basicTypesMap1.firstEntry().getValue(), 14.99);
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("Last Entry is valid", basicTypesMap1.lastEntry());
+    testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "ChewToy");
+    testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
 
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(2);
     expect (basicTypesMap1.firstKey()).toEqual("Catnip");
-//    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("Catnip", 4.99));
+    test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
+    testString.equals ("First entry key name", basicTypesMap1.firstEntry().getKey(), "Catnip");
+    testNumber.equals ("First entry key number", basicTypesMap1.firstEntry().getValue(), 4.99);
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("Last Entry is valid", basicTypesMap1.lastEntry());
+    testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "ChewToy");
+    testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
   });
 
   it("Map Test ContainsKey where the item is contained", function() {
@@ -354,26 +378,38 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
+    testString.equals ("First entry key name", basicTypesMap1.firstEntry().getKey(), "ChewToy");
+    testNumber.equals ("First entry key number", basicTypesMap1.firstEntry().getValue(), 14.99);
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("Last Entry is valid", basicTypesMap1.lastEntry());
+    testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "ChewToy");
+    testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
     testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMap());
 
     expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(2);
     expect (basicTypesMap1.firstKey()).toEqual("Catnip");
-//    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("Catnip", 4.99));
+    test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
+    testString.equals ("First entry key name", basicTypesMap1.firstEntry().getKey(), "Catnip");
+    testNumber.equals ("First entry key number", basicTypesMap1.firstEntry().getValue(), 4.99);
     expect (basicTypesMap1.lastKey()).toEqual("ChewToy");
-//    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("ChewToy", 14.99));
+    test.notNullOrUndefined ("Last Entry is valid", basicTypesMap1.lastEntry());
+    testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "ChewToy");
+    testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
     testBoolean.equalsTrue ("Validate map3", basicTypesMap1.validateMap());
 
     expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(null);
     testBoolean.equalsTrue ("Validate map3a", basicTypesMap1.validateMap());
     expect (basicTypesMap1.size ()).toEqual(3);
     expect (basicTypesMap1.firstKey()).toEqual("Catnip");
-//    expect (basicTypesMap1.firstEntry()).toEqual(new BasicMapEntry<string,number>("Catnip", 4.99));
+    test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
+    testString.equals ("First entry key name", basicTypesMap1.firstEntry().getKey(), "Catnip");
+    testNumber.equals ("First entry key number", basicTypesMap1.firstEntry().getValue(), 4.99);
     testString.equals ("Testing last key", basicTypesMap1.lastKey(), "Leash");
-//    expect (basicTypesMap1.lastEntry()).toEqual(new BasicMapEntry<string,number>("Leash", 1.99));
+    test.notNullOrUndefined ("Last Entry is valid", basicTypesMap1.lastEntry());
+    testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "Leash");
+    testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 1.99);
     testBoolean.equalsTrue ("Validate map4", basicTypesMap1.validateMap());
 
     expect (basicTypesMap1.size ()).toEqual(3);
