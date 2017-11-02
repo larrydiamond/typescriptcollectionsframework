@@ -569,6 +569,7 @@ var SkipListMapImpl = (function () {
             if ((tmp !== null) && (tmp !== undefined)) {
                 var cmp = this.mapComparator.compare(tmp.getKey(), key);
                 if (cmp === 0) {
+                    //          console.log ("Match on head " + tmp.getKey() + " " + key);
                     return tmp;
                 }
                 if (cmp === -1) {
@@ -586,7 +587,7 @@ var SkipListMapImpl = (function () {
             // If it's under, then loop from the top on down until you find a node below target and restart the while loop
             var tmp = node.getNextNodeArray().get(0);
             if ((tmp === null) || (tmp === undefined)) {
-                return node;
+                return null;
             }
             var cmp = this.mapComparator.compare(tmp.getKey(), key);
             if (cmp === 0) {
