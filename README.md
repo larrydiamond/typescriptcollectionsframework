@@ -12,11 +12,15 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
 
+# Demo & Tutorial project with Angular 5
+Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular5/dist/
+
+Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular5
+
 # Demo & Tutorial project with Angular 4
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular4/dist/
 
 Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular4
-
 
 # Demo & Tutorial project with Angular 2
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular2/dist/
