@@ -41,83 +41,90 @@ var SkipListMapImpl = (function () {
     }
     SkipListMapImpl.prototype.getSkipListNodeComparator = function () { return this.skipListNodeComparator; };
     SkipListMapImpl.prototype.getSkipListNodeCollectable = function () { return this.skipListNodeCollectable; };
-    SkipListMapImpl.prototype.validateDisplay = function () {
-        console.log("SkipListMapImpl::ValidateDisplay - Size of SkipListMap = " + this.numberElements);
-        var count = 0;
-        var tmp = this.firstEntry();
+    /*
+    
+      public validateDisplay () : boolean {
+        console.log ("SkipListMapImpl::ValidateDisplay - Size of SkipListMap = " + this.numberElements);
+        let count : number = 0;
+        let tmp : SkipListNode<K,V> = this.firstEntry();
         while ((tmp !== null) && (tmp !== undefined)) {
-            console.log("NodeList " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()));
-            tmp = tmp.getNextNodeArray().get(0);
-            count++;
+          console.log ("NodeList " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()));
+          tmp = tmp.getNextNodeArray().get (0);
+          count++;
         }
-        for (var loop = 0.0; loop < this.head.size(); loop++) {
-            var hn = this.head.get(loop);
-            if ((hn !== null) && (hn !== undefined)) {
-                console.log("Head" + loop + " " + JSON.stringify(hn.getKey()) + " - " + JSON.stringify(hn.getValue()));
-            }
+    
+        for (let loop:number = 0.0; loop < this.head.size(); loop++) {
+          const hn : SkipListNode<K,V> = this.head.get(loop);
+          if ((hn !== null) && (hn !== undefined)) {
+            console.log ("Head" + loop + " " + JSON.stringify(hn.getKey()) + " - " + JSON.stringify(hn.getValue()));
+          }
         }
+    
         tmp = this.firstEntry();
         while ((tmp !== null) && (tmp !== undefined)) {
-            console.log("Node " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()) + " " + tmp.getLastNodeArray().size() + " " + tmp.getNextNodeArray().size());
-            for (var loop = 0.0; loop < this.head.size(); loop++) {
-                var ln = tmp.getLastNodeArray().get(loop);
-                if ((ln !== null) && (ln !== undefined)) {
-                    console.log("Last" + loop + " " + JSON.stringify(ln.getKey()) + " - " + JSON.stringify(ln.getValue()));
-                }
+          console.log ("Node " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()) + " " + tmp.getLastNodeArray().size() + " " + tmp.getNextNodeArray().size());
+          for (let loop:number = 0.0; loop < this.head.size(); loop++) {
+            const ln : SkipListNode<K,V> = tmp.getLastNodeArray().get(loop);
+            if ((ln !== null) && (ln !== undefined)) {
+              console.log ("Last" + loop + " " + JSON.stringify(ln.getKey()) + " - " + JSON.stringify(ln.getValue()));
             }
-            for (var loop = 0.0; loop < this.head.size(); loop++) {
-                var nn = tmp.getNextNodeArray().get(loop);
-                if ((nn !== null) && (nn !== undefined)) {
-                    console.log("Next" + loop + " " + JSON.stringify(nn.getKey()) + " - " + JSON.stringify(nn.getValue()));
-                }
+          }
+          for (let loop:number = 0.0; loop < this.head.size(); loop++) {
+            const nn : SkipListNode<K,V> = tmp.getNextNodeArray().get(loop);
+            if ((nn !== null) && (nn !== undefined)) {
+              console.log ("Next" + loop + " " + JSON.stringify(nn.getKey()) + " - " + JSON.stringify(nn.getValue()));
             }
-            tmp = tmp.getNextNodeArray().get(0);
+          }
+          tmp = tmp.getNextNodeArray().get (0);
         }
+    
+    
         // each of the head elements needs to be at least as big as the prior element or null
-        for (var loop = 1.0; loop < this.head.size() - 1.0; loop++) {
-            var lower = this.head.get(Math.round(loop - 1.0));
-            var higher = this.head.get(loop);
-            if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
-                var cmp = this.mapComparator.compare(lower.getKey(), higher.getKey());
-                if (cmp === 1) {
-                    console.log("Head elements out of order");
-                    return false;
-                }
+        for (let loop:number = 1.0; loop < this.head.size() - 1.0; loop++) {
+          const lower : SkipListNode<K,V> = this.head.get (Math.round (loop - 1.0));
+          const higher : SkipListNode<K,V> = this.head.get (loop);
+          if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
+            const cmp:number = this.mapComparator.compare(lower.getKey(), higher.getKey());
+            if (cmp === 1) {
+              console.log ("Head elements out of order");
+              return false;
             }
+          }
         }
         while ((tmp !== null) && (tmp !== undefined)) {
-            var next = this.nextHigherNode(tmp);
-            if ((next !== null) && (next !== undefined)) {
-                if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
-                    console.log("next node array null");
-                    return false;
-                }
-                if ((tmp.getLastNodeArray() === null) || (tmp.getLastNodeArray() === undefined)) {
-                    console.log("last node array null");
-                    return false;
-                }
-                console.log(JSON.stringify(next.getKey()) + " - " + JSON.stringify(next.getValue()));
-                count++;
-                var prev = next.getLastNodeArray().get(0);
-                if (prev !== null) {
-                    var cmp = this.mapComparator.compare(prev.getKey(), tmp.getKey());
-                    if (cmp !== 0) {
-                        console.log("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
-                        return false;
-                    }
-                }
+          const next : SkipListNode<K,V> = this.nextHigherNode(tmp);
+          if ((next !== null) && (next !== undefined)) {
+            if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
+              console.log ("next node array null");
+              return false;
             }
-            tmp = next;
+            if ((tmp.getLastNodeArray() === null) || (tmp.getLastNodeArray() === undefined)) {
+              console.log ("last node array null");
+              return false;
+            }
+            console.log (JSON.stringify(next.getKey()) + " - " + JSON.stringify(next.getValue()));
+            count++;
+            const prev : SkipListNode<K,V> = next.getLastNodeArray().get (0);
+            if (prev !== null) {
+              const cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
+              if (cmp !== 0) {
+                console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
+                return false;
+              }
+            }
+          }
+          tmp = next;
         }
-        console.log("End::Size of SkipListMap = " + this.numberElements + " found " + count);
+        console.log ("End::Size of SkipListMap = " + this.numberElements + " found " + count);
         if (this.numberElements === count) {
-            return true;
+          return true;
+        } else {
+          console.log ("Inconsistent size of display SkipListMap = " + this.numberElements + " found " + count);
+          return false;
         }
-        else {
-            console.log("Inconsistent size of display SkipListMap = " + this.numberElements + " found " + count);
-            return false;
-        }
-    };
+      }
+    
+    */
     SkipListMapImpl.prototype.validate = function () {
         var count = 0.0;
         var tmp = this.firstEntry();
@@ -711,7 +718,7 @@ var SkipListMap = (function () {
         }
     }
     SkipListMap.prototype.validateMap = function () { return this.impl.validate(); };
-    SkipListMap.prototype.validateMapDisplay = function () { return this.impl.validateDisplay(); };
+    //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
     SkipListMap.prototype.getNextHigherKey = function (key) {
         var node = this.impl.getEntry(key);
         if ((node === undefined) || (node === null)) {
@@ -1142,7 +1149,7 @@ var SkipListSet = (function () {
         }
     }
     SkipListSet.prototype.validateSet = function () { return this.impl.validate(); };
-    SkipListSet.prototype.validateSetDisplay = function () { return this.impl.validateDisplay(); };
+    //  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set

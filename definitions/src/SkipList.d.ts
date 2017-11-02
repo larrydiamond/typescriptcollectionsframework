@@ -20,7 +20,6 @@ export declare class SkipListMapImpl<K, V> {
     constructor(iComparator: Comparator<K>);
     getSkipListNodeComparator(): Comparator<SkipListNode<K, V>>;
     getSkipListNodeCollectable(): Collectable<SkipListNode<K, V>>;
-    validateDisplay(): boolean;
     validate(): boolean;
     /**
     * Removes the mapping for this key from this Map if present.
@@ -120,7 +119,6 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     private impl;
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
     validateMap(): boolean;
-    validateMapDisplay(): boolean;
     getNextHigherKey(key: K): K;
     /**
     * Returns the number of key-value mappings in this map.
@@ -300,7 +298,6 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     private impl;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
     validateSet(): boolean;
-    validateSetDisplay(): boolean;
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set

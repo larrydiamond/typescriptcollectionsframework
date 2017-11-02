@@ -919,7 +919,7 @@ describe("Test SkipList functionality", function() {
 
   });
 
-/*
+
   it("Test lots", function() {
     let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
 
@@ -991,7 +991,7 @@ describe("Test SkipList functionality", function() {
     expect (petStoreMap1.size ()).toEqual(0);
 //    expect (petStoreMap1.isEmpty ()).toEqual(true);
   });
-*/
+
 
   it("Test keyset jiterator basics", function() {
     const petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
@@ -1516,8 +1516,9 @@ describe("Test SkipList functionality", function() {
 
   });
 
-
 */
+
+
   it("Set Test ceiling", function() {
     const SkipListSet2:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
     expect (SkipListSet2.add (44)).toEqual(true);

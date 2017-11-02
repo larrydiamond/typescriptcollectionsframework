@@ -47,6 +47,8 @@ export class SkipListMapImpl<K,V> {
   public getSkipListNodeComparator() : Comparator<SkipListNode<K,V>> { return this.skipListNodeComparator; }
   public getSkipListNodeCollectable() : Collectable<SkipListNode<K,V>> { return this.skipListNodeCollectable; }
 
+/*
+
   public validateDisplay () : boolean {
     console.log ("SkipListMapImpl::ValidateDisplay - Size of SkipListMap = " + this.numberElements);
     let count : number = 0;
@@ -127,6 +129,8 @@ export class SkipListMapImpl<K,V> {
       return false;
     }
   }
+
+*/
 
   public validate () : boolean {
     let count : number = 0.0;
@@ -745,7 +749,7 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   }
 
   public validateMap () : boolean { return this.impl.validate(); }
-  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
+//  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
 
   public getNextHigherKey (key : K) {
     const node : SkipListNode<K,V> = this.impl.getEntry(key);
@@ -1209,7 +1213,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   }
 
   public validateSet () : boolean { return this.impl.validate(); }
-  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
+//  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
 
   /**
   * Adds the specified element to this set if it is not already present.

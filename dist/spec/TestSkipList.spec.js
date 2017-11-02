@@ -795,79 +795,65 @@ describe("Test SkipList functionality", function () {
         expect(basicTypesMap1.floorKey("Dry Kibble")).toEqual("Dry Food");
         expect(basicTypesMap1.floorKey("Wet Kibble wow am I out of ideas for text")).toEqual("Wet Food");
     });
-    /*
-      it("Test lots", function() {
-        let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
-    
-        for (let loop1 = 1; loop1 <= 26; loop1++) {
-          for (let loop2 = 1; loop2 <= 26; loop2++) {
-            for (let loop3 = 1; loop3 <= 1; loop3++) {
-              let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-              let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-              petStoreMap1.put (product, new ValueClass());
-    //          console.log (txt + " " + (loop1 + loop2 + loop3));
+    it("Test lots", function () {
+        var petStoreMap1 = new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct);
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                for (var loop3 = 1; loop3 <= 1; loop3++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    var product = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+                    petStoreMap1.put(product, new ValueClass());
+                    //          console.log (txt + " " + (loop1 + loop2 + loop3));
+                }
             }
-          }
         }
-    
-        expect (petStoreMap1.validateMap ()).toEqual(true);
-    
-        expect (petStoreMap1.size ()).toEqual(26 * 26);
-    //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-        expect (petStoreMap1.get (product1)).toEqual(null);
-    
-        for (let loop1 = 1; loop1 <= 26; loop1++) {
-          for (let loop2 = 1; loop2 <= 26; loop2++) {
-            for (let loop3 = 1; loop3 <= 1; loop3++) {
-              let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-              let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-              test.notNull ("Expected Get to not be null", petStoreMap1.get (product));
-    //          expect (petStoreMap1.get (product)).not.toEqual(null);
-              test.notNull ("Expected Remove to not be null", petStoreMap1.remove (product));
-    //          expect (petStoreMap1.remove (product)).not.toEqual (null);
+        expect(petStoreMap1.validateMap()).toEqual(true);
+        expect(petStoreMap1.size()).toEqual(26 * 26);
+        //    expect (petStoreMap1.isEmpty ()).toEqual(false);
+        expect(petStoreMap1.get(product1)).toEqual(null);
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                for (var loop3 = 1; loop3 <= 1; loop3++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    var product = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+                    test.notNull("Expected Get to not be null", petStoreMap1.get(product));
+                    //          expect (petStoreMap1.get (product)).not.toEqual(null);
+                    test.notNull("Expected Remove to not be null", petStoreMap1.remove(product));
+                    //          expect (petStoreMap1.remove (product)).not.toEqual (null);
+                }
             }
-          }
         }
-    
-        expect (petStoreMap1.validateMap ()).toEqual(true);
-    
-        expect (petStoreMap1.size ()).toEqual(0);
-    //    expect (petStoreMap1.isEmpty ()).toEqual(true);
-    
-        for (let loop2 = 1; loop2 <= 26; loop2++) {
-          for (let loop1 = 1; loop1 <= 26; loop1++) {
-            for (let loop3 = 1; loop3 <= 1; loop3++) {
-              let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-              let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-              petStoreMap1.put (product, new ValueClass());
-    //          console.log (txt + " " + (loop1 + loop2 + loop3));
+        expect(petStoreMap1.validateMap()).toEqual(true);
+        expect(petStoreMap1.size()).toEqual(0);
+        //    expect (petStoreMap1.isEmpty ()).toEqual(true);
+        for (var loop2 = 1; loop2 <= 26; loop2++) {
+            for (var loop1 = 1; loop1 <= 26; loop1++) {
+                for (var loop3 = 1; loop3 <= 1; loop3++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    var product = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+                    petStoreMap1.put(product, new ValueClass());
+                    //          console.log (txt + " " + (loop1 + loop2 + loop3));
+                }
             }
-          }
         }
-    
-        expect (petStoreMap1.validateMap ()).toEqual(true);
-    
-        expect (petStoreMap1.size ()).toEqual(26 * 26);
-    //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-        expect (petStoreMap1.get (product1)).toEqual(null);
-    
-        for (let loop1 = 1; loop1 <= 26; loop1++) {
-          for (let loop2 = 1; loop2 <= 26; loop2++) {
-            for (let loop3 = 1; loop3 <= 1; loop3++) {
-              let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-              let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-              expect (petStoreMap1.get (product)).not.toEqual(null);
-              expect (petStoreMap1.remove (product)).not.toEqual (null);
+        expect(petStoreMap1.validateMap()).toEqual(true);
+        expect(petStoreMap1.size()).toEqual(26 * 26);
+        //    expect (petStoreMap1.isEmpty ()).toEqual(false);
+        expect(petStoreMap1.get(product1)).toEqual(null);
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                for (var loop3 = 1; loop3 <= 1; loop3++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    var product = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+                    expect(petStoreMap1.get(product)).not.toEqual(null);
+                    expect(petStoreMap1.remove(product)).not.toEqual(null);
+                }
             }
-          }
         }
-    
-        expect (petStoreMap1.validateMap ()).toEqual(true);
-    
-        expect (petStoreMap1.size ()).toEqual(0);
-    //    expect (petStoreMap1.isEmpty ()).toEqual(true);
-      });
-    */
+        expect(petStoreMap1.validateMap()).toEqual(true);
+        expect(petStoreMap1.size()).toEqual(0);
+        //    expect (petStoreMap1.isEmpty ()).toEqual(true);
+    });
     it("Test keyset jiterator basics", function () {
         var petStoreMap1 = new SkipList_1.SkipListMap(priceSortPetStoreProduct);
         var keyset = petStoreMap1.keySet();
@@ -1356,7 +1342,6 @@ describe("Test SkipList functionality", function () {
       expect (tmp.done).toEqual(true);
   
     });
-  
   
   */
     it("Set Test ceiling", function () {
