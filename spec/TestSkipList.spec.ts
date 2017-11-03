@@ -1694,6 +1694,80 @@ describe("Test SkipList functionality", function() {
 //    tsData.printSet ();
     testBoolean.equalsTrue("Validate Set 8 ", tsData.validateSet());
     expect (tsData.size ()).toEqual(2);
+  }, 2000);
+
+  it("Set Test Floor", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+    testNumber.equals ("Test empty floor", set.floor (0), null);
+
+    expect (set.add (44)).toEqual(true);
+    expect (set.add (5)).toEqual(true);
+    expect (set.add (20)).toEqual(true);
+    expect (set.add (88)).toEqual(true);
+    expect (set.add (50)).toEqual(true);
+    expect (set.add (30)).toEqual(true);
+    expect (set.add (1)).toEqual(true);
+    expect (set.add (48)).toEqual(true);
+    expect (set.add (62)).toEqual(true);
+    expect (set.add (78)).toEqual(true);
+    expect (set.add (17)).toEqual(true);
+    expect (set.add (70)).toEqual(true);
+    expect (set.add (80)).toEqual(true);
+    expect (set.add (32)).toEqual(true);
+
+    testNumber.equals ("Test floor where exists", set.floor (62), 62);
+    testNumber.equals ("Test floor where not exists", set.floor (63), 62);
+    testNumber.equals ("Test floor where above all", set.floor (1000), 88);
+    testNumber.equals ("Test floor where below all", set.floor (-1000), null);
   });
+
+  it("Set Test Last", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+    testNumber.equals ("Test empty last", set.last (), null);
+
+    expect (set.add (44)).toEqual(true);
+    expect (set.add (5)).toEqual(true);
+    expect (set.add (20)).toEqual(true);
+    expect (set.add (88)).toEqual(true);
+    expect (set.add (50)).toEqual(true);
+    expect (set.add (30)).toEqual(true);
+    expect (set.add (1)).toEqual(true);
+    expect (set.add (48)).toEqual(true);
+    expect (set.add (62)).toEqual(true);
+    expect (set.add (78)).toEqual(true);
+    expect (set.add (17)).toEqual(true);
+    expect (set.add (70)).toEqual(true);
+    expect (set.add (80)).toEqual(true);
+    expect (set.add (32)).toEqual(true);
+
+    testNumber.equals ("Test last", set.last (), 88);
+  });
+
+  it("Set Test Next", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+    testNumber.equals ("Test empty Next", set.getNextHigherKey (0), null);
+
+    expect (set.add (44)).toEqual(true);
+    expect (set.add (5)).toEqual(true);
+    expect (set.add (20)).toEqual(true);
+    expect (set.add (88)).toEqual(true);
+    expect (set.add (50)).toEqual(true);
+    expect (set.add (30)).toEqual(true);
+    expect (set.add (1)).toEqual(true);
+    expect (set.add (48)).toEqual(true);
+    expect (set.add (62)).toEqual(true);
+    expect (set.add (78)).toEqual(true);
+    expect (set.add (17)).toEqual(true);
+    expect (set.add (70)).toEqual(true);
+    expect (set.add (80)).toEqual(true);
+    expect (set.add (32)).toEqual(true);
+
+    testNumber.equals ("Test Next where exists", set.getNextHigherKey (62), 70);
+    testNumber.equals ("Test Next where not exists", set.getNextHigherKey (63), 70);
+    testNumber.equals ("Test Next where above all", set.getNextHigherKey (1000), null);
+    testNumber.equals ("Test Next where below all", set.getNextHigherKey (-1000), 1);
+  });
+
+
 
 });
