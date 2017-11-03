@@ -1467,6 +1467,7 @@ export class SkipListSetIterator<T> implements Iterator<T> {
 
   constructor (implI:SkipListMapImpl<T,number>) {
     this.impl = implI;
+    this.location = this.impl.firstEntry();
   }
 
   // tslint:disable-next-line:no-any

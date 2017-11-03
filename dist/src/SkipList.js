@@ -1386,6 +1386,7 @@ exports.SkipListSetJIterator = SkipListSetJIterator;
 var SkipListSetIterator = (function () {
     function SkipListSetIterator(implI) {
         this.impl = implI;
+        this.location = this.impl.firstEntry();
     }
     // tslint:disable-next-line:no-any
     SkipListSetIterator.prototype.next = function (value) {

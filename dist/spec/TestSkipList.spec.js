@@ -1345,29 +1345,21 @@ describe("Test SkipList functionality", function () {
             offset++;
         }
     });
-    /*
-  
-    it("Set Test typescript iteration", function() {
-      const SkipListSet2:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
-  
-      expect (SkipListSet2.add (product1)).toEqual (true);
-      expect (SkipListSet2.add (product2)).toEqual (true);
-  
-      const offset:number = 0;
-  
-      const tsi:Iterator<PetStoreProduct> = SkipListSet2[Symbol.iterator]();
-      let tmp:IteratorResult<PetStoreProduct> = tsi.next();
-      expect (tmp.done).toEqual(false);
-      expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2));  // Catnip before ChewToy
-      tmp = tsi.next();
-      expect (tmp.done).toEqual(false);
-      expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product1));  // Catnip before ChewToy
-      tmp = tsi.next();
-      expect (tmp.done).toEqual(true);
-  
+    it("Set Test typescript iteration", function () {
+        var SkipListSet2 = new SkipList_2.SkipListSet(alphabeticalSortPetStoreProduct);
+        expect(SkipListSet2.add(product1)).toEqual(true);
+        expect(SkipListSet2.add(product2)).toEqual(true);
+        var offset = 0;
+        var tsi = SkipListSet2[Symbol.iterator]();
+        var tmp = tsi.next();
+        expect(tmp.done).toEqual(false);
+        expect(JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2)); // Catnip before ChewToy
+        tmp = tsi.next();
+        expect(tmp.done).toEqual(false);
+        expect(JSON.stringify(tmp.value)).toEqual(JSON.stringify(product1)); // Catnip before ChewToy
+        tmp = tsi.next();
+        expect(tmp.done).toEqual(true);
     });
-  
-  */
     it("Set Test ceiling", function () {
         var SkipListSet2 = new SkipList_2.SkipListSet(Collections_1.Collections.getNumberComparator());
         expect(SkipListSet2.add(44)).toEqual(true);

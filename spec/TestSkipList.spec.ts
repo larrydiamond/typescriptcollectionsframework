@@ -1529,7 +1529,6 @@ describe("Test SkipList functionality", function() {
     }
   });
 
-  /*
 
   it("Set Test typescript iteration", function() {
     const SkipListSet2:SkipListSet<PetStoreProduct> = new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
@@ -1550,8 +1549,6 @@ describe("Test SkipList functionality", function() {
     expect (tmp.done).toEqual(true);
 
   });
-
-*/
 
 
   it("Set Test ceiling", function() {
