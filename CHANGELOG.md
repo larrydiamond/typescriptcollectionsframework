@@ -1,5 +1,17 @@
 # Change Log
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.1.3...v1.2.0) (2017-11-03)
+* SkipList Set and Map prerelease for version 2
+
+<a name="1.1.3"></a>
+# [1.1.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.1.2...v1.1.3) (2017-10-29)
+* Skiplist test fixes
+
+<a name="1.1.2"></a>
+# [1.1.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.1.1...v1.1.2) (2017-10-26)
+* Skiplist test fixes
+
 <a name="1.1.1"></a>
 # [1.1.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.1.0...v1.1.1) (2017-10-22)
 * tslint recommendations
