@@ -31,7 +31,7 @@ Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-
 https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 
 [ArrayList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_arraylist_.arraylist.html), [LinkedList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_linkedlist_.linkedlist.html), [TreeSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treeset_.treeset.html), [HashSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashset_.hashset.html), 
-[HashMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashmap_.hashmap.html), and [TreeMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treemap_.treemap.html) are all live and available today.  Version 2 goals include PriorityQueue and SkipListMap and much more documentation
+[HashMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_hashmap_.hashmap.html), and [TreeMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_src_treemap_.treemap.html) are all live and available today.  Version 3 goals include PriorityQueue and much more documentation
 
 [Collection](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_collection_.collection.html), 
 [List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jset_.jset.html), and [Map](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_src_jmap_.jmap.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
@@ -78,5 +78,5 @@ Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at l
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
-# Queue and Priority Queue are coming shortly
-A very talented developer has volunteered to implement Queue and PriorityQueue.   He will be properly acknowledged and promoted as a contributor very soon.    Thank you for agreeing to make this framework better, and I really appreciate volunteers!
+# Priority Queue are coming shortly
+A very talented developer has volunteered to implement PriorityQueue.   He will be properly acknowledged and promoted as a contributor very soon.    Thank you for agreeing to make this framework better, and I really appreciate volunteers!
