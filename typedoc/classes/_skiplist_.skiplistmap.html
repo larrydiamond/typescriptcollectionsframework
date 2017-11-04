@@ -113,6 +113,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#floorentry" class="tsd-kind-icon">floor<wbr>Entry</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#floorkey" class="tsd-kind-icon">floor<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#getnexthigherkey" class="tsd-kind-icon">get<wbr>Next<wbr>Higher<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#higherentry" class="tsd-kind-icon">higher<wbr>Entry</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#higherkey" class="tsd-kind-icon">higher<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#immutablemap" class="tsd-kind-icon">immutable<wbr>Map</a></li>
@@ -125,6 +126,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#put" class="tsd-kind-icon">put</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistmap.html#validatemap" class="tsd-kind-icon">validate<wbr>Map</a></li>
 							</ul>
 						</section>
 					</div>
@@ -136,13 +138,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Map<span class="tsd-signature-symbol">(</span>comp<span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitial<span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistmap.html" class="tsd-signature-type">SkipListMap</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Map<span class="tsd-signature-symbol">(</span>comp<span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitial<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistmap.html" class="tsd-signature-type">SkipListMap</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L157">SkipList.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L736">SkipList.ts:736</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -151,7 +153,7 @@
 									<h5>comp: <a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>iInitial: <a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iInitial: <a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_skiplist_.skiplistmap.html" class="tsd-signature-type">SkipListMap</a></h4>
@@ -172,7 +174,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#ceilingentry">ceilingEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L278">SkipList.ts:278</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L898">SkipList.ts:898</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,7 +207,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#ceilingkey">ceilingKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L287">SkipList.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L911">SkipList.ts:911</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,7 +240,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L246">SkipList.ts:246</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L858">SkipList.ts:858</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,7 +263,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#containskey">containsKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L185">SkipList.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L792">SkipList.ts:792</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -294,7 +296,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#entryset">entrySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L220">SkipList.ts:220</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L832">SkipList.ts:832</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +324,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#firstentry">firstEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L269">SkipList.ts:269</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L885">SkipList.ts:885</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -346,7 +348,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#firstkey">firstKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L261">SkipList.ts:261</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L873">SkipList.ts:873</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,7 +372,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#floorentry">floorEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L342">SkipList.ts:342</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L989">SkipList.ts:989</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -403,7 +405,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#floorkey">floorKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L333">SkipList.ts:333</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L976">SkipList.ts:976</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -436,7 +438,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L176">SkipList.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L779">SkipList.ts:779</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -459,6 +461,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getnexthigherkey" class="tsd-anchor"></a>
+					<h3>get<wbr>Next<wbr>Higher<wbr>Key</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Next<wbr>Higher<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L754">SkipList.ts:754</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">K</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="higherentry" class="tsd-anchor"></a>
 					<h3>higher<wbr>Entry</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -469,7 +494,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#higherentry">higherEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L305">SkipList.ts:305</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L937">SkipList.ts:937</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -502,7 +527,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#higherkey">higherKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L296">SkipList.ts:296</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L924">SkipList.ts:924</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -535,7 +560,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#immutablemap">immutableMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L253">SkipList.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L865">SkipList.ts:865</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -558,7 +583,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L193">SkipList.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L804">SkipList.ts:804</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -582,7 +607,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L208">SkipList.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L819">SkipList.ts:819</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -609,7 +634,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lastentry">lastEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L358">SkipList.ts:358</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L1013">SkipList.ts:1013</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -633,7 +658,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lastkey">lastKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L350">SkipList.ts:350</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L1001">SkipList.ts:1001</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -657,7 +682,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lowerentry">lowerEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L324">SkipList.ts:324</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L963">SkipList.ts:963</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -690,7 +715,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lowerkey">lowerKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L315">SkipList.ts:315</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L950">SkipList.ts:950</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -723,7 +748,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#put">put</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L230">SkipList.ts:230</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L842">SkipList.ts:842</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -762,7 +787,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L239">SkipList.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L851">SkipList.ts:851</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -795,7 +820,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/0b07f79/src/SkipList.ts#L167">SkipList.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L770">SkipList.ts:770</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -805,6 +830,23 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of key-value mappings in this map</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="validatemap" class="tsd-anchor"></a>
+					<h3>validate<wbr>Map</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Map<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L751">SkipList.ts:751</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -823,6 +865,12 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.immutableentrysetforskiplistmapimpl.html" class="tsd-kind-icon">Immutable<wbr>Entry<wbr>Set<wbr>For<wbr>Skip<wbr>List<wbr>Map<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.immutablekeysetforskiplistmap.html" class="tsd-kind-icon">Immutable<wbr>Key<wbr>Set<wbr>For<wbr>Skip<wbr>List<wbr>Map</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
@@ -862,6 +910,9 @@
 								<a href="_skiplist_.skiplistmap.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistmap.html#getnexthigherkey" class="tsd-kind-icon">get<wbr>Next<wbr>Higher<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_skiplist_.skiplistmap.html#higherentry" class="tsd-kind-icon">higher<wbr>Entry</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -897,12 +948,39 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_skiplist_.skiplistmap.html#size" class="tsd-kind-icon">size</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_skiplist_.skiplistmap.html#validatemap" class="tsd-kind-icon">validate<wbr>Map</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapentrysetiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Entry<wbr>Set<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapentrysetjiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Entry<wbr>SetJIterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapimpl.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapkeysetiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Key<wbr>Set<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapkeysetjiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Key<wbr>SetJIterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistnode.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_skiplist_.skiplistset.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistsetiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistsetjiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>SetJIterator</a>
 					</li>
 				</ul>
 			</nav>

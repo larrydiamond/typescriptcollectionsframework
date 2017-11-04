@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HashMapEntrySetIterator | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>SkipListSetIterator | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_hashmap_.html">&quot;HashMap&quot;</a>
+					<a href="../modules/_skiplist_.html">&quot;SkipList&quot;</a>
 				</li>
 				<li>
-					<a href="_hashmap_.hashmapentrysetiterator.html">HashMapEntrySetIterator</a>
+					<a href="_skiplist_.skiplistsetiterator.html">SkipListSetIterator</a>
 				</li>
 			</ul>
-			<h1>Class HashMapEntrySetIterator&lt;K, V&gt;</h1>
+			<h1>Class SkipListSetIterator&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -69,10 +69,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>K</h4>
-					</li>
-					<li>
-						<h4>V</h4>
+						<h4>T</h4>
 					</li>
 				</ul>
 			</section>
@@ -80,14 +77,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HashMapEntrySetIterator</span>
+						<span class="target">SkipListSetIterator</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -97,13 +94,13 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_hashmap_.hashmapentrysetiterator.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_skiplist_.skiplistsetiterator.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmapentrysetiterator.html#next" class="tsd-kind-icon">next</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_skiplist_.skiplistsetiterator.html#next" class="tsd-kind-icon">next</a></li>
 							</ul>
 						</section>
 					</div>
@@ -115,22 +112,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Hash<wbr>Map<wbr>Entry<wbr>Set<wbr>Iterator<span class="tsd-signature-symbol">(</span>iHashMap<span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmap.html" class="tsd-signature-type">HashMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapentrysetiterator.html" class="tsd-signature-type">HashMapEntrySetIterator</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Set<wbr>Iterator<span class="tsd-signature-symbol">(</span>implI<span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistmapimpl.html" class="tsd-signature-type">SkipListMapImpl</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistsetiterator.html" class="tsd-signature-type">SkipListSetIterator</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/HashMap.ts#L532">HashMap.ts:532</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L1466">SkipList.ts:1466</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iHashMap: <a href="_hashmap_.hashmap.html" class="tsd-signature-type">HashMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>implI: <a href="_skiplist_.skiplistmapimpl.html" class="tsd-signature-type">SkipListMapImpl</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmapentrysetiterator.html" class="tsd-signature-type">HashMapEntrySetIterator</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_skiplist_.skiplistsetiterator.html" class="tsd-signature-type">SkipListSetIterator</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -141,13 +138,13 @@
 					<a name="next" class="tsd-anchor"></a>
 					<h3>next</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/HashMap.ts#L540">HashMap.ts:540</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/f25e2a0/src/SkipList.ts#L1474">SkipList.ts:1474</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -156,7 +153,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -169,50 +166,59 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_hashmap_.html">"<wbr>Hash<wbr>Map"</a>
+						<a href="../modules/_skiplist_.html">"<wbr>Skip<wbr>List"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmap.html" class="tsd-kind-icon">Hash<wbr>Map</a>
+						<a href="_skiplist_.immutableentrysetforskiplistmapimpl.html" class="tsd-kind-icon">Immutable<wbr>Entry<wbr>Set<wbr>For<wbr>Skip<wbr>List<wbr>Map<wbr>Impl</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapentry.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Entry</a>
+						<a href="_skiplist_.immutablekeysetforskiplistmap.html" class="tsd-kind-icon">Immutable<wbr>Key<wbr>Set<wbr>For<wbr>Skip<wbr>List<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmap.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapentrysetiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Entry<wbr>Set<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapentrysetjiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Entry<wbr>SetJIterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapimpl.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapkeysetiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Key<wbr>Set<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistmapkeysetjiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Map<wbr>Key<wbr>SetJIterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistnode.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_skiplist_.skiplistset.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapentrysetiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Entry<wbr>Set<wbr>Iterator</a>
+						<a href="_skiplist_.skiplistsetiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>Set<wbr>Iterator</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_hashmap_.hashmapentrysetiterator.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_skiplist_.skiplistsetiterator.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmapentrysetiterator.html#next" class="tsd-kind-icon">next</a>
+								<a href="_skiplist_.skiplistsetiterator.html#next" class="tsd-kind-icon">next</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapentrysetjiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Entry<wbr>SetJIterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Iterator<wbr>Location<wbr>Tracker</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapkeysetiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Key<wbr>Set<wbr>Iterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapkeysetjiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Key<wbr>SetJIterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.immutableentrysetforhashmap.html" class="tsd-kind-icon">Immutable<wbr>Entry<wbr>Set<wbr>For<wbr>Hash<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.immutablekeysetforhashmap.html" class="tsd-kind-icon">Immutable<wbr>Key<wbr>Set<wbr>For<wbr>Hash<wbr>Map</a>
+						<a href="_skiplist_.skiplistsetjiterator.html" class="tsd-kind-icon">Skip<wbr>List<wbr>SetJIterator</a>
 					</li>
 				</ul>
 			</nav>
