@@ -425,7 +425,7 @@ describe("Test SkipList functionality", function() {
   }, 2000);
 
   it("Test Adding some items string number", function() {
-    let basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
+    const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
 
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
@@ -441,7 +441,7 @@ describe("Test SkipList functionality", function() {
 
     expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
 
-    let oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
+    const oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
     expect (oldPrice).toEqual (14.99);
     expect (basicTypesMap1.size ()).toEqual(4);
     testNumber.equals ("Catnip was previously inserted at 4.99", basicTypesMap1.get ("Catnip"), 4.99);
@@ -956,13 +956,13 @@ describe("Test SkipList functionality", function() {
 
 
   it("Test lots", function() {
-    let petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
+    const petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
 
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
         for (let loop3 = 1; loop3 <= 1; loop3++) {
-          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-          let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
           petStoreMap1.put (product, new ValueClass());
 //          console.log (txt + " " + (loop1 + loop2 + loop3));
         }
@@ -978,8 +978,8 @@ describe("Test SkipList functionality", function() {
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
         for (let loop3 = 1; loop3 <= 1; loop3++) {
-          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-          let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
           test.notNull ("Expected Get to not be null", petStoreMap1.get (product));
 //          expect (petStoreMap1.get (product)).not.toEqual(null);
           test.notNull ("Expected Remove to not be null", petStoreMap1.remove (product));
@@ -996,8 +996,8 @@ describe("Test SkipList functionality", function() {
     for (let loop2 = 1; loop2 <= 26; loop2++) {
       for (let loop1 = 1; loop1 <= 26; loop1++) {
         for (let loop3 = 1; loop3 <= 1; loop3++) {
-          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-          let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
           petStoreMap1.put (product, new ValueClass());
 //          console.log (txt + " " + (loop1 + loop2 + loop3));
         }
@@ -1013,8 +1013,8 @@ describe("Test SkipList functionality", function() {
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
         for (let loop3 = 1; loop3 <= 1; loop3++) {
-          let txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-          let product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
           expect (petStoreMap1.get (product)).not.toEqual(null);
           expect (petStoreMap1.remove (product)).not.toEqual (null);
         }

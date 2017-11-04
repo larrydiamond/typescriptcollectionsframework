@@ -478,8 +478,8 @@ export class SkipListMapImpl<K,V> {
         if ((nn === null) || (nn === undefined)) { // then this node is past the target
           ;
         } else {
-          const cmp:number = this.mapComparator.compare (nn.getKey(), key);
-          if (cmp === -1) {
+          const cmpnn:number = this.mapComparator.compare (nn.getKey(), key);
+          if (cmpnn === -1) {
             node = nn;
             done = true;
           }
@@ -640,11 +640,11 @@ export class SkipListMapImpl<K,V> {
         if ((nn === null) || (nn === undefined)) { // then this node is past the target
           ;
         } else {
-          const cmp:number = this.mapComparator.compare (nn.getKey(), key);
-          if (cmp === 0) {
+          const cmpnn:number = this.mapComparator.compare (nn.getKey(), key);
+          if (cmpnn === 0) {
             return nn;
           }
-          if (cmp === -1) {
+          if (cmpnn === -1) {
             node = nn;
             done = true;
           }
