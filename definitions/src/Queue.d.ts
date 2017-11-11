@@ -16,8 +16,20 @@ export interface Queue<K> extends Collection<K> {
     * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
     */
     offer(k: K): boolean;
+    /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    */
     poll(): K;
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    */
     removeQueue(): K;
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    */
     peek(): K;
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    */
     element(): K;
 }
