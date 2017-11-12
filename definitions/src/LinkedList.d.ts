@@ -3,7 +3,8 @@ import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
-export declare class LinkedList<T> implements List<T>, Iterable<T> {
+import { Queue } from "./Queue";
+export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
     private initialElements;
     private firstNode;
     private lastNode;
@@ -21,6 +22,13 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @return {boolean} true if this collection changed as a result of the call
      */
     add(t: T): boolean;
+    /**
+    * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+    * Needed to implement Queue interface
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offer(t: T): boolean;
     /**
      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
      * @param {number} index index at which the specified element is to be inserted
@@ -104,6 +112,30 @@ export declare class LinkedList<T> implements List<T>, Iterable<T> {
      * @return {number} the element previously at the specified position
      */
     set(index: number, element: T): T;
+    /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    poll(): T;
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or undefined if empty
+    */
+    removeQueue(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    peek(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    element(): T;
     /**
      * Returns a Java style iterator
      * @return {JIterator<T>} the Java style iterator

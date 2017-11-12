@@ -49,6 +49,15 @@ var LinkedList = (function () {
         return true;
     };
     /**
+    * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+    * Needed to implement Queue interface
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    LinkedList.prototype.offer = function (t) {
+        return this.add(t);
+    };
+    /**
      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
      * @param {number} index index at which the specified element is to be inserted
      * @param {T} t element to be inserted
@@ -379,6 +388,68 @@ var LinkedList = (function () {
             }
         }
         return null;
+    };
+    /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.poll = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return null;
+        }
+        if (this.numberElements <= 0) {
+            return null;
+        }
+        var element = this.get(0);
+        this.removeIndex(0);
+        return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or undefined if empty
+    */
+    LinkedList.prototype.removeQueue = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return undefined;
+        }
+        if (this.numberElements <= 0) {
+            return undefined;
+        }
+        var element = this.get(0);
+        this.removeIndex(0);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.peek = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return null;
+        }
+        if (this.numberElements <= 0) {
+            return null;
+        }
+        var element = this.get(0);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.element = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return undefined;
+        }
+        if (this.numberElements <= 0) {
+            return undefined;
+        }
+        var element = this.get(0);
+        return element;
     };
     /**
      * Returns a Java style iterator

@@ -13,8 +13,9 @@ import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
+import {Queue} from "./Queue";
 
-export class LinkedList<T> implements List<T>, Iterable<T> {
+export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
   private firstNode:LinkedListNode<T>;
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
@@ -64,6 +65,15 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     return true;
   }
 
+  /**
+  * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+  * Needed to implement Queue interface
+  * @param {T} t element to Append
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public offer (t:T) : boolean {
+    return this.add (t);
+  }
 
  /**
   * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
@@ -418,6 +428,75 @@ export class LinkedList<T> implements List<T>, Iterable<T> {
     return null;
   }
 
+  /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public poll () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (0);
+    this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or undefined if empty
+  */
+  public removeQueue () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return undefined;
+    }
+    if (this.numberElements <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (0);
+    this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public peek () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (0);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public element () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return undefined;
+    }
+    if (this.numberElements <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (0);
+    return element;
+  }
 
   /**
    * Returns a Java style iterator
