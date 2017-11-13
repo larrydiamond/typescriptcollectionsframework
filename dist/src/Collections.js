@@ -25,10 +25,10 @@ var Collections = (function () {
                     return 0;
                 if (o1 === undefined)
                     return -1;
-                if (o1 === null)
-                    return -1;
                 if (o2 === undefined)
                     return 1;
+                if (o1 === null)
+                    return -1;
                 if (o2 === null)
                     return 1;
                 if (o1 < o2)
@@ -48,10 +48,10 @@ var Collections = (function () {
                     return 0;
                 if (o1 === undefined)
                     return -1;
-                if (o1 === null)
-                    return -1;
                 if (o2 === undefined)
                     return 1;
+                if (o1 === null)
+                    return -1;
                 if (o2 === null)
                     return 1;
                 if (o1 < o2)
