@@ -29,6 +29,18 @@ describe("Test Queue functionality", function () {
         testOfferToQueue(al, "ArrayList");
         testOfferToQueue(ll, "LinkedList");
     });
+    it("Test polling items from queues", function () {
+        var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        testPollFromQueue(al, "ArrayList");
+        testPollFromQueue(ll, "LinkedList");
+    });
+    it("Test removing items from queues", function () {
+        var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        testRemoveFromQueue(al, "ArrayList");
+        testRemoveFromQueue(ll, "LinkedList");
+    });
 });
 function testEmptyQueue(queue, prefix) {
     jasts_1.TestString.null(prefix + " peek returns null for empty queue", queue.peek());
@@ -53,4 +65,14 @@ function testOfferToQueue(queue, prefix) {
     jasts_1.TestString.equals(prefix + " element returns first for queue containing only first", queue.element(), "first");
     jasts_1.TestString.equals(prefix + " second peek returns first for queue containing only first", queue.peek(), "first");
     jasts_1.TestString.equals(prefix + " second element returns first for queue containing only first", queue.element(), "first");
+}
+function testPollFromQueue(queue, prefix) {
+    queue.add("first");
+    jasts_1.TestString.equals(prefix + " poll returns first for queue containing only first", queue.poll(), "first");
+    testEmptyQueue(queue, prefix);
+}
+function testRemoveFromQueue(queue, prefix) {
+    queue.add("first");
+    jasts_1.TestString.equals(prefix + " poll returns first for queue containing only first", queue.removeQueue(), "first");
+    testEmptyQueue(queue, prefix);
 }

@@ -38,6 +38,22 @@ describe("Test Queue functionality", function() {
     testOfferToQueue(ll, "LinkedList");
   });
 
+  it("Test polling items from queues", function() {
+    const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+
+    testPollFromQueue(al, "ArrayList");
+    testPollFromQueue(ll, "LinkedList");
+  });
+
+  it("Test removing items from queues", function() {
+    const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+
+    testRemoveFromQueue(al, "ArrayList");
+    testRemoveFromQueue(ll, "LinkedList");
+  });
+
 });
 
 function testEmptyQueue (queue:Queue<string>, prefix:string) : void {
@@ -65,4 +81,16 @@ function testOfferToQueue (queue:Queue<string>, prefix:string) : void {
   TestString.equals (prefix + " element returns first for queue containing only first", queue.element(), "first");
   TestString.equals (prefix + " second peek returns first for queue containing only first", queue.peek(), "first");
   TestString.equals (prefix + " second element returns first for queue containing only first", queue.element(), "first");
+}
+
+function testPollFromQueue (queue:Queue<string>, prefix:string) : void {
+  queue.add ("first");
+  TestString.equals (prefix + " poll returns first for queue containing only first", queue.poll(), "first");
+  testEmptyQueue (queue, prefix);
+}
+
+function testRemoveFromQueue (queue:Queue<string>, prefix:string) : void {
+  queue.add ("first");
+  TestString.equals (prefix + " poll returns first for queue containing only first", queue.removeQueue(), "first");
+  testEmptyQueue (queue, prefix);
 }
