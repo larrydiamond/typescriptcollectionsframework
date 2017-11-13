@@ -10,7 +10,7 @@ import {AllFieldCollectable} from "../src/AllFieldCollectable";
 import {ArrayList} from "../src/ArrayList";
 import {LinkedList} from "../src/LinkedList";
 import {Queue} from "../src/Queue";
-import {TestBoolean, TestString} from "jasts";
+import {TestBoolean, TestString} from 'jasts';
 
 describe("Test Queue functionality", function() {
 

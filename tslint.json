@@ -15,7 +15,7 @@
       "no-duplicate-variable": true,
       "no-empty": true,
       "no-eval": true,
-      "no-implicit-dependencies": true,
+      "no-implicit-dependencies": [true, "dev"],
       "no-invalid-template-strings": true,
       "no-invalid-this": true,
       "no-misused-new": true,
