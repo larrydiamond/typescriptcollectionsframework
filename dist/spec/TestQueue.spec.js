@@ -23,6 +23,12 @@ describe("Test Queue functionality", function () {
         testAddToQueue(al, "ArrayList");
         testAddToQueue(ll, "LinkedList");
     });
+    it("Test offering items to queues", function () {
+        var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        testOfferToQueue(al, "ArrayList");
+        testOfferToQueue(ll, "LinkedList");
+    });
 });
 function testEmptyQueue(queue, prefix) {
     jasts_1.TestString.null(prefix + " peek returns null for empty queue", queue.peek());
@@ -36,6 +42,13 @@ function testEmptyQueue(queue, prefix) {
 }
 function testAddToQueue(queue, prefix) {
     jasts_1.TestBoolean.true(prefix + " add should return true", queue.add("first"));
+    jasts_1.TestString.equals(prefix + " peek returns first for queue containing only first", queue.peek(), "first");
+    jasts_1.TestString.equals(prefix + " element returns first for queue containing only first", queue.element(), "first");
+    jasts_1.TestString.equals(prefix + " second peek returns first for queue containing only first", queue.peek(), "first");
+    jasts_1.TestString.equals(prefix + " second element returns first for queue containing only first", queue.element(), "first");
+}
+function testOfferToQueue(queue, prefix) {
+    jasts_1.TestBoolean.true(prefix + " offer should return true", queue.offer("first"));
     jasts_1.TestString.equals(prefix + " peek returns first for queue containing only first", queue.peek(), "first");
     jasts_1.TestString.equals(prefix + " element returns first for queue containing only first", queue.element(), "first");
     jasts_1.TestString.equals(prefix + " second peek returns first for queue containing only first", queue.peek(), "first");

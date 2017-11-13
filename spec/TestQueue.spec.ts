@@ -30,6 +30,14 @@ describe("Test Queue functionality", function() {
     testAddToQueue(ll, "LinkedList");
   });
 
+  it("Test offering items to queues", function() {
+    const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+
+    testOfferToQueue(al, "ArrayList");
+    testOfferToQueue(ll, "LinkedList");
+  });
+
 });
 
 function testEmptyQueue (queue:Queue<string>, prefix:string) : void {
@@ -45,6 +53,14 @@ function testEmptyQueue (queue:Queue<string>, prefix:string) : void {
 
 function testAddToQueue (queue:Queue<string>, prefix:string) : void {
   TestBoolean.true (prefix + " add should return true", queue.add ("first"));
+  TestString.equals (prefix + " peek returns first for queue containing only first", queue.peek(), "first");
+  TestString.equals (prefix + " element returns first for queue containing only first", queue.element(), "first");
+  TestString.equals (prefix + " second peek returns first for queue containing only first", queue.peek(), "first");
+  TestString.equals (prefix + " second element returns first for queue containing only first", queue.element(), "first");
+}
+
+function testOfferToQueue (queue:Queue<string>, prefix:string) : void {
+  TestBoolean.true (prefix + " offer should return true", queue.offer ("first"));
   TestString.equals (prefix + " peek returns first for queue containing only first", queue.peek(), "first");
   TestString.equals (prefix + " element returns first for queue containing only first", queue.element(), "first");
   TestString.equals (prefix + " second peek returns first for queue containing only first", queue.peek(), "first");
