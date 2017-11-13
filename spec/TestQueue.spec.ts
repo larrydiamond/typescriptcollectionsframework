@@ -16,7 +16,7 @@ describe("Test Queue functionality", function() {
 
   it("Test empty queues", function() {
     const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
-    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:LinkedList<string> = new LinkedList<string> (new AllFieldCollectable());
 
     testEmptyQueue(al, "ArrayList");
     testEmptyQueue(ll, "LinkedList");
@@ -24,7 +24,7 @@ describe("Test Queue functionality", function() {
 
   it("Test adding items to queues", function() {
     const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
-    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:LinkedList<string> = new LinkedList<string> (new AllFieldCollectable());
 
     testAddToQueue(al, "ArrayList");
     testAddToQueue(ll, "LinkedList");
@@ -32,7 +32,7 @@ describe("Test Queue functionality", function() {
 
   it("Test offering items to queues", function() {
     const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
-    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:LinkedList<string> = new LinkedList<string> (new AllFieldCollectable());
 
     testOfferToQueue(al, "ArrayList");
     testOfferToQueue(ll, "LinkedList");
@@ -40,7 +40,7 @@ describe("Test Queue functionality", function() {
 
   it("Test polling items from queues", function() {
     const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
-    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:LinkedList<string> = new LinkedList<string> (new AllFieldCollectable());
 
     testPollFromQueue(al, "ArrayList");
     testPollFromQueue(ll, "LinkedList");
@@ -48,7 +48,7 @@ describe("Test Queue functionality", function() {
 
   it("Test removing items from queues", function() {
     const al:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
-    const ll:ArrayList<string> = new ArrayList<string> (new AllFieldCollectable());
+    const ll:LinkedList<string> = new LinkedList<string> (new AllFieldCollectable());
 
     testRemoveFromQueue(al, "ArrayList");
     testRemoveFromQueue(ll, "LinkedList");

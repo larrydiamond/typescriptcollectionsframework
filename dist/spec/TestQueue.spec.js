@@ -9,35 +9,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
 var ArrayList_1 = require("../src/ArrayList");
+var LinkedList_1 = require("../src/LinkedList");
 var jasts_1 = require("jasts");
 describe("Test Queue functionality", function () {
     it("Test empty queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testEmptyQueue(al, "ArrayList");
         testEmptyQueue(ll, "LinkedList");
     });
     it("Test adding items to queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testAddToQueue(al, "ArrayList");
         testAddToQueue(ll, "LinkedList");
     });
     it("Test offering items to queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testOfferToQueue(al, "ArrayList");
         testOfferToQueue(ll, "LinkedList");
     });
     it("Test polling items from queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testPollFromQueue(al, "ArrayList");
         testPollFromQueue(ll, "LinkedList");
     });
     it("Test removing items from queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        var ll = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testRemoveFromQueue(al, "ArrayList");
         testRemoveFromQueue(ll, "LinkedList");
     });
