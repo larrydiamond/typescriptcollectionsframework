@@ -74,4 +74,22 @@ describe("Test Collections static methods", function () {
         jasts_1.TestNumber.equals("Comparing a higher number vs a lower number returns 1", comp.compare(200, 20), 1);
         jasts_1.TestNumber.equals("Comparing a number vs itself returns 0", comp.compare(1000, 1000), 0);
     });
+    it("getHashCodeForString undefined", function () {
+        jasts_1.TestNumber.equals("undefined hash code is zero", Collections_1.Collections.getHashCodeForString(undefined), 0);
+    });
+    it("getHashCodeForString null", function () {
+        jasts_1.TestNumber.equals("null hash code is zero", Collections_1.Collections.getHashCodeForString(null), 0);
+    });
+    it("getHashCodeForStrings undefined", function () {
+        jasts_1.TestNumber.equals("undefined hash code is zero", Collections_1.Collections.getHashCodeForStrings(undefined), 0);
+    });
+    it("getHashCodeForStrings null", function () {
+        jasts_1.TestNumber.equals("null hash code is zero", Collections_1.Collections.getHashCodeForStrings(null), 0);
+    });
+    it("getHashCodeForNumber undefined", function () {
+        jasts_1.TestNumber.equals("undefined hash code is zero", Collections_1.Collections.getHashCodeForNumber(undefined), 0);
+    });
+    it("getHashCodeForNumber null", function () {
+        jasts_1.TestNumber.equals("null hash code is zero", Collections_1.Collections.getHashCodeForNumber(null), 0);
+    });
 });

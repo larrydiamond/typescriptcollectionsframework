@@ -96,4 +96,29 @@ describe("Test Collections static methods", function() {
     TestNumber.equals ("Comparing a number vs itself returns 0", comp.compare (1000, 1000), 0);
   });
 
+  it("getHashCodeForString undefined", function() {
+    TestNumber.equals ("undefined hash code is zero", Collections.getHashCodeForString (undefined), 0);
+  });
+
+  it("getHashCodeForString null", function() {
+    TestNumber.equals ("null hash code is zero", Collections.getHashCodeForString (null), 0);
+  });
+
+  it("getHashCodeForStrings undefined", function() {
+    TestNumber.equals ("undefined hash code is zero", Collections.getHashCodeForStrings (undefined), 0);
+  });
+
+  it("getHashCodeForStrings null", function() {
+    TestNumber.equals ("null hash code is zero", Collections.getHashCodeForStrings (null), 0);
+  });
+
+  it("getHashCodeForNumber undefined", function() {
+    TestNumber.equals ("undefined hash code is zero", Collections.getHashCodeForNumber (undefined), 0);
+  });
+
+  it("getHashCodeForNumber null", function() {
+    TestNumber.equals ("null hash code is zero", Collections.getHashCodeForNumber (null), 0);
+  });
+
+
 });
