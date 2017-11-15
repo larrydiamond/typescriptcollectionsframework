@@ -14,7 +14,7 @@
     "gulp-jasmine": "^2.4.2",
     "gulp-typescript": "^3.2.3",
     "jasmine": "^2.8.0",
-    "jasts": "^0.3.3",
+    "jasts": "^0.3.4",
     "merge2": "^1.2.0",
     "run-sequence": "^2.2.0",
     "standard-version": "^4.2.0",

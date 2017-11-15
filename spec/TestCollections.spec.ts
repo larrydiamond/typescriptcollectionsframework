@@ -8,6 +8,7 @@
 
 import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
+import {ImmutableList} from "../src/ImmutableList";
 import {TestNumber} from 'jasts';
 
 describe("Test Collections static methods", function() {
@@ -104,6 +105,10 @@ describe("Test Collections static methods", function() {
     TestNumber.equals ("null hash code is zero", Collections.getHashCodeForString (null), 0);
   });
 
+  it("getHashCodeForString data", function() {
+    TestNumber.greaterThan ("hash code for One is valid", Collections.getHashCodeForString ("One"), 0);
+  });
+
   it("getHashCodeForStrings undefined", function() {
     TestNumber.equals ("undefined hash code is zero", Collections.getHashCodeForStrings (undefined), 0);
   });
@@ -112,12 +117,21 @@ describe("Test Collections static methods", function() {
     TestNumber.equals ("null hash code is zero", Collections.getHashCodeForStrings (null), 0);
   });
 
+  it("getHashCodeForStrings data", function() {
+    const tmp:ImmutableList<string> = Collections.list("One", "Two", "Three");
+    TestNumber.greaterThan ("hash code for OneTwothree is valid", Collections.getHashCodeForStrings (tmp), 0);
+  });
+
   it("getHashCodeForNumber undefined", function() {
     TestNumber.equals ("undefined hash code is zero", Collections.getHashCodeForNumber (undefined), 0);
   });
 
   it("getHashCodeForNumber null", function() {
     TestNumber.equals ("null hash code is zero", Collections.getHashCodeForNumber (null), 0);
+  });
+
+  it("getHashCodeForNumber small", function() {
+    TestNumber.equals ("hash code for low integers is itself", Collections.getHashCodeForNumber (50), 50);
   });
 
 

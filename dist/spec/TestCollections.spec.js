@@ -80,16 +80,26 @@ describe("Test Collections static methods", function () {
     it("getHashCodeForString null", function () {
         jasts_1.TestNumber.equals("null hash code is zero", Collections_1.Collections.getHashCodeForString(null), 0);
     });
+    it("getHashCodeForString data", function () {
+        jasts_1.TestNumber.greaterThan("hash code for One is valid", Collections_1.Collections.getHashCodeForString("One"), 0);
+    });
     it("getHashCodeForStrings undefined", function () {
         jasts_1.TestNumber.equals("undefined hash code is zero", Collections_1.Collections.getHashCodeForStrings(undefined), 0);
     });
     it("getHashCodeForStrings null", function () {
         jasts_1.TestNumber.equals("null hash code is zero", Collections_1.Collections.getHashCodeForStrings(null), 0);
     });
+    it("getHashCodeForStrings data", function () {
+        var tmp = Collections_1.Collections.list("One", "Two", "Three");
+        jasts_1.TestNumber.greaterThan("hash code for OneTwothree is valid", Collections_1.Collections.getHashCodeForStrings(tmp), 0);
+    });
     it("getHashCodeForNumber undefined", function () {
         jasts_1.TestNumber.equals("undefined hash code is zero", Collections_1.Collections.getHashCodeForNumber(undefined), 0);
     });
     it("getHashCodeForNumber null", function () {
         jasts_1.TestNumber.equals("null hash code is zero", Collections_1.Collections.getHashCodeForNumber(null), 0);
+    });
+    it("getHashCodeForNumber small", function () {
+        jasts_1.TestNumber.equals("hash code for low integers is itself", Collections_1.Collections.getHashCodeForNumber(50), 50);
     });
 });
