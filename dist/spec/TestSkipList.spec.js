@@ -1413,6 +1413,35 @@ describe("Test SkipList functionality", function () {
         }
         expect(count).toEqual(26 * 26);
     });
+    it("Set Test lots3", function () {
+        var tset = new SkipList_2.SkipListSet(Collections_1.Collections.getStringComparator());
+        for (var loop3 = 1; loop3 <= 26; loop3++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                for (var loop1 = 1; loop1 <= 26; loop1++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    tset.add(txt);
+                }
+            }
+        }
+        expect(tset.validateSet()).toEqual(true);
+        expect(tset.size()).toEqual(26 * 26 * 26);
+        var count = 0;
+        for (var iter = tset.iterator(); iter.hasNext();) {
+            count = count + 1;
+            var psp = iter.next();
+        }
+        expect(count).toEqual(26 * 26 * 26);
+        for (var loop1 = 1; loop1 <= 26; loop1++) {
+            for (var loop2 = 1; loop2 <= 26; loop2++) {
+                for (var loop3 = 1; loop3 <= 26; loop3++) {
+                    var txt = String.fromCharCode(96 + loop1) + String.fromCharCode(96 + loop2) + String.fromCharCode(96 + loop3);
+                    tset.remove(txt);
+                }
+            }
+        }
+        expect(tset.validateSet()).toEqual(true);
+        expect(tset.size()).toEqual(0);
+    });
     it("Set Test constructing with elements from an ArrayList", function () {
         var sourceList = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(sourceList.add(product1)).toEqual(true);

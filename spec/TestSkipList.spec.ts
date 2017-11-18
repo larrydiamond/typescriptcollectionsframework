@@ -1613,6 +1613,41 @@ describe("Test SkipList functionality", function() {
   });
 
 
+  it ("Set Test lots3", function () {
+    const tset = new SkipListSet<string>(Collections.getStringComparator());
+    for (let loop3 = 1; loop3 <= 26; loop3++) {
+      for (let loop2 = 1; loop2 <= 26; loop2++) {
+        for (let loop1 = 1; loop1 <= 26; loop1++) {
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          tset.add (txt);
+        }
+      }
+    }
+
+    expect (tset.validateSet()).toEqual (true);
+    expect (tset.size ()).toEqual(26 * 26 * 26);
+
+    let count:number = 0;
+    for (const iter = tset.iterator(); iter.hasNext(); ) {
+      count = count + 1;
+      const psp:string = iter.next ();
+    }
+    expect (count).toEqual (26 * 26 * 26);
+
+    for (let loop1 = 1; loop1 <= 26; loop1++) {
+      for (let loop2 = 1; loop2 <= 26; loop2++) {
+        for (let loop3 = 1; loop3 <= 26; loop3++) {
+          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
+          tset.remove (txt);
+        }
+      }
+    }
+
+    expect (tset.validateSet()).toEqual (true);
+    expect (tset.size ()).toEqual(0);
+  });
+
+
   it("Set Test constructing with elements from an ArrayList", function() {
     const sourceList:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (sourceList.add (product1)).toEqual (true);
