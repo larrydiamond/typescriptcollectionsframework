@@ -213,25 +213,29 @@ describe("Test HashMap functionality", function() {
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
         for (let loop3 = 1; loop3 <= 26; loop3++) {
-          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-          const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-          petStoreMap1.put (product, new ValueClass());
+          for (let loop4 = 1; loop4 <= 26; loop4++) {
+            const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3) + String.fromCharCode (96 + loop4);
+            const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3 + loop4);
+            petStoreMap1.put (product, new ValueClass());
 //          console.log (txt + " " + (loop1 + loop2 + loop3));
+          }
         }
       }
     }
 
-    expect (petStoreMap1.size ()).toEqual(26 * 26 * 26);
+    expect (petStoreMap1.size ()).toEqual(26 * 26 * 26 * 26);
     expect (petStoreMap1.isEmpty ()).toEqual(false);
     expect (petStoreMap1.get (product1)).toEqual(null);
 
     for (let loop2 = 1; loop2 <= 26; loop2++) {
       for (let loop1 = 1; loop1 <= 26; loop1++) {
         for (let loop3 = 1; loop3 <= 26; loop3++) {
-          const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3);
-          const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3);
-          expect (petStoreMap1.get (product)).not.toEqual(null);
-          expect (petStoreMap1.remove (product)).not.toEqual (null);
+          for (let loop4 = 1; loop4 <= 26; loop4++) {
+            const txt:string = String.fromCharCode (96 + loop1) + String.fromCharCode (96 + loop2) + String.fromCharCode (96 + loop3) + String.fromCharCode (96 + loop4);
+            const product:PetStoreProduct = new PetStoreProduct(txt, loop1 + loop2 + loop3 + loop4);
+            expect (petStoreMap1.get (product)).not.toEqual(null);
+            expect (petStoreMap1.remove (product)).not.toEqual (null);
+          }
         }
       }
     }
