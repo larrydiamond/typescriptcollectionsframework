@@ -8,7 +8,7 @@
 
 import {AllFieldHashable} from "../src/AllFieldHashable";
 import {Hashable} from "../src/Hashable";
-import {Test, TestBoolean, TestString} from 'jasts';
+import {Test, TestBoolean, TestNumber} from 'jasts';
 
 describe("Test All Field Hashable", function() {
 
@@ -105,6 +105,33 @@ describe("Test All Field Hashable", function() {
     TestBoolean.false ("Testing value to null", c.equals (new SomeClass(), null));
     TestBoolean.false ("Testing undefined to value", c.equals (undefined, new SomeClass()));
     TestBoolean.false ("Testing null to value", c.equals (null, new SomeClass()));
+  });
+
+  it("Test hashcode of undefined is zero", function() {
+    const n:Hashable<number> = new AllFieldHashable<number>();
+    TestNumber.equals ("", n.hashCode (undefined), 0);
+    const s:Hashable<string> = new AllFieldHashable<string>();
+    TestNumber.equals ("", s.hashCode (undefined), 0);
+    const o:Hashable<SomeClass> = new AllFieldHashable<SomeClass>();
+    TestNumber.equals ("", o.hashCode (undefined), 0);
+  });
+
+  it("Test hashcode of null is zero", function() {
+    const n:Hashable<number> = new AllFieldHashable<number>();
+    TestNumber.equals ("", n.hashCode (null), 0);
+    const s:Hashable<string> = new AllFieldHashable<string>();
+    TestNumber.equals ("", s.hashCode (null), 0);
+    const o:Hashable<SomeClass> = new AllFieldHashable<SomeClass>();
+    TestNumber.equals ("", o.hashCode (null), 0);
+  });
+
+  it("Test hashcode of value is non-zero", function() {
+    const n:Hashable<number> = new AllFieldHashable<number>();
+    TestNumber.greaterThan ("", n.hashCode (12345), 0);
+    const s:Hashable<string> = new AllFieldHashable<string>();
+    TestNumber.greaterThan ("", s.hashCode ("blah"), 0);
+    const o:Hashable<SomeClass> = new AllFieldHashable<SomeClass>();
+    TestNumber.greaterThan ("", o.hashCode (new SomeClass()), 0);
   });
 
 });

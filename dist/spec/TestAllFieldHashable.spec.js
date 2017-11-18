@@ -94,4 +94,28 @@ describe("Test All Field Hashable", function () {
         jasts_1.TestBoolean.false("Testing undefined to value", c.equals(undefined, new SomeClass()));
         jasts_1.TestBoolean.false("Testing null to value", c.equals(null, new SomeClass()));
     });
+    it("Test hashcode of undefined is zero", function () {
+        var n = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.equals("", n.hashCode(undefined), 0);
+        var s = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.equals("", s.hashCode(undefined), 0);
+        var o = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.equals("", o.hashCode(undefined), 0);
+    });
+    it("Test hashcode of null is zero", function () {
+        var n = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.equals("", n.hashCode(null), 0);
+        var s = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.equals("", s.hashCode(null), 0);
+        var o = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.equals("", o.hashCode(null), 0);
+    });
+    it("Test hashcode of value is non-zero", function () {
+        var n = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.greaterThan("", n.hashCode(12345), 0);
+        var s = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.greaterThan("", s.hashCode("blah"), 0);
+        var o = new AllFieldHashable_1.AllFieldHashable();
+        jasts_1.TestNumber.greaterThan("", o.hashCode(new SomeClass()), 0);
+    });
 });
