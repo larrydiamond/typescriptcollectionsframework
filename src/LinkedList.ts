@@ -9,13 +9,14 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {Deque} from "./Deque";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
 import {Queue} from "./Queue";
 
-export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
+export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   private firstNode:LinkedListNode<T>;
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
@@ -65,6 +66,38 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
     return true;
   }
 
+
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addFirst (t:T) : boolean {
+      const lln:LinkedListNode<T> = new LinkedListNode<T>(t);
+
+      if ((this.firstNode === null) || (this.firstNode === undefined)) {
+        this.firstNode = lln;
+        this.lastNode = lln;
+        this.numberElements = 1;
+        return true;
+      }
+
+      this.firstNode.previousNode = lln;
+      lln.nextNode = this.firstNode;
+      this.firstNode = lln;
+      this.numberElements = this.numberElements + 1;
+      return true;
+    }
+
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addLast (t:T) : boolean {
+      return this.add (t);
+    }
+
   /**
   * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
   * Needed to implement Queue interface
@@ -73,6 +106,25 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
   */
   public offer (t:T) : boolean {
     return this.add (t);
+  }
+
+
+  /**
+  * Inserts the specified element at the front of this deque
+  * @param {K} k element to add
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  offerFirst (t:T) : boolean {
+    return this.addFirst (t);
+  }
+
+  /**
+  * Inserts the specified element at the end of this deque
+  * @param {K} k element to add
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  offerLast (t:T) : boolean {
+    return this.addLast (t);
   }
 
  /**
@@ -385,6 +437,15 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
     return node;
   }
 
+  /**
+  * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * @return {K} the element at the tail of the queue or null if empty
+  */
+  getLast () : T {
+    const node = this.lastNode;
+    if ((node === null) || (node === undefined)) return null;
+    return node.payload;
+  }
 
  /**
   * Returns the element at the specified position in this list.
@@ -394,6 +455,20 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
   public get(index:number):T {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
+    if (index === 0) {
+      if ((node === null) || (node === undefined)) {
+        return null;
+      }
+      return node.payload;
+    }
+    if (index === this.numberElements - 1) {
+      node = this.lastNode;
+      if ((node === null) || (node === undefined)) {
+        return null;
+      }
+      return node.payload;
+    }
+
     while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
         return node.payload;
@@ -441,8 +516,33 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
       return null;
     }
 
-    const element:T = this.get (0);
+    const element:T = this.firstNode.payload;
     this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  pollFirst () : T {
+    return this.poll();
+  }
+
+  /**
+  * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  pollLast () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    this.removeIndex (this.size() - 1);
     return element;
   }
 
@@ -459,8 +559,33 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
       return undefined;
     }
 
-    const element:T = this.get (0);
+    const element:T = this.firstNode.payload;
     this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * @return {K} the element at the head of the queue or undefined if empty
+  */
+  removeFirst () : T {
+    return this.removeQueue();
+  }
+
+  /**
+  * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * @return {K} the element at the end of the queue or undefined if empty
+  */
+  removeLast () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return undefined;
+    }
+    if (this.numberElements <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (this.size () - 1);
+    this.removeIndex (this.size () - 1);
     return element;
   }
 
@@ -477,8 +602,30 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
       return null;
     }
 
-    const element:T = this.get (0);
-    return element;
+    return this.firstNode.payload;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  peekFirst () : T {
+    return this.peek();
+  }
+
+  /**
+  * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  peekLast () : T {
+    if ((this.lastNode === null) || (this.lastNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    return this.lastNode.payload;
   }
 
   /**
@@ -494,7 +641,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
       return undefined;
     }
 
-    const element:T = this.get (0);
+    const element:T = this.firstNode.payload;
     return element;
   }
 

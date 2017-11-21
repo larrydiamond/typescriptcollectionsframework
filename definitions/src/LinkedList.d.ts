@@ -1,10 +1,11 @@
 import { Collectable } from "./Collectable";
+import { Deque } from "./Deque";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 import { Queue } from "./Queue";
-export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
+export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
     private initialElements;
     private firstNode;
     private lastNode;
@@ -23,12 +24,36 @@ export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
      */
     add(t: T): boolean;
     /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    addFirst(t: T): boolean;
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    addLast(t: T): boolean;
+    /**
     * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
     * Needed to implement Queue interface
     * @param {T} t element to Append
     * @return {boolean} true if this collection changed as a result of the call
     */
     offer(t: T): boolean;
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offerFirst(t: T): boolean;
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offerLast(t: T): boolean;
     /**
      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
      * @param {number} index index at which the specified element is to be inserted
@@ -100,6 +125,11 @@ export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
     getFirst(): T;
     getFirstNode(): LinkedListNode<T>;
     /**
+    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the tail of the queue or null if empty
+    */
+    getLast(): T;
+    /**
      * Returns the element at the specified position in this list.
      * @param {number} index index of the element to return
      * @return {T} the element at the specified position in this list
@@ -119,17 +149,47 @@ export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T> {
     */
     poll(): T;
     /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    pollFirst(): T;
+    /**
+    * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    pollLast(): T;
+    /**
     * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or undefined if empty
     */
     removeQueue(): T;
     /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    removeFirst(): T;
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    removeLast(): T;
+    /**
     * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or null if empty
     */
     peek(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    peekFirst(): T;
+    /**
+    * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    peekLast(): T;
     /**
     * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
     * Needed to implement Queue

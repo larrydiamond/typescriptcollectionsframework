@@ -9,13 +9,14 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {Deque} from "./Deque";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
 import {Queue} from "./Queue";
 
-export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
+export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   private elements:T[] = null;
   private sizeValue:number = 0;
   private equality:Collectable<T>;
@@ -75,6 +76,43 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
       this.sizeValue = this.sizeValue + 1;
     }
 
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addFirst (t:T) : boolean {
+      this.addIndex (0, t);
+      return true;
+    }
+
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public offerFirst (t:T) : boolean {
+      return this.addFirst (t);
+    }
+
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addLast (t:T) : boolean {
+      return this.add (t);
+    }
+
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public offerLast (t:T) : boolean {
+      return this.addLast (t);
+    }
+
    /**
     * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
     * @param {number} index index at which to insert the first element from the specified collection
@@ -114,6 +152,21 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
       return element;
     }
 
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    public removeFirst () : T {
+      return this.removeIndex (0);
+    }
+
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    public removeLast () : T {
+      return this.removeIndex (this.size() - 1);
+    }
 
 /**
  * Removes all of the elements from this list. The list will be empty after this call returns.
@@ -275,6 +328,31 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
   }
 
   /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public pollFirst () : T {
+    return this.poll();
+  }
+
+  /**
+  * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public pollLast () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    this.removeIndex (this.size() - 1);
+    return element;
+  }
+
+  /**
   * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
   * Needed to implement Queue
   * @return {T} the element at the head of the queue or undefined if empty
@@ -310,9 +388,58 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
   }
 
   /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public peekFirst () : T {
+    return this.peek();
+  }
+
+  /**
+  * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public peekLast () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return null;
+    }
+    if (this.sizeValue <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * @return {K} the element at the head of the queue or undefined if empty
+  */
+  public getFirst () : T {
+    return this.peek();
+  }
+
+  /**
+  * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * @return {K} the element at the end of the queue or undefined if empty
+  */
+  public getLast () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    return element;
+  }
+
+  /**
   * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
   * Needed to implement Queue
-  * @return {T} the element at the head of the queue or null if empty
+  * @return {T} the element at the head of the queue or undefined if empty
   */
   public element () : T {
     if ((this.elements === null) || (this.elements === undefined)) {

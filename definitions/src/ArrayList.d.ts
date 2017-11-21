@@ -1,10 +1,11 @@
 import { Collectable } from "./Collectable";
+import { Deque } from "./Deque";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 import { Queue } from "./Queue";
-export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
+export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
     private initialElements;
     private elements;
     private sizeValue;
@@ -35,6 +36,30 @@ export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
       */
     addIndex(index: number, t: T): void;
     /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    addFirst(t: T): boolean;
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offerFirst(t: T): boolean;
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    addLast(t: T): boolean;
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offerLast(t: T): boolean;
+    /**
      * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
      * @param {number} index index at which to insert the first element from the specified collection
      * @param {Collection} c collection containing elements to be added to this list
@@ -47,6 +72,16 @@ export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
     removeIndex(index: number): T;
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    removeFirst(): T;
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    removeLast(): T;
     /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
@@ -111,6 +146,16 @@ export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
      */
     poll(): T;
     /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    pollFirst(): T;
+    /**
+    * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    pollLast(): T;
+    /**
     * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or undefined if empty
@@ -123,9 +168,29 @@ export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T> {
     */
     peek(): T;
     /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    peekFirst(): T;
+    /**
+    * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    peekLast(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    getFirst(): T;
+    /**
+    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    getLast(): T;
+    /**
     * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
     * Needed to implement Queue
-    * @return {T} the element at the head of the queue or null if empty
+    * @return {T} the element at the head of the queue or undefined if empty
     */
     element(): T;
     /**

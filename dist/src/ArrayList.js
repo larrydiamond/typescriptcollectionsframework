@@ -63,6 +63,39 @@ var ArrayList = (function () {
         this.sizeValue = this.sizeValue + 1;
     };
     /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.addFirst = function (t) {
+        this.addIndex(0, t);
+        return true;
+    };
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.offerFirst = function (t) {
+        return this.addFirst(t);
+    };
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.addLast = function (t) {
+        return this.add(t);
+    };
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.offerLast = function (t) {
+        return this.addLast(t);
+    };
+    /**
      * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
      * @param {number} index index at which to insert the first element from the specified collection
      * @param {Collection} c collection containing elements to be added to this list
@@ -99,6 +132,20 @@ var ArrayList = (function () {
         this.elements.splice(index, 1);
         this.sizeValue = this.sizeValue - 1;
         return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    ArrayList.prototype.removeFirst = function () {
+        return this.removeIndex(0);
+    };
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    ArrayList.prototype.removeLast = function () {
+        return this.removeIndex(this.size() - 1);
     };
     /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
@@ -240,6 +287,28 @@ var ArrayList = (function () {
         return element;
     };
     /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.pollFirst = function () {
+        return this.poll();
+    };
+    /**
+    * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.pollLast = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(this.size() - 1);
+        this.removeIndex(this.size() - 1);
+        return element;
+    };
+    /**
     * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or undefined if empty
@@ -271,9 +340,51 @@ var ArrayList = (function () {
         return element;
     };
     /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.peekFirst = function () {
+        return this.peek();
+    };
+    /**
+    * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.peekLast = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return null;
+        }
+        if (this.sizeValue <= 0) {
+            return null;
+        }
+        var element = this.get(this.size() - 1);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    ArrayList.prototype.getFirst = function () {
+        return this.peek();
+    };
+    /**
+    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    ArrayList.prototype.getLast = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(this.size() - 1);
+        return element;
+    };
+    /**
     * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
     * Needed to implement Queue
-    * @return {T} the element at the head of the queue or null if empty
+    * @return {T} the element at the head of the queue or undefined if empty
     */
     ArrayList.prototype.element = function () {
         if ((this.elements === null) || (this.elements === undefined)) {
