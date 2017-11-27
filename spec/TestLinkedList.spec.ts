@@ -417,7 +417,7 @@ describe("Test LinkedList functionality", function() {
 
     it("Test getfirst", function() {
         const thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
-        expect (thelist.getFirst()).toEqual (null);
+        expect (thelist.getFirst()).toEqual (undefined);
         expect (thelist.add (product1)).toEqual (true);
         expect (thelist.add (product2)).toEqual (true);
         expect (thelist.getFirst()).toEqual (product1);

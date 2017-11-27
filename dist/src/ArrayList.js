@@ -128,6 +128,9 @@ var ArrayList = (function () {
         if ((this.elements === null) || (this.elements === undefined)) {
             return undefined;
         }
+        if (this.size() < 1) {
+            return undefined;
+        }
         var element = this.elements[index];
         this.elements.splice(index, 1);
         this.sizeValue = this.sizeValue - 1;
@@ -145,6 +148,9 @@ var ArrayList = (function () {
     * @return {K} the element at the end of the queue or undefined if empty
     */
     ArrayList.prototype.removeLast = function () {
+        if (this.size() < 1) {
+            return undefined;
+        }
         return this.removeIndex(this.size() - 1);
     };
     /**
@@ -299,10 +305,10 @@ var ArrayList = (function () {
     */
     ArrayList.prototype.pollLast = function () {
         if ((this.elements === null) || (this.elements === undefined)) {
-            return undefined;
+            return null;
         }
         if (this.sizeValue <= 0) {
-            return undefined;
+            return null;
         }
         var element = this.get(this.size() - 1);
         this.removeIndex(this.size() - 1);
@@ -365,7 +371,14 @@ var ArrayList = (function () {
     * @return {K} the element at the head of the queue or undefined if empty
     */
     ArrayList.prototype.getFirst = function () {
-        return this.peek();
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(0);
+        return element;
     };
     /**
     * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.

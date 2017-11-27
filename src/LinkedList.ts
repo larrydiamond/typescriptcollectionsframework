@@ -363,6 +363,11 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
       this.numberElements = this.numberElements - 1;
       if (this.firstNode !== null)
         this.firstNode.previousNode = null;
+      if (this.numberElements < 1) {
+        this.numberElements = 0;
+        this.firstNode = null;
+        this.lastNode = null;
+      }
       return payload;
     }
     if (index === (this.numberElements - 1)) {
@@ -422,28 +427,28 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
 
 
  /**
-  * Returns the first element in this list.
-  * @return {T} the first element in this list, null if the list is empty
+  * etrieves, but does not remove, the first element in this list.
+  * @return {T} the first element in this list, undefined if the list is empty
   */
   public getFirst () : T {
     const node = this.firstNode;
-    if ((node === null) || (node === undefined)) return null;
+    if ((node === null) || (node === undefined)) return undefined;
     return node.payload;
   }
 
   public getFirstNode () : LinkedListNode<T> {
     const node = this.firstNode;
-    if ((node === null) || (node === undefined)) return null;
+    if ((node === null) || (node === undefined)) return undefined;
     return node;
   }
 
   /**
   * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
-  * @return {K} the element at the tail of the queue or null if empty
+  * @return {K} the element at the tail of the queue or undefined if empty
   */
   getLast () : T {
     const node = this.lastNode;
-    if ((node === null) || (node === undefined)) return null;
+    if ((node === null) || (node === undefined)) return undefined;
     return node.payload;
   }
 

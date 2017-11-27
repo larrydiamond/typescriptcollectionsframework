@@ -146,6 +146,9 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
       if ((this.elements === null) || (this.elements === undefined)) {
         return undefined;
       }
+      if (this.size() < 1) {
+        return undefined;
+      }
       const element:T = this.elements [index];
       this.elements.splice (index, 1);
       this.sizeValue = this.sizeValue - 1;
@@ -165,6 +168,9 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
     * @return {K} the element at the end of the queue or undefined if empty
     */
     public removeLast () : T {
+      if (this.size() < 1) {
+        return undefined;
+      }
       return this.removeIndex (this.size() - 1);
     }
 
@@ -341,10 +347,10 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   */
   public pollLast () : T {
     if ((this.elements === null) || (this.elements === undefined)) {
-      return undefined;
+      return null;
     }
     if (this.sizeValue <= 0) {
-      return undefined;
+      return null;
     }
 
     const element:T = this.get (this.size() - 1);
@@ -416,7 +422,15 @@ export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * @return {K} the element at the head of the queue or undefined if empty
   */
   public getFirst () : T {
-    return this.peek();
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (0);
+    return element;
   }
 
   /**

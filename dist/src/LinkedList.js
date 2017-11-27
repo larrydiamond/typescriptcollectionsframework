@@ -321,6 +321,11 @@ var LinkedList = (function () {
             this.numberElements = this.numberElements - 1;
             if (this.firstNode !== null)
                 this.firstNode.previousNode = null;
+            if (this.numberElements < 1) {
+                this.numberElements = 0;
+                this.firstNode = null;
+                this.lastNode = null;
+            }
             return payload;
         }
         if (index === (this.numberElements - 1)) {
@@ -376,29 +381,29 @@ var LinkedList = (function () {
         return -1;
     };
     /**
-     * Returns the first element in this list.
-     * @return {T} the first element in this list, null if the list is empty
+     * etrieves, but does not remove, the first element in this list.
+     * @return {T} the first element in this list, undefined if the list is empty
      */
     LinkedList.prototype.getFirst = function () {
         var node = this.firstNode;
         if ((node === null) || (node === undefined))
-            return null;
+            return undefined;
         return node.payload;
     };
     LinkedList.prototype.getFirstNode = function () {
         var node = this.firstNode;
         if ((node === null) || (node === undefined))
-            return null;
+            return undefined;
         return node;
     };
     /**
     * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
-    * @return {K} the element at the tail of the queue or null if empty
+    * @return {K} the element at the tail of the queue or undefined if empty
     */
     LinkedList.prototype.getLast = function () {
         var node = this.lastNode;
         if ((node === null) || (node === undefined))
-            return null;
+            return undefined;
         return node.payload;
     };
     /**

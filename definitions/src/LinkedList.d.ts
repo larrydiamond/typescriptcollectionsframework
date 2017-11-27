@@ -119,14 +119,14 @@ export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, De
      */
     lastIndexOf(t: T): number;
     /**
-     * Returns the first element in this list.
-     * @return {T} the first element in this list, null if the list is empty
+     * etrieves, but does not remove, the first element in this list.
+     * @return {T} the first element in this list, undefined if the list is empty
      */
     getFirst(): T;
     getFirstNode(): LinkedListNode<T>;
     /**
     * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
-    * @return {K} the element at the tail of the queue or null if empty
+    * @return {K} the element at the tail of the queue or undefined if empty
     */
     getLast(): T;
     /**

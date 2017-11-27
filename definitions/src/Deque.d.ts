@@ -46,12 +46,12 @@ export interface Deque<K> extends Queue<K> {
     pollLast(): K;
     /**
     * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
-    * @return {K} the element at the head of the queue or null if empty
+    * @return {K} the element at the head of the queue or undefined if empty
     */
     getFirst(): K;
     /**
     * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
-    * @return {K} the element at the tail of the queue or null if empty
+    * @return {K} the element at the tail of the queue or undefined if empty
     */
     getLast(): K;
     /**
