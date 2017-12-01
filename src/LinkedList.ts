@@ -114,7 +114,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * @param {K} k element to add
   * @return {boolean} true if this collection changed as a result of the call
   */
-  offerFirst (t:T) : boolean {
+  public offerFirst (t:T) : boolean {
     return this.addFirst (t);
   }
 
@@ -123,7 +123,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * @param {K} k element to add
   * @return {boolean} true if this collection changed as a result of the call
   */
-  offerLast (t:T) : boolean {
+  public offerLast (t:T) : boolean {
     return this.addLast (t);
   }
 
@@ -446,7 +446,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
   * @return {K} the element at the tail of the queue or undefined if empty
   */
-  getLast () : T {
+  public getLast () : T {
     const node = this.lastNode;
     if ((node === null) || (node === undefined)) return undefined;
     return node.payload;
@@ -530,7 +530,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves and removes the head of this queue, or returns null if this queue is empty.
   * @return {K} the element at the head of the queue or null if empty
   */
-  pollFirst () : T {
+  public pollFirst () : T {
     return this.poll();
   }
 
@@ -538,7 +538,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
   * @return {K} the element at the head of the queue or null if empty
   */
-  pollLast () : T {
+  public pollLast () : T {
     if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return null;
     }
@@ -573,7 +573,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
   * @return {K} the element at the head of the queue or undefined if empty
   */
-  removeFirst () : T {
+  public removeFirst () : T {
     return this.removeQueue();
   }
 
@@ -581,7 +581,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
   * @return {K} the element at the end of the queue or undefined if empty
   */
-  removeLast () : T {
+  public removeLast () : T {
     if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return undefined;
     }
@@ -614,7 +614,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
   * @return {K} the element at the head of the queue or null if empty
   */
-  peekFirst () : T {
+  public peekFirst () : T {
     return this.peek();
   }
 
@@ -622,7 +622,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
   * @return {K} the element at the head of the queue or null if empty
   */
-  peekLast () : T {
+  public peekLast () : T {
     if ((this.lastNode === null) || (this.lastNode === undefined)) {
       return null;
     }

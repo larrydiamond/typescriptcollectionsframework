@@ -37,7 +37,8 @@
     "testwin": "gulp test",
     "release": "standard-version",
     "tslint": "tslint -c tslint.json */*.ts",
-    "typedoc": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out typedoc/ src/*.ts  --exclude **/spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'"
+    "typedoc": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out typedoc/ src/*.ts  --exclude **/spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'",
+    "typedocwin": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out typedoc\\ src\\*.ts  --exclude **\\spec\\*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'"
   },
   "repository": {
     "type": "git",
