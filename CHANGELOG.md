@@ -1,5 +1,25 @@
 # Change Log
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v2.2.0...v3.0.0) (2017-12-01)
+* ArrayList and LinkedList implement Deque and Queue with documentation and tests
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v2.1.1...v2.2.0) (2017-11-27)
+* Deque interface
+
+<a name="2.1.1"></a>
+# [2.1.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v2.1.0...v2.1.1) (2017-11-13)
+* Bug fix in comparator found thanks to Queue testing
+
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v2.0.0...v2.1.0) (2017-11-11)
+* Queue interface
+
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.2.0...v2.0.0) (2017-11-05)
+* All tested and documented and good for release!
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v1.1.3...v1.2.0) (2017-11-03)
 * SkipList Set and Map prerelease for version 2
