@@ -142,17 +142,17 @@ export class Collections {
   }
 
   public static emptyList<T> () : ImmutableList<T> {
-    const list : ArrayList<T> = new ArrayList<T>(new AllFieldCollectable<T>());
+    const list : ArrayList<T> = new ArrayList<T>();
     return list.immutableList();
   }
 
   public static emptySet<T> () : ImmutableSet<T> {
-    const tmp : HashSet<T> = new HashSet<T>(new AllFieldHashable<T>());
+    const tmp : HashSet<T> = new HashSet<T>();
     return tmp.immutableSet();
   }
 
   public static emptyMap<K,V> () : ImmutableMap<K,V> {
-    const tmp : HashMap<K,V> = new HashMap<K,V>(new AllFieldHashable<K>());
+    const tmp : HashMap<K,V> = new HashMap<K,V>();
     return tmp.immutableMap();
   }
 

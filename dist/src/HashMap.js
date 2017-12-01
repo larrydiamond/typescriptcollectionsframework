@@ -17,12 +17,14 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldHashable_1 = require("./AllFieldHashable");
 var ArrayList_1 = require("./ArrayList");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var LinkedList_1 = require("./LinkedList");
 var HashMap = (function () {
     function HashMap(iHash, initialElements, iInitialCapacity, iLoadFactor) {
+        if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
         if (initialElements === void 0) { initialElements = null; }
         if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
         if (iLoadFactor === void 0) { iLoadFactor = 0.75; }

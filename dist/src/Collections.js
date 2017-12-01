@@ -8,7 +8,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
-var AllFieldHashable_1 = require("./AllFieldHashable");
 var ArrayList_1 = require("./ArrayList");
 var HashMap_1 = require("./HashMap");
 var HashSet_1 = require("./HashSet");
@@ -128,15 +127,15 @@ var Collections = (function () {
         return list.immutableList();
     };
     Collections.emptyList = function () {
-        var list = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        var list = new ArrayList_1.ArrayList();
         return list.immutableList();
     };
     Collections.emptySet = function () {
-        var tmp = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
+        var tmp = new HashSet_1.HashSet();
         return tmp.immutableSet();
     };
     Collections.emptyMap = function () {
-        var tmp = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
+        var tmp = new HashMap_1.HashMap();
         return tmp.immutableMap();
     };
     /**

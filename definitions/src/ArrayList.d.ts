@@ -10,7 +10,7 @@ export declare class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deq
     private elements;
     private sizeValue;
     private equality;
-    constructor(iEquals: Collectable<T>, initialElements?: ImmutableCollection<T>);
+    constructor(iEquals?: Collectable<T>, initialElements?: ImmutableCollection<T>);
     /**
     * Returns the Collectible
     * @return {Collectable}

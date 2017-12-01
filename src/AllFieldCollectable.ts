@@ -32,4 +32,6 @@
      return true;
      return false;
    }
+
+   public static instance = new AllFieldCollectable();
  }

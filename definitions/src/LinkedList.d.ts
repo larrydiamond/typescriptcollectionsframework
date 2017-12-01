@@ -11,7 +11,7 @@ export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, De
     private lastNode;
     private numberElements;
     private equality;
-    constructor(iEquals: Collectable<T>, initialElements?: ImmutableCollection<T>);
+    constructor(iEquals?: Collectable<T>, initialElements?: ImmutableCollection<T>);
     /**
     * Returns the Collectible
     * @return {Collectable}

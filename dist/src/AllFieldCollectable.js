@@ -34,6 +34,7 @@ var AllFieldCollectable = (function () {
             return true;
         return false;
     };
+    AllFieldCollectable.instance = new AllFieldCollectable();
     return AllFieldCollectable;
 }());
 exports.AllFieldCollectable = AllFieldCollectable;

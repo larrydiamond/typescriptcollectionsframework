@@ -10,7 +10,7 @@ export declare class HashSet<K> implements JSet<K> {
     private iLoadFactor;
     private datastore;
     private hashMethods;
-    constructor(iHash: Hashable<K>, initialElements?: ImmutableCollection<K>, iInitialCapacity?: number, iLoadFactor?: number);
+    constructor(iHash?: Hashable<K>, initialElements?: ImmutableCollection<K>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Returns the Hashable
     * @return {Hashable}

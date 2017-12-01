@@ -13,25 +13,25 @@ var ArrayList_1 = require("../src/ArrayList");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
+// PetStoreProduct will be used in testing
+var PetStoreProduct = (function () {
+    function PetStoreProduct(iName, iPrice) {
+        this.productName = iName;
+        this.price = iPrice;
+    }
+    PetStoreProduct.prototype.getProductName = function () {
+        return this.productName;
+    };
+    PetStoreProduct.prototype.getPrice = function () {
+        return this.price;
+    };
+    return PetStoreProduct;
+}());
+var product1 = new PetStoreProduct("Catnip", 4.99);
+var product2 = new PetStoreProduct("ChewToy", 14.99);
+var product3 = new PetStoreProduct("Goldfish", 9.99);
+var productNotAvailable = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
 describe("Test LinkedList functionality", function () {
-    // PetStoreProduct will be used in testing
-    var PetStoreProduct = (function () {
-        function PetStoreProduct(iName, iPrice) {
-            this.productName = iName;
-            this.price = iPrice;
-        }
-        PetStoreProduct.prototype.getProductName = function () {
-            return this.productName;
-        };
-        PetStoreProduct.prototype.getPrice = function () {
-            return this.price;
-        };
-        return PetStoreProduct;
-    }());
-    var product1 = new PetStoreProduct("Catnip", 4.99);
-    var product2 = new PetStoreProduct("ChewToy", 14.99);
-    var product3 = new PetStoreProduct("Goldfish", 9.99);
-    var productNotAvailable = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
     it("Test Creation state", function () {
         var list = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(list.isEmpty()).toEqual(true);

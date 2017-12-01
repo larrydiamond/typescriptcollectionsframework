@@ -13,32 +13,30 @@ var ArrayList_1 = require("../src/ArrayList");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
+// PetStoreProduct will be used in testing
+var PetStoreProduct = (function () {
+    function PetStoreProduct(iName, iPrice) {
+        this.productName = iName;
+        this.price = iPrice;
+    }
+    PetStoreProduct.prototype.getProductName = function () {
+        return this.productName;
+    };
+    PetStoreProduct.prototype.getPrice = function () {
+        return this.price;
+    };
+    return PetStoreProduct;
+}());
+var product1 = new PetStoreProduct("Catnip", 4.99);
+var product2 = new PetStoreProduct("ChewToy", 14.99);
+var product3 = new PetStoreProduct("Goldfish", 9.99);
+var productNotAvailable = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
 describe("Test ArrayList functionality", function () {
-    // PetStoreProduct will be used in testing
-    var PetStoreProduct = (function () {
-        function PetStoreProduct(iName, iPrice) {
-            this.productName = iName;
-            this.price = iPrice;
-        }
-        PetStoreProduct.prototype.getProductName = function () {
-            return this.productName;
-        };
-        PetStoreProduct.prototype.getPrice = function () {
-            return this.price;
-        };
-        return PetStoreProduct;
-    }());
-    var product1 = new PetStoreProduct("Catnip", 4.99);
-    var product2 = new PetStoreProduct("ChewToy", 14.99);
-    var product3 = new PetStoreProduct("Goldfish", 9.99);
-    var productNotAvailable = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
     it("Test Creation state", function () {
         var list = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        expect(list.isEmpty()).toEqual(true);
-        expect(list.size()).toEqual(0);
-        var collection = list;
-        expect(collection.isEmpty()).toEqual(true);
-        expect(collection.size()).toEqual(0);
+        var listNoParams = new ArrayList_1.ArrayList();
+        testEmptyArrayList(list);
+        testEmptyArrayList(listNoParams);
     });
     it("Test Adding some items", function () {
         var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -108,14 +106,9 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test get", function () {
         var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
-        expect(arraylist.add(product1)).toEqual(true);
-        expect(arraylist.add(product2)).toEqual(true);
-        var index0 = arraylist.get(0);
-        var index1 = arraylist.get(1);
-        expect(product1.getProductName()).toEqual(index0.getProductName());
-        expect(product2.getProductName()).toEqual(index1.getProductName());
-        expect(product1.getPrice()).toEqual(index0.getPrice());
-        expect(product2.getPrice()).toEqual(index1.getPrice());
+        testGetArrayList(arraylist);
+        var arraylistNoParams = new ArrayList_1.ArrayList();
+        testGetArrayList(arraylist);
     });
     it("Test indexof", function () {
         var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -378,3 +371,20 @@ describe("Test ArrayList functionality", function () {
         expect(arraylist.size()).toEqual(source.size());
     });
 });
+function testEmptyArrayList(list) {
+    expect(list.isEmpty()).toEqual(true);
+    expect(list.size()).toEqual(0);
+    var collection = list;
+    expect(collection.isEmpty()).toEqual(true);
+    expect(collection.size()).toEqual(0);
+}
+function testGetArrayList(arraylist) {
+    expect(arraylist.add(product1)).toEqual(true);
+    expect(arraylist.add(product2)).toEqual(true);
+    var index0 = arraylist.get(0);
+    var index1 = arraylist.get(1);
+    expect(product1.getProductName()).toEqual(index0.getProductName());
+    expect(product2.getProductName()).toEqual(index1.getProductName());
+    expect(product1.getPrice()).toEqual(index0.getPrice());
+    expect(product2.getPrice()).toEqual(index1.getPrice());
+}

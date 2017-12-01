@@ -45,6 +45,7 @@ var AllFieldHashable = (function () {
         var tmp = JSON.stringify(o);
         return Collections_1.Collections.getHashCodeForString(tmp);
     };
+    AllFieldHashable.instance = new AllFieldHashable();
     return AllFieldHashable;
 }());
 exports.AllFieldHashable = AllFieldHashable;

@@ -17,30 +17,31 @@ import {LinkedList} from "../src/LinkedList";
 import {List} from "../src/List";
 import {TreeSet} from "../src/TreeSet";
 
+// PetStoreProduct will be used in testing
+class PetStoreProduct {
+  private productName:string;
+  private price:number;
+
+  public constructor (iName:string, iPrice:number) {
+    this.productName = iName;
+    this.price = iPrice;
+  }
+
+  public getProductName ():string {
+    return this.productName;
+  }
+
+  public getPrice():number {
+    return this.price;
+  }
+}
+
+const product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
+const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
+const productNotAvailable:PetStoreProduct = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
+
 describe("Test LinkedList functionality", function() {
-    // PetStoreProduct will be used in testing
-    class PetStoreProduct {
-      private productName:string;
-      private price:number;
-
-      public constructor (iName:string, iPrice:number) {
-        this.productName = iName;
-        this.price = iPrice;
-      }
-
-      public getProductName ():string {
-        return this.productName;
-      }
-
-      public getPrice():number {
-        return this.price;
-      }
-    }
-
-    const product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
-    const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
-    const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
-    const productNotAvailable:PetStoreProduct = new PetStoreProduct("Bananas", 0.00); // we have no bananas today
 
 
     it("Test Creation state", function() {

@@ -6,6 +6,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {AllFieldHashable} from "./AllFieldHashable";
 import {ArrayList} from "./ArrayList";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
@@ -27,7 +28,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   private MapEntryHashMethods:Hashable<HashMapEntry<K, V>>;
   private ListMapEntryMethods:Collectable<List<HashMapEntry<K, V>>>;
 
-  public constructor (iHash:Hashable<K>, private initialElements:ImmutableMap<K, V> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+  public constructor (iHash:Hashable<K> = AllFieldHashable.instance, private initialElements:ImmutableMap<K, V> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
     this.MapEntryHashMethods = this.getHashMapEntryHashable(this.hashMethods);
     this.ListMapEntryMethods = this.getListHashMapEntryHashable(this.hashMethods);

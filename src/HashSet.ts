@@ -6,6 +6,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {AllFieldHashable} from "./AllFieldHashable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
 import {JIterator} from "./JIterator";
@@ -21,7 +22,7 @@ export class HashSet<K> implements JSet<K> {
   private datastore:HashMap<K,number> = null;
   private hashMethods:Hashable<K>;
 
-  constructor(iHash:Hashable<K>, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
+  constructor(iHash:Hashable<K> = AllFieldHashable.instance, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
     this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
 

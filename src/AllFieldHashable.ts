@@ -43,4 +43,6 @@ import {Hashable} from "./Hashable";
      const tmp:string = JSON.stringify (o);
      return Collections.getHashCodeForString(tmp);
    }
+
+   public static instance = new AllFieldHashable();
  }

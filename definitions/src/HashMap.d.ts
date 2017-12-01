@@ -15,7 +15,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     private hashMethods;
     private MapEntryHashMethods;
     private ListMapEntryMethods;
-    constructor(iHash: Hashable<K>, initialElements?: ImmutableMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
+    constructor(iHash?: Hashable<K>, initialElements?: ImmutableMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
     * @param {K} key key with which the specified value is to be associated

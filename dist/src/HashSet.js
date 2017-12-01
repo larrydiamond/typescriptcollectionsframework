@@ -7,10 +7,12 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldHashable_1 = require("./AllFieldHashable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var HashMap_1 = require("./HashMap");
 var HashSet = (function () {
     function HashSet(iHash, initialElements, iInitialCapacity, iLoadFactor) {
+        if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
         if (initialElements === void 0) { initialElements = null; }
         if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
         if (iLoadFactor === void 0) { iLoadFactor = 0.75; }

@@ -6,6 +6,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {AllFieldCollectable} from "./AllFieldCollectable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
@@ -22,7 +23,7 @@ export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
   private numberElements:number;
   private equality:Collectable<T>;
 
-  constructor(iEquals:Collectable<T>, private initialElements?:ImmutableCollection<T>) {
+  constructor(iEquals:Collectable<T> = AllFieldCollectable.instance, private initialElements?:ImmutableCollection<T>) {
     this.equality = iEquals;
     this.firstNode = null;
     this.lastNode = null;
