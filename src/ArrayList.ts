@@ -17,7 +17,7 @@ import {JIterator} from "./JIterator";
 import {List} from "./List";
 import {Queue} from "./Queue";
 
-export class ArrayList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
+export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
   private elements:T[] = null;
   private sizeValue:number = 0;
   private equality:Collectable<T>;

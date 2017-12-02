@@ -5,7 +5,7 @@ import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 import { Queue } from "./Queue";
-export declare class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
+export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     private initialElements;
     private firstNode;
     private lastNode;

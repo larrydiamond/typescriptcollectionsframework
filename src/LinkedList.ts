@@ -17,7 +17,7 @@ import {JIterator} from "./JIterator";
 import {List} from "./List";
 import {Queue} from "./Queue";
 
-export class LinkedList<T> implements List<T>, Iterable<T>, Queue<T>, Deque<T> {
+export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   private firstNode:LinkedListNode<T>;
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
