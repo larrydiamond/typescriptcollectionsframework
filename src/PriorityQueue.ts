@@ -33,18 +33,22 @@ export class PriorityQueue<K> implements Queue<K> {
   * and returning false if no space is currently available or if the implementation does not permit duplicates and already contains the specified element
   */
   public add (k:K) : boolean {
-    if (this.pQueue.size() < this.capacity) 
-      return this.pQueue.add(k);
-    return false;
+    if (this.pQueue.size() < this.capacity) {
+      this.pQueue.add(k);
+    } else return false;
+
+    return true;
   }
 
   /**
   * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
   */
   public offer (k:K) : boolean {
-    if (this.pQueue.size() < this.capacity) 
-      return this.pQueue.add(k);
-    return false;
+    if (this.pQueue.size() < this.capacity) {
+      this.pQueue.add(k);
+    } else return false;
+
+    return true;
   }
 
   /*

@@ -99,11 +99,11 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and hitting capacity", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(3, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(3);
     expect (PriorityQueue1.add(product4)).toEqual(false);
     expect (PriorityQueue1.size()).toEqual(3);
@@ -113,9 +113,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and offer", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.offer(product1)).toEqual(false);
+    expect (PriorityQueue1.offer(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.offer(product3)).toEqual(false);
+    expect (PriorityQueue1.offer(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.removeQueue().getProductName()).toEqual("ChewToy");
     expect (PriorityQueue1.size()).toEqual(1);
@@ -125,11 +125,11 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and offer hitting capacity", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(3, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.offer(product1)).toEqual(false);
+    expect (PriorityQueue1.offer(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.offer(product2)).toEqual(false);
+    expect (PriorityQueue1.offer(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
-    expect (PriorityQueue1.offer(product3)).toEqual(false);
+    expect (PriorityQueue1.offer(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(3);
     expect (PriorityQueue1.offer(product4)).toEqual(false);
     expect (PriorityQueue1.size()).toEqual(3);
@@ -139,9 +139,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and poll", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.poll().getProductName()).toEqual("ChewToy");
     expect (PriorityQueue1.size()).toEqual(1);
@@ -151,9 +151,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test poll on empty queue", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.poll().getProductName()).toEqual("Catnip");
     expect (PriorityQueue1.size()).toEqual(1);
@@ -165,9 +165,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and removeQueue", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.removeQueue().getProductName()).toEqual("ChewToy");
     expect (PriorityQueue1.size()).toEqual(1);
@@ -177,9 +177,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test removeQueue on empty queue", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.removeQueue().getProductName()).toEqual("Catnip");
     expect (PriorityQueue1.size()).toEqual(1);
@@ -191,9 +191,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and peek", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.peek().getProductName()).toEqual("Catnip");
     expect (PriorityQueue1.isEmpty()).toEqual(false);
@@ -202,9 +202,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test peek on empty queue", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.peek().getProductName()).toEqual("Catnip");
     expect (PriorityQueue1.removeQueue().getProductName()).toEqual("Catnip");
@@ -218,9 +218,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and element", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.element().getProductName()).toEqual("Catnip");
     expect (PriorityQueue1.isEmpty()).toEqual(false);
@@ -229,9 +229,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test element on empty queue", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product2)).toEqual(false);
+    expect (PriorityQueue1.add(product2)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.element().getProductName()).toEqual("Catnip");
     expect (PriorityQueue1.removeQueue().getProductName()).toEqual("Catnip");
@@ -245,9 +245,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and clear", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.peek().getProductName()).toEqual("ChewToy");
     expect (PriorityQueue1.isEmpty()).toEqual(false);
@@ -258,9 +258,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and remove", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.remove(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
@@ -276,9 +276,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and contains true", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.contains(product1)).toEqual(true);
     expect (PriorityQueue1.isEmpty()).toEqual(false);
@@ -287,9 +287,9 @@ describe("Test Priority Queue functionality", function() {
   it("Test adding items to priority queue and contains false", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
     expect (PriorityQueue1.size()).toEqual(0);
-    expect (PriorityQueue1.add(product1)).toEqual(false);
+    expect (PriorityQueue1.add(product1)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(1);
-    expect (PriorityQueue1.add(product3)).toEqual(false);
+    expect (PriorityQueue1.add(product3)).toEqual(true);
     expect (PriorityQueue1.size()).toEqual(2);
     expect (PriorityQueue1.contains(product1)).toEqual(true);
     expect (PriorityQueue1.contains(product4)).toEqual(false);
@@ -298,8 +298,8 @@ describe("Test Priority Queue functionality", function() {
 
   it("Test java iteration", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
-    expect (PriorityQueue1.add (product1)).toEqual (false);
-    expect (PriorityQueue1.add (product2)).toEqual (false);
+    expect (PriorityQueue1.add (product1)).toEqual (true);
+    expect (PriorityQueue1.add (product2)).toEqual (true);
 
     let offset:number = 0;
     for (const iter = PriorityQueue1.iterator(); iter.hasNext(); ) {
@@ -318,8 +318,8 @@ describe("Test Priority Queue functionality", function() {
 
   it("Test typescript iteration", function() {
     const PriorityQueue1:PriorityQueue<PetStoreProduct> = new PriorityQueue<PetStoreProduct>(5, alphabeticalSortPetStoreProduct);
-    expect (PriorityQueue1.add (product1)).toEqual (false);
-    expect (PriorityQueue1.add (product2)).toEqual (false);
+    expect (PriorityQueue1.add (product1)).toEqual (true);
+    expect (PriorityQueue1.add (product2)).toEqual (true);
 
     const offset:number = 0;
 
@@ -336,24 +336,23 @@ describe("Test Priority Queue functionality", function() {
 
   it("Test ceiling", function() {
     const PriorityQueue1:PriorityQueue<number> = new PriorityQueue<number>(15, Collections.getNumberComparator());
-    expect (PriorityQueue1.add (44)).toEqual(false);
-    expect (PriorityQueue1.add (5)).toEqual(false);
-    expect (PriorityQueue1.add (20)).toEqual(false);
-    expect (PriorityQueue1.add (88)).toEqual(false);
-    expect (PriorityQueue1.add (50)).toEqual(false);
-    expect (PriorityQueue1.add (30)).toEqual(false);
-    expect (PriorityQueue1.add (1)).toEqual(false);
-    expect (PriorityQueue1.add (48)).toEqual(false);
-    expect (PriorityQueue1.add (62)).toEqual(false);
-    expect (PriorityQueue1.add (78)).toEqual(false);
-    expect (PriorityQueue1.add (17)).toEqual(false);
-    expect (PriorityQueue1.add (70)).toEqual(false);
-    expect (PriorityQueue1.add (80)).toEqual(false);
-    expect (PriorityQueue1.add (32)).toEqual(false);
-    expect (PriorityQueue1.add (100)).toEqual(false);
+    expect (PriorityQueue1.add (44)).toEqual(true);
+    expect (PriorityQueue1.add (5)).toEqual(true);
+    expect (PriorityQueue1.add (20)).toEqual(true);
+    expect (PriorityQueue1.add (88)).toEqual(true);
+    expect (PriorityQueue1.add (50)).toEqual(true);
+    expect (PriorityQueue1.add (30)).toEqual(true);
+    expect (PriorityQueue1.add (1)).toEqual(true);
+    expect (PriorityQueue1.add (48)).toEqual(true);
+    expect (PriorityQueue1.add (62)).toEqual(true);
+    expect (PriorityQueue1.add (78)).toEqual(true);
+    expect (PriorityQueue1.add (17)).toEqual(true);
+    expect (PriorityQueue1.add (70)).toEqual(true);
+    expect (PriorityQueue1.add (80)).toEqual(true);
+    expect (PriorityQueue1.add (32)).toEqual(true);
+    expect (PriorityQueue1.add (100)).toEqual(true);
     expect (PriorityQueue1.add (0)).toEqual(false);
     expect (PriorityQueue1.peek()).toEqual(1);
   });
-
 
 });
