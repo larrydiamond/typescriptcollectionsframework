@@ -13,6 +13,7 @@ var ArrayList_1 = require("../src/ArrayList");
 var Collections_1 = require("../src/Collections");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
+var TreeSet_1 = require("../src/TreeSet");
 describe("Test Collections", function () {
     it("Test empty string Collections", function () {
         testEmptyStringCollection(new ArrayList_1.ArrayList());
@@ -23,6 +24,7 @@ describe("Test Collections", function () {
         testEmptyStringCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyStringCollection(Collections_1.Collections.emptyList());
         testEmptyStringCollection(Collections_1.Collections.emptySet());
+        testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test empty number Collections", function () {
         testEmptyNumberCollection(new ArrayList_1.ArrayList());
@@ -120,35 +122,35 @@ describe("Test Collections", function () {
     });
 });
 function addTestNumbers(coll) {
-    coll.add(100);
-    coll.add(200);
-    coll.add(300);
-    coll.add(400);
-    coll.add(500);
-    coll.add(600);
-    coll.add(700);
-    coll.add(800);
-    coll.add(900);
-    coll.add(1000);
+    expect(coll.add(100)).toEqual(true);
+    expect(coll.add(200)).toEqual(true);
+    expect(coll.add(300)).toEqual(true);
+    expect(coll.add(400)).toEqual(true);
+    expect(coll.add(500)).toEqual(true);
+    expect(coll.add(600)).toEqual(true);
+    expect(coll.add(700)).toEqual(true);
+    expect(coll.add(800)).toEqual(true);
+    expect(coll.add(900)).toEqual(true);
+    expect(coll.add(1000)).toEqual(true);
 }
 function addTestStrings(coll) {
-    coll.add("first");
-    coll.add("second");
-    coll.add("third");
-    coll.add("fourth");
-    coll.add("fifth");
-    coll.add("sixth");
-    coll.add("seventh");
-    coll.add("eighth");
-    coll.add("ninth");
-    coll.add("tenth");
+    expect(coll.add("first")).toEqual(true);
+    expect(coll.add("second")).toEqual(true);
+    expect(coll.add("third")).toEqual(true);
+    expect(coll.add("fourth")).toEqual(true);
+    expect(coll.add("fifth")).toEqual(true);
+    expect(coll.add("sixth")).toEqual(true);
+    expect(coll.add("seventh")).toEqual(true);
+    expect(coll.add("eighth")).toEqual(true);
+    expect(coll.add("ninth")).toEqual(true);
+    expect(coll.add("tenth")).toEqual(true);
 }
 function testEmptyStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
     expect(coll.size()).toEqual(0);
     expect(coll.contains("blah")).toEqual(false);
     for (var iter = coll.iterator(); iter.hasNext();) {
-        fail();
+        throw new Error('Unwanted code branch in testEmptyStringCollection');
     }
     var i = coll[Symbol.iterator]();
     var ir = i.next();
@@ -159,7 +161,7 @@ function testEmptyNumberCollection(coll) {
     expect(coll.size()).toEqual(0);
     expect(coll.contains(500)).toEqual(false);
     for (var iter = coll.iterator(); iter.hasNext();) {
-        fail();
+        throw new Error('Unwanted code branch in testEmptyNumberCollection');
     }
     var i = coll[Symbol.iterator]();
     var ir = i.next();

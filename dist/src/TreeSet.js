@@ -201,7 +201,7 @@ var TreeSetJIterator = (function () {
     TreeSetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) {
             var first = this.set.first();
-            if (first === undefined)
+            if ((first === undefined) || (first === null))
                 return false;
             return true;
         }
@@ -216,7 +216,7 @@ var TreeSetJIterator = (function () {
         }
     };
     TreeSetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if ((this.location === undefined) || (this.location === null)) {
             var first = this.set.first();
             if (first === undefined) {
                 return null;

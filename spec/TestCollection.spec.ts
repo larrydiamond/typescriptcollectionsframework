@@ -15,6 +15,7 @@ import {HashSet} from "../src/HashSet";
 import {ImmutableCollection} from "../src/ImmutableCollection";
 import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
+import {TreeSet} from "../src/TreeSet";
 
 describe("Test Collections", function() {
   it("Test empty string Collections", function() {
@@ -26,6 +27,7 @@ describe("Test Collections", function() {
     testEmptyStringCollection(new HashSet<string> (new AllFieldHashable<string>()));
     testEmptyStringCollection(Collections.emptyList<string>());
     testEmptyStringCollection(Collections.emptySet<string>());
+    testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()));
   });
 
   it("Test empty number Collections", function() {
@@ -135,47 +137,44 @@ describe("Test Collections", function() {
     testAddItemsToNumberCollection(llc);
     testAddItemsToNumberCollection(hsc);
   });
-
-
-
 });
 
 function addTestNumbers (coll:Collection<number>) {
-  coll.add (100);
-  coll.add (200);
-  coll.add (300);
-  coll.add (400);
-  coll.add (500);
-  coll.add (600);
-  coll.add (700);
-  coll.add (800);
-  coll.add (900);
-  coll.add (1000);
+  expect (coll.add (100)).toEqual(true);
+  expect (coll.add (200)).toEqual(true);
+  expect (coll.add (300)).toEqual(true);
+  expect (coll.add (400)).toEqual(true);
+  expect (coll.add (500)).toEqual(true);
+  expect (coll.add (600)).toEqual(true);
+  expect (coll.add (700)).toEqual(true);
+  expect (coll.add (800)).toEqual(true);
+  expect (coll.add (900)).toEqual(true);
+  expect (coll.add (1000)).toEqual(true);
 }
 
 function addTestStrings (coll:Collection<string>) {
-  coll.add ("first");
-  coll.add ("second");
-  coll.add ("third");
-  coll.add ("fourth");
-  coll.add ("fifth");
-  coll.add ("sixth");
-  coll.add ("seventh");
-  coll.add ("eighth");
-  coll.add ("ninth");
-  coll.add ("tenth");
+  expect (coll.add ("first")).toEqual(true);
+  expect (coll.add ("second")).toEqual(true);
+  expect (coll.add ("third")).toEqual(true);
+  expect (coll.add ("fourth")).toEqual(true);
+  expect (coll.add ("fifth")).toEqual(true);
+  expect (coll.add ("sixth")).toEqual(true);
+  expect (coll.add ("seventh")).toEqual(true);
+  expect (coll.add ("eighth")).toEqual(true);
+  expect (coll.add ("ninth")).toEqual(true);
+  expect (coll.add ("tenth")).toEqual(true);
 }
 
 function testEmptyStringCollection (coll:ImmutableCollection<string>) : void {
-   expect (coll.isEmpty ()).toEqual(true);
-   expect (coll.size ()).toEqual(0);
-   expect (coll.contains("blah")).toEqual(false);
-   for (const iter:JIterator<string> = coll.iterator(); iter.hasNext(); ) {
-     fail();
-   }
-   const i:Iterator<string> = coll[Symbol.iterator]();
-   let ir:IteratorResult<string> = i.next();
-   expect (ir.done).toEqual(true);
+  expect (coll.isEmpty ()).toEqual(true);
+  expect (coll.size ()).toEqual(0);
+  expect (coll.contains("blah")).toEqual(false);
+  for (const iter:JIterator<string> = coll.iterator(); iter.hasNext(); ) {
+    throw new Error('Unwanted code branch in testEmptyStringCollection');
+  }
+  const i:Iterator<string> = coll[Symbol.iterator]();
+  let ir:IteratorResult<string> = i.next();
+  expect (ir.done).toEqual(true);
 }
 
 function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
@@ -183,7 +182,7 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
   expect (coll.size ()).toEqual(0);
   expect (coll.contains(500)).toEqual(false);
   for (const iter:JIterator<number> = coll.iterator(); iter.hasNext(); ) {
-    fail();
+    throw new Error('Unwanted code branch in testEmptyNumberCollection');
   }
   const i:Iterator<number> = coll[Symbol.iterator]();
   let ir:IteratorResult<number> = i.next();

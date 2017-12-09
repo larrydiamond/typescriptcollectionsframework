@@ -238,7 +238,7 @@ export class TreeSetJIterator<T> implements JIterator<T> {
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
       const first:T = this.set.first();
-      if (first === undefined)
+      if ((first === undefined) || (first === null))
         return false;
       return true;
     } else { // we've already called this iterator before
@@ -252,7 +252,7 @@ export class TreeSetJIterator<T> implements JIterator<T> {
   }
 
   public next():T {
-    if (this.location === undefined) { // first time caller
+    if ((this.location === undefined) || (this.location === null)) { // first time caller
       const first:T = this.set.first();
       if (first === undefined) {
         return null;
