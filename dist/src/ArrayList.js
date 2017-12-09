@@ -159,6 +159,7 @@ var ArrayList = (function () {
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
     ArrayList.prototype.clear = function () {
+        this.elements.fill(null); // Help the garbage collector
         this.elements = new Array();
         this.sizeValue = 0;
     };

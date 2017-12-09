@@ -179,6 +179,7 @@ export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
  * Removes all of the elements from this list. The list will be empty after this call returns.
  */
   public clear () : void {
+    this.elements.fill(null);  // Help the garbage collector
     this.elements = new Array<T>();
     this.sizeValue = 0;
   }

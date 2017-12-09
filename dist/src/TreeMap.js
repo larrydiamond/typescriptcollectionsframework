@@ -96,14 +96,14 @@ var TreeMap = (function () {
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
     TreeMap.prototype.clear = function () {
-        this.topNode = null;
         // if only this was enough :(
         // JavaScript memory management has problems when two objects have pointers to one another
         // In that case, the mark and sweep garbage collector is unable to collect either object
         // and we wind up with out of memory errors :(
-        while (this.size() > 0) {
+        while ((this.topNode !== null) && (this.topNode !== undefined)) {
             this.remove(this.topNode.getKey());
         }
+        this.topNode = null;
     };
     /**
      * Returns the comparator used to order the keys in this map
