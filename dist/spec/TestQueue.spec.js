@@ -9,7 +9,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
 var ArrayList_1 = require("../src/ArrayList");
+var Collections_1 = require("../src/Collections");
 var LinkedList_1 = require("../src/LinkedList");
+var PriorityQueue_1 = require("../src/PriorityQueue");
 var jasts_1 = require("jasts");
 describe("Test Queue functionality", function () {
     it("Test empty queues", function () {
@@ -17,30 +19,35 @@ describe("Test Queue functionality", function () {
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testEmptyQueue(al, "ArrayList");
         testEmptyQueue(ll, "LinkedList");
+        testEmptyQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
     });
     it("Test adding items to queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testAddToQueue(al, "ArrayList");
         testAddToQueue(ll, "LinkedList");
+        testAddToQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
     });
     it("Test offering items to queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testOfferToQueue(al, "ArrayList");
         testOfferToQueue(ll, "LinkedList");
+        testOfferToQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
     });
     it("Test polling items from queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testPollFromQueue(al, "ArrayList");
         testPollFromQueue(ll, "LinkedList");
+        testPollFromQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
     });
     it("Test removing items from queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testRemoveFromQueue(al, "ArrayList");
         testRemoveFromQueue(ll, "LinkedList");
+        testRemoveFromQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
     });
 });
 function testEmptyQueue(queue, prefix) {

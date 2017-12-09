@@ -8,7 +8,9 @@
 
 import {AllFieldCollectable} from "../src/AllFieldCollectable";
 import {ArrayList} from "../src/ArrayList";
+import {Collections} from "../src/Collections";
 import {LinkedList} from "../src/LinkedList";
+import {PriorityQueue} from "../src/PriorityQueue";
 import {Queue} from "../src/Queue";
 import {TestBoolean, TestString} from 'jasts';
 
@@ -20,6 +22,7 @@ describe("Test Queue functionality", function() {
 
     testEmptyQueue(al, "ArrayList");
     testEmptyQueue(ll, "LinkedList");
+    testEmptyQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
 
   it("Test adding items to queues", function() {
@@ -28,6 +31,7 @@ describe("Test Queue functionality", function() {
 
     testAddToQueue(al, "ArrayList");
     testAddToQueue(ll, "LinkedList");
+    testAddToQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
 
   it("Test offering items to queues", function() {
@@ -36,6 +40,7 @@ describe("Test Queue functionality", function() {
 
     testOfferToQueue(al, "ArrayList");
     testOfferToQueue(ll, "LinkedList");
+    testOfferToQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
 
   it("Test polling items from queues", function() {
@@ -44,6 +49,7 @@ describe("Test Queue functionality", function() {
 
     testPollFromQueue(al, "ArrayList");
     testPollFromQueue(ll, "LinkedList");
+    testPollFromQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
 
   it("Test removing items from queues", function() {
@@ -52,6 +58,7 @@ describe("Test Queue functionality", function() {
 
     testRemoveFromQueue(al, "ArrayList");
     testRemoveFromQueue(ll, "LinkedList");
+    testRemoveFromQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
 
 });
