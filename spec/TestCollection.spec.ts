@@ -15,6 +15,7 @@ import {HashSet} from "../src/HashSet";
 import {ImmutableCollection} from "../src/ImmutableCollection";
 import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
+import {PriorityQueue} from "../src/PriorityQueue";
 import {TreeSet} from "../src/TreeSet";
 
 describe("Test Collections", function() {
@@ -28,6 +29,7 @@ describe("Test Collections", function() {
     testEmptyStringCollection(Collections.emptyList<string>());
     testEmptyStringCollection(Collections.emptySet<string>());
     testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()));
+    testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
 
   it("Test empty number Collections", function() {
@@ -40,6 +42,7 @@ describe("Test Collections", function() {
     testEmptyNumberCollection(Collections.emptyList<number>());
     testEmptyNumberCollection(Collections.emptySet<number>());
     testEmptyNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
+    testEmptyNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
 
   it("Test add one item to string Collections", function() {
@@ -57,6 +60,7 @@ describe("Test Collections", function() {
     testAddOneItemToStringCollection(llc);
     testAddOneItemToStringCollection(hsc);
     testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
+    testAddOneItemToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
 
   it("Test add one item to number Collections", function() {
@@ -74,6 +78,7 @@ describe("Test Collections", function() {
     testAddOneItemToNumberCollection(llc);
     testAddOneItemToNumberCollection(hsc);
     testAddOneItemToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
+    testAddOneItemToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
 
   it("Test add two items to string Collections", function() {
@@ -91,6 +96,7 @@ describe("Test Collections", function() {
     testAddTwoItemsToStringCollection(llc);
     testAddTwoItemsToStringCollection(hsc);
     testAddTwoItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
+    testAddTwoItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
 
   it("Test add two items to number Collections", function() {
@@ -108,8 +114,8 @@ describe("Test Collections", function() {
     testAddTwoItemsToNumberCollection(llc);
     testAddTwoItemsToNumberCollection(hsc);
     testAddTwoItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
+    testAddTwoItemsToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
-
 
   it("Test add items to string Collections", function() {
     const al:ArrayList<string> = new ArrayList<string> ();
@@ -126,6 +132,7 @@ describe("Test Collections", function() {
     testAddItemsToStringCollection(llc);
     testAddItemsToStringCollection(hsc);
     testAddItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
+    testAddItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
 
   it("Test add items to number Collections", function() {
@@ -143,6 +150,7 @@ describe("Test Collections", function() {
     testAddItemsToNumberCollection(llc);
     testAddItemsToNumberCollection(hsc);
     testAddItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
+    testAddItemsToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
 });
 

@@ -13,6 +13,7 @@ var ArrayList_1 = require("../src/ArrayList");
 var Collections_1 = require("../src/Collections");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
+var PriorityQueue_1 = require("../src/PriorityQueue");
 var TreeSet_1 = require("../src/TreeSet");
 describe("Test Collections", function () {
     it("Test empty string Collections", function () {
@@ -25,6 +26,7 @@ describe("Test Collections", function () {
         testEmptyStringCollection(Collections_1.Collections.emptyList());
         testEmptyStringCollection(Collections_1.Collections.emptySet());
         testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
     });
     it("Test empty number Collections", function () {
         testEmptyNumberCollection(new ArrayList_1.ArrayList());
@@ -36,6 +38,7 @@ describe("Test Collections", function () {
         testEmptyNumberCollection(Collections_1.Collections.emptyList());
         testEmptyNumberCollection(Collections_1.Collections.emptySet());
         testEmptyNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testEmptyNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
     });
     it("Test add one item to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -51,6 +54,7 @@ describe("Test Collections", function () {
         testAddOneItemToStringCollection(llc);
         testAddOneItemToStringCollection(hsc);
         testAddOneItemToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
     });
     it("Test add one item to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -66,6 +70,7 @@ describe("Test Collections", function () {
         testAddOneItemToNumberCollection(llc);
         testAddOneItemToNumberCollection(hsc);
         testAddOneItemToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testAddOneItemToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
     });
     it("Test add two items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -81,6 +86,7 @@ describe("Test Collections", function () {
         testAddTwoItemsToStringCollection(llc);
         testAddTwoItemsToStringCollection(hsc);
         testAddTwoItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testAddTwoItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
     });
     it("Test add two items to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -96,6 +102,7 @@ describe("Test Collections", function () {
         testAddTwoItemsToNumberCollection(llc);
         testAddTwoItemsToNumberCollection(hsc);
         testAddTwoItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testAddTwoItemsToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
     });
     it("Test add items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -111,6 +118,7 @@ describe("Test Collections", function () {
         testAddItemsToStringCollection(llc);
         testAddItemsToStringCollection(hsc);
         testAddItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testAddItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
     });
     it("Test add items to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -126,6 +134,7 @@ describe("Test Collections", function () {
         testAddItemsToNumberCollection(llc);
         testAddItemsToNumberCollection(hsc);
         testAddItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testAddItemsToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
     });
 });
 function addTestNumbers(coll) {
