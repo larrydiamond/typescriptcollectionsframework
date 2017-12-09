@@ -15,17 +15,16 @@ import {TreeSet} from "./TreeSet";
 
 export class PriorityQueue<K> implements Queue<K> {
   private pQueue: TreeSet<K>;
-  private capacity: number;
-  private defaultCapacity: number = 11;
 
-  constructor(capacity?: number, iComparator?:Comparator<K>) {
-    if (capacity !== null && capacity != undefined)
-      this.capacity = capacity;
-    else this.capacity = this.defaultCapacity;
+  constructor(iComparator:Comparator<K>, private initialElements?:ImmutableCollection<K>) {
+    this.pQueue = new TreeSet<K>(iComparator);
 
-    if (iComparator !== null && iComparator !== undefined)
-      this.pQueue = new TreeSet<K>(iComparator);
-    else this.pQueue = null;   
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:K = iter.next ();
+        this.add (t);
+      }
+    }
   }
 
   /**
@@ -33,22 +32,14 @@ export class PriorityQueue<K> implements Queue<K> {
   * and returning false if no space is currently available or if the implementation does not permit duplicates and already contains the specified element
   */
   public add (k:K) : boolean {
-    if (this.pQueue.size() < this.capacity) {
-      this.pQueue.add(k);
-    } else return false;
-
-    return true;
+    return this.pQueue.add(k);
   }
 
   /**
   * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
   */
   public offer (k:K) : boolean {
-    if (this.pQueue.size() < this.capacity) {
-      this.pQueue.add(k);
-    } else return false;
-
-    return true;
+    return this.pQueue.add(k);
   }
 
   /*
@@ -70,7 +61,7 @@ export class PriorityQueue<K> implements Queue<K> {
   /*
   * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
   */
-  public peek () : K { 
+  public peek () : K {
     if (this.pQueue.isEmpty()) return null;
     return this.pQueue.first();
   }

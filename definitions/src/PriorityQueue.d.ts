@@ -1,7 +1,11 @@
+import { Comparator } from "./Comparator";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { JIterator } from "./JIterator";
 import { Queue } from "./Queue";
 export declare class PriorityQueue<K> implements Queue<K> {
+    private initialElements;
+    private pQueue;
+    constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
     /**
     * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions, returning true upon success
     * and returning false if no space is currently available or if the implementation does not permit duplicates and already contains the specified element
@@ -45,14 +49,14 @@ export declare class PriorityQueue<K> implements Queue<K> {
     */
     iterator(): JIterator<K>;
     /**
-     * Returns a TypeScript style iterator
-     * @return {Iterator<K>} the TypeScript style iterator
-     */
+    * Returns a TypeScript style iterator
+    * @return {Iterator<K>} the TypeScript style iterator
+    */
     [Symbol.iterator](): Iterator<K>;
     /**
-     * Returns true if this collection contains the specified element.
-     * @param {K} t element whose presence in this collection is to be tested
-     * @return {boolean} true if this collection contains the specified element
-     */
+    * Returns true if this collection contains the specified element.
+    * @param {K} t element whose presence in this collection is to be tested
+    * @return {boolean} true if this collection contains the specified element
+    */
     contains(k: K): boolean;
 }
