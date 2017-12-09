@@ -39,6 +39,7 @@ describe("Test Collections", function() {
     testEmptyNumberCollection(new HashSet<number> (new AllFieldHashable<number>()));
     testEmptyNumberCollection(Collections.emptyList<number>());
     testEmptyNumberCollection(Collections.emptySet<number>());
+    testEmptyNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
   });
 
   it("Test add one item to string Collections", function() {
@@ -72,6 +73,7 @@ describe("Test Collections", function() {
     testAddOneItemToNumberCollection(alc);
     testAddOneItemToNumberCollection(llc);
     testAddOneItemToNumberCollection(hsc);
+    testAddOneItemToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
   });
 
   it("Test add two items to string Collections", function() {
@@ -105,6 +107,7 @@ describe("Test Collections", function() {
     testAddTwoItemsToNumberCollection(alc);
     testAddTwoItemsToNumberCollection(llc);
     testAddTwoItemsToNumberCollection(hsc);
+    testAddTwoItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
   });
 
 
@@ -139,6 +142,7 @@ describe("Test Collections", function() {
     testAddItemsToNumberCollection(alc);
     testAddItemsToNumberCollection(llc);
     testAddItemsToNumberCollection(hsc);
+    testAddItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
   });
 });
 

@@ -35,6 +35,7 @@ describe("Test Collections", function () {
         testEmptyNumberCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyNumberCollection(Collections_1.Collections.emptyList());
         testEmptyNumberCollection(Collections_1.Collections.emptySet());
+        testEmptyNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
     });
     it("Test add one item to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -64,6 +65,7 @@ describe("Test Collections", function () {
         testAddOneItemToNumberCollection(alc);
         testAddOneItemToNumberCollection(llc);
         testAddOneItemToNumberCollection(hsc);
+        testAddOneItemToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
     });
     it("Test add two items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -93,6 +95,7 @@ describe("Test Collections", function () {
         testAddTwoItemsToNumberCollection(alc);
         testAddTwoItemsToNumberCollection(llc);
         testAddTwoItemsToNumberCollection(hsc);
+        testAddTwoItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
     });
     it("Test add items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -122,6 +125,7 @@ describe("Test Collections", function () {
         testAddItemsToNumberCollection(alc);
         testAddItemsToNumberCollection(llc);
         testAddItemsToNumberCollection(hsc);
+        testAddItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
     });
 });
 function addTestNumbers(coll) {
