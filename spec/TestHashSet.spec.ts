@@ -240,6 +240,7 @@ describe("Test HashSet functionality", function() {
       const psp:string = iter.next ();
     }
     expect (count).toEqual (26 * 26 * 26);
+    hset.clear();
   });
 
     it("Test constructing with elements from an ArrayList", function() {
@@ -292,8 +293,8 @@ describe("Test HashSet functionality", function() {
 
   it("Test constructing with elements from a TreeSet", function() {
     const source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
-    expect (source.add (product1)).toEqual (false);
-    expect (source.add (product2)).toEqual (false);
+    expect (source.add (product1)).toEqual (true);
+    expect (source.add (product2)).toEqual (true);
 
     const tset:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>(), source);
     expect (tset.size ()).toEqual(source.size());

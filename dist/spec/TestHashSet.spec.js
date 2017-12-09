@@ -208,6 +208,7 @@ describe("Test HashSet functionality", function () {
             var psp = iter.next();
         }
         expect(count).toEqual(26 * 26 * 26);
+        hset.clear();
     });
     it("Test constructing with elements from an ArrayList", function () {
         var sourceList = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -252,8 +253,8 @@ describe("Test HashSet functionality", function () {
     };
     it("Test constructing with elements from a TreeSet", function () {
         var source = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
-        expect(source.add(product1)).toEqual(false);
-        expect(source.add(product2)).toEqual(false);
+        expect(source.add(product1)).toEqual(true);
+        expect(source.add(product2)).toEqual(true);
         var tset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable(), source);
         expect(tset.size()).toEqual(source.size());
     });

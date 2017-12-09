@@ -110,6 +110,14 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
  */
  public clear () : void {
    this.topNode = null;
+
+   // if only this was enough :(
+   // JavaScript memory management has problems when two objects have pointers to one another
+   // In that case, the mark and sweep garbage collector is unable to collect either object
+   // and we wind up with out of memory errors :(
+   while (this.size() > 0) {
+    this.remove (this.topNode.getKey());
+  }
 }
 
 /**
@@ -440,6 +448,9 @@ public size () : number {
       }
     }
 
+    tmp.setParentNode(null); // clear pointers to help memory collection
+    tmp.setLeftNode(null); // clear pointers to help memory collection
+    tmp.setRightNode(null); // clear pointers to help memory collection
     return tmp.getValue();
   }
 

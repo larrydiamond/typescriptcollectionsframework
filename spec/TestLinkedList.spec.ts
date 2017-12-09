@@ -474,8 +474,8 @@ describe("Test LinkedList functionality", function() {
 
       it("Test constructing with elements from a TreeSet", function() {
         const source:TreeSet<PetStoreProduct> = new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct);
-        expect (source.add (product1)).toEqual (false);
-        expect (source.add (product2)).toEqual (false);
+        expect (source.add (product1)).toEqual (true);
+        expect (source.add (product2)).toEqual (true);
 
         const list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>(), source);
         expect (list.size ()).toEqual(source.size());

@@ -376,8 +376,8 @@ describe("Test LinkedList functionality", function () {
     };
     it("Test constructing with elements from a TreeSet", function () {
         var source = new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct);
-        expect(source.add(product1)).toEqual(false);
-        expect(source.add(product2)).toEqual(false);
+        expect(source.add(product1)).toEqual(true);
+        expect(source.add(product2)).toEqual(true);
         var list = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable(), source);
         expect(list.size()).toEqual(source.size());
     });
