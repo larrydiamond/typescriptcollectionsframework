@@ -55,6 +55,7 @@ describe("Test Collections", function() {
     testAddOneItemToStringCollection(alc);
     testAddOneItemToStringCollection(llc);
     testAddOneItemToStringCollection(hsc);
+    testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
   });
 
   it("Test add one item to number Collections", function() {
@@ -87,6 +88,7 @@ describe("Test Collections", function() {
     testAddTwoItemsToStringCollection(alc);
     testAddTwoItemsToStringCollection(llc);
     testAddTwoItemsToStringCollection(hsc);
+    testAddTwoItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
   });
 
   it("Test add two items to number Collections", function() {
@@ -120,6 +122,7 @@ describe("Test Collections", function() {
     testAddItemsToStringCollection(alc);
     testAddItemsToStringCollection(llc);
     testAddItemsToStringCollection(hsc);
+    testAddItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
   });
 
   it("Test add items to number Collections", function() {
