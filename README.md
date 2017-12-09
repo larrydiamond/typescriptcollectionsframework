@@ -78,5 +78,9 @@ Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at l
 
 **Please** volunteer to contribute.   All contributors will be listed here and I will of course help you to become recognized as a TypeScript expert so it helps your career  :)
 
+# Contributors
+
+Frank Giordano (https://github.com/frankgiordano)
+
 # Priority Queue are coming shortly
 A very talented developer has volunteered to implement PriorityQueue.   He will be properly acknowledged and promoted as a contributor very soon.    Thank you for agreeing to make this framework better, and I really appreciate volunteers!
