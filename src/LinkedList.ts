@@ -6,23 +6,44 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {AllFieldCollectable} from "./AllFieldCollectable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {Deque} from "./Deque";
+import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
+import {Queue} from "./Queue";
 
-export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> {
+export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   private firstNode:LinkedListNode<T>;
   private lastNode:LinkedListNode<T>;
   private numberElements:number;
+  private equality:Collectable<T>;
 
-  constructor() {
+  constructor(iEquals:Collectable<T> = AllFieldCollectable.instance, private initialElements?:ImmutableCollection<T>) {
+    this.equality = iEquals;
     this.firstNode = null;
     this.lastNode = null;
     this.numberElements = 0;
+
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:T = iter.next ();
+        this.add (t);
+      }
+    }
   }
 
+  /**
+  * Returns the Collectible
+  * @return {Collectable}
+  */
+  public getCollectable () : Collectable<T> {
+    return this.equality;
+  }
 
  /**
   * Appends the specified element to the end of this list
@@ -30,9 +51,9 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @return {boolean} true if this collection changed as a result of the call
   */
   public add (t:T) : boolean {
-    let lln:LinkedListNode<T> = new LinkedListNode<T>(t);
+    const lln:LinkedListNode<T> = new LinkedListNode<T>(t);
 
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       this.firstNode = lln;
       this.lastNode = lln;
       this.numberElements = 1;
@@ -47,22 +68,83 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   }
 
 
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addFirst (t:T) : boolean {
+      const lln:LinkedListNode<T> = new LinkedListNode<T>(t);
+
+      if ((this.firstNode === null) || (this.firstNode === undefined)) {
+        this.firstNode = lln;
+        this.lastNode = lln;
+        this.numberElements = 1;
+        return true;
+      }
+
+      this.firstNode.previousNode = lln;
+      lln.nextNode = this.firstNode;
+      this.firstNode = lln;
+      this.numberElements = this.numberElements + 1;
+      return true;
+    }
+
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addLast (t:T) : boolean {
+      return this.add (t);
+    }
+
+  /**
+  * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+  * Needed to implement Queue interface
+  * @param {T} t element to Append
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public offer (t:T) : boolean {
+    return this.add (t);
+  }
+
+
+  /**
+  * Inserts the specified element at the front of this deque
+  * @param {K} k element to add
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public offerFirst (t:T) : boolean {
+    return this.addFirst (t);
+  }
+
+  /**
+  * Inserts the specified element at the end of this deque
+  * @param {K} k element to add
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public offerLast (t:T) : boolean {
+    return this.addLast (t);
+  }
+
  /**
   * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
   * @param {number} index index at which the specified element is to be inserted
   * @param {T} t element to be inserted
   */
-  public addElement (index:number, t:T) : void {
+  public addIndex (index:number, t:T) : void {
     if (index === 0) {
-      let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
+      const newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
       newnode.nextNode = this.firstNode;
-      this.firstNode.previousNode = newnode;
+      if (this.firstNode !== null)
+        this.firstNode.previousNode = newnode;
       this.firstNode = newnode;
       this.numberElements = this.numberElements + 1;
       return;
     }
     if (index >= this.numberElements) {
-      let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
+      const newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
       if (this.lastNode !== null) {
         this.lastNode.nextNode = newnode;
       }
@@ -74,9 +156,9 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
     let previousnode:LinkedListNode<T> = null;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        let newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
+        const newnode:LinkedListNode<T> = new LinkedListNode<T>(t);
         newnode.nextNode = node;
         newnode.previousNode = previousnode;
         node.previousNode = newnode;
@@ -100,7 +182,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @return {boolean} true if this list contains no elements
   */
   public isEmpty () : boolean {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return true;
     }
 
@@ -133,7 +215,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @return {boolean} true if this list contains the specified element
   */
   public contains (t:T) : boolean {
-    let lln:LinkedListNode<T> = this.getNode(t);
+    const lln:LinkedListNode<T> = this.getNode(t);
     if (lln === null)
       return false;
     return true;
@@ -141,8 +223,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
 
   private getNode(t:T) : LinkedListNode<T> {
     let node = this.firstNode;
-    while (node !== null) {
-      if (node.payload.equals(t)) {
+    while ((node !== null) && (node !== undefined)) {
+      if (this.equality.equals (node.payload, t)) {
         return node;
       } else {
         node = node.nextNode;
@@ -156,20 +238,16 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @param {T} t element to be removed from this list, if present
   * @return {T} true if this list contained the specified element
   */
-  public removeElement (t:T) : boolean {
-    if (this.firstNode === null) {
-      return false;
-    }
-
-    if (this.firstNode === undefined) {
+  public remove (t:T) : boolean {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return false;
     }
 
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
-      if (node.payload.equals(t)) {
-        let previous:LinkedListNode<T> = node.previousNode;
-        let following:LinkedListNode<T> = node.nextNode;
+    while ((node !== null) && (node !== undefined)) {
+      if (this.equality.equals (node.payload, t)) {
+        const previous:LinkedListNode<T> = node.previousNode;
+        const following:LinkedListNode<T> = node.nextNode;
         if (previous !== null) {
           previous.nextNode = following;
         } else {
@@ -198,16 +276,16 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @param {Collection} c collection containing elements to be removed from this list
   * @return {boolean} true if this list changed as a result of the call
   */
-  public removeAll (c:Collection<T>) : boolean {
+  public removeAll (c:ImmutableCollection<T>) : boolean {
     if (c === null) return false;
     if (c === undefined) return false;
     if (c.size() < 1) return false;
 
     let changed:boolean = false;
 
-    for (let iter = c.iterator(); iter.hasNext(); ) {
-      let t:T = iter.next ();
-      let tmp = this.removeElement(t);
+    for (const iter = c.iterator(); iter.hasNext(); ) {
+      const t:T = iter.next ();
+      const tmp = this.remove(t);
       if (tmp === true) changed = true;
     }
 
@@ -221,7 +299,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @param {Collection} c collection containing elements to be added to this list
   * @return {boolean} true if this collection changed as a result of the call
   */
-  public addAll (c:Collection<T>, index?:number) : boolean {
+  public addAll (c:ImmutableCollection<T>, index?:number) : boolean {
     if (c === null) return false;
     if (c === undefined) return false;
     if (c.size() < 1) return false;
@@ -230,9 +308,9 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
       offsetToStartAt = index;
     }
 
-    for (let iter = c.iterator(); iter.hasNext(); ) {
-      let t:T = iter.next ();
-      this.addElement (index, t);
+    for (const iter = c.iterator(); iter.hasNext(); ) {
+      const t:T = iter.next ();
+      this.addIndex (index, t);
       index = index + 1;
     }
 
@@ -246,7 +324,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
   public indexOf (t:T) : number {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return -1;
     }
     if (this.numberElements <= 0) {
@@ -255,8 +333,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
 
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
-      if (node.payload.equals(t)) {
+    while ((node !== null) && (node !== undefined)) {
+      if (this.equality.equals (node.payload, t)) {
         return offset;
       } else {
         node = node.nextNode;
@@ -272,8 +350,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @param {number} index the index of the element to be removed
   * @return {T} the element that was removed from the list, undefined if the element does not exist
   */
-  public remove (index:number) : T {
-    if (this.firstNode === null) {
+  public removeIndex (index:number) : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return undefined;
     }
     if (this.numberElements <= 0) {
@@ -281,14 +359,20 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     }
 
     if (index === 0) {
-      let payload:T = this.firstNode.payload;
+      const payload:T = this.firstNode.payload;
       this.firstNode = this.firstNode.nextNode;
       this.numberElements = this.numberElements - 1;
-      this.firstNode.previousNode = null;
+      if (this.firstNode !== null)
+        this.firstNode.previousNode = null;
+      if (this.numberElements < 1) {
+        this.numberElements = 0;
+        this.firstNode = null;
+        this.lastNode = null;
+      }
       return payload;
     }
     if (index === (this.numberElements - 1)) {
-      let payload:T = this.lastNode.payload;
+      const payload:T = this.lastNode.payload;
       this.lastNode = this.lastNode.previousNode;
       this.numberElements = this.numberElements - 1;
       this.lastNode.nextNode = null;
@@ -298,11 +382,12 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
     let previous:LinkedListNode<T> = null;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        let payload:T = node.payload;
+        const payload:T = node.payload;
         previous.nextNode = node.nextNode;
-        node.nextNode.previousNode = previous;
+        if (node.nextNode !== null)
+          node.nextNode.previousNode = previous;
         this.numberElements = this.numberElements - 1;
         return node.payload;
       } else {
@@ -321,7 +406,7 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
   public lastIndexOf (t:T) : number {
-    if (this.firstNode === null) {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
       return -1;
     }
     if (this.numberElements <= 0) {
@@ -330,8 +415,8 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
 
     let offset:number = this.numberElements - 1;
     let node:LinkedListNode<T> = this.lastNode;
-    while (node !== null) {
-      if (node.payload.equals(t)) {
+    while ((node !== null) && (node !== undefined)) {
+      if (this.equality.equals (node.payload, t)) {
         return offset;
       } else {
         node = node.previousNode;
@@ -343,21 +428,30 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
 
 
  /**
-  * Returns the first element in this list.
-  * @return {T} the first element in this list, null if the list is empty
+  * etrieves, but does not remove, the first element in this list.
+  * @return {T} the first element in this list, undefined if the list is empty
   */
   public getFirst () : T {
-    let node = this.firstNode;
-    if (node === null) return null;
+    const node = this.firstNode;
+    if ((node === null) || (node === undefined)) return undefined;
     return node.payload;
   }
 
   public getFirstNode () : LinkedListNode<T> {
-    let node = this.firstNode;
-    if (node === null) return null;
+    const node = this.firstNode;
+    if ((node === null) || (node === undefined)) return undefined;
     return node;
   }
 
+  /**
+  * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * @return {K} the element at the tail of the queue or undefined if empty
+  */
+  public getLast () : T {
+    const node = this.lastNode;
+    if ((node === null) || (node === undefined)) return undefined;
+    return node.payload;
+  }
 
  /**
   * Returns the element at the specified position in this list.
@@ -367,7 +461,21 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   public get(index:number):T {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
+    if (index === 0) {
+      if ((node === null) || (node === undefined)) {
+        return null;
+      }
+      return node.payload;
+    }
+    if (index === this.numberElements - 1) {
+      node = this.lastNode;
+      if ((node === null) || (node === undefined)) {
+        return null;
+      }
+      return node.payload;
+    }
+
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
         return node.payload;
       } else {
@@ -388,9 +496,9 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
   public set(index:number, element:T) : T {
     let offset:number = 0;
     let node:LinkedListNode<T> = this.firstNode;
-    while (node !== null) {
+    while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        let tmp:T = node.payload;
+        const tmp:T = node.payload;
         node.payload = element;
         return tmp;
       } else {
@@ -401,43 +509,147 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     return null;
   }
 
-
- /**
-  * Indicates whether some other object is "equal to" this one.
-  * The equals method implements an equivalence relation on non-null object references:
-  * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-  * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-  * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-  * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-  * For any non-null reference value x, x.equals(null) should return false.
-  * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-  * @param {T} t element to compare
-  * @return {boolean} true if the other element is "equal" to this one
+  /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
   */
-  public equals (t:any) : boolean {
-    if (t === null) return false;
-    if (t === undefined) return false;
-    if (t instanceof LinkedList) {
-      if (this.size() === t.size()) {
-        if (this.size() === 0) {
-          return true;
-        }
-        let thisNode:LinkedListNode<T> = this.getFirstNode();
-        let thatNode:LinkedListNode<T> = t.getFirstNode();
-        while ((thisNode !== null) && (thatNode !== null) && (thisNode.payload.equals(thatNode.payload))) {
-          thisNode = thisNode.nextNode;
-          thatNode = thatNode.nextNode;
-        }
-        if ((thisNode === null) && (thatNode === null)) return true;
-        return false;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
+  public poll () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return null;
     }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    const element:T = this.firstNode.payload;
+    this.removeIndex (0);
+    return element;
   }
 
+  /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public pollFirst () : T {
+    return this.poll();
+  }
+
+  /**
+  * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public pollLast () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    this.removeIndex (this.size() - 1);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or undefined if empty
+  */
+  public removeQueue () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return undefined;
+    }
+    if (this.numberElements <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.firstNode.payload;
+    this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * @return {K} the element at the head of the queue or undefined if empty
+  */
+  public removeFirst () : T {
+    return this.removeQueue();
+  }
+
+  /**
+  * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * @return {K} the element at the end of the queue or undefined if empty
+  */
+  public removeLast () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return undefined;
+    }
+    if (this.numberElements <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (this.size () - 1);
+    this.removeIndex (this.size () - 1);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public peek () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    return this.firstNode.payload;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public peekFirst () : T {
+    return this.peek();
+  }
+
+  /**
+  * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public peekLast () : T {
+    if ((this.lastNode === null) || (this.lastNode === undefined)) {
+      return null;
+    }
+    if (this.numberElements <= 0) {
+      return null;
+    }
+
+    return this.lastNode.payload;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public element () : T {
+    if ((this.firstNode === null) || (this.firstNode === undefined)) {
+      return undefined;
+    }
+    if (this.numberElements <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.firstNode.payload;
+    return element;
+  }
 
   /**
    * Returns a Java style iterator
@@ -455,12 +667,26 @@ export class LinkedList <T extends Collectable> implements List<T>, Iterable<T> 
     return new LinkedListIterator (this);
   }
 
+  /**
+  * Returns an ImmutableList backed by this List
+  */
+  public immutableList () : ImmutableList<T> {
+    return this;
+  }
+
+  /**
+  * Returns an ImmutableCollection backed by this Collection
+  */
+  public immutableCollection () : ImmutableCollection<T> {
+    return this;
+  }
+
 }
 
-export class LinkedListNode<T extends Collectable> {
-  previousNode:LinkedListNode<T>;
-  nextNode:LinkedListNode<T>;
-  payload:T;
+export class LinkedListNode<T> {
+  public previousNode:LinkedListNode<T>;
+  public nextNode:LinkedListNode<T>;
+  public payload:T;
 
   constructor (t:T) {
     this.payload = t;
@@ -471,7 +697,7 @@ export class LinkedListNode<T extends Collectable> {
 
 
 /* Java style iterator */
-export class LinkedListJIterator<T extends Collectable> implements JIterator<T> {
+export class LinkedListJIterator<T> implements JIterator<T> {
   private node:LinkedListNode<T>;
 
   constructor (iList:LinkedList<T>) {
@@ -479,14 +705,14 @@ export class LinkedListJIterator<T extends Collectable> implements JIterator<T> 
   }
 
   public hasNext():boolean {
-    if (this.node === null) {
+    if ((this.node === null) || (this.node === undefined)) {
       return false;
     }
     return true;
   }
 
   public next():T {
-    let tmp:T = this.node.payload;
+    const tmp:T = this.node.payload;
     this.node = this.node.nextNode;
     return tmp;
   }
@@ -494,18 +720,19 @@ export class LinkedListJIterator<T extends Collectable> implements JIterator<T> 
 
 
 /* TypeScript iterator */
-export class LinkedListIterator<T extends Collectable> implements Iterator<T> {
+export class LinkedListIterator<T> implements Iterator<T> {
   private node:LinkedListNode<T>;
 
   constructor (iList:LinkedList<T>) {
     this.node = iList.getFirstNode();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
-    if (this.node === null) {
+    if ((this.node === null) || (this.node === undefined)) {
       return new BasicIteratorResult(true, null);
     } else {
-      let tmp:T = this.node.payload;
+      const tmp:T = this.node.payload;
       this.node = this.node.nextNode;
       return new BasicIteratorResult(false, tmp);
     }

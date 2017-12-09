@@ -6,8 +6,13 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Comparator} from "./Comparator";
+import {ImmutableMap} from "./ImmutableMap";
+import {ImmutableSet} from "./ImmutableSet";
+import {JIterator} from "./JIterator";
+import {JMap} from "./JMap";
 import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 
@@ -15,11 +20,17 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
   private topNode:TreeMapNode<K,V> = null;
   private mapComparator:Comparator<K> = null;
 
-  constructor(iComparator:Comparator<K>) {
+  constructor(iComparator:Comparator<K>, private initialElements:ImmutableMap<K, V> = null) {
     this.mapComparator = iComparator;
+    if ((initialElements !== null) && (initialElements !== undefined)) {
+      for (const iter = initialElements.entrySet().iterator(); iter.hasNext(); ) {
+        const t:MapEntry<K,V> = iter.next ();
+        this.put (t.getKey(), t.getValue());
+      }
+    }
   }
 
-/* Debugging code 
+/* Debugging code
   public printMap() : void {
     if (this.topNode === null) {
       console.log ("top node is null");
@@ -30,9 +41,11 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
       console.log ("top node is undefined");
       return;
     }
-    console.log ("New Tree: size = " + this.size());
+    console.log ("");
+    console.log ("Tree size = " + this.size());
     this.printMapNode (this.topNode);
     console.log ("End of Tree");
+    console.log ("");
   }
 
   private printMapNode (node:TreeMapNode<K,V>) : void {
@@ -70,20 +83,20 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
   }
 
   private validateNode(node:TreeMapNode<K,V>) : boolean {
-    let left:TreeMapNode<K,V> = node.getLeftNode();
-    let right:TreeMapNode<K,V> = node.getRightNode();
-    let thiskey:K = node.getKey();
+    const left:TreeMapNode<K,V> = node.getLeftNode();
+    const right:TreeMapNode<K,V> = node.getRightNode();
+    const thiskey:K = node.getKey();
     if (left !== null) {
-      let leftkey:K = left.getKey();
-      let comp:number = this.mapComparator.compare(thiskey, leftkey);
+      const leftkey:K = left.getKey();
+      const comp:number = this.mapComparator.compare(thiskey, leftkey);
       if (comp < 0) // the key on the left should be either on the right or is this key
         return false;
       return this.validateNode (left);
     }
 
     if (right !== null) {
-      let rightkey:K = right.getKey();
-      let comp:number = this.mapComparator.compare(thiskey, rightkey);
+      const rightkey:K = right.getKey();
+      const comp:number = this.mapComparator.compare(thiskey, rightkey);
       if (comp > 0) // the key on the right should be either on the left or is this key
         return false;
       return this.validateNode (right);
@@ -96,6 +109,13 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
  * Removes all of the mappings from this map. The map will be empty after this call returns.
  */
  public clear () : void {
+   // if only this was enough :(
+   // JavaScript memory management has problems when two objects have pointers to one another
+   // In that case, the mark and sweep garbage collector is unable to collect either object
+   // and we wind up with out of memory errors :(
+   while ((this.topNode !== null) && (this.topNode !== undefined)) {
+     this.remove (this.topNode.getKey());
+   }
    this.topNode = null;
 }
 
@@ -121,6 +141,15 @@ public size () : number {
    return this.sizeTree (this.topNode.getLeftNode()) + this.sizeTree (this.topNode.getRightNode()) + 1;
  }
 
+/**
+ * Returns true if this map contains no key-value mappings.
+ * @return {boolean} true if this map contains no key-value mappings
+ */
+ public isEmpty () : boolean {
+   if (this.size() < 1) return true;
+   return false;
+ }
+
  private sizeTree (n:TreeMapNode<K,V>):number {
    if (n === null)
      return 0;
@@ -139,7 +168,7 @@ public size () : number {
  */
   public put (key:K, value:V) : V {
     if ((this.topNode === null) || (this.topNode === undefined)) {
-      let newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, null);
+      const newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, null);
       this.topNode = newNode;
       return null;
     }
@@ -148,26 +177,83 @@ public size () : number {
   }
 
   private putNode (node:TreeMapNode<K,V>, key:K, value:V) : V {
-    let comp:number = this.mapComparator.compare(key, node.getKey());
+    const comp:number = this.mapComparator.compare(key, node.getKey());
     if (comp === 0) {
-      let tmpV:V = node.getValue();
+      const tmpV:V = node.getValue();
       node.setValue(value);
       return tmpV;
     }
 
     if (comp < 0) { // This means that the new value is lower than the current node and belongs someplace on the left of the current node
-      let nextNode: TreeMapNode<K,V> = node.getLeftNode();
+      const nextNode: TreeMapNode<K,V> = node.getLeftNode();
       if (nextNode === null) {
-        let newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, node);
-        node.setLeftNode(newNode);
+        const newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, node);
+        // Can we do a minor rebalance of the bottom nodes of the tree?
+        // if we are about to place a new node below a parent with no current children,
+        // check to see if the the "grandparent" only has the one child and if so do a local rebalance
+        if (node.getRightNode() === null) { // parent currently has no children
+          const grandparent:TreeMapNode<K,V> = node.getParentNode();
+          if (grandparent !== null) {
+            if ((grandparent.getLeftNode () === node) && (grandparent.getRightNode () === null)) { // rebalance to make node parent of both grandparent and new node - left left left
+              node.setLeftNode (newNode);
+              node.setRightNode(grandparent);
+              node.setParentNode(grandparent.getParentNode());
+              grandparent.setLeftNode (null);
+              grandparent.setRightNode (null);
+              grandparent.setParentNode (node);
+              if (grandparent === this.topNode) { // reorg top of tree
+                // make node new parent with newnode as left node and grandparent as right node
+                this.topNode = node;
+              } else { // we're really checking the grandparent's parents but we already remapped above
+                if (node.getParentNode().getLeftNode() === grandparent) node.getParentNode().setLeftNode(node);
+                if (node.getParentNode().getRightNode() === grandparent) node.getParentNode().setRightNode(node);
+              }
+            } else { // TODO check to see if we have a right left left rebalance opportunity
+              node.setLeftNode(newNode);
+            }
+          } else { // oh well we looked we tried
+            node.setLeftNode(newNode);
+          }
+        } else { // oh well we looked we tried
+          node.setLeftNode(newNode);
+        }
+
         return null;
       } else {
         return this.putNode (nextNode, key, value);
       }
     } else {  // This means that the new value is higher than the current node and belongs someplace on the right of the current node
-      let nextNode: TreeMapNode<K,V> = node.getRightNode();
+      const nextNode: TreeMapNode<K,V> = node.getRightNode();
       if (nextNode === null) {
-        let newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, node);
+        const newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, node);
+
+        if (node.getLeftNode() === null) { // parent currently has no children
+          const grandparent:TreeMapNode<K,V> = node.getParentNode();
+          if (grandparent !== null) {
+            if ((grandparent.getRightNode () === node) && (grandparent.getLeftNode () === null)) { // rebalance to make node parent of both grandparent and new node - right right right
+              node.setRightNode (newNode);
+              node.setLeftNode(grandparent);
+              node.setParentNode(grandparent.getParentNode());
+              grandparent.setRightNode (null);
+              grandparent.setLeftNode (null);
+              grandparent.setParentNode (node);
+              if (grandparent === this.topNode) { // reorg top of tree
+                // make node new parent with newnode as left node and grandparent as right node
+                this.topNode = node;
+              } else { // we're really checking the grandparent's parents but we already remapped above
+                if (node.getParentNode().getLeftNode() === grandparent) node.getParentNode().setLeftNode(node);
+                if (node.getParentNode().getRightNode() === grandparent) node.getParentNode().setRightNode(node);
+              }
+            } else { // TODO check to see if we have a left right right rebalance opportunity
+              node.setRightNode(newNode);
+            }
+          } else { // oh well we looked we tried
+            node.setRightNode(newNode);
+          }
+        } else { // oh well we looked we tried
+          node.setRightNode(newNode);
+        }
+
         node.setRightNode(newNode);
         return null;
       } else {
@@ -186,11 +272,11 @@ public size () : number {
       return null;
     }
 
-    let thisnode = this.getNode(this.topNode, key);
+    const thisnode = this.getNode(this.topNode, key);
     if (thisnode === undefined) return null;
     if (thisnode === null) return null;
 
-    let tmp:TreeMapNode<K,V> = this.nextHigherNode(thisnode);
+    const tmp:TreeMapNode<K,V> = this.nextHigherNode(thisnode);
     if (tmp === null) return null;
     return tmp.getKey();
   }
@@ -227,7 +313,7 @@ public size () : number {
       tmp = tmp.getParentNode();
     }
     if (tmp.getParentNode() === null) return null;
-    return tmp;
+    return tmp.getParentNode();
   }
 
  /**
@@ -246,19 +332,19 @@ public size () : number {
   }
 
   private getNode (node:TreeMapNode<K,V>, key:K) : TreeMapNode<K,V> {
-    let comp:number = this.mapComparator.compare(key, node.getKey());
+    const comp:number = this.mapComparator.compare(key, node.getKey());
     if (comp === 0)
       return node;
 
     if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
-      let nextNode: TreeMapNode<K,V> = node.getLeftNode();
+      const nextNode: TreeMapNode<K,V> = node.getLeftNode();
       if (nextNode === null) {
         return null;
       } else {
         return this.getNode (nextNode, key);
       }
     } else {  // This means that the new value is lower than the current node and belongs someplace on the left of the current node
-      let nextNode: TreeMapNode<K,V> = node.getRightNode();
+      const nextNode: TreeMapNode<K,V> = node.getRightNode();
       if (nextNode === null) {
         return null;
       } else {
@@ -276,7 +362,7 @@ public size () : number {
     if ((this.topNode === null) || (this.topNode === undefined))
       return null;
 
-    let tmp:TreeMapNode<K,V> = this.getNode (this.topNode, key);
+    const tmp:TreeMapNode<K,V> = this.getNode (this.topNode, key);
     if (tmp === null)
       return null;
 
@@ -292,14 +378,14 @@ public size () : number {
     if ((this.topNode === null) || (this.topNode === undefined))
       return null;
 
-    let tmp:TreeMapNode<K,V> = this.getNode (this.topNode, key);
+    const tmp:TreeMapNode<K,V> = this.getNode (this.topNode, key);
     if (tmp === null) {
       return null;
     }
 
-    let parent:TreeMapNode<K,V> = tmp.getParentNode();
-    let left:TreeMapNode<K,V> = tmp.getLeftNode();
-    let right:TreeMapNode<K,V> = tmp.getRightNode();
+    const parent:TreeMapNode<K,V> = tmp.getParentNode();
+    const left:TreeMapNode<K,V> = tmp.getLeftNode();
+    const right:TreeMapNode<K,V> = tmp.getRightNode();
 
     if (tmp.getLeftNode() === null) { // nothing to the left
       if (tmp.getRightNode() === null) { // nothing to the right
@@ -351,6 +437,7 @@ public size () : number {
             parent.setRightNode(left);
           }
         }
+        left.setParentNode(parent);
 
         let parentOfRight:TreeMapNode<K,V> = tmp.getLeftNode();
         while (parentOfRight.getRightNode() !== null)
@@ -360,6 +447,9 @@ public size () : number {
       }
     }
 
+    tmp.setParentNode(null); // clear pointers to help memory collection
+    tmp.setLeftNode(null); // clear pointers to help memory collection
+    tmp.setRightNode(null); // clear pointers to help memory collection
     return tmp.getValue();
   }
 
@@ -373,7 +463,7 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.ceilingNode(this.topNode, key, null);
+    const tmp = this.ceilingNode(this.topNode, key, null);
     if (tmp === null) return null;
     return tmp.getMapEntry();
   }
@@ -385,10 +475,10 @@ public size () : number {
   */
   public ceilingKey (key:K) : K {
     if (this.topNode === null) return null;
-
     if (this.topNode === undefined) return null;
 
-    let tmp = this.ceilingNode(this.topNode, key, null);
+    const tmp = this.ceilingNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
@@ -402,7 +492,8 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.higherNode(this.topNode, key, null);
+    const tmp = this.higherNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
@@ -416,7 +507,7 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.higherNode(this.topNode, key, null);
+    const tmp = this.higherNode(this.topNode, key, null);
     if (tmp === null) return null;
     return tmp.getMapEntry();
   }
@@ -431,7 +522,8 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.lowerNode(this.topNode, key, null);
+    const tmp = this.lowerNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
@@ -445,7 +537,7 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.lowerNode(this.topNode, key, null);
+    const tmp = this.lowerNode(this.topNode, key, null);
     if (tmp === null) return null;
     return tmp.getMapEntry();
   }
@@ -460,7 +552,8 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.floorNode(this.topNode, key, null);
+    const tmp = this.floorNode(this.topNode, key, null);
+    if (tmp === null) return null;
     return tmp.getKey();
   }
 
@@ -474,7 +567,7 @@ public size () : number {
 
     if (this.topNode === undefined) return null;
 
-    let tmp = this.floorNode(this.topNode, key, null);
+    const tmp = this.floorNode(this.topNode, key, null);
     if (tmp === null) return null;
     return tmp.getMapEntry();
   }
@@ -606,7 +699,7 @@ public size () : number {
       return null;
 
     let node:TreeMapNode<K,V> = this.topNode;
-    while (node.getLeftNode() !== null) {
+    while ((node.getLeftNode() !== null) && (node.getLeftNode() !== undefined)) {
       node = node.getLeftNode();
     }
 
@@ -618,8 +711,8 @@ public size () : number {
   * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
   */
   public firstKey () : K {
-    let node:TreeMapNode<K,V> = this.firstMapNode();
-    if (node === null)
+    const node:TreeMapNode<K,V> = this.firstMapNode();
+    if ((node === null) || (node === undefined))
       return null;
     return node.getKey();
   }
@@ -629,8 +722,8 @@ public size () : number {
   * @return {MapEntry} an entry with the least key, or null if this map is empty
   */
   public firstEntry () : MapEntry<K,V> {
-    let node:TreeMapNode<K,V> = this.firstMapNode();
-    if (node === null)
+    const node:TreeMapNode<K,V> = this.firstMapNode();
+    if ((node === null) || (node === undefined))
       return null;
     return node.getMapEntry();
   }
@@ -647,7 +740,7 @@ public size () : number {
       return null;
 
     let node:TreeMapNode<K,V> = this.topNode;
-    while (node.getRightNode() !== null) {
+    while ((node.getRightNode() !== null) && (node.getRightNode() !== undefined)) {
       node = node.getRightNode();
     }
 
@@ -659,8 +752,8 @@ public size () : number {
   * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
   */
   public lastKey () : K {
-    let node:TreeMapNode<K,V> = this.lastMapNode();
-    if (node === null)
+    const node:TreeMapNode<K,V> = this.lastMapNode();
+    if ((node === null) || (node === undefined))
       return null;
     return node.getKey();
   }
@@ -670,10 +763,40 @@ public size () : number {
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
   public lastEntry () : MapEntry<K,V> {
-    let node:TreeMapNode<K,V> = this.lastMapNode();
-    if (node === null)
+    const node:TreeMapNode<K,V> = this.lastMapNode();
+    if ((node === null) || (node === undefined))
       return null;
     return node.getMapEntry();
+  }
+
+ /**
+  * Returns an ImmutableSet view of the keys contained in this map.
+  * The set's iterator returns the keys in ascending order.
+  * The set is backed by the map, so changes to the map are reflected in the set.
+  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  public keySet () : ImmutableSet<K> {
+    return new ImmutableKeySetForTreeMap (this);
+  }
+
+ /**
+  * Returns an ImmutableSet view of the mappings contained in this map.
+  * The set's iterator returns the mappings in ascending key order.
+  * The set is backed by the map, so changes to the map are reflected in the set.
+  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * The contains method on this entrySet will only compare keys not values.
+  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+  */
+  public entrySet () : ImmutableSet<MapEntry<K,V>> {
+    return new ImmutableEntrySetForTreeMap(this);
+  }
+
+  /**
+  * Returns an ImmutableMap backed by Map
+  */
+  public immutableMap () : ImmutableMap<K,V> {
+    return this;
   }
 
 }
@@ -731,5 +854,187 @@ export class TreeMapNode<K,V> {
 
   public getMapEntry(): MapEntry<K,V> {
     return new BasicMapEntry(this.key, this.value);
+  }
+}
+
+export class ImmutableKeySetForTreeMap<K,V> implements ImmutableSet<K> {
+  private treeMap:TreeMap<K,V>;
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public size():number { return this.treeMap.size(); }
+
+  public isEmpty():boolean { return this.treeMap.isEmpty(); }
+
+  public contains(item:K) : boolean { return this.treeMap.containsKey (item); }
+
+  public iterator():JIterator<K> { return new TreeMapKeySetJIterator(this.treeMap); }
+
+  public [Symbol.iterator] ():Iterator<K> { return new TreeMapKeySetIterator (this.treeMap); }
+}
+
+
+/* Java style iterator */
+export class TreeMapKeySetJIterator<K,V> implements JIterator<K> {
+  private location:K;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      const first:K = this.treeMap.firstKey();
+      if (first === undefined)
+        return false;
+      if (first === null)
+        return false;
+      return true;
+    } else { // we've already called this iterator before
+      const tmp:K = this.treeMap.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  public next():K {
+    if (this.location === undefined) { // first time caller
+      const first:K = this.treeMap.firstKey();
+      if (first === undefined) {
+        return null;
+      } else {
+        this.location = first;
+        return first;
+      }
+    } else { // we've already called this iterator before
+      const tmp:K = this.treeMap.getNextHigherKey(this.location);
+      if (tmp === null) {
+        return null;
+      } else {
+        this.location = tmp;
+        return tmp;
+      }
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class TreeMapKeySetIterator<K,V> implements Iterator<K> {
+  private location:K;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+    this.location = this.treeMap.firstKey();
+  }
+
+  // tslint:disable-next-line:no-any
+  public next(value?: any): IteratorResult<K> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    const tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location);
+    this.location = this.treeMap.getNextHigherKey(this.location);
+    return tmp;
+  }
+}
+
+
+
+export class ImmutableEntrySetForTreeMap<K,V> implements ImmutableSet<MapEntry<K,V>> {
+  private treeMap:TreeMap<K,V>;
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public size():number { return this.treeMap.size(); }
+
+  public isEmpty():boolean { return this.treeMap.isEmpty(); }
+
+  public contains(item:MapEntry<K,V>) : boolean { return this.treeMap.containsKey (item.getKey()); }
+
+  public iterator():JIterator<MapEntry<K,V>> { return new TreeMapEntrySetJIterator(this.treeMap); }
+
+  public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new TreeMapEntrySetIterator (this.treeMap); }
+}
+
+
+/* Java style iterator */
+export class TreeMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
+  private location:MapEntry<K,V>;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+  }
+
+  public hasNext():boolean {
+    if (this.location === undefined) { // first time caller
+      const first:MapEntry<K,V> = this.treeMap.firstEntry();
+      if (first === undefined)
+        return false;
+      if (first === null)
+        return false;
+      return true;
+    } else { // we've already called this iterator before
+      const tmp:MapEntry<K,V> = this.treeMap.higherEntry(this.location.getKey());
+      if (tmp === null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  public next():MapEntry<K,V> {
+    if (this.location === undefined) { // first time caller
+      const first:MapEntry<K,V> = this.treeMap.firstEntry();
+      if (first === undefined) {
+        return null;
+      } else {
+        this.location = first;
+        return first;
+      }
+    } else { // we've already called this iterator before
+      const tmp:MapEntry<K,V> = this.treeMap.higherEntry(this.location.getKey());
+      if (tmp === null) {
+        return null;
+      } else {
+        this.location = tmp;
+        return tmp;
+      }
+    }
+  }
+}
+
+/* TypeScript iterator */
+export class TreeMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
+  private location:MapEntry<K,V>;
+  private treeMap:TreeMap<K,V>;
+
+  constructor(iTreeMap:TreeMap<K,V>) {
+    this.treeMap = iTreeMap;
+    this.location = this.treeMap.firstEntry();
+  }
+
+  // tslint:disable-next-line:no-any
+  public next(value?: any): IteratorResult<MapEntry<K,V>> {
+    if (this.location === null) {
+      return new BasicIteratorResult(true, null);
+    }
+    if (this.location === undefined) {
+      return new BasicIteratorResult(true, null);
+    }
+    const tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location);
+    this.location = this.treeMap.higherEntry(this.location.getKey());
+    return tmp;
   }
 }

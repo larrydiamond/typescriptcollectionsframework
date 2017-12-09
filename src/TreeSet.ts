@@ -8,15 +8,30 @@
 
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Comparator} from "./Comparator";
+import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
-import {TreeMap} from "./TreeMap";
 import {JSet} from "./JSet";
+import {NavigableSet} from "./NavigableSet";
+import {TreeMap} from "./TreeMap";
 
-export class TreeSet<K> implements JSet<K> {
+export class TreeSet<K> implements NavigableSet<K> {
+
   private datastore:TreeMap<K,number> = null;
 
-  constructor(iComparator:Comparator<K>) {
+  constructor(iComparator:Comparator<K>, private initialElements?:ImmutableCollection<K>) {
     this.datastore = new TreeMap<K,number>(iComparator);
+
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:K = iter.next ();
+        this.add (t);
+      }
+    }
+  }
+
+  public validateSet() : boolean {
+    return this.datastore.validateMap();
   }
 
   /**
@@ -25,12 +40,12 @@ export class TreeSet<K> implements JSet<K> {
   * @return {boolean} true if this set did not already contain the specified element
   */
   public add (element:K) : boolean {
-    let tmp:number = this.datastore.put(element, 1);
+    const tmp:number = this.datastore.put(element, 1);
     if (tmp === null) {
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   }
 
   /**
@@ -58,7 +73,7 @@ export class TreeSet<K> implements JSet<K> {
   public isEmpty () : boolean {
     if (this.datastore === null)
       return true;
-    let tmp:number = this.datastore.size();
+    const tmp:number = this.datastore.size();
     if (tmp === 0)
       return true;
     return false;
@@ -70,12 +85,23 @@ export class TreeSet<K> implements JSet<K> {
   * @return {boolean} true if this set contains the specified element
   */
   public contains (item:K) : boolean {
-    let tmp:number = this.datastore.get(item);
+    const tmp:number = this.datastore.get(item);
     if (tmp === null)
       return false;
     return true;
   }
 
+ /**
+  * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+  * @param {K} item to find floor node for
+  * @return {K} the greatest element less than or equal to e, or null if there is no such element
+  */
+  public floor (item:K) : K {
+    const tmp:K = this.datastore.floorKey(item);
+    if (tmp === undefined)
+      return null;
+    return tmp;
+  }
 
  /**
   * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
@@ -83,7 +109,7 @@ export class TreeSet<K> implements JSet<K> {
   * @return {K} the least element greater than or equal to item, or null if there is no such element
   */
   public ceiling (item:K) : K {
-    let tmp:K = this.datastore.ceilingKey(item);
+    const tmp:K = this.datastore.ceilingKey(item);
     if (tmp === undefined)
       return null;
     return tmp;
@@ -107,6 +133,20 @@ export class TreeSet<K> implements JSet<K> {
   }
 
   /**
+  * Removes the specified element from this set if it is present.
+  * @param {K} element element to be removed from this set
+  * @return {boolean} true if the set contained the specified element
+  */
+  public remove (element:K) : boolean {
+    const tmp:number = this.datastore.remove(element);
+    if (tmp === null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
   * Removes all of the elements from this set. The set will be empty after this call returns.
   */
   public clear () : void {
@@ -121,7 +161,7 @@ export class TreeSet<K> implements JSet<K> {
     if (this.datastore.size() === 0)
       return null;
 
-    let tmp:K = this.datastore.firstKey();
+    const tmp:K = this.datastore.firstKey();
     this.datastore.remove(tmp);
     return tmp;
   }
@@ -134,7 +174,7 @@ export class TreeSet<K> implements JSet<K> {
     if (this.datastore.size() === 0)
       return null;
 
-    let tmp:K = this.datastore.lastKey();
+    const tmp:K = this.datastore.lastKey();
     this.datastore.remove(tmp);
     return tmp;
   }
@@ -147,6 +187,12 @@ export class TreeSet<K> implements JSet<K> {
   public getNextHigherKey (key:K) : K {
     return this.datastore.getNextHigherKey(key);
   }
+
+/*
+  public printSet () {
+    return this.datastore.printMap();
+  }
+/* */
 
  /**
   * Returns a Java style iterator
@@ -163,6 +209,20 @@ export class TreeSet<K> implements JSet<K> {
   public [Symbol.iterator] ():Iterator<K> {
     return new TreeSetIterator (this);
   }
+
+  /**
+  * Returns an ImmutableCollection backed by this Collection
+  */
+  public immutableCollection () : ImmutableCollection<K> {
+    return this;
+  }
+
+  /**
+  * Returns an ImmutableSet backed by this Set
+  */
+  public immutableSet () : ImmutableSet<K> {
+    return this;
+  }
 }
 
 
@@ -177,12 +237,12 @@ export class TreeSetJIterator<T> implements JIterator<T> {
 
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
-      let first:T = this.set.first();
-      if (first === undefined)
+      const first:T = this.set.first();
+      if ((first === undefined) || (first === null))
         return false;
       return true;
     } else { // we've already called this iterator before
-      let tmp:T = this.set.getNextHigherKey(this.location);
+      const tmp:T = this.set.getNextHigherKey(this.location);
       if (tmp === null) {
         return false;
       } else {
@@ -192,8 +252,8 @@ export class TreeSetJIterator<T> implements JIterator<T> {
   }
 
   public next():T {
-    if (this.location === undefined) { // first time caller
-      let first:T = this.set.first();
+    if ((this.location === undefined) || (this.location === null)) { // first time caller
+      const first:T = this.set.first();
       if (first === undefined) {
         return null;
       } else {
@@ -201,7 +261,7 @@ export class TreeSetJIterator<T> implements JIterator<T> {
         return first;
       }
     } else { // we've already called this iterator before
-      let tmp:T = this.set.getNextHigherKey(this.location);
+      const tmp:T = this.set.getNextHigherKey(this.location);
       if (tmp === null) {
         return null;
       } else {
@@ -222,6 +282,7 @@ export class TreeSetIterator<T> implements Iterator<T> {
     this.location = this.set.first();
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
     if (this.location === null) {
       return new BasicIteratorResult(true, null);
@@ -229,7 +290,7 @@ export class TreeSetIterator<T> implements Iterator<T> {
     if (this.location === undefined) {
       return new BasicIteratorResult(true, null);
     }
-    let tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location);
+    const tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location);
     this.location = this.set.getNextHigherKey (this.location);
     return tmp;
   }

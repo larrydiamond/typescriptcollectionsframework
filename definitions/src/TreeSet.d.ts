@@ -1,9 +1,13 @@
 import { Comparator } from "./Comparator";
+import { ImmutableCollection } from "./ImmutableCollection";
+import { ImmutableSet } from "./ImmutableSet";
 import { JIterator } from "./JIterator";
-import { JSet } from "./JSet";
-export declare class TreeSet<K> implements JSet<K> {
+import { NavigableSet } from "./NavigableSet";
+export declare class TreeSet<K> implements NavigableSet<K> {
+    private initialElements;
     private datastore;
-    constructor(iComparator: Comparator<K>);
+    constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
+    validateSet(): boolean;
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
@@ -32,6 +36,12 @@ export declare class TreeSet<K> implements JSet<K> {
     */
     contains(item: K): boolean;
     /**
+     * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+     * @param {K} item to find floor node for
+     * @return {K} the greatest element less than or equal to e, or null if there is no such element
+     */
+    floor(item: K): K;
+    /**
      * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
      * @param {K} item to find ceiling node for
      * @return {K} the least element greater than or equal to item, or null if there is no such element
@@ -47,6 +57,12 @@ export declare class TreeSet<K> implements JSet<K> {
     * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
     */
     last(): K;
+    /**
+    * Removes the specified element from this set if it is present.
+    * @param {K} element element to be removed from this set
+    * @return {boolean} true if the set contained the specified element
+    */
+    remove(element: K): boolean;
     /**
     * Removes all of the elements from this set. The set will be empty after this call returns.
     */
@@ -77,6 +93,14 @@ export declare class TreeSet<K> implements JSet<K> {
     * @return {Iterator<K>} the TypeScript style iterator
     */
     [Symbol.iterator](): Iterator<K>;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    immutableCollection(): ImmutableCollection<K>;
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    immutableSet(): ImmutableSet<K>;
 }
 export declare class TreeSetJIterator<T> implements JIterator<T> {
     private location;

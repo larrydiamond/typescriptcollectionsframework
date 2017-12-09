@@ -7,17 +7,16 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var ArrayList = (function () {
-    function ArrayList(initialCapacity, initialElements) {
-        if (initialCapacity === void 0) { initialCapacity = 10; }
-        if (initialElements === void 0) { initialElements = null; }
-        this.initialCapacity = initialCapacity;
+    function ArrayList(iEquals, initialElements) {
+        if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }
         this.initialElements = initialElements;
         this.elements = null;
         this.sizeValue = 0;
-        // we currently do not do anything with the initialCapacity..... yet
-        if (initialElements !== null) {
+        this.equality = iEquals;
+        if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var t = iter.next();
                 this.add(t);
@@ -25,12 +24,19 @@ var ArrayList = (function () {
         }
     }
     /**
-     * Appends the specified element to the end of this list
-     * @param {T} t element to Append
-     * @return {boolean} true if this collection changed as a result of the call
-     */
+    * Returns the Collectible
+    * @return {Collectable}
+    */
+    ArrayList.prototype.getCollectable = function () {
+        return this.equality;
+    };
+    /**
+    * Appends the specified element to the end of this list
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
     ArrayList.prototype.add = function (t) {
-        if (this.elements === null) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             this.elements = new Array();
         }
         this.elements.push(t);
@@ -38,16 +44,58 @@ var ArrayList = (function () {
         return true;
     };
     /**
-     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
-     * @param {number} index index at which the specified element is to be inserted
-     * @param {T} t element to be inserted
-     */
-    ArrayList.prototype.addElement = function (index, t) {
-        if (this.elements === null) {
+    * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+    * Needed to implement Queue interface
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.offer = function (t) {
+        return this.add(t);
+    };
+    /**
+      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+      * @param {number} index index at which the specified element is to be inserted
+      * @param {T} t element to be inserted
+      */
+    ArrayList.prototype.addIndex = function (index, t) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             this.elements = new Array();
         }
         this.elements.splice(index, 0, t);
         this.sizeValue = this.sizeValue + 1;
+    };
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.addFirst = function (t) {
+        this.addIndex(0, t);
+        return true;
+    };
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.offerFirst = function (t) {
+        return this.addFirst(t);
+    };
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.addLast = function (t) {
+        return this.add(t);
+    };
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    ArrayList.prototype.offerLast = function (t) {
+        return this.addLast(t);
     };
     /**
      * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
@@ -68,7 +116,7 @@ var ArrayList = (function () {
         }
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.addElement(index, t);
+            this.addIndex(index, t);
             index = index + 1;
         }
         return true;
@@ -78,8 +126,11 @@ var ArrayList = (function () {
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    ArrayList.prototype.remove = function (index) {
-        if (this.elements === null) {
+    ArrayList.prototype.removeIndex = function (index) {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.size() < 1) {
             return undefined;
         }
         var element = this.elements[index];
@@ -88,9 +139,27 @@ var ArrayList = (function () {
         return element;
     };
     /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    ArrayList.prototype.removeFirst = function () {
+        return this.removeIndex(0);
+    };
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    ArrayList.prototype.removeLast = function () {
+        if (this.size() < 1) {
+            return undefined;
+        }
+        return this.removeIndex(this.size() - 1);
+    };
+    /**
      * Removes all of the elements from this list. The list will be empty after this call returns.
      */
     ArrayList.prototype.clear = function () {
+        this.elements.fill(null); // Help the garbage collector
         this.elements = new Array();
         this.sizeValue = 0;
     };
@@ -108,13 +177,13 @@ var ArrayList = (function () {
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     ArrayList.prototype.indexOf = function (t) {
-        if (this.elements === null)
+        if ((this.elements === null) || (this.elements === undefined))
             return -1;
         if (this.sizeValue <= 0)
             return -1;
         for (var loop = 0; loop < this.sizeValue; loop++) {
             var e = this.get(loop);
-            if (e.equals(t))
+            if (this.equality.equals(e, t))
                 return loop;
         }
         return -1;
@@ -125,13 +194,13 @@ var ArrayList = (function () {
      * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     ArrayList.prototype.lastIndexOf = function (t) {
-        if (this.elements === null)
+        if ((this.elements === null) || (this.elements === undefined))
             return -1;
         if (this.sizeValue <= 0)
             return -1;
         for (var loop = this.sizeValue - 1; loop >= 0; loop--) {
             var e = this.get(loop);
-            if (e.equals(t))
+            if (this.equality.equals(e, t))
                 return loop;
         }
         return -1;
@@ -151,18 +220,15 @@ var ArrayList = (function () {
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    ArrayList.prototype.removeElement = function (t) {
-        if (this.elements === null) {
-            return false;
-        }
-        if (this.elements === undefined) {
+    ArrayList.prototype.remove = function (t) {
+        if ((this.elements === null) || (this.elements === undefined)) {
             return false;
         }
         var offset = this.indexOf(t);
         if (offset === -1) {
             return false;
         }
-        this.remove(offset);
+        this.removeIndex(offset);
         return true;
     };
     /**
@@ -180,7 +246,7 @@ var ArrayList = (function () {
         var changed = false;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            var tmp = this.removeElement(t);
+            var tmp = this.remove(t);
             if (tmp === true)
                 changed = true;
         }
@@ -207,53 +273,144 @@ var ArrayList = (function () {
         return tmp;
     };
     /**
-     * Indicates whether some other object is "equal to" this one.
-     * The equals method implements an equivalence relation on non-null object references:
-     * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-     * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-     * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-     * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-     * For any non-null reference value x, x.equals(null) should return false.
-     * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-     * @param {T} t element to compare
-     * @return {boolean} true if the other element is "equal" to this one
-     */
-    ArrayList.prototype.equals = function (t) {
-        if (t === null)
-            return false;
-        if (t === undefined)
-            return false;
-        if (t instanceof ArrayList) {
-            if (this.size() === t.size()) {
-                if (this.size() === 0) {
-                    return true;
-                }
-                for (var loop = 0; loop < this.size(); loop++) {
-                    var thisentry = this.get(loop);
-                    var thatentry = t.get(loop);
-                    if (thisentry.equals(thatentry)) {
-                        // keep going
-                    }
-                    else {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    };
-    /**
      * Returns the number of elements in this list.
      * @return {number} the number of elements in this list
      */
     ArrayList.prototype.size = function () {
         return this.sizeValue;
+    };
+    /**
+     * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+     * Needed to implement Queue
+     * @return {T} the element at the head of the queue or null if empty
+     */
+    ArrayList.prototype.poll = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return null;
+        }
+        if (this.sizeValue <= 0) {
+            return null;
+        }
+        var element = this.get(0);
+        this.removeIndex(0);
+        return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.pollFirst = function () {
+        return this.poll();
+    };
+    /**
+    * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.pollLast = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return null;
+        }
+        if (this.sizeValue <= 0) {
+            return null;
+        }
+        var element = this.get(this.size() - 1);
+        this.removeIndex(this.size() - 1);
+        return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or undefined if empty
+    */
+    ArrayList.prototype.removeQueue = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(0);
+        this.removeIndex(0);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.peek = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return null;
+        }
+        if (this.sizeValue <= 0) {
+            return null;
+        }
+        var element = this.get(0);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.peekFirst = function () {
+        return this.peek();
+    };
+    /**
+    * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    ArrayList.prototype.peekLast = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return null;
+        }
+        if (this.sizeValue <= 0) {
+            return null;
+        }
+        var element = this.get(this.size() - 1);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    ArrayList.prototype.getFirst = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(0);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    ArrayList.prototype.getLast = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(this.size() - 1);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or undefined if empty
+    */
+    ArrayList.prototype.element = function () {
+        if ((this.elements === null) || (this.elements === undefined)) {
+            return undefined;
+        }
+        if (this.sizeValue <= 0) {
+            return undefined;
+        }
+        var element = this.get(0);
+        return element;
     };
     /**
      * Returns a Java style iterator
@@ -268,6 +425,18 @@ var ArrayList = (function () {
      */
     ArrayList.prototype[Symbol.iterator] = function () {
         return new ArrayListIterator(this);
+    };
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    ArrayList.prototype.immutableList = function () {
+        return this;
+    };
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    ArrayList.prototype.immutableCollection = function () {
+        return this;
     };
     return ArrayList;
 }());
@@ -295,6 +464,7 @@ var ArrayListIterator = (function () {
         this.offset = 0;
         this.arraylist = iArrayList;
     }
+    // tslint:disable-next-line:no-any
     ArrayListIterator.prototype.next = function (value) {
         if (this.offset < this.arraylist.size()) {
             return new BasicIteratorResult_1.BasicIteratorResult(false, this.arraylist.get(this.offset++));

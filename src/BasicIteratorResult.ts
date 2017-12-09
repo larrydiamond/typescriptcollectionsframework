@@ -7,8 +7,8 @@
  */
 
 export class BasicIteratorResult<T> implements IteratorResult<T> {
-    done:boolean;
-    value:T;
+    public done:boolean;
+    public value:T;
 
     constructor(iDone:boolean, iValue:T) {
       this.done = iDone;

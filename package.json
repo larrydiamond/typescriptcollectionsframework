@@ -1,23 +1,25 @@
 {
   "name": "typescriptcollectionsframework",
   "author": "Larry Diamond <ldiamond@ldiamond.com>",
-  "version": "0.5.2",
+  "version": "3.0.1",
   "description": "Collections Framework for TypeScript compatible with AngularJS",
   "homepage": "https://github.com/larrydiamond/typescriptcollectionsframework",
   "license": "MIT",
   "engineStrict": true,
   "dependencines": {},
   "devDependencies": {
-    "@types/jasmine": "^2.5.38",
-    "@types/node": "^8.0.17",
+    "@types/jasmine": "^2.8.0",
+    "@types/node": "^8.0.51",
     "gulp": "^3.9.1",
     "gulp-jasmine": "^2.4.2",
-    "gulp-typescript": "^3.1.3",
-    "jasmine": "^2.7.0",
-    "merge2": "^1.0.2",
-    "run-sequence": "^2.1.0",
-    "standard-version": "^4.0.0",
-    "tslint": "^5.5.0",
+    "gulp-typescript": "^3.2.3",
+    "jasmine": "^2.8.0",
+    "jasts": "^1.0.0",
+    "merge2": "^1.2.0",
+    "run-sequence": "^2.2.0",
+    "standard-version": "^4.2.0",
+    "tslint": "^5.8.0",
+    "typedoc": "^0.9.0",
     "typescript": "^2.4.2"
   },
   "main": "dist/index.js",
@@ -32,8 +34,11 @@
   },
   "scripts": {
     "test": "rm -r -f dist && gulp test",
+    "testwin": "gulp test",
     "release": "standard-version",
-    "tslint": "node_modules/tslint/bin/tslint -c tslint.json */*.ts"
+    "tslint": "tslint -c tslint.json */*.ts",
+    "typedoc": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out typedoc/ src/*.ts  --exclude **/spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'",
+    "typedocwin": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out typedoc\\ src\\*.ts  --exclude **\\spec\\*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'"
   },
   "repository": {
     "type": "git",

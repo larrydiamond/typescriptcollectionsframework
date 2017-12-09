@@ -7,12 +7,21 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var TreeMap = (function () {
-    function TreeMap(iComparator) {
+    function TreeMap(iComparator, initialElements) {
+        if (initialElements === void 0) { initialElements = null; }
+        this.initialElements = initialElements;
         this.topNode = null;
         this.mapComparator = null;
         this.mapComparator = iComparator;
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.entrySet().iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.put(t.getKey(), t.getValue());
+            }
+        }
     }
     /* Debugging code
       public printMap() : void {
@@ -25,9 +34,11 @@ var TreeMap = (function () {
           console.log ("top node is undefined");
           return;
         }
-        console.log ("New Tree: size = " + this.size());
+        console.log ("");
+        console.log ("Tree size = " + this.size());
         this.printMapNode (this.topNode);
         console.log ("End of Tree");
+        console.log ("");
       }
     
       private printMapNode (node:TreeMapNode<K,V>) : void {
@@ -85,6 +96,13 @@ var TreeMap = (function () {
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
     TreeMap.prototype.clear = function () {
+        // if only this was enough :(
+        // JavaScript memory management has problems when two objects have pointers to one another
+        // In that case, the mark and sweep garbage collector is unable to collect either object
+        // and we wind up with out of memory errors :(
+        while ((this.topNode !== null) && (this.topNode !== undefined)) {
+            this.remove(this.topNode.getKey());
+        }
         this.topNode = null;
     };
     /**
@@ -104,6 +122,15 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return 0;
         return this.sizeTree(this.topNode.getLeftNode()) + this.sizeTree(this.topNode.getRightNode()) + 1;
+    };
+    /**
+     * Returns true if this map contains no key-value mappings.
+     * @return {boolean} true if this map contains no key-value mappings
+     */
+    TreeMap.prototype.isEmpty = function () {
+        if (this.size() < 1)
+            return true;
+        return false;
     };
     TreeMap.prototype.sizeTree = function (n) {
         if (n === null)
@@ -137,7 +164,41 @@ var TreeMap = (function () {
             var nextNode = node.getLeftNode();
             if (nextNode === null) {
                 var newNode = new TreeMapNode(key, value, node);
-                node.setLeftNode(newNode);
+                // Can we do a minor rebalance of the bottom nodes of the tree?
+                // if we are about to place a new node below a parent with no current children,
+                // check to see if the the "grandparent" only has the one child and if so do a local rebalance
+                if (node.getRightNode() === null) {
+                    var grandparent = node.getParentNode();
+                    if (grandparent !== null) {
+                        if ((grandparent.getLeftNode() === node) && (grandparent.getRightNode() === null)) {
+                            node.setLeftNode(newNode);
+                            node.setRightNode(grandparent);
+                            node.setParentNode(grandparent.getParentNode());
+                            grandparent.setLeftNode(null);
+                            grandparent.setRightNode(null);
+                            grandparent.setParentNode(node);
+                            if (grandparent === this.topNode) {
+                                // make node new parent with newnode as left node and grandparent as right node
+                                this.topNode = node;
+                            }
+                            else {
+                                if (node.getParentNode().getLeftNode() === grandparent)
+                                    node.getParentNode().setLeftNode(node);
+                                if (node.getParentNode().getRightNode() === grandparent)
+                                    node.getParentNode().setRightNode(node);
+                            }
+                        }
+                        else {
+                            node.setLeftNode(newNode);
+                        }
+                    }
+                    else {
+                        node.setLeftNode(newNode);
+                    }
+                }
+                else {
+                    node.setLeftNode(newNode);
+                }
                 return null;
             }
             else {
@@ -148,6 +209,38 @@ var TreeMap = (function () {
             var nextNode = node.getRightNode();
             if (nextNode === null) {
                 var newNode = new TreeMapNode(key, value, node);
+                if (node.getLeftNode() === null) {
+                    var grandparent = node.getParentNode();
+                    if (grandparent !== null) {
+                        if ((grandparent.getRightNode() === node) && (grandparent.getLeftNode() === null)) {
+                            node.setRightNode(newNode);
+                            node.setLeftNode(grandparent);
+                            node.setParentNode(grandparent.getParentNode());
+                            grandparent.setRightNode(null);
+                            grandparent.setLeftNode(null);
+                            grandparent.setParentNode(node);
+                            if (grandparent === this.topNode) {
+                                // make node new parent with newnode as left node and grandparent as right node
+                                this.topNode = node;
+                            }
+                            else {
+                                if (node.getParentNode().getLeftNode() === grandparent)
+                                    node.getParentNode().setLeftNode(node);
+                                if (node.getParentNode().getRightNode() === grandparent)
+                                    node.getParentNode().setRightNode(node);
+                            }
+                        }
+                        else {
+                            node.setRightNode(newNode);
+                        }
+                    }
+                    else {
+                        node.setRightNode(newNode);
+                    }
+                }
+                else {
+                    node.setRightNode(newNode);
+                }
                 node.setRightNode(newNode);
                 return null;
             }
@@ -204,7 +297,7 @@ var TreeMap = (function () {
         }
         if (tmp.getParentNode() === null)
             return null;
-        return tmp;
+        return tmp.getParentNode();
     };
     /**
      * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
@@ -329,6 +422,7 @@ var TreeMap = (function () {
                         parent.setRightNode(left);
                     }
                 }
+                left.setParentNode(parent);
                 var parentOfRight = tmp.getLeftNode();
                 while (parentOfRight.getRightNode() !== null)
                     parentOfRight = parentOfRight.getRightNode();
@@ -336,6 +430,9 @@ var TreeMap = (function () {
                 right.setParentNode(parentOfRight);
             }
         }
+        tmp.setParentNode(null); // clear pointers to help memory collection
+        tmp.setLeftNode(null); // clear pointers to help memory collection
+        tmp.setRightNode(null); // clear pointers to help memory collection
         return tmp.getValue();
     };
     /**
@@ -364,6 +461,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.ceilingNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**
@@ -377,6 +476,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.higherNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**
@@ -405,6 +506,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.lowerNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**
@@ -433,6 +536,8 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var tmp = this.floorNode(this.topNode, key, null);
+        if (tmp === null)
+            return null;
         return tmp.getKey();
     };
     /**
@@ -564,7 +669,7 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var node = this.topNode;
-        while (node.getLeftNode() !== null) {
+        while ((node.getLeftNode() !== null) && (node.getLeftNode() !== undefined)) {
             node = node.getLeftNode();
         }
         return node;
@@ -575,7 +680,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.firstKey = function () {
         var node = this.firstMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getKey();
     };
@@ -585,7 +690,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.firstEntry = function () {
         var node = this.firstMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getMapEntry();
     };
@@ -599,7 +704,7 @@ var TreeMap = (function () {
         if (this.topNode === undefined)
             return null;
         var node = this.topNode;
-        while (node.getRightNode() !== null) {
+        while ((node.getRightNode() !== null) && (node.getRightNode() !== undefined)) {
             node = node.getRightNode();
         }
         return node;
@@ -610,7 +715,7 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.lastKey = function () {
         var node = this.lastMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getKey();
     };
@@ -620,9 +725,36 @@ var TreeMap = (function () {
      */
     TreeMap.prototype.lastEntry = function () {
         var node = this.lastMapNode();
-        if (node === null)
+        if ((node === null) || (node === undefined))
             return null;
         return node.getMapEntry();
+    };
+    /**
+     * Returns an ImmutableSet view of the keys contained in this map.
+     * The set's iterator returns the keys in ascending order.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    TreeMap.prototype.keySet = function () {
+        return new ImmutableKeySetForTreeMap(this);
+    };
+    /**
+     * Returns an ImmutableSet view of the mappings contained in this map.
+     * The set's iterator returns the mappings in ascending key order.
+     * The set is backed by the map, so changes to the map are reflected in the set.
+     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+     * The contains method on this entrySet will only compare keys not values.
+     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     */
+    TreeMap.prototype.entrySet = function () {
+        return new ImmutableEntrySetForTreeMap(this);
+    };
+    /**
+    * Returns an ImmutableMap backed by Map
+    */
+    TreeMap.prototype.immutableMap = function () {
+        return this;
     };
     return TreeMap;
 }());
@@ -668,3 +800,167 @@ var TreeMapNode = (function () {
     return TreeMapNode;
 }());
 exports.TreeMapNode = TreeMapNode;
+var ImmutableKeySetForTreeMap = (function () {
+    function ImmutableKeySetForTreeMap(iTreeMap) {
+        this.treeMap = iTreeMap;
+    }
+    ImmutableKeySetForTreeMap.prototype.size = function () { return this.treeMap.size(); };
+    ImmutableKeySetForTreeMap.prototype.isEmpty = function () { return this.treeMap.isEmpty(); };
+    ImmutableKeySetForTreeMap.prototype.contains = function (item) { return this.treeMap.containsKey(item); };
+    ImmutableKeySetForTreeMap.prototype.iterator = function () { return new TreeMapKeySetJIterator(this.treeMap); };
+    ImmutableKeySetForTreeMap.prototype[Symbol.iterator] = function () { return new TreeMapKeySetIterator(this.treeMap); };
+    return ImmutableKeySetForTreeMap;
+}());
+exports.ImmutableKeySetForTreeMap = ImmutableKeySetForTreeMap;
+/* Java style iterator */
+var TreeMapKeySetJIterator = (function () {
+    function TreeMapKeySetJIterator(iTreeMap) {
+        this.treeMap = iTreeMap;
+    }
+    TreeMapKeySetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var first = this.treeMap.firstKey();
+            if (first === undefined)
+                return false;
+            if (first === null)
+                return false;
+            return true;
+        }
+        else {
+            var tmp = this.treeMap.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    };
+    TreeMapKeySetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var first = this.treeMap.firstKey();
+            if (first === undefined) {
+                return null;
+            }
+            else {
+                this.location = first;
+                return first;
+            }
+        }
+        else {
+            var tmp = this.treeMap.getNextHigherKey(this.location);
+            if (tmp === null) {
+                return null;
+            }
+            else {
+                this.location = tmp;
+                return tmp;
+            }
+        }
+    };
+    return TreeMapKeySetJIterator;
+}());
+exports.TreeMapKeySetJIterator = TreeMapKeySetJIterator;
+/* TypeScript iterator */
+var TreeMapKeySetIterator = (function () {
+    function TreeMapKeySetIterator(iTreeMap) {
+        this.treeMap = iTreeMap;
+        this.location = this.treeMap.firstKey();
+    }
+    // tslint:disable-next-line:no-any
+    TreeMapKeySetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
+        this.location = this.treeMap.getNextHigherKey(this.location);
+        return tmp;
+    };
+    return TreeMapKeySetIterator;
+}());
+exports.TreeMapKeySetIterator = TreeMapKeySetIterator;
+var ImmutableEntrySetForTreeMap = (function () {
+    function ImmutableEntrySetForTreeMap(iTreeMap) {
+        this.treeMap = iTreeMap;
+    }
+    ImmutableEntrySetForTreeMap.prototype.size = function () { return this.treeMap.size(); };
+    ImmutableEntrySetForTreeMap.prototype.isEmpty = function () { return this.treeMap.isEmpty(); };
+    ImmutableEntrySetForTreeMap.prototype.contains = function (item) { return this.treeMap.containsKey(item.getKey()); };
+    ImmutableEntrySetForTreeMap.prototype.iterator = function () { return new TreeMapEntrySetJIterator(this.treeMap); };
+    ImmutableEntrySetForTreeMap.prototype[Symbol.iterator] = function () { return new TreeMapEntrySetIterator(this.treeMap); };
+    return ImmutableEntrySetForTreeMap;
+}());
+exports.ImmutableEntrySetForTreeMap = ImmutableEntrySetForTreeMap;
+/* Java style iterator */
+var TreeMapEntrySetJIterator = (function () {
+    function TreeMapEntrySetJIterator(iTreeMap) {
+        this.treeMap = iTreeMap;
+    }
+    TreeMapEntrySetJIterator.prototype.hasNext = function () {
+        if (this.location === undefined) {
+            var first = this.treeMap.firstEntry();
+            if (first === undefined)
+                return false;
+            if (first === null)
+                return false;
+            return true;
+        }
+        else {
+            var tmp = this.treeMap.higherEntry(this.location.getKey());
+            if (tmp === null) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    };
+    TreeMapEntrySetJIterator.prototype.next = function () {
+        if (this.location === undefined) {
+            var first = this.treeMap.firstEntry();
+            if (first === undefined) {
+                return null;
+            }
+            else {
+                this.location = first;
+                return first;
+            }
+        }
+        else {
+            var tmp = this.treeMap.higherEntry(this.location.getKey());
+            if (tmp === null) {
+                return null;
+            }
+            else {
+                this.location = tmp;
+                return tmp;
+            }
+        }
+    };
+    return TreeMapEntrySetJIterator;
+}());
+exports.TreeMapEntrySetJIterator = TreeMapEntrySetJIterator;
+/* TypeScript iterator */
+var TreeMapEntrySetIterator = (function () {
+    function TreeMapEntrySetIterator(iTreeMap) {
+        this.treeMap = iTreeMap;
+        this.location = this.treeMap.firstEntry();
+    }
+    // tslint:disable-next-line:no-any
+    TreeMapEntrySetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
+        this.location = this.treeMap.higherEntry(this.location.getKey());
+        return tmp;
+    };
+    return TreeMapEntrySetIterator;
+}());
+exports.TreeMapEntrySetIterator = TreeMapEntrySetIterator;

@@ -7,13 +7,30 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var LinkedList = (function () {
-    function LinkedList() {
+    function LinkedList(iEquals, initialElements) {
+        if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }
+        this.initialElements = initialElements;
+        this.equality = iEquals;
         this.firstNode = null;
         this.lastNode = null;
         this.numberElements = 0;
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.add(t);
+            }
+        }
     }
+    /**
+    * Returns the Collectible
+    * @return {Collectable}
+    */
+    LinkedList.prototype.getCollectable = function () {
+        return this.equality;
+    };
     /**
      * Appends the specified element to the end of this list
      * @param {T} t element to Append
@@ -21,7 +38,7 @@ var LinkedList = (function () {
      */
     LinkedList.prototype.add = function (t) {
         var lln = new LinkedListNode(t);
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             this.firstNode = lln;
             this.lastNode = lln;
             this.numberElements = 1;
@@ -34,15 +51,68 @@ var LinkedList = (function () {
         return true;
     };
     /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    LinkedList.prototype.addFirst = function (t) {
+        var lln = new LinkedListNode(t);
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            this.firstNode = lln;
+            this.lastNode = lln;
+            this.numberElements = 1;
+            return true;
+        }
+        this.firstNode.previousNode = lln;
+        lln.nextNode = this.firstNode;
+        this.firstNode = lln;
+        this.numberElements = this.numberElements + 1;
+        return true;
+    };
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    LinkedList.prototype.addLast = function (t) {
+        return this.add(t);
+    };
+    /**
+    * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+    * Needed to implement Queue interface
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    LinkedList.prototype.offer = function (t) {
+        return this.add(t);
+    };
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    LinkedList.prototype.offerFirst = function (t) {
+        return this.addFirst(t);
+    };
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    LinkedList.prototype.offerLast = function (t) {
+        return this.addLast(t);
+    };
+    /**
      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
      * @param {number} index index at which the specified element is to be inserted
      * @param {T} t element to be inserted
      */
-    LinkedList.prototype.addElement = function (index, t) {
+    LinkedList.prototype.addIndex = function (index, t) {
         if (index === 0) {
             var newnode = new LinkedListNode(t);
             newnode.nextNode = this.firstNode;
-            this.firstNode.previousNode = newnode;
+            if (this.firstNode !== null)
+                this.firstNode.previousNode = newnode;
             this.firstNode = newnode;
             this.numberElements = this.numberElements + 1;
             return;
@@ -60,7 +130,7 @@ var LinkedList = (function () {
         var offset = 0;
         var node = this.firstNode;
         var previousnode = null;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 var newnode = new LinkedListNode(t);
                 newnode.nextNode = node;
@@ -85,7 +155,7 @@ var LinkedList = (function () {
      * @return {boolean} true if this list contains no elements
      */
     LinkedList.prototype.isEmpty = function () {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return true;
         }
         return false;
@@ -118,8 +188,8 @@ var LinkedList = (function () {
     };
     LinkedList.prototype.getNode = function (t) {
         var node = this.firstNode;
-        while (node !== null) {
-            if (node.payload.equals(t)) {
+        while ((node !== null) && (node !== undefined)) {
+            if (this.equality.equals(node.payload, t)) {
                 return node;
             }
             else {
@@ -133,16 +203,13 @@ var LinkedList = (function () {
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    LinkedList.prototype.removeElement = function (t) {
-        if (this.firstNode === null) {
-            return false;
-        }
-        if (this.firstNode === undefined) {
+    LinkedList.prototype.remove = function (t) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return false;
         }
         var node = this.firstNode;
-        while (node !== null) {
-            if (node.payload.equals(t)) {
+        while ((node !== null) && (node !== undefined)) {
+            if (this.equality.equals(node.payload, t)) {
                 var previous = node.previousNode;
                 var following = node.nextNode;
                 if (previous !== null) {
@@ -183,7 +250,7 @@ var LinkedList = (function () {
         var changed = false;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            var tmp = this.removeElement(t);
+            var tmp = this.remove(t);
             if (tmp === true)
                 changed = true;
         }
@@ -208,7 +275,7 @@ var LinkedList = (function () {
         }
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.addElement(index, t);
+            this.addIndex(index, t);
             index = index + 1;
         }
         return true;
@@ -219,7 +286,7 @@ var LinkedList = (function () {
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     LinkedList.prototype.indexOf = function (t) {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return -1;
         }
         if (this.numberElements <= 0) {
@@ -227,8 +294,8 @@ var LinkedList = (function () {
         }
         var offset = 0;
         var node = this.firstNode;
-        while (node !== null) {
-            if (node.payload.equals(t)) {
+        while ((node !== null) && (node !== undefined)) {
+            if (this.equality.equals(node.payload, t)) {
                 return offset;
             }
             else {
@@ -243,8 +310,8 @@ var LinkedList = (function () {
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    LinkedList.prototype.remove = function (index) {
-        if (this.firstNode === null) {
+    LinkedList.prototype.removeIndex = function (index) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return undefined;
         }
         if (this.numberElements <= 0) {
@@ -254,7 +321,13 @@ var LinkedList = (function () {
             var payload = this.firstNode.payload;
             this.firstNode = this.firstNode.nextNode;
             this.numberElements = this.numberElements - 1;
-            this.firstNode.previousNode = null;
+            if (this.firstNode !== null)
+                this.firstNode.previousNode = null;
+            if (this.numberElements < 1) {
+                this.numberElements = 0;
+                this.firstNode = null;
+                this.lastNode = null;
+            }
             return payload;
         }
         if (index === (this.numberElements - 1)) {
@@ -267,11 +340,12 @@ var LinkedList = (function () {
         var offset = 0;
         var node = this.firstNode;
         var previous = null;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 var payload = node.payload;
                 previous.nextNode = node.nextNode;
-                node.nextNode.previousNode = previous;
+                if (node.nextNode !== null)
+                    node.nextNode.previousNode = previous;
                 this.numberElements = this.numberElements - 1;
                 return node.payload;
             }
@@ -289,7 +363,7 @@ var LinkedList = (function () {
      * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
     LinkedList.prototype.lastIndexOf = function (t) {
-        if (this.firstNode === null) {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
             return -1;
         }
         if (this.numberElements <= 0) {
@@ -297,8 +371,8 @@ var LinkedList = (function () {
         }
         var offset = this.numberElements - 1;
         var node = this.lastNode;
-        while (node !== null) {
-            if (node.payload.equals(t)) {
+        while ((node !== null) && (node !== undefined)) {
+            if (this.equality.equals(node.payload, t)) {
                 return offset;
             }
             else {
@@ -309,20 +383,30 @@ var LinkedList = (function () {
         return -1;
     };
     /**
-     * Returns the first element in this list.
-     * @return {T} the first element in this list, null if the list is empty
+     * etrieves, but does not remove, the first element in this list.
+     * @return {T} the first element in this list, undefined if the list is empty
      */
     LinkedList.prototype.getFirst = function () {
         var node = this.firstNode;
-        if (node === null)
-            return null;
+        if ((node === null) || (node === undefined))
+            return undefined;
         return node.payload;
     };
     LinkedList.prototype.getFirstNode = function () {
         var node = this.firstNode;
-        if (node === null)
-            return null;
+        if ((node === null) || (node === undefined))
+            return undefined;
         return node;
+    };
+    /**
+    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the tail of the queue or undefined if empty
+    */
+    LinkedList.prototype.getLast = function () {
+        var node = this.lastNode;
+        if ((node === null) || (node === undefined))
+            return undefined;
+        return node.payload;
     };
     /**
      * Returns the element at the specified position in this list.
@@ -332,7 +416,20 @@ var LinkedList = (function () {
     LinkedList.prototype.get = function (index) {
         var offset = 0;
         var node = this.firstNode;
-        while (node !== null) {
+        if (index === 0) {
+            if ((node === null) || (node === undefined)) {
+                return null;
+            }
+            return node.payload;
+        }
+        if (index === this.numberElements - 1) {
+            node = this.lastNode;
+            if ((node === null) || (node === undefined)) {
+                return null;
+            }
+            return node.payload;
+        }
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 return node.payload;
             }
@@ -352,7 +449,7 @@ var LinkedList = (function () {
     LinkedList.prototype.set = function (index, element) {
         var offset = 0;
         var node = this.firstNode;
-        while (node !== null) {
+        while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
                 var tmp = node.payload;
                 node.payload = element;
@@ -366,44 +463,129 @@ var LinkedList = (function () {
         return null;
     };
     /**
-     * Indicates whether some other object is "equal to" this one.
-     * The equals method implements an equivalence relation on non-null object references:
-     * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-     * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-     * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-     * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-     * For any non-null reference value x, x.equals(null) should return false.
-     * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-     * @param {T} t element to compare
-     * @return {boolean} true if the other element is "equal" to this one
-     */
-    LinkedList.prototype.equals = function (t) {
-        if (t === null)
-            return false;
-        if (t === undefined)
-            return false;
-        if (t instanceof LinkedList) {
-            if (this.size() === t.size()) {
-                if (this.size() === 0) {
-                    return true;
-                }
-                var thisNode = this.getFirstNode();
-                var thatNode = t.getFirstNode();
-                while ((thisNode !== null) && (thatNode !== null) && (thisNode.payload.equals(thatNode.payload))) {
-                    thisNode = thisNode.nextNode;
-                    thatNode = thatNode.nextNode;
-                }
-                if ((thisNode === null) && (thatNode === null))
-                    return true;
-                return false;
-            }
-            else {
-                return false;
-            }
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.poll = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return null;
         }
-        else {
-            return false;
+        if (this.numberElements <= 0) {
+            return null;
         }
+        var element = this.firstNode.payload;
+        this.removeIndex(0);
+        return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.pollFirst = function () {
+        return this.poll();
+    };
+    /**
+    * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.pollLast = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return null;
+        }
+        if (this.numberElements <= 0) {
+            return null;
+        }
+        var element = this.get(this.size() - 1);
+        this.removeIndex(this.size() - 1);
+        return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or undefined if empty
+    */
+    LinkedList.prototype.removeQueue = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return undefined;
+        }
+        if (this.numberElements <= 0) {
+            return undefined;
+        }
+        var element = this.firstNode.payload;
+        this.removeIndex(0);
+        return element;
+    };
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    LinkedList.prototype.removeFirst = function () {
+        return this.removeQueue();
+    };
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    LinkedList.prototype.removeLast = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return undefined;
+        }
+        if (this.numberElements <= 0) {
+            return undefined;
+        }
+        var element = this.get(this.size() - 1);
+        this.removeIndex(this.size() - 1);
+        return element;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.peek = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return null;
+        }
+        if (this.numberElements <= 0) {
+            return null;
+        }
+        return this.firstNode.payload;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.peekFirst = function () {
+        return this.peek();
+    };
+    /**
+    * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.peekLast = function () {
+        if ((this.lastNode === null) || (this.lastNode === undefined)) {
+            return null;
+        }
+        if (this.numberElements <= 0) {
+            return null;
+        }
+        return this.lastNode.payload;
+    };
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    LinkedList.prototype.element = function () {
+        if ((this.firstNode === null) || (this.firstNode === undefined)) {
+            return undefined;
+        }
+        if (this.numberElements <= 0) {
+            return undefined;
+        }
+        var element = this.firstNode.payload;
+        return element;
     };
     /**
      * Returns a Java style iterator
@@ -418,6 +600,18 @@ var LinkedList = (function () {
      */
     LinkedList.prototype[Symbol.iterator] = function () {
         return new LinkedListIterator(this);
+    };
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    LinkedList.prototype.immutableList = function () {
+        return this;
+    };
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    LinkedList.prototype.immutableCollection = function () {
+        return this;
     };
     return LinkedList;
 }());
@@ -437,7 +631,7 @@ var LinkedListJIterator = (function () {
         this.node = iList.getFirstNode();
     }
     LinkedListJIterator.prototype.hasNext = function () {
-        if (this.node === null) {
+        if ((this.node === null) || (this.node === undefined)) {
             return false;
         }
         return true;
@@ -455,8 +649,9 @@ var LinkedListIterator = (function () {
     function LinkedListIterator(iList) {
         this.node = iList.getFirstNode();
     }
+    // tslint:disable-next-line:no-any
     LinkedListIterator.prototype.next = function (value) {
-        if (this.node === null) {
+        if ((this.node === null) || (this.node === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         else {

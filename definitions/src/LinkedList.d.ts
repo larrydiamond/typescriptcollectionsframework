@@ -1,12 +1,22 @@
 import { Collectable } from "./Collectable";
-import { Collection } from "./Collection";
+import { Deque } from "./Deque";
+import { ImmutableCollection } from "./ImmutableCollection";
+import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
-export declare class LinkedList<T extends Collectable> implements List<T>, Iterable<T> {
+import { Queue } from "./Queue";
+export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
+    private initialElements;
     private firstNode;
     private lastNode;
     private numberElements;
-    constructor();
+    private equality;
+    constructor(iEquals?: Collectable<T>, initialElements?: ImmutableCollection<T>);
+    /**
+    * Returns the Collectible
+    * @return {Collectable}
+    */
+    getCollectable(): Collectable<T>;
     /**
      * Appends the specified element to the end of this list
      * @param {T} t element to Append
@@ -14,11 +24,42 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      */
     add(t: T): boolean;
     /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    addFirst(t: T): boolean;
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    addLast(t: T): boolean;
+    /**
+    * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+    * Needed to implement Queue interface
+    * @param {T} t element to Append
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offer(t: T): boolean;
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offerFirst(t: T): boolean;
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    offerLast(t: T): boolean;
+    /**
      * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
      * @param {number} index index at which the specified element is to be inserted
      * @param {T} t element to be inserted
      */
-    addElement(index: number, t: T): void;
+    addIndex(index: number, t: T): void;
     /**
      * Returns true if this list contains no elements.
      * @return {boolean} true if this list contains no elements
@@ -45,20 +86,20 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
-    removeElement(t: T): boolean;
+    remove(t: T): boolean;
     /**
      * Removes from this list all of its elements that are contained in the specified collection.
      * @param {Collection} c collection containing elements to be removed from this list
      * @return {boolean} true if this list changed as a result of the call
      */
-    removeAll(c: Collection<T>): boolean;
+    removeAll(c: ImmutableCollection<T>): boolean;
     /**
      * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
      * @param {number} index index at which to insert the first element from the specified collection
      * @param {Collection} c collection containing elements to be added to this list
      * @return {boolean} true if this collection changed as a result of the call
      */
-    addAll(c: Collection<T>, index?: number): boolean;
+    addAll(c: ImmutableCollection<T>, index?: number): boolean;
     /**
      * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
      * @param {T} t element to search for
@@ -70,7 +111,7 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
-    remove(index: number): T;
+    removeIndex(index: number): T;
     /**
      * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      * @param {T} t element to search for
@@ -78,11 +119,16 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      */
     lastIndexOf(t: T): number;
     /**
-     * Returns the first element in this list.
-     * @return {T} the first element in this list, null if the list is empty
+     * etrieves, but does not remove, the first element in this list.
+     * @return {T} the first element in this list, undefined if the list is empty
      */
     getFirst(): T;
     getFirstNode(): LinkedListNode<T>;
+    /**
+    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * @return {K} the element at the tail of the queue or undefined if empty
+    */
+    getLast(): T;
     /**
      * Returns the element at the specified position in this list.
      * @param {number} index index of the element to return
@@ -97,18 +143,59 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      */
     set(index: number, element: T): T;
     /**
-     * Indicates whether some other object is "equal to" this one.
-     * The equals method implements an equivalence relation on non-null object references:
-     * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-     * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-     * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-     * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-     * For any non-null reference value x, x.equals(null) should return false.
-     * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-     * @param {T} t element to compare
-     * @return {boolean} true if the other element is "equal" to this one
-     */
-    equals(t: any): boolean;
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    poll(): T;
+    /**
+    * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    pollFirst(): T;
+    /**
+    * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    pollLast(): T;
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or undefined if empty
+    */
+    removeQueue(): T;
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    removeFirst(): T;
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    removeLast(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    peek(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    peekFirst(): T;
+    /**
+    * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+    * @return {K} the element at the head of the queue or null if empty
+    */
+    peekLast(): T;
+    /**
+    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Needed to implement Queue
+    * @return {T} the element at the head of the queue or null if empty
+    */
+    element(): T;
     /**
      * Returns a Java style iterator
      * @return {JIterator<T>} the Java style iterator
@@ -119,20 +206,28 @@ export declare class LinkedList<T extends Collectable> implements List<T>, Itera
      * @return {Iterator<T>} the TypeScript style iterator
      */
     [Symbol.iterator](): Iterator<T>;
+    /**
+    * Returns an ImmutableList backed by this List
+    */
+    immutableList(): ImmutableList<T>;
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    immutableCollection(): ImmutableCollection<T>;
 }
-export declare class LinkedListNode<T extends Collectable> {
+export declare class LinkedListNode<T> {
     previousNode: LinkedListNode<T>;
     nextNode: LinkedListNode<T>;
     payload: T;
     constructor(t: T);
 }
-export declare class LinkedListJIterator<T extends Collectable> implements JIterator<T> {
+export declare class LinkedListJIterator<T> implements JIterator<T> {
     private node;
     constructor(iList: LinkedList<T>);
     hasNext(): boolean;
     next(): T;
 }
-export declare class LinkedListIterator<T extends Collectable> implements Iterator<T> {
+export declare class LinkedListIterator<T> implements Iterator<T> {
     private node;
     constructor(iList: LinkedList<T>);
     next(value?: any): IteratorResult<T>;

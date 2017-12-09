@@ -6,51 +6,112 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {AllFieldCollectable} from "./AllFieldCollectable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {Deque} from "./Deque";
+import {ImmutableCollection} from "./ImmutableCollection";
+import {ImmutableList} from "./ImmutableList";
 import {JIterator} from "./JIterator";
 import {List} from "./List";
+import {Queue} from "./Queue";
 
-export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
-  elements:T[] = null;
-  sizeValue:number = 0;
+export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
+  private elements:T[] = null;
+  private sizeValue:number = 0;
+  private equality:Collectable<T>;
 
-  constructor (private initialCapacity:number = 10, private initialElements:Collection<T> = null) {
-    // we currently do not do anything with the initialCapacity..... yet
-    if (initialElements !== null) {
-      for (let iter = initialElements.iterator(); iter.hasNext(); ) {
-        let t:T = iter.next ();
+  constructor (iEquals:Collectable<T> = AllFieldCollectable.instance, private initialElements?:ImmutableCollection<T>) {
+    this.equality = iEquals;
+    if ((initialElements !== null) && (initialElements !== undefined)){
+      for (const iter = initialElements.iterator(); iter.hasNext(); ) {
+        const t:T = iter.next ();
         this.add (t);
       }
     }
   }
 
   /**
-   * Appends the specified element to the end of this list
-   * @param {T} t element to Append
-   * @return {boolean} true if this collection changed as a result of the call
-   */
-    public add (t:T) : boolean {
-      if (this.elements === null) {
-        this.elements = new Array<T>();
-      }
-      this.elements.push (t);
-      this.sizeValue = this.sizeValue + 1;
-      return true;
-    }
+  * Returns the Collectible
+  * @return {Collectable}
+  */
+  public getCollectable () : Collectable<T> {
+    return this.equality;
+  }
 
-   /**
+  /**
+  * Appends the specified element to the end of this list
+  * @param {T} t element to Append
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public add (t:T) : boolean {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      this.elements = new Array<T>();
+    }
+    this.elements.push (t);
+    this.sizeValue = this.sizeValue + 1;
+    return true;
+  }
+
+  /**
+  * Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+  * Needed to implement Queue interface
+  * @param {T} t element to Append
+  * @return {boolean} true if this collection changed as a result of the call
+  */
+  public offer (t:T) : boolean {
+    return this.add (t);
+  }
+
+  /**
     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
     * @param {number} index index at which the specified element is to be inserted
     * @param {T} t element to be inserted
     */
-    public addElement (index:number, t:T) : void {
-      if (this.elements === null) {
+    public addIndex (index:number, t:T) : void {
+      if ((this.elements === null) || (this.elements === undefined)) {
         this.elements = new Array<T>();
       }
       this.elements.splice (index, 0, t);
       this.sizeValue = this.sizeValue + 1;
+    }
+
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addFirst (t:T) : boolean {
+      this.addIndex (0, t);
+      return true;
+    }
+
+    /**
+    * Inserts the specified element at the front of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public offerFirst (t:T) : boolean {
+      return this.addFirst (t);
+    }
+
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public addLast (t:T) : boolean {
+      return this.add (t);
+    }
+
+    /**
+    * Inserts the specified element at the end of this deque
+    * @param {K} k element to add
+    * @return {boolean} true if this collection changed as a result of the call
+    */
+    public offerLast (t:T) : boolean {
+      return this.addLast (t);
     }
 
    /**
@@ -59,7 +120,7 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     * @param {Collection} c collection containing elements to be added to this list
     * @return {boolean} true if this collection changed as a result of the call
     */
-    public addAll (c:Collection<T>, index?:number) : boolean {
+    public addAll (c:ImmutableCollection<T>, index?:number) : boolean {
       if (c === null) return false;
       if (c === undefined) return false;
       if (c.size() < 1) return false;
@@ -68,9 +129,9 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
         offsetToStartAt = index;
       }
 
-      for (let iter = c.iterator(); iter.hasNext(); ) {
-        let t:T = iter.next ();
-        this.addElement (index, t);
+      for (const iter = c.iterator(); iter.hasNext(); ) {
+        const t:T = iter.next ();
+        this.addIndex (index, t);
         index = index + 1;
       }
 
@@ -82,21 +143,43 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     * @param {number} index the index of the element to be removed
     * @return {T} the element that was removed from the list, undefined if the element does not exist
     */
-    public remove (index:number) : T {
-      if (this.elements === null) {
+    public removeIndex (index:number) : T {
+      if ((this.elements === null) || (this.elements === undefined)) {
         return undefined;
       }
-      let element:T = this.elements [index];
+      if (this.size() < 1) {
+        return undefined;
+      }
+      const element:T = this.elements [index];
       this.elements.splice (index, 1);
       this.sizeValue = this.sizeValue - 1;
       return element;
     }
 
+    /**
+    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the head of the queue or undefined if empty
+    */
+    public removeFirst () : T {
+      return this.removeIndex (0);
+    }
+
+    /**
+    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * @return {K} the element at the end of the queue or undefined if empty
+    */
+    public removeLast () : T {
+      if (this.size() < 1) {
+        return undefined;
+      }
+      return this.removeIndex (this.size() - 1);
+    }
 
 /**
  * Removes all of the elements from this list. The list will be empty after this call returns.
  */
   public clear () : void {
+    this.elements.fill(null);  // Help the garbage collector
     this.elements = new Array<T>();
     this.sizeValue = 0;
   }
@@ -116,14 +199,14 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
  */
   public indexOf (t:T) : number {
-    if (this.elements === null)
+    if ((this.elements === null) || (this.elements === undefined))
       return -1;
     if (this.sizeValue <= 0)
       return -1;
 
     for (let loop:number = 0; loop < this.sizeValue; loop++) {
-      let e = this.get (loop);
-      if (e.equals (t))
+      const e = this.get (loop);
+      if (this.equality.equals (e, t))
         return loop;
     }
 
@@ -137,14 +220,14 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
   public lastIndexOf (t:T) : number {
-    if (this.elements === null)
+    if ((this.elements === null) || (this.elements === undefined))
       return -1;
     if (this.sizeValue <= 0)
       return -1;
 
     for (let loop:number = this.sizeValue - 1; loop >= 0; loop--) {
-      let e = this.get (loop);
-      if (e.equals (t))
+      const e = this.get (loop);
+      if (this.equality.equals (e, t))
         return loop;
     }
 
@@ -168,21 +251,17 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   * @param {T} t element to be removed from this list, if present
   * @return {T} true if this list contained the specified element
   */
-  public removeElement (t:T) : boolean {
-    if (this.elements === null) {
+  public remove (t:T) : boolean {
+    if ((this.elements === null) || (this.elements === undefined)) {
       return false;
     }
 
-    if (this.elements === undefined) {
-      return false;
-    }
-
-    let offset:number = this.indexOf (t);
+    const offset:number = this.indexOf (t);
     if (offset === -1) {
       return false;
     }
 
-    this.remove (offset);
+    this.removeIndex (offset);
     return true;
   }
 
@@ -191,16 +270,16 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
   * @param {Collection} c collection containing elements to be removed from this list
   * @return {boolean} true if this list changed as a result of the call
   */
-  public removeAll (c:Collection<T>) : boolean {
+  public removeAll (c:ImmutableCollection<T>) : boolean {
     if (c === null) return false;
     if (c === undefined) return false;
     if (c.size() < 1) return false;
 
     let changed:boolean = false;
 
-    for (let iter = c.iterator(); iter.hasNext(); ) {
-      let t:T = iter.next ();
-      let tmp = this.removeElement(t);
+    for (const iter = c.iterator(); iter.hasNext(); ) {
+      const t:T = iter.next ();
+      const tmp = this.remove(t);
       if (tmp === true) changed = true;
     }
 
@@ -225,52 +304,10 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  * @return {number} the element previously at the specified position
  */
   public set(index:number, element:T) : T {
-    let tmp:T = this.elements [index];
+    const tmp:T = this.elements [index];
     this.elements [index] = element;
     return tmp;
   }
-
- /**
-  * Indicates whether some other object is "equal to" this one.
-  * The equals method implements an equivalence relation on non-null object references:
-  * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
-  * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-  * It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) should return true.
-  * It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, provided no information used in equals comparisons on the objects is modified.
-  * For any non-null reference value x, x.equals(null) should return false.
-  * The equals method implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method returns true if and only if x and y refer to the same object (x == y has the value true).
-  * @param {T} t element to compare
-  * @return {boolean} true if the other element is "equal" to this one
-  */
-  public equals (t:any) : boolean {
-    if (t === null) return false;
-    if (t === undefined) return false;
-    if (t instanceof ArrayList) {
-      if (this.size() === t.size()) {
-        if (this.size() === 0) {
-          return true;
-        }
-
-        for (let loop:number = 0; loop < this.size(); loop++) {
-          let thisentry:T = this.get (loop);
-          let thatentry:T = t.get (loop);
-          if (thisentry.equals (thatentry)) {
-            // keep going
-          } else {
-            return false;
-          }
-        }
-
-        return true;
-
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-
 
 /**
  * Returns the number of elements in this list.
@@ -278,6 +315,158 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
  */
   public size () : number {
     return this.sizeValue;
+  }
+
+ /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public poll () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return null;
+    }
+    if (this.sizeValue <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (0);
+    this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public pollFirst () : T {
+    return this.poll();
+  }
+
+  /**
+  * Retrieves and removes the element at the end of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public pollLast () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return null;
+    }
+    if (this.sizeValue <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    this.removeIndex (this.size() - 1);
+    return element;
+  }
+
+  /**
+  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or undefined if empty
+  */
+  public removeQueue () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (0);
+    this.removeIndex (0);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or null if empty
+  */
+  public peek () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return null;
+    }
+    if (this.sizeValue <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (0);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public peekFirst () : T {
+    return this.peek();
+  }
+
+  /**
+  * Retrieves, but does not remove, the last element of this queue, or returns null if this queue is empty.
+  * @return {K} the element at the head of the queue or null if empty
+  */
+  public peekLast () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return null;
+    }
+    if (this.sizeValue <= 0) {
+      return null;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * @return {K} the element at the head of the queue or undefined if empty
+  */
+  public getFirst () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (0);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * @return {K} the element at the end of the queue or undefined if empty
+  */
+  public getLast () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (this.size() - 1);
+    return element;
+  }
+
+  /**
+  * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * Needed to implement Queue
+  * @return {T} the element at the head of the queue or undefined if empty
+  */
+  public element () : T {
+    if ((this.elements === null) || (this.elements === undefined)) {
+      return undefined;
+    }
+    if (this.sizeValue <= 0) {
+      return undefined;
+    }
+
+    const element:T = this.get (0);
+    return element;
   }
 
   /**
@@ -296,10 +485,24 @@ export class ArrayList<T extends Collectable> implements List<T>, Iterable<T> {
     return new ArrayListIterator (this);
   }
 
+  /**
+  * Returns an ImmutableList backed by this List
+  */
+  public immutableList () : ImmutableList<T> {
+    return this;
+  }
+
+  /**
+  * Returns an ImmutableCollection backed by this Collection
+  */
+  public immutableCollection () : ImmutableCollection<T> {
+    return this;
+  }
+
 }
 
 /* Java style iterator */
-export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
+export class ArrayListJIterator<T> implements JIterator<T> {
   private offset:number = 0;
   private arraylist:ArrayList<T>;
 
@@ -319,7 +522,7 @@ export class ArrayListJIterator<T extends Collectable> implements JIterator<T> {
 }
 
 /* TypeScript iterator */
-export class ArrayListIterator<T extends Collectable> implements Iterator<T> {
+export class ArrayListIterator<T> implements Iterator<T> {
   private offset:number = 0;
   private arraylist:ArrayList<T>;
 
@@ -327,6 +530,7 @@ export class ArrayListIterator<T extends Collectable> implements Iterator<T> {
     this.arraylist = iArrayList;
   }
 
+  // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
     if (this.offset < this.arraylist.size()) {
       return new BasicIteratorResult(false, this.arraylist.get (this.offset++));

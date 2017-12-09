@@ -6,9 +6,10 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {Collection} from "./Collection";
 import {ImmutableSet} from "./ImmutableSet";
 
-export interface JSet<K> extends ImmutableSet<K> {
+export interface JSet<K> extends ImmutableSet<K>, Collection<K> {
 
   /**
   * Adds the specified element to this set if it is not already present.
@@ -17,4 +18,8 @@ export interface JSet<K> extends ImmutableSet<K> {
   */
   add (element:K) : boolean;
 
+  /**
+  * Returns an ImmutableSet backed by this Set
+  */
+  immutableSet () : ImmutableSet<K>;
 }

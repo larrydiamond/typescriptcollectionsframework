@@ -5,7 +5,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
-export interface ImmutableSet<K> {
+import { ImmutableCollection } from "./ImmutableCollection";
+import { JIterator } from "./JIterator";
+export interface ImmutableSet<K> extends ImmutableCollection<K> {
     /**
     * Returns the number of elements in this set (its cardinality).
     * @return {number} the number of elements in this set (its cardinality)
@@ -22,4 +24,14 @@ export interface ImmutableSet<K> {
     * @return {boolean} true if this set contains the specified element
     */
     contains(item: K): boolean;
+    /**
+     * Returns a Java style iterator
+     * @return {JIterator<K>} the Java style iterator
+     */
+    iterator(): JIterator<K>;
+    /**
+    * Returns a TypeScript style iterator
+    * @return {Iterator<K>} the TypeScript style iterator
+    */
+    [Symbol.iterator](): Iterator<K>;
 }

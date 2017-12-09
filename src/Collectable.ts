@@ -6,9 +6,9 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
-export interface Collectable {
+export interface Collectable<T> {
  /**
-  * Indicates whether some other object is "equal to" this one.
+  * Compares its two arguments for equality
   * The equals method implements an equivalence relation on non-null object references:
   * It is reflexive: for any non-null reference value x, x.equals(x) should return true.
   * It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
@@ -20,5 +20,5 @@ export interface Collectable {
   * @return {boolean} true if the other element is "equal" to this one
   */
 
-  equals (t:any) : boolean;
+  equals (o1:T, o2:T) : boolean;
 }

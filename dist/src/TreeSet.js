@@ -10,10 +10,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var TreeMap_1 = require("./TreeMap");
 var TreeSet = (function () {
-    function TreeSet(iComparator) {
+    function TreeSet(iComparator, initialElements) {
+        this.initialElements = initialElements;
         this.datastore = null;
         this.datastore = new TreeMap_1.TreeMap(iComparator);
+        if ((initialElements !== null) && (initialElements !== undefined)) {
+            for (var iter = initialElements.iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.add(t);
+            }
+        }
     }
+    TreeSet.prototype.validateSet = function () {
+        return this.datastore.validateMap();
+    };
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
@@ -22,9 +32,9 @@ var TreeSet = (function () {
     TreeSet.prototype.add = function (element) {
         var tmp = this.datastore.put(element, 1);
         if (tmp === null) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     };
     /**
     * Returns the number of elements in this set (its cardinality).
@@ -66,6 +76,17 @@ var TreeSet = (function () {
         return true;
     };
     /**
+     * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
+     * @param {K} item to find floor node for
+     * @return {K} the greatest element less than or equal to e, or null if there is no such element
+     */
+    TreeSet.prototype.floor = function (item) {
+        var tmp = this.datastore.floorKey(item);
+        if (tmp === undefined)
+            return null;
+        return tmp;
+    };
+    /**
      * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
      * @param {K} item to find ceiling node for
      * @return {K} the least element greater than or equal to item, or null if there is no such element
@@ -89,6 +110,18 @@ var TreeSet = (function () {
     */
     TreeSet.prototype.last = function () {
         return this.datastore.lastKey();
+    };
+    /**
+    * Removes the specified element from this set if it is present.
+    * @param {K} element element to be removed from this set
+    * @return {boolean} true if the set contained the specified element
+    */
+    TreeSet.prototype.remove = function (element) {
+        var tmp = this.datastore.remove(element);
+        if (tmp === null) {
+            return false;
+        }
+        return true;
     };
     /**
     * Removes all of the elements from this set. The set will be empty after this call returns.
@@ -126,6 +159,11 @@ var TreeSet = (function () {
     TreeSet.prototype.getNextHigherKey = function (key) {
         return this.datastore.getNextHigherKey(key);
     };
+    /*
+      public printSet () {
+        return this.datastore.printMap();
+      }
+    /* */
     /**
      * Returns a Java style iterator
      * @return {JIterator<K>} the Java style iterator
@@ -140,6 +178,18 @@ var TreeSet = (function () {
     TreeSet.prototype[Symbol.iterator] = function () {
         return new TreeSetIterator(this);
     };
+    /**
+    * Returns an ImmutableCollection backed by this Collection
+    */
+    TreeSet.prototype.immutableCollection = function () {
+        return this;
+    };
+    /**
+    * Returns an ImmutableSet backed by this Set
+    */
+    TreeSet.prototype.immutableSet = function () {
+        return this;
+    };
     return TreeSet;
 }());
 exports.TreeSet = TreeSet;
@@ -151,7 +201,7 @@ var TreeSetJIterator = (function () {
     TreeSetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) {
             var first = this.set.first();
-            if (first === undefined)
+            if ((first === undefined) || (first === null))
                 return false;
             return true;
         }
@@ -166,7 +216,7 @@ var TreeSetJIterator = (function () {
         }
     };
     TreeSetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if ((this.location === undefined) || (this.location === null)) {
             var first = this.set.first();
             if (first === undefined) {
                 return null;
@@ -196,6 +246,7 @@ var TreeSetIterator = (function () {
         this.set = iSet;
         this.location = this.set.first();
     }
+    // tslint:disable-next-line:no-any
     TreeSetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);

@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 import { Collectable } from "./Collectable";
-export interface Hashable extends Collectable {
+export interface Hashable<T> extends Collectable<T> {
     /**
      * Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by HashMap.
      * The general contract of hashCode is:
@@ -18,5 +18,5 @@ export interface Hashable extends Collectable {
      * then calling the hashCode method on each of the two objects must produce the same number result.
      * @return {number} a hash code value for this object
      */
-    hashCode(): number;
+    hashCode(o: T): number;
 }
