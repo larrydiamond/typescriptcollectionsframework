@@ -198,6 +198,7 @@ var HashMap = (function () {
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
     HashMap.prototype.clear = function () {
+        this.data.clear();
         this.data = new ArrayList_1.ArrayList(this.ListMapEntryMethods);
         this.elementCount = 0;
     };

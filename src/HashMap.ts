@@ -190,6 +190,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * Removes all of the mappings from this map. The map will be empty after this call returns.
   */
   public clear () : void {
+    this.data.clear();
     this.data = new ArrayList<List<HashMapEntry<K,V>>>(this.ListMapEntryMethods);
     this.elementCount = 0;
   }
