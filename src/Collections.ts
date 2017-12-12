@@ -171,4 +171,55 @@ export class Collections {
     return tmp;
   }
 
+  public static dynamicCollectable<K> (... values : string []) : Collectable<K> {
+    const tmp : Collectable<K> = {
+      equals (o1: K, o2: K) {
+        if (o1 === undefined) {
+          if (o2 === undefined) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        if (o1 === null) {
+          if (o2 === null) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        if ((o2 === null) || (o2 === undefined)) {
+          return false;
+        }
+
+        for (let loop = 0; loop < values.length; loop++) {
+          let a = o1 [values [loop]];
+          let b = o2 [values [loop]];
+
+          if (a === undefined) {
+            if (b !== undefined) {
+              return false;
+            }
+          }
+          if (a === null) {
+            if (b !== null) {
+              return false;
+            }
+          }
+          if ((b === null) || (b === undefined)) {
+            return false;
+          }
+
+          if (JSON.stringify(a) !== JSON.stringify(b)) {
+            return false;
+          }
+        }
+
+        return true;
+
+      }
+    }
+    return tmp;
+  }
+
 }

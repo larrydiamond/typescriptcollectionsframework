@@ -36,4 +36,5 @@ export declare class Collections {
      * Returns an Collectable made from the Comparator passed in
      */
     static collectableFromComparator<K>(iComp: Comparator<K>): Collectable<K>;
+    static dynamicCollectable<K>(...values: string[]): Collectable<K>;
 }
