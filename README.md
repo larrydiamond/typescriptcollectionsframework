@@ -31,13 +31,13 @@ Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-
 # Classes documentation
 https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 
-[ArrayList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_arraylist_.arraylist.html), [LinkedList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_linkedlist_.linkedlist.html), [SkipListSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_skiplist_.skiplistset.html), [TreeSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_treeset_.treeset.html), [HashSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_hashset_.hashset.html), 
+[ArrayList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_arraylist_.arraylist.html), [LinkedList](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_linkedlist_.linkedlist.html), [SkipListSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_skiplist_.skiplistset.html), [TreeSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_treeset_.treeset.html), [HashSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_hashset_.hashset.html),
 [HashMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_hashmap_.hashmap.html), [SkipListMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_skiplist_.skiplistmap.html), and [TreeMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/classes/_treemap_.treemap.html) are all live and available today.  Version 4 goals include PriorityQueue, ease of use, and a tutorial with code examples in Java and TypeScript
 
-[Collection](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_collection_.collection.html), 
+[Collection](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_collection_.collection.html),
 [List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_jset_.jset.html), and [Map](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_jmap_.jmap.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
 
-# My goals of this project 
+# My goals of this project
 * Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript
 * Support putting "stuff" from other libraries into Collections without having to box and unbox objects.
 * Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
@@ -82,6 +82,3 @@ Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at l
 # Contributors
 
 Frank Giordano (https://github.com/frankgiordano)
-
-# Priority Queue are coming shortly
-A very talented developer has volunteered to implement PriorityQueue.   He will be properly acknowledged and promoted as a contributor very soon.    Thank you for agreeing to make this framework better, and I really appreciate volunteers!
