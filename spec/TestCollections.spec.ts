@@ -6,9 +6,11 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {Collectable} from "../src/Collectable";
 import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
 import {ImmutableList} from "../src/ImmutableList";
+import {TestBoolean} from 'jasts';
 import {TestNumber} from 'jasts';
 
 describe("Test Collections static methods", function() {
@@ -134,5 +136,116 @@ describe("Test Collections static methods", function() {
     TestNumber.equals ("hash code for low integers is itself", Collections.getHashCodeForNumber (50), 50);
   });
 
+  it ("Dynamic Collectable skuCollectable", function () {
+    const skuCollectable:Collectable<PetStoreProduct> = Collections.dynamicCollectable("sku");
+    // SkuCollectable will differentiate psp1 psp2 psp3
+    TestBoolean.false ("skuCollectable psp1 psp2", skuCollectable.equals(psp1, psp2));
+    TestBoolean.false ("skuCollectable psp1 psp3", skuCollectable.equals(psp1, psp3));
+    TestBoolean.false ("skuCollectable psp2 psp3", skuCollectable.equals(psp2, psp3));
+
+    // SkuCollectable cannot differentiate psp1 psp1copy and psp3copy
+    TestBoolean.true ("skuCollectable psp1 psp1copy", skuCollectable.equals(psp1, psp1copy));
+    TestBoolean.true ("skuCollectable psp1 psp3copy", skuCollectable.equals(psp1, psp3copy));
+
+    // The others will be differentiated
+    TestBoolean.false ("skuCollectable psp1copy psp2", skuCollectable.equals(psp1copy, psp2));
+    TestBoolean.false ("skuCollectable psp1copy psp3", skuCollectable.equals(psp1copy, psp3));
+    TestBoolean.false ("skuCollectable psp3copy psp2", skuCollectable.equals(psp3copy, psp2));
+    TestBoolean.false ("skuCollectable psp3copy psp3", skuCollectable.equals(psp3copy, psp3));
+
+    // Compare vs null and undefined
+    TestBoolean.false ("skuCollectable psp1 null", skuCollectable.equals(psp1, null));
+    TestBoolean.false ("skuCollectable psp1 undefined", skuCollectable.equals(psp1, undefined));
+    TestBoolean.false ("skuCollectable null psp1", skuCollectable.equals(null, psp1));
+    TestBoolean.false ("skuCollectable undefined psp1", skuCollectable.equals(undefined, psp1));
+    TestBoolean.true ("skuCollectable null null", skuCollectable.equals(null, null));
+    TestBoolean.true ("skuCollectable undefined undefined", skuCollectable.equals(undefined, undefined));
+    TestBoolean.false ("skuCollectable null undefined", skuCollectable.equals(null, undefined));
+    TestBoolean.false ("skuCollectable undefined null", skuCollectable.equals(undefined, null));
+  });
+
+  it ("Dynamic Collectable nameCollectable", function () {
+    const nameCollectable:Collectable<PetStoreProduct> = Collections.dynamicCollectable("name");
+    // NameCollectable will differentiate psp1 psp2 psp3
+    TestBoolean.false ("nameCollectable psp1 psp2", nameCollectable.equals(psp1, psp2));
+    TestBoolean.false ("nameCollectable psp1 psp3", nameCollectable.equals(psp1, psp3));
+    TestBoolean.false ("nameCollectable psp2 psp3", nameCollectable.equals(psp2, psp3));
+
+    // nameCollectable cannot differentiate psp2 and psp2copy
+    TestBoolean.true ("nameCollectable psp2 psp2copy", nameCollectable.equals(psp2, psp2copy));
+
+    // The others will be differentiated
+    TestBoolean.false ("nameCollectable psp2copy psp1", nameCollectable.equals(psp2copy, psp1));
+    TestBoolean.false ("nameCollectable psp2copy psp3", nameCollectable.equals(psp2copy, psp3));
+
+    // Compare vs null and undefined
+    TestBoolean.false ("nameCollectable psp1 null", nameCollectable.equals(psp1, null));
+    TestBoolean.false ("nameCollectable psp1 undefined", nameCollectable.equals(psp1, undefined));
+    TestBoolean.false ("nameCollectable null psp1", nameCollectable.equals(null, psp1));
+    TestBoolean.false ("nameCollectable undefined psp1", nameCollectable.equals(undefined, psp1));
+    TestBoolean.true ("nameCollectable null null", nameCollectable.equals(null, null));
+    TestBoolean.true ("nameCollectable undefined undefined", nameCollectable.equals(undefined, undefined));
+    TestBoolean.false ("nameCollectable null undefined", nameCollectable.equals(null, undefined));
+    TestBoolean.false ("nameCollectable undefined null", nameCollectable.equals(undefined, null));
+  });
+
+  it ("Dynamic Collectable skuNameCollectable", function () {
+    const skuNameCollectable:Collectable<PetStoreProduct> = Collections.dynamicCollectable("sku", "name");
+
+    // skuNameCollectable will differentiate psp1 psp2 psp3 psp1copy psp2copy
+    TestBoolean.false ("skuNameCollectable psp1 psp2", skuNameCollectable.equals(psp1, psp2));
+    TestBoolean.false ("skuNameCollectable psp1 psp3", skuNameCollectable.equals(psp1, psp3));
+    TestBoolean.false ("skuNameCollectable psp1 psp1copy", skuNameCollectable.equals(psp1, psp1copy));
+    TestBoolean.false ("skuNameCollectable psp1 psp2copy", skuNameCollectable.equals(psp1, psp2copy));
+    TestBoolean.false ("skuNameCollectable psp2 psp3", skuNameCollectable.equals(psp2, psp3));
+    TestBoolean.false ("skuNameCollectable psp2 psp1copy", skuNameCollectable.equals(psp2, psp1copy));
+    TestBoolean.false ("skuNameCollectable psp2 psp2copy", skuNameCollectable.equals(psp2, psp2copy));
+    TestBoolean.false ("skuNameCollectable psp2 psp3copy", skuNameCollectable.equals(psp2, psp3copy));
+    TestBoolean.false ("skuNameCollectable psp3 psp1copy", skuNameCollectable.equals(psp3, psp1copy));
+    TestBoolean.false ("skuNameCollectable psp3 psp2copy", skuNameCollectable.equals(psp3, psp2copy));
+    TestBoolean.false ("skuNameCollectable psp3 psp3copy", skuNameCollectable.equals(psp3, psp3copy));
+    TestBoolean.false ("skuNameCollectable psp1copy psp2copy", skuNameCollectable.equals(psp1copy, psp2copy));
+    TestBoolean.false ("skuNameCollectable psp1copy psp3copy", skuNameCollectable.equals(psp1copy, psp3copy));
+
+    // nameCollectable cannot differentiate psp1 and psp3copy
+    TestBoolean.true ("nameCollectable psp1 psp3copy", skuNameCollectable.equals(psp1, psp3copy));
+
+    // Compare vs null and undefined
+    TestBoolean.false ("nameCollectable psp1 null", skuNameCollectable.equals(psp1, null));
+    TestBoolean.false ("nameCollectable psp1 undefined", skuNameCollectable.equals(psp1, undefined));
+    TestBoolean.false ("nameCollectable null psp1", skuNameCollectable.equals(null, psp1));
+    TestBoolean.false ("nameCollectable undefined psp1", skuNameCollectable.equals(undefined, psp1));
+    TestBoolean.true ("nameCollectable null null", skuNameCollectable.equals(null, null));
+    TestBoolean.true ("nameCollectable undefined undefined", skuNameCollectable.equals(undefined, undefined));
+    TestBoolean.false ("nameCollectable null undefined", skuNameCollectable.equals(null, undefined));
+    TestBoolean.false ("nameCollectable undefined null", skuNameCollectable.equals(undefined, null));
+
+  });
+
 
 });
+
+/*
+ * This class is a simple class that the default Collectable
+ * will properly handle.
+ * The copy instances below are to test the dynamicCollectable method
+ */
+class PetStoreProduct {
+  sku:number;
+  name:string;
+  brand:string;
+
+  constructor (isku:number, iname:string, ibrand:string) {
+    this.sku = isku;
+    this.name = iname;
+    this.brand = ibrand;
+  }
+}
+
+const psp1:PetStoreProduct = new PetStoreProduct (1, "A", "A");
+const psp2:PetStoreProduct = new PetStoreProduct (2, "B", "B");
+const psp3:PetStoreProduct = new PetStoreProduct (3, "C", "C");
+
+const psp1copy:PetStoreProduct = new PetStoreProduct (1, "D", "D");  // duplicate sku
+const psp2copy:PetStoreProduct = new PetStoreProduct (5, "B", "E");  // duplicate product name
+const psp3copy:PetStoreProduct = new PetStoreProduct (1, "A", "F");  // duplicate sku and product name
