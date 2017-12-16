@@ -211,14 +211,14 @@ describe("Test Collections static methods", function() {
     TestBoolean.true ("nameCollectable psp1 psp3copy", skuNameCollectable.equals(psp1, psp3copy));
 
     // Compare vs null and undefined
-    TestBoolean.false ("nameCollectable psp1 null", skuNameCollectable.equals(psp1, null));
-    TestBoolean.false ("nameCollectable psp1 undefined", skuNameCollectable.equals(psp1, undefined));
-    TestBoolean.false ("nameCollectable null psp1", skuNameCollectable.equals(null, psp1));
-    TestBoolean.false ("nameCollectable undefined psp1", skuNameCollectable.equals(undefined, psp1));
-    TestBoolean.true ("nameCollectable null null", skuNameCollectable.equals(null, null));
-    TestBoolean.true ("nameCollectable undefined undefined", skuNameCollectable.equals(undefined, undefined));
-    TestBoolean.false ("nameCollectable null undefined", skuNameCollectable.equals(null, undefined));
-    TestBoolean.false ("nameCollectable undefined null", skuNameCollectable.equals(undefined, null));
+    TestBoolean.false ("skuNameCollectable psp1 null", skuNameCollectable.equals(psp1, null));
+    TestBoolean.false ("skuNameCollectable psp1 undefined", skuNameCollectable.equals(psp1, undefined));
+    TestBoolean.false ("skuNameCollectable null psp1", skuNameCollectable.equals(null, psp1));
+    TestBoolean.false ("skuNameCollectable undefined psp1", skuNameCollectable.equals(undefined, psp1));
+    TestBoolean.true ("skuNameCollectable null null", skuNameCollectable.equals(null, null));
+    TestBoolean.true ("skuNameCollectable undefined undefined", skuNameCollectable.equals(undefined, undefined));
+    TestBoolean.false ("skuNameCollectable null undefined", skuNameCollectable.equals(null, undefined));
+    TestBoolean.false ("skuNameCollectable undefined null", skuNameCollectable.equals(undefined, null));
 
   });
 

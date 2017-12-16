@@ -191,8 +191,15 @@ var Collections = (function () {
                             return false;
                         }
                     }
-                    if ((b === null) || (b === undefined)) {
-                        return false;
+                    if (b === undefined) {
+                        if (a !== undefined) {
+                            return false;
+                        }
+                    }
+                    if (b === null) {
+                        if (a !== null) {
+                            return false;
+                        }
                     }
                     if (JSON.stringify(a) !== JSON.stringify(b)) {
                         return false;
