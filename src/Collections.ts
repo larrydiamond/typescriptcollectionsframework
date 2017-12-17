@@ -193,8 +193,8 @@ export class Collections {
         }
 
         for (let loop = 0; loop < values.length; loop++) {
-          let a = o1 [values [loop]];
-          let b = o2 [values [loop]];
+          const a = o1 [values [loop]];
+          const b = o2 [values [loop]];
 
           if (a === undefined) {
             if (b !== undefined) {

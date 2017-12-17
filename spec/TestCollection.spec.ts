@@ -188,7 +188,7 @@ function testEmptyStringCollection (coll:ImmutableCollection<string>) : void {
     throw new Error('Unwanted code branch in testEmptyStringCollection');
   }
   const i:Iterator<string> = coll[Symbol.iterator]();
-  let ir:IteratorResult<string> = i.next();
+  const ir:IteratorResult<string> = i.next();
   expect (ir.done).toEqual(true);
 }
 
@@ -200,7 +200,7 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
     throw new Error('Unwanted code branch in testEmptyNumberCollection');
   }
   const i:Iterator<number> = coll[Symbol.iterator]();
-  let ir:IteratorResult<number> = i.next();
+  const ir:IteratorResult<number> = i.next();
   expect (ir.done).toEqual(true);
 }
 

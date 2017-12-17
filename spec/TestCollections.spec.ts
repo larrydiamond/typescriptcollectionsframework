@@ -247,9 +247,9 @@ describe("Test Collections static methods", function() {
  * The copy instances below are to test the dynamicCollectable method
  */
 class PetStoreProduct {
-  sku:number;
-  name:string;
-  brand:string;
+  public sku:number;
+  public name:string;
+  public brand:string;
 
   constructor (isku:number, iname:string, ibrand:string) {
     this.sku = isku;
