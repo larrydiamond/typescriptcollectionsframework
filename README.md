@@ -1,3 +1,5 @@
+![Logo](tsf-blue.png "Logo")
+
 **"If you know the Java Collections Framework, you know the Typescript Collections Framework.   It's the same API (mostly)"**
 
 It is designed for and written by Java coders who also needed to do TypeScript programming.
@@ -87,3 +89,4 @@ Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at l
 # Contributors
 
 Frank Giordano (https://github.com/frankgiordano)
+Stephen E. Chiang (https://github.com/chiangs)
