@@ -1,4 +1,4 @@
-![Logo](tsf-blue.png =100x "Logo")
+![Logo](tsf-blue.png | width=100)
 
 **"If you know the Java Collections Framework, you know the Typescript Collections Framework.   It's the same API (mostly)"**
 
