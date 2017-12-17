@@ -89,4 +89,5 @@ Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at l
 # Contributors
 
 Frank Giordano (https://github.com/frankgiordano)
+
 Stephen E. Chiang (https://github.com/chiangs)
