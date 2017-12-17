@@ -219,7 +219,23 @@ describe("Test Collections static methods", function() {
     TestBoolean.true ("skuNameCollectable undefined undefined", skuNameCollectable.equals(undefined, undefined));
     TestBoolean.false ("skuNameCollectable null undefined", skuNameCollectable.equals(null, undefined));
     TestBoolean.false ("skuNameCollectable undefined null", skuNameCollectable.equals(undefined, null));
+  });
 
+  it ("Dynamic Collectable null and undefined fields", function () {
+    const skuNameCollectable:Collectable<PetStoreProduct> = Collections.dynamicCollectable("sku", "name");
+    TestBoolean.false ("skuNameCollectable psp1 null", skuNameCollectable.equals(psp1, pspnull));
+    TestBoolean.false ("skuNameCollectable psp2 null", skuNameCollectable.equals(psp2, pspnull));
+    TestBoolean.false ("skuNameCollectable psp3 null", skuNameCollectable.equals(psp3, pspnull));
+
+    TestBoolean.false ("skuNameCollectable psp1 undefined", skuNameCollectable.equals(psp1, pspundefined));
+    TestBoolean.false ("skuNameCollectable psp2 undefined", skuNameCollectable.equals(psp2, pspundefined));
+    TestBoolean.false ("skuNameCollectable psp3 undefined", skuNameCollectable.equals(psp3, pspundefined));
+
+    TestBoolean.false ("skuNameCollectable undefined null", skuNameCollectable.equals(pspundefined, pspnull));
+    TestBoolean.false ("skuNameCollectable null undefined", skuNameCollectable.equals(pspnull, pspundefined));
+
+    TestBoolean.true ("skuNameCollectable null null", skuNameCollectable.equals(pspnull, pspnull));
+    TestBoolean.true ("skuNameCollectable undefined undefined", skuNameCollectable.equals(pspundefined, pspundefined));
   });
 
 
@@ -249,3 +265,6 @@ const psp3:PetStoreProduct = new PetStoreProduct (3, "C", "C");
 const psp1copy:PetStoreProduct = new PetStoreProduct (1, "D", "D");  // duplicate sku
 const psp2copy:PetStoreProduct = new PetStoreProduct (5, "B", "E");  // duplicate product name
 const psp3copy:PetStoreProduct = new PetStoreProduct (1, "A", "F");  // duplicate sku and product name
+
+const pspnull:PetStoreProduct = new PetStoreProduct (null, null, null);
+const pspundefined:PetStoreProduct = new PetStoreProduct (undefined, undefined, undefined);

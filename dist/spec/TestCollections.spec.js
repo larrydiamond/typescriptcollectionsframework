@@ -176,6 +176,19 @@ describe("Test Collections static methods", function () {
         jasts_1.TestBoolean.false("skuNameCollectable null undefined", skuNameCollectable.equals(null, undefined));
         jasts_1.TestBoolean.false("skuNameCollectable undefined null", skuNameCollectable.equals(undefined, null));
     });
+    it("Dynamic Collectable null and undefined fields", function () {
+        var skuNameCollectable = Collections_1.Collections.dynamicCollectable("sku", "name");
+        jasts_1.TestBoolean.false("skuNameCollectable psp1 null", skuNameCollectable.equals(psp1, pspnull));
+        jasts_1.TestBoolean.false("skuNameCollectable psp2 null", skuNameCollectable.equals(psp2, pspnull));
+        jasts_1.TestBoolean.false("skuNameCollectable psp3 null", skuNameCollectable.equals(psp3, pspnull));
+        jasts_1.TestBoolean.false("skuNameCollectable psp1 undefined", skuNameCollectable.equals(psp1, pspundefined));
+        jasts_1.TestBoolean.false("skuNameCollectable psp2 undefined", skuNameCollectable.equals(psp2, pspundefined));
+        jasts_1.TestBoolean.false("skuNameCollectable psp3 undefined", skuNameCollectable.equals(psp3, pspundefined));
+        jasts_1.TestBoolean.false("skuNameCollectable undefined null", skuNameCollectable.equals(pspundefined, pspnull));
+        jasts_1.TestBoolean.false("skuNameCollectable null undefined", skuNameCollectable.equals(pspnull, pspundefined));
+        jasts_1.TestBoolean.true("skuNameCollectable null null", skuNameCollectable.equals(pspnull, pspnull));
+        jasts_1.TestBoolean.true("skuNameCollectable undefined undefined", skuNameCollectable.equals(pspundefined, pspundefined));
+    });
 });
 /*
  * This class is a simple class that the default Collectable
@@ -196,3 +209,5 @@ var psp3 = new PetStoreProduct(3, "C", "C");
 var psp1copy = new PetStoreProduct(1, "D", "D"); // duplicate sku
 var psp2copy = new PetStoreProduct(5, "B", "E"); // duplicate product name
 var psp3copy = new PetStoreProduct(1, "A", "F"); // duplicate sku and product name
+var pspnull = new PetStoreProduct(null, null, null);
+var pspundefined = new PetStoreProduct(undefined, undefined, undefined);
