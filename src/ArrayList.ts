@@ -17,6 +17,15 @@ import {JIterator} from "./JIterator";
 import {List} from "./List";
 import {Queue} from "./Queue";
 
+/**
+ * Resizable-array implementation of the List interface.
+ *
+ * The size, isEmpty, get, set, iterator, and listIterator operations run in constant time. <br>
+ * The add operation runs in amortized constant time, that is, adding n elements requires O(n) time. <br>
+ * All of the other operations run in linear time (roughly speaking). The constant factor is low compared to that for the LinkedList implementation.
+ *
+ * This implementation also implements the Queue and Deque interfaces in addition to the List interface
+ */
 export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
   private elements:T[] = null;
   private sizeValue:number = 0;
