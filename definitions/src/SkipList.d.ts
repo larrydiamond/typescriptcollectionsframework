@@ -115,6 +115,10 @@ export declare class SkipListNode<K, V> extends BasicMapEntry<K, V> {
     private nextNodeArray;
     getNextNodeArray(): ArrayList<SkipListNode<K, V>>;
 }
+/**
+ * A scalable NavigableMap implementation. The map is sorted according to a Comparator provided at map creation time.
+ * This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.
+ */
 export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     private impl;
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
@@ -293,6 +297,11 @@ export declare class SkipListMapEntrySetIterator<K, V> implements Iterator<MapEn
     constructor(iMap: SkipListMapImpl<K, V>);
     next(value?: any): IteratorResult<MapEntry<K, V>>;
 }
+/**
+ * A scalable NavigableSet implementation based on a SkipListMap.
+ * The elements of the set are kept sorted according to a Comparator provided at set creation time.
+ * This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.
+ */
 export declare class SkipListSet<K> implements NavigableSet<K> {
     private initialElements;
     private impl;

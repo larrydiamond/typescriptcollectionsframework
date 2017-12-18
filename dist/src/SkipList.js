@@ -703,6 +703,10 @@ var SkipListNodeComparator = (function () {
     };
     return SkipListNodeComparator;
 }());
+/**
+ * A scalable NavigableMap implementation. The map is sorted according to a Comparator provided at map creation time.
+ * This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.
+ */
 var SkipListMap = (function () {
     function SkipListMap(comp, iInitial) {
         if (iInitial === void 0) { iInitial = null; }
@@ -1136,6 +1140,11 @@ var SkipListMapEntrySetIterator = (function () {
     return SkipListMapEntrySetIterator;
 }());
 exports.SkipListMapEntrySetIterator = SkipListMapEntrySetIterator;
+/**
+ * A scalable NavigableSet implementation based on a SkipListMap.
+ * The elements of the set are kept sorted according to a Comparator provided at set creation time.
+ * This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.
+ */
 var SkipListSet = (function () {
     function SkipListSet(iComparator, initialElements) {
         this.initialElements = initialElements;
