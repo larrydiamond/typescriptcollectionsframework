@@ -15,6 +15,16 @@ import {JSet} from "./JSet";
 import {NavigableSet} from "./NavigableSet";
 import {TreeMap} from "./TreeMap";
 
+/**
+ * A NavigableSet implementation based on a TreeMap. The elements are ordered using a Comparator provided at set creation time.<br>
+ * This implementation provides guaranteed log(n) time cost for the basic operations (add, remove and contains).
+ *
+ * Note that the ordering maintained by a set must be consistent with equals if it is to correctly implement the Set interface.
+ * (See Comparator for a precise definition of consistent with equals.)
+ * This is so because the Set interface is defined in terms of the equals operation, but a TreeSet instance performs all element comparisons using its Comparator,
+ * so two elements that are deemed equal by this method are, from the standpoint of the set, equal.
+ * The behavior of a set is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Set interface.
+ */
 export class TreeSet<K> implements NavigableSet<K> {
 
   private datastore:TreeMap<K,number> = null;

@@ -65,6 +65,19 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A NavigableSet implementation based on a TreeMap. The elements are ordered using a Comparator provided at set creation time.<br>
+						This implementation provides guaranteed log(n) time cost for the basic operations (add, remove and contains).</p>
+					</div>
+					<p>Note that the ordering maintained by a set must be consistent with equals if it is to correctly implement the Set interface.
+						(See Comparator for a precise definition of consistent with equals.)
+						This is so because the Set interface is defined in terms of the equals operation, but a TreeSet instance performs all element comparisons using its Comparator,
+						so two elements that are deemed equal by this method are, from the standpoint of the set, equal.
+					The behavior of a set is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Set interface.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -136,7 +149,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L20">TreeSet.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L30">TreeSet.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -166,7 +179,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L209">TreeSet.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L219">TreeSet.ts:219</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,7 +203,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L42">TreeSet.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L52">TreeSet.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,7 +236,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#ceiling">ceiling</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L111">TreeSet.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L121">TreeSet.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -256,7 +269,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L152">TreeSet.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L162">TreeSet.ts:162</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -278,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L65">TreeSet.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L75">TreeSet.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -302,7 +315,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L87">TreeSet.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L97">TreeSet.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -335,7 +348,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L123">TreeSet.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L133">TreeSet.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -359,7 +372,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#floor">floor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L99">TreeSet.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L109">TreeSet.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -391,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L187">TreeSet.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L197">TreeSet.ts:197</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +437,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L216">TreeSet.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L226">TreeSet.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -447,7 +460,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#immutableset">immutableSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L223">TreeSet.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L233">TreeSet.ts:233</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -470,7 +483,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L73">TreeSet.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L83">TreeSet.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -494,7 +507,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L201">TreeSet.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L211">TreeSet.ts:211</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -518,7 +531,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#last">last</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L131">TreeSet.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L141">TreeSet.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -542,7 +555,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#pollfirst">pollFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L160">TreeSet.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L170">TreeSet.ts:170</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -566,7 +579,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#polllast">pollLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L173">TreeSet.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L183">TreeSet.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -590,7 +603,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L140">TreeSet.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L150">TreeSet.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -623,7 +636,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigableset_.navigableset.html">NavigableSet</a>.<a href="../interfaces/_navigableset_.navigableset.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L55">TreeSet.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L65">TreeSet.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -646,7 +659,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/3b7c0ba/src/TreeSet.ts#L33">TreeSet.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/d3de52a/src/TreeSet.ts#L43">TreeSet.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
