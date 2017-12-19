@@ -20,6 +20,11 @@ import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 
+/**
+ * This class consists exclusively of static methods that operate on or return collections.
+ *
+ * It contains polymorphic algorithms that operate on collections, "wrappers", which return a new collection backed by a specified collection, and a few other odds and ends.
+ */
 export class Collections {
 
   /**
@@ -171,6 +176,9 @@ export class Collections {
     return tmp;
   }
 
+/**
+ * This method creates a Collectable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+ */
   public static dynamicCollectable<K> (... values : string []) : Collectable<K> {
     const tmp : Collectable<K> = {
       equals (o1: K, o2: K) {
