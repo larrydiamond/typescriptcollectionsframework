@@ -9,6 +9,16 @@
 import {ImmutableCollection} from "./ImmutableCollection";
 import {JIterator} from "./JIterator";
 
+/**
+ * The root mutable interface in the collection hierarchy. A collection represents a group of objects, known as its elements.
+ * Some collections allow duplicate elements and others do not. Some are ordered and others unordered.
+ * This framework does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List.
+ * This interface is typically used to pass collections around and manipulate them where maximum generality is desired.
+ *
+ * Methods that modify collections are not defined in this class, they are instead defined in Collection or some subinterface.<br>
+ * Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null and / or undefined elements.
+ */
+
 export interface Collection<T> extends ImmutableCollection<T> {
   /**
   * Ensures that this collection contains the specified element (optional operation).
