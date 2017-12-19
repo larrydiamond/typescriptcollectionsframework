@@ -65,6 +65,25 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A collection designed for holding elements prior to processing.
+						Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations.</p>
+					</div>
+					<p>Queues typically, but do not necessarily, order elements in a FIFO (first-in-first-out) manner.
+						Among the exceptions are priority queues, which order elements according to a supplied comparator.
+					Whatever the ordering used, the head of the queue is that element which would be removed by a call to remove() or poll().</p>
+					<p>In a FIFO queue, all new elements are inserted at the tail of the queue. Other kinds of queues may use different placement rules.
+					Every Queue implementation must specify its ordering properties.</p>
+					<p>The offer method inserts an element if possible, otherwise returning false.
+					The offer method is designed for use when failure is a normal, rather than exceptional occurrence, for example, in fixed-capacity (or &quot;bounded&quot;) queues.</p>
+					<p>The remove() and poll() methods remove and return the head of the queue.
+						Exactly which element is removed from the queue is a function of the queue&#39;s ordering policy, which differs from implementation to implementation.
+					The remove() and poll() methods differ only in their behavior when the queue is empty.</p>
+					<p>The element() and peek() methods return, but do not remove, the head of the queue.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -138,7 +157,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/ImmutableCollection.ts#L35">ImmutableCollection.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/ImmutableCollection.ts#L35">ImmutableCollection.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -162,7 +181,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Queue.ts#L20">Queue.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Queue.ts#L40">Queue.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -196,7 +215,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Collection.ts#L26">Collection.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Collection.ts#L26">Collection.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -219,7 +238,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/ImmutableCollection.ts#L42">ImmutableCollection.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/ImmutableCollection.ts#L42">ImmutableCollection.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -251,7 +270,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Queue.ts#L51">Queue.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Queue.ts#L71">Queue.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,7 +294,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Collection.ts#L38">Collection.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Collection.ts#L38">Collection.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +317,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/ImmutableCollection.ts#L23">ImmutableCollection.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/ImmutableCollection.ts#L23">ImmutableCollection.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +341,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/ImmutableCollection.ts#L29">ImmutableCollection.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/ImmutableCollection.ts#L29">ImmutableCollection.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -345,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Queue.ts#L27">Queue.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Queue.ts#L47">Queue.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,7 +396,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Queue.ts#L45">Queue.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Queue.ts#L65">Queue.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +419,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Queue.ts#L33">Queue.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Queue.ts#L53">Queue.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +443,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Collection.ts#L33">Collection.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Collection.ts#L33">Collection.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,7 +475,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/Queue.ts#L39">Queue.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/Queue.ts#L59">Queue.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,7 +499,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/a66dc16/src/ImmutableCollection.ts#L17">ImmutableCollection.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/9b79374/src/ImmutableCollection.ts#L17">ImmutableCollection.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
