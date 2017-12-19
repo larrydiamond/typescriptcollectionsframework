@@ -9,6 +9,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
+/**
+ * Doubly-linked list implementation of the List, Queue, and Deque interfaces.
+ *
+ * All of the operations perform as could be expected for a doubly-linked list.
+ * Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index.
+ */
 var LinkedList = (function () {
     function LinkedList(iEquals, initialElements) {
         if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }

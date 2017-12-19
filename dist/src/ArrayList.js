@@ -9,6 +9,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
+/**
+ * Resizable-array implementation of the List interface.
+ *
+ * The size, isEmpty, get, set, iterator, and listIterator operations run in constant time. <br>
+ * The add operation runs in amortized constant time, that is, adding n elements requires O(n) time. <br>
+ * All of the other operations run in linear time (roughly speaking). The constant factor is low compared to that for the LinkedList implementation.
+ *
+ * This implementation also implements the Queue and Deque interfaces in addition to the List interface
+ */
 var ArrayList = (function () {
     function ArrayList(iEquals, initialElements) {
         if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }

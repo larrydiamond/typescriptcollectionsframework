@@ -5,6 +5,12 @@ import { ImmutableList } from "./ImmutableList";
 import { JIterator } from "./JIterator";
 import { List } from "./List";
 import { Queue } from "./Queue";
+/**
+ * Doubly-linked list implementation of the List, Queue, and Deque interfaces.
+ *
+ * All of the operations perform as could be expected for a doubly-linked list.
+ * Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index.
+ */
 export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     private initialElements;
     private firstNode;
