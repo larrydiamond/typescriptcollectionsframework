@@ -19,8 +19,10 @@ import {Queue} from "./Queue";
  * This interface defines methods to access the elements at both ends of the deque. Methods are provided to insert, remove, and examine the element.
  *
  * Deques can also be used as LIFO (Last-In-First-Out) stacks. When a deque is used as a stack, elements are pushed and popped from the beginning of the deque.
- * 
+ *
  * This interface provides two methods to remove interior elements, removeFirstOccurrence and removeLastOccurrence.
+ *
+ * This interface corresponds to java.util.Deque
  */
 export interface Deque<K> extends Queue<K> {
 

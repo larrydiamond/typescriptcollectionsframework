@@ -120,6 +120,8 @@ export declare class SkipListNode<K, V> extends BasicMapEntry<K, V> {
  *
  * The map is sorted according to a Comparator provided at map creation time.<br>
  * This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.
+ *
+ * This class corresponds to java.util.concurrent.ConcurrentSkipListMap
  */
 export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     private impl;
@@ -304,6 +306,8 @@ export declare class SkipListMapEntrySetIterator<K, V> implements Iterator<MapEn
  *
  * The elements of the set are kept sorted according to a Comparator provided at set creation time.<br>
  * This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.
+ *
+ * This class corresponds to java.util.concurrent.ConcurrentSkipListSet
  */
 export declare class SkipListSet<K> implements NavigableSet<K> {
     private initialElements;

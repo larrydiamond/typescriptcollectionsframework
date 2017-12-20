@@ -708,6 +708,8 @@ var SkipListNodeComparator = (function () {
  *
  * The map is sorted according to a Comparator provided at map creation time.<br>
  * This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.
+ *
+ * This class corresponds to java.util.concurrent.ConcurrentSkipListMap
  */
 var SkipListMap = (function () {
     function SkipListMap(comp, iInitial) {
@@ -1147,6 +1149,8 @@ exports.SkipListMapEntrySetIterator = SkipListMapEntrySetIterator;
  *
  * The elements of the set are kept sorted according to a Comparator provided at set creation time.<br>
  * This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.
+ *
+ * This class corresponds to java.util.concurrent.ConcurrentSkipListSet
  */
 var SkipListSet = (function () {
     function SkipListSet(iComparator, initialElements) {

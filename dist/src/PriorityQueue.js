@@ -11,6 +11,8 @@ var TreeSet_1 = require("./TreeSet");
  *
  * Implementation note: this implementation provides O(log(n)) time for the enqueuing and dequeuing methods (offer, poll, remove() and add);
  * linear time for the remove(Object) and contains(Object) methods; and constant time for the retrieval methods (peek, element, and size).
+ *
+ * This class corresponds to java.util.PriorityQueue
  */
 var PriorityQueue = (function () {
     function PriorityQueue(iComparator, initialElements) {

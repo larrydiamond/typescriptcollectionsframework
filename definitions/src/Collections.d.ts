@@ -4,6 +4,11 @@ import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableList } from "./ImmutableList";
 import { ImmutableMap } from "./ImmutableMap";
 import { ImmutableSet } from "./ImmutableSet";
+/**
+ * This class consists exclusively of static methods that operate on or return collections.
+ *
+ * It contains polymorphic algorithms that operate on collections, "wrappers", which return a new collection backed by a specified collection, and a few other odds and ends.
+ */
 export declare class Collections {
     /**
      * Returns a Comparator that works correctly for string native objects
@@ -36,5 +41,8 @@ export declare class Collections {
      * Returns an Collectable made from the Comparator passed in
      */
     static collectableFromComparator<K>(iComp: Comparator<K>): Collectable<K>;
+    /**
+     * This method creates a Collectable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+     */
     static dynamicCollectable<K>(...values: string[]): Collectable<K>;
 }

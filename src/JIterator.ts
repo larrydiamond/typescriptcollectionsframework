@@ -8,6 +8,11 @@
 
 import {Collectable} from "./Collectable";
 
+/**
+ * An iterator over a collection.
+ *
+ * This interface corresponds to java.util.Iterator
+ */
 export interface JIterator<T> {
 /**
  * Returns true if the iteration has more elements.

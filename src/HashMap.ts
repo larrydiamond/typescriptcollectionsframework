@@ -38,6 +38,8 @@ import {MapEntry} from "./MapEntry";
  *
  * If many mappings are to be stored in a HashMap instance, creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform automatic rehashing as needed to grow the table.<br>
  * Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table.
+ *
+ * This class corresponds to java.util.HashMap
  */
 
 export class HashMap<K,V> implements JMap<K,V> {

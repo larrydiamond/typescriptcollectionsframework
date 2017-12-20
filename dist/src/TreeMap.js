@@ -18,7 +18,9 @@ var BasicMapEntry_1 = require("./BasicMapEntry");
  * This is so because the Map interface is defined in terms of the equals operation,
  * but a sorted map performs all key comparisons using its Comparator,
  * so two keys that are deemed equal by this method are, from the standpoint of the sorted map, equal. <br>
- * The behavior of a sorted map is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Map interface.
+ * The behavior of a navigable map is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Map interface.
+ *
+ * This class corresponds to java.util.TreeMap
  */
 var TreeMap = (function () {
     function TreeMap(iComparator, initialElements) {

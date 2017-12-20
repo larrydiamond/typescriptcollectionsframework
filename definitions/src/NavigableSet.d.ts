@@ -6,6 +6,24 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 import { JSet } from "./JSet";
+/**
+ * A Set that further provides a total ordering on its elements. The elements are ordered using a Comparator typically provided at navigable set creation time.
+ * The set's iterator will traverse the set in ascending element order. Several additional operations are provided to take advantage of the ordering.
+ * (This interface is the set analogue of NavigableMap.)
+ *
+ * Note that the ordering maintained by a navigable set must be consistent with equals if the navigable set is to correctly implement the Set interface.
+ * (See the Comparator interface for a precise definition of consistent with equals.) <br>
+ * This is so because the Set interface is defined in terms of the equals operation,
+ * but a navigable set performs all element comparisons using its Comparator, so two elements that are deemed equal by this method are,
+ * from the standpoint of the navigable set, equal.
+ * The behavior of a navigable set is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Set interface.
+ *
+ * Methods lower, floor, ceiling, and higher return elements respectively less than, less than or equal, greater than or equal,
+ * and greater than a given element, returning null if there is no such element.
+ * This interface additionally defines methods pollFirst and pollLast that return and remove the lowest and highest element, if one exists, else returning null.
+ *
+ * This interface corresponds to java.util.NavigableSet
+ */
 export interface NavigableSet<K> extends JSet<K> {
     /**
     * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.

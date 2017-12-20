@@ -12,6 +12,8 @@ import { NavigableSet } from "./NavigableSet";
  * This is so because the Set interface is defined in terms of the equals operation, but a TreeSet instance performs all element comparisons using its Comparator,
  * so two elements that are deemed equal by this method are, from the standpoint of the set, equal.
  * The behavior of a set is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Set interface.
+ *
+ * This class corresponds to java.util.TreeSet
  */
 export declare class TreeSet<K> implements NavigableSet<K> {
     private initialElements;

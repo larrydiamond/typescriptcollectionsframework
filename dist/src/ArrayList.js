@@ -17,6 +17,8 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
  * All of the other operations run in linear time (roughly speaking). The constant factor is low compared to that for the LinkedList implementation.
  *
  * This implementation also implements the Queue and Deque interfaces in addition to the List interface
+ *
+ * This class corresponds to java.util.ArrayList
  */
 var ArrayList = (function () {
     function ArrayList(iEquals, initialElements) {

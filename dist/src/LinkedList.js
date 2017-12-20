@@ -14,6 +14,8 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
  *
  * All of the operations perform as could be expected for a doubly-linked list.
  * Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index.
+ *
+ * This class corresponds to java.util.LinkedList
  */
 var LinkedList = (function () {
     function LinkedList(iEquals, initialElements) {

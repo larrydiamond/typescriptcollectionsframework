@@ -28,6 +28,8 @@ import {JSet} from "./JSet";
  * Iterating over this set requires time proportional to the sum of the HashSet instance's size
  * (the number of elements) plus the "capacity" of the backing HashMap instance (the number of buckets). <br>
  * Thus, it's very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.
+ *
+ * This class corresponds to java.util.HashSet
  */
 export class HashSet<K> implements JSet<K> {
 

@@ -13,6 +13,8 @@ import { Queue } from "./Queue";
  * All of the other operations run in linear time (roughly speaking). The constant factor is low compared to that for the LinkedList implementation.
  *
  * This implementation also implements the Queue and Deque interfaces in addition to the List interface
+ *
+ * This class corresponds to java.util.ArrayList
  */
 export declare class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
     private initialElements;

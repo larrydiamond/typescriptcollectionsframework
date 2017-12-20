@@ -17,6 +17,8 @@ import {JIterator} from "./JIterator";
  *
  * Methods that modify collections are not defined in this class, they are instead defined in Collection or some subinterface.<br>
  * Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null and / or undefined elements.
+ *
+ * This interface corresponds to java.util.Collection
  */
 
 export interface Collection<T> extends ImmutableCollection<T> {

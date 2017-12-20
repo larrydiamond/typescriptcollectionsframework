@@ -11,6 +11,11 @@ var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var ArrayList_1 = require("./ArrayList");
 var HashMap_1 = require("./HashMap");
 var HashSet_1 = require("./HashSet");
+/**
+ * This class consists exclusively of static methods that operate on or return collections.
+ *
+ * It contains polymorphic algorithms that operate on collections, "wrappers", which return a new collection backed by a specified collection, and a few other odds and ends.
+ */
 var Collections = (function () {
     function Collections() {
     }
@@ -152,6 +157,9 @@ var Collections = (function () {
         };
         return tmp;
     };
+    /**
+     * This method creates a Collectable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+     */
     Collections.dynamicCollectable = function () {
         var values = [];
         for (var _i = 0; _i < arguments.length; _i++) {
