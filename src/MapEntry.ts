@@ -6,6 +6,13 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+/**
+ * A map entry (key-value pair).
+ *
+ * The behavior of a map entry is undefined if the backing map has been modified after the entry was obtained.
+ *
+ * This interface corresponds to java.util.Map.Entry
+ */
 export interface MapEntry<K,V> {
   /**
   * Returns the key corresponding to this entry.

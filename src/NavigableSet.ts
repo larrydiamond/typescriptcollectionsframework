@@ -22,7 +22,9 @@ import {JSet} from "./JSet";
  *
  * Methods lower, floor, ceiling, and higher return elements respectively less than, less than or equal, greater than or equal,
  * and greater than a given element, returning null if there is no such element.
- * This interface additionally defines methods pollFirst and pollLast that return and remove the lowest and highest element, if one exists, else returning null. 
+ * This interface additionally defines methods pollFirst and pollLast that return and remove the lowest and highest element, if one exists, else returning null.
+ *
+ * This interface corresponds to java.util.NavigableSet
  */
 export interface NavigableSet<K> extends JSet<K> {
 

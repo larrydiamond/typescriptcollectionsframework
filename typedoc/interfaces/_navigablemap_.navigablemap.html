@@ -65,6 +65,29 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A Map that further provides a total ordering on its keys. The map is ordered according to a Comparator provided at sorted map creation time.
+							This order is reflected when iterating over the navigable map&#39;s collection views (returned by the entrySet and keySet).
+						Several additional operations are provided to take advantage of the ordering. (This interface is the map analogue of NavigableSet.)</p>
+					</div>
+					<p>Note that the ordering maintained by a navigable map must be consistent with equals if the navigable map is to correctly implement the Map interface.
+						(See the Comparator interface for a precise definition of consistent with equals.)
+						This is so because the Map interface is defined in terms of the equals operation,
+						but a navigable map performs all key comparisons using its Comparator so two keys that are deemed equal by this method are,
+						from the standpoint of the navigable map, equal.
+						The behavior of an implementing map is well-defined even if its ordering is inconsistent with equals;
+					it just fails to obey the general contract of the Map interface.</p>
+					<p>Methods lowerEntry, floorEntry, ceilingEntry, and higherEntry return MapEntry objects associated with keys respectively less than,
+						less than or equal, greater than or equal, and greater than a given key, returning null if there is no such key. <br>
+						Similarly, methods lowerKey, floorKey, ceilingKey, and higherKey return only the associated keys.
+						All of these methods are designed for locating, not traversing entries.<br>
+						This interface additionally defines methods firstEntry, pollFirstEntry, lastEntry, and pollLastEntry
+					that return and/or remove the least and greatest mappings, if any exist, else returning null.</p>
+					<p>This interface corresponds to java.util.NavigableMap</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -142,7 +165,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L30">NavigableMap.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L52">NavigableMap.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -174,7 +197,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L37">NavigableMap.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L59">NavigableMap.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,7 +230,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_jmap_.jmap.html">JMap</a>.<a href="_jmap_.jmap.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/JMap.ts#L32">JMap.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/JMap.ts#L32">JMap.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -230,7 +253,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#containskey">containsKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/ImmutableMap.ts#L31">ImmutableMap.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/ImmutableMap.ts#L31">ImmutableMap.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -264,7 +287,7 @@
 								<p>Inherited from <a href="_jmap_.jmap.html">JMap</a>.<a href="_jmap_.jmap.html#entryset">entrySet</a></p>
 								<p>Overrides <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#entryset">entrySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/JMap.ts#L41">JMap.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/JMap.ts#L41">JMap.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -290,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L23">NavigableMap.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L45">NavigableMap.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L17">NavigableMap.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L39">NavigableMap.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -336,7 +359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L79">NavigableMap.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L101">NavigableMap.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -368,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L72">NavigableMap.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L94">NavigableMap.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -401,7 +424,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/ImmutableMap.ts#L24">ImmutableMap.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/ImmutableMap.ts#L24">ImmutableMap.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -433,7 +456,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L51">NavigableMap.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L73">NavigableMap.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -465,7 +488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L44">NavigableMap.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L66">NavigableMap.ts:66</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -498,7 +521,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_jmap_.jmap.html">JMap</a>.<a href="_jmap_.jmap.html#immutablemap">immutableMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/JMap.ts#L46">JMap.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/JMap.ts#L46">JMap.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -521,7 +544,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/ImmutableMap.ts#L37">ImmutableMap.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/ImmutableMap.ts#L37">ImmutableMap.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -545,7 +568,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/ImmutableMap.ts#L46">ImmutableMap.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/ImmutableMap.ts#L46">ImmutableMap.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -571,7 +594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L91">NavigableMap.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L113">NavigableMap.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -594,7 +617,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L85">NavigableMap.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L107">NavigableMap.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -617,7 +640,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L65">NavigableMap.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L87">NavigableMap.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -649,7 +672,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/NavigableMap.ts#L58">NavigableMap.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/NavigableMap.ts#L80">NavigableMap.ts:80</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -682,7 +705,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_jmap_.jmap.html">JMap</a>.<a href="_jmap_.jmap.html#put">put</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/JMap.ts#L20">JMap.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/JMap.ts#L20">JMap.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -721,7 +744,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_jmap_.jmap.html">JMap</a>.<a href="_jmap_.jmap.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/JMap.ts#L27">JMap.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/JMap.ts#L27">JMap.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -754,7 +777,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/ImmutableMap.ts#L17">ImmutableMap.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7b8f99b/src/ImmutableMap.ts#L17">ImmutableMap.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

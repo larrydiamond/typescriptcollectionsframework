@@ -25,8 +25,10 @@ import {Collection} from "./Collection";
  * The remove() and poll() methods remove and return the head of the queue.
  * Exactly which element is removed from the queue is a function of the queue's ordering policy, which differs from implementation to implementation.
  * The remove() and poll() methods differ only in their behavior when the queue is empty.
- * 
+ *
  * The element() and peek() methods return, but do not remove, the head of the queue.
+ *
+ * This interface corresponds to java.util.Queue
  */
 export interface Queue<K> extends Collection<K> {
   // A very talented volunteer stepped up to write Queue.   Im preparing some files for him.   Thank you very much!

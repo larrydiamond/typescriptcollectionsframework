@@ -23,6 +23,8 @@ import {TreeSet} from "./TreeSet";
  *
  * Implementation note: this implementation provides O(log(n)) time for the enqueuing and dequeuing methods (offer, poll, remove() and add);
  * linear time for the remove(Object) and contains(Object) methods; and constant time for the retrieval methods (peek, element, and size).
+ *
+ * This class corresponds to java.util.PriorityQueue
  */
 export class PriorityQueue<K> implements Queue<K> {
   private pQueue: TreeSet<K>;
