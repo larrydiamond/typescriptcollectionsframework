@@ -67,13 +67,18 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>license</dt>
-						<dd><p>Copyright Larry Diamond 2017 All Rights Reserved.</p>
-							<p>Use of this source code is governed by an MIT-style license that can be
-							found in the LICENSE file at <a href="https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE">https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE</a></p>
-						</dd>
-					</dl>
+					<div class="lead">
+						<p>A comparison function, which imposes a total ordering on some collection of objects. <br>
+							Comparators are used to control the order of certain data structures (such as sorted sets or sorted maps).
+						The ordering imposed by a comparator c on a set of elements S is said to be consistent with equals if and only if c.compare(e1, e2)==0 has the same boolean value as e1.equals(e2) for every e1 and e2 in S.</p>
+					</div>
+					<p>Caution should be exercised when using a comparator capable of imposing an ordering inconsistent with equals to order a sorted set (or sorted map). <br>
+						Suppose a sorted set (or sorted map) with an explicit comparator c is used with elements (or keys) drawn from a set S.
+						If the ordering imposed by c on S is inconsistent with equals, the sorted set (or sorted map) will behave &quot;strangely.&quot;
+					In particular the sorted set (or sorted map) will violate the general contract for set (or map), which is defined in terms of equals.</p>
+					<p>For example, suppose one adds two elements a and b such that (a.equals(b) &amp;&amp; c.compare(a, b) != 0) to an empty TreeSet with comparator c.
+						The second add operation will return true (and the size of the tree set will increase) because a and b are not equivalent from the tree set&#39;s perspective,
+					even though this is contrary to the specification of the Set.add method.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -117,7 +122,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/e89d41f/src/Comparator.ts#L21">Comparator.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/44a18cc/src/Comparator.ts#L35">Comparator.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
