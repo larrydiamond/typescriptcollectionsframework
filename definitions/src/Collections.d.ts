@@ -1,5 +1,6 @@
 import { Collectable } from "./Collectable";
 import { Comparator } from "./Comparator";
+import { Hashable } from "./Hashable";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableList } from "./ImmutableList";
 import { ImmutableMap } from "./ImmutableMap";
@@ -45,4 +46,8 @@ export declare class Collections {
      * This method creates a Collectable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
      */
     static dynamicCollectable<K>(...values: string[]): Collectable<K>;
+    /**
+     * This method creates a Hashable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+     */
+    static dynamicHashable<K>(...values: string[]): Hashable<K>;
 }

@@ -9,6 +9,7 @@
 import {Collectable} from "../src/Collectable";
 import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
+import {Hashable} from "../src/Hashable";
 import {ImmutableList} from "../src/ImmutableList";
 import {TestBoolean} from 'jasts';
 import {TestNumber} from 'jasts';
@@ -238,7 +239,116 @@ describe("Test Collections static methods", function() {
     TestBoolean.true ("skuNameCollectable undefined undefined", skuNameCollectable.equals(pspundefined, pspundefined));
   });
 
+  it ("Dynamic Hashable skuHashable", function () {
+    const skuHashable:Hashable<PetStoreProduct> = Collections.dynamicHashable("sku");
+    // SkuHashable will differentiate psp1 psp2 psp3
+    TestBoolean.false ("skuHashable psp1 psp2", skuHashable.equals(psp1, psp2));
+    TestBoolean.false ("skuHashable psp1 psp3", skuHashable.equals(psp1, psp3));
+    TestBoolean.false ("skuHashable psp2 psp3", skuHashable.equals(psp2, psp3));
 
+    // SkuHashable cannot differentiate psp1 psp1copy and psp3copy
+    TestBoolean.true ("skuHashable psp1 psp1copy", skuHashable.equals(psp1, psp1copy));
+    TestBoolean.true ("skuHashable psp1 psp3copy", skuHashable.equals(psp1, psp3copy));
+
+    // The others will be differentiated
+    TestBoolean.false ("skuHashable psp1copy psp2", skuHashable.equals(psp1copy, psp2));
+    TestBoolean.false ("skuHashable psp1copy psp3", skuHashable.equals(psp1copy, psp3));
+    TestBoolean.false ("skuHashable psp3copy psp2", skuHashable.equals(psp3copy, psp2));
+    TestBoolean.false ("skuHashable psp3copy psp3", skuHashable.equals(psp3copy, psp3));
+
+    // Compare vs null and undefined
+    TestBoolean.false ("skuHashable psp1 null", skuHashable.equals(psp1, null));
+    TestBoolean.false ("skuHashable psp1 undefined", skuHashable.equals(psp1, undefined));
+    TestBoolean.false ("skuHashable null psp1", skuHashable.equals(null, psp1));
+    TestBoolean.false ("skuHashable undefined psp1", skuHashable.equals(undefined, psp1));
+    TestBoolean.true ("skuHashable null null", skuHashable.equals(null, null));
+    TestBoolean.true ("skuHashable undefined undefined", skuHashable.equals(undefined, undefined));
+    TestBoolean.false ("skuHashable null undefined", skuHashable.equals(null, undefined));
+    TestBoolean.false ("skuHashable undefined null", skuHashable.equals(undefined, null));
+  });
+
+  it ("Dynamic Hashable nameHashable", function () {
+    const nameHashable:Hashable<PetStoreProduct> = Collections.dynamicHashable("name");
+    // NameHashable will differentiate psp1 psp2 psp3
+    TestBoolean.false ("nameHashable psp1 psp2", nameHashable.equals(psp1, psp2));
+    TestBoolean.false ("nameHashable psp1 psp3", nameHashable.equals(psp1, psp3));
+    TestBoolean.false ("nameHashable psp2 psp3", nameHashable.equals(psp2, psp3));
+
+    // nameHashable cannot differentiate psp2 and psp2copy
+    TestBoolean.true ("nameHashable psp2 psp2copy", nameHashable.equals(psp2, psp2copy));
+
+    // The others will be differentiated
+    TestBoolean.false ("nameHashable psp2copy psp1", nameHashable.equals(psp2copy, psp1));
+    TestBoolean.false ("nameHashable psp2copy psp3", nameHashable.equals(psp2copy, psp3));
+
+    // Compare vs null and undefined
+    TestBoolean.false ("nameHashable psp1 null", nameHashable.equals(psp1, null));
+    TestBoolean.false ("nameHashable psp1 undefined", nameHashable.equals(psp1, undefined));
+    TestBoolean.false ("nameHashable null psp1", nameHashable.equals(null, psp1));
+    TestBoolean.false ("nameHashable undefined psp1", nameHashable.equals(undefined, psp1));
+    TestBoolean.true ("nameHashable null null", nameHashable.equals(null, null));
+    TestBoolean.true ("nameHashable undefined undefined", nameHashable.equals(undefined, undefined));
+    TestBoolean.false ("nameHashable null undefined", nameHashable.equals(null, undefined));
+    TestBoolean.false ("nameHashable undefined null", nameHashable.equals(undefined, null));
+  });
+
+  it ("Dynamic Hashable skuNameHashable", function () {
+    const skuNameHashable:Hashable<PetStoreProduct> = Collections.dynamicHashable("sku", "name");
+
+    // skuNameHashable will differentiate psp1 psp2 psp3 psp1copy psp2copy
+    TestBoolean.false ("skuNameHashable psp1 psp2", skuNameHashable.equals(psp1, psp2));
+    TestBoolean.false ("skuNameHashable psp1 psp3", skuNameHashable.equals(psp1, psp3));
+    TestBoolean.false ("skuNameHashable psp1 psp1copy", skuNameHashable.equals(psp1, psp1copy));
+    TestBoolean.false ("skuNameHashable psp1 psp2copy", skuNameHashable.equals(psp1, psp2copy));
+    TestBoolean.false ("skuNameHashable psp2 psp3", skuNameHashable.equals(psp2, psp3));
+    TestBoolean.false ("skuNameHashable psp2 psp1copy", skuNameHashable.equals(psp2, psp1copy));
+    TestBoolean.false ("skuNameHashable psp2 psp2copy", skuNameHashable.equals(psp2, psp2copy));
+    TestBoolean.false ("skuNameHashable psp2 psp3copy", skuNameHashable.equals(psp2, psp3copy));
+    TestBoolean.false ("skuNameHashable psp3 psp1copy", skuNameHashable.equals(psp3, psp1copy));
+    TestBoolean.false ("skuNameHashable psp3 psp2copy", skuNameHashable.equals(psp3, psp2copy));
+    TestBoolean.false ("skuNameHashable psp3 psp3copy", skuNameHashable.equals(psp3, psp3copy));
+    TestBoolean.false ("skuNameHashable psp1copy psp2copy", skuNameHashable.equals(psp1copy, psp2copy));
+    TestBoolean.false ("skuNameHashable psp1copy psp3copy", skuNameHashable.equals(psp1copy, psp3copy));
+
+    // nameHashable cannot differentiate psp1 and psp3copy
+    TestBoolean.true ("nameHashable psp1 psp3copy", skuNameHashable.equals(psp1, psp3copy));
+
+    // Compare vs null and undefined
+    TestBoolean.false ("skuNameHashable psp1 null", skuNameHashable.equals(psp1, null));
+    TestBoolean.false ("skuNameHashable psp1 undefined", skuNameHashable.equals(psp1, undefined));
+    TestBoolean.false ("skuNameHashable null psp1", skuNameHashable.equals(null, psp1));
+    TestBoolean.false ("skuNameHashable undefined psp1", skuNameHashable.equals(undefined, psp1));
+    TestBoolean.true ("skuNameHashable null null", skuNameHashable.equals(null, null));
+    TestBoolean.true ("skuNameHashable undefined undefined", skuNameHashable.equals(undefined, undefined));
+    TestBoolean.false ("skuNameHashable null undefined", skuNameHashable.equals(null, undefined));
+    TestBoolean.false ("skuNameHashable undefined null", skuNameHashable.equals(undefined, null));
+  });
+
+  it ("Dynamic Hashable null and undefined fields", function () {
+    const skuNameHashable:Hashable<PetStoreProduct> = Collections.dynamicHashable("sku", "name");
+    TestBoolean.false ("skuNameHashable psp1 null", skuNameHashable.equals(psp1, pspnull));
+    TestBoolean.false ("skuNameHashable psp2 null", skuNameHashable.equals(psp2, pspnull));
+    TestBoolean.false ("skuNameHashable psp3 null", skuNameHashable.equals(psp3, pspnull));
+
+    TestBoolean.false ("skuNameHashable psp1 undefined", skuNameHashable.equals(psp1, pspundefined));
+    TestBoolean.false ("skuNameHashable psp2 undefined", skuNameHashable.equals(psp2, pspundefined));
+    TestBoolean.false ("skuNameHashable psp3 undefined", skuNameHashable.equals(psp3, pspundefined));
+
+    TestBoolean.false ("skuNameHashable undefined null", skuNameHashable.equals(pspundefined, pspnull));
+    TestBoolean.false ("skuNameHashable null undefined", skuNameHashable.equals(pspnull, pspundefined));
+
+    TestBoolean.true ("skuNameHashable null null", skuNameHashable.equals(pspnull, pspnull));
+    TestBoolean.true ("skuNameHashable undefined undefined", skuNameHashable.equals(pspundefined, pspundefined));
+  });
+
+  it ("Dynamic Hashable hascode", function () {
+    const nameHashable:Hashable<PetStoreProduct> = Collections.dynamicHashable("name");
+    TestNumber.equals ("undefined hashcode is zero", nameHashable.hashCode(undefined), 0);
+    TestNumber.equals ("null hashcode is zero", nameHashable.hashCode(null), 0);
+    TestNumber.notEquals ("psp1 hashcode is non-zero", nameHashable.hashCode(psp1), 0);
+    TestNumber.notEquals ("psp2 hashcode is non-zero", nameHashable.hashCode(psp2), 0);
+    TestNumber.notEquals ("psp3 hashcode is non-zero", nameHashable.hashCode(psp3), 0);
+  });
 });
 
 /*

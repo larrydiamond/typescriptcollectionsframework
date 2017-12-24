@@ -218,6 +218,74 @@ var Collections = (function () {
         };
         return tmp;
     };
+    /**
+     * This method creates a Hashable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+     */
+    Collections.dynamicHashable = function () {
+        var values = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            values[_i] = arguments[_i];
+        }
+        var tmp = {
+            equals: function (o1, o2) {
+                if (o1 === undefined) {
+                    if (o2 === undefined) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                if (o1 === null) {
+                    if (o2 === null) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                if ((o2 === null) || (o2 === undefined)) {
+                    return false;
+                }
+                for (var loop = 0; loop < values.length; loop++) {
+                    var a = o1[values[loop]];
+                    var b = o2[values[loop]];
+                    if (a === undefined) {
+                        if (b !== undefined) {
+                            return false;
+                        }
+                    }
+                    if (a === null) {
+                        if (b !== null) {
+                            return false;
+                        }
+                    }
+                    if (b === undefined) {
+                        if (a !== undefined) {
+                            return false;
+                        }
+                    }
+                    if (b === null) {
+                        if (a !== null) {
+                            return false;
+                        }
+                    }
+                    if (JSON.stringify(a) !== JSON.stringify(b)) {
+                        return false;
+                    }
+                }
+                return true;
+            },
+            hashCode: function (o) {
+                if (o === undefined)
+                    return 0;
+                if (o === null)
+                    return 0;
+                return Collections.getHashCodeForString(JSON.stringify(o));
+            }
+        };
+        return tmp;
+    };
     return Collections;
 }());
 exports.Collections = Collections;
