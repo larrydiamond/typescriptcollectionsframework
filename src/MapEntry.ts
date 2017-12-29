@@ -27,8 +27,4 @@ export interface MapEntry<K,V> {
   getValue () : V;
 
   setValue(value:V): void;
-
-  equals(o:any): boolean;
-
-  hashCode(): number;
 }

@@ -85,13 +85,13 @@ export class HashMap<K,V> implements JMap<K,V> {
         this.data.add (newList);
         newList.add (newNode);
         this.elementCount = this.elementCount + 1;
-        this.addEntry(hashCode, key, value, 0);
+        this.addEntry(hashCode, key, value);
       } else {
         const bucket = hashCode % this.data.size();
         const thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
         thisList.add (newNode);
         this.elementCount = this.elementCount + 1;
-        this.addEntry(hashCode, key, value, bucket);
+        this.addEntry(hashCode, key, value);
       }
       this.rehash();
       return undefined;
@@ -393,22 +393,18 @@ export class HashMapIteratorLocationTracker<K,V> {
 }
 
 export class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
-
-  constructor(key?: K, value?: V, hash?: number, next?: HashMapEntry<K,V>) {
-    super(key, value, hash, next);
+  private hashCode:number;
+  constructor(key?: K, value?: V, hash?: number) {
+    super(key, value);
+    this.hashCode = hash;
   }
   
-  public toString () : string {
-    return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue()); 
-  }
   // private hashCode:number;
   public getHashCode():number {
-    return this.hash;
-    // return this.hashCode;
+    return this.hashCode;
   }
   public setHashCode(iHashCode:number) {
-    // this.hashCode = iHashCode;
-    this.hash = iHashCode;
+    this.hashCode = iHashCode;
   }
 }
 
