@@ -5,7 +5,6 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
-
 import {AllFieldHashable} from "./AllFieldHashable";
 import {ArrayList} from "./ArrayList";
 import {BasicIteratorResult} from "./BasicIteratorResult";
@@ -75,6 +74,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
   */
   public put (key:K, value:V) : V {
+    
     const mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
       const hashCode:number = this.hashMethods.hashCode(key);
@@ -85,11 +85,13 @@ export class HashMap<K,V> implements JMap<K,V> {
         this.data.add (newList);
         newList.add (newNode);
         this.elementCount = this.elementCount + 1;
+        this.addEntry(hashCode, key, value, 0);
       } else {
         const bucket = hashCode % this.data.size();
         const thisList:List<HashMapEntry<K,V>> = this.data.get (bucket);
         thisList.add (newNode);
         this.elementCount = this.elementCount + 1;
+        this.addEntry(hashCode, key, value, bucket);
       }
       this.rehash();
       return undefined;
@@ -98,6 +100,18 @@ export class HashMap<K,V> implements JMap<K,V> {
       mapEntry.setValue(value);
       return tmp;
     }
+  }
+
+  /**
+   * 
+   * This is a placeholder that does nothing for HashMap object but needed to work with
+   * LinkedHashMap's addEntry method which it overrides from here to fully provide the linked functionality.
+   * @param {number} hash value that represents the hash value of the key
+   * @param {K} key key with which the specified value is to be associated
+   * @param {V} value value to be associated with the specified key
+   * @param {number} bucket index of the bucket in which the Entry should be
+   */
+  addEntry(hash: number, key: K, value: V, bucket?: number): void {
   }
 
  /**
@@ -189,6 +203,10 @@ export class HashMap<K,V> implements JMap<K,V> {
     if (tmp === null) return false;
     if (tmp === undefined) return false;
     return true;
+  }
+
+  public getEntry (key:K) : HashMapEntry<K,V> {
+    return this.getMapEntry(key);
   }
 
   private getMapEntry (key:K) : HashMapEntry<K,V> {
@@ -375,15 +393,22 @@ export class HashMapIteratorLocationTracker<K,V> {
 }
 
 export class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
-  private hashCode:number;
+
+  constructor(key?: K, value?: V, hash?: number, next?: HashMapEntry<K,V>) {
+    super(key, value, hash, next);
+  }
+  
+  public toString () : string {
+    return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue()); 
+  }
+  // private hashCode:number;
   public getHashCode():number {
-    return this.hashCode;
+    return this.hash;
+    // return this.hashCode;
   }
   public setHashCode(iHashCode:number) {
-    this.hashCode = iHashCode;
-  }
-  public setValue (iValue:V) : void {
-    this.value = iValue;
+    // this.hashCode = iHashCode;
+    this.hash = iHashCode;
   }
 }
 
@@ -573,3 +598,4 @@ export class HashMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
     return tmp;
   }
 }
+

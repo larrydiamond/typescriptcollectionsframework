@@ -7,14 +7,19 @@
 */
 
 import {MapEntry} from "./MapEntry";
+import {Collections} from "./Collections";
 
 export class BasicMapEntry<K,V> implements MapEntry<K,V> {
   private key:K;
   protected value:V; // needed for HashMapEntry so I can set the value
+  private next: BasicMapEntry<K,V>;
+  protected hash: number;
 
-  constructor(iKey:K, iValue:V) {
+  constructor(iKey:K, iValue:V, hash?:number, next?:BasicMapEntry<K,V>) {
     this.key = iKey;
     this.value = iValue;
+    this.next = next;
+    this.hash = hash;
   }
 
  /**
@@ -31,6 +36,29 @@ export class BasicMapEntry<K,V> implements MapEntry<K,V> {
   */
   public getValue () : V {
     return this.value;
+  }
+
+  public setValue(value:any): void {
+    this.value = value;
+
+  }
+
+  public equals (o: any) {
+    if (o === undefined || o === null) {
+        return false;
+    }
+    if (JSON.stringify(o) === JSON.stringify(this.key))
+      return true;
+    return false;
+  }
+
+  public hashCode () : number {
+     return (this.key === null || this.key === undefined ? 0 : 
+        Collections.getHashCodeForString(JSON.stringify(this.key))); 
+  }
+
+  public toString () : string {
+    return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue()); 
   }
 
 }
