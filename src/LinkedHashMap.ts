@@ -35,6 +35,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      */
     public init () : void {
         this.header = new LinkedEntry<K,V>(-1, null, null);
+        // make circular
         this.header.before = this.header.after = this.header;
     }
 
@@ -113,10 +114,10 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     public newKeyIterator () : KeyIterator<K,V> {
         return new KeyIterator<K,V>(this);
     }
-    public newValueIterator () : JIterator<LinkedEntry<K,V>> {
+    public newValueIterator () : ValueIterator<K,V> {
         return new ValueIterator<K,V>(this);
     }
-    public newEntryIterator () : JIterator<LinkedEntry<K,V>> {
+    public newEntryIterator () : EntryIterator<K,V> {
         return new EntryIterator<K,V>(this);
     }
 
