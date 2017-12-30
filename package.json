@@ -11,7 +11,7 @@
     "@types/jasmine": "^2.8.0",
     "@types/node": "^8.0.51",
     "gulp": "^3.9.1",
-    "gulp-jasmine": "^2.4.2",
+    "gulp-jasmine": "^3.0.0",
     "gulp-typescript": "^3.2.3",
     "jasmine": "^2.8.0",
     "jasts": "^1.0.0",
