@@ -7,9 +7,10 @@
 */
 
 import {MapEntry} from "./MapEntry";
+import {Collections} from "./Collections";
 
 export class BasicMapEntry<K,V> implements MapEntry<K,V> {
-  private key:K;
+  protected key:K;
   protected value:V; // needed for HashMapEntry so I can set the value
 
   constructor(iKey:K, iValue:V) {
@@ -31,6 +32,15 @@ export class BasicMapEntry<K,V> implements MapEntry<K,V> {
   */
   public getValue () : V {
     return this.value;
+  }
+
+  public setValue(value:any): void {
+    this.value = value;
+
+  }
+
+  public toString () : string {
+    return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue()); 
   }
 
 }
