@@ -1,5 +1,21 @@
 # Change Log
 
+<a name="3.1.2"></a>
+# [3.1.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.1.1...v3.1.2) (2018-01-21)
+* Updating dependencies
+
+<a name="3.1.1"></a>
+# [3.1.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.1.0...v3.1.1) (2017-12-17)
+* We have a logo! - Thank you very much Stephen Chiang!
+
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.0.1...v3.1.0) (2017-12-10)
+* Priority Queue! - Thank you very much Frank Giordano!
+
+<a name="3.0.1"></a>
+# [3.0.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.0.0...v3.0.1) (2017-12-09)
+* Patch release for TreeSet defect
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v2.2.0...v3.0.0) (2017-12-01)
 * ArrayList and LinkedList implement Deque and Queue with documentation and tests
