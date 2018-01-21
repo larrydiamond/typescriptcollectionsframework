@@ -17,7 +17,7 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
  *
  * This class corresponds to java.util.LinkedList
  */
-var LinkedList = (function () {
+var LinkedList = /** @class */ (function () {
     function LinkedList(iEquals, initialElements) {
         if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }
         this.initialElements = initialElements;
@@ -624,7 +624,7 @@ var LinkedList = (function () {
     return LinkedList;
 }());
 exports.LinkedList = LinkedList;
-var LinkedListNode = (function () {
+var LinkedListNode = /** @class */ (function () {
     function LinkedListNode(t) {
         this.payload = t;
         this.previousNode = null;
@@ -634,7 +634,7 @@ var LinkedListNode = (function () {
 }());
 exports.LinkedListNode = LinkedListNode;
 /* Java style iterator */
-var LinkedListJIterator = (function () {
+var LinkedListJIterator = /** @class */ (function () {
     function LinkedListJIterator(iList) {
         this.node = iList.getFirstNode();
     }
@@ -653,7 +653,7 @@ var LinkedListJIterator = (function () {
 }());
 exports.LinkedListJIterator = LinkedListJIterator;
 /* TypeScript iterator */
-var LinkedListIterator = (function () {
+var LinkedListIterator = /** @class */ (function () {
     function LinkedListIterator(iList) {
         this.node = iList.getFirstNode();
     }

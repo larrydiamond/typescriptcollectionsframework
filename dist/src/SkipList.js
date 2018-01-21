@@ -21,7 +21,7 @@ var ArrayList_1 = require("./ArrayList");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var Collections_1 = require("./Collections");
-var SkipListMapImpl = (function () {
+var SkipListMapImpl = /** @class */ (function () {
     function SkipListMapImpl(iComparator) {
         this.head = null;
         this.height = 3;
@@ -625,7 +625,7 @@ var SkipListMapImpl = (function () {
     return SkipListMapImpl;
 }());
 exports.SkipListMapImpl = SkipListMapImpl;
-var SkipListNode = (function (_super) {
+var SkipListNode = /** @class */ (function (_super) {
     __extends(SkipListNode, _super);
     function SkipListNode(key, value, height, iNodeCollectable) {
         var _this = _super.call(this, key, value) || this;
@@ -652,7 +652,7 @@ var SkipListNode = (function (_super) {
     return SkipListNode;
 }(BasicMapEntry_1.BasicMapEntry));
 exports.SkipListNode = SkipListNode;
-var SkipListNodeCollectable = (function () {
+var SkipListNodeCollectable = /** @class */ (function () {
     function SkipListNodeCollectable(iColl) {
         this.coll = null;
         this.coll = iColl;
@@ -684,7 +684,7 @@ var SkipListNodeCollectable = (function () {
     };
     return SkipListNodeCollectable;
 }());
-var SkipListNodeComparator = (function () {
+var SkipListNodeComparator = /** @class */ (function () {
     function SkipListNodeComparator(iComp) {
         this.comp = null;
         this.comp = iComp;
@@ -711,7 +711,7 @@ var SkipListNodeComparator = (function () {
  *
  * This class corresponds to java.util.concurrent.ConcurrentSkipListMap
  */
-var SkipListMap = (function () {
+var SkipListMap = /** @class */ (function () {
     function SkipListMap(comp, iInitial) {
         if (iInitial === void 0) { iInitial = null; }
         this.impl = null;
@@ -974,7 +974,7 @@ var SkipListMap = (function () {
     return SkipListMap;
 }());
 exports.SkipListMap = SkipListMap;
-var ImmutableKeySetForSkipListMap = (function () {
+var ImmutableKeySetForSkipListMap = /** @class */ (function () {
     function ImmutableKeySetForSkipListMap(iSkipListMapImpl) {
         this.impl = iSkipListMapImpl;
     }
@@ -987,7 +987,7 @@ var ImmutableKeySetForSkipListMap = (function () {
 }());
 exports.ImmutableKeySetForSkipListMap = ImmutableKeySetForSkipListMap;
 /* Java style iterator */
-var SkipListMapKeySetJIterator = (function () {
+var SkipListMapKeySetJIterator = /** @class */ (function () {
     function SkipListMapKeySetJIterator(implI) {
         this.impl = implI;
     }
@@ -1033,7 +1033,7 @@ var SkipListMapKeySetJIterator = (function () {
 }());
 exports.SkipListMapKeySetJIterator = SkipListMapKeySetJIterator;
 /* TypeScript iterator */
-var SkipListMapKeySetIterator = (function () {
+var SkipListMapKeySetIterator = /** @class */ (function () {
     function SkipListMapKeySetIterator(implI) {
         this.impl = implI;
         this.location = this.impl.firstEntry();
@@ -1053,7 +1053,7 @@ var SkipListMapKeySetIterator = (function () {
     return SkipListMapKeySetIterator;
 }());
 exports.SkipListMapKeySetIterator = SkipListMapKeySetIterator;
-var ImmutableEntrySetForSkipListMapImpl = (function () {
+var ImmutableEntrySetForSkipListMapImpl = /** @class */ (function () {
     function ImmutableEntrySetForSkipListMapImpl(iMap) {
         this.map = iMap;
     }
@@ -1076,7 +1076,7 @@ var ImmutableEntrySetForSkipListMapImpl = (function () {
 }());
 exports.ImmutableEntrySetForSkipListMapImpl = ImmutableEntrySetForSkipListMapImpl;
 /* Java style iterator */
-var SkipListMapEntrySetJIterator = (function () {
+var SkipListMapEntrySetJIterator = /** @class */ (function () {
     function SkipListMapEntrySetJIterator(iMap) {
         this.map = iMap;
     }
@@ -1124,7 +1124,7 @@ var SkipListMapEntrySetJIterator = (function () {
 }());
 exports.SkipListMapEntrySetJIterator = SkipListMapEntrySetJIterator;
 /* TypeScript iterator */
-var SkipListMapEntrySetIterator = (function () {
+var SkipListMapEntrySetIterator = /** @class */ (function () {
     function SkipListMapEntrySetIterator(iMap) {
         this.map = iMap;
         this.location = this.map.firstEntry();
@@ -1152,7 +1152,7 @@ exports.SkipListMapEntrySetIterator = SkipListMapEntrySetIterator;
  *
  * This class corresponds to java.util.concurrent.ConcurrentSkipListSet
  */
-var SkipListSet = (function () {
+var SkipListSet = /** @class */ (function () {
     function SkipListSet(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.impl = null;
@@ -1347,7 +1347,7 @@ var SkipListSet = (function () {
 }());
 exports.SkipListSet = SkipListSet;
 /* Java style iterator */
-var SkipListSetJIterator = (function () {
+var SkipListSetJIterator = /** @class */ (function () {
     function SkipListSetJIterator(implI) {
         this.impl = implI;
     }
@@ -1399,7 +1399,7 @@ var SkipListSetJIterator = (function () {
 }());
 exports.SkipListSetJIterator = SkipListSetJIterator;
 /* TypeScript iterator */
-var SkipListSetIterator = (function () {
+var SkipListSetIterator = /** @class */ (function () {
     function SkipListSetIterator(implI) {
         this.impl = implI;
         this.location = this.impl.firstEntry();

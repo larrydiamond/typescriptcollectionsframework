@@ -24,7 +24,7 @@ var HashMap_1 = require("./HashMap");
  *
  * This class corresponds to java.util.HashSet
  */
-var HashSet = (function () {
+var HashSet = /** @class */ (function () {
     function HashSet(iHash, initialElements, iInitialCapacity, iLoadFactor) {
         if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
         if (initialElements === void 0) { initialElements = null; }
@@ -156,7 +156,7 @@ var HashSet = (function () {
 }());
 exports.HashSet = HashSet;
 /* Java style iterator */
-var HashSetJIterator = (function () {
+var HashSetJIterator = /** @class */ (function () {
     function HashSetJIterator(iSet) {
         this.set = iSet;
     }
@@ -208,7 +208,7 @@ var HashSetJIterator = (function () {
 }());
 exports.HashSetJIterator = HashSetJIterator;
 /* TypeScript iterator */
-var HashSetIterator = (function () {
+var HashSetIterator = /** @class */ (function () {
     function HashSetIterator(iSet) {
         this.set = iSet;
         this.location = this.set.deprecatedGetFirstEntryForIterator();

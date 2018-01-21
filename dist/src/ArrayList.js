@@ -20,7 +20,7 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
  *
  * This class corresponds to java.util.ArrayList
  */
-var ArrayList = (function () {
+var ArrayList = /** @class */ (function () {
     function ArrayList(iEquals, initialElements) {
         if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }
         this.initialElements = initialElements;
@@ -453,7 +453,7 @@ var ArrayList = (function () {
 }());
 exports.ArrayList = ArrayList;
 /* Java style iterator */
-var ArrayListJIterator = (function () {
+var ArrayListJIterator = /** @class */ (function () {
     function ArrayListJIterator(iArrayList) {
         this.offset = 0;
         this.arraylist = iArrayList;
@@ -470,7 +470,7 @@ var ArrayListJIterator = (function () {
 }());
 exports.ArrayListJIterator = ArrayListJIterator;
 /* TypeScript iterator */
-var ArrayListIterator = (function () {
+var ArrayListIterator = /** @class */ (function () {
     function ArrayListIterator(iArrayList) {
         this.offset = 0;
         this.arraylist = iArrayList;

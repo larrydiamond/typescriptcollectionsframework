@@ -14,7 +14,7 @@ var TreeSet_1 = require("./TreeSet");
  *
  * This class corresponds to java.util.PriorityQueue
  */
-var PriorityQueue = (function () {
+var PriorityQueue = /** @class */ (function () {
     function PriorityQueue(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.pQueue = new TreeSet_1.TreeSet(iComparator);

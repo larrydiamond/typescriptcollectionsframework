@@ -21,7 +21,7 @@ var TreeMap_1 = require("./TreeMap");
  *
  * This class corresponds to java.util.TreeSet
  */
-var TreeSet = (function () {
+var TreeSet = /** @class */ (function () {
     function TreeSet(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.datastore = null;
@@ -206,7 +206,7 @@ var TreeSet = (function () {
 }());
 exports.TreeSet = TreeSet;
 /* Java style iterator */
-var TreeSetJIterator = (function () {
+var TreeSetJIterator = /** @class */ (function () {
     function TreeSetJIterator(iSet) {
         this.set = iSet;
     }
@@ -253,7 +253,7 @@ var TreeSetJIterator = (function () {
 }());
 exports.TreeSetJIterator = TreeSetJIterator;
 /* TypeScript iterator */
-var TreeSetIterator = (function () {
+var TreeSetIterator = /** @class */ (function () {
     function TreeSetIterator(iSet) {
         this.set = iSet;
         this.location = this.set.first();

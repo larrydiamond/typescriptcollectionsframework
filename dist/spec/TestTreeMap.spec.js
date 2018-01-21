@@ -12,7 +12,7 @@ var Collections_1 = require("../src/Collections");
 var TreeMap_1 = require("../src/TreeMap");
 describe("Test TreeMap functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = (function () {
+    var PetStoreProduct = /** @class */ (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;
@@ -83,7 +83,7 @@ describe("Test TreeMap functionality", function () {
         }
     };
     // Wanted to show a class in the value object but anything would work fine
-    var ValueClass = (function () {
+    var ValueClass = /** @class */ (function () {
         function ValueClass(blah1) {
             if (blah1 === void 0) { blah1 = 100; }
             this.blah2 = "blah";

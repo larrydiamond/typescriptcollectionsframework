@@ -8,7 +8,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var Collections_1 = require("./Collections");
-var AllFieldHashable = (function () {
+var AllFieldHashable = /** @class */ (function () {
     function AllFieldHashable() {
     }
     AllFieldHashable.prototype.equals = function (o1, o2) {

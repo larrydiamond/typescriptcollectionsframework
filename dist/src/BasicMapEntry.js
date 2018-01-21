@@ -7,7 +7,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-var BasicMapEntry = (function () {
+var BasicMapEntry = /** @class */ (function () {
     function BasicMapEntry(iKey, iValue) {
         this.key = iKey;
         this.value = iValue;

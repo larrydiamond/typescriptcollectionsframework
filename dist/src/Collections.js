@@ -16,7 +16,7 @@ var HashSet_1 = require("./HashSet");
  *
  * It contains polymorphic algorithms that operate on collections, "wrappers", which return a new collection backed by a specified collection, and a few other odds and ends.
  */
-var Collections = (function () {
+var Collections = /** @class */ (function () {
     function Collections() {
     }
     /**
