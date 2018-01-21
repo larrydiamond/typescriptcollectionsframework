@@ -26,6 +26,12 @@ var BasicMapEntry = /** @class */ (function () {
     BasicMapEntry.prototype.getValue = function () {
         return this.value;
     };
+    BasicMapEntry.prototype.setValue = function (value) {
+        this.value = value;
+    };
+    BasicMapEntry.prototype.toString = function () {
+        return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue());
+    };
     return BasicMapEntry;
 }());
 exports.BasicMapEntry = BasicMapEntry;

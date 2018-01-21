@@ -1,0 +1,100 @@
+/**
+* @license
+* Copyright Francesco Giordano 2017 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
+import { HashMap, HashMapEntry } from "./HashMap";
+import { JIterator } from "./JIterator";
+/**
+ * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
+ * differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list
+ * defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order).
+ * Note that insertion order is not affected if a key is re-inserted into the map.
+ *
+ * This class corresponds to java.util.LinkedHashMap
+ */
+export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
+    private header;
+    constructor();
+    /**
+     * Initializes the chain before any entries are inserted into the map.
+     */
+    init(): void;
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    containsValue(value: LinkedEntry<K, V>): boolean;
+    /**
+     * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+     * @param key key with which the specified value is to be associated
+     */
+    get(key: K): V;
+    /**
+     * This override alters behavior of superclass put method. It causes newly allocated entry
+     * to get inserted at the end of the linked list and removes the eldest entry if appropriate.
+     * @param {number} hash value that represents the hash value of the key
+     * @param {K} key key with which the specified value is to be associated
+     * @param {V} value value to be associated with the specified key
+     * @param {number} bucket index of the bucket in which the Entry should be
+     */
+    addEntry(hash: number, key: K, value: V, bucket?: number): void;
+    private createEntry(hash, key, value, bucket?);
+    /**
+     * Returns true if this map should remove its eldest entry. This method is invoked by put and
+     * putAll after inserting a new entry into the map. It provides the implementor with the opportunity to remove the
+     * eldest entry each time a new one is added. This is useful if the map represents a cache: it allows the map to reduce
+     * memory consumption by deleting stale entries.
+     * @param eldest eldest entry
+     */
+    private removeEldestEntry(eldest);
+    private removeEntryForKey(key);
+    clear(): void;
+    getHeader(): LinkedEntry<K, V>;
+    newKeyIterator(): KeyIterator<K, V>;
+    newValueIterator(): ValueIterator<K, V>;
+    newEntryIterator(): EntryIterator<K, V>;
+}
+/**
+ * LinkedHashMap entry class
+ */
+export declare class LinkedEntry<K, V> extends HashMapEntry<K, V> {
+    before: LinkedEntry<K, V>;
+    after: LinkedEntry<K, V>;
+    constructor(hash: number, key: K, value: V);
+    /**
+     * Removes this entry from the linked list.
+     */
+    private remove();
+    /**
+     * Inserts this entry before the specified existing entry in the list.
+     * @param existingEntry existing entry
+     */
+    addBefore(existingEntry: LinkedEntry<K, V>): void;
+    recordRemoval(m: HashMap<K, V>): void;
+    equals(o: any): boolean;
+}
+export declare class LinkedHashIterator<K, V> implements JIterator<LinkedEntry<K, V>> {
+    private header;
+    private next_Entry;
+    private lastReturned;
+    constructor(linkedHashMap: LinkedHashMap<K, V>);
+    next(): LinkedEntry<K, V>;
+    hasNext(): boolean;
+    private nextEntry();
+    private check();
+}
+export declare class EntryIterator<K, V> extends LinkedHashIterator<K, V> {
+    constructor(linkedHashMap: LinkedHashMap<K, V>);
+    _next(): LinkedEntry<K, V>;
+}
+export declare class KeyIterator<K, V> extends LinkedHashIterator<K, V> {
+    constructor(linkedHashMap: LinkedHashMap<K, V>);
+    _next(): K;
+}
+export declare class ValueIterator<K, V> extends LinkedHashIterator<K, V> {
+    constructor(linkedHashMap: LinkedHashMap<K, V>);
+    _next(): V;
+}

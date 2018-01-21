@@ -7,7 +7,7 @@
 */
 import { MapEntry } from "./MapEntry";
 export declare class BasicMapEntry<K, V> implements MapEntry<K, V> {
-    private key;
+    protected key: K;
     protected value: V;
     constructor(iKey: K, iValue: V);
     /**
@@ -20,4 +20,6 @@ export declare class BasicMapEntry<K, V> implements MapEntry<K, V> {
      * @return {V} the value corresponding to this entry
      */
     getValue(): V;
+    setValue(value: any): void;
+    toString(): string;
 }

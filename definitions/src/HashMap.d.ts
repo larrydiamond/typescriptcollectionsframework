@@ -45,6 +45,16 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     */
     put(key: K, value: V): V;
     /**
+     *
+     * This is a placeholder that does nothing for HashMap object but needed to work with
+     * LinkedHashMap's addEntry method which it overrides from here to fully provide the linked functionality.
+     * @param {number} hash value that represents the hash value of the key
+     * @param {K} key key with which the specified value is to be associated
+     * @param {V} value value to be associated with the specified key
+     * @param {number} bucket index of the bucket in which the Entry should be
+     */
+    addEntry(hash: number, key: K, value: V, bucket?: number): void;
+    /**
      * Rehashes the entire hashmap.... gonna be slow you've been warned
      */
     private rehash();
@@ -76,6 +86,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      * @return {V} true if this map contains a mapping for the specified key.
      */
     containsKey(key: K): boolean;
+    getEntry(key: K): HashMapEntry<K, V>;
     private getMapEntry(key);
     /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.
@@ -122,9 +133,9 @@ export declare class HashMapIteratorLocationTracker<K, V> {
 }
 export declare class HashMapEntry<K, V> extends BasicMapEntry<K, V> {
     private hashCode;
+    constructor(key?: K, value?: V, hash?: number);
     getHashCode(): number;
     setHashCode(iHashCode: number): void;
-    setValue(iValue: V): void;
 }
 export declare class ImmutableKeySetForHashMap<K, V> implements ImmutableSet<K> {
     private map;

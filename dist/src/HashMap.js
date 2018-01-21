@@ -1,11 +1,4 @@
 "use strict";
-/**
-* @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
-*/
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -17,6 +10,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+* @license
+* Copyright Larry Diamond 2017 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
 var AllFieldHashable_1 = require("./AllFieldHashable");
 var ArrayList_1 = require("./ArrayList");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
@@ -87,12 +87,14 @@ var HashMap = /** @class */ (function () {
                 this.data.add(newList);
                 newList.add(newNode);
                 this.elementCount = this.elementCount + 1;
+                this.addEntry(hashCode, key, value);
             }
             else {
                 var bucket = hashCode % this.data.size();
                 var thisList = this.data.get(bucket);
                 thisList.add(newNode);
                 this.elementCount = this.elementCount + 1;
+                this.addEntry(hashCode, key, value);
             }
             this.rehash();
             return undefined;
@@ -102,6 +104,17 @@ var HashMap = /** @class */ (function () {
             mapEntry.setValue(value);
             return tmp;
         }
+    };
+    /**
+     *
+     * This is a placeholder that does nothing for HashMap object but needed to work with
+     * LinkedHashMap's addEntry method which it overrides from here to fully provide the linked functionality.
+     * @param {number} hash value that represents the hash value of the key
+     * @param {K} key key with which the specified value is to be associated
+     * @param {V} value value to be associated with the specified key
+     * @param {number} bucket index of the bucket in which the Entry should be
+     */
+    HashMap.prototype.addEntry = function (hash, key, value, bucket) {
     };
     /**
      * Rehashes the entire hashmap.... gonna be slow you've been warned
@@ -194,6 +207,9 @@ var HashMap = /** @class */ (function () {
         if (tmp === undefined)
             return false;
         return true;
+    };
+    HashMap.prototype.getEntry = function (key) {
+        return this.getMapEntry(key);
     };
     HashMap.prototype.getMapEntry = function (key) {
         if (this.data === null)
@@ -377,17 +393,17 @@ var HashMapIteratorLocationTracker = /** @class */ (function () {
 exports.HashMapIteratorLocationTracker = HashMapIteratorLocationTracker;
 var HashMapEntry = /** @class */ (function (_super) {
     __extends(HashMapEntry, _super);
-    function HashMapEntry() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function HashMapEntry(key, value, hash) {
+        var _this = _super.call(this, key, value) || this;
+        _this.hashCode = hash;
+        return _this;
     }
+    // private hashCode:number;
     HashMapEntry.prototype.getHashCode = function () {
         return this.hashCode;
     };
     HashMapEntry.prototype.setHashCode = function (iHashCode) {
         this.hashCode = iHashCode;
-    };
-    HashMapEntry.prototype.setValue = function (iValue) {
-        this.value = iValue;
     };
     return HashMapEntry;
 }(BasicMapEntry_1.BasicMapEntry));
