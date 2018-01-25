@@ -17,6 +17,7 @@ import {ImmutableSet} from "../src/ImmutableSet";
 import {JIterator} from "../src/JIterator";
 import {LinkedHashMap} from "../src/LinkedHashMap";
 import {MapEntry} from "../src/MapEntry";
+import {TreeMap} from "../src/TreeMap";
 
 // PetStoreProduct will be used in testing
 class PetStoreProduct {
@@ -37,6 +38,36 @@ class PetStoreProduct {
   }
 }
 
+const alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
+  compare(o1:PetStoreProduct, o2:PetStoreProduct) : number {
+    if (o1 === o2)
+      return 0;
+      if (o1 === undefined)
+        return -1;
+    if (o1 === null)
+      return -1;
+      if (o2 === undefined)
+        return 1;
+    if (o2 === null)
+      return 1;
+    if (o1.getProductName() === o2.getProductName())
+      return 0;
+    if (o1.getProductName() === undefined)
+      return -1;
+      if (o1.getProductName() === null)
+        return -1;
+    if (o2.getProductName() === undefined)
+      return 1;
+      if (o2.getProductName() === null)
+        return 1;
+
+    if (o1.getProductName() < o2.getProductName())
+      return -1;
+
+    return 1;
+  }
+};
+
 const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
 const product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
 const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
@@ -51,15 +82,16 @@ class ValueClass {
 describe("Test Map functionality", function() {
 
   it("Test empty maps", function() {
+    testEmptyStringStringMap (Collections.emptyMap<string,string>());
+    testEmptyStringNumberMap (Collections.emptyMap<string,number>());
+    testEmptyPetStoreProductAndValueClassMap (Collections.emptyMap<PetStoreProduct,ValueClass>());
+
     testEmptyStringStringMap (new HashMap<string,string> ());
     testEmptyStringStringMap (new HashMap<string,string> (new AllFieldHashable<string>()));
-    testEmptyStringStringMap (Collections.emptyMap<string,string>());
     testEmptyStringNumberMap (new HashMap<string,number> ());
     testEmptyStringNumberMap (new HashMap<string,number> (new AllFieldHashable<string>()));
-    testEmptyStringNumberMap (Collections.emptyMap<string,number>());
     testEmptyPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> ());
     testEmptyPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
-    testEmptyPetStoreProductAndValueClassMap (Collections.emptyMap<PetStoreProduct,ValueClass>());
 
     testEmptyStringStringMap (new LinkedHashMap<string,string> ());
     testEmptyStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()));
@@ -67,6 +99,10 @@ describe("Test Map functionality", function() {
     testEmptyStringNumberMap (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
     testEmptyPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> ());
     testEmptyPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testEmptyStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
+    testEmptyStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
+    testEmptyPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
 });
