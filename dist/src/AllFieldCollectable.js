@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var AllFieldCollectable = /** @class */ (function () {
+var AllFieldCollectable = (function () {
     function AllFieldCollectable() {
     }
     AllFieldCollectable.prototype.equals = function (o1, o2) {

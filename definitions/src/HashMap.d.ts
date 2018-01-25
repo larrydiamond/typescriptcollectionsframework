@@ -1,4 +1,5 @@
 import { BasicMapEntry } from "./BasicMapEntry";
+import { Consumer } from "./Consumer";
 import { Hashable } from "./Hashable";
 import { ImmutableMap } from "./ImmutableMap";
 import { ImmutableSet } from "./ImmutableSet";
@@ -145,6 +146,11 @@ export declare class ImmutableKeySetForHashMap<K, V> implements ImmutableSet<K> 
     contains(item: K): boolean;
     iterator(): JIterator<K>;
     [Symbol.iterator](): Iterator<K>;
+    /**
+    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    * @param {Consumer} consumer - the action to be performed for each element
+    */
+    forEach(consumer: Consumer<K>): void;
 }
 export declare class HashMapKeySetJIterator<K, V> implements JIterator<K> {
     private location;
@@ -167,6 +173,7 @@ export declare class ImmutableEntrySetForHashMap<K, V> implements ImmutableSet<M
     contains(item: MapEntry<K, V>): boolean;
     iterator(): JIterator<MapEntry<K, V>>;
     [Symbol.iterator](): Iterator<MapEntry<K, V>>;
+    forEach(consumer: Consumer<MapEntry<K, V>>): void;
 }
 export declare class HashMapEntrySetJIterator<K, V> implements JIterator<MapEntry<K, V>> {
     private location;

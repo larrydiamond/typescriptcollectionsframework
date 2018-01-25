@@ -21,7 +21,7 @@ var TreeMap_1 = require("./TreeMap");
  *
  * This class corresponds to java.util.TreeSet
  */
-var TreeSet = /** @class */ (function () {
+var TreeSet = (function () {
     function TreeSet(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.datastore = null;
@@ -142,6 +142,16 @@ var TreeSet = /** @class */ (function () {
         return this.datastore.clear();
     };
     /**
+    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    * @param {Consumer} consumer - the action to be performed for each element
+    */
+    TreeSet.prototype.forEach = function (consumer) {
+        for (var iter = this.iterator(); iter.hasNext();) {
+            var t = iter.next();
+            consumer.accept(t);
+        }
+    };
+    /**
      * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
      * @return {K} the first (lowest) element, or null if this set is empty
      */
@@ -206,7 +216,7 @@ var TreeSet = /** @class */ (function () {
 }());
 exports.TreeSet = TreeSet;
 /* Java style iterator */
-var TreeSetJIterator = /** @class */ (function () {
+var TreeSetJIterator = (function () {
     function TreeSetJIterator(iSet) {
         this.set = iSet;
     }
@@ -253,7 +263,7 @@ var TreeSetJIterator = /** @class */ (function () {
 }());
 exports.TreeSetJIterator = TreeSetJIterator;
 /* TypeScript iterator */
-var TreeSetIterator = /** @class */ (function () {
+var TreeSetIterator = (function () {
     function TreeSetIterator(iSet) {
         this.set = iSet;
         this.location = this.set.first();

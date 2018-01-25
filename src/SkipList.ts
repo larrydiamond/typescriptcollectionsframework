@@ -13,6 +13,7 @@ import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
 import {Collections} from "./Collections";
 import {Comparator} from "./Comparator";
+import {Consumer} from "./Consumer";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
@@ -1043,6 +1044,17 @@ export class ImmutableKeySetForSkipListMap<K,V> implements ImmutableSet<K> {
   public iterator():JIterator<K> { return new SkipListMapKeySetJIterator(this.impl); }
 
   public [Symbol.iterator] ():Iterator<K> { return new SkipListMapKeySetIterator (this.impl); }
+
+  /**
+  * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+  * @param {Consumer} consumer - the action to be performed for each element
+  */
+  public forEach(consumer:Consumer<K>) : void {
+   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     let t:K = iter.next();
+     consumer.accept(t);
+   }
+  }
 }
 
 /* Java style iterator */
@@ -1110,12 +1122,6 @@ export class SkipListMapKeySetIterator<K,V> implements Iterator<K> {
 }
 
 
-
-
-
-
-
-
 export class ImmutableEntrySetForSkipListMapImpl<K,V> implements ImmutableSet<MapEntry<K,V>> {
   private map:SkipListMapImpl<K,V>;
   constructor(iMap:SkipListMapImpl<K,V>) {
@@ -1139,6 +1145,14 @@ export class ImmutableEntrySetForSkipListMapImpl<K,V> implements ImmutableSet<Ma
   public iterator():JIterator<MapEntry<K,V>> { return new SkipListMapEntrySetJIterator(this.map); }
 
   public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new SkipListMapEntrySetIterator (this.map); }
+
+  public forEach(consumer:Consumer<MapEntry<K,V>>) : void {
+   for (let iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
+     let t:MapEntry<K,V> = iter.next();
+     consumer.accept(t);
+   }
+  }
+  
 }
 
 /* Java style iterator */
@@ -1303,6 +1317,16 @@ export class SkipListSet<K> implements NavigableSet<K> {
     return node.getKey();
   }
 
+  /**
+  * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+  * @param {Consumer} consumer - the action to be performed for each element
+  */
+  public forEach(consumer:Consumer<K>) : void {
+   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     let t:K = iter.next();
+     consumer.accept(t);
+   }
+  }
 
   /**
   * Returns the first (lowest) element currently in this set.

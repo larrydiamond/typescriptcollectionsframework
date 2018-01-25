@@ -2,6 +2,7 @@ import { ArrayList } from "./ArrayList";
 import { BasicMapEntry } from "./BasicMapEntry";
 import { Collectable } from "./Collectable";
 import { Comparator } from "./Comparator";
+import { Consumer } from "./Consumer";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableMap } from "./ImmutableMap";
 import { ImmutableSet } from "./ImmutableSet";
@@ -265,6 +266,11 @@ export declare class ImmutableKeySetForSkipListMap<K, V> implements ImmutableSet
     contains(item: K): boolean;
     iterator(): JIterator<K>;
     [Symbol.iterator](): Iterator<K>;
+    /**
+    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    * @param {Consumer} consumer - the action to be performed for each element
+    */
+    forEach(consumer: Consumer<K>): void;
 }
 export declare class SkipListMapKeySetJIterator<K, V> implements JIterator<K> {
     private location;
@@ -287,6 +293,7 @@ export declare class ImmutableEntrySetForSkipListMapImpl<K, V> implements Immuta
     contains(item: MapEntry<K, V>): boolean;
     iterator(): JIterator<MapEntry<K, V>>;
     [Symbol.iterator](): Iterator<MapEntry<K, V>>;
+    forEach(consumer: Consumer<MapEntry<K, V>>): void;
 }
 export declare class SkipListMapEntrySetJIterator<K, V> implements JIterator<MapEntry<K, V>> {
     private location;
@@ -348,6 +355,11 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     * @return {K} the least element greater than or equal to item, or null if there is no such element
     */
     ceiling(key: K): K;
+    /**
+    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    * @param {Consumer} consumer - the action to be performed for each element
+    */
+    forEach(consumer: Consumer<K>): void;
     /**
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set

@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+import {Consumer} from "./Consumer";
 import {JIterator} from "./JIterator";
 
 /**
@@ -50,4 +51,10 @@ export interface ImmutableCollection<T> {
    * @return {boolean} true if this collection contains the specified element
    */
   contains (t:T) : boolean;
+
+  /**
+   * Performs the given action for each element until all elements have been processed or the action throws and exception.
+   * Exceptions thrown by the action are relayed to the caller
+   */
+  forEach (action: Consumer<T>) : void;
 }

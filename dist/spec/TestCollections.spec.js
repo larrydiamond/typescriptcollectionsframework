@@ -289,7 +289,7 @@ describe("Test Collections static methods", function () {
  * will properly handle.
  * The copy instances below are to test the dynamicCollectable method
  */
-var PetStoreProduct = /** @class */ (function () {
+var PetStoreProduct = (function () {
     function PetStoreProduct(isku, iname, ibrand) {
         this.sku = isku;
         this.name = iname;

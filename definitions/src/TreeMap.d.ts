@@ -1,4 +1,5 @@
 import { Comparator } from "./Comparator";
+import { Consumer } from "./Consumer";
 import { ImmutableMap } from "./ImmutableMap";
 import { ImmutableSet } from "./ImmutableSet";
 import { JIterator } from "./JIterator";
@@ -208,6 +209,7 @@ export declare class ImmutableKeySetForTreeMap<K, V> implements ImmutableSet<K> 
     contains(item: K): boolean;
     iterator(): JIterator<K>;
     [Symbol.iterator](): Iterator<K>;
+    forEach(consumer: Consumer<K>): void;
 }
 export declare class TreeMapKeySetJIterator<K, V> implements JIterator<K> {
     private location;
@@ -230,6 +232,7 @@ export declare class ImmutableEntrySetForTreeMap<K, V> implements ImmutableSet<M
     contains(item: MapEntry<K, V>): boolean;
     iterator(): JIterator<MapEntry<K, V>>;
     [Symbol.iterator](): Iterator<MapEntry<K, V>>;
+    forEach(consumer: Consumer<MapEntry<K, V>>): void;
 }
 export declare class TreeMapEntrySetJIterator<K, V> implements JIterator<MapEntry<K, V>> {
     private location;

@@ -161,27 +161,43 @@ function addTestStrings(coll) {
     expect(coll.add("ninth")).toEqual(true);
     expect(coll.add("tenth")).toEqual(true);
 }
+var failActionString = {
+    accept: function (element) {
+        fail('Unwanted code branch in testEmptyStringCollection');
+        throw new Error('Unwanted code branch in testEmptyStringCollection');
+    }
+};
 function testEmptyStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
     expect(coll.size()).toEqual(0);
     expect(coll.contains("blah")).toEqual(false);
     for (var iter = coll.iterator(); iter.hasNext();) {
+        fail('Unwanted code branch in testEmptyStringCollection');
         throw new Error('Unwanted code branch in testEmptyStringCollection');
     }
     var i = coll[Symbol.iterator]();
     var ir = i.next();
     expect(ir.done).toEqual(true);
+    coll.forEach(failActionString);
 }
+var failActionNumber = {
+    accept: function (element) {
+        fail('Unwanted code branch in testEmptyNumberCollection');
+        throw new Error('Unwanted code branch in testEmptyNumberCollection');
+    }
+};
 function testEmptyNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
     expect(coll.size()).toEqual(0);
     expect(coll.contains(500)).toEqual(false);
     for (var iter = coll.iterator(); iter.hasNext();) {
+        fail('Unwanted code branch in testEmptyNumberCollection');
         throw new Error('Unwanted code branch in testEmptyNumberCollection');
     }
     var i = coll[Symbol.iterator]();
     var ir = i.next();
     expect(ir.done).toEqual(true);
+    coll.forEach(failActionNumber);
 }
 function testAddOneItemToStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);

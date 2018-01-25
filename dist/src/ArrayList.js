@@ -20,7 +20,7 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
  *
  * This class corresponds to java.util.ArrayList
  */
-var ArrayList = /** @class */ (function () {
+var ArrayList = (function () {
     function ArrayList(iEquals, initialElements) {
         if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }
         this.initialElements = initialElements;
@@ -307,6 +307,16 @@ var ArrayList = /** @class */ (function () {
         return element;
     };
     /**
+     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+     * @param {Consumer} consumer - the action to be performed for each element
+     */
+    ArrayList.prototype.forEach = function (consumer) {
+        for (var iter = this.iterator(); iter.hasNext();) {
+            var t = iter.next();
+            consumer.accept(t);
+        }
+    };
+    /**
     * Retrieves and removes the head of this queue, or returns null if this queue is empty.
     * @return {K} the element at the head of the queue or null if empty
     */
@@ -453,7 +463,7 @@ var ArrayList = /** @class */ (function () {
 }());
 exports.ArrayList = ArrayList;
 /* Java style iterator */
-var ArrayListJIterator = /** @class */ (function () {
+var ArrayListJIterator = (function () {
     function ArrayListJIterator(iArrayList) {
         this.offset = 0;
         this.arraylist = iArrayList;
@@ -470,7 +480,7 @@ var ArrayListJIterator = /** @class */ (function () {
 }());
 exports.ArrayListJIterator = ArrayListJIterator;
 /* TypeScript iterator */
-var ArrayListIterator = /** @class */ (function () {
+var ArrayListIterator = (function () {
     function ArrayListIterator(iArrayList) {
         this.offset = 0;
         this.arraylist = iArrayList;

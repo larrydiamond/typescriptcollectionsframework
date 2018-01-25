@@ -10,6 +10,7 @@ import {AllFieldCollectable} from "./AllFieldCollectable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {Consumer} from "./Consumer";
 import {Deque} from "./Deque";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
@@ -207,6 +208,16 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     this.numberElements = 0;
   }
 
+/**
+ * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+ * @param {Consumer} consumer - the action to be performed for each element
+ */
+ public forEach(consumer:Consumer<T>) : void {
+   for (let iter:JIterator<T> = this.iterator(); iter.hasNext(); ) {
+     let t:T = iter.next();
+     consumer.accept(t);
+   }
+  }
 
  /**
   * Returns the number of elements in this list.

@@ -11,7 +11,7 @@ var Collections_1 = require("../src/Collections");
 var PriorityQueue_1 = require("../src/PriorityQueue");
 describe("Test Priority Queue functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = /** @class */ (function () {
+    var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;

@@ -9,6 +9,7 @@
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Comparator} from "./Comparator";
+import {Consumer} from "./Consumer";
 import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
@@ -885,6 +886,14 @@ export class ImmutableKeySetForTreeMap<K,V> implements ImmutableSet<K> {
   public iterator():JIterator<K> { return new TreeMapKeySetJIterator(this.treeMap); }
 
   public [Symbol.iterator] ():Iterator<K> { return new TreeMapKeySetIterator (this.treeMap); }
+
+  public forEach(consumer:Consumer<K>) : void {
+   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     let t:K = iter.next();
+     consumer.accept(t);
+   }
+  }
+
 }
 
 
@@ -977,6 +986,13 @@ export class ImmutableEntrySetForTreeMap<K,V> implements ImmutableSet<MapEntry<K
   public iterator():JIterator<MapEntry<K,V>> { return new TreeMapEntrySetJIterator(this.treeMap); }
 
   public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new TreeMapEntrySetIterator (this.treeMap); }
+
+  public forEach(consumer:Consumer<MapEntry<K,V>>) : void {
+   for (let iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
+     let t:MapEntry<K,V> = iter.next();
+     consumer.accept(t);
+   }
+  }
 }
 
 

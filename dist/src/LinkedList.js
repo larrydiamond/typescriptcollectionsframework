@@ -17,7 +17,7 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
  *
  * This class corresponds to java.util.LinkedList
  */
-var LinkedList = /** @class */ (function () {
+var LinkedList = (function () {
     function LinkedList(iEquals, initialElements) {
         if (iEquals === void 0) { iEquals = AllFieldCollectable_1.AllFieldCollectable.instance; }
         this.initialElements = initialElements;
@@ -175,6 +175,16 @@ var LinkedList = /** @class */ (function () {
         this.firstNode = null;
         this.lastNode = null;
         this.numberElements = 0;
+    };
+    /**
+     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+     * @param {Consumer} consumer - the action to be performed for each element
+     */
+    LinkedList.prototype.forEach = function (consumer) {
+        for (var iter = this.iterator(); iter.hasNext();) {
+            var t = iter.next();
+            consumer.accept(t);
+        }
     };
     /**
      * Returns the number of elements in this list.
@@ -624,7 +634,7 @@ var LinkedList = /** @class */ (function () {
     return LinkedList;
 }());
 exports.LinkedList = LinkedList;
-var LinkedListNode = /** @class */ (function () {
+var LinkedListNode = (function () {
     function LinkedListNode(t) {
         this.payload = t;
         this.previousNode = null;
@@ -634,7 +644,7 @@ var LinkedListNode = /** @class */ (function () {
 }());
 exports.LinkedListNode = LinkedListNode;
 /* Java style iterator */
-var LinkedListJIterator = /** @class */ (function () {
+var LinkedListJIterator = (function () {
     function LinkedListJIterator(iList) {
         this.node = iList.getFirstNode();
     }
@@ -653,7 +663,7 @@ var LinkedListJIterator = /** @class */ (function () {
 }());
 exports.LinkedListJIterator = LinkedListJIterator;
 /* TypeScript iterator */
-var LinkedListIterator = /** @class */ (function () {
+var LinkedListIterator = (function () {
     function LinkedListIterator(iList) {
         this.node = iList.getFirstNode();
     }

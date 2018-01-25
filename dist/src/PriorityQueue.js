@@ -14,7 +14,7 @@ var TreeSet_1 = require("./TreeSet");
  *
  * This class corresponds to java.util.PriorityQueue
  */
-var PriorityQueue = /** @class */ (function () {
+var PriorityQueue = (function () {
     function PriorityQueue(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.pQueue = new TreeSet_1.TreeSet(iComparator);
@@ -127,6 +127,16 @@ var PriorityQueue = /** @class */ (function () {
     */
     PriorityQueue.prototype.contains = function (k) {
         return this.pQueue.contains(k);
+    };
+    /**
+    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    * @param {Consumer} consumer - the action to be performed for each element
+    */
+    PriorityQueue.prototype.forEach = function (consumer) {
+        for (var iter = this.iterator(); iter.hasNext();) {
+            var t = iter.next();
+            consumer.accept(t);
+        }
     };
     return PriorityQueue;
 }());
