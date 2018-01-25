@@ -1,11 +1,6 @@
-/**
-* @license
-* Copyright Francesco Giordano 2017 All Rights Reserved.
-*
-* Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
-*/
+import { Hashable } from "./Hashable";
 import { HashMap, HashMapEntry } from "./HashMap";
+import { ImmutableMap } from "./ImmutableMap";
 import { JIterator } from "./JIterator";
 /**
  * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
@@ -16,8 +11,11 @@ import { JIterator } from "./JIterator";
  * This class corresponds to java.util.LinkedHashMap
  */
 export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
+    private initialElementsLinked;
+    private iInitialCapacityLinked;
+    private iLoadFactorLinked;
     private header;
-    constructor();
+    constructor(iHash?: Hashable<K>, initialElementsLinked?: ImmutableMap<K, V>, iInitialCapacityLinked?: number, iLoadFactorLinked?: number);
     /**
      * Initializes the chain before any entries are inserted into the map.
      */

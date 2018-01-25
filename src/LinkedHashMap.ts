@@ -5,15 +5,18 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
+import {AllFieldHashable} from "./AllFieldHashable";
+import {Hashable} from "./Hashable";
 import {HashMap, HashMapEntry} from "./HashMap";
+import {ImmutableMap} from "./ImmutableMap";
 import {JIterator} from "./JIterator";
 
 /**
- * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation 
- * differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list 
+ * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
+ * differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list
  * defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order).
  * Note that insertion order is not affected if a key is re-inserted into the map.
- * 
+ *
  * This class corresponds to java.util.LinkedHashMap
  */
 export class LinkedHashMap<K, V> extends HashMap<K, V> {
@@ -22,11 +25,11 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     private header: LinkedEntry<K,V>;
 
     /*
-    * Constructs an empty insertion-ordered LinkedHashMap instance with the default 
+    * Constructs an empty insertion-ordered LinkedHashMap instance with the default
     * initial capacity (20-from super class) and load factor (0.75).
     */
-    constructor () {
-        super();
+    constructor (iHash:Hashable<K> = AllFieldHashable.instance, private initialElementsLinked:ImmutableMap<K, V> = null, private iInitialCapacityLinked:number=20, private iLoadFactorLinked:number=0.75) {
+        super(iHash, initialElementsLinked, iInitialCapacityLinked, iLoadFactorLinked);
         this.init();
     }
 
@@ -47,7 +50,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
         if (value === null || value === undefined)
             return false;
         else {
-            for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after) 
+            for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after)
                 if (value.equals(e))
                     return true;
         }
@@ -89,7 +92,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     }
 
     /**
-     * Returns true if this map should remove its eldest entry. This method is invoked by put and 
+     * Returns true if this map should remove its eldest entry. This method is invoked by put and
      * putAll after inserting a new entry into the map. It provides the implementor with the opportunity to remove the
      * eldest entry each time a new one is added. This is useful if the map represents a cache: it allows the map to reduce
      * memory consumption by deleting stale entries.
@@ -194,7 +197,7 @@ export class LinkedHashIterator<K,V> implements JIterator<LinkedEntry<K,V>> {
         if(this.check() === false)
           return null;
         let e:LinkedEntry<K,V> = this.lastReturned = this.next_Entry;
-        this.next_Entry = e.after; 
+        this.next_Entry = e.after;
         return e;
     }
 

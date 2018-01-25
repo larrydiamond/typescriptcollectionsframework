@@ -15,6 +15,7 @@ import {Hashable} from "../src/Hashable";
 import {ImmutableMap} from "../src/ImmutableMap";
 import {ImmutableSet} from "../src/ImmutableSet";
 import {JIterator} from "../src/JIterator";
+import {LinkedHashMap} from "../src/LinkedHashMap";
 import {MapEntry} from "../src/MapEntry";
 
 // PetStoreProduct will be used in testing
@@ -59,6 +60,13 @@ describe("Test Map functionality", function() {
     testEmptyPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> ());
     testEmptyPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
     testEmptyPetStoreProductAndValueClassMap (Collections.emptyMap<PetStoreProduct,ValueClass>());
+
+    testEmptyStringStringMap (new LinkedHashMap<string,string> ());
+    testEmptyStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()));
+    testEmptyStringNumberMap (new LinkedHashMap<string,number> ());
+    testEmptyStringNumberMap (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
+    testEmptyPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> ());
+    testEmptyPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
   });
 
 });

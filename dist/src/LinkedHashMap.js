@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
+var AllFieldHashable_1 = require("./AllFieldHashable");
 var HashMap_1 = require("./HashMap");
 /**
  * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
@@ -32,8 +33,15 @@ var LinkedHashMap = /** @class */ (function (_super) {
     * Constructs an empty insertion-ordered LinkedHashMap instance with the default
     * initial capacity (20-from super class) and load factor (0.75).
     */
-    function LinkedHashMap() {
-        var _this = _super.call(this) || this;
+    function LinkedHashMap(iHash, initialElementsLinked, iInitialCapacityLinked, iLoadFactorLinked) {
+        if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
+        if (initialElementsLinked === void 0) { initialElementsLinked = null; }
+        if (iInitialCapacityLinked === void 0) { iInitialCapacityLinked = 20; }
+        if (iLoadFactorLinked === void 0) { iLoadFactorLinked = 0.75; }
+        var _this = _super.call(this, iHash, initialElementsLinked, iInitialCapacityLinked, iLoadFactorLinked) || this;
+        _this.initialElementsLinked = initialElementsLinked;
+        _this.iInitialCapacityLinked = iInitialCapacityLinked;
+        _this.iLoadFactorLinked = iLoadFactorLinked;
         _this.init();
         return _this;
     }

@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var Collections_1 = require("../src/Collections");
 var HashMap_1 = require("../src/HashMap");
+var LinkedHashMap_1 = require("../src/LinkedHashMap");
 // PetStoreProduct will be used in testing
 var PetStoreProduct = /** @class */ (function () {
     function PetStoreProduct(iName, iPrice) {
@@ -45,6 +46,12 @@ describe("Test Map functionality", function () {
         testEmptyPetStoreProductAndValueClassMap(new HashMap_1.HashMap());
         testEmptyPetStoreProductAndValueClassMap(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyPetStoreProductAndValueClassMap(Collections_1.Collections.emptyMap());
+        testEmptyStringStringMap(new LinkedHashMap_1.LinkedHashMap());
+        testEmptyStringStringMap(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testEmptyStringNumberMap(new LinkedHashMap_1.LinkedHashMap());
+        testEmptyStringNumberMap(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testEmptyPetStoreProductAndValueClassMap(new LinkedHashMap_1.LinkedHashMap());
+        testEmptyPetStoreProductAndValueClassMap(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
     });
 });
 function testEmptyStringStringMap(map) {
