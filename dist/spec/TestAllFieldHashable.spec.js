@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var jasts_1 = require("jasts");
 describe("Test All Field Hashable", function () {
-    var SomeClass = (function () {
+    var SomeClass = /** @class */ (function () {
         function SomeClass(someInput, someOtherInput) {
             if (someInput === void 0) { someInput = 20; }
             if (someOtherInput === void 0) { someOtherInput = "blah"; }

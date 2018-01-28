@@ -16,6 +16,7 @@ import {ImmutableMap} from "../src/ImmutableMap";
 import {ImmutableSet} from "../src/ImmutableSet";
 import {JIterator} from "../src/JIterator";
 import {LinkedHashMap} from "../src/LinkedHashMap";
+import {JMap} from "../src/JMap";
 import {MapEntry} from "../src/MapEntry";
 import {TreeMap} from "../src/TreeMap";
 
@@ -105,6 +106,26 @@ describe("Test Map functionality", function() {
     testEmptyPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
+  it("Test adding to empty maps", function() {
+    testAddingOneEntryStringStringMap (new HashMap<string,string> ());
+    testAddingOneEntryStringStringMap (new HashMap<string,string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringNumberMap (new HashMap<string,number> ());
+    testAddingOneEntryStringNumberMap (new HashMap<string,number> (new AllFieldHashable<string>()));
+    testAddingOneEntryPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> ());
+    testAddingOneEntryPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testAddingOneEntryStringStringMap (new LinkedHashMap<string,string> ());
+    testAddingOneEntryStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringNumberMap (new LinkedHashMap<string,number> ());
+    testAddingOneEntryStringNumberMap (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
+    testAddingOneEntryPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> ());
+    testAddingOneEntryPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testAddingOneEntryStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
+    testAddingOneEntryStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
+    testAddingOneEntryPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));    
+  });
+
 });
 
 
@@ -122,4 +143,28 @@ function testEmptyStringNumberMap (map:ImmutableMap<string,number>) : void {
 function testEmptyPetStoreProductAndValueClassMap (map:ImmutableMap<PetStoreProduct,ValueClass>) : void {
    expect (map.isEmpty ()).toEqual(true);
    expect (map.size ()).toEqual(0);
+}
+
+function testAddingOneEntryStringStringMap (map:JMap<string,string>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put("testkey", "testvalue"));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+}
+
+function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put("testkey", 1));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+}
+
+function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put(product1, new ValueClass()));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
 }

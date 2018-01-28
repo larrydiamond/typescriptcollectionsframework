@@ -54,7 +54,7 @@ export class TreeSet<K> implements NavigableSet<K> {
   */
   public add (element:K) : boolean {
     const tmp:number = this.datastore.put(element, 1);
-    if (tmp === null) {
+    if ((tmp === null) || (tmp === undefined)){
       return true;
     }
 

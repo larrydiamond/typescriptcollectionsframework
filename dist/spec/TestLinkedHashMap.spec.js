@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var LinkedHashMap_1 = require("../src/LinkedHashMap");
 describe("Test LinkedHashMap functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = (function () {
+    var PetStoreProduct = /** @class */ (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;
@@ -21,7 +21,7 @@ describe("Test LinkedHashMap functionality", function () {
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
     // Wanted to show a class in the value object but anything would work fine
-    var ValueClass = (function () {
+    var ValueClass = /** @class */ (function () {
         function ValueClass() {
             this.blah1 = 1;
             this.blah2 = "1";

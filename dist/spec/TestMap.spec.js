@@ -13,7 +13,7 @@ var HashMap_1 = require("../src/HashMap");
 var LinkedHashMap_1 = require("../src/LinkedHashMap");
 var TreeMap_1 = require("../src/TreeMap");
 // PetStoreProduct will be used in testing
-var PetStoreProduct = (function () {
+var PetStoreProduct = /** @class */ (function () {
     function PetStoreProduct(iName, iPrice) {
         this.productName = iName;
         this.price = iPrice;
@@ -58,7 +58,7 @@ var product1 = new PetStoreProduct("Catnip", 4.99);
 var product3 = new PetStoreProduct("Goldfish", 9.99);
 var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 // Wanted to show a class in the value object but anything would work fine
-var ValueClass = (function () {
+var ValueClass = /** @class */ (function () {
     function ValueClass() {
     }
     return ValueClass;
@@ -84,6 +84,23 @@ describe("Test Map functionality", function () {
         testEmptyStringNumberMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassMap(new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct));
     });
+    it("Test adding to empty maps", function () {
+        testAddingOneEntryStringStringMap(new HashMap_1.HashMap());
+        testAddingOneEntryStringStringMap(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringNumberMap(new HashMap_1.HashMap());
+        testAddingOneEntryStringNumberMap(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryPetStoreProductAndValueClassMap(new HashMap_1.HashMap());
+        testAddingOneEntryPetStoreProductAndValueClassMap(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringStringMap(new LinkedHashMap_1.LinkedHashMap());
+        testAddingOneEntryStringStringMap(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringNumberMap(new LinkedHashMap_1.LinkedHashMap());
+        testAddingOneEntryStringNumberMap(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryPetStoreProductAndValueClassMap(new LinkedHashMap_1.LinkedHashMap());
+        testAddingOneEntryPetStoreProductAndValueClassMap(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringStringMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryStringNumberMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryPetStoreProductAndValueClassMap(new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct));
+    });
 });
 function testEmptyStringStringMap(map) {
     expect(map.isEmpty()).toEqual(true);
@@ -96,4 +113,25 @@ function testEmptyStringNumberMap(map) {
 function testEmptyPetStoreProductAndValueClassMap(map) {
     expect(map.isEmpty()).toEqual(true);
     expect(map.size()).toEqual(0);
+}
+function testAddingOneEntryStringStringMap(map) {
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    expect(undefined).toEqual(map.put("testkey", "testvalue"));
+    expect(map.size()).toEqual(1);
+    expect(map.isEmpty()).toEqual(false);
+}
+function testAddingOneEntryStringNumberMap(map) {
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    expect(undefined).toEqual(map.put("testkey", 1));
+    expect(map.size()).toEqual(1);
+    expect(map.isEmpty()).toEqual(false);
+}
+function testAddingOneEntryPetStoreProductAndValueClassMap(map) {
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    expect(undefined).toEqual(map.put(product1, new ValueClass()));
+    expect(map.size()).toEqual(1);
+    expect(map.isEmpty()).toEqual(false);
 }

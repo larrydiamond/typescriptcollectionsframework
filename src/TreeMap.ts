@@ -184,7 +184,7 @@ public size () : number {
     if ((this.topNode === null) || (this.topNode === undefined)) {
       const newNode:TreeMapNode<K,V> = new TreeMapNode<K,V>(key, value, null);
       this.topNode = newNode;
-      return null;
+      return undefined;
     }
 
     return this.putNode (this.topNode, key, value);
@@ -232,7 +232,7 @@ public size () : number {
           node.setLeftNode(newNode);
         }
 
-        return null;
+        return undefined;
       } else {
         return this.putNode (nextNode, key, value);
       }
@@ -269,7 +269,7 @@ public size () : number {
         }
 
         node.setRightNode(newNode);
-        return null;
+        return undefined;
       } else {
         return this.putNode (nextNode, key, value);
       }

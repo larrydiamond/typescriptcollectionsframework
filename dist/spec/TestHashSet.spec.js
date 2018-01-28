@@ -15,7 +15,7 @@ var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
 describe("Test HashSet functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = (function () {
+    var PetStoreProduct = /** @class */ (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;
