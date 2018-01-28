@@ -213,7 +213,7 @@ describe("Test SkipList functionality", function() {
 
   it("Map Test Adding one item", function() {
     const petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
-    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
+    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(undefined);
     expect (petStoreMap1.size ()).toEqual(1);
     expect (petStoreMap1.isEmpty ()).toEqual(false);
     expect (petStoreMap1.firstKey()).toEqual(product1);
@@ -229,7 +229,7 @@ describe("Test SkipList functionality", function() {
 
   it("Map Test Adding one native item", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
     test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
@@ -244,24 +244,24 @@ describe("Test SkipList functionality", function() {
 
   it ("Test adding initial elements out of order", function () {
     const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
-    test.equals ("Adding C to empty map", null, sourceMap.put ("C", "D"));
-    test.equals ("Adding A to 1 entry map", null, sourceMap.put ("A", "B"));
+    test.equals ("Adding C to empty map", undefined, sourceMap.put ("C", "D"));
+    test.equals ("Adding A to 1 entry map", undefined, sourceMap.put ("A", "B"));
     testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
     testBoolean.equalsTrue ("Validate sourceMap", sourceMap.validateMap());
   });
 
   it ("Map Test adding initial elements in order ", function () {
     const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
-    test.equals ("Adding A to empty map", null, sourceMap.put ("A", "B"));
-    test.equals ("Adding C to 1 entry map", null, sourceMap.put ("C", "D"));
+    test.equals ("Adding A to empty map", undefined, sourceMap.put ("A", "B"));
+    test.equals ("Adding C to 1 entry map", undefined, sourceMap.put ("C", "D"));
     testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
     testBoolean.equalsTrue ("Validate sourceMap", sourceMap.validateMap());
   });
 
   it ("Map Test adding and copying initial elements in order ", function () {
     const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
-    test.equals ("Adding A to empty map", null, sourceMap.put ("A", "B"));
-    test.equals ("Adding C to 1 entry map", null, sourceMap.put ("C", "D"));
+    test.equals ("Adding A to empty map", undefined, sourceMap.put ("A", "B"));
+    test.equals ("Adding C to 1 entry map", undefined, sourceMap.put ("C", "D"));
     testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
     testBoolean.equalsTrue ("Validate sourceMap", sourceMap.validateMap());
 
@@ -272,8 +272,8 @@ describe("Test SkipList functionality", function() {
 
   it ("Map Test adding and copying initial elements out of order", function () {
     const sourceMap:SkipListMap<string,string> = new SkipListMap<string,string>(Collections.getStringComparator());
-    test.equals ("Adding C to empty map", null, sourceMap.put ("C", "D"));
-    test.equals ("Adding A to 1 entry map", null, sourceMap.put ("A", "B"));
+    test.equals ("Adding C to empty map", undefined, sourceMap.put ("C", "D"));
+    test.equals ("Adding A to 1 entry map", undefined, sourceMap.put ("A", "B"));
     testNumber.equals ("Expected sourceMap size incorrect", sourceMap.size(), 2);
     testBoolean.equalsTrue ("Validate sourceMap", sourceMap.validateMap());
 
@@ -284,7 +284,7 @@ describe("Test SkipList functionality", function() {
 
   it("Map Test Adding two items", function() {
     const petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
-    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
+    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(undefined);
     expect (petStoreMap1.size ()).toEqual(1);
     expect (petStoreMap1.firstKey()).toEqual(product1);
     test.notNullOrUndefined ("First Entry is valid", petStoreMap1.firstEntry());
@@ -295,7 +295,7 @@ describe("Test SkipList functionality", function() {
     test.equals ("Last Entry is product1a", petStoreMap1.lastEntry().getKey().getProductName(), product1.getProductName());
     test.equals ("Last Entry is product1b", petStoreMap1.lastEntry().getKey().getPrice(), product1.getPrice());
 
-    expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(null);
+    expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(undefined);
     expect (petStoreMap1.size ()).toEqual(2);
     expect (petStoreMap1.firstKey()).toEqual(product2);
     test.notNullOrUndefined ("First Entry is valid", petStoreMap1.firstEntry());
@@ -309,7 +309,7 @@ describe("Test SkipList functionality", function() {
 
   it("Map Test Adding two native items", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
     test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
@@ -320,7 +320,7 @@ describe("Test SkipList functionality", function() {
     testString.equals ("Last entry key name", basicTypesMap1.lastEntry().getKey(), "ChewToy");
     testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
 
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(2);
     expect (basicTypesMap1.firstKey()).toEqual("Catnip");
     test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
@@ -335,37 +335,37 @@ describe("Test SkipList functionality", function() {
   it("Map Test ContainsKey where the item is contained", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.containsKey ("ZZZZZZ")).toEqual (false);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     testBoolean.equalsTrue ("Validate map", basicTypesMap1.validateMap());
     expect (basicTypesMap1.containsKey ("Catnip")).toEqual (true);
   });
 
   it("Map Test ContainsKey where the item is not contained", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.containsKey ("Bananas")).toEqual (false);  // I guess we have no bananas today
   });
 
   it("Map Test ContainsKey where the item is contained", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.containsKey ("Catnip")).toEqual (true);
   }, 2000);
 
   it("Map Test ContainsKey where the item is not contained", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.containsKey ("Bananas")).toEqual (false);  // I guess we have no bananas today
   }, 2000);
 
   it("Test FloorEntry defect previously identified", function() {
     const map:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (map.put ("ChewToy", 14.99)).toEqual(null);
-    expect (map.put ("Catnip", 4.99)).toEqual(null);
+    expect (map.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (map.put ("Catnip", 4.99)).toEqual(undefined);
     expect (map.floorKey ("Leash")).toEqual ("ChewToy");
   }, 2000);
 
@@ -375,7 +375,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(0);
     testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.firstKey()).toEqual("ChewToy");
     test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
@@ -387,7 +387,7 @@ describe("Test SkipList functionality", function() {
     testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
     testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(2);
     expect (basicTypesMap1.firstKey()).toEqual("Catnip");
     test.notNullOrUndefined ("First Entry is valid", basicTypesMap1.firstEntry());
@@ -399,7 +399,7 @@ describe("Test SkipList functionality", function() {
     testNumber.equals ("Last entry key number", basicTypesMap1.lastEntry().getValue(), 14.99);
     testBoolean.equalsTrue ("Validate map3", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(undefined);
     testBoolean.equalsTrue ("Validate map3a", basicTypesMap1.validateMap());
     expect (basicTypesMap1.size ()).toEqual(3);
     expect (basicTypesMap1.firstKey()).toEqual("Catnip");
@@ -417,9 +417,9 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(0);
     testBoolean.equalsTrue ("Validate map5", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 1.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(3);
     testBoolean.equalsTrue ("Validate map6", basicTypesMap1.validateMap());
   }, 2000);
@@ -428,14 +428,14 @@ describe("Test SkipList functionality", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
 
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     testBoolean.equalsTrue ("Validate map0", basicTypesMap1.validateMap());
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMap());
-    expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
+    expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(undefined);
     testBoolean.equalsTrue ("Validate map2", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(4);
     testBoolean.equalsTrue ("Validate map3", basicTypesMap1.validateMap());
 
@@ -454,10 +454,10 @@ describe("Test SkipList functionality", function() {
   it("Test Adding some items number string", function() {
     const basicTypesMap2:SkipListMap<number,string> = new SkipListMap<number,string>(Collections.getNumberComparator());
 
-    expect (basicTypesMap2.put (14.99, "ChewToy")).toEqual(null);
-    expect (basicTypesMap2.put (4.99, "Catnip")).toEqual(null);
-    expect (basicTypesMap2.put (9.99, "Goldfish")).toEqual(null);
-    expect (basicTypesMap2.put (0.99, "AAAAA")).toEqual(null);
+    expect (basicTypesMap2.put (14.99, "ChewToy")).toEqual(undefined);
+    expect (basicTypesMap2.put (4.99, "Catnip")).toEqual(undefined);
+    expect (basicTypesMap2.put (9.99, "Goldfish")).toEqual(undefined);
+    expect (basicTypesMap2.put (0.99, "AAAAA")).toEqual(undefined);
     expect (basicTypesMap2.put (0.99, "BBBBB")).toEqual("AAAAA");
     expect (basicTypesMap2.size ()).toEqual(4);
     testBoolean.equalsTrue ("Validate map5", basicTypesMap2.validateMap());
@@ -467,14 +467,14 @@ describe("Test SkipList functionality", function() {
     const petStoreMap1:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct);
     const petStoreMap2:SkipListMap<PetStoreProduct,ValueClass> = new SkipListMap<PetStoreProduct,ValueClass> (priceSortPetStoreProduct);
 
-    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(null);
-    expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(null);
-    expect (petStoreMap1.put (product3, new ValueClass())).toEqual(null);
+    expect (petStoreMap1.put (product1, new ValueClass())).toEqual(undefined);
+    expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(undefined);
+    expect (petStoreMap1.put (product3, new ValueClass())).toEqual(undefined);
     expect (petStoreMap1.size ()).toEqual(3);
     testBoolean.equalsTrue ("Validate map1", petStoreMap1.validateMap());
 
-    expect (petStoreMap2.put (product1, new ValueClass())).toEqual(null);
-    expect (petStoreMap2.put (product2, new ValueClass())).toEqual(null);
+    expect (petStoreMap2.put (product1, new ValueClass())).toEqual(undefined);
+    expect (petStoreMap2.put (product2, new ValueClass())).toEqual(undefined);
     expect (petStoreMap2.size ()).toEqual(2);
     testBoolean.equalsTrue ("Validate map2", petStoreMap2.validateMap());
 
@@ -493,7 +493,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(0);
     expect (basicTypesMap1.remove ("Bananas")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(0);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.remove ("Bananas")).toEqual(null);
     expect (basicTypesMap1.size ()).toEqual(1);
@@ -502,7 +502,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.validateMap()).toEqual (true);
     basicTypesMap1.clear();
     expect (basicTypesMap1.size ()).toEqual(0);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(1);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     basicTypesMap1.clear();
@@ -516,10 +516,10 @@ describe("Test SkipList functionality", function() {
   it("Test Remove head both sides loaded", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
-    expect (basicTypesMap1.put ("ChewToys", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(null);
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToys", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(4);
     testBoolean.equalsTrue ("Validate map1", basicTypesMap1.validateMap());
 
@@ -531,9 +531,9 @@ describe("Test SkipList functionality", function() {
   it("Map Test Remove head left full right empty", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(3);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.remove ("ChewToy")).toEqual(14.99);
@@ -544,9 +544,9 @@ describe("Test SkipList functionality", function() {
   it("Map Test Remove head right full left empty", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.size ()).toEqual(0);
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(3);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.remove ("AAAAA")).toEqual(0.99);
@@ -556,21 +556,21 @@ describe("Test SkipList functionality", function() {
 
   it ("Test remove cover all the cases", function () {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.size ()).toEqual(6);
-    expect (basicTypesMap1.put ("Furry Food", 0.49)).toEqual(null);
+    expect (basicTypesMap1.put ("Furry Food", 0.49)).toEqual(undefined);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.size ()).toEqual(7);
     expect (basicTypesMap1.remove ("Dry Food")).toEqual(7.99);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.size ()).toEqual(6);
-    expect (basicTypesMap1.put ("Gaspacho   why would a pet store sell soup?   why not?", 9.49)).toEqual(null);
+    expect (basicTypesMap1.put ("Gaspacho   why would a pet store sell soup?   why not?", 9.49)).toEqual(undefined);
     expect (basicTypesMap1.validateMap()).toEqual (true);
     expect (basicTypesMap1.size ()).toEqual(7);
     expect (basicTypesMap1.remove ("Furry Food")).toEqual(0.49);
@@ -588,19 +588,19 @@ describe("Test SkipList functionality", function() {
 
   it("Test getNextHigherKey one element", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
     expect (basicTypesMap1.getNextHigherKey ("Dog")).toEqual(null);
     expect (basicTypesMap1.getNextHigherKey ("AAAAA")).toEqual(null);
   });
 
   it("Test getNextHigherKey more complex map", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
 //    basicTypesMap1.printMap();
     expect (basicTypesMap1.getNextHigherKey ("BBBBBB")).toEqual("Catnip");
@@ -619,12 +619,12 @@ describe("Test SkipList functionality", function() {
   it("Map Test ceilingEntry", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingEntry ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
     test.notNullOrUndefined ("Ceiling Entry to Chewtoy is valid", basicTypesMap1.ceilingEntry ("ChewToy"));
     testString.equals ("Ceiling Entry to Chewtoy key name", basicTypesMap1.ceilingEntry ("ChewToy").getKey(), "ChewToy");
@@ -669,12 +669,12 @@ describe("Test SkipList functionality", function() {
   it("Test ceilingKey", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingKey ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
     testBoolean.equalsTrue("Validate Map before running CeilingKey", basicTypesMap1.validateMap());
 
 //    basicTypesMap1.printMap();
@@ -698,12 +698,12 @@ describe("Test SkipList functionality", function() {
   it("Map Test higherEntry", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.higherEntry ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
     expect (basicTypesMap1.higherEntry ("ZZZZZ")).toEqual(null);
 
@@ -749,12 +749,12 @@ describe("Test SkipList functionality", function() {
   it("Map Test higherKey", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.higherKey ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
   //    basicTypesMap1.printMap();
 
@@ -778,12 +778,12 @@ describe("Test SkipList functionality", function() {
   it("Map Test lowerEntry", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.lowerEntry ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
     expect (basicTypesMap1.lowerEntry ("AAAAAA")).toEqual(null);
 
@@ -837,12 +837,12 @@ describe("Test SkipList functionality", function() {
   it("Test floorEntry", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.floorEntry ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
     expect (basicTypesMap1.floorEntry ("AAAAAA")).toEqual(null);
 
@@ -900,12 +900,12 @@ describe("Test SkipList functionality", function() {
   it("Test lowerKey", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.lowerKey ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
     testBoolean.equalsTrue("Validate Map before running LowerKey", basicTypesMap1.validateMap());
 
@@ -927,12 +927,12 @@ describe("Test SkipList functionality", function() {
   it("Test floorKey", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.floorKey ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
-    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("BBBBBB", 0.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Leash", 6.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Dry Food", 7.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Wet Food", 7.49)).toEqual(undefined);
 
   //    basicTypesMap1.printMap();
 
@@ -1315,8 +1315,8 @@ describe("Test SkipList functionality", function() {
   it("Test map entry replacement", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
     expect (basicTypesMap1.ceilingKey ("TheresNothingInThisMap")).toEqual (null);
-    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(null);
-    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(null);
+    expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
+    expect (basicTypesMap1.put ("Catnip", 4.99)).toEqual(undefined);
     expect (basicTypesMap1.put ("Catnip", 9.99)).toEqual(4.99);
     expect (basicTypesMap1.get ("Catnip")).toEqual (9.99);  // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
   });

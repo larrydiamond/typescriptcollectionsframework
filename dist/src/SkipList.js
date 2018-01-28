@@ -259,14 +259,14 @@ var SkipListMapImpl = /** @class */ (function () {
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
      * @param {K} key key with which the specified value is to be associated
      * @param {V} value value to be associated with the specified key
-     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+     * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
      */
     SkipListMapImpl.prototype.put = function (key, value) {
         if (Math.round(this.numberElements) < 1.0) {
             this.numberElements = 1.0;
             var newnode = new SkipListNode(key, value, 1.0, this.skipListNodeCollectable);
             this.head.set(0, newnode);
-            return null;
+            return undefined;
         }
         else {
             var lastNode = this.floorEntry(key);
@@ -281,7 +281,7 @@ var SkipListMapImpl = /** @class */ (function () {
                     this.head.set(loop, newnode);
                 }
                 this.numberElements++;
-                return null;
+                return undefined;
             }
             else {
                 if (this.mapComparator.compare(key, lastNode.getKey()) === 0) {
@@ -293,7 +293,7 @@ var SkipListMapImpl = /** @class */ (function () {
                     this.numberElements++;
                     var newnode = new SkipListNode(key, value, this.newNodeSize(), this.skipListNodeCollectable);
                     this.hookUpNodePointers(newnode, lastNode);
-                    return null;
+                    return undefined;
                 }
             }
         }

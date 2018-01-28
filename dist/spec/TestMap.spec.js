@@ -104,6 +104,9 @@ describe("Test Map functionality", function () {
         testAddingOneEntryStringStringMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryStringNumberMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassMap(new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct));
+        testAddingOneEntryStringStringMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
     });
 });
 function testEmptyStringStringMap(map) {

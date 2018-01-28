@@ -49,7 +49,7 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
      * @param {K} key key with which the specified value is to be associated
      * @param {V} value value to be associated with the specified key
-     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+     * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
      */
     put(key: K, value: V): V;
     private putNode(node, key, value);

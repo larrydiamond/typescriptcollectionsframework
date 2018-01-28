@@ -129,6 +129,10 @@ describe("Test Map functionality", function() {
     testAddingOneEntryStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
     testAddingOneEntryStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testAddingOneEntryStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
+    testAddingOneEntryStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
+    testAddingOneEntryPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
 });

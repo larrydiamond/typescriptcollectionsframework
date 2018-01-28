@@ -277,14 +277,14 @@ export class SkipListMapImpl<K,V> {
    * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
    * @param {K} key key with which the specified value is to be associated
    * @param {V} value value to be associated with the specified key
-   * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
+   * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
    */
   public put (key:K, value:V) : V {
     if (Math.round(this.numberElements) < 1.0) {
       this.numberElements = 1.0;
       const newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, 1.0, this.skipListNodeCollectable);
       this.head.set (0, newnode);
-      return null;
+      return undefined;
     } else {
       const lastNode:SkipListNode<K,V> = this.floorEntry(key);
       if ((lastNode === null) || (lastNode === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
@@ -298,7 +298,7 @@ export class SkipListMapImpl<K,V> {
           this.head.set (loop, newnode);
         }
         this.numberElements++;
-        return null;
+        return undefined;
       } else {
         if (this.mapComparator.compare (key, lastNode.getKey()) === 0) {
           const lastValue : V = lastNode.getValue();
@@ -308,7 +308,7 @@ export class SkipListMapImpl<K,V> {
           this.numberElements++;
           const newnode:SkipListNode<K,V> = new SkipListNode<K,V>(key, value, this.newNodeSize (), this.skipListNodeCollectable);
           this.hookUpNodePointers (newnode, lastNode);
-          return null;
+          return undefined;
         }
       }
     }
@@ -1152,7 +1152,7 @@ export class ImmutableEntrySetForSkipListMapImpl<K,V> implements ImmutableSet<Ma
      consumer.accept(t);
    }
   }
-  
+
 }
 
 /* Java style iterator */
