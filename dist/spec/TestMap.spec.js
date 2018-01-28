@@ -11,6 +11,7 @@ var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var Collections_1 = require("../src/Collections");
 var HashMap_1 = require("../src/HashMap");
 var LinkedHashMap_1 = require("../src/LinkedHashMap");
+var SkipList_1 = require("../src/SkipList");
 var TreeMap_1 = require("../src/TreeMap");
 // PetStoreProduct will be used in testing
 var PetStoreProduct = /** @class */ (function () {
@@ -83,6 +84,9 @@ describe("Test Map functionality", function () {
         testEmptyStringStringMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testEmptyStringNumberMap(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassMap(new TreeMap_1.TreeMap(alphabeticalSortPetStoreProduct));
+        testEmptyStringStringMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testEmptyStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testEmptyPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
     });
     it("Test adding to empty maps", function () {
         testAddingOneEntryStringStringMap(new HashMap_1.HashMap());

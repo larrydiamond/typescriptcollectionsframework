@@ -18,6 +18,7 @@ import {JIterator} from "../src/JIterator";
 import {LinkedHashMap} from "../src/LinkedHashMap";
 import {JMap} from "../src/JMap";
 import {MapEntry} from "../src/MapEntry";
+import {SkipListMap} from "../src/SkipList";
 import {TreeMap} from "../src/TreeMap";
 
 // PetStoreProduct will be used in testing
@@ -104,6 +105,10 @@ describe("Test Map functionality", function() {
     testEmptyStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
     testEmptyStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testEmptyStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
+    testEmptyStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
+    testEmptyPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding to empty maps", function() {
@@ -123,7 +128,7 @@ describe("Test Map functionality", function() {
 
     testAddingOneEntryStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
     testAddingOneEntryStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
-    testAddingOneEntryPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));    
+    testAddingOneEntryPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
 });
