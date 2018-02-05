@@ -113,6 +113,7 @@ export class HashMap<K,V> implements JMap<K,V> {
    * @param {number} bucket index of the bucket in which the Entry should be
    */
   protected addEntry(hash: number, key: K, value: V, bucket?: number): void {
+    ; // added to remove tslint error
   }
 
  /**

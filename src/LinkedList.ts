@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -326,11 +326,12 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     if (index) {
       offsetToStartAt = index;
     }
+    let offset = index;
 
     for (const iter = c.iterator(); iter.hasNext(); ) {
       const t:T = iter.next ();
-      this.addIndex (index, t);
-      index = index + 1;
+      this.addIndex (offset, t);
+      offset = offset + 1;
     }
 
     return true;

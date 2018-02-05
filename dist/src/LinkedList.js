@@ -1,7 +1,7 @@
 "use strict";
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -291,10 +291,11 @@ var LinkedList = /** @class */ (function () {
         if (index) {
             offsetToStartAt = index;
         }
+        var offset = index;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.addIndex(index, t);
-            index = index + 1;
+            this.addIndex(offset, t);
+            offset = offset + 1;
         }
         return true;
     };

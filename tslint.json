@@ -14,11 +14,14 @@
       "no-duplicate-switch-case": true,
       "no-duplicate-variable": true,
       "no-empty": true,
+      "no-empty-interface": true,
       "no-eval": true,
       "no-implicit-dependencies": [true, "dev"],
+      "no-import-side-effect": true,
       "no-invalid-template-strings": true,
       "no-invalid-this": true,
       "no-misused-new": true,
+      "no-parameter-reassignment": true,
       "no-reference": true,
       "no-require-imports": true,
       "no-shadowed-variable": true,
@@ -34,7 +37,6 @@
       "trailing-comma": true,
       "triple-equals": true,
       "typedef": true,
-      "typeof-compare": true,
       "use-isnan": true
     }
 }

@@ -125,10 +125,11 @@ var ArrayList = /** @class */ (function () {
         if (index) {
             offsetToStartAt = index;
         }
+        var offset = index;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
-            this.addIndex(index, t);
-            index = index + 1;
+            this.addIndex(offset, t);
+            offset = offset + 1;
         }
         return true;
     };
