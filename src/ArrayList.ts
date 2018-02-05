@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2018 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -352,8 +352,8 @@ export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
    * @param {Consumer} consumer - the action to be performed for each element
    */
    public forEach(consumer:Consumer<T>) : void {
-     for (let iter:JIterator<T> = this.iterator(); iter.hasNext(); ) {
-       let t:T = iter.next();
+     for (const iter:JIterator<T> = this.iterator(); iter.hasNext(); ) {
+       const t:T = iter.next();
        consumer.accept(t);
      }
    }

@@ -888,8 +888,8 @@ export class ImmutableKeySetForTreeMap<K,V> implements ImmutableSet<K> {
   public [Symbol.iterator] ():Iterator<K> { return new TreeMapKeySetIterator (this.treeMap); }
 
   public forEach(consumer:Consumer<K>) : void {
-   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
-     let t:K = iter.next();
+   for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     const t:K = iter.next();
      consumer.accept(t);
    }
   }
@@ -988,8 +988,8 @@ export class ImmutableEntrySetForTreeMap<K,V> implements ImmutableSet<MapEntry<K
   public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new TreeMapEntrySetIterator (this.treeMap); }
 
   public forEach(consumer:Consumer<MapEntry<K,V>>) : void {
-   for (let iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
-     let t:MapEntry<K,V> = iter.next();
+   for (const iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
+     const t:MapEntry<K,V> = iter.next();
      consumer.accept(t);
    }
   }

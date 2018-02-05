@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -75,7 +75,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
   */
   public put (key:K, value:V) : V {
-    
+
     const mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
     if (mapEntry === null) {
       const hashCode:number = this.hashMethods.hashCode(key);
@@ -104,7 +104,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   }
 
   /**
-   * 
+   *
    * This is a placeholder that does nothing for HashMap object but needed to work with
    * LinkedHashMap's addEntry method which it overrides from here to fully provide the linked functionality.
    * @param {number} hash value that represents the hash value of the key
@@ -112,7 +112,7 @@ export class HashMap<K,V> implements JMap<K,V> {
    * @param {V} value value to be associated with the specified key
    * @param {number} bucket index of the bucket in which the Entry should be
    */
-  addEntry(hash: number, key: K, value: V, bucket?: number): void {
+  protected addEntry(hash: number, key: K, value: V, bucket?: number): void {
   }
 
  /**
@@ -399,13 +399,17 @@ export class HashMapEntry<K,V> extends BasicMapEntry<K,V> {
     super(key, value);
     this.hashCode = hash;
   }
-  
+
   // private hashCode:number;
   public getHashCode():number {
     return this.hashCode;
   }
   public setHashCode(iHashCode:number) {
     this.hashCode = iHashCode;
+  }
+
+  public setValue (newValue:V) {
+    this.value = newValue;
   }
 }
 
@@ -430,8 +434,8 @@ export class ImmutableKeySetForHashMap<K,V> implements ImmutableSet<K> {
   * @param {Consumer} consumer - the action to be performed for each element
   */
   public forEach(consumer:Consumer<K>) : void {
-   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
-     let t:K = iter.next();
+   for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     const t:K = iter.next();
      consumer.accept(t);
    }
   }
@@ -532,8 +536,8 @@ export class ImmutableEntrySetForHashMap<K,V> implements ImmutableSet<MapEntry<K
   public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new HashMapEntrySetIterator (this.map); }
 
   public forEach(consumer:Consumer<MapEntry<K,V>>) : void {
-   for (let iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
-     let t:MapEntry<K,V> = iter.next();
+   for (const iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
+     const t:MapEntry<K,V> = iter.next();
      consumer.accept(t);
    }
   }
@@ -615,4 +619,3 @@ export class HashMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
     return tmp;
   }
 }
-

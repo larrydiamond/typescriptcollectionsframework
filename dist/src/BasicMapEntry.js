@@ -1,12 +1,15 @@
 "use strict";
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * BasicMapEntry is immutable once constructed.   Mutability is provided via the Map implementation
+ */
 var BasicMapEntry = /** @class */ (function () {
     function BasicMapEntry(iKey, iValue) {
         this.key = iKey;
@@ -25,9 +28,6 @@ var BasicMapEntry = /** @class */ (function () {
      */
     BasicMapEntry.prototype.getValue = function () {
         return this.value;
-    };
-    BasicMapEntry.prototype.setValue = function (value) {
-        this.value = value;
     };
     BasicMapEntry.prototype.toString = function () {
         return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue());

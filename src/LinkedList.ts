@@ -213,8 +213,8 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
  * @param {Consumer} consumer - the action to be performed for each element
  */
  public forEach(consumer:Consumer<T>) : void {
-   for (let iter:JIterator<T> = this.iterator(); iter.hasNext(); ) {
-     let t:T = iter.next();
+   for (const iter:JIterator<T> = this.iterator(); iter.hasNext(); ) {
+     const t:T = iter.next();
      consumer.accept(t);
    }
   }

@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -9,6 +9,9 @@
 import {MapEntry} from "./MapEntry";
 import {Collections} from "./Collections";
 
+/**
+ * BasicMapEntry is immutable once constructed.   Mutability is provided via the Map implementation
+ */
 export class BasicMapEntry<K,V> implements MapEntry<K,V> {
   protected key:K;
   protected value:V; // needed for HashMapEntry so I can set the value
@@ -34,13 +37,8 @@ export class BasicMapEntry<K,V> implements MapEntry<K,V> {
     return this.value;
   }
 
-  public setValue(value:any): void {
-    this.value = value;
-
-  }
-
   public toString () : string {
-    return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue()); 
+    return JSON.stringify(this.getKey()) + " " + JSON.stringify(this.getValue());
   }
 
 }

@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -171,8 +171,8 @@ export class TreeSet<K> implements NavigableSet<K> {
   * @param {Consumer} consumer - the action to be performed for each element
   */
   public forEach(consumer:Consumer<K>) : void {
-   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
-     let t:K = iter.next();
+   for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     const t:K = iter.next();
      consumer.accept(t);
    }
   }

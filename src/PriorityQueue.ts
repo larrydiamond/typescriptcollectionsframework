@@ -158,8 +158,8 @@ export class PriorityQueue<K> implements Queue<K> {
   * @param {Consumer} consumer - the action to be performed for each element
   */
   public forEach(consumer:Consumer<K>) : void {
-   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
-     let t:K = iter.next();
+   for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     const t:K = iter.next();
      consumer.accept(t);
    }
   }

@@ -25,6 +25,4 @@ export interface MapEntry<K,V> {
   * @return {V} the value corresponding to this entry
   */
   getValue () : V;
-
-  setValue(value:V): void;
 }

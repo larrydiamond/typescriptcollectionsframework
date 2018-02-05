@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -1050,8 +1050,8 @@ export class ImmutableKeySetForSkipListMap<K,V> implements ImmutableSet<K> {
   * @param {Consumer} consumer - the action to be performed for each element
   */
   public forEach(consumer:Consumer<K>) : void {
-   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
-     let t:K = iter.next();
+   for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     const t:K = iter.next();
      consumer.accept(t);
    }
   }
@@ -1147,8 +1147,8 @@ export class ImmutableEntrySetForSkipListMapImpl<K,V> implements ImmutableSet<Ma
   public [Symbol.iterator] ():Iterator<MapEntry<K,V>> { return new SkipListMapEntrySetIterator (this.map); }
 
   public forEach(consumer:Consumer<MapEntry<K,V>>) : void {
-   for (let iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
-     let t:MapEntry<K,V> = iter.next();
+   for (const iter:JIterator<MapEntry<K,V>> = this.iterator(); iter.hasNext(); ) {
+     const t:MapEntry<K,V> = iter.next();
      consumer.accept(t);
    }
   }
@@ -1322,8 +1322,8 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @param {Consumer} consumer - the action to be performed for each element
   */
   public forEach(consumer:Consumer<K>) : void {
-   for (let iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
-     let t:K = iter.next();
+   for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
+     const t:K = iter.next();
      consumer.accept(t);
    }
   }

@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -404,6 +404,9 @@ var HashMapEntry = /** @class */ (function (_super) {
     };
     HashMapEntry.prototype.setHashCode = function (iHashCode) {
         this.hashCode = iHashCode;
+    };
+    HashMapEntry.prototype.setValue = function (newValue) {
+        this.value = newValue;
     };
     return HashMapEntry;
 }(BasicMapEntry_1.BasicMapEntry));

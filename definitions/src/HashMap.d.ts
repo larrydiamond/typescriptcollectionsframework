@@ -54,7 +54,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      * @param {V} value value to be associated with the specified key
      * @param {number} bucket index of the bucket in which the Entry should be
      */
-    addEntry(hash: number, key: K, value: V, bucket?: number): void;
+    protected addEntry(hash: number, key: K, value: V, bucket?: number): void;
     /**
      * Rehashes the entire hashmap.... gonna be slow you've been warned
      */
@@ -137,6 +137,7 @@ export declare class HashMapEntry<K, V> extends BasicMapEntry<K, V> {
     constructor(key?: K, value?: V, hash?: number);
     getHashCode(): number;
     setHashCode(iHashCode: number): void;
+    setValue(newValue: V): void;
 }
 export declare class ImmutableKeySetForHashMap<K, V> implements ImmutableSet<K> {
     private map;
