@@ -16,7 +16,7 @@ var LinkedList_1 = require("../src/LinkedList");
 var TreeSet_1 = require("../src/TreeSet");
 describe("Test TreeSet functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = /** @class */ (function () {
+    var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;

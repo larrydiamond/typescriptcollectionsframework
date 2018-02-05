@@ -135,6 +135,54 @@ describe("Test Map functionality", function() {
     testAddingOneEntryPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
+  it("Test adding two items to empty maps", function() {
+    testAddingTwoEntriesStringStringMap (new HashMap<string,string> ());
+    testAddingTwoEntriesStringStringMap (new HashMap<string,string> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesStringNumberMap (new HashMap<string,number> ());
+    testAddingTwoEntriesStringNumberMap (new HashMap<string,number> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> ());
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testAddingTwoEntriesStringStringMap (new LinkedHashMap<string,string> ());
+    testAddingTwoEntriesStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesStringNumberMap (new LinkedHashMap<string,number> ());
+    testAddingTwoEntriesStringNumberMap (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> ());
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testAddingTwoEntriesStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
+    testAddingTwoEntriesStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testAddingTwoEntriesStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
+    testAddingTwoEntriesStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+  });
+
+  it("Test clearing maps", function() {
+    testClearingStringStringMap (new HashMap<string,string> ());
+    testClearingStringStringMap (new HashMap<string,string> (new AllFieldHashable<string>()));
+    testClearingStringNumberMap (new HashMap<string,number> ());
+    testClearingStringNumberMap (new HashMap<string,number> (new AllFieldHashable<string>()));
+    testClearingPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> ());
+    testClearingPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testClearingStringStringMap (new LinkedHashMap<string,string> ());
+    testClearingStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()));
+    testClearingStringNumberMap (new LinkedHashMap<string,number> ());
+    testClearingStringNumberMap (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
+    testClearingPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> ());
+    testClearingPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
+
+    testClearingStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
+    testClearingStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
+    testClearingPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testClearingStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
+    testClearingStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
+    testClearingPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+  });
+
 });
 
 
@@ -176,4 +224,79 @@ function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStorePro
   expect (undefined).toEqual(map.put(product1, new ValueClass()));
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);
+}
+
+function testAddingTwoEntriesStringStringMap (map:JMap<string,string>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put("testkey", "testvalue"));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.put("secondkey", "secondvalue"));
+  expect (map.size ()).toEqual(2);
+  expect (map.isEmpty ()).toEqual(false);
+}
+
+function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put("testkey", 1));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.put("secondkey", 1));
+  expect (map.size ()).toEqual(2);
+  expect (map.isEmpty ()).toEqual(false);
+}
+
+function testAddingTwoEntriesPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put(product1, new ValueClass()));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.put(product2, new ValueClass()));
+  expect (map.size ()).toEqual(2);
+  expect (map.isEmpty ()).toEqual(false);
+}
+
+function testClearingStringStringMap (map:JMap<string,string>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put("testkey", "testvalue"));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.put("secondkey", "secondvalue"));
+  expect (map.size ()).toEqual(2);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.clear());
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testClearingStringNumberMap (map:JMap<string,number>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put("testkey", 1));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.put("secondkey", 1));
+  expect (map.size ()).toEqual(2);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.clear());
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testClearingPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (undefined).toEqual(map.put(product1, new ValueClass()));
+  expect (map.size ()).toEqual(1);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.put(product2, new ValueClass()));
+  expect (map.size ()).toEqual(2);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (undefined).toEqual(map.clear());
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
 }

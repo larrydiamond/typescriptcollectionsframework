@@ -15,7 +15,7 @@ var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var SkipList_1 = require("../src/SkipList");
 var SkipList_2 = require("../src/SkipList");
-var testNumber = /** @class */ (function () {
+var testNumber = (function () {
     function testNumber() {
     }
     testNumber.equals = function (failMessage, val, expected) {
@@ -31,7 +31,7 @@ var testNumber = /** @class */ (function () {
     return testNumber;
 }());
 exports.testNumber = testNumber;
-var testString = /** @class */ (function () {
+var testString = (function () {
     function testString() {
     }
     testString.equals = function (failMessage, val, expected) {
@@ -47,7 +47,7 @@ var testString = /** @class */ (function () {
     return testString;
 }());
 exports.testString = testString;
-var testBoolean = /** @class */ (function () {
+var testBoolean = (function () {
     function testBoolean() {
     }
     testBoolean.equals = function (failMessage, val, expected) {
@@ -73,7 +73,7 @@ var testBoolean = /** @class */ (function () {
     return testBoolean;
 }());
 exports.testBoolean = testBoolean;
-var test = /** @class */ (function () {
+var test = (function () {
     function test() {
     }
     // tslint:disable-next-line:no-any
@@ -105,7 +105,7 @@ var test = /** @class */ (function () {
 exports.test = test;
 describe("Test SkipList functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = /** @class */ (function () {
+    var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;
@@ -176,7 +176,7 @@ describe("Test SkipList functionality", function () {
         }
     };
     // Wanted to show a class in the value object but anything would work fine
-    var ValueClass = /** @class */ (function () {
+    var ValueClass = (function () {
         function ValueClass(blah1) {
             if (blah1 === void 0) { blah1 = 100; }
             this.blah2 = "blah";

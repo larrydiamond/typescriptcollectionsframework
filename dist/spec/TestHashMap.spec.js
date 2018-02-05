@@ -11,7 +11,7 @@ var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var HashMap_1 = require("../src/HashMap");
 describe("Test HashMap functionality", function () {
     // PetStoreProduct will be used in testing
-    var PetStoreProduct = /** @class */ (function () {
+    var PetStoreProduct = (function () {
         function PetStoreProduct(iName, iPrice) {
             this.productName = iName;
             this.price = iPrice;
@@ -29,7 +29,7 @@ describe("Test HashMap functionality", function () {
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
     // Wanted to show a class in the value object but anything would work fine
-    var ValueClass = /** @class */ (function () {
+    var ValueClass = (function () {
         function ValueClass() {
         }
         return ValueClass;

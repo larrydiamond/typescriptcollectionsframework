@@ -43,7 +43,7 @@ var LinkedList_1 = require("./LinkedList");
  *
  * This class corresponds to java.util.HashMap
  */
-var HashMap = /** @class */ (function () {
+var HashMap = (function () {
     function HashMap(iHash, initialElements, iInitialCapacity, iLoadFactor) {
         if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
         if (initialElements === void 0) { initialElements = null; }
@@ -385,13 +385,13 @@ var HashMap = /** @class */ (function () {
     return HashMap;
 }());
 exports.HashMap = HashMap;
-var HashMapIteratorLocationTracker = /** @class */ (function () {
+var HashMapIteratorLocationTracker = (function () {
     function HashMapIteratorLocationTracker() {
     }
     return HashMapIteratorLocationTracker;
 }());
 exports.HashMapIteratorLocationTracker = HashMapIteratorLocationTracker;
-var HashMapEntry = /** @class */ (function (_super) {
+var HashMapEntry = (function (_super) {
     __extends(HashMapEntry, _super);
     function HashMapEntry(key, value, hash) {
         var _this = _super.call(this, key, value) || this;
@@ -408,7 +408,7 @@ var HashMapEntry = /** @class */ (function (_super) {
     return HashMapEntry;
 }(BasicMapEntry_1.BasicMapEntry));
 exports.HashMapEntry = HashMapEntry;
-var ImmutableKeySetForHashMap = /** @class */ (function () {
+var ImmutableKeySetForHashMap = (function () {
     function ImmutableKeySetForHashMap(iHashMap) {
         this.map = iHashMap;
     }
@@ -431,7 +431,7 @@ var ImmutableKeySetForHashMap = /** @class */ (function () {
 }());
 exports.ImmutableKeySetForHashMap = ImmutableKeySetForHashMap;
 /* Java style iterator */
-var HashMapKeySetJIterator = /** @class */ (function () {
+var HashMapKeySetJIterator = (function () {
     function HashMapKeySetJIterator(iHashMap) {
         this.map = iHashMap;
     }
@@ -497,7 +497,7 @@ var HashMapKeySetJIterator = /** @class */ (function () {
 }());
 exports.HashMapKeySetJIterator = HashMapKeySetJIterator;
 /* TypeScript iterator */
-var HashMapKeySetIterator = /** @class */ (function () {
+var HashMapKeySetIterator = (function () {
     function HashMapKeySetIterator(iHashMap) {
         this.map = iHashMap;
         this.location = this.map.deprecatedGetFirstEntryForIterator();
@@ -517,7 +517,7 @@ var HashMapKeySetIterator = /** @class */ (function () {
     return HashMapKeySetIterator;
 }());
 exports.HashMapKeySetIterator = HashMapKeySetIterator;
-var ImmutableEntrySetForHashMap = /** @class */ (function () {
+var ImmutableEntrySetForHashMap = (function () {
     function ImmutableEntrySetForHashMap(iHashMap) {
         this.map = iHashMap;
     }
@@ -536,7 +536,7 @@ var ImmutableEntrySetForHashMap = /** @class */ (function () {
 }());
 exports.ImmutableEntrySetForHashMap = ImmutableEntrySetForHashMap;
 /* Java style iterator */
-var HashMapEntrySetJIterator = /** @class */ (function () {
+var HashMapEntrySetJIterator = (function () {
     function HashMapEntrySetJIterator(iHashMap) {
         this.map = iHashMap;
     }
@@ -602,7 +602,7 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
 }());
 exports.HashMapEntrySetJIterator = HashMapEntrySetJIterator;
 /* TypeScript iterator */
-var HashMapEntrySetIterator = /** @class */ (function () {
+var HashMapEntrySetIterator = (function () {
     function HashMapEntrySetIterator(iHashMap) {
         this.map = iHashMap;
         this.location = this.map.deprecatedGetFirstEntryForIterator();

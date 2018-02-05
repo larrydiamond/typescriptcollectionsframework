@@ -7,7 +7,7 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-var BasicIteratorResult = /** @class */ (function () {
+var BasicIteratorResult = (function () {
     function BasicIteratorResult(iDone, iValue) {
         this.done = iDone;
         this.value = iValue;
