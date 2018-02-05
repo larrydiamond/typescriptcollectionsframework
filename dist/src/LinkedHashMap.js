@@ -27,7 +27,7 @@ var HashMap_1 = require("./HashMap");
  *
  * This class corresponds to java.util.LinkedHashMap
  */
-var LinkedHashMap = (function (_super) {
+var LinkedHashMap = /** @class */ (function (_super) {
     __extends(LinkedHashMap, _super);
     /*
     * Constructs an empty insertion-ordered LinkedHashMap instance with the default
@@ -134,7 +134,7 @@ exports.LinkedHashMap = LinkedHashMap;
 /**
  * LinkedHashMap entry class
  */
-var LinkedEntry = (function (_super) {
+var LinkedEntry = /** @class */ (function (_super) {
     __extends(LinkedEntry, _super);
     function LinkedEntry(hash, key, value) {
         return _super.call(this, key, value, hash) || this;
@@ -172,7 +172,7 @@ var LinkedEntry = (function (_super) {
 }(HashMap_1.HashMapEntry));
 exports.LinkedEntry = LinkedEntry;
 /* Java style iterator */
-var LinkedHashIterator = (function () {
+var LinkedHashIterator = /** @class */ (function () {
     function LinkedHashIterator(linkedHashMap) {
         this.header = linkedHashMap.getHeader();
         this.next_Entry = linkedHashMap.getHeader().after;
@@ -200,7 +200,7 @@ var LinkedHashIterator = (function () {
 }());
 exports.LinkedHashIterator = LinkedHashIterator;
 // These Overrides alter the behavior of superclass view JIterator() methods
-var EntryIterator = (function (_super) {
+var EntryIterator = /** @class */ (function (_super) {
     __extends(EntryIterator, _super);
     function EntryIterator(linkedHashMap) {
         return _super.call(this, linkedHashMap) || this;
@@ -211,7 +211,7 @@ var EntryIterator = (function (_super) {
     return EntryIterator;
 }(LinkedHashIterator));
 exports.EntryIterator = EntryIterator;
-var KeyIterator = (function (_super) {
+var KeyIterator = /** @class */ (function (_super) {
     __extends(KeyIterator, _super);
     function KeyIterator(linkedHashMap) {
         return _super.call(this, linkedHashMap) || this;
@@ -222,7 +222,7 @@ var KeyIterator = (function (_super) {
     return KeyIterator;
 }(LinkedHashIterator));
 exports.KeyIterator = KeyIterator;
-var ValueIterator = (function (_super) {
+var ValueIterator = /** @class */ (function (_super) {
     __extends(ValueIterator, _super);
     function ValueIterator(linkedHashMap) {
         return _super.call(this, linkedHashMap) || this;

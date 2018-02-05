@@ -22,7 +22,7 @@ var BasicMapEntry_1 = require("./BasicMapEntry");
  *
  * This class corresponds to java.util.TreeMap
  */
-var TreeMap = (function () {
+var TreeMap = /** @class */ (function () {
     function TreeMap(iComparator, initialElements) {
         if (initialElements === void 0) { initialElements = null; }
         this.initialElements = initialElements;
@@ -772,7 +772,7 @@ var TreeMap = (function () {
     return TreeMap;
 }());
 exports.TreeMap = TreeMap;
-var TreeMapNode = (function () {
+var TreeMapNode = /** @class */ (function () {
     function TreeMapNode(iKey, iValue, iParent) {
         this.key = iKey;
         this.value = iValue;
@@ -813,7 +813,7 @@ var TreeMapNode = (function () {
     return TreeMapNode;
 }());
 exports.TreeMapNode = TreeMapNode;
-var ImmutableKeySetForTreeMap = (function () {
+var ImmutableKeySetForTreeMap = /** @class */ (function () {
     function ImmutableKeySetForTreeMap(iTreeMap) {
         this.treeMap = iTreeMap;
     }
@@ -832,7 +832,7 @@ var ImmutableKeySetForTreeMap = (function () {
 }());
 exports.ImmutableKeySetForTreeMap = ImmutableKeySetForTreeMap;
 /* Java style iterator */
-var TreeMapKeySetJIterator = (function () {
+var TreeMapKeySetJIterator = /** @class */ (function () {
     function TreeMapKeySetJIterator(iTreeMap) {
         this.treeMap = iTreeMap;
     }
@@ -881,7 +881,7 @@ var TreeMapKeySetJIterator = (function () {
 }());
 exports.TreeMapKeySetJIterator = TreeMapKeySetJIterator;
 /* TypeScript iterator */
-var TreeMapKeySetIterator = (function () {
+var TreeMapKeySetIterator = /** @class */ (function () {
     function TreeMapKeySetIterator(iTreeMap) {
         this.treeMap = iTreeMap;
         this.location = this.treeMap.firstKey();
@@ -901,7 +901,7 @@ var TreeMapKeySetIterator = (function () {
     return TreeMapKeySetIterator;
 }());
 exports.TreeMapKeySetIterator = TreeMapKeySetIterator;
-var ImmutableEntrySetForTreeMap = (function () {
+var ImmutableEntrySetForTreeMap = /** @class */ (function () {
     function ImmutableEntrySetForTreeMap(iTreeMap) {
         this.treeMap = iTreeMap;
     }
@@ -920,7 +920,7 @@ var ImmutableEntrySetForTreeMap = (function () {
 }());
 exports.ImmutableEntrySetForTreeMap = ImmutableEntrySetForTreeMap;
 /* Java style iterator */
-var TreeMapEntrySetJIterator = (function () {
+var TreeMapEntrySetJIterator = /** @class */ (function () {
     function TreeMapEntrySetJIterator(iTreeMap) {
         this.treeMap = iTreeMap;
     }
@@ -969,7 +969,7 @@ var TreeMapEntrySetJIterator = (function () {
 }());
 exports.TreeMapEntrySetJIterator = TreeMapEntrySetJIterator;
 /* TypeScript iterator */
-var TreeMapEntrySetIterator = (function () {
+var TreeMapEntrySetIterator = /** @class */ (function () {
     function TreeMapEntrySetIterator(iTreeMap) {
         this.treeMap = iTreeMap;
         this.location = this.treeMap.firstEntry();

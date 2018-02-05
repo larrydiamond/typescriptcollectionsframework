@@ -14,7 +14,7 @@ var LinkedHashMap_1 = require("../src/LinkedHashMap");
 var SkipList_1 = require("../src/SkipList");
 var TreeMap_1 = require("../src/TreeMap");
 // PetStoreProduct will be used in testing
-var PetStoreProduct = (function () {
+var PetStoreProduct = /** @class */ (function () {
     function PetStoreProduct(iName, iPrice) {
         this.productName = iName;
         this.price = iPrice;
@@ -59,7 +59,7 @@ var product1 = new PetStoreProduct("Catnip", 4.99);
 var product3 = new PetStoreProduct("Goldfish", 9.99);
 var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 // Wanted to show a class in the value object but anything would work fine
-var ValueClass = (function () {
+var ValueClass = /** @class */ (function () {
     function ValueClass() {
     }
     return ValueClass;

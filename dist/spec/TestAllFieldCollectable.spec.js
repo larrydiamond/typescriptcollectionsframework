@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
 var jasts_1 = require("jasts");
 describe("Test All Field Collectable", function () {
-    var SomeClass = (function () {
+    var SomeClass = /** @class */ (function () {
         function SomeClass(someInput, someOtherInput) {
             if (someInput === void 0) { someInput = 20; }
             if (someOtherInput === void 0) { someOtherInput = "blah"; }
