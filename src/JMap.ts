@@ -31,15 +31,6 @@ export interface JMap<K,V> extends ImmutableMap<K,V> {
   */
   clear () : void;
 
- /**
-  * Returns an ImmutableSet view of the mappings contained in this map.
-  * The set is backed by the map, so changes to the map are reflected in the set.
-  * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-  * The contains method on this entrySet will only compare keys not values.
-  * @return {MapEntry} an entry with the greatest key, or null if this map is empty
-  */
-  entrySet () : ImmutableSet<MapEntry<K,V>>;
-
   /**
   * Returns an ImmutableMap backed by this Map
   */

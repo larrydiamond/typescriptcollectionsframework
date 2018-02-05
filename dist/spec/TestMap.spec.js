@@ -1,7 +1,7 @@
 "use strict";
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -167,6 +167,8 @@ function testAddingOneEntryStringStringMap(map) {
     expect(undefined).toEqual(map.put("testkey", "testvalue"));
     expect(map.size()).toEqual(1);
     expect(map.isEmpty()).toEqual(false);
+    expect("testvalue").toEqual(map.get("testkey"));
+    expect(null).toEqual(map.get("key not found"));
 }
 function testAddingOneEntryStringNumberMap(map) {
     expect(map.size()).toEqual(0);
@@ -174,6 +176,8 @@ function testAddingOneEntryStringNumberMap(map) {
     expect(undefined).toEqual(map.put("testkey", 1));
     expect(map.size()).toEqual(1);
     expect(map.isEmpty()).toEqual(false);
+    expect(1).toEqual(map.get("testkey"));
+    expect(null).toEqual(map.get("key not found"));
 }
 function testAddingOneEntryPetStoreProductAndValueClassMap(map) {
     expect(map.size()).toEqual(0);
@@ -191,6 +195,8 @@ function testAddingTwoEntriesStringStringMap(map) {
     expect(undefined).toEqual(map.put("secondkey", "secondvalue"));
     expect(map.size()).toEqual(2);
     expect(map.isEmpty()).toEqual(false);
+    expect("testvalue").toEqual(map.get("testkey"));
+    expect(null).toEqual(map.get("key not found"));
 }
 function testAddingTwoEntriesStringNumberMap(map) {
     expect(map.size()).toEqual(0);
@@ -201,6 +207,8 @@ function testAddingTwoEntriesStringNumberMap(map) {
     expect(undefined).toEqual(map.put("secondkey", 1));
     expect(map.size()).toEqual(2);
     expect(map.isEmpty()).toEqual(false);
+    expect(1).toEqual(map.get("secondkey"));
+    expect(null).toEqual(map.get("key not found"));
 }
 function testAddingTwoEntriesPetStoreProductAndValueClassMap(map) {
     expect(map.size()).toEqual(0);
@@ -221,9 +229,13 @@ function testClearingStringStringMap(map) {
     expect(undefined).toEqual(map.put("secondkey", "secondvalue"));
     expect(map.size()).toEqual(2);
     expect(map.isEmpty()).toEqual(false);
+    expect("testvalue").toEqual(map.get("testkey"));
+    expect(null).toEqual(map.get("key not found"));
     expect(undefined).toEqual(map.clear());
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
+    expect(null).toEqual(map.get("testkey"));
+    expect(null).toEqual(map.get("key not found"));
 }
 function testClearingStringNumberMap(map) {
     expect(map.size()).toEqual(0);

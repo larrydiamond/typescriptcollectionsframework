@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -208,6 +208,8 @@ function testAddingOneEntryStringStringMap (map:JMap<string,string>) : void {
   expect (undefined).toEqual(map.put("testkey", "testvalue"));
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);
+  expect ("testvalue").toEqual (map.get ("testkey"));
+  expect (null).toEqual (map.get ("key not found"));
 }
 
 function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
@@ -216,6 +218,8 @@ function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
   expect (undefined).toEqual(map.put("testkey", 1));
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);
+  expect (1).toEqual (map.get ("testkey"));
+  expect (null).toEqual (map.get ("key not found"));
 }
 
 function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
@@ -235,6 +239,8 @@ function testAddingTwoEntriesStringStringMap (map:JMap<string,string>) : void {
   expect (undefined).toEqual(map.put("secondkey", "secondvalue"));
   expect (map.size ()).toEqual(2);
   expect (map.isEmpty ()).toEqual(false);
+  expect ("testvalue").toEqual (map.get ("testkey"));
+  expect (null).toEqual (map.get ("key not found"));
 }
 
 function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
@@ -246,6 +252,8 @@ function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
   expect (undefined).toEqual(map.put("secondkey", 1));
   expect (map.size ()).toEqual(2);
   expect (map.isEmpty ()).toEqual(false);
+  expect (1).toEqual (map.get ("secondkey"));
+  expect (null).toEqual (map.get ("key not found"));
 }
 
 function testAddingTwoEntriesPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
@@ -268,9 +276,13 @@ function testClearingStringStringMap (map:JMap<string,string>) : void {
   expect (undefined).toEqual(map.put("secondkey", "secondvalue"));
   expect (map.size ()).toEqual(2);
   expect (map.isEmpty ()).toEqual(false);
+  expect ("testvalue").toEqual (map.get ("testkey"));
+  expect (null).toEqual (map.get ("key not found"));
   expect (undefined).toEqual(map.clear());
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
+  expect (null).toEqual (map.get ("testkey"));
+  expect (null).toEqual (map.get ("key not found"));
 }
 
 function testClearingStringNumberMap (map:JMap<string,number>) : void {
