@@ -77,7 +77,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   public put (key:K, value:V) : V {
 
     const mapEntry:HashMapEntry<K,V> = this.getMapEntry(key);
-    if (mapEntry === null) {
+    if ((mapEntry === null) || (mapEntry === undefined)) {
       const hashCode:number = this.hashMethods.hashCode(key);
       const newNode:HashMapEntry<K,V> = new HashMapEntry<K,V> (key, value);
       newNode.setHashCode(hashCode);
@@ -161,14 +161,14 @@ export class HashMap<K,V> implements JMap<K,V> {
   }
 
   /**
-  * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+  * Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.
   * @param {K} key the key whose associated value is to be returned
-  * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
+  * @return {V} the value to which the specified key is mapped, or undefined if this map contains no mapping for the key
   */
   public get (key:K) : V {
     const tmp:HashMapEntry<K,V> = this.getMapEntry(key);
-    if (tmp === null) return null;
-    if (tmp === undefined) return null;
+    if (tmp === null) return undefined;
+    if (tmp === undefined) return undefined;
     return tmp.getValue();
   }
 
@@ -212,9 +212,9 @@ export class HashMap<K,V> implements JMap<K,V> {
   }
 
   private getMapEntry (key:K) : HashMapEntry<K,V> {
-    if (this.data === null) return null;
-    if (this.data === undefined) return null;
-    if (this.data.size () < 1) return null;
+    if (this.data === null) return undefined;
+    if (this.data === undefined) return undefined;
+    if (this.data.size () < 1) return undefined;
     const hashCode:number = this.hashMethods.hashCode (key);
     let numBuckets = this.data.size();
     if (numBuckets < 1) numBuckets = 1;
@@ -225,7 +225,7 @@ export class HashMap<K,V> implements JMap<K,V> {
         return thisList.get(loop);
       }
     }
-    return null;
+    return undefined;
   }
 
  /**

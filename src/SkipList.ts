@@ -788,7 +788,7 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   public get (key:K) : V {
     const node : SkipListNode<K,V> = this.impl.getEntry(key);
     if ((node === undefined) || (node === null)) {
-      return null;
+      return undefined;
     }
     return node.getValue();
   }

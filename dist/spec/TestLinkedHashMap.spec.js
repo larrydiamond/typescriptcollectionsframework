@@ -147,19 +147,19 @@ describe("Test LinkedHashMap functionality", function () {
     });
     it("Test containskey", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
-        expect(petStoreMap1.get(product1)).toEqual(null);
+        expect(petStoreMap1.get(product1)).toEqual(undefined);
         expect(petStoreMap1.containsKey(product1)).toEqual(false);
         petStoreMap1.put(product1, new ValueClass());
-        expect(petStoreMap1.get(product1)).not.toEqual(null);
+        expect(petStoreMap1.get(product1)).not.toEqual(undefined);
         expect(petStoreMap1.containsKey(product1)).toEqual(true);
-        expect(petStoreMap1.get(product2)).toEqual(null);
+        expect(petStoreMap1.get(product2)).toEqual(undefined);
         expect(petStoreMap1.containsKey(product2)).toEqual(false);
         petStoreMap1.put(product2, new ValueClass());
-        expect(petStoreMap1.get(product1)).not.toEqual(null);
+        expect(petStoreMap1.get(product1)).not.toEqual(undefined);
         expect(petStoreMap1.containsKey(product1)).toEqual(true);
-        expect(petStoreMap1.get(product2)).not.toEqual(null);
+        expect(petStoreMap1.get(product2)).not.toEqual(undefined);
         expect(petStoreMap1.containsKey(product2)).toEqual(true);
-        expect(petStoreMap1.get(product3)).toEqual(null);
+        expect(petStoreMap1.get(product3)).toEqual(undefined);
         expect(petStoreMap1.containsKey(product3)).toEqual(false);
     });
 });

@@ -70,9 +70,9 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      */
     size(): number;
     /**
-    * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+    * Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.
     * @param {K} key the key whose associated value is to be returned
-    * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
+    * @return {V} the value to which the specified key is mapped, or undefined if this map contains no mapping for the key
     */
     get(key: K): V;
     /**

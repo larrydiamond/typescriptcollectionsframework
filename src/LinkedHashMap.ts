@@ -63,8 +63,8 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      */
     public get (key: K) : V {
         let entry:LinkedEntry<K,V> = <LinkedEntry<K,V>>this.getEntry(key);
-        if (entry === null)
-          return null;
+        if ((entry === null) || (entry === undefined))
+          return undefined;
         return entry.getValue();
     }
 

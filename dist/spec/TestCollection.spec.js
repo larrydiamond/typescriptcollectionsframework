@@ -15,18 +15,19 @@ var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var PriorityQueue_1 = require("../src/PriorityQueue");
 var TreeSet_1 = require("../src/TreeSet");
-describe("Test Collections", function () {
+var jasts_1 = require("jasts");
+describe("Test Collection", function () {
     it("Test empty string Collections", function () {
-        testEmptyStringCollection(new ArrayList_1.ArrayList());
-        testEmptyStringCollection(new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable()));
-        testEmptyStringCollection(new LinkedList_1.LinkedList());
-        testEmptyStringCollection(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()));
-        testEmptyStringCollection(new HashSet_1.HashSet());
-        testEmptyStringCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testEmptyStringCollection(Collections_1.Collections.emptyList());
-        testEmptyStringCollection(Collections_1.Collections.emptySet());
-        testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
+        testEmptyStringCollection(new ArrayList_1.ArrayList(), "ArrayList");
+        testEmptyStringCollection(new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable()), "ArrayList AllFieldCollectable");
+        testEmptyStringCollection(new LinkedList_1.LinkedList(), "LinkedList");
+        testEmptyStringCollection(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()), "LinkedList AllFieldCollectable");
+        testEmptyStringCollection(new HashSet_1.HashSet(), "HashSet");
+        testEmptyStringCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()), "HashSet AllFieldHashable");
+        testEmptyStringCollection(Collections_1.Collections.emptyList(), "EmptyList");
+        testEmptyStringCollection(Collections_1.Collections.emptySet(), "EmptySet");
+        testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet");
+        testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
     });
     it("Test empty number Collections", function () {
         testEmptyNumberCollection(new ArrayList_1.ArrayList());
@@ -167,10 +168,11 @@ var failActionString = {
         throw new Error('Unwanted code branch in testEmptyStringCollection');
     }
 };
-function testEmptyStringCollection(coll) {
+function testEmptyStringCollection(coll, typestring) {
+    jasts_1.TestBoolean.true("Expect empty string collection isEmpty true " + typestring, coll.isEmpty());
     expect(coll.isEmpty()).toEqual(true);
     expect(coll.size()).toEqual(0);
-    expect(coll.contains("blah")).toEqual(false);
+    jasts_1.TestBoolean.false("Empty string collection will not contain blah " + typestring, coll.contains("blah"));
     for (var iter = coll.iterator(); iter.hasNext();) {
         fail('Unwanted code branch in testEmptyStringCollection');
         throw new Error('Unwanted code branch in testEmptyStringCollection');
@@ -239,6 +241,8 @@ function testAddItemsToStringCollection(coll) {
     addTestStrings(coll);
     expect(coll.isEmpty()).toEqual(false);
     expect(coll.size()).toEqual(10);
+    expect(coll.contains("notfound")).toEqual(false);
+    expect(coll.contains("sixth")).toEqual(true);
 }
 function testAddItemsToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -246,4 +250,6 @@ function testAddItemsToNumberCollection(coll) {
     addTestNumbers(coll);
     expect(coll.isEmpty()).toEqual(false);
     expect(coll.size()).toEqual(10);
+    expect(coll.contains(31415926553)).toEqual(false);
+    expect(coll.contains(500)).toEqual(true);
 }

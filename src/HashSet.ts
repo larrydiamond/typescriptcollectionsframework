@@ -126,7 +126,7 @@ export class HashSet<K> implements JSet<K> {
   */
   public contains (item:K) : boolean {
     const tmp:number = this.datastore.get(item);
-    if (tmp === null)
+    if ((tmp === null) || (tmp === undefined))
       return false;
     return true;
   }

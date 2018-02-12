@@ -6,6 +6,8 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
+
 import {AllFieldCollectable} from "../src/AllFieldCollectable";
 import {AllFieldHashable} from "../src/AllFieldHashable";
 import {ArrayList} from "../src/ArrayList";
@@ -426,7 +428,7 @@ describe("Test SkipList functionality", function() {
 
   it("Test Adding some items string number", function() {
     const basicTypesMap1:SkipListMap<string,number> = new SkipListMap<string,number>(Collections.getStringComparator());
-    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (undefined);
 
     expect (basicTypesMap1.put ("ChewToy", 14.99)).toEqual(undefined);
     testBoolean.equalsTrue ("Validate map0", basicTypesMap1.validateMap());
@@ -439,7 +441,7 @@ describe("Test SkipList functionality", function() {
     expect (basicTypesMap1.size ()).toEqual(4);
     testBoolean.equalsTrue ("Validate map3", basicTypesMap1.validateMap());
 
-    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (undefined);
 
     const oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
     expect (oldPrice).toEqual (14.99);
@@ -973,7 +975,7 @@ describe("Test SkipList functionality", function() {
 
     expect (petStoreMap1.size ()).toEqual(26 * 26);
 //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-    expect (petStoreMap1.get (product1)).toEqual(null);
+    expect (petStoreMap1.get (product1)).toEqual(undefined);
 
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
@@ -1008,7 +1010,7 @@ describe("Test SkipList functionality", function() {
 
     expect (petStoreMap1.size ()).toEqual(26 * 26);
 //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-    expect (petStoreMap1.get (product1)).toEqual(null);
+    expect (petStoreMap1.get (product1)).toEqual(undefined);
 
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {

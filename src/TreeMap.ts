@@ -118,7 +118,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
 
     return true;
   }
-  
+
   /**
    * Returns an iterator over the entire entry set
    * @return {Iterator<K>} an iterator for the entry set
@@ -382,11 +382,11 @@ public size () : number {
   */
   public get (key:K) : V {
     if ((this.topNode === null) || (this.topNode === undefined))
-      return null;
+      return undefined;
 
     const tmp:TreeMapNode<K,V> = this.getNode (this.topNode, key);
-    if (tmp === null)
-      return null;
+    if ((tmp === null) || (tmp === undefined))
+      return undefined;
 
     return tmp.getValue();
   }

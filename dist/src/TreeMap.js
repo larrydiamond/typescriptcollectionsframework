@@ -361,10 +361,10 @@ var TreeMap = /** @class */ (function () {
      */
     TreeMap.prototype.get = function (key) {
         if ((this.topNode === null) || (this.topNode === undefined))
-            return null;
+            return undefined;
         var tmp = this.getNode(this.topNode, key);
-        if (tmp === null)
-            return null;
+        if ((tmp === null) || (tmp === undefined))
+            return undefined;
         return tmp.getValue();
     };
     /**

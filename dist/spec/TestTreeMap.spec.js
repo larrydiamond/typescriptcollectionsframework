@@ -228,7 +228,7 @@ describe("Test TreeMap functionality", function () {
         var petStoreMap2 = new TreeMap_1.TreeMap(priceSortPetStoreProduct);
         var basicTypesMap1 = new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator());
         var basicTypesMap2 = new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator());
-        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
+        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(undefined);
         expect(petStoreMap1.put(product1, new ValueClass())).toEqual(undefined);
         expect(petStoreMap1.put(product2, new ValueClass(10))).toEqual(undefined);
         expect(petStoreMap1.put(product3, new ValueClass())).toEqual(undefined);
@@ -241,7 +241,7 @@ describe("Test TreeMap functionality", function () {
         expect(basicTypesMap1.put("Goldfish", 9.99)).toEqual(undefined);
         expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(undefined);
         expect(basicTypesMap1.size()).toEqual(4);
-        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
+        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(undefined);
         var oldPrice = basicTypesMap1.put("ChewToy", 9.99);
         expect(oldPrice).toEqual(14.99);
         expect(basicTypesMap1.size()).toEqual(4);
@@ -574,7 +574,7 @@ describe("Test TreeMap functionality", function () {
         expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(26 * 26);
         //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-        expect(petStoreMap1.get(product1)).toEqual(null);
+        expect(petStoreMap1.get(product1)).toEqual(undefined);
         for (var loop1 = 1; loop1 <= 26; loop1++) {
             for (var loop2 = 1; loop2 <= 26; loop2++) {
                 for (var loop3 = 1; loop3 <= 1; loop3++) {
@@ -601,7 +601,7 @@ describe("Test TreeMap functionality", function () {
         expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(26 * 26);
         //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-        expect(petStoreMap1.get(product1)).toEqual(null);
+        expect(petStoreMap1.get(product1)).toEqual(undefined);
         for (var loop1 = 1; loop1 <= 26; loop1++) {
             for (var loop2 = 1; loop2 <= 26; loop2++) {
                 for (var loop3 = 1; loop3 <= 1; loop3++) {

@@ -78,7 +78,7 @@ var HashMap = /** @class */ (function () {
     */
     HashMap.prototype.put = function (key, value) {
         var mapEntry = this.getMapEntry(key);
-        if (mapEntry === null) {
+        if ((mapEntry === null) || (mapEntry === undefined)) {
             var hashCode = this.hashMethods.hashCode(key);
             var newNode = new HashMapEntry(key, value);
             newNode.setHashCode(hashCode);
@@ -158,16 +158,16 @@ var HashMap = /** @class */ (function () {
         return this.elementCount;
     };
     /**
-    * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+    * Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.
     * @param {K} key the key whose associated value is to be returned
-    * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
+    * @return {V} the value to which the specified key is mapped, or undefined if this map contains no mapping for the key
     */
     HashMap.prototype.get = function (key) {
         var tmp = this.getMapEntry(key);
         if (tmp === null)
-            return null;
+            return undefined;
         if (tmp === undefined)
-            return null;
+            return undefined;
         return tmp.getValue();
     };
     /**
@@ -214,11 +214,11 @@ var HashMap = /** @class */ (function () {
     };
     HashMap.prototype.getMapEntry = function (key) {
         if (this.data === null)
-            return null;
+            return undefined;
         if (this.data === undefined)
-            return null;
+            return undefined;
         if (this.data.size() < 1)
-            return null;
+            return undefined;
         var hashCode = this.hashMethods.hashCode(key);
         var numBuckets = this.data.size();
         if (numBuckets < 1)
@@ -230,7 +230,7 @@ var HashMap = /** @class */ (function () {
                 return thisList.get(loop);
             }
         }
-        return null;
+        return undefined;
     };
     /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.

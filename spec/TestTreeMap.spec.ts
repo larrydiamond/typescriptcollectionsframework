@@ -269,7 +269,7 @@ describe("Test TreeMap functionality", function() {
     const basicTypesMap1:TreeMap<string,number> = new TreeMap<string,number>(Collections.getStringComparator());
     const basicTypesMap2:TreeMap<number,string> = new TreeMap<number,string>(Collections.getNumberComparator());
 
-    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (undefined);
 
     expect (petStoreMap1.put (product1, new ValueClass())).toEqual(undefined);
     expect (petStoreMap1.put (product2, new ValueClass(10))).toEqual(undefined);
@@ -285,7 +285,7 @@ describe("Test TreeMap functionality", function() {
     expect (basicTypesMap1.put ("Goldfish", 9.99)).toEqual(undefined);
     expect (basicTypesMap1.put ("AAAAA", 0.99)).toEqual(undefined);
     expect (basicTypesMap1.size ()).toEqual(4);
-    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (null);
+    expect (basicTypesMap1.get ("ZZZZZZ")).toEqual (undefined);
 
     const oldPrice:number = basicTypesMap1.put ("ChewToy", 9.99);
     expect (oldPrice).toEqual (14.99);
@@ -676,7 +676,7 @@ describe("Test TreeMap functionality", function() {
 
     expect (petStoreMap1.size ()).toEqual(26 * 26);
 //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-    expect (petStoreMap1.get (product1)).toEqual(null);
+    expect (petStoreMap1.get (product1)).toEqual(undefined);
 
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {
@@ -709,7 +709,7 @@ describe("Test TreeMap functionality", function() {
 
     expect (petStoreMap1.size ()).toEqual(26 * 26);
 //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-    expect (petStoreMap1.get (product1)).toEqual(null);
+    expect (petStoreMap1.get (product1)).toEqual(undefined);
 
     for (let loop1 = 1; loop1 <= 26; loop1++) {
       for (let loop2 = 1; loop2 <= 26; loop2++) {

@@ -83,7 +83,7 @@ var TreeSet = /** @class */ (function () {
     */
     TreeSet.prototype.contains = function (item) {
         var tmp = this.datastore.get(item);
-        if (tmp === null)
+        if ((tmp === null) || (tmp === undefined))
             return false;
         return true;
     };

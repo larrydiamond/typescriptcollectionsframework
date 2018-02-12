@@ -392,7 +392,7 @@ describe("Test SkipList functionality", function () {
     }, 2000);
     it("Test Adding some items string number", function () {
         var basicTypesMap1 = new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator());
-        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
+        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(undefined);
         expect(basicTypesMap1.put("ChewToy", 14.99)).toEqual(undefined);
         testBoolean.equalsTrue("Validate map0", basicTypesMap1.validateMap());
         expect(basicTypesMap1.put("Catnip", 4.99)).toEqual(undefined);
@@ -402,7 +402,7 @@ describe("Test SkipList functionality", function () {
         expect(basicTypesMap1.put("AAAAA", 0.99)).toEqual(undefined);
         expect(basicTypesMap1.size()).toEqual(4);
         testBoolean.equalsTrue("Validate map3", basicTypesMap1.validateMap());
-        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(null);
+        expect(basicTypesMap1.get("ZZZZZZ")).toEqual(undefined);
         var oldPrice = basicTypesMap1.put("ChewToy", 9.99);
         expect(oldPrice).toEqual(14.99);
         expect(basicTypesMap1.size()).toEqual(4);
@@ -834,7 +834,7 @@ describe("Test SkipList functionality", function () {
         expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(26 * 26);
         //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-        expect(petStoreMap1.get(product1)).toEqual(null);
+        expect(petStoreMap1.get(product1)).toEqual(undefined);
         for (var loop1 = 1; loop1 <= 26; loop1++) {
             for (var loop2 = 1; loop2 <= 26; loop2++) {
                 for (var loop3 = 1; loop3 <= 1; loop3++) {
@@ -863,7 +863,7 @@ describe("Test SkipList functionality", function () {
         expect(petStoreMap1.validateMap()).toEqual(true);
         expect(petStoreMap1.size()).toEqual(26 * 26);
         //    expect (petStoreMap1.isEmpty ()).toEqual(false);
-        expect(petStoreMap1.get(product1)).toEqual(null);
+        expect(petStoreMap1.get(product1)).toEqual(undefined);
         for (var loop1 = 1; loop1 <= 26; loop1++) {
             for (var loop2 = 1; loop2 <= 26; loop2++) {
                 for (var loop3 = 1; loop3 <= 1; loop3++) {

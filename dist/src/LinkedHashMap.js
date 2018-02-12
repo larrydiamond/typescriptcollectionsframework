@@ -73,8 +73,8 @@ var LinkedHashMap = /** @class */ (function (_super) {
      */
     LinkedHashMap.prototype.get = function (key) {
         var entry = this.getEntry(key);
-        if (entry === null)
-            return null;
+        if ((entry === null) || (entry === undefined))
+            return undefined;
         return entry.getValue();
     };
     /**

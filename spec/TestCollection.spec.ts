@@ -18,19 +18,20 @@ import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
 import {PriorityQueue} from "../src/PriorityQueue";
 import {TreeSet} from "../src/TreeSet";
+import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
 
-describe("Test Collections", function() {
+describe("Test Collection", function() {
   it("Test empty string Collections", function() {
-    testEmptyStringCollection(new ArrayList<string> ());
-    testEmptyStringCollection(new ArrayList<string> (new AllFieldCollectable<string>()));
-    testEmptyStringCollection(new LinkedList<string> ());
-    testEmptyStringCollection(new LinkedList<string> (new AllFieldCollectable<string>()));
-    testEmptyStringCollection(new HashSet<string> ());
-    testEmptyStringCollection(new HashSet<string> (new AllFieldHashable<string>()));
-    testEmptyStringCollection(Collections.emptyList<string>());
-    testEmptyStringCollection(Collections.emptySet<string>());
-    testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()));
-    testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
+    testEmptyStringCollection(new ArrayList<string> (), "ArrayList");
+    testEmptyStringCollection(new ArrayList<string> (new AllFieldCollectable<string>()), "ArrayList AllFieldCollectable");
+    testEmptyStringCollection(new LinkedList<string> (), "LinkedList");
+    testEmptyStringCollection(new LinkedList<string> (new AllFieldCollectable<string>()), "LinkedList AllFieldCollectable");
+    testEmptyStringCollection(new HashSet<string> (), "HashSet");
+    testEmptyStringCollection(new HashSet<string> (new AllFieldHashable<string>()), "HashSet AllFieldHashable");
+    testEmptyStringCollection(Collections.emptyList<string>(), "EmptyList");
+    testEmptyStringCollection(Collections.emptySet<string>(), "EmptySet");
+    testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet");
+    testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
 
   it("Test empty number Collections", function() {
@@ -188,10 +189,11 @@ const failActionString:Consumer<string> = {
   }
 }
 
-function testEmptyStringCollection (coll:ImmutableCollection<string>) : void {
+function testEmptyStringCollection (coll:ImmutableCollection<string>, typestring:string) : void {
+  TestBoolean.true ("Expect empty string collection isEmpty true " + typestring, coll.isEmpty());
   expect (coll.isEmpty ()).toEqual(true);
   expect (coll.size ()).toEqual(0);
-  expect (coll.contains("blah")).toEqual(false);
+  TestBoolean.false ("Empty string collection will not contain blah " + typestring, coll.contains("blah"));
   for (const iter:JIterator<string> = coll.iterator(); iter.hasNext(); ) {
     fail ('Unwanted code branch in testEmptyStringCollection');
     throw new Error('Unwanted code branch in testEmptyStringCollection');
@@ -269,6 +271,8 @@ function testAddItemsToStringCollection (coll:Collection<string>) : void {
    addTestStrings (coll);
    expect (coll.isEmpty ()).toEqual(false);
    expect (coll.size ()).toEqual(10);
+   expect (coll.contains ("notfound")).toEqual (false);
+   expect (coll.contains ("sixth")).toEqual (true);
 }
 
 function testAddItemsToNumberCollection (coll:Collection<number>) : void {
@@ -277,4 +281,6 @@ function testAddItemsToNumberCollection (coll:Collection<number>) : void {
   addTestNumbers (coll);
   expect (coll.isEmpty ()).toEqual(false);
   expect (coll.size ()).toEqual(10);
+  expect (coll.contains (31415926553)).toEqual (false);
+  expect (coll.contains (500)).toEqual (true);
 }

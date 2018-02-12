@@ -753,7 +753,7 @@ var SkipListMap = /** @class */ (function () {
     SkipListMap.prototype.get = function (key) {
         var node = this.impl.getEntry(key);
         if ((node === undefined) || (node === null)) {
-            return null;
+            return undefined;
         }
         return node.getValue();
     };

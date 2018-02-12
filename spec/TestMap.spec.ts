@@ -6,6 +6,8 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
+import {Test, TestBoolean, TestString, TestNumber} from 'jasts';
+
 import {AllFieldHashable} from "../src/AllFieldHashable";
 import {Collectable} from "../src/Collectable";
 import {Collections} from "../src/Collections";
@@ -112,25 +114,25 @@ describe("Test Map functionality", function() {
   });
 
   it("Test adding to empty maps", function() {
-    testAddingOneEntryStringStringMap (new HashMap<string,string> ());
-    testAddingOneEntryStringStringMap (new HashMap<string,string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringStringMap (new HashMap<string,string> (), "HashMap default");
+    testAddingOneEntryStringStringMap (new HashMap<string,string> (new AllFieldHashable<string>()), "HashMap AllFieldHashable");
     testAddingOneEntryStringNumberMap (new HashMap<string,number> ());
     testAddingOneEntryStringNumberMap (new HashMap<string,number> (new AllFieldHashable<string>()));
     testAddingOneEntryPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> ());
     testAddingOneEntryPetStoreProductAndValueClassMap (new HashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
 
-    testAddingOneEntryStringStringMap (new LinkedHashMap<string,string> ());
-    testAddingOneEntryStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringStringMap (new LinkedHashMap<string,string> (), "LinkedHashMap default");
+    testAddingOneEntryStringStringMap (new LinkedHashMap<string,string> (new AllFieldHashable<string>()), "LinkedHashMap AllFieldHashable");
     testAddingOneEntryStringNumberMap (new LinkedHashMap<string,number> ());
     testAddingOneEntryStringNumberMap (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
     testAddingOneEntryPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> ());
     testAddingOneEntryPetStoreProductAndValueClassMap (new LinkedHashMap<PetStoreProduct,ValueClass> (new AllFieldHashable<PetStoreProduct>()));
 
-    testAddingOneEntryStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()));
+    testAddingOneEntryStringStringMap (new TreeMap<string,string> (Collections.getStringComparator()), "TreeMap");
     testAddingOneEntryStringNumberMap (new TreeMap<string,number> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassMap (new TreeMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
 
-    testAddingOneEntryStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
+    testAddingOneEntryStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()), "SkipListMap");
     testAddingOneEntryStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
@@ -185,9 +187,9 @@ describe("Test Map functionality", function() {
 
 });
 
-
-
 function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
+  TestNumber.equals ("Testing empty string string map size", map.size(), 0);
+  TestBoolean.true ("Testing empty string string map isEmpty", map.isEmpty());
    expect (map.isEmpty ()).toEqual(true);
    expect (map.size ()).toEqual(0);
 }
@@ -202,14 +204,15 @@ function testEmptyPetStoreProductAndValueClassMap (map:ImmutableMap<PetStoreProd
    expect (map.size ()).toEqual(0);
 }
 
-function testAddingOneEntryStringStringMap (map:JMap<string,string>) : void {
+function testAddingOneEntryStringStringMap (map:JMap<string,string>, typestring:string) : void {
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
   expect (undefined).toEqual(map.put("testkey", "testvalue"));
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);
   expect ("testvalue").toEqual (map.get ("testkey"));
-  expect (null).toEqual (map.get ("key not found"));
+  TestString.undefined ("Getting key not in map will return undefined " + typestring, map.get ("key not found"));
+  expect (undefined).toEqual (map.get ("key not found"));
 }
 
 function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
@@ -219,7 +222,7 @@ function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);
   expect (1).toEqual (map.get ("testkey"));
-  expect (null).toEqual (map.get ("key not found"));
+  expect (undefined).toEqual (map.get ("key not found"));
 }
 
 function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
@@ -240,7 +243,7 @@ function testAddingTwoEntriesStringStringMap (map:JMap<string,string>) : void {
   expect (map.size ()).toEqual(2);
   expect (map.isEmpty ()).toEqual(false);
   expect ("testvalue").toEqual (map.get ("testkey"));
-  expect (null).toEqual (map.get ("key not found"));
+  expect (undefined).toEqual (map.get ("key not found"));
 }
 
 function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
@@ -253,7 +256,7 @@ function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
   expect (map.size ()).toEqual(2);
   expect (map.isEmpty ()).toEqual(false);
   expect (1).toEqual (map.get ("secondkey"));
-  expect (null).toEqual (map.get ("key not found"));
+  expect (undefined).toEqual (map.get ("key not found"));
 }
 
 function testAddingTwoEntriesPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
@@ -277,12 +280,12 @@ function testClearingStringStringMap (map:JMap<string,string>) : void {
   expect (map.size ()).toEqual(2);
   expect (map.isEmpty ()).toEqual(false);
   expect ("testvalue").toEqual (map.get ("testkey"));
-  expect (null).toEqual (map.get ("key not found"));
+  expect (undefined).toEqual (map.get ("key not found"));
   expect (undefined).toEqual(map.clear());
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
-  expect (null).toEqual (map.get ("testkey"));
-  expect (null).toEqual (map.get ("key not found"));
+  expect (undefined).toEqual (map.get ("testkey"));
+  expect (undefined).toEqual (map.get ("key not found"));
 }
 
 function testClearingStringNumberMap (map:JMap<string,number>) : void {
