@@ -267,6 +267,14 @@ export class HashMap<K,V> implements JMap<K,V> {
     return this;
   }
 
+  /**
+   * Returns an iterator over the entire entry set
+   * @return {Iterator<K>} an iterator for the entry set
+   */
+  public [Symbol.iterator] ():Iterator<K> {
+    return this.entrySet[Symbol.iterator]();
+  }
+
  /**
   * This method is deprecated and will be removed in a future revision.
   * @deprecated

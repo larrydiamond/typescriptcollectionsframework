@@ -190,6 +190,11 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     */
     immutableMap(): ImmutableMap<K, V>;
     /**
+     * Returns an iterator over the entire entry set
+     * @return {Iterator<K>} an iterator for the entry set
+     */
+    [Symbol.iterator](): Iterator<K>;
+    /**
     * Returns the first (lowest) key currently in this map.
     * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
     */

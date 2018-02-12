@@ -118,6 +118,14 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
 
     return true;
   }
+  
+  /**
+   * Returns an iterator over the entire entry set
+   * @return {Iterator<K>} an iterator for the entry set
+   */
+  public [Symbol.iterator] ():Iterator<K> {
+    return this.entrySet[Symbol.iterator]();
+  }
 
 /**
  * Removes all of the mappings from this map. The map will be empty after this call returns.

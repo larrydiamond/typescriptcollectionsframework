@@ -876,6 +876,14 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   }
 
   /**
+   * Returns an iterator over the entire entry set
+   * @return {Iterator<K>} an iterator for the entry set
+   */
+  public [Symbol.iterator] ():Iterator<K> {
+    return this.entrySet[Symbol.iterator]();
+  }
+
+  /**
   * Returns the first (lowest) key currently in this map.
   * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
   */

@@ -106,6 +106,13 @@ var TreeMap = /** @class */ (function () {
         return true;
     };
     /**
+     * Returns an iterator over the entire entry set
+     * @return {Iterator<K>} an iterator for the entry set
+     */
+    TreeMap.prototype[Symbol.iterator] = function () {
+        return this.entrySet[Symbol.iterator]();
+    };
+    /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
     TreeMap.prototype.clear = function () {

@@ -47,4 +47,9 @@ export interface ImmutableMap<K, V> {
      * @return {MapEntry} an entry with the greatest key, or null if this map is empty
      */
     entrySet(): ImmutableSet<MapEntry<K, V>>;
+    /**
+    * Returns an iterator over the entire entry set
+    * @return {Iterator<K>} an iterator for the entry set
+    */
+    [Symbol.iterator](): Iterator<K>;
 }

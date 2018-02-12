@@ -26,6 +26,11 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     validateMap(): boolean;
     private validateNode(node);
     /**
+     * Returns an iterator over the entire entry set
+     * @return {Iterator<K>} an iterator for the entry set
+     */
+    [Symbol.iterator](): Iterator<K>;
+    /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
     clear(): void;

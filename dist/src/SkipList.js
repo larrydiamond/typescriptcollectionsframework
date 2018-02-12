@@ -832,6 +832,13 @@ var SkipListMap = /** @class */ (function () {
         return this;
     };
     /**
+     * Returns an iterator over the entire entry set
+     * @return {Iterator<K>} an iterator for the entry set
+     */
+    SkipListMap.prototype[Symbol.iterator] = function () {
+        return this.entrySet[Symbol.iterator]();
+    };
+    /**
     * Returns the first (lowest) key currently in this map.
     * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
     */

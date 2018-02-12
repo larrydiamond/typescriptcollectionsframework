@@ -115,6 +115,11 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     */
     immutableMap(): ImmutableMap<K, V>;
     /**
+     * Returns an iterator over the entire entry set
+     * @return {Iterator<K>} an iterator for the entry set
+     */
+    [Symbol.iterator](): Iterator<K>;
+    /**
      * This method is deprecated and will be removed in a future revision.
      * @deprecated
      */

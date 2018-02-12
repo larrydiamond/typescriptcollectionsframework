@@ -115,6 +115,7 @@ var HashMap = /** @class */ (function () {
      * @param {number} bucket index of the bucket in which the Entry should be
      */
     HashMap.prototype.addEntry = function (hash, key, value, bucket) {
+        ; // added to remove tslint error
     };
     /**
      * Rehashes the entire hashmap.... gonna be slow you've been warned
@@ -265,6 +266,13 @@ var HashMap = /** @class */ (function () {
     */
     HashMap.prototype.immutableMap = function () {
         return this;
+    };
+    /**
+     * Returns an iterator over the entire entry set
+     * @return {Iterator<K>} an iterator for the entry set
+     */
+    HashMap.prototype[Symbol.iterator] = function () {
+        return this.entrySet[Symbol.iterator]();
     };
     /**
      * This method is deprecated and will be removed in a future revision.
