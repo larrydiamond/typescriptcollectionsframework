@@ -98,6 +98,7 @@
 				<h3>Implemented by</h3>
 				<ul class="tsd-hierarchy">
 					<li><a href="../classes/_hashmap_.hashmap.html" class="tsd-signature-type">HashMap</a></li>
+					<li><a href="../classes/_linkedhashmap_.linkedhashmap.html" class="tsd-signature-type">LinkedHashMap</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -107,9 +108,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_jmap_.jmap.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_jmap_.jmap.html#clear" class="tsd-kind-icon">clear</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_jmap_.jmap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_jmap_.jmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_jmap_.jmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_jmap_.jmap.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_jmap_.jmap.html#immutablemap" class="tsd-kind-icon">immutable<wbr>Map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_jmap_.jmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
@@ -124,6 +126,30 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="___iterator" class="tsd-anchor"></a>
+					<h3>__@iterator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">__@iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#___iterator">__@iterator</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L62">ImmutableMap.ts:62</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an iterator over the entire entry set</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>an iterator for the entry set</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="clear" class="tsd-anchor"></a>
 					<h3>clear</h3>
@@ -134,7 +160,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/JMap.ts#L32">JMap.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/JMap.ts#L32">JMap.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,7 +183,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#containskey">containsKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableMap.ts#L31">ImmutableMap.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L31">ImmutableMap.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,23 +205,24 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="entryset" class="tsd-anchor"></a>
 					<h3>entry<wbr>Set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">entry<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#entryset">entrySet</a></p>
+								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#entryset">entrySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/JMap.ts#L41">JMap.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L56">ImmutableMap.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns an ImmutableSet view of the mappings contained in this map.
+										The set&#39;s iterator returns the mappings in ascending key order.
 										The set is backed by the map, so changes to the map are reflected in the set.
 										If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
 									The contains method on this entrySet will only compare keys not values.</p>
@@ -217,12 +244,12 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableMap.ts#L24">ImmutableMap.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L24">ImmutableMap.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.</p>
+									<p>Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -235,7 +262,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
-							<p>the value to which the specified key is mapped, or null if this map contains no mapping for the key</p>
+							<p>the value to which the specified key is mapped, or undefined if this map contains no mapping for the key</p>
 						</li>
 					</ul>
 				</section>
@@ -249,7 +276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/JMap.ts#L46">JMap.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/JMap.ts#L37">JMap.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +299,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableMap.ts#L37">ImmutableMap.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L37">ImmutableMap.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -296,7 +323,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableMap.ts#L46">ImmutableMap.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L46">ImmutableMap.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/JMap.ts#L20">JMap.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/JMap.ts#L20">JMap.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -360,7 +387,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/JMap.ts#L27">JMap.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/JMap.ts#L27">JMap.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,7 +420,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_immutablemap_.immutablemap.html">ImmutableMap</a>.<a href="_immutablemap_.immutablemap.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableMap.ts#L17">ImmutableMap.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableMap.ts#L17">ImmutableMap.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -426,13 +453,16 @@
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_jmap_.jmap.html" class="tsd-kind-icon">JMap</a>
 						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_jmap_.jmap.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_jmap_.jmap.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_jmap_.jmap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_jmap_.jmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">

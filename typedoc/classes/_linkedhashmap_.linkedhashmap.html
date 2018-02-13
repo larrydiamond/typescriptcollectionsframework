@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HashMap | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>LinkedHashMap | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_hashmap_.html">&quot;HashMap&quot;</a>
+					<a href="../modules/_linkedhashmap_.html">&quot;LinkedHashMap&quot;</a>
 				</li>
 				<li>
-					<a href="_hashmap_.hashmap.html">HashMap</a>
+					<a href="_linkedhashmap_.linkedhashmap.html">LinkedHashMap</a>
 				</li>
 			</ul>
-			<h1>Class HashMap&lt;K, V&gt;</h1>
+			<h1>Class LinkedHashMap&lt;K, V&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,22 +68,12 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Hash table based implementation of the Map interface.  This implementation permits null values and the null key.<br>
-							This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.<br>
-							This implementation provides constant-time performance for the basic operations (get and put), assuming the hash function disperses the elements properly among the buckets.<br>
-						Iteration over collection views requires time proportional to the &quot;capacity&quot; of the HashMap instance (the number of buckets) plus its size (the number of key-value mappings).</p>
+						<p>Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
+							differs from HashMap in that it maintains a doubly-linked list running through all of its entries. This linked list
+							defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order).
+						Note that insertion order is not affected if a key is re-inserted into the map.</p>
 					</div>
-					<p>An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.<br>
-						The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created.<br>
-						The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased.<br>
-					When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.</p>
-					<p>As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.<br>
-						Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put).<br>
-						The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity, so as to minimize the number of rehash operations.<br>
-					If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.</p>
-					<p>If many mappings are to be stored in a HashMap instance, creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform automatic rehashing as needed to grow the table.<br>
-					Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table.</p>
-					<p>This class corresponds to java.util.HashMap</p>
+					<p>This class corresponds to java.util.LinkedHashMap</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -101,10 +91,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HashMap</span>
+						<a href="_hashmap_.hashmap.html" class="tsd-signature-type">HashMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_linkedhashmap_.linkedhashmap.html" class="tsd-signature-type">LinkedHashMap</a>
+								<span class="target">LinkedHashMap</span>
 							</li>
 						</ul>
 					</li>
@@ -123,27 +113,33 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashmap_.linkedhashmap.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_hashmap_.hashmap.html#addentry" class="tsd-kind-icon">add<wbr>Entry</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#getentry" class="tsd-kind-icon">get<wbr>Entry</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#immutablemap" class="tsd-kind-icon">immutable<wbr>Map</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#keyset" class="tsd-kind-icon">key<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#put" class="tsd-kind-icon">put</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.hashmap.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashmap_.linkedhashmap.html#addentry" class="tsd-kind-icon">add<wbr>Entry</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashmap_.linkedhashmap.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.linkedhashmap.html#containsvalue" class="tsd-kind-icon">contains<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashmap_.linkedhashmap.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#getentry" class="tsd-kind-icon">get<wbr>Entry</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.linkedhashmap.html#getheader" class="tsd-kind-icon">get<wbr>Header</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#immutablemap" class="tsd-kind-icon">immutable<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.linkedhashmap.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#keyset" class="tsd-kind-icon">key<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.linkedhashmap.html#newentryiterator" class="tsd-kind-icon">new<wbr>Entry<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.linkedhashmap.html#newkeyiterator" class="tsd-kind-icon">new<wbr>Key<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.linkedhashmap.html#newvalueiterator" class="tsd-kind-icon">new<wbr>Value<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#put" class="tsd-kind-icon">put</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.linkedhashmap.html#size" class="tsd-kind-icon">size</a></li>
 							</ul>
 						</section>
 					</div>
@@ -151,17 +147,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Hash<wbr>Map<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacity<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmap.html" class="tsd-signature-type">HashMap</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Linked<wbr>Hash<wbr>Map<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElementsLinked<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacityLinked<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactorLinked<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.linkedhashmap.html" class="tsd-signature-type">LinkedHashMap</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L51">HashMap.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L25">LinkedHashMap.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -170,32 +167,33 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iHash: <a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;AllFieldHashable.instance</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialElements: <a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialElementsLinked: <a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iInitialCapacity: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iInitialCapacityLinked: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iLoadFactor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iLoadFactorLinked: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmap.html" class="tsd-signature-type">HashMap</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.linkedhashmap.html" class="tsd-signature-type">LinkedHashMap</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="___iterator" class="tsd-anchor"></a>
 					<h3>__@iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">__@iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#___iterator">__@iterator</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#___iterator">__@iterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L274">HashMap.ts:274</a></li>
 								</ul>
@@ -210,23 +208,24 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="addentry" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> add<wbr>Entry</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<h3>add<wbr>Entry</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">add<wbr>Entry<span class="tsd-signature-symbol">(</span>hash<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span>, bucket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#addentry">addEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L115">HashMap.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L79">LinkedHashMap.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This is a placeholder that does nothing for HashMap object but needed to work with
-									LinkedHashMap&#39;s addEntry method which it overrides from here to fully provide the linked functionality.</p>
+									<p>This override alters behavior of superclass put method. It causes newly allocated entry
+									to get inserted at the end of the linked list and removes the eldest entry if appropriate.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -260,39 +259,36 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="clear" class="tsd-anchor"></a>
 					<h3>clear</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#clear">clear</a></p>
+								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L234">HashMap.ts:234</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L108">LinkedHashMap.ts:108</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes all of the mappings from this map. The map will be empty after this call returns.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="containskey" class="tsd-anchor"></a>
 					<h3>contains<wbr>Key</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">contains<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#containskey">containsKey</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#containskey">containsKey</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L203">HashMap.ts:203</a></li>
 								</ul>
@@ -317,14 +313,46 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="containsvalue" class="tsd-anchor"></a>
+					<h3>contains<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">contains<wbr>Value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L49">LinkedHashMap.ts:49</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns true if this map maps one or more keys to the specified value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>value whose presence in this map is to be tested</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="deprecatedgetfirstentryforiterator" class="tsd-anchor"></a>
 					<h3>deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#deprecatedgetfirstentryforiterator">deprecatedGetFirstEntryForIterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L282">HashMap.ts:282</a></li>
 								</ul>
@@ -342,15 +370,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="deprecatedgetnextentryforiterator" class="tsd-anchor"></a>
 					<h3>deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span>current<span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#deprecatedgetnextentryforiterator">deprecatedGetNextEntryForIterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L309">HashMap.ts:309</a></li>
 								</ul>
@@ -374,16 +403,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="entryset" class="tsd-anchor"></a>
 					<h3>entry<wbr>Set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">entry<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#entryset">entrySet</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#entryset">entrySet</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L259">HashMap.ts:259</a></li>
 								</ul>
@@ -402,23 +432,24 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="get" class="tsd-anchor"></a>
 					<h3>get</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#get">get</a></p>
+								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L168">HashMap.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L64">LinkedHashMap.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.</p>
+									<p>Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -426,24 +457,24 @@
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the key whose associated value is to be returned</p>
+										<p>key with which the specified value is to be associated</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
-							<p>the value to which the specified key is mapped, or undefined if this map contains no mapping for the key</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getentry" class="tsd-anchor"></a>
 					<h3>get<wbr>Entry</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Entry<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapentry.html" class="tsd-signature-type">HashMapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#getentry">getEntry</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L210">HashMap.ts:210</a></li>
 								</ul>
@@ -459,15 +490,33 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getheader" class="tsd-anchor"></a>
+					<h3>get<wbr>Header</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Header<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L113">LinkedHashMap.ts:113</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="immutablemap" class="tsd-anchor"></a>
 					<h3>immutable<wbr>Map</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Map<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#immutablemap">immutableMap</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#immutablemap">immutableMap</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L266">HashMap.ts:266</a></li>
 								</ul>
@@ -482,15 +531,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="init" class="tsd-anchor"></a>
+					<h3>init</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L39">LinkedHashMap.ts:39</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initializes the chain before any entries are inserted into the map.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="isempty" class="tsd-anchor"></a>
 					<h3>is<wbr>Empty</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#isempty">isEmpty</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#isempty">isEmpty</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L150">HashMap.ts:150</a></li>
 								</ul>
@@ -505,16 +577,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="keyset" class="tsd-anchor"></a>
 					<h3>key<wbr>Set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">key<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#keyset">keySet</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#keyset">keySet</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L247">HashMap.ts:247</a></li>
 								</ul>
@@ -533,15 +606,67 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="newentryiterator" class="tsd-anchor"></a>
+					<h3>new<wbr>Entry<wbr>Iterator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new<wbr>Entry<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.entryiterator.html" class="tsd-signature-type">EntryIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L123">LinkedHashMap.ts:123</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.entryiterator.html" class="tsd-signature-type">EntryIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="newkeyiterator" class="tsd-anchor"></a>
+					<h3>new<wbr>Key<wbr>Iterator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new<wbr>Key<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.keyiterator.html" class="tsd-signature-type">KeyIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L117">LinkedHashMap.ts:117</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.keyiterator.html" class="tsd-signature-type">KeyIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="newvalueiterator" class="tsd-anchor"></a>
+					<h3>new<wbr>Value<wbr>Iterator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new<wbr>Value<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.valueiterator.html" class="tsd-signature-type">ValueIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L120">LinkedHashMap.ts:120</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.valueiterator.html" class="tsd-signature-type">ValueIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="put" class="tsd-anchor"></a>
 					<h3>put</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">put<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#put">put</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#put">put</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L77">HashMap.ts:77</a></li>
 								</ul>
@@ -571,16 +696,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="remove" class="tsd-anchor"></a>
 					<h3>remove</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#remove">remove</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#remove">remove</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L180">HashMap.ts:180</a></li>
 								</ul>
@@ -604,16 +730,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="size" class="tsd-anchor"></a>
 					<h3>size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#size">size</a></p>
+								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#size">size</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L159">HashMap.ts:159</a></li>
 								</ul>
@@ -637,92 +764,101 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_hashmap_.html">"<wbr>Hash<wbr>Map"</a>
+						<a href="../modules/_linkedhashmap_.html">"<wbr>Linked<wbr>Hash<wbr>Map"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.entryiterator.html" class="tsd-kind-icon">Entry<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.keyiterator.html" class="tsd-kind-icon">Key<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.linkedentry.html" class="tsd-kind-icon">Linked<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.linkedhashiterator.html" class="tsd-kind-icon">Linked<wbr>Hash<wbr>Iterator</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmap.html" class="tsd-kind-icon">Hash<wbr>Map</a>
+						<a href="_linkedhashmap_.linkedhashmap.html" class="tsd-kind-icon">Linked<wbr>Hash<wbr>Map</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashmap_.linkedhashmap.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashmap_.linkedhashmap.html#addentry" class="tsd-kind-icon">add<wbr>Entry</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashmap_.linkedhashmap.html#clear" class="tsd-kind-icon">clear</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+								<a href="_linkedhashmap_.linkedhashmap.html#containsvalue" class="tsd-kind-icon">contains<wbr>Value</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="_hashmap_.hashmap.html#addentry" class="tsd-kind-icon">add<wbr>Entry</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#clear" class="tsd-kind-icon">clear</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#containskey" class="tsd-kind-icon">contains<wbr>Key</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashmap_.linkedhashmap.html#get" class="tsd-kind-icon">get</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#entryset" class="tsd-kind-icon">entry<wbr>Set</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#getentry" class="tsd-kind-icon">get<wbr>Entry</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#get" class="tsd-kind-icon">get</a>
+								<a href="_linkedhashmap_.linkedhashmap.html#getheader" class="tsd-kind-icon">get<wbr>Header</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#immutablemap" class="tsd-kind-icon">immutable<wbr>Map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#getentry" class="tsd-kind-icon">get<wbr>Entry</a>
+								<a href="_linkedhashmap_.linkedhashmap.html#init" class="tsd-kind-icon">init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#keyset" class="tsd-kind-icon">key<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#immutablemap" class="tsd-kind-icon">immutable<wbr>Map</a>
+								<a href="_linkedhashmap_.linkedhashmap.html#newentryiterator" class="tsd-kind-icon">new<wbr>Entry<wbr>Iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+								<a href="_linkedhashmap_.linkedhashmap.html#newkeyiterator" class="tsd-kind-icon">new<wbr>Key<wbr>Iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#keyset" class="tsd-kind-icon">key<wbr>Set</a>
+								<a href="_linkedhashmap_.linkedhashmap.html#newvalueiterator" class="tsd-kind-icon">new<wbr>Value<wbr>Iterator</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#put" class="tsd-kind-icon">put</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#put" class="tsd-kind-icon">put</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#remove" class="tsd-kind-icon">remove</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashmap_.hashmap.html#size" class="tsd-kind-icon">size</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.linkedhashmap.html#size" class="tsd-kind-icon">size</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapentry.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Entry</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapentrysetiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Entry<wbr>Set<wbr>Iterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapentrysetjiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Entry<wbr>SetJIterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Iterator<wbr>Location<wbr>Tracker</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapkeysetiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Key<wbr>Set<wbr>Iterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.hashmapkeysetjiterator.html" class="tsd-kind-icon">Hash<wbr>Map<wbr>Key<wbr>SetJIterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.immutableentrysetforhashmap.html" class="tsd-kind-icon">Immutable<wbr>Entry<wbr>Set<wbr>For<wbr>Hash<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashmap_.immutablekeysetforhashmap.html" class="tsd-kind-icon">Immutable<wbr>Key<wbr>Set<wbr>For<wbr>Hash<wbr>Map</a>
+						<a href="_linkedhashmap_.valueiterator.html" class="tsd-kind-icon">Value<wbr>Iterator</a>
 					</li>
 				</ul>
 			</nav>

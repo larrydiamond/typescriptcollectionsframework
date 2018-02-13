@@ -105,6 +105,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.immutablekeysetforhashmap.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.immutablekeysetforhashmap.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.immutablekeysetforhashmap.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.immutablekeysetforhashmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.immutablekeysetforhashmap.html#iterator" class="tsd-kind-icon">iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashmap_.immutablekeysetforhashmap.html#size" class="tsd-kind-icon">size</a></li>
@@ -125,7 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/HashMap.ts#L391">HashMap.ts:391</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L426">HashMap.ts:426</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +153,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_immutableset_.immutableset.html">ImmutableSet</a>.<a href="../interfaces/_immutableset_.immutableset.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/HashMap.ts#L404">HashMap.ts:404</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L439">HashMap.ts:439</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -170,7 +171,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_immutableset_.immutableset.html">ImmutableSet</a>.<a href="../interfaces/_immutableset_.immutableset.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/HashMap.ts#L400">HashMap.ts:400</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L435">HashMap.ts:435</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -180,6 +181,38 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="foreach" class="tsd-anchor"></a>
+					<h3>for<wbr>Each</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_immutableset_.immutableset.html">ImmutableSet</a>.<a href="../interfaces/_immutableset_.immutableset.html#foreach">forEach</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L445">HashMap.ts:445</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>consumer: <a href="../interfaces/_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the action to be performed for each element</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -194,7 +227,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_immutableset_.immutableset.html">ImmutableSet</a>.<a href="../interfaces/_immutableset_.immutableset.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/HashMap.ts#L398">HashMap.ts:398</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L433">HashMap.ts:433</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -212,7 +245,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_immutableset_.immutableset.html">ImmutableSet</a>.<a href="../interfaces/_immutableset_.immutableset.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/HashMap.ts#L402">HashMap.ts:402</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L437">HashMap.ts:437</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -230,7 +263,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_immutableset_.immutableset.html">ImmutableSet</a>.<a href="../interfaces/_immutableset_.immutableset.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/HashMap.ts#L396">HashMap.ts:396</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/HashMap.ts#L431">HashMap.ts:431</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -289,6 +322,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_hashmap_.immutablekeysetforhashmap.html#contains" class="tsd-kind-icon">contains</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_hashmap_.immutablekeysetforhashmap.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_hashmap_.immutablekeysetforhashmap.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>

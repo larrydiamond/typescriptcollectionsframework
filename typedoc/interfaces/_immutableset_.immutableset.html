@@ -111,6 +111,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_immutableset_.immutableset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_immutableset_.immutableset.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_immutableset_.immutableset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_immutableset_.immutableset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_immutableset_.immutableset.html#iterator" class="tsd-kind-icon">iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_immutableset_.immutableset.html#size" class="tsd-kind-icon">size</a></li>
@@ -132,7 +133,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableSet.ts#L42">ImmutableSet.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableSet.ts#L42">ImmutableSet.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,7 +157,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableSet.ts#L30">ImmutableSet.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableSet.ts#L30">ImmutableSet.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -178,6 +179,36 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="foreach" class="tsd-anchor"></a>
+					<h3>for<wbr>Each</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><a href="_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#foreach">forEach</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableCollection.ts#L59">ImmutableCollection.ts:59</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the given action for each element until all elements have been processed or the action throws and exception.
+									Exceptions thrown by the action are relayed to the caller</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>action: <a href="_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="isempty" class="tsd-anchor"></a>
 					<h3>is<wbr>Empty</h3>
@@ -189,7 +220,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableSet.ts#L23">ImmutableSet.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableSet.ts#L23">ImmutableSet.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -213,7 +244,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableSet.ts#L36">ImmutableSet.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableSet.ts#L36">ImmutableSet.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -237,7 +268,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/ImmutableSet.ts#L17">ImmutableSet.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/ImmutableSet.ts#L17">ImmutableSet.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,6 +306,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="_immutableset_.immutableset.html#contains" class="tsd-kind-icon">contains</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_immutableset_.immutableset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="_immutableset_.immutableset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>

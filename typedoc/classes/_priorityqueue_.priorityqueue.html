@@ -119,6 +119,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#clear" class="tsd-kind-icon">clear</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#contains" class="tsd-kind-icon">contains</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#element" class="tsd-kind-icon">element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_priorityqueue_.priorityqueue.html#iterator" class="tsd-kind-icon">iterator</a></li>
@@ -145,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L30">PriorityQueue.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L31">PriorityQueue.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -175,7 +176,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L142">PriorityQueue.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L143">PriorityQueue.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -199,7 +200,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L47">PriorityQueue.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L48">PriorityQueue.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -229,7 +230,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L93">PriorityQueue.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L94">PriorityQueue.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -252,7 +253,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L151">PriorityQueue.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L152">PriorityQueue.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,10 +283,42 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#element">element</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L85">PriorityQueue.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L86">PriorityQueue.ts:86</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="foreach" class="tsd-anchor"></a>
+					<h3>for<wbr>Each</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#foreach">forEach</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L160">PriorityQueue.ts:160</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>consumer: <a href="../interfaces/_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the action to be performed for each element</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -300,7 +333,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L110">PriorityQueue.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L111">PriorityQueue.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -323,7 +356,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L126">PriorityQueue.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L127">PriorityQueue.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -347,7 +380,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L134">PriorityQueue.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L135">PriorityQueue.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -371,7 +404,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#offer">offer</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L54">PriorityQueue.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L55">PriorityQueue.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +433,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#peek">peek</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L77">PriorityQueue.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L78">PriorityQueue.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -418,7 +451,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#poll">poll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L61">PriorityQueue.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L62">PriorityQueue.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -436,7 +469,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L103">PriorityQueue.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L104">PriorityQueue.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +499,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#removequeue">removeQueue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L69">PriorityQueue.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L70">PriorityQueue.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -484,7 +517,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_queue_.queue.html">Queue</a>.<a href="../interfaces/_queue_.queue.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/7e01f4b/src/PriorityQueue.ts#L118">PriorityQueue.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/PriorityQueue.ts#L119">PriorityQueue.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -534,6 +567,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_priorityqueue_.priorityqueue.html#element" class="tsd-kind-icon">element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_priorityqueue_.priorityqueue.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_priorityqueue_.priorityqueue.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>

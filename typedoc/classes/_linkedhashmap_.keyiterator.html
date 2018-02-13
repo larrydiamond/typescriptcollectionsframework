@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TreeSetIterator | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>KeyIterator | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_treeset_.html">&quot;TreeSet&quot;</a>
+					<a href="../modules/_linkedhashmap_.html">&quot;LinkedHashMap&quot;</a>
 				</li>
 				<li>
-					<a href="_treeset_.treesetiterator.html">TreeSetIterator</a>
+					<a href="_linkedhashmap_.keyiterator.html">KeyIterator</a>
 				</li>
 			</ul>
-			<h1>Class TreeSetIterator&lt;T&gt;</h1>
+			<h1>Class KeyIterator&lt;K, V&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,10 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>T</h4>
+						<h4>K</h4>
+					</li>
+					<li>
+						<h4>V</h4>
 					</li>
 				</ul>
 			</section>
@@ -77,14 +80,19 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TreeSetIterator</span>
+						<a href="_linkedhashmap_.linkedhashiterator.html" class="tsd-signature-type">LinkedHashIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">KeyIterator</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -94,13 +102,15 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_treeset_.treesetiterator.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashmap_.keyiterator.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_treeset_.treesetiterator.html#next" class="tsd-kind-icon">next</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashmap_.keyiterator.html#_next" class="tsd-kind-icon">_next</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.keyiterator.html#hasnext" class="tsd-kind-icon">has<wbr>Next</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashmap_.keyiterator.html#next" class="tsd-kind-icon">next</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,26 +118,27 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tree<wbr>Set<wbr>Iterator<span class="tsd-signature-symbol">(</span>iSet<span class="tsd-signature-symbol">: </span><a href="_treeset_.treeset.html" class="tsd-signature-type">TreeSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_treeset_.treesetiterator.html" class="tsd-signature-type">TreeSetIterator</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Key<wbr>Iterator<span class="tsd-signature-symbol">(</span>linkedHashMap<span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.linkedhashmap.html" class="tsd-signature-type">LinkedHashMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.keyiterator.html" class="tsd-signature-type">KeyIterator</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_linkedhashmap_.linkedhashiterator.html">LinkedHashIterator</a>.<a href="_linkedhashmap_.linkedhashiterator.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/TreeSet.ts#L302">TreeSet.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L221">LinkedHashMap.ts:221</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iSet: <a href="_treeset_.treeset.html" class="tsd-signature-type">TreeSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>linkedHashMap: <a href="_linkedhashmap_.linkedhashmap.html" class="tsd-signature-type">LinkedHashMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_treeset_.treesetiterator.html" class="tsd-signature-type">TreeSetIterator</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.keyiterator.html" class="tsd-signature-type">KeyIterator</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -135,25 +146,57 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="next" class="tsd-anchor"></a>
-					<h3>next</h3>
+					<a name="_next" class="tsd-anchor"></a>
+					<h3>_next</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">_next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/TreeSet.ts#L310">TreeSet.ts:310</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L225">LinkedHashMap.ts:225</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IteratorResult</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="hasnext" class="tsd-anchor"></a>
+					<h3>has<wbr>Next</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_jiterator_.jiterator.html">JIterator</a>.<a href="../interfaces/_jiterator_.jiterator.html#hasnext">hasNext</a></p>
+								<p>Inherited from <a href="_linkedhashmap_.linkedhashiterator.html">LinkedHashIterator</a>.<a href="_linkedhashmap_.linkedhashiterator.html#hasnext">hasNext</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L192">LinkedHashMap.ts:192</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="next" class="tsd-anchor"></a>
+					<h3>next</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">next<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_jiterator_.jiterator.html">JIterator</a>.<a href="../interfaces/_jiterator_.jiterator.html#next">next</a></p>
+								<p>Inherited from <a href="_linkedhashmap_.linkedhashiterator.html">LinkedHashIterator</a>.<a href="_linkedhashmap_.linkedhashiterator.html#next">next</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/130a3ec/src/LinkedHashMap.ts#L188">LinkedHashMap.ts:188</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -166,32 +209,47 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_treeset_.html">"<wbr>Tree<wbr>Set"</a>
+						<a href="../modules/_linkedhashmap_.html">"<wbr>Linked<wbr>Hash<wbr>Map"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_treeset_.treeset.html" class="tsd-kind-icon">Tree<wbr>Set</a>
+						<a href="_linkedhashmap_.entryiterator.html" class="tsd-kind-icon">Entry<wbr>Iterator</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_treeset_.treesetiterator.html" class="tsd-kind-icon">Tree<wbr>Set<wbr>Iterator</a>
+						<a href="_linkedhashmap_.keyiterator.html" class="tsd-kind-icon">Key<wbr>Iterator</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_treeset_.treesetiterator.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashmap_.keyiterator.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_treeset_.treesetiterator.html#next" class="tsd-kind-icon">next</a>
+								<a href="_linkedhashmap_.keyiterator.html#_next" class="tsd-kind-icon">_next</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.keyiterator.html#hasnext" class="tsd-kind-icon">has<wbr>Next</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashmap_.keyiterator.html#next" class="tsd-kind-icon">next</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_treeset_.treesetjiterator.html" class="tsd-kind-icon">Tree<wbr>SetJIterator</a>
+						<a href="_linkedhashmap_.linkedentry.html" class="tsd-kind-icon">Linked<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.linkedhashiterator.html" class="tsd-kind-icon">Linked<wbr>Hash<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.linkedhashmap.html" class="tsd-kind-icon">Linked<wbr>Hash<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashmap_.valueiterator.html" class="tsd-kind-icon">Value<wbr>Iterator</a>
 					</li>
 				</ul>
 			</nav>
