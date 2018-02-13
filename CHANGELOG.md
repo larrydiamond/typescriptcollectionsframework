@@ -1,5 +1,10 @@
 # Change Log
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.1.2...v3.2.0) (2018-02-13)
+* Backwards compatibility minor break by making Map get methods return undefined if the key does not exist
+* Ease of use features (which still need to be documented before v4)
+
 <a name="3.1.2"></a>
 # [3.1.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.1.1...v3.1.2) (2018-01-21)
 * Updating dependencies
