@@ -32,19 +32,17 @@ export interface ImmutableMap<K, V> {
     isEmpty(): boolean;
     /**
      * Returns an ImmutableSet view of the keys contained in this map.
-     * The set's iterator returns the keys in ascending order.
      * The set is backed by the map, so changes to the map are reflected in the set.
      * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     * @return {ImmutableSet<K>} the ImmutableSet
      */
     keySet(): ImmutableSet<K>;
     /**
      * Returns an ImmutableSet view of the mappings contained in this map.
-     * The set's iterator returns the mappings in ascending key order.
      * The set is backed by the map, so changes to the map are reflected in the set.
      * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
      * The contains method on this entrySet will only compare keys not values.
-     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
+     * @return {ImmutableSet<MapEntry<K,V>>} the Immutable Entry Set
      */
     entrySet(): ImmutableSet<MapEntry<K, V>>;
     /**

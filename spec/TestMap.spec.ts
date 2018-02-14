@@ -190,6 +190,7 @@ describe("Test Map functionality", function() {
 function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
   TestNumber.equals ("Testing empty string string map size", map.size(), 0);
   TestBoolean.true ("Testing empty string string map isEmpty", map.isEmpty());
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
    expect (map.isEmpty ()).toEqual(true);
    expect (map.size ()).toEqual(0);
 }
@@ -197,6 +198,7 @@ function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
 function testEmptyStringNumberMap (map:ImmutableMap<string,number>) : void {
    expect (map.isEmpty ()).toEqual(true);
    expect (map.size ()).toEqual(0);
+   TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
 }
 
 function testEmptyPetStoreProductAndValueClassMap (map:ImmutableMap<PetStoreProduct,ValueClass>) : void {
@@ -213,6 +215,7 @@ function testAddingOneEntryStringStringMap (map:JMap<string,string>, typestring:
   expect ("testvalue").toEqual (map.get ("testkey"));
   TestString.undefined ("Getting key not in map will return undefined " + typestring, map.get ("key not found"));
   expect (undefined).toEqual (map.get ("key not found"));
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
 }
 
 function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
@@ -223,6 +226,8 @@ function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
   expect (map.isEmpty ()).toEqual(false);
   expect (1).toEqual (map.get ("testkey"));
   expect (undefined).toEqual (map.get ("key not found"));
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
+  TestBoolean.true ("Testing known key is contained", map.containsKey ("testkey"));
 }
 
 function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
@@ -244,6 +249,8 @@ function testAddingTwoEntriesStringStringMap (map:JMap<string,string>) : void {
   expect (map.isEmpty ()).toEqual(false);
   expect ("testvalue").toEqual (map.get ("testkey"));
   expect (undefined).toEqual (map.get ("key not found"));
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
+  TestBoolean.true ("Testing known key is contained", map.containsKey ("testkey"));
 }
 
 function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
@@ -257,6 +264,8 @@ function testAddingTwoEntriesStringNumberMap (map:JMap<string,number>) : void {
   expect (map.isEmpty ()).toEqual(false);
   expect (1).toEqual (map.get ("secondkey"));
   expect (undefined).toEqual (map.get ("key not found"));
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
+  TestBoolean.true ("Testing known key is contained", map.containsKey ("testkey"));
 }
 
 function testAddingTwoEntriesPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
@@ -286,6 +295,8 @@ function testClearingStringStringMap (map:JMap<string,string>) : void {
   expect (map.isEmpty ()).toEqual(true);
   expect (undefined).toEqual (map.get ("testkey"));
   expect (undefined).toEqual (map.get ("key not found"));
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
+  TestBoolean.false ("Testing cleared map does not find key", map.containsKey ("testkey"));
 }
 
 function testClearingStringNumberMap (map:JMap<string,number>) : void {
@@ -300,6 +311,8 @@ function testClearingStringNumberMap (map:JMap<string,number>) : void {
   expect (undefined).toEqual(map.clear());
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
+  TestBoolean.false ("Testing cleared map does not find key", map.containsKey ("testkey"));
 }
 
 function testClearingPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
