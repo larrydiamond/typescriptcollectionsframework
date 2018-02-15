@@ -149,6 +149,14 @@ describe("Test Map functionality", function () {
         testClearingStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
     });
+    it("Test replacing entries", function () {
+        testMapEntryReplacement(new HashMap_1.HashMap());
+        testMapEntryReplacement(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testMapEntryReplacement(new LinkedHashMap_1.LinkedHashMap());
+        testMapEntryReplacement(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
+        testMapEntryReplacement(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
+        testMapEntryReplacement(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+    });
 });
 function testEmptyStringStringMap(map) {
     jasts_1.TestNumber.equals("Testing empty string string map size", map.size(), 0);
@@ -280,3 +288,13 @@ function testClearingPetStoreProductAndValueClassMap(map) {
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
 }
+function testMapEntryReplacement(map) {
+    expect(map.put("ChewToy", 14.99)).toEqual(undefined);
+    expect(map.put("Catnip", 4.99)).toEqual(undefined);
+    expect(map.get("ChewToy")).toEqual(14.99);
+    expect(map.get("Catnip")).toEqual(4.99);
+    expect(map.put("Catnip", 9.99)).toEqual(4.99);
+    expect(map.get("Catnip")).toEqual(9.99); // This one should change to the new value
+    expect(map.get("ChewToy")).toEqual(14.99); // This one didnt change
+}
+;

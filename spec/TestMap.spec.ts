@@ -185,6 +185,14 @@ describe("Test Map functionality", function() {
     testClearingPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
+  it("Test replacing entries", function() {
+    testMapEntryReplacement (new HashMap<string,number> ());
+    testMapEntryReplacement (new HashMap<string,number> (new AllFieldHashable<string>()));
+    testMapEntryReplacement (new LinkedHashMap<string,number> ());
+    testMapEntryReplacement (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
+    testMapEntryReplacement (new TreeMap<string,number> (Collections.getStringComparator()));
+    testMapEntryReplacement (new SkipListMap<string,number> (Collections.getStringComparator()));
+  });
 });
 
 function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
@@ -328,3 +336,13 @@ function testClearingPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,V
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
 }
+
+function testMapEntryReplacement (map:JMap<string,number>) : void {
+  expect (map.put ("ChewToy", 14.99)).toEqual(undefined);
+  expect (map.put ("Catnip", 4.99)).toEqual(undefined);
+  expect (map.get ("ChewToy")).toEqual (14.99);
+  expect (map.get ("Catnip")).toEqual (4.99);
+  expect (map.put ("Catnip", 9.99)).toEqual(4.99);
+  expect (map.get ("Catnip")).toEqual (9.99);  // This one should change to the new value
+  expect (map.get ("ChewToy")).toEqual (14.99);  // This one didnt change
+};
