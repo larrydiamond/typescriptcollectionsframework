@@ -54,6 +54,25 @@ describe("Test LinkedHashMap functionality", function() {
     expect (myMap1.isEmpty ()).toEqual(true);
   });
 
+  it ("Test adding initial elements", function () {
+    const sourceMap:LinkedHashMap<string,string> = new LinkedHashMap<string,string>(new AllFieldHashable<string>());
+    expect (sourceMap.put ("A", "B")).toEqual(undefined);
+    expect (sourceMap.put ("C", "D")).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(2);
+    const destinationMap:LinkedHashMap<string,string> = new LinkedHashMap<string,string>(new AllFieldHashable<string>(), sourceMap);
+    expect (destinationMap.size ()).toEqual(2);
+  });
+
+  it ("Test adding more initial elements", function () {
+    const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
+    expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product3, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(3);
+    const destinationMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>(new AllFieldHashable<PetStoreProduct>(), sourceMap);
+    expect (destinationMap.size ()).toEqual(3);
+  });
+
   it("Test adding one entry", function() {
     const myMap1:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass> ();
     expect (myMap1.size ()).toEqual(0);
@@ -98,7 +117,6 @@ describe("Test LinkedHashMap functionality", function() {
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
     petStoreMap1.put (product3, new ValueClass());
-    count = 0;
 
     let linkedIter:KeyIterator<PetStoreProduct, ValueClass> = petStoreMap1.newKeyIterator();
     for (; linkedIter.hasNext(); ) {
@@ -106,21 +124,20 @@ describe("Test LinkedHashMap functionality", function() {
       keys[count] = p.getProductName();
       count = count + 1;
     }
-    expect (count).toEqual (3);
+    expect (count).toEqual(3);
     expect (petStoreMap1.containsKey(product2)).toEqual(true);
     expect (keys[0]).toEqual("Catnip");
     expect (keys[1]).toEqual("ChewToy");
     expect (keys[2]).toEqual("Goldfish");
   });
 
-  it("Test value jiterator two entry", function() {
+  it("Test-1 value jiterator two entry", function() {
     const petStoreMap1:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass> ();
     let count:number = 0;
     let values:number[] = [];
 
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
-    count = 0;
 
     let linkedIter:ValueIterator<PetStoreProduct, ValueClass> = petStoreMap1.newValueIterator();
     for (; linkedIter.hasNext(); ) {
@@ -128,10 +145,32 @@ describe("Test LinkedHashMap functionality", function() {
       values[count] = p.blah1;
       count = count + 1;
     }
-    expect (count).toEqual (2);
+    expect (count).toEqual(2);
     expect (petStoreMap1.containsKey(product2)).toEqual(true);
     expect (values[0]).toEqual(1);
     expect (values[1]).toEqual(1);
+  });
+
+  it("Test-2 value jiterator two entry", function() {
+    const petStoreMap1:LinkedHashMap<string,string> = new LinkedHashMap<string,string> ();
+    let count:number = 0;
+    let values:string[] = [];
+
+    petStoreMap1.put ("A", "B");
+    petStoreMap1.put ("C", "D");
+    petStoreMap1.put ("E", "F");
+
+    let linkedIter:ValueIterator<string,string> = petStoreMap1.newValueIterator();
+    for (; linkedIter.hasNext(); ) {
+      const p:string = linkedIter._next();
+      values[count] = p
+      count = count + 1;
+    }
+    expect (count).toEqual(3);
+    expect (petStoreMap1.containsKey("E")).toEqual(true);
+    expect (values[0]).toEqual("B");
+    expect (values[1]).toEqual("D");
+    expect (values[2]).toEqual("F");
   });
 
   it("Test Entry jiterator two entry", function() {
@@ -140,15 +179,109 @@ describe("Test LinkedHashMap functionality", function() {
 
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
-    count = 0;
 
     let linkedIter:EntryIterator<PetStoreProduct, ValueClass> = petStoreMap1.newEntryIterator();
     for (; linkedIter.hasNext(); ) {
       const p:LinkedEntry<PetStoreProduct,ValueClass> = linkedIter._next();
       count = count + 1;
     }
-    expect (count).toEqual (2);
+    expect (count).toEqual(2);
     expect (petStoreMap1.containsKey(product2)).toEqual(true);
+  });
+
+  it ("Test-1 Entry jiterator two entry with initial elements", function () {
+    const sourceMap:LinkedHashMap<string,string> = new LinkedHashMap<string,string>(new AllFieldHashable<string>());
+    expect (sourceMap.put ("A", "B")).toEqual(undefined);
+    expect (sourceMap.put ("C", "D")).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(2);
+    const destinationMap:LinkedHashMap<string,string> = new LinkedHashMap<string,string>(new AllFieldHashable<string>(), sourceMap);
+    expect (destinationMap.size ()).toEqual(2);
+
+    let count:number = 0;
+
+    let linkedIter:EntryIterator<string,string> = destinationMap.newEntryIterator();
+    for (; linkedIter.hasNext(); ) {
+      const p:LinkedEntry<string,string> = linkedIter._next();
+      count = count + 1;
+    }
+    expect (count).toEqual(2);
+    expect (destinationMap.containsKey("C")).toEqual(true);
+
+  });
+
+  it ("Test-2 Entry jiterator two entry with initial elements", function () {
+    const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
+    expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product3, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.size()).toEqual(3);
+    const destinationMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>(new AllFieldHashable<PetStoreProduct>(), sourceMap);
+    expect (destinationMap.size()).toEqual(3);
+
+    let count:number = 0;
+
+    let linkedIter:EntryIterator<PetStoreProduct,ValueClass> = destinationMap.newEntryIterator();
+    for (; linkedIter.hasNext(); ) {
+      const p:LinkedEntry<PetStoreProduct,ValueClass> = linkedIter._next();
+      count = count + 1;
+    }
+    expect (count).toEqual(3);
+    expect (destinationMap.containsKey(product3)).toEqual(true);
+
+  });
+
+  it ("Test-1 value jiterator two entry with initial elements", function () {
+    const sourceMap:LinkedHashMap<string,string> = new LinkedHashMap<string,string>(new AllFieldHashable<string>());
+    expect (sourceMap.put ("A", "B")).toEqual(undefined);
+    expect (sourceMap.put ("C", "D")).toEqual(undefined);
+    expect (sourceMap.put ("E", "F")).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(3);
+    const destinationMap:LinkedHashMap<string,string> = new LinkedHashMap<string,string>(new AllFieldHashable<string>(), sourceMap);
+    expect (destinationMap.size ()).toEqual(3);
+
+    let count:number = 0;
+    let values:string[] = [];
+
+    let linkedIter:ValueIterator<string,string> = destinationMap.newValueIterator();
+    for (; linkedIter.hasNext(); ) {
+      const p:string = linkedIter._next();
+      values[count] = p;
+      count = count + 1;
+    }
+    expect (count).toEqual(3);
+    expect (destinationMap.containsKey("A")).toEqual(true);
+    expect (destinationMap.containsKey("C")).toEqual(true);
+    expect (destinationMap.containsKey("E")).toEqual(true);
+    expect (values[0]).toEqual("D");
+    expect (values[1]).toEqual("B");
+    expect (values[2]).toEqual("F");
+  });
+
+  it ("Test-2 value jiterator two entry with initial elements", function () {
+    const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
+    expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product3, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(3);
+    const destinationMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>(new AllFieldHashable<PetStoreProduct>(), sourceMap);
+    expect (destinationMap.size ()).toEqual(3);
+
+    let count:number = 0;
+    let values:number[] = [];
+
+    let linkedIter:ValueIterator<PetStoreProduct,ValueClass> = destinationMap.newValueIterator();
+    for (; linkedIter.hasNext(); ) {
+      const p:ValueClass = linkedIter._next();
+      values[count] = p.blah1;
+      count = count + 1;
+    }
+    expect (count).toEqual(3);
+    expect (destinationMap.containsKey(product1)).toEqual(true);
+    expect (destinationMap.containsKey(product2)).toEqual(true);
+    expect (destinationMap.containsKey(product3)).toEqual(true);
+    expect (values[0]).toEqual(1);
+    expect (values[1]).toEqual(1);
+    expect (values[2]).toEqual(1);
   });
 
   it("Test clear", function() {
@@ -201,5 +334,15 @@ describe("Test LinkedHashMap functionality", function() {
     expect (petStoreMap1.containsKey (product3)).toEqual(false);
   });
 
+  it("Test containsvalue", function() {
+    const petStoreMap1:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass> ();
+    let value:ValueClass = new ValueClass();
+    value.blah1 = 9;
+    expect (petStoreMap1.containsValue (value)).toEqual(false);
+
+    petStoreMap1.put (product1, value);
+    expect (petStoreMap1.get (product1)).not.toEqual(undefined);
+    expect (petStoreMap1.containsValue (value)).toEqual(true);
+  });
 
 });
