@@ -10,6 +10,7 @@ import {Hashable} from "./Hashable";
 import {HashMap, HashMapEntry} from "./HashMap";
 import {ImmutableMap} from "./ImmutableMap";
 import {JIterator} from "./JIterator";
+import {MapEntry} from "./MapEntry";
 
 /**
  * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
@@ -29,29 +30,46 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     * initial capacity (20-from super class) and load factor (0.75).
     */
     constructor (iHash:Hashable<K> = AllFieldHashable.instance, private initialElementsLinked:ImmutableMap<K, V> = null, private iInitialCapacityLinked:number=20, private iLoadFactorLinked:number=0.75) {
-        super(iHash, initialElementsLinked, iInitialCapacityLinked, iLoadFactorLinked);
-        this.init();
+        super(iHash, null, iInitialCapacityLinked, iLoadFactorLinked);
+        this.initChain();
+        this.initializeIncomingElements(initialElementsLinked);
     }
 
     /**
      * Initializes the chain before any entries are inserted into the map.
      */
-    public init () : void {
+    private initChain () : void {
         this.header = new LinkedEntry<K,V>(-1, null, null);
         // make circular
         this.header.before = this.header.after = this.header;
     }
 
     /**
+     * Use Incoming elements from constructor and add to this LinkedHashMap
+     * Incoming elements
+     * 
+     * @param elements imcoming elements to populate
+     */
+    private initializeIncomingElements(elements:ImmutableMap<K, V>) : void {
+        // makes new list unorder.. it uses set..
+        if ((elements !== null) && (elements !== undefined)) {
+            for (const iter = elements.entrySet().iterator(); iter.hasNext(); ) {
+                const t:MapEntry<K,V> = iter.next ();
+                this.put (t.getKey(), t.getValue());
+            }
+        }
+    }
+    
+    /**
      * Returns true if this map maps one or more keys to the specified value.
      * @param value value whose presence in this map is to be tested
      */
-    public containsValue (value: LinkedEntry<K,V>) : boolean {
+    public containsValue (value: V) : boolean {
         if (value === null || value === undefined)
             return false;
         else {
             for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after)
-                if (value.equals(e))
+                if (value === e.getValue())
                     return true;
         }
         return false;
