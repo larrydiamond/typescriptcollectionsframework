@@ -157,6 +157,12 @@ describe("Test Map functionality", function () {
         testMapEntryReplacement(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testMapEntryReplacement(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
     });
+    it("Test copy constructor", function () {
+        testCopyConstructor(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable(), populateTestData(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()))));
+        testCopyConstructor(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable(), populateTestData(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()))));
+        testCopyConstructor(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator(), populateTestData(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()))));
+        testCopyConstructor(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator(), populateTestData(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()))));
+    });
 });
 function testEmptyStringStringMap(map) {
     jasts_1.TestNumber.equals("Testing empty string string map size", map.size(), 0);
@@ -296,5 +302,20 @@ function testMapEntryReplacement(map) {
     expect(map.put("Catnip", 9.99)).toEqual(4.99);
     expect(map.get("Catnip")).toEqual(9.99); // This one should change to the new value
     expect(map.get("ChewToy")).toEqual(14.99); // This one didnt change
+}
+;
+function populateTestData(map) {
+    map.put("ChewToy", 14.99);
+    map.put("Leash", 9.99);
+    map.put("Catnip", 4.99);
+    return map;
+}
+;
+function testCopyConstructor(map) {
+    expect(map.get("Leash")).toEqual(9.99);
+    expect(map.get("ChewToy")).toEqual(14.99);
+    expect(map.get("Catnip")).toEqual(4.99);
+    expect(map.get("Bananas")).toEqual(undefined);
+    expect(map.size()).toEqual(3);
 }
 ;

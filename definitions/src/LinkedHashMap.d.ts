@@ -19,12 +19,19 @@ export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
     /**
      * Initializes the chain before any entries are inserted into the map.
      */
-    init(): void;
+    private initChain();
+    /**
+     * Use Incoming elements from constructor and add to this LinkedHashMap
+     * Incoming elements
+     *
+     * @param elements imcoming elements to populate
+     */
+    private initializeIncomingElements(elements);
     /**
      * Returns true if this map maps one or more keys to the specified value.
      * @param value value whose presence in this map is to be tested
      */
-    containsValue(value: LinkedEntry<K, V>): boolean;
+    containsValue(value: V): boolean;
     /**
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      * @param key key with which the specified value is to be associated

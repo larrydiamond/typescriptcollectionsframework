@@ -193,6 +193,14 @@ describe("Test Map functionality", function() {
     testMapEntryReplacement (new TreeMap<string,number> (Collections.getStringComparator()));
     testMapEntryReplacement (new SkipListMap<string,number> (Collections.getStringComparator()));
   });
+
+  it("Test copy constructor", function() {
+    testCopyConstructor (new HashMap<string,number> (new AllFieldHashable<string>(), populateTestData (new HashMap<string,number> (new AllFieldHashable<string>()))));
+    testCopyConstructor (new LinkedHashMap<string,number> (new AllFieldHashable<string>(), populateTestData (new LinkedHashMap<string,number> (new AllFieldHashable<string>()))));
+    testCopyConstructor (new TreeMap<string,number> (Collections.getStringComparator(), populateTestData (new TreeMap<string,number> (Collections.getStringComparator()))));
+    testCopyConstructor (new SkipListMap<string,number> (Collections.getStringComparator(), populateTestData (new SkipListMap<string,number> (Collections.getStringComparator()))));
+  });
+
 });
 
 function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
@@ -345,4 +353,19 @@ function testMapEntryReplacement (map:JMap<string,number>) : void {
   expect (map.put ("Catnip", 9.99)).toEqual(4.99);
   expect (map.get ("Catnip")).toEqual (9.99);  // This one should change to the new value
   expect (map.get ("ChewToy")).toEqual (14.99);  // This one didnt change
+};
+
+function populateTestData (map:JMap<string,number>) : JMap<string,number> {
+  map.put ("ChewToy", 14.99);
+  map.put ("Leash", 9.99);
+  map.put ("Catnip", 4.99);
+  return map;
+};
+
+function testCopyConstructor (map:JMap<string,number>) : void {
+  expect (map.get ("Leash")).toEqual (9.99);
+  expect (map.get ("ChewToy")).toEqual (14.99);
+  expect (map.get ("Catnip")).toEqual (4.99);
+  expect (map.get ("Bananas")).toEqual (undefined);
+  expect (map.size()).toEqual (3);
 };

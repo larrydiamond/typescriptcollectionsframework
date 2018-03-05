@@ -38,20 +38,36 @@ var LinkedHashMap = /** @class */ (function (_super) {
         if (initialElementsLinked === void 0) { initialElementsLinked = null; }
         if (iInitialCapacityLinked === void 0) { iInitialCapacityLinked = 20; }
         if (iLoadFactorLinked === void 0) { iLoadFactorLinked = 0.75; }
-        var _this = _super.call(this, iHash, initialElementsLinked, iInitialCapacityLinked, iLoadFactorLinked) || this;
+        var _this = _super.call(this, iHash, null, iInitialCapacityLinked, iLoadFactorLinked) || this;
         _this.initialElementsLinked = initialElementsLinked;
         _this.iInitialCapacityLinked = iInitialCapacityLinked;
         _this.iLoadFactorLinked = iLoadFactorLinked;
-        _this.init();
+        _this.initChain();
+        _this.initializeIncomingElements(initialElementsLinked);
         return _this;
     }
     /**
      * Initializes the chain before any entries are inserted into the map.
      */
-    LinkedHashMap.prototype.init = function () {
+    LinkedHashMap.prototype.initChain = function () {
         this.header = new LinkedEntry(-1, null, null);
         // make circular
         this.header.before = this.header.after = this.header;
+    };
+    /**
+     * Use Incoming elements from constructor and add to this LinkedHashMap
+     * Incoming elements
+     *
+     * @param elements imcoming elements to populate
+     */
+    LinkedHashMap.prototype.initializeIncomingElements = function (elements) {
+        // makes new list unorder.. it uses set..
+        if ((elements !== null) && (elements !== undefined)) {
+            for (var iter = elements.entrySet().iterator(); iter.hasNext();) {
+                var t = iter.next();
+                this.put(t.getKey(), t.getValue());
+            }
+        }
     };
     /**
      * Returns true if this map maps one or more keys to the specified value.
@@ -62,7 +78,7 @@ var LinkedHashMap = /** @class */ (function (_super) {
             return false;
         else {
             for (var e = this.header.after; e !== this.header; e = e.after)
-                if (value.equals(e))
+                if (value === e.getValue())
                     return true;
         }
         return false;
