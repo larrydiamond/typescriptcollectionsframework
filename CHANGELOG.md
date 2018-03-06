@@ -1,5 +1,10 @@
 # Change Log
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.2.1...v4.0.0) (2018-03-06)
+* Publish LinkedHashMap for external users
+* Typedoc upgrade
+
 <a name="3.2.1"></a>
 # [3.2.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v3.2.0...v3.2.1) (2018-03-04)
 * LinkedHashMap - thank you very much Frank Giordano!
