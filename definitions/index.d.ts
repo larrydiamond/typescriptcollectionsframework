@@ -20,6 +20,7 @@ export { ImmutableList } from "./src/ImmutableList";
 export { ImmutableMap } from "./src/ImmutableMap";
 export { ImmutableSet } from "./src/ImmutableSet";
 export { JIterator } from "./src/JIterator";
+export { LinkedHashMap } from "./src/LinkedHashMap";
 export { LinkedList } from "./src/LinkedList";
 export { List } from "./src/List";
 export { JMap } from "./src/JMap";
