@@ -46,8 +46,6 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
 
     /**
      * Use Incoming elements from constructor and add to this LinkedHashMap
-     * Incoming elements
-     * 
      * @param elements imcoming elements to populate
      */
     private initializeIncomingElements(elements:ImmutableMap<K, V>) : void {
@@ -170,7 +168,6 @@ export class LinkedEntry<K,V> extends HashMapEntry<K,V> {
      * @param existingEntry existing entry
      */
     public addBefore (existingEntry: LinkedEntry<K,V>) : void {
-        // console.log("addBefore = " + JSON.stringify(existingEntry));
         this.after = existingEntry;
         this.before = existingEntry.before;
         this.before.after = this;
