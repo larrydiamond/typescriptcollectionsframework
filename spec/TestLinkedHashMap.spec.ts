@@ -6,15 +6,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 import {AllFieldHashable} from "../src/AllFieldHashable";
-import {Collectable} from "../src/Collectable";
-import {Collections} from "../src/Collections";
-import {Comparator} from "../src/Comparator";
 import {EntryIterator, KeyIterator, LinkedEntry, LinkedHashMap, ValueIterator} from "../src/LinkedHashMap";
-import {HashMap} from "../src/HashMap";
-import {Hashable} from "../src/Hashable";
-import {ImmutableSet} from "../src/ImmutableSet";
-import {JIterator} from "../src/JIterator";
-import {MapEntry} from "../src/MapEntry";
 
 describe("Test LinkedHashMap functionality", function() {
 
@@ -315,22 +307,29 @@ describe("Test LinkedHashMap functionality", function() {
     petStoreMap1.clear ();
     expect (petStoreMap1.size ()).toEqual(0);
     expect (petStoreMap1.isEmpty ()).toEqual(true);
+
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
-    petStoreMap1.put (product3, new ValueClass());
-    expect (petStoreMap1.size ()).toEqual(3);
+    expect (petStoreMap1.size ()).toEqual(2);
     expect (petStoreMap1.isEmpty ()).toEqual(false);
+    petStoreMap1.clear ();
 
     petStoreMap2.put (product1, new ValueClass());
     petStoreMap2.put (product2, new ValueClass());
     expect (petStoreMap2.size ()).toEqual(2);
     expect (petStoreMap2.isEmpty ()).toEqual(false);
     petStoreMap2.clear ();
+    expect (petStoreMap2.size ()).toEqual(0);
     expect (petStoreMap2.isEmpty ()).toEqual(true);
+
     petStoreMap2.put (product1, new ValueClass());
     petStoreMap2.put (product2, new ValueClass());
-    expect (petStoreMap2.size ()).toEqual(2);
+    petStoreMap2.put (product3, new ValueClass());
+    expect (petStoreMap2.size ()).toEqual(3);
     expect (petStoreMap2.isEmpty ()).toEqual(false);
+    petStoreMap2.clear ();
+    expect (petStoreMap2.size ()).toEqual(0);
+    expect (petStoreMap2.isEmpty ()).toEqual(true);
   });
 
   it("Test containskey", function() {
