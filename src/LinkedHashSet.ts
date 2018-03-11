@@ -9,7 +9,7 @@ import {AllFieldHashable} from "./AllFieldHashable";
 import {Hashable} from "./Hashable";
 import {ImmutableSet} from "./ImmutableSet";
 import {HashSet} from "./HashSet";
-import {LinkedHashMap, LinkedEntry, KeyIterator} from "./LinkedHashMap";
+import {LinkedHashMap, KeyIterator} from "./LinkedHashMap";
 
 /**
  * Hash table and linked-list implementation of the Set interface with predictable iteration order. 
@@ -26,6 +26,9 @@ export class LinkedHashSet<K> extends HashSet<K> {
         super(iHash, initElements, iInitialCapacityLinked, iLoadFactorLinked, new LinkedHashMap<K,any>(iHash, null, iInitialCapacityLinked, iLoadFactorLinked));
     }
 
+    /*
+    * Java style iterator retrieves hash set values by insertion order.. values here are the keys in the map
+    */
     public newKeyIterator () : KeyIterator<K,any> {
         let map:LinkedHashMap<K,any> = <LinkedHashMap<K,any>> this.getDataStore();
         return map.newKeyIterator();

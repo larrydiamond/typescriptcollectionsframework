@@ -116,8 +116,8 @@ describe("Test LinkedHashSet functionality", function() {
     expect (mySet1.isEmpty ()).toEqual(false);
   });
 
-  it("Test key jiterator three entries", function() {
-    const petStoreSet1:LinkedHashSet<PetStoreProduct> = new LinkedHashSet<PetStoreProduct> ();
+  it("Test-1 key jiterator three entries", function() {
+    const petStoreSet1:LinkedHashSet<PetStoreProduct> = new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     let count:number = 0;
     let keys:string[] = [];
 
@@ -138,31 +138,52 @@ describe("Test LinkedHashSet functionality", function() {
     expect (keys[2]).toEqual("Goldfish");
   });
 
-  it("Test java iteration", function() {
-    const petStoreSet1:LinkedHashSet<PetStoreProduct> = new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+  it("Test-2 key jiterator three entries", function() {
+    const stringSet:LinkedHashSet<string> = new LinkedHashSet<string> (new AllFieldHashable<string>());
+    let count:number = 0;
+    let keys:string[] = [];
 
-    expect (petStoreSet1.add (product1)).toEqual (true);
-    expect (petStoreSet1.add (product2)).toEqual (true);
+    stringSet.add ("3");
+    stringSet.add ("2");
+    stringSet.add ("1");
 
-    let found1:boolean = false;
-    let found2:boolean = false;
-
-    for (const iter = petStoreSet1.iterator(); iter.hasNext(); ) {
-      const psp:PetStoreProduct = iter.next ();
-
-      if (psp.getProductName() === product1.getProductName()) {
-        found1 = true;
-      } else {
-      if (psp.getProductName() === product2.getProductName()) {
-          found2 = true;
-        } else {
-          fail("Found something that wasnt product1 or product2");
-        }
-      }
+    let linkedIter:KeyIterator<string,any> = stringSet.newKeyIterator();
+    for (; linkedIter.hasNext(); ) {
+      const s:string = linkedIter._next();
+      keys[count] = s;
+      count = count + 1;
     }
+    expect (count).toEqual(3);
+    expect (stringSet.contains("2")).toEqual(true);
+    expect (keys[0]).toEqual("3");
+    expect (keys[1]).toEqual("2");
+    expect (keys[2]).toEqual("1");
+  });
 
-    expect (found1).toEqual (true);
-    expect (found2).toEqual (true);
+  it("Test key jiterator three initial entries", function() {
+    // makes new list unorder.. it uses set. see initializeElements() 
+    const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
+    expect (sourceSet.add ("A")).toEqual(true);
+    expect (sourceSet.add ("C")).toEqual(true);
+    expect (sourceSet.add ("B")).toEqual(true);
+    expect (sourceSet.size ()).toEqual(3);
+    const destinationSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>(), sourceSet);
+    expect (destinationSet.size ()).toEqual(3);
+
+    let count:number = 0;
+    let keys:string[] = [];
+
+    let linkedIter:KeyIterator<string,any> = destinationSet.newKeyIterator();
+    for (; linkedIter.hasNext(); ) {
+      const s:string = linkedIter._next();
+      keys[count] = s;
+      count = count + 1;
+    }
+    expect (count).toEqual(3);
+    expect (destinationSet.contains("C")).toEqual(true);
+    expect (keys[0]).toEqual("C");
+    expect (keys[1]).toEqual("B");
+    expect (keys[2]).toEqual("A");
   });
 
   it("Test clear", function() {
@@ -182,6 +203,7 @@ describe("Test LinkedHashSet functionality", function() {
     expect (petStoreSet1.size ()).toEqual(2);
     expect (petStoreSet1.isEmpty ()).toEqual(false);
     petStoreSet1.clear ();
+    expect (petStoreSet1.size ()).toEqual(0);
     expect (petStoreSet1.isEmpty ()).toEqual(true);
   });
 
