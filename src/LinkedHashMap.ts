@@ -32,7 +32,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     constructor (iHash:Hashable<K> = AllFieldHashable.instance, private initialElementsLinked:ImmutableMap<K, V> = null, private iInitialCapacityLinked:number=20, private iLoadFactorLinked:number=0.75) {
         super(iHash, null, iInitialCapacityLinked, iLoadFactorLinked);
         this.initChain();
-        this.initializeIncomingElements(initialElementsLinked);
+        this.initializeElements(initialElementsLinked);
     }
 
     /**
@@ -45,12 +45,10 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     }
 
     /**
-     * Use Incoming elements from constructor and add to this LinkedHashMap
-     * Incoming elements
-     * 
-     * @param elements imcoming elements to populate
+     * Use collection and add to LinkedHashMap
+     * @param elements collection to populate
      */
-    private initializeIncomingElements(elements:ImmutableMap<K, V>) : void {
+    public initializeElements(elements:ImmutableMap<K, V>) : void {
         // makes new list unorder.. it uses set..
         if ((elements !== null) && (elements !== undefined)) {
             for (const iter = elements.entrySet().iterator(); iter.hasNext(); ) {
@@ -170,7 +168,6 @@ export class LinkedEntry<K,V> extends HashMapEntry<K,V> {
      * @param existingEntry existing entry
      */
     public addBefore (existingEntry: LinkedEntry<K,V>) : void {
-        // console.log("addBefore = " + JSON.stringify(existingEntry));
         this.after = existingEntry;
         this.before = existingEntry.before;
         this.before.after = this;
