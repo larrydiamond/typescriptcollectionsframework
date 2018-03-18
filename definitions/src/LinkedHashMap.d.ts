@@ -21,12 +21,10 @@ export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
      */
     private initChain();
     /**
-     * Use Incoming elements from constructor and add to this LinkedHashMap
-     * Incoming elements
-     *
-     * @param elements imcoming elements to populate
+     * Use collection and add to LinkedHashMap
+     * @param elements collection to populate
      */
-    private initializeIncomingElements(elements);
+    initializeElements(elements: ImmutableMap<K, V>): void;
     /**
      * Returns true if this map maps one or more keys to the specified value.
      * @param value value whose presence in this map is to be tested

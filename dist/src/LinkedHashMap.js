@@ -43,7 +43,7 @@ var LinkedHashMap = /** @class */ (function (_super) {
         _this.iInitialCapacityLinked = iInitialCapacityLinked;
         _this.iLoadFactorLinked = iLoadFactorLinked;
         _this.initChain();
-        _this.initializeIncomingElements(initialElementsLinked);
+        _this.initializeElements(initialElementsLinked);
         return _this;
     }
     /**
@@ -55,12 +55,10 @@ var LinkedHashMap = /** @class */ (function (_super) {
         this.header.before = this.header.after = this.header;
     };
     /**
-     * Use Incoming elements from constructor and add to this LinkedHashMap
-     * Incoming elements
-     *
-     * @param elements imcoming elements to populate
+     * Use collection and add to LinkedHashMap
+     * @param elements collection to populate
      */
-    LinkedHashMap.prototype.initializeIncomingElements = function (elements) {
+    LinkedHashMap.prototype.initializeElements = function (elements) {
         // makes new list unorder.. it uses set..
         if ((elements !== null) && (elements !== undefined)) {
             for (var iter = elements.entrySet().iterator(); iter.hasNext();) {
@@ -167,7 +165,6 @@ var LinkedEntry = /** @class */ (function (_super) {
      * @param existingEntry existing entry
      */
     LinkedEntry.prototype.addBefore = function (existingEntry) {
-        // console.log("addBefore = " + JSON.stringify(existingEntry));
         this.after = existingEntry;
         this.before = existingEntry.before;
         this.before.after = this;

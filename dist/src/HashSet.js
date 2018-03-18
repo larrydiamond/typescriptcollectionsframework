@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
 * @license
 * Copyright Larry Diamond 2017 All Rights Reserved.
@@ -6,10 +7,10 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
-Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldHashable_1 = require("./AllFieldHashable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var HashMap_1 = require("./HashMap");
+var LinkedHashMap_1 = require("./LinkedHashMap");
 /**
  * This class implements the Set interface, backed by a HashMap instance.
  *
@@ -25,7 +26,7 @@ var HashMap_1 = require("./HashMap");
  * This class corresponds to java.util.HashSet
  */
 var HashSet = /** @class */ (function () {
-    function HashSet(iHash, initialElements, iInitialCapacity, iLoadFactor) {
+    function HashSet(iHash, initialElements, iInitialCapacity, iLoadFactor, linkedHashMap) {
         if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
         if (initialElements === void 0) { initialElements = null; }
         if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
@@ -33,9 +34,29 @@ var HashSet = /** @class */ (function () {
         this.initialElements = initialElements;
         this.iInitialCapacity = iInitialCapacity;
         this.iLoadFactor = iLoadFactor;
+        this.linkedHashMap = linkedHashMap;
         this.datastore = null;
         this.hashMethods = iHash;
-        this.datastore = new HashMap_1.HashMap(this.hashMethods, null, iInitialCapacity, iLoadFactor);
+        // check if this class will be used for linkedHashSet 
+        if (linkedHashMap !== null && linkedHashMap !== undefined)
+            // using LinkedHashSet
+            if (initialElements !== null) {
+                // initial elements were sent in need to deal with them.. 
+                var linked = new LinkedHashMap_1.LinkedHashMap();
+                var iter = initialElements[Symbol.iterator]();
+                var tmp = void 0;
+                tmp = iter.next();
+                while (tmp.value !== null && tmp.value !== undefined) {
+                    linked.put(tmp.value, 1);
+                    tmp = iter.next();
+                }
+                linkedHashMap.initializeElements(linked);
+                this.datastore = linkedHashMap;
+            }
+            else
+                this.datastore = linkedHashMap; // using LinkedHashSet without initial elements sent in.. 
+        else
+            this.datastore = new HashMap_1.HashMap(this.hashMethods, null, iInitialCapacity, iLoadFactor); // do the default
         if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var t = iter.next();
@@ -52,6 +73,9 @@ var HashSet = /** @class */ (function () {
             var t = iter.next();
             consumer.accept(t);
         }
+    };
+    HashSet.prototype.getDataStore = function () {
+        return this.datastore;
     };
     /**
     * Returns the Hashable
@@ -123,16 +147,16 @@ var HashSet = /** @class */ (function () {
         return this.datastore.clear();
     };
     /**
-     * This method is deprecated and will be removed in a future revision.
-     * @deprecated
-     */
+    * This method is deprecated and will be removed in a future revision.
+    * @deprecated
+    */
     HashSet.prototype.deprecatedGetFirstEntryForIterator = function () {
         return this.datastore.deprecatedGetFirstEntryForIterator();
     };
     /**
      * This method is deprecated and will be removed in a future revision.
      * @deprecated
-     */
+    */
     HashSet.prototype.deprecatedGetNextEntryForIterator = function (current) {
         return this.datastore.deprecatedGetNextEntryForIterator(current);
     };

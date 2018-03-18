@@ -91,7 +91,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(myMap1.size()).toEqual(3);
         expect(myMap1.isEmpty()).toEqual(false);
     });
-    it("Test key jiterator three entry", function () {
+    it("Test key jiterator three entries", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
         var count = 0;
         var keys = [];
@@ -110,7 +110,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(keys[1]).toEqual("ChewToy");
         expect(keys[2]).toEqual("Goldfish");
     });
-    it("Test-1 value jiterator two entry", function () {
+    it("Test-1 value jiterator two entries", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
         var count = 0;
         var values = [];
@@ -127,7 +127,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(values[0]).toEqual(1);
         expect(values[1]).toEqual(1);
     });
-    it("Test-2 value jiterator two entry", function () {
+    it("Test-2 value jiterator three entries", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
         var count = 0;
         var values = [];
@@ -146,7 +146,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(values[1]).toEqual("D");
         expect(values[2]).toEqual("F");
     });
-    it("Test Entry jiterator two entry", function () {
+    it("Test-1 entry jiterator two entries", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
         var count = 0;
         petStoreMap1.put(product1, new ValueClass());
@@ -159,7 +159,23 @@ describe("Test LinkedHashMap functionality", function () {
         expect(count).toEqual(2);
         expect(petStoreMap1.containsKey(product2)).toEqual(true);
     });
-    it("Test-1 Entry jiterator two entry with initial elements", function () {
+    it("Test-2 entry jiterator three entries", function () {
+        var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
+        var count = 0;
+        var p;
+        petStoreMap1.put("A", "B");
+        petStoreMap1.put("C", "D");
+        petStoreMap1.put("E", "F");
+        var linkedIter = petStoreMap1.newEntryIterator();
+        for (; linkedIter.hasNext();) {
+            p = linkedIter._next();
+            count = count + 1;
+        }
+        expect(count).toEqual(3);
+        expect(p.getKey()).toEqual("E");
+        expect(p.getValue()).toEqual("F");
+    });
+    it("Test-1 Entry jiterator two entries with initial elements", function () {
         var sourceMap = new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable());
         expect(sourceMap.put("A", "B")).toEqual(undefined);
         expect(sourceMap.put("C", "D")).toEqual(undefined);
@@ -175,7 +191,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(count).toEqual(2);
         expect(destinationMap.containsKey("C")).toEqual(true);
     });
-    it("Test-2 Entry jiterator two entry with initial elements", function () {
+    it("Test-2 Entry jiterator two entries with initial elements", function () {
         var sourceMap = new LinkedHashMap_1.LinkedHashMap();
         expect(sourceMap.put(product1, new ValueClass())).toEqual(undefined);
         expect(sourceMap.put(product2, new ValueClass())).toEqual(undefined);
@@ -192,7 +208,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(count).toEqual(3);
         expect(destinationMap.containsKey(product3)).toEqual(true);
     });
-    it("Test-1 value jiterator two entry with initial elements", function () {
+    it("Test-1 value jiterator two entries with initial elements", function () {
         var sourceMap = new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable());
         expect(sourceMap.put("A", "B")).toEqual(undefined);
         expect(sourceMap.put("C", "D")).toEqual(undefined);
@@ -216,7 +232,7 @@ describe("Test LinkedHashMap functionality", function () {
         expect(values[1]).toEqual("B");
         expect(values[2]).toEqual("F");
     });
-    it("Test-2 value jiterator two entry with initial elements", function () {
+    it("Test-2 value jiterator two entries with initial elements", function () {
         var sourceMap = new LinkedHashMap_1.LinkedHashMap();
         expect(sourceMap.put(product1, new ValueClass())).toEqual(undefined);
         expect(sourceMap.put(product2, new ValueClass())).toEqual(undefined);
@@ -253,19 +269,24 @@ describe("Test LinkedHashMap functionality", function () {
         expect(petStoreMap1.isEmpty()).toEqual(true);
         petStoreMap1.put(product1, new ValueClass());
         petStoreMap1.put(product2, new ValueClass());
-        petStoreMap1.put(product3, new ValueClass());
-        expect(petStoreMap1.size()).toEqual(3);
+        expect(petStoreMap1.size()).toEqual(2);
         expect(petStoreMap1.isEmpty()).toEqual(false);
+        petStoreMap1.clear();
         petStoreMap2.put(product1, new ValueClass());
         petStoreMap2.put(product2, new ValueClass());
         expect(petStoreMap2.size()).toEqual(2);
         expect(petStoreMap2.isEmpty()).toEqual(false);
         petStoreMap2.clear();
+        expect(petStoreMap2.size()).toEqual(0);
         expect(petStoreMap2.isEmpty()).toEqual(true);
         petStoreMap2.put(product1, new ValueClass());
         petStoreMap2.put(product2, new ValueClass());
-        expect(petStoreMap2.size()).toEqual(2);
+        petStoreMap2.put(product3, new ValueClass());
+        expect(petStoreMap2.size()).toEqual(3);
         expect(petStoreMap2.isEmpty()).toEqual(false);
+        petStoreMap2.clear();
+        expect(petStoreMap2.size()).toEqual(0);
+        expect(petStoreMap2.isEmpty()).toEqual(true);
     });
     it("Test containskey", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();
