@@ -51,8 +51,8 @@ Version 4 goals include ease of use, and a tutorial with code examples in Java a
 * Eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
 
 # Class Hierarchy
-![Class Hierarchy](TypeScriptCollectionFramework.png "Class Hierarchy")
-![Map Class Hierarchy](MapClasses.png "Class Hierarchy")
+![Class Hierarchy](docs/images/collections.png "Collections Class Hierarchy")
+![Map Class Hierarchy](docs/images/maps.png "Maps Class Hierarchy")
 
 # Installation instructions
 
