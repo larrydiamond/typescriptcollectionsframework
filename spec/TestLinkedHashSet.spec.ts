@@ -6,8 +6,8 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 import {AllFieldHashable} from "../src/AllFieldHashable";
-import {KeyIterator, LinkedHashMap} from "../src/LinkedHashMap";
-import {LinkedHashSet} from "../src/LinkedHashSet";
+import {LinkedHashSet, LinkedIterator, LinkedEntry} from "../src/LinkedHashSet";
+import {JIterator} from "../src/JIterator";
 
 describe("Test LinkedHashSet functionality", function() {
 
@@ -116,51 +116,51 @@ describe("Test LinkedHashSet functionality", function() {
     expect (mySet1.isEmpty ()).toEqual(false);
   });
 
-  it("Test-1 key jiterator three entries", function() {
+  it("Test-1 value jiterator three entries", function() {
     const petStoreSet1:LinkedHashSet<PetStoreProduct> = new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     let count:number = 0;
-    let keys:string[] = [];
+    let values:string[] = [];
 
     petStoreSet1.add (product1);
     petStoreSet1.add (product2);
     petStoreSet1.add (product3);
 
-    let linkedIter:KeyIterator<PetStoreProduct,any> = petStoreSet1.newKeyIterator();
+    let linkedIter:LinkedIterator<PetStoreProduct> = petStoreSet1.Iterator();
     for (; linkedIter.hasNext(); ) {
       const p:PetStoreProduct = linkedIter._next();
-      keys[count] = p.getProductName();
+      values[count] = p.getProductName();
       count = count + 1;
     }
     expect (count).toEqual(3);
     expect (petStoreSet1.contains(product2)).toEqual(true);
-    expect (keys[0]).toEqual("Catnip");
-    expect (keys[1]).toEqual("ChewToy");
-    expect (keys[2]).toEqual("Goldfish");
+    expect (values[0]).toEqual("Catnip");
+    expect (values[1]).toEqual("ChewToy");
+    expect (values[2]).toEqual("Goldfish");
   });
 
-  it("Test-2 key jiterator three entries", function() {
+  it("Test-2 value jiterator three entries", function() {
     const stringSet:LinkedHashSet<string> = new LinkedHashSet<string> (new AllFieldHashable<string>());
     let count:number = 0;
-    let keys:string[] = [];
+    let values:string[] = [];
 
     stringSet.add ("3");
     stringSet.add ("2");
     stringSet.add ("1");
 
-    let linkedIter:KeyIterator<string,any> = stringSet.newKeyIterator();
+    let linkedIter:LinkedIterator<string> = stringSet.Iterator();
     for (; linkedIter.hasNext(); ) {
       const s:string = linkedIter._next();
-      keys[count] = s;
+      values[count] = s;
       count = count + 1;
     }
     expect (count).toEqual(3);
     expect (stringSet.contains("2")).toEqual(true);
-    expect (keys[0]).toEqual("3");
-    expect (keys[1]).toEqual("2");
-    expect (keys[2]).toEqual("1");
+    expect (values[0]).toEqual("3");
+    expect (values[1]).toEqual("2");
+    expect (values[2]).toEqual("1");
   });
 
-  it("Test key jiterator three initial entries", function() {
+  it("Test value jiterator three initial entries", function() {
     // makes new list unorder.. it uses set. see initializeElements() 
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);
@@ -171,19 +171,45 @@ describe("Test LinkedHashSet functionality", function() {
     expect (destinationSet.size ()).toEqual(3);
 
     let count:number = 0;
-    let keys:string[] = [];
+    let values:string[] = [];
 
-    let linkedIter:KeyIterator<string,any> = destinationSet.newKeyIterator();
+    let linkedIter:LinkedIterator<string> = destinationSet.Iterator();
     for (; linkedIter.hasNext(); ) {
       const s:string = linkedIter._next();
-      keys[count] = s;
+      values[count] = s;
       count = count + 1;
     }
     expect (count).toEqual(3);
     expect (destinationSet.contains("C")).toEqual(true);
-    expect (keys[0]).toEqual("C");
-    expect (keys[1]).toEqual("B");
-    expect (keys[2]).toEqual("A");
+    expect (values[0]).toEqual("C");
+    expect (values[1]).toEqual("B");
+    expect (values[2]).toEqual("A");
+  });
+
+  it("Test remove LinkedHashSet entry", function() {
+    // makes new list unorder.. it uses set. see initializeElements() 
+    const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
+    expect (sourceSet.add ("A")).toEqual(true);
+    expect (sourceSet.add ("C")).toEqual(true);
+    expect (sourceSet.add ("B")).toEqual(true);
+    expect (sourceSet.size ()).toEqual(3);
+    const destinationSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>(), sourceSet);
+    expect (destinationSet.size ()).toEqual(3);
+    destinationSet.remove("B");
+  
+    let count:number = 0;
+    let values:string[] = [];
+
+    let linkedIter:LinkedIterator<string> = destinationSet.Iterator();
+    for (; linkedIter.hasNext(); ) {
+      const s:string = linkedIter._next();
+      values[count] = s;
+      count = count + 1;
+    }
+    expect (count).toEqual(2);
+    expect (destinationSet.contains("C")).toEqual(true);
+    expect (values[0]).toEqual("C");
+    expect (values[1]).toEqual("A");
   });
 
   it("Test clear", function() {
@@ -205,6 +231,19 @@ describe("Test LinkedHashSet functionality", function() {
     petStoreSet1.clear ();
     expect (petStoreSet1.size ()).toEqual(0);
     expect (petStoreSet1.isEmpty ()).toEqual(true);
+  });
+
+  it("Test hash remove", function() {
+    const petStoreSet1:LinkedHashSet<PetStoreProduct> = new LinkedHashSet<PetStoreProduct> ();
+
+    petStoreSet1.add (product1);
+    petStoreSet1.add (product2);
+    petStoreSet1.add (product3);
+    expect (petStoreSet1.size ()).toEqual(3);
+    expect (petStoreSet1.isEmpty ()).toEqual(false);
+    petStoreSet1.remove (product2);
+    expect (petStoreSet1.size ()).toEqual(2);
+    expect (petStoreSet1.isEmpty ()).toEqual(false);
   });
 
   it("Test contains", function() {

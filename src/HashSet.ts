@@ -36,28 +36,9 @@ export class HashSet<K> implements JSet<K> {
   private datastore:HashMap<K,number> = null;
   private hashMethods:Hashable<K>;
 
-  constructor(iHash:Hashable<K> = AllFieldHashable.instance, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75, private linkedHashMap?:LinkedHashMap<K,any>) {
+  constructor(iHash:Hashable<K> = AllFieldHashable.instance, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
-    // check if this class will be used for linkedHashSet 
-    if (linkedHashMap !== null && linkedHashMap !== undefined)
-      // using LinkedHashSet
-      if (initialElements !== null) {  
-        // initial elements were sent in need to deal with them.. 
-        let linked:LinkedHashMap<K,any> = new LinkedHashMap<K,any>();
-        const iter:Iterator<K> = initialElements[Symbol.iterator]();
-        let tmp:IteratorResult<K>;
-
-        tmp = iter.next();
-        while (tmp.value !== null && tmp.value !== undefined) {
-            linked.put(tmp.value, 1);
-            tmp = iter.next();
-        }  
-        
-        linkedHashMap.initializeElements(linked);
-        this.datastore = linkedHashMap;
-      } else this.datastore = linkedHashMap;  // using LinkedHashSet without initial elements sent in.. 
-    else this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);  // do the default
-
+    this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
     if ((initialElements !== null) && (initialElements !== undefined)){
       for (const iter = initialElements.iterator(); iter.hasNext(); ) {
         const t:K = iter.next ();
@@ -75,10 +56,6 @@ export class HashSet<K> implements JSet<K> {
      const t:K = iter.next();
      consumer.accept(t);
    }
-  }
-
-  public getDataStore(): HashMap<K,number> {
-    return this.datastore;
   }
 
   /**
