@@ -74,6 +74,23 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     }
 
     /**
+     * This override alters behavior of superclass remove method.
+     * @param {V} key key value
+     */
+    public remove (key:K) : V {
+        let result:V = super.remove(key);
+        if (result === null || result === undefined) 
+          return null;  // not there dont proceed further
+
+        for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after) 
+            if (key === e.getKey()) {
+                e.remove();
+                return e.getValue();
+            }
+        return null;
+    }
+
+    /**
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      * @param key key with which the specified value is to be associated
      */
@@ -158,7 +175,7 @@ export class LinkedEntry<K,V> extends HashMapEntry<K,V> {
     /**
      * Removes this entry from the linked list.
      */
-    private remove () : void {
+    public remove () : void {
         this.before.after = this.after;
         this.after.before = this.before;
     }
