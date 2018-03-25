@@ -29,8 +29,8 @@ describe("Test LinkedHashMap functionality", function() {
     }
   }
 
-  const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
   const product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
+  const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
   const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
   const productNotAvailable:PetStoreProduct = new PetStoreProduct("Bananas", 1.99);
 
@@ -293,6 +293,41 @@ describe("Test LinkedHashMap functionality", function() {
     expect (values[0]).toEqual(1);
     expect (values[1]).toEqual(1);
     expect (values[2]).toEqual(1);
+  });
+
+  it ("Test value remove LinkedHashMap entry success", function () {
+    const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
+    expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product3, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(3);
+    expect (sourceMap.remove(product1)).toEqual(new ValueClass());
+
+    let count:number = 0;
+    let values:number[] = [];
+
+    let linkedIter:ValueIterator<PetStoreProduct,ValueClass> = sourceMap.newValueIterator();
+    for (; linkedIter.hasNext(); ) {
+      const p:ValueClass = linkedIter._next();
+      values[count] = p.blah1;
+      count = count + 1;
+    }
+    expect (count).toEqual(2);
+    expect (sourceMap.containsKey(product1)).toEqual(false);
+    expect (sourceMap.containsKey(product2)).toEqual(true);
+    expect (sourceMap.containsKey(product3)).toEqual(true);
+    expect (values[0]).toEqual(1);
+    expect (values[1]).toEqual(1);
+  });
+
+  it ("Test value remove LinkedHashMap entry failure", function () {
+    const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
+    expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.put (product3, new ValueClass())).toEqual(undefined);
+    expect (sourceMap.size ()).toEqual(3);
+    const product5:PetStoreProduct = new PetStoreProduct("test", 4.99);
+    expect (sourceMap.remove(product5)).toBeNull();
   });
 
   it("Test clear", function() {

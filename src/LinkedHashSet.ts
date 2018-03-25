@@ -32,7 +32,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
     }
 
     /**
-     * Initializes the chain before any entries are inserted into the map.
+     * Initializes the chain before any entries are inserted.
      */
     private initChain () : void {
         this.header = new LinkedEntry<K>(null);
@@ -73,7 +73,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
      */
     public remove (value:K) : boolean {
         let result:boolean = super.remove(value);
-        if (result = false) 
+        if (result === false) 
           return false;  // not there dont proceed further
 
         let linkedIter:LinkedIterator<K> = this.Iterator();
@@ -81,10 +81,10 @@ export class LinkedHashSet<K> extends HashSet<K> {
            const val:LinkedEntry<K> = linkedIter.next();
            if (val.equals(value) === true) {
                val.remove();
-               break;
+               return true;
            }
         }
-        
+        return false;
     }
 
     private createEntry (value:K) : boolean {

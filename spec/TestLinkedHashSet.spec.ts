@@ -186,30 +186,38 @@ describe("Test LinkedHashSet functionality", function() {
     expect (values[2]).toEqual("A");
   });
 
-  it("Test remove LinkedHashSet entry", function() {
+  it("Test remove LinkedHashSet entry success", function() {
     // makes new list unorder.. it uses set. see initializeElements() 
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);
     expect (sourceSet.add ("C")).toEqual(true);
     expect (sourceSet.add ("B")).toEqual(true);
     expect (sourceSet.size ()).toEqual(3);
-    const destinationSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>(), sourceSet);
-    expect (destinationSet.size ()).toEqual(3);
-    destinationSet.remove("B");
+    expect (sourceSet.remove("B")).toEqual(true);
   
     let count:number = 0;
     let values:string[] = [];
 
-    let linkedIter:LinkedIterator<string> = destinationSet.Iterator();
+    let linkedIter:LinkedIterator<string> = sourceSet.Iterator();
     for (; linkedIter.hasNext(); ) {
       const s:string = linkedIter._next();
       values[count] = s;
       count = count + 1;
     }
     expect (count).toEqual(2);
-    expect (destinationSet.contains("C")).toEqual(true);
-    expect (values[0]).toEqual("C");
-    expect (values[1]).toEqual("A");
+    expect (sourceSet.contains("C")).toEqual(true);
+    expect (values[0]).toEqual("A");
+    expect (values[1]).toEqual("C");
+  });
+
+  it("Test remove LinkedHashSet entry failure", function() {
+    // makes new list unorder.. it uses set. see initializeElements() 
+    const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
+    expect (sourceSet.add ("A")).toEqual(true);
+    expect (sourceSet.add ("C")).toEqual(true);
+    expect (sourceSet.add ("B")).toEqual(true);
+    expect (sourceSet.size ()).toEqual(3);
+    expect (sourceSet.remove("D")).toEqual(false);
   });
 
   it("Test clear", function() {
