@@ -186,7 +186,7 @@ describe("Test LinkedHashSet functionality", function() {
     expect (values[2]).toEqual("A");
   });
 
-  it("Test remove LinkedHashSet entry success", function() {
+  it("Test remove entry success", function() {
     // makes new list unorder.. it uses set. see initializeElements() 
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);
@@ -210,7 +210,7 @@ describe("Test LinkedHashSet functionality", function() {
     expect (values[1]).toEqual("C");
   });
 
-  it("Test remove LinkedHashSet entry failure", function() {
+  it("Test remove entry failure", function() {
     // makes new list unorder.. it uses set. see initializeElements() 
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);

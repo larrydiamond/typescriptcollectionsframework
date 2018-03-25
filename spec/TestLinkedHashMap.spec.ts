@@ -295,7 +295,7 @@ describe("Test LinkedHashMap functionality", function() {
     expect (values[2]).toEqual(1);
   });
 
-  it ("Test value remove LinkedHashMap entry success", function () {
+  it ("Test value remove entry success", function () {
     const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
     expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
     expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
@@ -320,7 +320,7 @@ describe("Test LinkedHashMap functionality", function() {
     expect (values[1]).toEqual(1);
   });
 
-  it ("Test value remove LinkedHashMap entry failure", function () {
+  it ("Test value remove entry failure", function () {
     const sourceMap:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass>();
     expect (sourceMap.put (product1, new ValueClass())).toEqual(undefined);
     expect (sourceMap.put (product2, new ValueClass())).toEqual(undefined);
