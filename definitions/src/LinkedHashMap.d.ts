@@ -31,6 +31,11 @@ export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
      */
     containsValue(value: V): boolean;
     /**
+     * This override alters behavior of superclass remove method.
+     * @param {V} key key value
+     */
+    remove(key: K): V;
+    /**
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      * @param key key with which the specified value is to be associated
      */
@@ -70,7 +75,7 @@ export declare class LinkedEntry<K, V> extends HashMapEntry<K, V> {
     /**
      * Removes this entry from the linked list.
      */
-    private remove();
+    remove(): void;
     /**
      * Inserts this entry before the specified existing entry in the list.
      * @param existingEntry existing entry

@@ -82,6 +82,21 @@ var LinkedHashMap = /** @class */ (function (_super) {
         return false;
     };
     /**
+     * This override alters behavior of superclass remove method.
+     * @param {V} key key value
+     */
+    LinkedHashMap.prototype.remove = function (key) {
+        var result = _super.prototype.remove.call(this, key);
+        if (result === null || result === undefined)
+            return null; // not there dont proceed further
+        for (var e = this.header.after; e !== this.header; e = e.after)
+            if (key === e.getKey()) {
+                e.remove();
+                return e.getValue();
+            }
+        return null;
+    };
+    /**
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      * @param key key with which the specified value is to be associated
      */

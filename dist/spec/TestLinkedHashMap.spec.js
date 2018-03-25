@@ -24,8 +24,8 @@ describe("Test LinkedHashMap functionality", function () {
         };
         return PetStoreProduct;
     }());
-    var product2 = new PetStoreProduct("ChewToy", 14.99);
     var product1 = new PetStoreProduct("Catnip", 4.99);
+    var product2 = new PetStoreProduct("ChewToy", 14.99);
     var product3 = new PetStoreProduct("Goldfish", 9.99);
     var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
     // Wanted to show a class in the value object but anything would work fine
@@ -255,6 +255,37 @@ describe("Test LinkedHashMap functionality", function () {
         expect(values[0]).toEqual(1);
         expect(values[1]).toEqual(1);
         expect(values[2]).toEqual(1);
+    });
+    it("Test value remove entry success", function () {
+        var sourceMap = new LinkedHashMap_1.LinkedHashMap();
+        expect(sourceMap.put(product1, new ValueClass())).toEqual(undefined);
+        expect(sourceMap.put(product2, new ValueClass())).toEqual(undefined);
+        expect(sourceMap.put(product3, new ValueClass())).toEqual(undefined);
+        expect(sourceMap.size()).toEqual(3);
+        expect(sourceMap.remove(product1)).toEqual(new ValueClass());
+        var count = 0;
+        var values = [];
+        var linkedIter = sourceMap.newValueIterator();
+        for (; linkedIter.hasNext();) {
+            var p = linkedIter._next();
+            values[count] = p.blah1;
+            count = count + 1;
+        }
+        expect(count).toEqual(2);
+        expect(sourceMap.containsKey(product1)).toEqual(false);
+        expect(sourceMap.containsKey(product2)).toEqual(true);
+        expect(sourceMap.containsKey(product3)).toEqual(true);
+        expect(values[0]).toEqual(1);
+        expect(values[1]).toEqual(1);
+    });
+    it("Test value remove entry failure", function () {
+        var sourceMap = new LinkedHashMap_1.LinkedHashMap();
+        expect(sourceMap.put(product1, new ValueClass())).toEqual(undefined);
+        expect(sourceMap.put(product2, new ValueClass())).toEqual(undefined);
+        expect(sourceMap.put(product3, new ValueClass())).toEqual(undefined);
+        expect(sourceMap.size()).toEqual(3);
+        var product5 = new PetStoreProduct("test", 4.99);
+        expect(sourceMap.remove(product5)).toBeNull();
     });
     it("Test clear", function () {
         var petStoreMap1 = new LinkedHashMap_1.LinkedHashMap();

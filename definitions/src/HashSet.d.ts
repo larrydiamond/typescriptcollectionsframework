@@ -1,12 +1,10 @@
 import { Consumer } from "./Consumer";
 import { JIterator } from "./JIterator";
 import { Hashable } from "./Hashable";
-import { HashMap } from "./HashMap";
 import { HashMapIteratorLocationTracker } from "./HashMap";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableSet } from "./ImmutableSet";
 import { JSet } from "./JSet";
-import { LinkedHashMap } from "./LinkedHashMap";
 /**
  * This class implements the Set interface, backed by a HashMap instance.
  *
@@ -25,16 +23,14 @@ export declare class HashSet<K> implements JSet<K> {
     private initialElements;
     private iInitialCapacity;
     private iLoadFactor;
-    private linkedHashMap;
     private datastore;
     private hashMethods;
-    constructor(iHash?: Hashable<K>, initialElements?: ImmutableCollection<K>, iInitialCapacity?: number, iLoadFactor?: number, linkedHashMap?: LinkedHashMap<K, any>);
+    constructor(iHash?: Hashable<K>, initialElements?: ImmutableCollection<K>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
     * @param {Consumer} consumer - the action to be performed for each element
     */
     forEach(consumer: Consumer<K>): void;
-    getDataStore(): HashMap<K, number>;
     /**
     * Returns the Hashable
     * @return {Hashable}

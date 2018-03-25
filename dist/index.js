@@ -1,7 +1,7 @@
 "use strict";
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2018 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -21,6 +21,8 @@ var HashSet_1 = require("./src/HashSet");
 exports.HashSet = HashSet_1.HashSet;
 var LinkedHashMap_1 = require("./src/LinkedHashMap");
 exports.LinkedHashMap = LinkedHashMap_1.LinkedHashMap;
+var LinkedHashSet_1 = require("./src/LinkedHashSet");
+exports.LinkedHashSet = LinkedHashSet_1.LinkedHashSet;
 var LinkedList_1 = require("./src/LinkedList");
 exports.LinkedList = LinkedList_1.LinkedList;
 var PriorityQueue_1 = require("./src/PriorityQueue");

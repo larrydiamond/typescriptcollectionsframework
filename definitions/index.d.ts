@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2018 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -21,6 +21,7 @@ export { ImmutableMap } from "./src/ImmutableMap";
 export { ImmutableSet } from "./src/ImmutableSet";
 export { JIterator } from "./src/JIterator";
 export { LinkedHashMap } from "./src/LinkedHashMap";
+export { LinkedHashSet } from "./src/LinkedHashSet";
 export { LinkedList } from "./src/LinkedList";
 export { List } from "./src/List";
 export { JMap } from "./src/JMap";
