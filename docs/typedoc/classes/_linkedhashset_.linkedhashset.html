@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HashSet | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>LinkedHashSet | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_hashset_.html">&quot;HashSet&quot;</a>
+					<a href="../modules/_linkedhashset_.html">&quot;LinkedHashSet&quot;</a>
 				</li>
 				<li>
-					<a href="_hashset_.hashset.html">HashSet</a>
+					<a href="_linkedhashset_.linkedhashset.html">LinkedHashSet</a>
 				</li>
 			</ul>
-			<h1>Class HashSet&lt;K&gt;</h1>
+			<h1>Class LinkedHashSet&lt;K&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,16 +68,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>This class implements the Set interface, backed by a HashMap instance.</p>
+						<p>Hash table and linked-list implementation of the Set interface with predictable iteration order.</p>
 					</div>
-					<p>It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time.
-					This class permits the null element.</p>
-					<p>This class offers constant time performance for the basic operations (add, remove, contains and size),
-						assuming the hash function disperses the elements properly among the buckets. <br>
-						Iterating over this set requires time proportional to the sum of the HashSet instance&#39;s size
-						(the number of elements) plus the &quot;capacity&quot; of the backing HashMap instance (the number of buckets). <br>
-					Thus, it&#39;s very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.</p>
-					<p>This class corresponds to java.util.HashSet</p>
+					<p>This class corresponds to java.util.LinkedHashSet</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -92,10 +85,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HashSet</span>
+						<a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_linkedhashset_.linkedhashset.html" class="tsd-signature-type">LinkedHashSet</a>
+								<span class="target">LinkedHashSet</span>
 							</li>
 						</ul>
 					</li>
@@ -114,26 +107,29 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_hashset_.hashset.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashset_.linkedhashset.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#contains" class="tsd-kind-icon">contains</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#iterator" class="tsd-kind-icon">iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashset_.linkedhashset.html#iterator" class="tsd-kind-icon">Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashset_.linkedhashset.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashset_.linkedhashset.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashset_.linkedhashset.html#getheader" class="tsd-kind-icon">get<wbr>Header</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedhashset_.linkedhashset.html#initializeelements" class="tsd-kind-icon">initialize<wbr>Elements</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#iterator-1" class="tsd-kind-icon">iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_linkedhashset_.linkedhashset.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_linkedhashset_.linkedhashset.html#size" class="tsd-kind-icon">size</a></li>
 							</ul>
 						</section>
 					</div>
@@ -141,17 +137,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Hash<wbr>Set<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacity<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Linked<wbr>Hash<wbr>Set<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElementsLinked<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacityLinked<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactorLinked<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashset_.linkedhashset.html" class="tsd-signature-type">LinkedHashSet</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L37">HashSet.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L22">LinkedHashSet.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -160,16 +157,16 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iHash: <a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;AllFieldHashable.instance</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialElements: <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialElementsLinked: <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iInitialCapacity: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iInitialCapacityLinked: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;20</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iLoadFactor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iLoadFactorLinked: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashset_.linkedhashset.html" class="tsd-signature-type">LinkedHashSet</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -177,15 +174,38 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="iterator" class="tsd-anchor"></a>
+					<h3>Iterator</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashset_.linkediterator.html" class="tsd-signature-type">LinkedIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L104">LinkedHashSet.ts:104</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Java style iterator retrieves hash set values by insertion order.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashset_.linkediterator.html" class="tsd-signature-type">LinkedIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="___iterator" class="tsd-anchor"></a>
 					<h3>__@iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">__@iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#___iterator">__@iterator</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#___iterator">__@iterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L167">HashSet.ts:167</a></li>
 								</ul>
@@ -200,72 +220,70 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="add" class="tsd-anchor"></a>
 					<h3>add</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#add">add</a></p>
+								<p>Overrides <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L74">HashSet.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L62">LinkedHashSet.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds the specified element to this set if it is not already present.</p>
+									<p>This override alters behavior of superclass add method. It causes newly allocated entry
+									to get inserted at the end of the linked list.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <span class="tsd-signature-type">K</span></h5>
+									<h5>value: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>element to be added to this set</p>
+										<p>value</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this set did not already contain the specified element</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="clear" class="tsd-anchor"></a>
 					<h3>clear</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">clear<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#clear">clear</a></p>
+								<p>Overrides <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L135">HashSet.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L96">LinkedHashSet.ts:96</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes all of the elements from this set. The set will be empty after this call returns.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="contains" class="tsd-anchor"></a>
 					<h3>contains</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">contains<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#contains">contains</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#contains">contains</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L125">HashSet.ts:125</a></li>
 								</ul>
@@ -289,15 +307,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="deprecatedgetfirstentryforiterator" class="tsd-anchor"></a>
 					<h3>deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator">deprecatedGetFirstEntryForIterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L143">HashSet.ts:143</a></li>
 								</ul>
@@ -315,15 +334,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="deprecatedgetnextentryforiterator" class="tsd-anchor"></a>
 					<h3>deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span>current<span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator">deprecatedGetNextEntryForIterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L151">HashSet.ts:151</a></li>
 								</ul>
@@ -347,16 +367,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="foreach" class="tsd-anchor"></a>
 					<h3>for<wbr>Each</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#foreach">forEach</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#foreach">forEach</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L54">HashSet.ts:54</a></li>
 								</ul>
@@ -379,15 +400,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="gethashable" class="tsd-anchor"></a>
 					<h3>get<wbr>Hashable</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Hashable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#gethashable">getHashable</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L65">HashSet.ts:65</a></li>
 								</ul>
@@ -402,15 +424,33 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getheader" class="tsd-anchor"></a>
+					<h3>get<wbr>Header</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Header<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedhashset_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L109">LinkedHashSet.ts:109</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_linkedhashset_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="immutablecollection" class="tsd-anchor"></a>
 					<h3>immutable<wbr>Collection</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Collection<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#immutablecollection">immutableCollection</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#immutablecollection">immutableCollection</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L174">HashSet.ts:174</a></li>
 								</ul>
@@ -424,16 +464,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="immutableset" class="tsd-anchor"></a>
 					<h3>immutable<wbr>Set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#immutableset">immutableSet</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#immutableset">immutableSet</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L181">HashSet.ts:181</a></li>
 								</ul>
@@ -448,15 +489,47 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="initializeelements" class="tsd-anchor"></a>
+					<h3>initialize<wbr>Elements</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Elements<span class="tsd-signature-symbol">(</span>elements<span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L47">LinkedHashSet.ts:47</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Use collection and add to LinkedEntry and super HashSet</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>elements: <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>collection to populate</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="isempty" class="tsd-anchor"></a>
 					<h3>is<wbr>Empty</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#isempty">isEmpty</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#isempty">isEmpty</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L111">HashSet.ts:111</a></li>
 								</ul>
@@ -471,16 +544,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="iterator" class="tsd-anchor"></a>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="iterator-1" class="tsd-anchor"></a>
 					<h3>iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#iterator">iterator</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#iterator">iterator</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L159">HashSet.ts:159</a></li>
 								</ul>
@@ -495,49 +569,50 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="remove" class="tsd-anchor"></a>
 					<h3>remove</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#remove">remove</a></p>
+								<p>Overrides <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L88">HashSet.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/LinkedHashSet.ts#L74">LinkedHashSet.ts:74</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>RemoveElement the specified element from this set if it is present.</p>
+									<p>This override alters behavior of superclass remove method.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <span class="tsd-signature-type">K</span></h5>
+									<h5>value: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>element to be removed from this set</p>
+										<p>value</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if the set contained the specified element</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="size" class="tsd-anchor"></a>
 					<h3>size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#size">size</a></p>
+								<p>Inherited from <a href="_hashset_.hashset.html">HashSet</a>.<a href="_hashset_.hashset.html#size">size</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/8bfaa03/src/HashSet.ts#L101">HashSet.ts:101</a></li>
 								</ul>
@@ -561,71 +636,80 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_hashset_.html">"<wbr>Hash<wbr>Set"</a>
+						<a href="../modules/_linkedhashset_.html">"<wbr>Linked<wbr>Hash<wbr>Set"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_linkedhashset_.linkedentry.html" class="tsd-kind-icon">Linked<wbr>Entry</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashset.html" class="tsd-kind-icon">Hash<wbr>Set</a>
+						<a href="_linkedhashset_.linkedhashset.html" class="tsd-kind-icon">Linked<wbr>Hash<wbr>Set</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashset_.linkedhashset.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+								<a href="_linkedhashset_.linkedhashset.html#iterator" class="tsd-kind-icon">Iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashset_.linkedhashset.html#add" class="tsd-kind-icon">add</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashset_.linkedhashset.html#clear" class="tsd-kind-icon">clear</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#contains" class="tsd-kind-icon">contains</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#add" class="tsd-kind-icon">add</a>
+								<a href="_linkedhashset_.linkedhashset.html#getheader" class="tsd-kind-icon">get<wbr>Header</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#clear" class="tsd-kind-icon">clear</a>
+								<a href="_linkedhashset_.linkedhashset.html#initializeelements" class="tsd-kind-icon">initialize<wbr>Elements</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#contains" class="tsd-kind-icon">contains</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#iterator-1" class="tsd-kind-icon">iterator</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_linkedhashset_.linkedhashset.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#iterator" class="tsd-kind-icon">iterator</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#remove" class="tsd-kind-icon">remove</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#size" class="tsd-kind-icon">size</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_linkedhashset_.linkedhashset.html#size" class="tsd-kind-icon">size</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashsetiterator.html" class="tsd-kind-icon">Hash<wbr>Set<wbr>Iterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashsetjiterator.html" class="tsd-kind-icon">Hash<wbr>SetJIterator</a>
+						<a href="_linkedhashset_.linkediterator.html" class="tsd-kind-icon">Linked<wbr>Iterator</a>
 					</li>
 				</ul>
 			</nav>
