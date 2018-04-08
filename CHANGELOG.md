@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.1.1"></a>
+# [4.1.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.1.0...v4.1.1) (2018-04-08)
+* Update dependencies
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.0.0...v4.1.0) (2018-03-25)
 * Publish LinkedHashSet - thank you very much Frank Giordano!   Repeat contributor!
