@@ -2,6 +2,31 @@
 @import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Roboto:500,300");
 
+
+lcode {
+	background: #000000;
+	font-family: "Courier New", monospace;
+	font-size: 0.9em;
+	margin: 0 0.25em;
+	padding: 0.25em 0.65em;
+}
+
+lpurple {
+	color: #FF00FF;
+}
+
+lwhite {
+	color: #FFFFFF;
+}
+
+lred {
+	color: #FF0000;
+}
+
+lgreen {
+	color: #00FF00;
+}
+
 /*
 	Ion by TEMPLATED
 	templated.co @templatedco
@@ -110,14 +135,6 @@
 		font-style: italic;
 		margin: 0 0 2em 0;
 		padding: 0.5em 0 0.5em 2em;
-	}
-
-	lcode {
-		background: #000000;
-		font-family: "Courier New", monospace;
-		font-size: 0.9em;
-		margin: 0 0.25em;
-		padding: 0.25em 0.65em;
 	}
 
 	code {
