@@ -196,7 +196,7 @@ export class LinkedEntry<K,V> extends HashMapEntry<K,V> {
     }
 
     public equals (o: K) {
-      if (o === undefined || o === null) {
+      if ((o === undefined) || (o === null)) {
          return false;
       }
       if (JSON.stringify(o) === JSON.stringify(this.key))

@@ -149,7 +149,7 @@ export class LinkedEntry<K> {
     }
 
     public equals (o: K) {
-      if (o === undefined || o === null) {
+      if ((o === undefined) || (o === null)) {
          return false;
       }
       if (JSON.stringify(o) === JSON.stringify(this.value))

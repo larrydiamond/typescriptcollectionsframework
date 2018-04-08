@@ -189,7 +189,7 @@ var LinkedEntry = /** @class */ (function (_super) {
         this.remove();
     };
     LinkedEntry.prototype.equals = function (o) {
-        if (o === undefined || o === null) {
+        if ((o === undefined) || (o === null)) {
             return false;
         }
         if (JSON.stringify(o) === JSON.stringify(this.key))
