@@ -8,19 +8,19 @@
   "engineStrict": true,
   "dependencines": {},
   "devDependencies": {
-    "@types/jasmine": "^2.8.0",
-    "@types/node": "^9.3.0",
+    "@types/jasmine": "^2.8.6",
+    "@types/node": "^9.6.2",
     "gulp": "^3.9.1",
     "gulp-jasmine": "^3.0.0",
-    "gulp-typescript": "^4.0.1",
+    "gulp-typescript": "^4.0.2",
     "jasmine": "^3.1.0",
     "jasts": "^1.0.0",
     "merge2": "^1.2.0",
     "run-sequence": "^2.2.0",
     "standard-version": "^4.2.0",
     "tslint": "^5.8.0",
-    "typedoc": "^0.11.0",
-    "typescript": "^2.4.2"
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.1"
   },
   "main": "dist/index.js",
   "nyc": {

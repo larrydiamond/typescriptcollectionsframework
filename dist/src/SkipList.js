@@ -270,7 +270,7 @@ var SkipListMapImpl = /** @class */ (function () {
         }
         else {
             var lastNode = this.floorEntry(key);
-            if ((lastNode === null) || (lastNode === undefined)) {
+            if ((lastNode === null) || (lastNode === undefined)) { // there's no node less than or equal to this node, make a new node and it's going to be the first node
                 var newnode = new SkipListNode(key, value, this.newNodeSize(), this.skipListNodeCollectable);
                 for (var loop = 0; loop < newnode.getNextNodeArray().size(); loop++) {
                     var existingNode = this.head.get(loop);
@@ -289,7 +289,7 @@ var SkipListMapImpl = /** @class */ (function () {
                     lastNode.setValue(value);
                     return lastValue;
                 }
-                else {
+                else { // This node will immediately preceed the new node
                     this.numberElements++;
                     var newnode = new SkipListNode(key, value, this.newNodeSize(), this.skipListNodeCollectable);
                     this.hookUpNodePointers(newnode, lastNode);
@@ -314,7 +314,7 @@ var SkipListMapImpl = /** @class */ (function () {
                         var nextNode = lastNode.getNextNodeArray().get(height);
                         lastNode.getNextNodeArray().set(height, newNode);
                         newNode.getLastNodeArray().set(height, lastNode);
-                        if ((nextNode !== null) && (nextNode !== undefined)) {
+                        if ((nextNode !== null) && (nextNode !== undefined)) { // not end of the map
                             newNode.getNextNodeArray().set(height, nextNode);
                             nextNode.getLastNodeArray().set(height, newNode);
                         }
@@ -360,12 +360,12 @@ var SkipListMapImpl = /** @class */ (function () {
             return null;
         }
         var node = this.floorEntry(key);
-        if ((node === null) || (node === undefined)) {
+        if ((node === null) || (node === undefined)) { // no node less than or equal to this key
             node = this.firstEntry();
             return node;
         }
         else {
-            if (this.comparator().compare(node.getKey(), key) === 0) {
+            if (this.comparator().compare(node.getKey(), key) === 0) { // the highest key less than or equal to this node is this node
                 return node;
             }
             else {
@@ -383,7 +383,7 @@ var SkipListMapImpl = /** @class */ (function () {
             return null;
         }
         var node = this.floorEntry(key);
-        if ((node === null) || (node === undefined)) {
+        if ((node === null) || (node === undefined)) { // no node less than or equal to this key
             node = this.firstEntry();
             return node;
         }
@@ -436,7 +436,7 @@ var SkipListMapImpl = /** @class */ (function () {
                 }
             }
         }
-        if (node === null) {
+        if (node === null) { // we only got here if every element was higher than or equal this one
             return null;
         }
         // keep moving forward until we every node in the next array is equal to or past the key
@@ -455,7 +455,7 @@ var SkipListMapImpl = /** @class */ (function () {
             var done = false;
             for (var height = 0.0; ((done === false) && (height < node.getNextNodeArray().size())); height++) {
                 var nn = node.getNextNodeArray().get(node.getNextNodeArray().size() - height - 1);
-                if ((nn === null) || (nn === undefined)) {
+                if ((nn === null) || (nn === undefined)) { // then this node is past the target
                     ;
                 }
                 else {
@@ -494,7 +494,7 @@ var SkipListMapImpl = /** @class */ (function () {
                 }
             }
         }
-        if (node === null) {
+        if (node === null) { // we only got here if every element was higher than this one
             //      console.log ("SkipList::FloorEntry all elements are higher");
             return null;
         }
@@ -584,7 +584,7 @@ var SkipListMapImpl = /** @class */ (function () {
                 }
             }
         }
-        if (node === null) {
+        if (node === null) { // we only got here if every element was higher than or equal this one
             return null;
         }
         // keep moving forward until we every node in the next array is equal to or past the key
@@ -606,7 +606,7 @@ var SkipListMapImpl = /** @class */ (function () {
             var done = false;
             for (var height = 0.0; ((done === false) && (height < node.getNextNodeArray().size())); height++) {
                 var nn = node.getNextNodeArray().get(node.getNextNodeArray().size() - height - 1);
-                if ((nn === null) || (nn === undefined)) {
+                if ((nn === null) || (nn === undefined)) { // then this node is past the target
                     ;
                 }
                 else {
@@ -1009,7 +1009,7 @@ var SkipListMapKeySetJIterator = /** @class */ (function () {
         this.impl = implI;
     }
     SkipListMapKeySetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var firstEntry = this.impl.firstEntry();
             if (firstEntry === null)
                 return false;
@@ -1017,7 +1017,7 @@ var SkipListMapKeySetJIterator = /** @class */ (function () {
                 return false;
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmpEntry = this.impl.nextHigherNode(this.location);
             if (tmpEntry === null)
                 return false;
@@ -1027,7 +1027,7 @@ var SkipListMapKeySetJIterator = /** @class */ (function () {
         }
     };
     SkipListMapKeySetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var firstEntry = this.impl.firstEntry();
             if (firstEntry === null)
                 return null;
@@ -1036,7 +1036,7 @@ var SkipListMapKeySetJIterator = /** @class */ (function () {
             this.location = firstEntry;
             return firstEntry.getKey();
         }
-        else {
+        else { // we've already called this iterator before
             var tmpEntry = this.impl.nextHigherNode(this.location);
             if (tmpEntry === null)
                 return null;
@@ -1105,7 +1105,7 @@ var SkipListMapEntrySetJIterator = /** @class */ (function () {
     }
     SkipListMapEntrySetJIterator.prototype.hasNext = function () {
         //    console.log ("SkipListMapEntrySetJIterator::hasNext");
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var firstEntry = this.map.firstEntry();
             if (firstEntry === null)
                 return false;
@@ -1113,7 +1113,7 @@ var SkipListMapEntrySetJIterator = /** @class */ (function () {
                 return false;
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmpEntry = this.map.nextHigherNode(this.location);
             if (tmpEntry === null)
                 return false;
@@ -1124,7 +1124,7 @@ var SkipListMapEntrySetJIterator = /** @class */ (function () {
     };
     SkipListMapEntrySetJIterator.prototype.next = function () {
         //    console.log ("SkipListMapEntrySetJIterator::next");
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var firstEntry = this.map.firstEntry();
             if (firstEntry === null)
                 return null;
@@ -1133,7 +1133,7 @@ var SkipListMapEntrySetJIterator = /** @class */ (function () {
             this.location = firstEntry;
             return firstEntry;
         }
-        else {
+        else { // we've already called this iterator before
             var tmpEntry = this.map.nextHigherNode(this.location);
             if (tmpEntry === null)
                 return null;
@@ -1385,7 +1385,7 @@ var SkipListSetJIterator = /** @class */ (function () {
         this.impl = implI;
     }
     SkipListSetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.impl.firstEntry();
             if (first === undefined) {
                 return false;
@@ -1395,7 +1395,7 @@ var SkipListSetJIterator = /** @class */ (function () {
             }
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.impl.nextHigherNode(this.location);
             if (tmp === null) {
                 return false;
@@ -1406,7 +1406,7 @@ var SkipListSetJIterator = /** @class */ (function () {
         }
     };
     SkipListSetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.impl.firstEntry();
             if (first === undefined) {
                 return null;
@@ -1417,7 +1417,7 @@ var SkipListSetJIterator = /** @class */ (function () {
             this.location = first;
             return first.getKey();
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.impl.nextHigherNode(this.location);
             if (tmp === null) {
                 return null;
