@@ -57,7 +57,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
             }
         }
     }
-    
+
     /**
      * Returns true if this map maps one or more keys to the specified value.
      * @param value value whose presence in this map is to be tested
@@ -79,10 +79,10 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      */
     public remove (key:K) : V {
         const result:V = super.remove(key);
-        if (result === null || result === undefined) 
+        if (result === null || result === undefined)
           return null;  // not there dont proceed further
 
-        for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after) 
+        for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after)
             if (key === e.getKey()) {
                 e.remove();
                 return e.getValue();
@@ -195,7 +195,7 @@ export class LinkedEntry<K,V> extends HashMapEntry<K,V> {
         this.remove();
     }
 
-    public equals (o: any) {
+    public equals (o: K) {
       if (o === undefined || o === null) {
          return false;
       }

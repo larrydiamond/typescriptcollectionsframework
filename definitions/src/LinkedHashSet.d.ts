@@ -59,7 +59,7 @@ export declare class LinkedEntry<K> {
      * @param existingEntry existing entry
      */
     addBefore(existingEntry: LinkedEntry<K>): void;
-    equals(o: any): boolean;
+    equals(o: K): boolean;
 }
 export declare class LinkedIterator<K> implements JIterator<LinkedEntry<K>> {
     private header;

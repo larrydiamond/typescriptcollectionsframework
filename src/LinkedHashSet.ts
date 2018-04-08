@@ -12,8 +12,8 @@ import {HashSet} from "./HashSet";
 import {JIterator} from "./JIterator";
 
 /**
- * Hash table and linked-list implementation of the Set interface with predictable iteration order. 
- * 
+ * Hash table and linked-list implementation of the Set interface with predictable iteration order.
+ *
  * This class corresponds to java.util.LinkedHashSet
  */
 export class LinkedHashSet<K> extends HashSet<K> {
@@ -60,8 +60,8 @@ export class LinkedHashSet<K> extends HashSet<K> {
      * @param {V} value value
      */
     public add (value:K) : boolean {
-        const result:boolean = super.add(value); 
-        if (result === false) 
+        const result:boolean = super.add(value);
+        if (result === false)
           return false;  // avoid inserting duplicate
 
         return this.createEntry(value);
@@ -73,7 +73,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
      */
     public remove (value:K) : boolean {
         const result:boolean = super.remove(value);
-        if (result === false) 
+        if (result === false)
           return false;  // not there dont proceed further
 
         const linkedIter:LinkedIterator<K> = this.Iterator();
@@ -148,7 +148,7 @@ export class LinkedEntry<K> {
         this.after.before = this;
     }
 
-    public equals (o: any) {
+    public equals (o: K) {
       if (o === undefined || o === null) {
          return false;
       }

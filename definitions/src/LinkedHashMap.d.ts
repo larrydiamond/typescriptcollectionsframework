@@ -82,7 +82,7 @@ export declare class LinkedEntry<K, V> extends HashMapEntry<K, V> {
      */
     addBefore(existingEntry: LinkedEntry<K, V>): void;
     recordRemoval(m: HashMap<K, V>): void;
-    equals(o: any): boolean;
+    equals(o: K): boolean;
 }
 export declare class LinkedHashIterator<K, V> implements JIterator<LinkedEntry<K, V>> {
     private header;
