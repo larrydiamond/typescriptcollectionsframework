@@ -104,13 +104,13 @@ describe("Test LinkedHashMap functionality", function() {
   it("Test key jiterator three entries", function() {
     const petStoreMap1:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass> ();
     let count:number = 0;
-    let keys:string[] = [];
+    const keys:string[] = [];
 
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
     petStoreMap1.put (product3, new ValueClass());
 
-    let linkedIter:KeyIterator<PetStoreProduct, ValueClass> = petStoreMap1.newKeyIterator();
+    const linkedIter:KeyIterator<PetStoreProduct, ValueClass> = petStoreMap1.newKeyIterator();
     for (; linkedIter.hasNext(); ) {
       const p:PetStoreProduct = linkedIter._next();
       keys[count] = p.getProductName();
@@ -126,12 +126,12 @@ describe("Test LinkedHashMap functionality", function() {
   it("Test-1 value jiterator two entries", function() {
     const petStoreMap1:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass> ();
     let count:number = 0;
-    let values:number[] = [];
+    const values:number[] = [];
 
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
 
-    let linkedIter:ValueIterator<PetStoreProduct, ValueClass> = petStoreMap1.newValueIterator();
+    const linkedIter:ValueIterator<PetStoreProduct, ValueClass> = petStoreMap1.newValueIterator();
     for (; linkedIter.hasNext(); ) {
       const p:ValueClass = linkedIter._next();
       values[count] = p.blah1;
@@ -146,13 +146,13 @@ describe("Test LinkedHashMap functionality", function() {
   it("Test-2 value jiterator three entries", function() {
     const petStoreMap1:LinkedHashMap<string,string> = new LinkedHashMap<string,string> ();
     let count:number = 0;
-    let values:string[] = [];
+    const values:string[] = [];
 
     petStoreMap1.put ("A", "B");
     petStoreMap1.put ("C", "D");
     petStoreMap1.put ("E", "F");
 
-    let linkedIter:ValueIterator<string,string> = petStoreMap1.newValueIterator();
+    const linkedIter:ValueIterator<string,string> = petStoreMap1.newValueIterator();
     for (; linkedIter.hasNext(); ) {
       const p:string = linkedIter._next();
       values[count] = p
@@ -172,7 +172,7 @@ describe("Test LinkedHashMap functionality", function() {
     petStoreMap1.put (product1, new ValueClass());
     petStoreMap1.put (product2, new ValueClass());
 
-    let linkedIter:EntryIterator<PetStoreProduct, ValueClass> = petStoreMap1.newEntryIterator();
+    const linkedIter:EntryIterator<PetStoreProduct, ValueClass> = petStoreMap1.newEntryIterator();
     for (; linkedIter.hasNext(); ) {
       const p:LinkedEntry<PetStoreProduct,ValueClass> = linkedIter._next();
       count = count + 1;
@@ -190,7 +190,7 @@ describe("Test LinkedHashMap functionality", function() {
     petStoreMap1.put ("C", "D");
     petStoreMap1.put ("E", "F");
 
-    let linkedIter:EntryIterator<string, string> = petStoreMap1.newEntryIterator();
+    const linkedIter:EntryIterator<string, string> = petStoreMap1.newEntryIterator();
     for (; linkedIter.hasNext(); ) {
       p = linkedIter._next();
       count = count + 1;
@@ -210,7 +210,7 @@ describe("Test LinkedHashMap functionality", function() {
 
     let count:number = 0;
 
-    let linkedIter:EntryIterator<string,string> = destinationMap.newEntryIterator();
+    const linkedIter:EntryIterator<string,string> = destinationMap.newEntryIterator();
     for (; linkedIter.hasNext(); ) {
       const p:LinkedEntry<string,string> = linkedIter._next();
       count = count + 1;
@@ -231,7 +231,7 @@ describe("Test LinkedHashMap functionality", function() {
 
     let count:number = 0;
 
-    let linkedIter:EntryIterator<PetStoreProduct,ValueClass> = destinationMap.newEntryIterator();
+    const linkedIter:EntryIterator<PetStoreProduct,ValueClass> = destinationMap.newEntryIterator();
     for (; linkedIter.hasNext(); ) {
       const p:LinkedEntry<PetStoreProduct,ValueClass> = linkedIter._next();
       count = count + 1;
@@ -251,9 +251,9 @@ describe("Test LinkedHashMap functionality", function() {
     expect (destinationMap.size ()).toEqual(3);
 
     let count:number = 0;
-    let values:string[] = [];
+    const values:string[] = [];
 
-    let linkedIter:ValueIterator<string,string> = destinationMap.newValueIterator();
+    const linkedIter:ValueIterator<string,string> = destinationMap.newValueIterator();
     for (; linkedIter.hasNext(); ) {
       const p:string = linkedIter._next();
       values[count] = p;
@@ -278,9 +278,9 @@ describe("Test LinkedHashMap functionality", function() {
     expect (destinationMap.size ()).toEqual(3);
 
     let count:number = 0;
-    let values:number[] = [];
+    const values:number[] = [];
 
-    let linkedIter:ValueIterator<PetStoreProduct,ValueClass> = destinationMap.newValueIterator();
+    const linkedIter:ValueIterator<PetStoreProduct,ValueClass> = destinationMap.newValueIterator();
     for (; linkedIter.hasNext(); ) {
       const p:ValueClass = linkedIter._next();
       values[count] = p.blah1;
@@ -304,9 +304,9 @@ describe("Test LinkedHashMap functionality", function() {
     expect (sourceMap.remove(product1)).toEqual(new ValueClass());
 
     let count:number = 0;
-    let values:number[] = [];
+    const values:number[] = [];
 
-    let linkedIter:ValueIterator<PetStoreProduct,ValueClass> = sourceMap.newValueIterator();
+    const linkedIter:ValueIterator<PetStoreProduct,ValueClass> = sourceMap.newValueIterator();
     for (; linkedIter.hasNext(); ) {
       const p:ValueClass = linkedIter._next();
       values[count] = p.blah1;
@@ -389,7 +389,7 @@ describe("Test LinkedHashMap functionality", function() {
 
   it("Test containsvalue", function() {
     const petStoreMap1:LinkedHashMap<PetStoreProduct,ValueClass> = new LinkedHashMap<PetStoreProduct,ValueClass> ();
-    let value:ValueClass = new ValueClass();
+    const value:ValueClass = new ValueClass();
     value.blah1 = 9;
     expect (petStoreMap1.containsValue (value)).toEqual(false);
 

@@ -60,7 +60,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
      * @param {V} value value
      */
     public add (value:K) : boolean {
-        let result:boolean = super.add(value); 
+        const result:boolean = super.add(value); 
         if (result === false) 
           return false;  // avoid inserting duplicate
 
@@ -72,11 +72,11 @@ export class LinkedHashSet<K> extends HashSet<K> {
      * @param {V} value value
      */
     public remove (value:K) : boolean {
-        let result:boolean = super.remove(value);
+        const result:boolean = super.remove(value);
         if (result === false) 
           return false;  // not there dont proceed further
 
-        let linkedIter:LinkedIterator<K> = this.Iterator();
+        const linkedIter:LinkedIterator<K> = this.Iterator();
         for (; linkedIter.hasNext(); ) {
            const val:LinkedEntry<K> = linkedIter.next();
            if (val.equals(value) === true) {
@@ -88,7 +88,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
     }
 
     private createEntry (value:K) : boolean {
-        let e:LinkedEntry<K> = new LinkedEntry<K>(value);
+        const e:LinkedEntry<K> = new LinkedEntry<K>(value);
         e.addBefore(this.header);
         return true;
     }
@@ -102,7 +102,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
      * Java style iterator retrieves hash set values by insertion order.
      */
     public Iterator () : LinkedIterator<K> {
-        let iter:LinkedIterator<K> = new LinkedIterator<K>(this);
+        const iter:LinkedIterator<K> = new LinkedIterator<K>(this);
         return iter;
     }
 
@@ -185,7 +185,7 @@ export class LinkedIterator<K> implements JIterator<LinkedEntry<K>> {
     private nextEntry () : LinkedEntry<K> {
         if(this.check() === false)
           return null;
-        let e:LinkedEntry<K> = this.lastReturned = this.next_Entry;
+        const e:LinkedEntry<K> = this.lastReturned = this.next_Entry;
         this.next_Entry = e.after;
         return e;
     }

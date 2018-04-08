@@ -119,13 +119,13 @@ describe("Test LinkedHashSet functionality", function() {
   it("Test-1 value jiterator three entries", function() {
     const petStoreSet1:LinkedHashSet<PetStoreProduct> = new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
     let count:number = 0;
-    let values:string[] = [];
+    const values:string[] = [];
 
     petStoreSet1.add (product1);
     petStoreSet1.add (product2);
     petStoreSet1.add (product3);
 
-    let linkedIter:LinkedIterator<PetStoreProduct> = petStoreSet1.Iterator();
+    const linkedIter:LinkedIterator<PetStoreProduct> = petStoreSet1.Iterator();
     for (; linkedIter.hasNext(); ) {
       const p:PetStoreProduct = linkedIter._next();
       values[count] = p.getProductName();
@@ -141,13 +141,13 @@ describe("Test LinkedHashSet functionality", function() {
   it("Test-2 value jiterator three entries", function() {
     const stringSet:LinkedHashSet<string> = new LinkedHashSet<string> (new AllFieldHashable<string>());
     let count:number = 0;
-    let values:string[] = [];
+    const values:string[] = [];
 
     stringSet.add ("3");
     stringSet.add ("2");
     stringSet.add ("1");
 
-    let linkedIter:LinkedIterator<string> = stringSet.Iterator();
+    const linkedIter:LinkedIterator<string> = stringSet.Iterator();
     for (; linkedIter.hasNext(); ) {
       const s:string = linkedIter._next();
       values[count] = s;
@@ -171,9 +171,9 @@ describe("Test LinkedHashSet functionality", function() {
     expect (destinationSet.size ()).toEqual(3);
 
     let count:number = 0;
-    let values:string[] = [];
+    const values:string[] = [];
 
-    let linkedIter:LinkedIterator<string> = destinationSet.Iterator();
+    const linkedIter:LinkedIterator<string> = destinationSet.Iterator();
     for (; linkedIter.hasNext(); ) {
       const s:string = linkedIter._next();
       values[count] = s;
@@ -196,9 +196,9 @@ describe("Test LinkedHashSet functionality", function() {
     expect (sourceSet.remove("B")).toEqual(true);
   
     let count:number = 0;
-    let values:string[] = [];
+    const values:string[] = [];
 
-    let linkedIter:LinkedIterator<string> = sourceSet.Iterator();
+    const linkedIter:LinkedIterator<string> = sourceSet.Iterator();
     for (; linkedIter.hasNext(); ) {
       const s:string = linkedIter._next();
       values[count] = s;

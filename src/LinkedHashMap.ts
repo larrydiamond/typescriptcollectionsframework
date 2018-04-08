@@ -78,7 +78,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      * @param {V} key key value
      */
     public remove (key:K) : V {
-        let result:V = super.remove(key);
+        const result:V = super.remove(key);
         if (result === null || result === undefined) 
           return null;  // not there dont proceed further
 
@@ -95,7 +95,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      * @param key key with which the specified value is to be associated
      */
     public get (key: K) : V {
-        let entry:LinkedEntry<K,V> = <LinkedEntry<K,V>>this.getEntry(key);
+        const entry:LinkedEntry<K,V> = <LinkedEntry<K,V>>this.getEntry(key);
         if ((entry === null) || (entry === undefined))
           return undefined;
         return entry.getValue();
@@ -111,7 +111,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      */
     public addEntry (hash: number, key: K, value: V, bucket?: number) : void {
         this.createEntry(hash, key, value, bucket);
-        let eldest:LinkedEntry<K,V> = this.header.after;
+        const eldest:LinkedEntry<K,V> = this.header.after;
         if (this.removeEldestEntry(eldest)) {
             this.removeEntryForKey(eldest.getKey());
         } else {
@@ -120,7 +120,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
     }
 
     private createEntry (hash:number, key:K, value:V, bucket?:number) : void {
-        let e:LinkedEntry<K,V> = new LinkedEntry<K,V>(hash,key,value);
+        const e:LinkedEntry<K,V> = new LinkedEntry<K,V>(hash,key,value);
         e.addBefore(this.header);
     }
 
@@ -228,7 +228,7 @@ export class LinkedHashIterator<K,V> implements JIterator<LinkedEntry<K,V>> {
     private nextEntry () : LinkedEntry<K,V> {
         if(this.check() === false)
           return null;
-        let e:LinkedEntry<K,V> = this.lastReturned = this.next_Entry;
+        const e:LinkedEntry<K,V> = this.lastReturned = this.next_Entry;
         this.next_Entry = e.after;
         return e;
     }
