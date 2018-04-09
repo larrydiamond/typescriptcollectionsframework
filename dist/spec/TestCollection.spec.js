@@ -207,6 +207,9 @@ function testAddOneItemToStringCollection(coll) {
     expect(coll.add("blah")).toEqual(true);
     expect(coll.isEmpty()).toEqual(false);
     expect(coll.size()).toEqual(1);
+    var testCount = 0;
+    coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
+    expect(testCount).toEqual(1);
 }
 function testAddOneItemToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -214,6 +217,9 @@ function testAddOneItemToNumberCollection(coll) {
     expect(coll.add(100)).toEqual(true);
     expect(coll.isEmpty()).toEqual(false);
     expect(coll.size()).toEqual(1);
+    var testCount = 0;
+    coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
+    expect(testCount).toEqual(1);
 }
 function testAddTwoItemsToStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -224,6 +230,9 @@ function testAddTwoItemsToStringCollection(coll) {
     expect(coll.add("more")).toEqual(true);
     expect(coll.isEmpty()).toEqual(false);
     expect(coll.size()).toEqual(2);
+    var testCount = 0;
+    coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
+    expect(testCount).toEqual(2);
 }
 function testAddTwoItemsToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -234,6 +243,9 @@ function testAddTwoItemsToNumberCollection(coll) {
     expect(coll.add(200)).toEqual(true);
     expect(coll.isEmpty()).toEqual(false);
     expect(coll.size()).toEqual(2);
+    var testCount = 0;
+    coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
+    expect(testCount).toEqual(2);
 }
 function testAddItemsToStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -243,6 +255,9 @@ function testAddItemsToStringCollection(coll) {
     expect(coll.size()).toEqual(10);
     expect(coll.contains("notfound")).toEqual(false);
     expect(coll.contains("sixth")).toEqual(true);
+    var testCount = 0;
+    coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
+    expect(testCount).toEqual(10);
 }
 function testAddItemsToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -252,4 +267,7 @@ function testAddItemsToNumberCollection(coll) {
     expect(coll.size()).toEqual(10);
     expect(coll.contains(31415926553)).toEqual(false);
     expect(coll.contains(500)).toEqual(true);
+    var testCount = 0;
+    coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
+    expect(testCount).toEqual(10);
 }

@@ -227,12 +227,17 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
   coll.forEach(failActionNumber);
 }
 
+
 function testAddOneItemToStringCollection (coll:Collection<string>) : void {
    expect (coll.isEmpty ()).toEqual(true);
    expect (coll.size ()).toEqual(0);
    expect (coll.add ("blah")).toEqual (true);
    expect (coll.isEmpty ()).toEqual(false);
    expect (coll.size ()).toEqual(1);
+
+   let testCount : number = 0;
+   coll.forEach ({ accept(element:string) { testCount = testCount + 1; } });
+   expect (testCount).toEqual (1);
 }
 
 function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
@@ -241,6 +246,10 @@ function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
   expect (coll.add (100)).toEqual (true);
   expect (coll.isEmpty ()).toEqual(false);
   expect (coll.size ()).toEqual(1);
+
+  let testCount : number = 0;
+  coll.forEach ({ accept(element:number) { testCount = testCount + 1; } });
+  expect (testCount).toEqual (1);
 }
 
 function testAddTwoItemsToStringCollection (coll:Collection<string>) : void {
@@ -252,6 +261,10 @@ function testAddTwoItemsToStringCollection (coll:Collection<string>) : void {
    expect (coll.add ("more")).toEqual (true);
    expect (coll.isEmpty ()).toEqual(false);
    expect (coll.size ()).toEqual(2);
+
+   let testCount : number = 0;
+   coll.forEach ({ accept(element:string) { testCount = testCount + 1; } });
+   expect (testCount).toEqual (2);
 }
 
 function testAddTwoItemsToNumberCollection (coll:Collection<number>) : void {
@@ -263,6 +276,10 @@ function testAddTwoItemsToNumberCollection (coll:Collection<number>) : void {
   expect (coll.add (200)).toEqual (true);
   expect (coll.isEmpty ()).toEqual(false);
   expect (coll.size ()).toEqual(2);
+
+  let testCount : number = 0;
+  coll.forEach ({ accept(element:number) { testCount = testCount + 1; } });
+  expect (testCount).toEqual (2);
 }
 
 function testAddItemsToStringCollection (coll:Collection<string>) : void {
@@ -273,6 +290,10 @@ function testAddItemsToStringCollection (coll:Collection<string>) : void {
    expect (coll.size ()).toEqual(10);
    expect (coll.contains ("notfound")).toEqual (false);
    expect (coll.contains ("sixth")).toEqual (true);
+
+   let testCount : number = 0;
+   coll.forEach ({ accept(element:string) { testCount = testCount + 1; } });
+   expect (testCount).toEqual (10);
 }
 
 function testAddItemsToNumberCollection (coll:Collection<number>) : void {
@@ -283,4 +304,8 @@ function testAddItemsToNumberCollection (coll:Collection<number>) : void {
   expect (coll.size ()).toEqual(10);
   expect (coll.contains (31415926553)).toEqual (false);
   expect (coll.contains (500)).toEqual (true);
+
+  let testCount : number = 0;
+  coll.forEach ({ accept(element:number) { testCount = testCount + 1; } });
+  expect (testCount).toEqual (10);
 }
