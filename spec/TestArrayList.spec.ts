@@ -142,6 +142,7 @@ describe("Test ArrayList functionality", function() {
 
   it("Test indexof", function() {
     const arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+    expect (arraylist.indexOf(product1)).toEqual(-1);
     expect (arraylist.lastIndexOf(product1)).toEqual(-1);
 
     expect (arraylist.add (product1)).toEqual (true);

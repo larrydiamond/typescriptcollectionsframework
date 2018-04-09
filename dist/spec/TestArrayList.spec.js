@@ -112,6 +112,7 @@ describe("Test ArrayList functionality", function () {
     });
     it("Test indexof", function () {
         var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        expect(arraylist.indexOf(product1)).toEqual(-1);
         expect(arraylist.lastIndexOf(product1)).toEqual(-1);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
