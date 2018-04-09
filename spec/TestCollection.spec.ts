@@ -17,6 +17,7 @@ import {ImmutableCollection} from "../src/ImmutableCollection";
 import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
 import {PriorityQueue} from "../src/PriorityQueue";
+import {SkipListSet} from "../src/SkipList";
 import {TreeSet} from "../src/TreeSet";
 import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
 
@@ -30,6 +31,7 @@ describe("Test Collection", function() {
     testEmptyStringCollection(new HashSet<string> (new AllFieldHashable<string>()), "HashSet AllFieldHashable");
     testEmptyStringCollection(Collections.emptyList<string>(), "EmptyList");
     testEmptyStringCollection(Collections.emptySet<string>(), "EmptySet");
+    testEmptyStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet");
     testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet");
     testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
   });
@@ -43,6 +45,7 @@ describe("Test Collection", function() {
     testEmptyNumberCollection(new HashSet<number> (new AllFieldHashable<number>()));
     testEmptyNumberCollection(Collections.emptyList<number>());
     testEmptyNumberCollection(Collections.emptySet<number>());
+    testEmptyNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testEmptyNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testEmptyNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
@@ -61,6 +64,7 @@ describe("Test Collection", function() {
     testAddOneItemToStringCollection(alc);
     testAddOneItemToStringCollection(llc);
     testAddOneItemToStringCollection(hsc);
+    testAddOneItemToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
     testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
     testAddOneItemToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
@@ -79,6 +83,7 @@ describe("Test Collection", function() {
     testAddOneItemToNumberCollection(alc);
     testAddOneItemToNumberCollection(llc);
     testAddOneItemToNumberCollection(hsc);
+    testAddOneItemToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
@@ -97,6 +102,7 @@ describe("Test Collection", function() {
     testAddTwoItemsToStringCollection(alc);
     testAddTwoItemsToStringCollection(llc);
     testAddTwoItemsToStringCollection(hsc);
+    testAddTwoItemsToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
     testAddTwoItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
     testAddTwoItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
@@ -115,6 +121,7 @@ describe("Test Collection", function() {
     testAddTwoItemsToNumberCollection(alc);
     testAddTwoItemsToNumberCollection(llc);
     testAddTwoItemsToNumberCollection(hsc);
+    testAddTwoItemsToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddTwoItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddTwoItemsToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
@@ -133,6 +140,7 @@ describe("Test Collection", function() {
     testAddItemsToStringCollection(alc);
     testAddItemsToStringCollection(llc);
     testAddItemsToStringCollection(hsc);
+    testAddItemsToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
     testAddItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
     testAddItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
   });
@@ -151,6 +159,7 @@ describe("Test Collection", function() {
     testAddItemsToNumberCollection(alc);
     testAddItemsToNumberCollection(llc);
     testAddItemsToNumberCollection(hsc);
+    testAddItemsToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddItemsToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
   });
