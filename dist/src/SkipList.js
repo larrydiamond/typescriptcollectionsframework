@@ -774,12 +774,7 @@ var SkipListMap = /** @class */ (function () {
     * @return {boolean} true if this map contains no key-value mappings
     */
     SkipListMap.prototype.isEmpty = function () {
-        if (this.impl.size() > 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return this.impl.isEmpty();
     };
     /**
     * Returns an ImmutableSet view of the keys contained in this map.
@@ -1213,12 +1208,7 @@ var SkipListSet = /** @class */ (function () {
     * @return {boolean} true if this set contains no elements
     */
     SkipListSet.prototype.isEmpty = function () {
-        if (this.impl.size() > 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return this.impl.isEmpty();
     };
     /**
     * Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals

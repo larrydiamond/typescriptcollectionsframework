@@ -811,11 +811,7 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   * @return {boolean} true if this map contains no key-value mappings
   */
   public isEmpty () : boolean {
-    if (this.impl.size() > 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.impl.isEmpty();
   }
 
   /**
@@ -1279,11 +1275,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
   * @return {boolean} true if this set contains no elements
   */
   public isEmpty () : boolean {
-    if (this.impl.size() > 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.impl.isEmpty();
   }
 
   /**
