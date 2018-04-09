@@ -366,6 +366,7 @@ describe("Test ArrayList functionality", function() {
   it("Test removeall", function() {
     const arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
     expect (arraylist.removeAll(null)).toEqual(false);
+    expect (arraylist.removeAll(undefined)).toEqual(false);
     expect (arraylist.add (product1)).toEqual (true);
     expect (arraylist.add (product2)).toEqual (true);
 

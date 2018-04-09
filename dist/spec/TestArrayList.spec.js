@@ -289,6 +289,7 @@ describe("Test ArrayList functionality", function () {
     it("Test removeall", function () {
         var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         expect(arraylist.removeAll(null)).toEqual(false);
+        expect(arraylist.removeAll(undefined)).toEqual(false);
         expect(arraylist.add(product1)).toEqual(true);
         expect(arraylist.add(product2)).toEqual(true);
         var removelist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
