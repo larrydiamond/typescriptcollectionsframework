@@ -58,15 +58,15 @@ describe("Test Collection", function() {
     const llc:LinkedList<string> = new LinkedList<string> (new AllFieldCollectable<string>());
     const hsc:HashSet<string> = new HashSet<string> (new AllFieldHashable<string>());
 
-    testAddOneItemToStringCollection(al);
-    testAddOneItemToStringCollection(ll);
-    testAddOneItemToStringCollection(hs);
-    testAddOneItemToStringCollection(alc);
-    testAddOneItemToStringCollection(llc);
-    testAddOneItemToStringCollection(hsc);
-    testAddOneItemToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
-    testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
-    testAddOneItemToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
+    testAddOneItemToStringCollection(al, "ArrayList");
+    testAddOneItemToStringCollection(ll, "LinkedList");
+    testAddOneItemToStringCollection(hs, "HashSet");
+    testAddOneItemToStringCollection(alc, "ArrayList AllFieldCollectable");
+    testAddOneItemToStringCollection(llc, "LinkedList AllFieldCollectable");
+    testAddOneItemToStringCollection(hsc, "HashSet AllFieldCollectable");
+    testAddOneItemToStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet StringComparator");
+    testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet StringComparator");
+    testAddOneItemToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue StringComparator");
   });
 
   it("Test add one item to number Collections", function() {
@@ -237,7 +237,10 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
 }
 
 
-function testAddOneItemToStringCollection (coll:Collection<string>) : void {
+function testAddOneItemToStringCollection (coll:Collection<string>, typestring:string) : void {
+   expect (coll.isEmpty ()).toEqual(true);
+   expect (coll.size ()).toEqual(0);
+   coll.clear();
    expect (coll.isEmpty ()).toEqual(true);
    expect (coll.size ()).toEqual(0);
    expect (coll.add ("blah")).toEqual (true);
@@ -250,6 +253,9 @@ function testAddOneItemToStringCollection (coll:Collection<string>) : void {
 }
 
 function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
+  expect (coll.isEmpty ()).toEqual(true);
+  expect (coll.size ()).toEqual(0);
+  coll.clear();
   expect (coll.isEmpty ()).toEqual(true);
   expect (coll.size ()).toEqual(0);
   expect (coll.add (100)).toEqual (true);
@@ -274,6 +280,9 @@ function testAddTwoItemsToStringCollection (coll:Collection<string>) : void {
    let testCount : number = 0;
    coll.forEach ({ accept(element:string) { testCount = testCount + 1; } });
    expect (testCount).toEqual (2);
+   coll.clear();
+   expect (coll.isEmpty ()).toEqual(true);
+   expect (coll.size ()).toEqual(0);
 }
 
 function testAddTwoItemsToNumberCollection (coll:Collection<number>) : void {
@@ -289,6 +298,9 @@ function testAddTwoItemsToNumberCollection (coll:Collection<number>) : void {
   let testCount : number = 0;
   coll.forEach ({ accept(element:number) { testCount = testCount + 1; } });
   expect (testCount).toEqual (2);
+  coll.clear();
+  expect (coll.isEmpty ()).toEqual(true);
+  expect (coll.size ()).toEqual(0);
 }
 
 function testAddItemsToStringCollection (coll:Collection<string>) : void {

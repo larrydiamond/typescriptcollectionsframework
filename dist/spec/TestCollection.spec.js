@@ -51,15 +51,15 @@ describe("Test Collection", function () {
         var alc = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var llc = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         var hsc = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
-        testAddOneItemToStringCollection(al);
-        testAddOneItemToStringCollection(ll);
-        testAddOneItemToStringCollection(hs);
-        testAddOneItemToStringCollection(alc);
-        testAddOneItemToStringCollection(llc);
-        testAddOneItemToStringCollection(hsc);
-        testAddOneItemToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
-        testAddOneItemToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
+        testAddOneItemToStringCollection(al, "ArrayList");
+        testAddOneItemToStringCollection(ll, "LinkedList");
+        testAddOneItemToStringCollection(hs, "HashSet");
+        testAddOneItemToStringCollection(alc, "ArrayList AllFieldCollectable");
+        testAddOneItemToStringCollection(llc, "LinkedList AllFieldCollectable");
+        testAddOneItemToStringCollection(hsc, "HashSet AllFieldCollectable");
+        testAddOneItemToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet StringComparator");
+        testAddOneItemToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet StringComparator");
+        testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue StringComparator");
     });
     it("Test add one item to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -210,7 +210,10 @@ function testEmptyNumberCollection(coll) {
     expect(ir.done).toEqual(true);
     coll.forEach(failActionNumber);
 }
-function testAddOneItemToStringCollection(coll) {
+function testAddOneItemToStringCollection(coll, typestring) {
+    expect(coll.isEmpty()).toEqual(true);
+    expect(coll.size()).toEqual(0);
+    coll.clear();
     expect(coll.isEmpty()).toEqual(true);
     expect(coll.size()).toEqual(0);
     expect(coll.add("blah")).toEqual(true);
@@ -221,6 +224,9 @@ function testAddOneItemToStringCollection(coll) {
     expect(testCount).toEqual(1);
 }
 function testAddOneItemToNumberCollection(coll) {
+    expect(coll.isEmpty()).toEqual(true);
+    expect(coll.size()).toEqual(0);
+    coll.clear();
     expect(coll.isEmpty()).toEqual(true);
     expect(coll.size()).toEqual(0);
     expect(coll.add(100)).toEqual(true);
@@ -242,6 +248,9 @@ function testAddTwoItemsToStringCollection(coll) {
     var testCount = 0;
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(2);
+    coll.clear();
+    expect(coll.isEmpty()).toEqual(true);
+    expect(coll.size()).toEqual(0);
 }
 function testAddTwoItemsToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -255,6 +264,9 @@ function testAddTwoItemsToNumberCollection(coll) {
     var testCount = 0;
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(2);
+    coll.clear();
+    expect(coll.isEmpty()).toEqual(true);
+    expect(coll.size()).toEqual(0);
 }
 function testAddItemsToStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
