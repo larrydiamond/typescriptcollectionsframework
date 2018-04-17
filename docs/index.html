@@ -45,7 +45,7 @@
 			</section>
 
 		<!-- One -->
-			<section id="one" class="wrapper style1">
+			<section id="samplecollection" class="wrapper style1">
 				<header class="major">
 					<h2>Add to your project:</h2>
 					<p>npm install typescriptcollectionsframework --save</p>
@@ -60,25 +60,25 @@
 	<span style="color: #FF00FF">export class</span>&nbsp;<span style="color: #FDD017">Demo {</span>
 	<br>
 	&nbsp;&nbsp;<span style="color: #FF00FF">public</span>
-	<span style="color: #FDD017">allProducts</span><span style="color: #C0C0C0">:</span><span style="color: #FDD017">ArrayList&#60;</span><span style="color: #1589FF">PetStoreProduct</span><span style="color: #FDD017">&#62;</span>
+	<span style="color: #FDD017">allProducts</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;<span style="color: #FDD017">ArrayList&#60;</span><span style="color: #1589FF">PetStoreProduct</span><span style="color: #FDD017">&#62;</span>
 	<span style="color: #C0C0C0">= new <span style="color: #FDD017">ArrayList&#60;</span><span style="color: #1589FF">PetStoreProduct</span><span style="color: #FDD017">&#62;();</span>
 	<br>
 	&nbsp;&nbsp;<span style="color: #FF00FF">public</span>&nbsp;<span style="color: #C0C0C0">myMethod () :</span>&nbsp;<span style="color: #1589FF">void</span>&nbsp;<span style="color: #C0C0C0">{</span>
 	<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF2400">allProducts</span>.<span style="color: #1589FF">add</span>&nbsp;<span style="color: #C0C0C0">(new</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF2400">this</span>.<span style="color: #FF2400">allProducts</span>.<span style="color: #1589FF">add</span>&nbsp;<span style="color: #C0C0C0">(new</span>
 	<span style="color: #FDD017">PetStoreProduct</span>&nbsp;(<span style="color: #4CC417">"Cat Food"</span>,&nbsp;<span style="color: #4CC417">4.99</span><span style="color: #C0C0C0">));</span>
 	<br><br>
-	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">let</span>&nbsp;<span style="color: #FF2400">numberElements</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;<span style="color: #1589FF">number</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">allProducts</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">size</span><span style="color: #C0C0C0">();</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">let</span>&nbsp;<span style="color: #FF2400">numberElements</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;<span style="color: #1589FF">number</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">this</span>.<span style="color: #FF2400">allProducts</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">size</span><span style="color: #C0C0C0">();</span>
 	<br>
 	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">let</span>&nbsp;<span style="color: #FF2400">offset</span>&nbsp;<span style="color: #C0C0C0">:</span>
-	<span style="color: #1589FF">number</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">allProducts</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">indexOf</span>
-	<span style="color: #C0C0C0">(new</span>&nbsp;<span style="color: #FDD017">PetStoreProduct</span>&nbsp;<span style="color: #C0C0C0">(</span><span style="color: #4CC417">"Dog Food"</span><span style="color: #C0C0C0">,</span>&nbsp;</span><span style="color: #4CC417">9.99</span><span style="color: #C0C0C0">));</span>
+	<span style="color: #1589FF">number</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">this</span>.<span style="color: #FF2400">allProducts</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">indexOf</span>
+	<span style="color: #C0C0C0">(new</span>&nbsp;<span style="color: #FDD017">PetStoreProduct</span>&nbsp;<span style="color: #C0C0C0">(</span><span style="color: #4CC417">"Leash"</span><span style="color: #C0C0C0">,</span>&nbsp;</span><span style="color: #4CC417">9.99</span><span style="color: #C0C0C0">));</span>
 	<br><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">for</span>&nbsp;<span style="color: #C0C0C0">(</span><span style="color: #FF00FF">const</span>
 	<span style="color: #FF2400">iter</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;<span style="color: #FDD017">JIterator</span><span style="color: #C0C0C0">&#60;</span><span style="color: #FDD017">PetStoreProduct</span><span style="color: #C0C0C0">&#62; =</span>&nbsp;
-	<span style="color: #FF2400">allProducts</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">iterator</span>&nbsp;<span style="color: #C0C0C0">();</span>&nbsp;<span style="color: #FF2400">iter</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">hasNext</span><span style="color: #C0C0C0">();) {</span>
+	<span style="color: #FF2400">this</span>.<span style="color: #FF2400">allProducts</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">iterator</span>&nbsp;<span style="color: #C0C0C0">();</span>&nbsp;<span style="color: #FF2400">iter</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">hasNext</span><span style="color: #C0C0C0">();&nbsp;) {</span>
 	<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">const</span>&nbsp;<span style="color: #FF2400">element</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">const</span>&nbsp;<span style="color: #FF2400">element</span>&nbsp;<span style="color: #C0C0C0">:</span>
 	<span style="color: #FDD017">PetStoreProduct</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">iter</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">next</span><span style="color: #C0C0C0">();</span>
 	<br>
 	&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #C0C0C0">}</span>
@@ -92,62 +92,94 @@
 						<div class="4u">
 							<section class="special box">
 								<h3>Sample Code</h3>
-								<p>The TypeScript Collections Framework is easy to use and has very familiar syntax.    It does not require a DOM and has only one dev dependency.</p>
+								<p>The TypeScript Collections Framework is easy to use and has very familiar syntax.    It does not require a DOM and only has dev dependencies.</p>
 							</section>
 						</div>
 					</div>
 				</div>
 			</section>
 
-		<!-- Two -->
-			<section id="two" class="wrapper style1">
+			<section id="collectionspicture" class="wrapper style1">
 				<header class="major">
-					<h2>Many Collections written and ready for use</h2>
+					<h2>Your Collections are ready</h2>
 				</header>
 				<div class="container">
 					<div class="row">
 						<div class="12u">
 							<section class="special">
 								<img src="images/collections.png" alt="Collections" />
-								<h3>Mollis adipiscing nisl</h3>
-								<p>Eget mi ac magna cep lobortis faucibus accumsan enim lacinia adipiscing metus urna adipiscing cep commodo id. Ac quis arcu amet. Arcu nascetur lorem adipiscing non faucibus odio nullam arcu lobortis. Aliquet ante feugiat. Turpis aliquet ac posuere volutpat lorem arcu aliquam lorem.</p>
-								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
 							</section>
 						</div>
 					</div>
 				</div>
 			</section>
 
+
+
 		<!-- Three -->
-			<section id="three" class="wrapper style1">
+			<section id="samplemap" class="wrapper style1">
+				<header class="major">
+					<h2>Maps are implemented too</h2>
+				</header>
 				<div class="container">
 					<div class="row">
-						<div class="8u">
-							<section>
-								<h2>3Mollis ut adipiscing</h2>
-								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-								<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
+
+						<div class="4u">
+							<section class="special box">
+								<h3>Sample Code</h3>
+								<p>Familiar API.  Simple syntax.<br>Ready for use now.</p>
 							</section>
 						</div>
-						<div class="4u">
-							<section>
-								<h3>Magna massa blandit</h3>
-								<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>
-								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
+
+						<div class="8u">
+							<section class="code align-left box" style="background-color: #000000">
+						<span style="color: #FF00FF">import</span>&nbsp;<span style="color: #C0C0C0">{</span>&nbsp;<span style="color: #FF2400">HashMap</span>&nbsp;<span style="color: #C0C0C0">}</span>
+						&nbsp;<span style="color: #FF00FF">from</span>&nbsp;<span style="color: #4CC417">'typescriptcollectionsframework'</span><span style="color: #C0C0C0">;</span>
+						<br>
+						<span style="color: #FF00FF">export class</span>&nbsp;<span style="color: #FDD017">MapDemo {</span>
+						<br>
+						&nbsp;&nbsp;<span style="color: #FF00FF">public</span>
+						<span style="color: #FDD017">products</span><span style="color: #C0C0C0">:</span><span style="color: #FDD017">HashMap&#60;</span><span style="color: #1589FF">KeyType</span><span style="color: #FDD017">,</span><span style="color: #1589FF">ValueType</span><span style="color: #FDD017">&#62;</span>
+						<span style="color: #C0C0C0">= new <span style="color: #FDD017">HashMap&#60;</span><span style="color: #1589FF">KeyType</span><span style="color: #FDD017">,</span><span style="color: #1589FF">ValueType</span><span style="color: #FDD017">&#62;();</span>
+						<br>
+						&nbsp;&nbsp;<span style="color: #FF00FF">public</span>&nbsp;<span style="color: #C0C0C0">myMethod (key : </span><span style="color: #1589FF">KeyType</span>, value : <span style="color: #1589FF">ValueType</span>) :</span>&nbsp;<span style="color: #1589FF">void</span>&nbsp;<span style="color: #C0C0C0">{</span>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF2400">this</span>.<span style="color: #FF2400">products</span>.<span style="color: #1589FF">put</span>&nbsp;<span style="color: #C0C0C0">(</span><span style="color: #FF2400">key</span><span style="color: #C0C0C0">,</span>&nbsp;<span style="color: #FF2400">value</span><span style="color: #C0C0C0">);</span>
+						<br><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">let</span>&nbsp;<span style="color: #FF2400">numberElements</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;<span style="color: #1589FF">number</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">this</span>.<span style="color: #FF2400">products</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">size</span><span style="color: #C0C0C0">();</span>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">let</span>&nbsp;<span style="color: #FF2400">offset</span>&nbsp;<span style="color: #C0C0C0">:</span>
+						<span style="color: #1589FF">number</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">this</span>.<span style="color: #FF2400">products</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">indexOf</span>
+						<span style="color: #C0C0C0">(</span><span style="color: #FF2400">key</span><span style="color: #C0C0C0">);</span>
+						<br><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">for</span>&nbsp;<span style="color: #C0C0C0">(</span><span style="color: #FF00FF">const</span>
+						<span style="color: #FF2400">iter</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;<span style="color: #FDD017">JIterator</span><span style="color: #C0C0C0">&#60;</span><span style="color: #FDD017">KeyType</span><span style="color: #C0C0C0">&#62; =</span>&nbsp;
+						<span style="color: #FF2400">this</span>.<span style="color: #FF2400">products</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">iterator</span>&nbsp;<span style="color: #C0C0C0">();</span>&nbsp;<span style="color: #FF2400">iter</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">hasNext</span><span style="color: #C0C0C0">();&nbsp;) {</span>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #FF00FF">const</span>&nbsp;<span style="color: #FF2400">element</span>&nbsp;<span style="color: #C0C0C0">:</span>&nbsp;
+						<span style="color: #FDD017">KeyType</span>&nbsp;<span style="color: #C0C0C0">=</span>&nbsp;<span style="color: #FF2400">iter</span><span style="color: #C0C0C0">.</span><span style="color: #1589FF">next</span><span style="color: #C0C0C0">();</span>
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #C0C0C0">}</span>
+						<br>
+						&nbsp;&nbsp;<span style="color: #C0C0C0">)</span>
+						<br>
+						<span style="color: #FDD017">}</span>
+
 							</section>
-							<hr />
-							<section>
-								<h3>Ante sed commodo</h3>
-								<ul class="alt">
-									<li><a href="#">Erat blandit risus vis adipiscing</a></li>
-									<li><a href="#">Tempus ultricies faucibus amet</a></li>
-									<li><a href="#">Arcu commodo non adipiscing quis</a></li>
-									<li><a href="#">Accumsan vis lacinia semper</a></li>
-								</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="mapspicture" class="wrapper style1">
+				<header class="major">
+					<h2>Your Maps are ready</h2>
+				</header>
+				<div class="container">
+					<div class="row">
+						<div class="12u">
+							<section class="special">
+								<img src="images/maps.png" alt="Maps" />
 							</section>
 						</div>
 					</div>
