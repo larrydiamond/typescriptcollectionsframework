@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.1.2"></a>
+# [4.1.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.1.1...v4.1.2) (2018-04-16)
+* Update dependencies, improve code coverage, fix ArrayList clear bug
+
 <a name="4.1.1"></a>
 # [4.1.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.1.0...v4.1.1) (2018-04-08)
 * Update dependencies
