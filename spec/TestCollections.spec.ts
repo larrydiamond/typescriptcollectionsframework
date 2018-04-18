@@ -13,8 +13,40 @@ import {Hashable} from "../src/Hashable";
 import {ImmutableList} from "../src/ImmutableList";
 import {TestBoolean} from 'jasts';
 import {TestNumber} from 'jasts';
+import {TestString} from 'jasts';
+import {ArrayList} from "../src/ArrayList";
+import {SkipListSet} from "../src/SkipList";
 
 describe("Test Collections static methods", function() {
+
+  it('Test asArray for null and undefined', function () {
+    expect (Collections.asArray(null)).toEqual (null);
+    expect (Collections.asArray(undefined)).toEqual (undefined);
+  });
+
+  it ('Test asArray empty collections', function () {
+    const al : ArrayList<string> = new ArrayList<string>();
+    const ala : Array<string> = Collections.asArray(al);
+    TestNumber.equals ("Empty Array from SkipListMap should have length zero", ala.length, 0);
+
+    const sl : SkipListSet<string> = new SkipListSet<string>(Collections.getStringComparator());
+    const sla : Array<string> = Collections.asArray(sl);
+    TestNumber.equals ("Empty Array from SkipListMap should have length zero", sla.length, 0);
+  });
+
+  it ('Test asArray populated collections', function () {
+    const al : ArrayList<string> = new ArrayList<string>();
+    al.add ("first");
+    al.add ("second");
+    al.add ("third");
+    al.add ("fourth");
+    const ala : Array<string> = Collections.asArray(al);
+    TestNumber.equals ("Populated Array from SkipListMap should have length four", ala.length, 4);
+    TestString.equals ("first string is first", ala[0], "first");
+    TestString.equals ("second string is second", ala[1], "second");
+    TestString.equals ("third string is third", ala[2], "third");
+    TestString.equals ("fourth string is fourth", ala[3], "fourth");
+  });
 
   it("getStringComparator compare with self", function() {
     const comp:Comparator<string> = Collections.getStringComparator();

@@ -286,6 +286,23 @@ var Collections = /** @class */ (function () {
         };
         return tmp;
     };
+    /**
+     * Returns an Array of the elements of this Immutable Collection
+     */
+    Collections.asArray = function (icoll) {
+        if (icoll === null)
+            return null;
+        if (icoll === undefined)
+            return undefined;
+        var tmp = new Array(icoll.size());
+        var offset = 0;
+        for (var iter = icoll.iterator(); iter.hasNext();) {
+            var elem = iter.next();
+            tmp[offset] = elem;
+            offset = offset + 1;
+        }
+        return tmp;
+    };
     return Collections;
 }());
 exports.Collections = Collections;

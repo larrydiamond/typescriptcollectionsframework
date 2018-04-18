@@ -303,4 +303,22 @@ export class Collections {
     return tmp;
   }
 
+  /**
+   * Returns an Array of the elements of this Immutable Collection
+   */
+  public static asArray<T> (icoll : ImmutableCollection<T>) : Array<T> {
+    if (icoll === null) return null;
+    if (icoll === undefined) return undefined;
+    const tmp : Array<T> = new Array<T>(icoll.size());
+
+    let offset:number = 0;
+    for (const iter:JIterator<T> = icoll.iterator(); iter.hasNext(); ) {
+      const elem : T = iter.next();
+      tmp [offset] = elem;
+      offset = offset + 1;
+    }
+
+    return tmp;
+  }
+
 }

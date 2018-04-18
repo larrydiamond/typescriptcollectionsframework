@@ -10,7 +10,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Collections_1 = require("../src/Collections");
 var jasts_1 = require("jasts");
 var jasts_2 = require("jasts");
+var jasts_3 = require("jasts");
+var ArrayList_1 = require("../src/ArrayList");
+var SkipList_1 = require("../src/SkipList");
 describe("Test Collections static methods", function () {
+    it('Test asArray for null and undefined', function () {
+        expect(Collections_1.Collections.asArray(null)).toEqual(null);
+        expect(Collections_1.Collections.asArray(undefined)).toEqual(undefined);
+    });
+    it('Test asArray empty collections', function () {
+        var al = new ArrayList_1.ArrayList();
+        var ala = Collections_1.Collections.asArray(al);
+        jasts_2.TestNumber.equals("Empty Array from SkipListMap should have length zero", ala.length, 0);
+        var sl = new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator());
+        var sla = Collections_1.Collections.asArray(sl);
+        jasts_2.TestNumber.equals("Empty Array from SkipListMap should have length zero", sla.length, 0);
+    });
+    it('Test asArray populated collections', function () {
+        var al = new ArrayList_1.ArrayList();
+        al.add("first");
+        al.add("second");
+        al.add("third");
+        al.add("fourth");
+        var ala = Collections_1.Collections.asArray(al);
+        jasts_2.TestNumber.equals("Populated Array from SkipListMap should have length four", ala.length, 4);
+        jasts_3.TestString.equals("first string is first", ala[0], "first");
+        jasts_3.TestString.equals("second string is second", ala[1], "second");
+        jasts_3.TestString.equals("third string is third", ala[2], "third");
+        jasts_3.TestString.equals("fourth string is fourth", ala[3], "fourth");
+    });
     it("getStringComparator compare with self", function () {
         var comp = Collections_1.Collections.getStringComparator();
         jasts_2.TestNumber.equals("Comparing something with itself returns 0", comp.compare("something", "something"), 0);

@@ -50,4 +50,8 @@ export declare class Collections {
      * This method creates a Hashable for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
      */
     static dynamicHashable<K>(...values: string[]): Hashable<K>;
+    /**
+     * Returns an Array of the elements of this Immutable Collection
+     */
+    static asArray<T>(icoll: ImmutableCollection<T>): Array<T>;
 }
