@@ -7,6 +7,7 @@
 */
 import {AllFieldHashable} from "./AllFieldHashable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
+import {Collections} from "./Collections";
 import {Consumer} from "./Consumer";
 import {JIterator} from "./JIterator";
 import {Hashable} from "./Hashable";
@@ -180,6 +181,14 @@ export class HashSet<K> implements JSet<K> {
   */
   public immutableSet () : ImmutableSet<K> {
     return this;
+  }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    const tmp : Array<K> = Collections.asArray(this);
+    return JSON.stringify (tmp);
   }
 }
 

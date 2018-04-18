@@ -78,4 +78,8 @@ export declare class PriorityQueue<K> implements Queue<K> {
     * @param {Consumer} consumer - the action to be performed for each element
     */
     forEach(consumer: Consumer<K>): void;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }

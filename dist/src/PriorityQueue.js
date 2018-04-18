@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Collections_1 = require("../src/Collections");
 var TreeSet_1 = require("./TreeSet");
 /**
  * An unbounded priority queue based on a priority heap.  The elements of the priority queue are ordered by a Comparator provided at queue construction time.
@@ -137,6 +138,13 @@ var PriorityQueue = /** @class */ (function () {
             var t = iter.next();
             consumer.accept(t);
         }
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    PriorityQueue.prototype.toJSON = function () {
+        var tmp = Collections_1.Collections.asArray(this);
+        return JSON.stringify(tmp);
     };
     return PriorityQueue;
 }());

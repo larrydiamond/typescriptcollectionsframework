@@ -8,6 +8,7 @@
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
+var Collections_1 = require("./Collections");
 var TreeMap_1 = require("./TreeMap");
 /**
  * A NavigableSet implementation based on a TreeMap. The elements are ordered using a Comparator provided at set creation time.<br>
@@ -211,6 +212,13 @@ var TreeSet = /** @class */ (function () {
     */
     TreeSet.prototype.immutableSet = function () {
         return this;
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    TreeSet.prototype.toJSON = function () {
+        var tmp = Collections_1.Collections.asArray(this);
+        return JSON.stringify(tmp);
     };
     return TreeSet;
 }());

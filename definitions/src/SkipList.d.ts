@@ -419,6 +419,10 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     * Returns an ImmutableSet backed by this Set
     */
     immutableSet(): ImmutableSet<K>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class SkipListSetJIterator<T> implements JIterator<T> {
     private location;

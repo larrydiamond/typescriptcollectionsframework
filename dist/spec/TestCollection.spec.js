@@ -190,6 +190,7 @@ function testEmptyStringCollection(coll, typestring) {
     var ir = i.next();
     expect(ir.done).toEqual(true);
     coll.forEach(failActionString);
+    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(coll), '"[]"');
 }
 var failActionNumber = {
     accept: function (element) {
@@ -209,6 +210,7 @@ function testEmptyNumberCollection(coll) {
     var ir = i.next();
     expect(ir.done).toEqual(true);
     coll.forEach(failActionNumber);
+    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(coll), '"[]"');
 }
 function testAddOneItemToStringCollection(coll, typestring) {
     expect(coll.isEmpty()).toEqual(true);
@@ -222,6 +224,7 @@ function testAddOneItemToStringCollection(coll, typestring) {
     var testCount = 0;
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(1);
+    jasts_1.TestString.equals("One element array should stringify to [blah]", JSON.stringify(coll), '"[\\"blah\\"]"');
 }
 function testAddOneItemToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -235,6 +238,7 @@ function testAddOneItemToNumberCollection(coll) {
     var testCount = 0;
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(1);
+    jasts_1.TestString.equals("One element array should stringify to [100]", JSON.stringify(coll), '"[100]"');
 }
 function testAddTwoItemsToStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);

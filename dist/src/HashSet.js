@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 */
 var AllFieldHashable_1 = require("./AllFieldHashable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
+var Collections_1 = require("./Collections");
 var HashMap_1 = require("./HashMap");
 /**
  * This class implements the Set interface, backed by a HashMap instance.
@@ -161,6 +162,13 @@ var HashSet = /** @class */ (function () {
     */
     HashSet.prototype.immutableSet = function () {
         return this;
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    HashSet.prototype.toJSON = function () {
+        var tmp = Collections_1.Collections.asArray(this);
+        return JSON.stringify(tmp);
     };
     return HashSet;
 }());

@@ -96,6 +96,10 @@ export declare class HashSet<K> implements JSet<K> {
     * Returns an ImmutableSet backed by this Set
     */
     immutableSet(): ImmutableSet<K>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class HashSetJIterator<T> implements JIterator<T> {
     private location;

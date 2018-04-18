@@ -228,6 +228,10 @@ export declare class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
     * Returns an ImmutableCollection backed by this Collection
     */
     immutableCollection(): ImmutableCollection<T>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class ArrayListJIterator<T> implements JIterator<T> {
     private offset;

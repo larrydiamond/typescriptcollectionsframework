@@ -7,6 +7,7 @@
 */
 
 import {BasicIteratorResult} from "./BasicIteratorResult";
+import {Collections} from "./Collections";
 import {Comparator} from "./Comparator";
 import {Consumer} from "./Consumer";
 import {ImmutableCollection} from "./ImmutableCollection";
@@ -246,6 +247,14 @@ export class TreeSet<K> implements NavigableSet<K> {
   */
   public immutableSet () : ImmutableSet<K> {
     return this;
+  }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    const tmp : Array<K> = Collections.asArray(this);
+    return JSON.stringify (tmp);
   }
 }
 

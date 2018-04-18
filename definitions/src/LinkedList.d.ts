@@ -228,6 +228,10 @@ export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     * Returns an ImmutableCollection backed by this Collection
     */
     immutableCollection(): ImmutableCollection<T>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class LinkedListNode<T> {
     previousNode: LinkedListNode<T>;

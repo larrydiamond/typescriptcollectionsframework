@@ -1366,6 +1366,13 @@ var SkipListSet = /** @class */ (function () {
     SkipListSet.prototype.immutableSet = function () {
         return this;
     };
+    /**
+    * Override JSON.stringify handling
+    */
+    SkipListSet.prototype.toJSON = function () {
+        var tmp = Collections_1.Collections.asArray(this);
+        return JSON.stringify(tmp);
+    };
     return SkipListSet;
 }());
 exports.SkipListSet = SkipListSet;

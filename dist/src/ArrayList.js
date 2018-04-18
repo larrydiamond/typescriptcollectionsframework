@@ -9,6 +9,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
+var Collections_1 = require("./Collections");
 /**
  * Resizable-array implementation of the List interface.
  *
@@ -458,6 +459,13 @@ var ArrayList = /** @class */ (function () {
     */
     ArrayList.prototype.immutableCollection = function () {
         return this;
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    ArrayList.prototype.toJSON = function () {
+        var tmp = Collections_1.Collections.asArray(this);
+        return JSON.stringify(tmp);
     };
     return ArrayList;
 }());

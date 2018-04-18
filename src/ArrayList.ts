@@ -10,6 +10,7 @@ import {AllFieldCollectable} from "./AllFieldCollectable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collectable} from "./Collectable";
 import {Collection} from "./Collection";
+import {Collections} from "./Collections";
 import {Consumer} from "./Consumer";
 import {Deque} from "./Deque";
 import {ImmutableCollection} from "./ImmutableCollection";
@@ -522,6 +523,13 @@ export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
     return this;
   }
 
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    const tmp : Array<T> = Collections.asArray(this);
+    return JSON.stringify (tmp);
+  }
 }
 
 /* Java style iterator */

@@ -212,6 +212,8 @@ function testEmptyStringCollection (coll:ImmutableCollection<string>, typestring
   expect (ir.done).toEqual(true);
 
   coll.forEach(failActionString);
+
+  TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), '"[]"');
 }
 
 const failActionNumber:Consumer<number> = {
@@ -234,6 +236,8 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
   expect (ir.done).toEqual(true);
 
   coll.forEach(failActionNumber);
+
+  TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), '"[]"');
 }
 
 
@@ -250,6 +254,8 @@ function testAddOneItemToStringCollection (coll:Collection<string>, typestring:s
    let testCount : number = 0;
    coll.forEach ({ accept(element:string) { testCount = testCount + 1; } });
    expect (testCount).toEqual (1);
+
+   TestString.equals ("One element array should stringify to [blah]", JSON.stringify (coll), '"[\\"blah\\"]"');
 }
 
 function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
@@ -265,6 +271,8 @@ function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
   let testCount : number = 0;
   coll.forEach ({ accept(element:number) { testCount = testCount + 1; } });
   expect (testCount).toEqual (1);
+
+  TestString.equals ("One element array should stringify to [100]", JSON.stringify (coll), '"[100]"');
 }
 
 function testAddTwoItemsToStringCollection (coll:Collection<string>) : void {
