@@ -276,8 +276,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @deprecated
   */
   public deprecatedGetFirstEntryForIterator ():HashMapIteratorLocationTracker<K,V> {
-    if (this.data === null) return null;
-    if (this.data === undefined) return null;
+    if ((this.data === null) || (this.data === undefined)) return null;
 
     for (let offset:number = 0; offset < this.data.size(); offset++) {
       const tmpbucket:List<HashMapEntry<K,V>> = this.data.get (offset);
@@ -303,8 +302,7 @@ export class HashMap<K,V> implements JMap<K,V> {
   * @deprecated
   */
   public deprecatedGetNextEntryForIterator (current:HashMapIteratorLocationTracker<K,V>):HashMapIteratorLocationTracker<K,V> {
-    if (this.data === null) return null;
-    if (this.data === undefined) return null;
+    if ((this.data === null) || (this.data === undefined)) return null;
 
     // did the hashmap shrink?
     if (current.bucket > this.data.size()) return null;

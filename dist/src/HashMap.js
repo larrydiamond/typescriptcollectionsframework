@@ -271,9 +271,7 @@ var HashMap = /** @class */ (function () {
      * @deprecated
      */
     HashMap.prototype.deprecatedGetFirstEntryForIterator = function () {
-        if (this.data === null)
-            return null;
-        if (this.data === undefined)
+        if ((this.data === null) || (this.data === undefined))
             return null;
         for (var offset = 0; offset < this.data.size(); offset++) {
             var tmpbucket = this.data.get(offset);
@@ -297,9 +295,7 @@ var HashMap = /** @class */ (function () {
      * @deprecated
      */
     HashMap.prototype.deprecatedGetNextEntryForIterator = function (current) {
-        if (this.data === null)
-            return null;
-        if (this.data === undefined)
+        if ((this.data === null) || (this.data === undefined))
             return null;
         // did the hashmap shrink?
         if (current.bucket > this.data.size())
