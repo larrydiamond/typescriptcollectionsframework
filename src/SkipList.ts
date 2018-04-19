@@ -147,7 +147,7 @@ export class SkipListMapImpl<K,V> {
       if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
         const cmp:number = this.mapComparator.compare(lower.getKey(), higher.getKey());
         if (cmp === 1) {
-          console.log ("Head elements out of order");
+//          console.log ("Head elements out of order");
           return false;
         }
       }
@@ -157,18 +157,18 @@ export class SkipListMapImpl<K,V> {
       const next : SkipListNode<K,V> = this.nextHigherNode(tmp);
       if ((next !== null) && (next !== undefined)) {
         if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
-          console.log ("next node array null");
+  //        console.log ("next node array null");
           return false;
         }
         if ((tmp.getLastNodeArray() === null) || (tmp.getLastNodeArray() === undefined)) {
-          console.log ("last node array null");
+  //        console.log ("last node array null");
           return false;
         }
         const prev : SkipListNode<K,V> = next.getLastNodeArray().get (0);
         if (prev !== null) {
           const cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
           if (cmp !== 0) {
-            console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
+  //          console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
             return false;
           }
         }
@@ -179,7 +179,7 @@ export class SkipListMapImpl<K,V> {
     if (this.numberElements === count) {
       return true;
     } else {
-      console.log ("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
+  //    console.log ("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
       return false;
     }
   }
