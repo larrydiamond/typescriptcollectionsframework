@@ -164,9 +164,7 @@ var HashMap = /** @class */ (function () {
     */
     HashMap.prototype.get = function (key) {
         var tmp = this.getMapEntry(key);
-        if (tmp === null)
-            return undefined;
-        if (tmp === undefined)
+        if ((tmp === null) || (tmp === undefined))
             return undefined;
         return tmp.getValue();
     };
@@ -176,9 +174,7 @@ var HashMap = /** @class */ (function () {
      * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
      */
     HashMap.prototype.remove = function (key) {
-        if (this.data === null)
-            return null;
-        if (this.data === undefined)
+        if ((this.data === null) || (this.data === undefined))
             return null;
         if (this.data.size() < 1)
             return null;
@@ -203,9 +199,7 @@ var HashMap = /** @class */ (function () {
      */
     HashMap.prototype.containsKey = function (key) {
         var tmp = this.getMapEntry(key);
-        if (tmp === null)
-            return false;
-        if (tmp === undefined)
+        if ((tmp === null) || (tmp === undefined))
             return false;
         return true;
     };
@@ -213,9 +207,7 @@ var HashMap = /** @class */ (function () {
         return this.getMapEntry(key);
     };
     HashMap.prototype.getMapEntry = function (key) {
-        if (this.data === null)
-            return undefined;
-        if (this.data === undefined)
+        if ((this.data === null) || (this.data === undefined))
             return undefined;
         if (this.data.size() < 1)
             return undefined;
@@ -449,26 +441,18 @@ var HashMapKeySetJIterator = /** @class */ (function () {
     HashMapKeySetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) { // first time caller
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
-            if (firstEntry === null)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return false;
-            if (firstEntry === undefined)
-                return false;
-            if (firstEntry.entry === null)
-                return false;
-            if (firstEntry.entry === undefined)
+            if ((firstEntry.entry === null) || (firstEntry.entry === undefined))
                 return false;
             var first = firstEntry.entry.getKey();
             return true;
         }
         else { // we've already called this iterator before
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
-            if (tmpEntry === null)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return false;
-            if (tmpEntry === undefined)
-                return false;
-            if (tmpEntry.entry === null)
-                return false;
-            if (tmpEntry.entry === undefined)
+            if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined))
                 return false;
             var tmp = tmpEntry.entry.getKey();
             return true;
@@ -477,13 +461,9 @@ var HashMapKeySetJIterator = /** @class */ (function () {
     HashMapKeySetJIterator.prototype.next = function () {
         if (this.location === undefined) { // first time caller
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
-            if (firstEntry === null)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
-            if (firstEntry === undefined)
-                return null;
-            if (firstEntry.entry === null)
-                return null;
-            if (firstEntry.entry === undefined)
+            if ((firstEntry.entry === null) || (firstEntry.entry === undefined))
                 return null;
             var first = firstEntry.entry.getKey();
             this.location = firstEntry;
@@ -491,13 +471,9 @@ var HashMapKeySetJIterator = /** @class */ (function () {
         }
         else { // we've already called this iterator before
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
-            if (tmpEntry === null)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;
-            if (tmpEntry === undefined)
-                return null;
-            if (tmpEntry.entry === null)
-                return null;
-            if (tmpEntry.entry === undefined)
+            if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined))
                 return null;
             var tmp = tmpEntry.entry.getKey();
             this.location = tmpEntry;
@@ -554,27 +530,19 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
     HashMapEntrySetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) { // first time caller
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
-            if (firstEntry === null)
-                return false;
-            if (firstEntry === undefined)
-                return false;
-            if (firstEntry.entry === null)
-                return false;
-            if (firstEntry.entry === undefined)
-                return false;
+            if ((firstEntry === null) || (firstEntry === undefined))
+                return null;
+            if ((firstEntry.entry === null) || (firstEntry.entry === undefined))
+                return null;
             var first = firstEntry.entry.getKey();
             return true;
         }
         else { // we've already called this iterator before
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
-            if (tmpEntry === null)
-                return false;
-            if (tmpEntry === undefined)
-                return false;
-            if (tmpEntry.entry === null)
-                return false;
-            if (tmpEntry.entry === undefined)
-                return false;
+            if ((tmpEntry === null) || (tmpEntry === undefined))
+                return null;
+            if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined))
+                return null;
             var tmp = tmpEntry.entry.getKey();
             return true;
         }
@@ -582,13 +550,9 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
     HashMapEntrySetJIterator.prototype.next = function () {
         if (this.location === undefined) { // first time caller
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
-            if (firstEntry === null)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
-            if (firstEntry === undefined)
-                return null;
-            if (firstEntry.entry === null)
-                return null;
-            if (firstEntry.entry === undefined)
+            if ((firstEntry.entry === null) || (firstEntry.entry === undefined))
                 return null;
             var first = firstEntry.entry;
             this.location = firstEntry;
@@ -596,13 +560,9 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
         }
         else { // we've already called this iterator before
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
-            if (tmpEntry === null)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;
-            if (tmpEntry === undefined)
-                return null;
-            if (tmpEntry.entry === null)
-                return null;
-            if (tmpEntry.entry === undefined)
+            if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined))
                 return null;
             var tmp = tmpEntry.entry;
             this.location = tmpEntry;
