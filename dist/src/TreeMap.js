@@ -137,9 +137,7 @@ var TreeMap = /** @class */ (function () {
     * @return {number} the number of key-value mappings in this map
     */
     TreeMap.prototype.size = function () {
-        if (this.topNode === null)
-            return 0;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return 0;
         return this.sizeTree(this.topNode.getLeftNode()) + this.sizeTree(this.topNode.getRightNode()) + 1;
     };
@@ -153,9 +151,7 @@ var TreeMap = /** @class */ (function () {
         return false;
     };
     TreeMap.prototype.sizeTree = function (n) {
-        if (n === null)
-            return 0;
-        if (n === undefined)
+        if ((n === null) || (n === undefined))
             return 0;
         return this.sizeTree(n.getLeftNode()) + this.sizeTree(n.getRightNode()) + 1;
     };
@@ -279,9 +275,7 @@ var TreeMap = /** @class */ (function () {
             return null;
         }
         var thisnode = this.getNode(this.topNode, key);
-        if (thisnode === undefined)
-            return null;
-        if (thisnode === null)
+        if ((thisnode === undefined) || (thisnode === null))
             return null;
         var tmp = this.nextHigherNode(thisnode);
         if (tmp === null)
@@ -461,9 +455,7 @@ var TreeMap = /** @class */ (function () {
      * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
      */
     TreeMap.prototype.ceilingEntry = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.ceilingNode(this.topNode, key, null);
         if (tmp === null)
@@ -476,9 +468,7 @@ var TreeMap = /** @class */ (function () {
     * @return {K} the least key greater than or equal to key, or null if there is no such key
     */
     TreeMap.prototype.ceilingKey = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.ceilingNode(this.topNode, key, null);
         if (tmp === null)
@@ -491,9 +481,7 @@ var TreeMap = /** @class */ (function () {
     * @return {K} the least key greater than key, or null if there is no such key
     */
     TreeMap.prototype.higherKey = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.higherNode(this.topNode, key, null);
         if (tmp === null)
@@ -506,9 +494,7 @@ var TreeMap = /** @class */ (function () {
     * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
     */
     TreeMap.prototype.higherEntry = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.higherNode(this.topNode, key, null);
         if (tmp === null)
@@ -521,9 +507,7 @@ var TreeMap = /** @class */ (function () {
     * @return {K} the highest key lower than key, or null if there is no such key
     */
     TreeMap.prototype.lowerKey = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.lowerNode(this.topNode, key, null);
         if (tmp === null)
@@ -536,9 +520,7 @@ var TreeMap = /** @class */ (function () {
     * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
     */
     TreeMap.prototype.lowerEntry = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.lowerNode(this.topNode, key, null);
         if (tmp === null)
@@ -551,9 +533,7 @@ var TreeMap = /** @class */ (function () {
     * @return {K} the greatest key less than or equal to key, or null if there is no such key
     */
     TreeMap.prototype.floorKey = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.floorNode(this.topNode, key, null);
         if (tmp === null)
@@ -566,9 +546,7 @@ var TreeMap = /** @class */ (function () {
     * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
     */
     TreeMap.prototype.floorEntry = function (key) {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var tmp = this.floorNode(this.topNode, key, null);
         if (tmp === null)
@@ -576,10 +554,7 @@ var TreeMap = /** @class */ (function () {
         return tmp.getMapEntry();
     };
     TreeMap.prototype.ceilingNode = function (node, key, currentBest) {
-        if (node === null) {
-            return currentBest;
-        }
-        if (node === undefined) {
+        if ((node === null) || (node === undefined)) {
             return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
@@ -602,10 +577,7 @@ var TreeMap = /** @class */ (function () {
         }
     };
     TreeMap.prototype.higherNode = function (node, key, currentBest) {
-        if (node === null) {
-            return currentBest;
-        }
-        if (node === undefined) {
+        if ((node === null) || (node === undefined)) {
             return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
@@ -628,10 +600,7 @@ var TreeMap = /** @class */ (function () {
         }
     };
     TreeMap.prototype.lowerNode = function (node, key, currentBest) {
-        if (node === null) {
-            return currentBest;
-        }
-        if (node === undefined) {
+        if ((node === null) || (node === undefined)) {
             return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
@@ -654,10 +623,7 @@ var TreeMap = /** @class */ (function () {
         }
     };
     TreeMap.prototype.floorNode = function (node, key, currentBest) {
-        if (node === null) {
-            return currentBest;
-        }
-        if (node === undefined) {
+        if ((node === null) || (node === undefined)) {
             return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
@@ -684,9 +650,7 @@ var TreeMap = /** @class */ (function () {
      * @return {TreeMapNode} the first (lowest) node currently in this map, returns null if the Map is empty
      */
     TreeMap.prototype.firstMapNode = function () {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var node = this.topNode;
         while ((node.getLeftNode() !== null) && (node.getLeftNode() !== undefined)) {
@@ -719,9 +683,7 @@ var TreeMap = /** @class */ (function () {
     * @return {TreeMapNode} the last (highest) node currently in this map, returns null if the Map is empty
     */
     TreeMap.prototype.lastMapNode = function () {
-        if (this.topNode === null)
-            return null;
-        if (this.topNode === undefined)
+        if ((this.topNode === null) || (this.topNode === undefined))
             return null;
         var node = this.topNode;
         while ((node.getRightNode() !== null) && (node.getRightNode() !== undefined)) {

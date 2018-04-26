@@ -154,10 +154,7 @@ export class TreeMap<K,V> implements NavigableMap<K,V> {
 * @return {number} the number of key-value mappings in this map
 */
 public size () : number {
-   if (this.topNode === null)
-     return 0;
-
-   if (this.topNode === undefined)
+   if ((this.topNode === null) || (this.topNode === undefined))
      return 0;
 
    return this.sizeTree (this.topNode.getLeftNode()) + this.sizeTree (this.topNode.getRightNode()) + 1;
@@ -173,10 +170,7 @@ public size () : number {
  }
 
  private sizeTree (n:TreeMapNode<K,V>):number {
-   if (n === null)
-     return 0;
-
-   if (n === undefined)
+   if ((n === null) || (n === undefined))
      return 0;
 
    return this.sizeTree (n.getLeftNode()) + this.sizeTree (n.getRightNode()) + 1;
@@ -295,8 +289,7 @@ public size () : number {
     }
 
     const thisnode = this.getNode(this.topNode, key);
-    if (thisnode === undefined) return null;
-    if (thisnode === null) return null;
+    if ((thisnode === undefined) || (thisnode === null)) return null;
 
     const tmp:TreeMapNode<K,V> = this.nextHigherNode(thisnode);
     if (tmp === null) return null;
@@ -481,9 +474,7 @@ public size () : number {
   * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
   */
   public ceilingEntry (key:K) : MapEntry<K,V> {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.ceilingNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -496,8 +487,7 @@ public size () : number {
   * @return {K} the least key greater than or equal to key, or null if there is no such key
   */
   public ceilingKey (key:K) : K {
-    if (this.topNode === null) return null;
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.ceilingNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -510,9 +500,7 @@ public size () : number {
   * @return {K} the least key greater than key, or null if there is no such key
   */
   public higherKey (key:K) : K {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.higherNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -525,9 +513,7 @@ public size () : number {
   * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
   */
   public higherEntry (key:K) : MapEntry<K,V> {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.higherNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -540,9 +526,7 @@ public size () : number {
   * @return {K} the highest key lower than key, or null if there is no such key
   */
   public lowerKey (key:K) : K {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.lowerNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -555,9 +539,7 @@ public size () : number {
   * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
   */
   public lowerEntry (key:K) : MapEntry<K,V> {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.lowerNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -570,9 +552,7 @@ public size () : number {
   * @return {K} the greatest key less than or equal to key, or null if there is no such key
   */
   public floorKey (key:K) : K {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.floorNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -585,9 +565,7 @@ public size () : number {
   * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
   */
   public floorEntry (key:K) : MapEntry<K,V> {
-    if (this.topNode === null) return null;
-
-    if (this.topNode === undefined) return null;
+    if ((this.topNode === null) || (this.topNode === undefined)) return null;
 
     const tmp = this.floorNode(this.topNode, key, null);
     if (tmp === null) return null;
@@ -595,10 +573,7 @@ public size () : number {
   }
 
   private ceilingNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
-    if (node === null) {
-      return currentBest;
-    }
-    if (node === undefined) {
+    if ((node === null) || (node === undefined)) {
       return currentBest;
     }
     let tmp = this.mapComparator.compare(node.getKey(), key);
@@ -623,12 +598,10 @@ public size () : number {
   }
 
   private higherNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
-    if (node === null) {
+    if ((node === null) || (node === undefined)) {
       return currentBest;
     }
-    if (node === undefined) {
-      return currentBest;
-    }
+
     let tmp = this.mapComparator.compare(node.getKey(), key);
     if (tmp === 0) { // looking for a higher key
       return this.higherNode(node.getRightNode(), key, currentBest);
@@ -652,12 +625,10 @@ public size () : number {
   }
 
   private lowerNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
-    if (node === null) {
+    if ((node === null) || (node === undefined)) {
       return currentBest;
     }
-    if (node === undefined) {
-      return currentBest;
-    }
+
     let tmp = this.mapComparator.compare(node.getKey(), key);
     if (tmp === 0) { // looking for a lower key
       return this.lowerNode(node.getLeftNode(), key, currentBest);
@@ -681,12 +652,10 @@ public size () : number {
   }
 
   private floorNode (node:TreeMapNode<K,V>, key:K, currentBest:TreeMapNode<K,V>) : TreeMapNode<K,V> {
-    if (node === null) {
+    if ((node === null) || (node === undefined)) {
       return currentBest;
     }
-    if (node === undefined) {
-      return currentBest;
-    }
+
     let tmp = this.mapComparator.compare(node.getKey(), key);
     if (tmp === 0) {
       return node;
@@ -714,10 +683,7 @@ public size () : number {
   * @return {TreeMapNode} the first (lowest) node currently in this map, returns null if the Map is empty
   */
   private firstMapNode () : TreeMapNode<K,V> {
-    if (this.topNode === null)
-      return null;
-
-    if (this.topNode === undefined)
+    if ((this.topNode === null) || (this.topNode === undefined))
       return null;
 
     let node:TreeMapNode<K,V> = this.topNode;
@@ -755,10 +721,7 @@ public size () : number {
   * @return {TreeMapNode} the last (highest) node currently in this map, returns null if the Map is empty
   */
   private lastMapNode () : TreeMapNode<K,V> {
-    if (this.topNode === null)
-      return null;
-
-    if (this.topNode === undefined)
+    if ((this.topNode === null) || (this.topNode === undefined))
       return null;
 
     let node:TreeMapNode<K,V> = this.topNode;
