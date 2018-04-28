@@ -84,6 +84,14 @@ describe("Test NavigableMap functionality", function() {
     testFirstKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
   });
 
+  it ("Test lastKey", function () {
+    testLastKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testLastKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+
+    testLastKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testLastKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+  });
+
 
 
 

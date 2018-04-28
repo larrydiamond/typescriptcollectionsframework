@@ -68,6 +68,12 @@ describe("Test NavigableMap functionality", function () {
         testFirstKeyStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testFirstKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
     });
+    it("Test lastKey", function () {
+        testLastKeyNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
+        testLastKeyNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testLastKeyStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
+        testLastKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+    });
 });
 function testFirstKeyNumberString(map) {
     expect(map.size()).toEqual(0);
