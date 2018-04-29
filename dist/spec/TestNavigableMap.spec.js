@@ -76,6 +76,7 @@ describe("Test NavigableMap functionality", function () {
     });
 });
 function testFirstKeyNumberString(map) {
+    expect(map.firstKey()).toEqual(null);
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
     addTestNumbers(map);
@@ -84,6 +85,7 @@ function testFirstKeyNumberString(map) {
     expect(map.firstKey()).toEqual(100);
 }
 function testFirstKeyStringString(map) {
+    expect(map.firstKey()).toEqual(null);
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
     addTestStrings(map);
@@ -92,6 +94,7 @@ function testFirstKeyStringString(map) {
     expect(map.firstKey()).toEqual("eighth");
 }
 function testLastKeyNumberString(map) {
+    expect(map.lastKey()).toEqual(null);
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
     addTestNumbers(map);
@@ -100,6 +103,7 @@ function testLastKeyNumberString(map) {
     expect(map.lastKey()).toEqual(1000);
 }
 function testLastKeyStringString(map) {
+    expect(map.lastKey()).toEqual(null);
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
     addTestStrings(map);
