@@ -44,13 +44,13 @@ export interface NavigableSet<K> extends JSet<K> {
 
   /**
   * Returns the first (lowest) element currently in this set.
-  * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+  * @return {K} the first (lowest) element currently in this set, null if there are no elements in this set
   */
   first () : K;
 
   /**
   * Returns the last (highest) element currently in this set.
-  * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+  * @return {K} the last (highest) element currently in this set, null if there are no elements in this set
   */
   last () : K;
 

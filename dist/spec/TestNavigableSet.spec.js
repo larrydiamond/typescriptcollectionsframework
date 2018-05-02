@@ -68,8 +68,21 @@ describe("Test NavigableSet functionality", function () {
         testLastKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testLastKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
+    it("Test pollFirstKey", function () {
+        testPollFirstKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testPollFirstKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test pollLastKey", function () {
+        testPollLastKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testPollLastKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
 });
 function testFirstKeyNumberString(set) {
+    expect(set.first()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestNumbers(set);
@@ -78,6 +91,7 @@ function testFirstKeyNumberString(set) {
     expect(set.first()).toEqual(100);
 }
 function testFirstKeyStringString(set) {
+    expect(set.first()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestStrings(set);
@@ -86,6 +100,7 @@ function testFirstKeyStringString(set) {
     expect(set.first()).toEqual("eighth");
 }
 function testLastKeyNumberString(set) {
+    expect(set.last()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestNumbers(set);
@@ -94,12 +109,61 @@ function testLastKeyNumberString(set) {
     expect(set.last()).toEqual(1000);
 }
 function testLastKeyStringString(set) {
+    expect(set.last()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestStrings(set);
     expect(set.size()).toEqual(10);
     expect(set.isEmpty()).toEqual(false);
     expect(set.last()).toEqual("third");
+}
+function testPollFirstKeyNumberString(set) {
+    expect(set.pollFirst()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollFirst()).toEqual(100);
+    expect(set.pollFirst()).toEqual(200);
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testPollFirstKeyStringString(set) {
+    expect(set.pollFirst()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollFirst()).toEqual("eighth");
+    expect(set.pollFirst()).toEqual("fifth");
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testPollLastKeyNumberString(set) {
+    expect(set.pollLast()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollLast()).toEqual(1000);
+    expect(set.pollLast()).toEqual(900);
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testPollLastKeyStringString(set) {
+    expect(set.pollLast()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollLast()).toEqual("third");
+    expect(set.pollLast()).toEqual("tenth");
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
 }
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);

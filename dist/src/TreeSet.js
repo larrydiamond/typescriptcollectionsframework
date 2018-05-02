@@ -112,14 +112,14 @@ var TreeSet = /** @class */ (function () {
     };
     /**
     * Returns the first (lowest) element currently in this set.
-    * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+    * @return {K} the first (lowest) element currently in this set, null if there are no elements in this set
     */
     TreeSet.prototype.first = function () {
         return this.datastore.firstKey();
     };
     /**
     * Returns the last (highest) element currently in this set.
-    * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+    * @return {K} the last (highest) element currently in this set, null if there are no elements in this set
     */
     TreeSet.prototype.last = function () {
         return this.datastore.lastKey();
