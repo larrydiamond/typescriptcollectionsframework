@@ -74,6 +74,26 @@ describe("Test LinkedList functionality", function() {
 
     });
 
+    it("Test AddFirst", function() {
+      const ll:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> ();
+      const list:List<PetStoreProduct> = ll;
+      const collection:Collection<PetStoreProduct> = list;
+
+      expect (ll.contains (product3)).toEqual (false);
+      expect (ll.addFirst (product1)).toEqual (true);
+      expect (ll.addFirst (product2)).toEqual (true);
+      expect (ll.contains (product2)).toEqual (true);
+      expect (ll.contains (product3)).toEqual (false);
+
+      expect (ll.isEmpty ()).toEqual(false);
+      expect (ll.size ()).toEqual(2);
+      expect (list.isEmpty ()).toEqual(false);
+      expect (list.size ()).toEqual(2);
+      expect (collection.isEmpty ()).toEqual(false);
+      expect (collection.size ()).toEqual(2);
+
+    });
+
     it("Test clearing the LinkedList", function() {
       const thelist:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
       const list:List<PetStoreProduct> = thelist;

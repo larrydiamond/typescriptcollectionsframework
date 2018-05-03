@@ -134,6 +134,7 @@ function testFirstKeyStringString (map:NavigableMap<string,string>) {
   expect (map.firstKey()).toEqual ("eighth");
 }
 
+
 function testFirstEntryNumberString (map:NavigableMap<number,string>) {
   expect (map.firstEntry()).toEqual (null);
   expect (map.size ()).toEqual(0);
@@ -158,6 +159,7 @@ function testFirstEntryStringString (map:NavigableMap<string,string>) {
   expect (entry.getValue()).toEqual ("eighthblah");
 }
 
+
 function testLastKeyNumberString (map:NavigableMap<number,string>) {
   expect (map.lastKey()).toEqual (null);
   expect (map.size ()).toEqual(0);
@@ -177,6 +179,7 @@ function testLastKeyStringString (map:NavigableMap<string,string>) {
   expect (map.isEmpty ()).toEqual(false);
   expect (map.lastKey()).toEqual ("third");
 }
+
 
 function testLastEntryNumberString (map:NavigableMap<number,string>) {
   expect (map.lastEntry()).toEqual (null);
