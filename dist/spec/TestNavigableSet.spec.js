@@ -86,6 +86,12 @@ describe("Test NavigableSet functionality", function () {
         testCeilingString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testCeilingString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
+    it("Test floor", function () {
+        testFloorNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testFloorNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testFloorString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testFloorString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
 });
 function testFirstKeyNumber(set) {
     expect(set.first()).toEqual(null);
@@ -196,28 +202,28 @@ function testCeilingString(set) {
     expect(set.ceiling("zzzzz")).toEqual(null);
 }
 function testFloorNumber(set) {
-    expect(set.ceiling(456)).toEqual(null);
+    expect(set.floor(456)).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestNumbers(set);
     expect(set.size()).toEqual(10);
     expect(set.isEmpty()).toEqual(false);
-    expect(set.ceiling(456)).toEqual(400);
-    expect(set.ceiling(600)).toEqual(600);
-    expect(set.ceiling(1)).toEqual(null);
-    expect(set.ceiling(99999)).toEqual(1000);
+    expect(set.floor(456)).toEqual(400);
+    expect(set.floor(600)).toEqual(600);
+    expect(set.floor(1)).toEqual(null);
+    expect(set.floor(99999)).toEqual(1000);
 }
 function testFloorString(set) {
-    expect(set.ceiling("notfound")).toEqual(null);
+    expect(set.floor("notfound")).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestStrings(set);
     expect(set.size()).toEqual(10);
     expect(set.isEmpty()).toEqual(false);
-    expect(set.ceiling("notfound")).toEqual("second");
-    expect(set.ceiling("first")).toEqual("first");
-    expect(set.ceiling("aaaaa")).toEqual(null);
-    expect(set.ceiling("zzzzz")).toEqual("third");
+    expect(set.floor("notfound")).toEqual("ninth");
+    expect(set.floor("first")).toEqual("first");
+    expect(set.floor("aaaaa")).toEqual(null);
+    expect(set.floor("zzzzz")).toEqual("third");
 }
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);
