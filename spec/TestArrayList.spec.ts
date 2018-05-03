@@ -473,6 +473,8 @@ describe("Test ArrayList functionality", function() {
 function testEmptyArrayList (list:List<PetStoreProduct>) : void {
   expect (list.isEmpty ()).toEqual(true);
   expect (list.size ()).toEqual(0);
+  expect (list.indexOf (product1)).toEqual (-1);
+  expect (list.lastIndexOf (product1)).toEqual (-1);
 
   const collection:Collection<PetStoreProduct> = list;
   expect (collection.isEmpty ()).toEqual(true);
