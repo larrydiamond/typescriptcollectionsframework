@@ -57,31 +57,37 @@ var product3 = new PetStoreProduct("Goldfish", 9.99);
 var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 describe("Test NavigableSet functionality", function () {
     it("Test firstKey", function () {
-        testFirstKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
-        testFirstKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
-        testFirstKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testFirstKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testFirstKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testFirstKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testFirstKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testFirstKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test lastKey", function () {
-        testLastKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
-        testLastKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
-        testLastKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testLastKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testLastKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testLastKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testLastKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testLastKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test pollFirstKey", function () {
-        testPollFirstKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
-        testPollFirstKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
-        testPollFirstKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testPollFirstKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testPollFirstKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testPollFirstKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test pollLastKey", function () {
-        testPollLastKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
-        testPollLastKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
-        testPollLastKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testPollLastKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testPollLastKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testPollLastKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test ceiling", function () {
+        testCeilingNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testCeilingNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testCeilingString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testCeilingString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
 });
-function testFirstKeyNumberString(set) {
+function testFirstKeyNumber(set) {
     expect(set.first()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -90,7 +96,7 @@ function testFirstKeyNumberString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.first()).toEqual(100);
 }
-function testFirstKeyStringString(set) {
+function testFirstKeyString(set) {
     expect(set.first()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -99,7 +105,7 @@ function testFirstKeyStringString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.first()).toEqual("eighth");
 }
-function testLastKeyNumberString(set) {
+function testLastKeyNumber(set) {
     expect(set.last()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -108,7 +114,7 @@ function testLastKeyNumberString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.last()).toEqual(1000);
 }
-function testLastKeyStringString(set) {
+function testLastKeyString(set) {
     expect(set.last()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -117,7 +123,7 @@ function testLastKeyStringString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.last()).toEqual("third");
 }
-function testPollFirstKeyNumberString(set) {
+function testPollFirstKeyNumber(set) {
     expect(set.pollFirst()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -129,7 +135,7 @@ function testPollFirstKeyNumberString(set) {
     expect(set.size()).toEqual(8);
     expect(set.isEmpty()).toEqual(false);
 }
-function testPollFirstKeyStringString(set) {
+function testPollFirstKeyString(set) {
     expect(set.pollFirst()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -141,7 +147,7 @@ function testPollFirstKeyStringString(set) {
     expect(set.size()).toEqual(8);
     expect(set.isEmpty()).toEqual(false);
 }
-function testPollLastKeyNumberString(set) {
+function testPollLastKeyNumber(set) {
     expect(set.pollLast()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -153,7 +159,7 @@ function testPollLastKeyNumberString(set) {
     expect(set.size()).toEqual(8);
     expect(set.isEmpty()).toEqual(false);
 }
-function testPollLastKeyStringString(set) {
+function testPollLastKeyString(set) {
     expect(set.pollLast()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
@@ -164,6 +170,30 @@ function testPollLastKeyStringString(set) {
     expect(set.pollLast()).toEqual("tenth");
     expect(set.size()).toEqual(8);
     expect(set.isEmpty()).toEqual(false);
+}
+function testCeilingNumber(set) {
+    expect(set.ceiling(456)).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.ceiling(456)).toEqual(500);
+    expect(set.ceiling(600)).toEqual(600);
+    expect(set.ceiling(1)).toEqual(100);
+    expect(set.ceiling(99999)).toEqual(null);
+}
+function testCeilingString(set) {
+    expect(set.ceiling("notfound")).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.ceiling("notfound")).toEqual("second");
+    expect(set.ceiling("first")).toEqual("first");
+    expect(set.ceiling("aaaaa")).toEqual("eighth");
+    expect(set.ceiling("zzzzz")).toEqual(null);
 }
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);
