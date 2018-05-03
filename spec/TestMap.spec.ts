@@ -232,6 +232,7 @@ function testEmptyPetStoreProductAndValueClassMap (map:ImmutableMap<PetStoreProd
 function testAddingOneEntryStringStringMap (map:JMap<string,string>, typestring:string) : void {
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
+  expect (map.remove("bogus")).toEqual (null);
   expect (undefined).toEqual(map.put("testkey", "testvalue"));
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);

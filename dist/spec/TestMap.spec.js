@@ -189,6 +189,7 @@ function testEmptyPetStoreProductAndValueClassMap(map) {
 function testAddingOneEntryStringStringMap(map, typestring) {
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
+    expect(map.remove("bogus")).toEqual(null);
     expect(undefined).toEqual(map.put("testkey", "testvalue"));
     expect(map.size()).toEqual(1);
     expect(map.isEmpty()).toEqual(false);
