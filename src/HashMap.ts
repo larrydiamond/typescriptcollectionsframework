@@ -10,6 +10,7 @@ import {ArrayList} from "./ArrayList";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
+import {Collections} from "./Collections";
 import {Consumer} from "./Consumer";
 import {Hashable} from "./Hashable";
 import {ImmutableMap} from "./ImmutableMap";
@@ -269,6 +270,13 @@ export class HashMap<K,V> implements JMap<K,V> {
    */
   public [Symbol.iterator] ():Iterator<K> {
     return this.entrySet[Symbol.iterator]();
+  }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    return Collections.jsonstringify(this);
   }
 
  /**

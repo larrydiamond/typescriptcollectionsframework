@@ -303,6 +303,33 @@ var Collections = /** @class */ (function () {
         }
         return tmp;
     };
+    /**
+     * JSON stringify for a map
+     */
+    Collections.jsonstringify = function (imap) {
+        if (imap === null)
+            return null;
+        if (imap === undefined)
+            return undefined;
+        var first = true;
+        var tmp = '[';
+        for (var iter = imap.entrySet().iterator(); iter.hasNext();) {
+            var elem = iter.next();
+            if (first === true) {
+                first = false;
+            }
+            else {
+                tmp = tmp + ",";
+            }
+            tmp = tmp + '{"key":';
+            tmp = tmp + JSON.stringify(elem.getKey());
+            tmp = tmp + ',"value":';
+            tmp = tmp + JSON.stringify(elem.getValue());
+            tmp = tmp + '}';
+        }
+        tmp = tmp + ']';
+        return tmp;
+    };
     return Collections;
 }());
 exports.Collections = Collections;

@@ -973,6 +973,12 @@ var SkipListMap = /** @class */ (function () {
         }
         return node;
     };
+    /**
+    * Override JSON.stringify handling
+    */
+    SkipListMap.prototype.toJSON = function () {
+        return Collections_1.Collections.jsonstringify(this);
+    };
     return SkipListMap;
 }());
 exports.SkipListMap = SkipListMap;

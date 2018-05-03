@@ -1030,6 +1030,13 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
     }
     return node;
   }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    return Collections.jsonstringify(this);
+  }
 }
 
 

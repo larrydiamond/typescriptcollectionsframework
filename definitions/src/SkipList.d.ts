@@ -262,6 +262,10 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
     lastEntry(): MapEntry<K, V>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class ImmutableKeySetForSkipListMap<K, V> implements ImmutableSet<K> {
     private impl;
