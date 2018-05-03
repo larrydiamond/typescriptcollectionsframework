@@ -195,6 +195,30 @@ function testCeilingString(set) {
     expect(set.ceiling("aaaaa")).toEqual("eighth");
     expect(set.ceiling("zzzzz")).toEqual(null);
 }
+function testFloorNumber(set) {
+    expect(set.ceiling(456)).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.ceiling(456)).toEqual(400);
+    expect(set.ceiling(600)).toEqual(600);
+    expect(set.ceiling(1)).toEqual(null);
+    expect(set.ceiling(99999)).toEqual(1000);
+}
+function testFloorString(set) {
+    expect(set.ceiling("notfound")).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.ceiling("notfound")).toEqual("second");
+    expect(set.ceiling("first")).toEqual("first");
+    expect(set.ceiling("aaaaa")).toEqual(null);
+    expect(set.ceiling("zzzzz")).toEqual("third");
+}
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);
     expect(set.add(600)).toEqual(true);
