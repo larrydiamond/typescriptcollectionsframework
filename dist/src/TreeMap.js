@@ -93,14 +93,14 @@ var TreeMap = /** @class */ (function () {
         if (left !== null) {
             var leftkey = left.getKey();
             var comp = this.mapComparator.compare(thiskey, leftkey);
-            if (comp < 0)
+            if (comp < 0) // the key on the left should be either on the right or is this key
                 return false;
             return this.validateNode(left);
         }
         if (right !== null) {
             var rightkey = right.getKey();
             var comp = this.mapComparator.compare(thiskey, rightkey);
-            if (comp > 0)
+            if (comp > 0) // the key on the right should be either on the left or is this key
                 return false;
             return this.validateNode(right);
         }
@@ -177,43 +177,43 @@ var TreeMap = /** @class */ (function () {
             node.setValue(value);
             return tmpV;
         }
-        if (comp < 0) {
+        if (comp < 0) { // This means that the new value is lower than the current node and belongs someplace on the left of the current node
             var nextNode = node.getLeftNode();
             if (nextNode === null) {
                 var newNode = new TreeMapNode(key, value, node);
                 // Can we do a minor rebalance of the bottom nodes of the tree?
                 // if we are about to place a new node below a parent with no current children,
                 // check to see if the the "grandparent" only has the one child and if so do a local rebalance
-                if (node.getRightNode() === null) {
+                if (node.getRightNode() === null) { // parent currently has no children
                     var grandparent = node.getParentNode();
                     if (grandparent !== null) {
-                        if ((grandparent.getLeftNode() === node) && (grandparent.getRightNode() === null)) {
+                        if ((grandparent.getLeftNode() === node) && (grandparent.getRightNode() === null)) { // rebalance to make node parent of both grandparent and new node - left left left
                             node.setLeftNode(newNode);
                             node.setRightNode(grandparent);
                             node.setParentNode(grandparent.getParentNode());
                             grandparent.setLeftNode(null);
                             grandparent.setRightNode(null);
                             grandparent.setParentNode(node);
-                            if (grandparent === this.topNode) {
+                            if (grandparent === this.topNode) { // reorg top of tree
                                 // make node new parent with newnode as left node and grandparent as right node
                                 this.topNode = node;
                             }
-                            else {
+                            else { // we're really checking the grandparent's parents but we already remapped above
                                 if (node.getParentNode().getLeftNode() === grandparent)
                                     node.getParentNode().setLeftNode(node);
                                 if (node.getParentNode().getRightNode() === grandparent)
                                     node.getParentNode().setRightNode(node);
                             }
                         }
-                        else {
+                        else { // TODO check to see if we have a right left left rebalance opportunity
                             node.setLeftNode(newNode);
                         }
                     }
-                    else {
+                    else { // oh well we looked we tried
                         node.setLeftNode(newNode);
                     }
                 }
-                else {
+                else { // oh well we looked we tried
                     node.setLeftNode(newNode);
                 }
                 return undefined;
@@ -222,40 +222,40 @@ var TreeMap = /** @class */ (function () {
                 return this.putNode(nextNode, key, value);
             }
         }
-        else {
+        else { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
             var nextNode = node.getRightNode();
             if (nextNode === null) {
                 var newNode = new TreeMapNode(key, value, node);
-                if (node.getLeftNode() === null) {
+                if (node.getLeftNode() === null) { // parent currently has no children
                     var grandparent = node.getParentNode();
                     if (grandparent !== null) {
-                        if ((grandparent.getRightNode() === node) && (grandparent.getLeftNode() === null)) {
+                        if ((grandparent.getRightNode() === node) && (grandparent.getLeftNode() === null)) { // rebalance to make node parent of both grandparent and new node - right right right
                             node.setRightNode(newNode);
                             node.setLeftNode(grandparent);
                             node.setParentNode(grandparent.getParentNode());
                             grandparent.setRightNode(null);
                             grandparent.setLeftNode(null);
                             grandparent.setParentNode(node);
-                            if (grandparent === this.topNode) {
+                            if (grandparent === this.topNode) { // reorg top of tree
                                 // make node new parent with newnode as left node and grandparent as right node
                                 this.topNode = node;
                             }
-                            else {
+                            else { // we're really checking the grandparent's parents but we already remapped above
                                 if (node.getParentNode().getLeftNode() === grandparent)
                                     node.getParentNode().setLeftNode(node);
                                 if (node.getParentNode().getRightNode() === grandparent)
                                     node.getParentNode().setRightNode(node);
                             }
                         }
-                        else {
+                        else { // TODO check to see if we have a left right right rebalance opportunity
                             node.setRightNode(newNode);
                         }
                     }
-                    else {
+                    else { // oh well we looked we tried
                         node.setRightNode(newNode);
                     }
                 }
-                else {
+                else { // oh well we looked we tried
                     node.setRightNode(newNode);
                 }
                 node.setRightNode(newNode);
@@ -298,7 +298,7 @@ var TreeMap = /** @class */ (function () {
             return child;
         }
         // If there is no parent node and no right child node then there's no next node and return null
-        if (node.getParentNode() === null) {
+        if (node.getParentNode() === null) { // if there's a right child that was handled above
             return null;
         }
         // If I am the left child of my parent node and I have no right child then my parent node is the next node
@@ -330,7 +330,7 @@ var TreeMap = /** @class */ (function () {
         var comp = this.mapComparator.compare(key, node.getKey());
         if (comp === 0)
             return node;
-        if (comp < 0) {
+        if (comp < 0) { // This means that the new value is higher than the current node and belongs someplace on the right of the current node
             var nextNode = node.getLeftNode();
             if (nextNode === null) {
                 return null;
@@ -339,7 +339,7 @@ var TreeMap = /** @class */ (function () {
                 return this.getNode(nextNode, key);
             }
         }
-        else {
+        else { // This means that the new value is lower than the current node and belongs someplace on the left of the current node
             var nextNode = node.getRightNode();
             if (nextNode === null) {
                 return null;
@@ -377,10 +377,10 @@ var TreeMap = /** @class */ (function () {
         var parent = tmp.getParentNode();
         var left = tmp.getLeftNode();
         var right = tmp.getRightNode();
-        if (tmp.getLeftNode() === null) {
-            if (tmp.getRightNode() === null) {
+        if (tmp.getLeftNode() === null) { // nothing to the left
+            if (tmp.getRightNode() === null) { // nothing to the right
                 // close up this wing of the tree, nothing to see here
-                if (parent === null) {
+                if (parent === null) { // if theres no parent then this is the root node of the Tree
                     this.topNode = null;
                 }
                 else {
@@ -392,7 +392,7 @@ var TreeMap = /** @class */ (function () {
                     }
                 }
             }
-            else {
+            else { // there are nodes to the right but not to the left
                 right.setParentNode(parent);
                 if (parent === null) {
                     this.topNode = right;
@@ -407,8 +407,8 @@ var TreeMap = /** @class */ (function () {
                 }
             }
         }
-        else {
-            if (right === null) {
+        else { // there are nodes to the left
+            if (right === null) { // there are nodes to the left but not to the right
                 left.setParentNode(parent);
                 if (parent === null) {
                     this.topNode = left;
@@ -422,7 +422,7 @@ var TreeMap = /** @class */ (function () {
                     }
                 }
             }
-            else {
+            else { // there are nodes to the left and to the right
                 // Horrific unbalancing about to occur here, please avert your eyes until the Red Black stuff comes
                 // Make the Left node the new parent
                 // Move the right node to the right of the rightmost node under the left node
@@ -562,15 +562,15 @@ var TreeMap = /** @class */ (function () {
         if (tmp === 0) {
             return node;
         }
-        if (tmp < 0) {
+        if (tmp < 0) { // too low, below key
             return this.ceilingNode(node.getRightNode(), key, currentBest);
         }
         // above key
-        if (currentBest === null) {
+        if (currentBest === null) { // no best node found yet
             return this.ceilingNode(node.getLeftNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
-        if (tmp > 0) {
+        if (tmp > 0) { // this node is higher than the current best
             return this.ceilingNode(node.getLeftNode(), key, currentBest);
         }
         else {
@@ -582,18 +582,18 @@ var TreeMap = /** @class */ (function () {
             return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
-        if (tmp === 0) {
+        if (tmp === 0) { // looking for a higher key
             return this.higherNode(node.getRightNode(), key, currentBest);
         }
-        if (tmp < 0) {
+        if (tmp < 0) { // too low, below key
             return this.higherNode(node.getRightNode(), key, currentBest);
         }
         // above key
-        if (currentBest === null) {
+        if (currentBest === null) { // no best node found yet
             return this.higherNode(node.getLeftNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
-        if (tmp > 0) {
+        if (tmp > 0) { // this node is higher than the current best
             return this.higherNode(node.getLeftNode(), key, currentBest);
         }
         else {
@@ -605,18 +605,18 @@ var TreeMap = /** @class */ (function () {
             return currentBest;
         }
         var tmp = this.mapComparator.compare(node.getKey(), key);
-        if (tmp === 0) {
+        if (tmp === 0) { // looking for a lower key
             return this.lowerNode(node.getLeftNode(), key, currentBest);
         }
-        if (tmp > 0) {
+        if (tmp > 0) { // too high, above key
             return this.lowerNode(node.getLeftNode(), key, currentBest);
         }
         // above key
-        if (currentBest === null) {
+        if (currentBest === null) { // no best node found yet
             return this.lowerNode(node.getRightNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
-        if (tmp > 0) {
+        if (tmp > 0) { // this node is lower than the current best
             return this.lowerNode(node.getRightNode(), key, node);
         }
         else {
@@ -631,15 +631,15 @@ var TreeMap = /** @class */ (function () {
         if (tmp === 0) {
             return node;
         }
-        if (tmp > 0) {
+        if (tmp > 0) { // too high, above key
             return this.floorNode(node.getLeftNode(), key, currentBest);
         }
         // above key
-        if (currentBest === null) {
+        if (currentBest === null) { // no best node found yet
             return this.floorNode(node.getRightNode(), key, node);
         }
         tmp = this.mapComparator.compare(node.getKey(), currentBest.getKey());
-        if (tmp > 0) {
+        if (tmp > 0) { // this node is lower than the current best
             return this.floorNode(node.getRightNode(), key, node);
         }
         else {
@@ -813,7 +813,7 @@ var TreeMapKeySetJIterator = /** @class */ (function () {
         this.treeMap = iTreeMap;
     }
     TreeMapKeySetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.treeMap.firstKey();
             if (first === undefined)
                 return false;
@@ -821,7 +821,7 @@ var TreeMapKeySetJIterator = /** @class */ (function () {
                 return false;
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.treeMap.getNextHigherKey(this.location);
             if (tmp === null) {
                 return false;
@@ -832,7 +832,7 @@ var TreeMapKeySetJIterator = /** @class */ (function () {
         }
     };
     TreeMapKeySetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.treeMap.firstKey();
             if (first === undefined) {
                 return null;
@@ -842,7 +842,7 @@ var TreeMapKeySetJIterator = /** @class */ (function () {
                 return first;
             }
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.treeMap.getNextHigherKey(this.location);
             if (tmp === null) {
                 return null;
@@ -901,7 +901,7 @@ var TreeMapEntrySetJIterator = /** @class */ (function () {
         this.treeMap = iTreeMap;
     }
     TreeMapEntrySetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.treeMap.firstEntry();
             if (first === undefined)
                 return false;
@@ -909,7 +909,7 @@ var TreeMapEntrySetJIterator = /** @class */ (function () {
                 return false;
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.treeMap.higherEntry(this.location.getKey());
             if (tmp === null) {
                 return false;
@@ -920,7 +920,7 @@ var TreeMapEntrySetJIterator = /** @class */ (function () {
         }
     };
     TreeMapEntrySetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.treeMap.firstEntry();
             if (first === undefined) {
                 return null;
@@ -930,7 +930,7 @@ var TreeMapEntrySetJIterator = /** @class */ (function () {
                 return first;
             }
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.treeMap.higherEntry(this.location.getKey());
             if (tmp === null) {
                 return null;

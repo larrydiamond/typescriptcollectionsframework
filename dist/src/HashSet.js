@@ -179,7 +179,7 @@ var HashSetJIterator = /** @class */ (function () {
         this.set = iSet;
     }
     HashSetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.set.deprecatedGetFirstEntryForIterator();
             if (first === undefined) {
                 return false;
@@ -189,7 +189,7 @@ var HashSetJIterator = /** @class */ (function () {
             }
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.set.deprecatedGetNextEntryForIterator(this.location);
             if (tmp === null) {
                 return false;
@@ -200,7 +200,7 @@ var HashSetJIterator = /** @class */ (function () {
         }
     };
     HashSetJIterator.prototype.next = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.set.deprecatedGetFirstEntryForIterator();
             if (first === undefined) {
                 return null;
@@ -211,7 +211,7 @@ var HashSetJIterator = /** @class */ (function () {
             this.location = first;
             return first.entry.getKey();
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.set.deprecatedGetNextEntryForIterator(this.location);
             if (tmp === null) {
                 return null;

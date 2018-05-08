@@ -229,13 +229,13 @@ var TreeSetJIterator = /** @class */ (function () {
         this.set = iSet;
     }
     TreeSetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) {
+        if (this.location === undefined) { // first time caller
             var first = this.set.first();
             if ((first === undefined) || (first === null))
                 return false;
             return true;
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.set.getNextHigherKey(this.location);
             if (tmp === null) {
                 return false;
@@ -246,7 +246,7 @@ var TreeSetJIterator = /** @class */ (function () {
         }
     };
     TreeSetJIterator.prototype.next = function () {
-        if ((this.location === undefined) || (this.location === null)) {
+        if ((this.location === undefined) || (this.location === null)) { // first time caller
             var first = this.set.first();
             if (first === undefined) {
                 return null;
@@ -256,7 +256,7 @@ var TreeSetJIterator = /** @class */ (function () {
                 return first;
             }
         }
-        else {
+        else { // we've already called this iterator before
             var tmp = this.set.getNextHigherKey(this.location);
             if (tmp === null) {
                 return null;
