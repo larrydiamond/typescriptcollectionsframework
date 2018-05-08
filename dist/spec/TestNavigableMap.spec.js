@@ -8,6 +8,7 @@
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 var Collections_1 = require("../src/Collections");
+var NavigableHash_1 = require("../src/NavigableHash");
 var SkipList_1 = require("../src/SkipList");
 var TreeMap_1 = require("../src/TreeMap");
 // PetStoreProduct will be used in testing
@@ -65,32 +66,42 @@ describe("Test NavigableMap functionality", function () {
     it("Test firstKey", function () {
         testFirstKeyNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
         testFirstKeyNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testFirstKeyNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
         testFirstKeyStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testFirstKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testFirstKeyStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
     it("Test firstEntry", function () {
         testFirstEntryNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
         testFirstEntryNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testFirstEntryNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
         testFirstEntryStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testFirstEntryStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testFirstEntryStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
     it("Test lastKey", function () {
         testLastKeyNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
         testLastKeyNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testLastKeyNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
         testLastKeyStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testLastKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testLastKeyStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
     it("Test lastEntry", function () {
         testLastEntryNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
         testLastEntryNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testLastEntryNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
         testLastEntryStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testLastEntryStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testLastEntryStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
     it("Test ceilingKey", function () {
         testCeilingKeyNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
         testCeilingKeyNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testCeilingKeyNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
         testCeilingKeyStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testCeilingKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testCeilingKeyStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
 });
 function testFirstKeyNumberString(map) {

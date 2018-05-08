@@ -11,6 +11,7 @@ import {Test, TestBoolean, TestString, TestNumber} from 'jasts';
 import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
 import {JMap} from "../src/JMap";
+import {NavigableHashMap} from "../src/NavigableHash";
 import {NavigableMap} from "../src/NavigableMap";
 import {SkipListMap} from "../src/SkipList";
 import {TreeMap} from "../src/TreeMap";
@@ -79,46 +80,52 @@ describe("Test NavigableMap functionality", function() {
   it ("Test firstKey", function () {
     testFirstKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
     testFirstKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testFirstKeyNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
 
     testFirstKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
     testFirstKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testFirstKeyStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
 
   it ("Test firstEntry", function () {
     testFirstEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
     testFirstEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testFirstEntryNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
 
     testFirstEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
     testFirstEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testFirstEntryStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
 
   it ("Test lastKey", function () {
     testLastKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
     testLastKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testLastKeyNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
 
     testLastKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
     testLastKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testLastKeyStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
 
   it ("Test lastEntry", function () {
     testLastEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
     testLastEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testLastEntryNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
 
     testLastEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
     testLastEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testLastEntryStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
 
   it ("Test ceilingKey", function () {
     testCeilingKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
     testCeilingKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testCeilingKeyNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
 
     testCeilingKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
     testCeilingKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testCeilingKeyStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
-
-
-
-
 
 });
 
