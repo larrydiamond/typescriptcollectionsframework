@@ -9,6 +9,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
+var Collections_1 = require("./Collections");
 /**
  * A binary tree based NavigableMap implementation. The map is sorted according to a Comparator provided at map creation time.<br>
  * This implementation provides guaranteed log(n) time cost for the containsKey, get, put and remove operations.
@@ -737,6 +738,12 @@ var TreeMap = /** @class */ (function () {
     */
     TreeMap.prototype.immutableMap = function () {
         return this;
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    TreeMap.prototype.toJSON = function () {
+        return Collections_1.Collections.jsonstringify(this);
     };
     return TreeMap;
 }());

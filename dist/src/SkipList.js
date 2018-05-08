@@ -973,6 +973,12 @@ var SkipListMap = /** @class */ (function () {
         }
         return node;
     };
+    /**
+    * Override JSON.stringify handling
+    */
+    SkipListMap.prototype.toJSON = function () {
+        return Collections_1.Collections.jsonstringify(this);
+    };
     return SkipListMap;
 }());
 exports.SkipListMap = SkipListMap;
@@ -1240,7 +1246,7 @@ var SkipListSet = /** @class */ (function () {
     };
     /**
     * Returns the first (lowest) element currently in this set.
-    * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+    * @return {K} the first (lowest) element currently in this set, null if there are no elements in this set
     */
     SkipListSet.prototype.first = function () {
         var node = this.impl.firstEntry();
@@ -1251,7 +1257,7 @@ var SkipListSet = /** @class */ (function () {
     };
     /**
     * Returns the last (highest) element currently in this set.
-    * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+    * @return {K} the last (highest) element currently in this set, null if there are no elements in this set
     */
     SkipListSet.prototype.last = function () {
         var node = this.impl.lastEntry();

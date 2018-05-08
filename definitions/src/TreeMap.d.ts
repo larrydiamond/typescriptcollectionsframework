@@ -187,6 +187,10 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     * Returns an ImmutableMap backed by Map
     */
     immutableMap(): ImmutableMap<K, V>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class TreeMapNode<K, V> {
     private key;

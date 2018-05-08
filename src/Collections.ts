@@ -19,6 +19,7 @@ import {ImmutableList} from "./ImmutableList";
 import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
+import {MapEntry} from "../src/MapEntry";
 
 /**
  * This class consists exclusively of static methods that operate on or return collections.
@@ -318,6 +319,32 @@ export class Collections {
       offset = offset + 1;
     }
 
+    return tmp;
+  }
+
+  /**
+   * JSON stringify for a map
+   */
+  public static jsonstringify<K,V> (imap : ImmutableMap<K,V>) : string {
+    if (imap === null) return null;
+    if (imap === undefined) return undefined;
+
+    let first:boolean = true;
+    let tmp:string = '[';
+    for (const iter:JIterator<MapEntry<K,V>> = imap.entrySet().iterator(); iter.hasNext(); ) {
+      const elem : MapEntry<K,V> = iter.next();
+      if (first === true) {
+        first = false;
+      } else {
+        tmp = tmp + ",";
+      }
+      tmp = tmp + '{"key":';
+      tmp = tmp + JSON.stringify (elem.getKey());
+      tmp = tmp + ',"value":';
+      tmp = tmp + JSON.stringify (elem.getValue());
+      tmp = tmp + '}';
+    }
+    tmp = tmp + ']';
     return tmp;
   }
 

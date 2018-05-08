@@ -120,6 +120,10 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      */
     [Symbol.iterator](): Iterator<K>;
     /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
+    /**
      * This method is deprecated and will be removed in a future revision.
      * @deprecated
      */

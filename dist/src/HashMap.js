@@ -21,6 +21,7 @@ var AllFieldHashable_1 = require("./AllFieldHashable");
 var ArrayList_1 = require("./ArrayList");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
+var Collections_1 = require("./Collections");
 var LinkedList_1 = require("./LinkedList");
 /**
  * Hash table based implementation of the Map interface.  This implementation permits null values and the null key.<br>
@@ -265,6 +266,12 @@ var HashMap = /** @class */ (function () {
      */
     HashMap.prototype[Symbol.iterator] = function () {
         return this.entrySet[Symbol.iterator]();
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    HashMap.prototype.toJSON = function () {
+        return Collections_1.Collections.jsonstringify(this);
     };
     /**
      * This method is deprecated and will be removed in a future revision.

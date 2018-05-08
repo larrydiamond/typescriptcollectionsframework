@@ -1030,6 +1030,13 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
     }
     return node;
   }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    return Collections.jsonstringify(this);
+  }
 }
 
 
@@ -1326,7 +1333,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
 
   /**
   * Returns the first (lowest) element currently in this set.
-  * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
+  * @return {K} the first (lowest) element currently in this set, null if there are no elements in this set
   */
   public first () : K {
     const node : SkipListNode<K,number> = this.impl.firstEntry();
@@ -1338,7 +1345,7 @@ export class SkipListSet<K> implements NavigableSet<K> {
 
   /**
   * Returns the last (highest) element currently in this set.
-  * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
+  * @return {K} the last (highest) element currently in this set, null if there are no elements in this set
   */
   public last () : K {
     const node : SkipListNode<K,number> = this.impl.lastEntry();

@@ -57,19 +57,44 @@ var product3 = new PetStoreProduct("Goldfish", 9.99);
 var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 describe("Test NavigableSet functionality", function () {
     it("Test firstKey", function () {
-        testFirstKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
-        testFirstKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
-        testFirstKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testFirstKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testFirstKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testFirstKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testFirstKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testFirstKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test lastKey", function () {
-        testLastKeyNumberString(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
-        testLastKeyNumberString(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
-        testLastKeyStringString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
-        testLastKeyStringString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testLastKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testLastKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testLastKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testLastKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test pollFirstKey", function () {
+        testPollFirstKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testPollFirstKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test pollLastKey", function () {
+        testPollLastKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testPollLastKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test ceiling", function () {
+        testCeilingNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testCeilingNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testCeilingString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testCeilingString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test floor", function () {
+        testFloorNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testFloorNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testFloorString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testFloorString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
 });
-function testFirstKeyNumberString(set) {
+function testFirstKeyNumber(set) {
+    expect(set.first()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestNumbers(set);
@@ -77,7 +102,8 @@ function testFirstKeyNumberString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.first()).toEqual(100);
 }
-function testFirstKeyStringString(set) {
+function testFirstKeyString(set) {
+    expect(set.first()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestStrings(set);
@@ -85,7 +111,8 @@ function testFirstKeyStringString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.first()).toEqual("eighth");
 }
-function testLastKeyNumberString(set) {
+function testLastKeyNumber(set) {
+    expect(set.last()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestNumbers(set);
@@ -93,13 +120,110 @@ function testLastKeyNumberString(set) {
     expect(set.isEmpty()).toEqual(false);
     expect(set.last()).toEqual(1000);
 }
-function testLastKeyStringString(set) {
+function testLastKeyString(set) {
+    expect(set.last()).toEqual(null);
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     addTestStrings(set);
     expect(set.size()).toEqual(10);
     expect(set.isEmpty()).toEqual(false);
     expect(set.last()).toEqual("third");
+}
+function testPollFirstKeyNumber(set) {
+    expect(set.pollFirst()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollFirst()).toEqual(100);
+    expect(set.pollFirst()).toEqual(200);
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testPollFirstKeyString(set) {
+    expect(set.pollFirst()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollFirst()).toEqual("eighth");
+    expect(set.pollFirst()).toEqual("fifth");
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testPollLastKeyNumber(set) {
+    expect(set.pollLast()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollLast()).toEqual(1000);
+    expect(set.pollLast()).toEqual(900);
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testPollLastKeyString(set) {
+    expect(set.pollLast()).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.pollLast()).toEqual("third");
+    expect(set.pollLast()).toEqual("tenth");
+    expect(set.size()).toEqual(8);
+    expect(set.isEmpty()).toEqual(false);
+}
+function testCeilingNumber(set) {
+    expect(set.ceiling(456)).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.ceiling(456)).toEqual(500);
+    expect(set.ceiling(600)).toEqual(600);
+    expect(set.ceiling(1)).toEqual(100);
+    expect(set.ceiling(99999)).toEqual(null);
+}
+function testCeilingString(set) {
+    expect(set.ceiling("notfound")).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.ceiling("notfound")).toEqual("second");
+    expect(set.ceiling("first")).toEqual("first");
+    expect(set.ceiling("aaaaa")).toEqual("eighth");
+    expect(set.ceiling("zzzzz")).toEqual(null);
+}
+function testFloorNumber(set) {
+    expect(set.floor(456)).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.floor(456)).toEqual(400);
+    expect(set.floor(600)).toEqual(600);
+    expect(set.floor(1)).toEqual(null);
+    expect(set.floor(99999)).toEqual(1000);
+}
+function testFloorString(set) {
+    expect(set.floor("notfound")).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.floor("notfound")).toEqual("ninth");
+    expect(set.floor("first")).toEqual("first");
+    expect(set.floor("aaaaa")).toEqual(null);
+    expect(set.floor("zzzzz")).toEqual("third");
 }
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);

@@ -8,6 +8,7 @@
 
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
+import {Collections} from "./Collections";
 import {Comparator} from "./Comparator";
 import {Consumer} from "./Consumer";
 import {ImmutableMap} from "./ImmutableMap";
@@ -782,6 +783,13 @@ public size () : number {
   */
   public immutableMap () : ImmutableMap<K,V> {
     return this;
+  }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    return Collections.jsonstringify(this);
   }
 
 }

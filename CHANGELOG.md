@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.2.2"></a>
+# [4.2.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.1...v4.2.2) (2018-05-01)
+* Documentation fix for empty navigable set behavior
+
 <a name="4.2.1"></a>
 # [4.2.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.0...v4.2.1) (2018-04-29)
 * Improving code coverage

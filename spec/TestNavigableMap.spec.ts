@@ -84,12 +84,28 @@ describe("Test NavigableMap functionality", function() {
     testFirstKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
   });
 
+  it ("Test firstEntry", function () {
+    testFirstEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testFirstEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+
+    testFirstEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testFirstEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+  });
+
   it ("Test lastKey", function () {
     testLastKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
     testLastKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
 
     testLastKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
     testLastKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+  });
+
+  it ("Test lastEntry", function () {
+    testLastEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testLastEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+
+    testLastEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testLastEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
   });
 
 
@@ -118,6 +134,32 @@ function testFirstKeyStringString (map:NavigableMap<string,string>) {
   expect (map.firstKey()).toEqual ("eighth");
 }
 
+
+function testFirstEntryNumberString (map:NavigableMap<number,string>) {
+  expect (map.firstEntry()).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  const entry = map.firstEntry();
+  expect (entry.getKey()).toEqual (100);
+  expect (entry.getValue()).toEqual ("100blah");
+}
+
+function testFirstEntryStringString (map:NavigableMap<string,string>) {
+  expect (map.firstEntry()).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  const entry = map.firstEntry();
+  expect (entry.getKey()).toEqual ("eighth");
+  expect (entry.getValue()).toEqual ("eighthblah");
+}
+
+
 function testLastKeyNumberString (map:NavigableMap<number,string>) {
   expect (map.lastKey()).toEqual (null);
   expect (map.size ()).toEqual(0);
@@ -139,32 +181,53 @@ function testLastKeyStringString (map:NavigableMap<string,string>) {
 }
 
 
+function testLastEntryNumberString (map:NavigableMap<number,string>) {
+  expect (map.lastEntry()).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  const entry = map.lastEntry();
+  expect (entry.getKey()).toEqual (1000);
+  expect (entry.getValue()).toEqual ("1000blah");
+}
 
-
+function testLastEntryStringString (map:NavigableMap<string,string>) {
+  expect (map.lastEntry()).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  const entry = map.lastEntry();
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+}
 
 
 function addTestNumbers (map:JMap<number,string>) {
-  expect (map.put (300, "blah")).toEqual(undefined);
-  expect (map.put (600, "blah")).toEqual(undefined);
-  expect (map.put (900, "blah")).toEqual(undefined);
-  expect (map.put (1000, "blah")).toEqual(undefined);
-  expect (map.put (700, "blah")).toEqual(undefined);
-  expect (map.put (400, "blah")).toEqual(undefined);
-  expect (map.put (100, "blah")).toEqual(undefined);
-  expect (map.put (200, "blah")).toEqual(undefined);
-  expect (map.put (500, "blah")).toEqual(undefined);
-  expect (map.put (800, "blah")).toEqual(undefined);
+  expect (map.put (300, "300blah")).toEqual(undefined);
+  expect (map.put (600, "600blah")).toEqual(undefined);
+  expect (map.put (900, "900blah")).toEqual(undefined);
+  expect (map.put (1000, "1000blah")).toEqual(undefined);
+  expect (map.put (700, "700blah")).toEqual(undefined);
+  expect (map.put (400, "400blah")).toEqual(undefined);
+  expect (map.put (100, "100blah")).toEqual(undefined);
+  expect (map.put (200, "200blah")).toEqual(undefined);
+  expect (map.put (500, "500blah")).toEqual(undefined);
+  expect (map.put (800, "800blah")).toEqual(undefined);
 }
 
 function addTestStrings (map:JMap<string,string>) {
-  expect (map.put ("first", "blah")).toEqual(undefined);
-  expect (map.put ("second", "blah")).toEqual(undefined);
-  expect (map.put ("third", "blah")).toEqual(undefined);
-  expect (map.put ("fourth", "blah")).toEqual(undefined);
-  expect (map.put ("fifth", "blah")).toEqual(undefined);
-  expect (map.put ("sixth", "blah")).toEqual(undefined);
-  expect (map.put ("seventh", "blah")).toEqual(undefined);
-  expect (map.put ("eighth", "blah")).toEqual(undefined);
-  expect (map.put ("ninth", "blah")).toEqual(undefined);
-  expect (map.put ("tenth", "blah")).toEqual(undefined);
+  expect (map.put ("first", "firstblah")).toEqual(undefined);
+  expect (map.put ("second", "secondblah")).toEqual(undefined);
+  expect (map.put ("third", "thirdblah")).toEqual(undefined);
+  expect (map.put ("fourth", "fourthblah")).toEqual(undefined);
+  expect (map.put ("fifth", "fifthblah")).toEqual(undefined);
+  expect (map.put ("sixth", "sixthblah")).toEqual(undefined);
+  expect (map.put ("seventh", "seventhblah")).toEqual(undefined);
+  expect (map.put ("eighth", "eighthblah")).toEqual(undefined);
+  expect (map.put ("ninth", "ninthblah")).toEqual(undefined);
+  expect (map.put ("tenth", "tenthblah")).toEqual(undefined);
 }

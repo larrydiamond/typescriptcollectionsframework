@@ -220,6 +220,13 @@ describe("Test Map functionality", function() {
     testCopyConstructor (new NavigableHashMap<string,number> (Collections.getStringComparator(), populateTestData (new NavigableHashMap<string,number> (Collections.getStringComparator()))));
   });
 
+//  it("Test JSON stringify", function() {
+//    testJsonStringify (new HashMap<string,number> ());
+//    testJsonStringify (new LinkedHashMap<string,number> ());
+//    testJsonStringify (new TreeMap<string,number> (Collections.getStringComparator()));
+//    testJsonStringify (new SkipListMap<string,number> (Collections.getStringComparator()));
+//  });
+
 });
 
 function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
@@ -244,6 +251,7 @@ function testEmptyPetStoreProductAndValueClassMap (map:ImmutableMap<PetStoreProd
 function testAddingOneEntryStringStringMap (map:JMap<string,string>, typestring:string) : void {
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
+  expect (map.remove("bogus")).toEqual (null);
   expect (undefined).toEqual(map.put("testkey", "testvalue"));
   expect (map.size ()).toEqual(1);
   expect (map.isEmpty ()).toEqual(false);
@@ -387,4 +395,12 @@ function testCopyConstructor (map:JMap<string,number>) : void {
   expect (map.get ("Catnip")).toEqual (4.99);
   expect (map.get ("Bananas")).toEqual (undefined);
   expect (map.size()).toEqual (3);
+};
+
+function testJsonStringify (map:JMap<string,number>) : void {
+  console.log (JSON.stringify (map));
+  expect (JSON.stringify (map)).toEqual ('"[]"');
+  map.put ("ChewToy", 14.99);
+  expect (JSON.stringify (map)).toEqual ('"[{\"key\":\"ChewToy\",\"value\":14.99}]"');
+  console.log (JSON.stringify (map));
 };

@@ -71,19 +71,51 @@ const productNotAvailable:PetStoreProduct = new PetStoreProduct("Bananas", 1.99)
 
 describe("Test NavigableSet functionality", function() {
   it ("Test firstKey", function () {
-    testFirstKeyNumberString (new TreeSet<number>(Collections.getNumberComparator()));
-    testFirstKeyNumberString (new SkipListSet<number>(Collections.getNumberComparator()));
+    testFirstKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testFirstKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
-    testFirstKeyStringString (new TreeSet<string>(Collections.getStringComparator()));
-    testFirstKeyStringString (new SkipListSet<string>(Collections.getStringComparator()));
+    testFirstKeyString (new TreeSet<string>(Collections.getStringComparator()));
+    testFirstKeyString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test lastKey", function () {
-    testLastKeyNumberString (new TreeSet<number>(Collections.getNumberComparator()));
-    testLastKeyNumberString (new SkipListSet<number>(Collections.getNumberComparator()));
+    testLastKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testLastKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
-    testLastKeyStringString (new TreeSet<string>(Collections.getStringComparator()));
-    testLastKeyStringString (new SkipListSet<string>(Collections.getStringComparator()));
+    testLastKeyString (new TreeSet<string>(Collections.getStringComparator()));
+    testLastKeyString (new SkipListSet<string>(Collections.getStringComparator()));
+  });
+
+  it ("Test pollFirstKey", function () {
+    testPollFirstKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testPollFirstKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
+
+    testPollFirstKeyString (new TreeSet<string>(Collections.getStringComparator()));
+    testPollFirstKeyString (new SkipListSet<string>(Collections.getStringComparator()));
+  });
+
+  it ("Test pollLastKey", function () {
+    testPollLastKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testPollLastKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
+
+    testPollLastKeyString (new TreeSet<string>(Collections.getStringComparator()));
+    testPollLastKeyString (new SkipListSet<string>(Collections.getStringComparator()));
+  });
+
+  it ("Test ceiling", function () {
+    testCeilingNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testCeilingNumber (new SkipListSet<number>(Collections.getNumberComparator()));
+
+    testCeilingString (new TreeSet<string>(Collections.getStringComparator()));
+    testCeilingString (new SkipListSet<string>(Collections.getStringComparator()));
+  });
+
+  it ("Test floor", function () {
+    testFloorNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testFloorNumber (new SkipListSet<number>(Collections.getNumberComparator()));
+
+    testFloorString (new TreeSet<string>(Collections.getStringComparator()));
+    testFloorString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
 
@@ -92,7 +124,8 @@ describe("Test NavigableSet functionality", function() {
 
 });
 
-function testFirstKeyNumberString (set:NavigableSet<number>) {
+function testFirstKeyNumber (set:NavigableSet<number>) {
+  expect (set.first()).toEqual (null);
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
   addTestNumbers(set);
@@ -101,7 +134,8 @@ function testFirstKeyNumberString (set:NavigableSet<number>) {
   expect (set.first()).toEqual (100);
 }
 
-function testFirstKeyStringString (set:NavigableSet<string>) {
+function testFirstKeyString (set:NavigableSet<string>) {
+  expect (set.first()).toEqual (null);
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
   addTestStrings(set);
@@ -110,7 +144,9 @@ function testFirstKeyStringString (set:NavigableSet<string>) {
   expect (set.first()).toEqual ("eighth");
 }
 
-function testLastKeyNumberString (set:NavigableSet<number>) {
+
+function testLastKeyNumber (set:NavigableSet<number>) {
+  expect (set.last()).toEqual (null);
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
   addTestNumbers(set);
@@ -119,13 +155,122 @@ function testLastKeyNumberString (set:NavigableSet<number>) {
   expect (set.last()).toEqual (1000);
 }
 
-function testLastKeyStringString (set:NavigableSet<string>) {
+function testLastKeyString (set:NavigableSet<string>) {
+  expect (set.last()).toEqual (null);
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
   addTestStrings(set);
   expect (set.size ()).toEqual(10);
   expect (set.isEmpty ()).toEqual(false);
   expect (set.last()).toEqual ("third");
+}
+
+
+function testPollFirstKeyNumber (set:NavigableSet<number>) {
+  expect (set.pollFirst()).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestNumbers(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.pollFirst()).toEqual (100);
+  expect (set.pollFirst()).toEqual (200);
+  expect (set.size ()).toEqual(8);
+  expect (set.isEmpty ()).toEqual(false);
+}
+
+function testPollFirstKeyString (set:NavigableSet<string>) {
+  expect (set.pollFirst()).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestStrings(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.pollFirst()).toEqual ("eighth");
+  expect (set.pollFirst()).toEqual ("fifth");
+  expect (set.size ()).toEqual(8);
+  expect (set.isEmpty ()).toEqual(false);
+}
+
+
+function testPollLastKeyNumber (set:NavigableSet<number>) {
+  expect (set.pollLast()).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestNumbers(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.pollLast()).toEqual (1000);
+  expect (set.pollLast()).toEqual (900);
+  expect (set.size ()).toEqual(8);
+  expect (set.isEmpty ()).toEqual(false);
+}
+
+function testPollLastKeyString (set:NavigableSet<string>) {
+  expect (set.pollLast()).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestStrings(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.pollLast()).toEqual ("third");
+  expect (set.pollLast()).toEqual ("tenth");
+  expect (set.size ()).toEqual(8);
+  expect (set.isEmpty ()).toEqual(false);
+}
+
+
+function testCeilingNumber (set:NavigableSet<number>) {
+  expect (set.ceiling(456)).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestNumbers(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.ceiling(456)).toEqual (500);
+  expect (set.ceiling(600)).toEqual (600);
+  expect (set.ceiling(1)).toEqual (100);
+  expect (set.ceiling(99999)).toEqual (null);
+}
+
+function testCeilingString (set:NavigableSet<string>) {
+  expect (set.ceiling("notfound")).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestStrings(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.ceiling("notfound")).toEqual ("second");
+  expect (set.ceiling("first")).toEqual ("first");
+  expect (set.ceiling("aaaaa")).toEqual ("eighth");
+  expect (set.ceiling("zzzzz")).toEqual (null);
+}
+
+
+function testFloorNumber (set:NavigableSet<number>) {
+  expect (set.floor(456)).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestNumbers(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.floor(456)).toEqual (400);
+  expect (set.floor(600)).toEqual (600);
+  expect (set.floor(1)).toEqual (null);
+  expect (set.floor(99999)).toEqual (1000);
+}
+
+function testFloorString (set:NavigableSet<string>) {
+  expect (set.floor("notfound")).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestStrings(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.floor("notfound")).toEqual ("ninth");
+  expect (set.floor("first")).toEqual ("first");
+  expect (set.floor("aaaaa")).toEqual (null);
+  expect (set.floor("zzzzz")).toEqual ("third");
 }
 
 

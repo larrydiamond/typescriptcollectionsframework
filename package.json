@@ -1,7 +1,7 @@
 {
   "name": "typescriptcollectionsframework",
   "author": "Larry Diamond <ldiamond@ldiamond.com>",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "Collections Framework for TypeScript compatible with AngularJS",
   "homepage": "https://github.com/larrydiamond/typescriptcollectionsframework",
   "license": "MIT",
@@ -9,7 +9,7 @@
   "dependencines": {},
   "devDependencies": {
     "@types/jasmine": "^2.8.6",
-    "@types/node": "^9.6.7",
+    "@types/node": "^10.0.3",
     "gulp": "^3.9.1",
     "gulp-jasmine": "^4.0.0",
     "gulp-typescript": "^4.0.2",

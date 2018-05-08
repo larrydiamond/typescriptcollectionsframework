@@ -56,6 +56,22 @@ describe("Test LinkedList functionality", function () {
         expect(collection.isEmpty()).toEqual(false);
         expect(collection.size()).toEqual(2);
     });
+    it("Test AddFirst", function () {
+        var ll = new LinkedList_1.LinkedList();
+        var list = ll;
+        var collection = list;
+        expect(ll.contains(product3)).toEqual(false);
+        expect(ll.addFirst(product1)).toEqual(true);
+        expect(ll.addFirst(product2)).toEqual(true);
+        expect(ll.contains(product2)).toEqual(true);
+        expect(ll.contains(product3)).toEqual(false);
+        expect(ll.isEmpty()).toEqual(false);
+        expect(ll.size()).toEqual(2);
+        expect(list.isEmpty()).toEqual(false);
+        expect(list.size()).toEqual(2);
+        expect(collection.isEmpty()).toEqual(false);
+        expect(collection.size()).toEqual(2);
+    });
     it("Test clearing the LinkedList", function () {
         var thelist = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         var list = thelist;

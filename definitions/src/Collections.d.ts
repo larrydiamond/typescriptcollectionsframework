@@ -54,4 +54,8 @@ export declare class Collections {
      * Returns an Array of the elements of this Immutable Collection
      */
     static asArray<T>(icoll: ImmutableCollection<T>): Array<T>;
+    /**
+     * JSON stringify for a map
+     */
+    static jsonstringify<K, V>(imap: ImmutableMap<K, V>): string;
 }
