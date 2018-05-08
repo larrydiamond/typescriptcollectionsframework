@@ -121,7 +121,7 @@ var HashMap = /** @class */ (function () {
      * Rehashes the entire hashmap.... gonna be slow you've been warned
      */
     HashMap.prototype.rehash = function () {
-        if (this.elementCount > (this.data.size() * this.loadFactor)) { // Not enough buckets
+        if (this.elementCount > (this.data.size() * this.loadFactor)) {
             // How many buckets should there be?   Lets go with doubling the number of buckets
             var newBucketCount = (this.data.size() * 2) + 1;
             var newdata = new ArrayList_1.ArrayList(this.ListMapEntryMethods);
@@ -435,7 +435,7 @@ var HashMapKeySetJIterator = /** @class */ (function () {
         this.map = iHashMap;
     }
     HashMapKeySetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) { // first time caller
+        if (this.location === undefined) {
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
             if ((firstEntry === null) || (firstEntry === undefined))
                 return false;
@@ -444,7 +444,7 @@ var HashMapKeySetJIterator = /** @class */ (function () {
             var first = firstEntry.entry.getKey();
             return true;
         }
-        else { // we've already called this iterator before
+        else {
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
             if ((tmpEntry === null) || (tmpEntry === undefined))
                 return false;
@@ -455,7 +455,7 @@ var HashMapKeySetJIterator = /** @class */ (function () {
         }
     };
     HashMapKeySetJIterator.prototype.next = function () {
-        if (this.location === undefined) { // first time caller
+        if (this.location === undefined) {
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
             if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
@@ -465,7 +465,7 @@ var HashMapKeySetJIterator = /** @class */ (function () {
             this.location = firstEntry;
             return first;
         }
-        else { // we've already called this iterator before
+        else {
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
             if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;
@@ -524,7 +524,7 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
         this.map = iHashMap;
     }
     HashMapEntrySetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) { // first time caller
+        if (this.location === undefined) {
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
             if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
@@ -533,7 +533,7 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
             var first = firstEntry.entry.getKey();
             return true;
         }
-        else { // we've already called this iterator before
+        else {
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
             if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;
@@ -544,7 +544,7 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
         }
     };
     HashMapEntrySetJIterator.prototype.next = function () {
-        if (this.location === undefined) { // first time caller
+        if (this.location === undefined) {
             var firstEntry = this.map.deprecatedGetFirstEntryForIterator();
             if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
@@ -554,7 +554,7 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
             this.location = firstEntry;
             return first;
         }
-        else { // we've already called this iterator before
+        else {
             var tmpEntry = this.map.deprecatedGetNextEntryForIterator(this.location);
             if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;

@@ -161,7 +161,7 @@ describe("Test LinkedHashSet functionality", function() {
   });
 
   it("Test value jiterator three initial entries", function() {
-    // makes new list unorder.. it uses set. see initializeElements() 
+    // makes new list unorder.. it uses set. see initializeElements()
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);
     expect (sourceSet.add ("C")).toEqual(true);
@@ -187,14 +187,14 @@ describe("Test LinkedHashSet functionality", function() {
   });
 
   it("Test remove entry success", function() {
-    // makes new list unorder.. it uses set. see initializeElements() 
+    // makes new list unorder.. it uses set. see initializeElements()
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);
     expect (sourceSet.add ("C")).toEqual(true);
     expect (sourceSet.add ("B")).toEqual(true);
     expect (sourceSet.size ()).toEqual(3);
     expect (sourceSet.remove("B")).toEqual(true);
-  
+
     let count:number = 0;
     const values:string[] = [];
 
@@ -211,7 +211,7 @@ describe("Test LinkedHashSet functionality", function() {
   });
 
   it("Test remove entry failure", function() {
-    // makes new list unorder.. it uses set. see initializeElements() 
+    // makes new list unorder.. it uses set. see initializeElements()
     const sourceSet:LinkedHashSet<string> = new LinkedHashSet<string>(new AllFieldHashable<string>());
     expect (sourceSet.add ("A")).toEqual(true);
     expect (sourceSet.add ("C")).toEqual(true);

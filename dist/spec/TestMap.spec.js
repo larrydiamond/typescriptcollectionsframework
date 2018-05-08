@@ -12,6 +12,7 @@ var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var Collections_1 = require("../src/Collections");
 var HashMap_1 = require("../src/HashMap");
 var LinkedHashMap_1 = require("../src/LinkedHashMap");
+var NavigableHash_1 = require("../src/NavigableHash");
 var SkipList_1 = require("../src/SkipList");
 var TreeMap_1 = require("../src/TreeMap");
 // PetStoreProduct will be used in testing
@@ -88,6 +89,9 @@ describe("Test Map functionality", function () {
         testEmptyStringStringMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testEmptyStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
+        testEmptyStringStringMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testEmptyStringNumberMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testEmptyPetStoreProductAndValueClassMap(new NavigableHash_1.NavigableHashMap(alphabeticalSortPetStoreProduct));
     });
     it("Test adding to empty maps", function () {
         testAddingOneEntryStringStringMap(new HashMap_1.HashMap(), "HashMap default");
@@ -108,6 +112,9 @@ describe("Test Map functionality", function () {
         testAddingOneEntryStringStringMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()), "SkipListMap");
         testAddingOneEntryStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
+        testAddingOneEntryStringStringMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()), "NavigableHashMap");
+        testAddingOneEntryStringNumberMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryPetStoreProductAndValueClassMap(new NavigableHash_1.NavigableHashMap(alphabeticalSortPetStoreProduct));
     });
     it("Test adding two items to empty maps", function () {
         testAddingTwoEntriesStringStringMap(new HashMap_1.HashMap());
@@ -128,6 +135,9 @@ describe("Test Map functionality", function () {
         testAddingTwoEntriesStringStringMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
+        testAddingTwoEntriesStringStringMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testAddingTwoEntriesStringNumberMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testAddingTwoEntriesPetStoreProductAndValueClassMap(new NavigableHash_1.NavigableHashMap(alphabeticalSortPetStoreProduct));
     });
     it("Test clearing maps", function () {
         testClearingStringStringMap(new HashMap_1.HashMap());
@@ -148,6 +158,9 @@ describe("Test Map functionality", function () {
         testClearingStringStringMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testClearingStringNumberMap(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassMap(new SkipList_1.SkipListMap(alphabeticalSortPetStoreProduct));
+        testClearingStringStringMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testClearingStringNumberMap(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+        testClearingPetStoreProductAndValueClassMap(new NavigableHash_1.NavigableHashMap(alphabeticalSortPetStoreProduct));
     });
     it("Test replacing entries", function () {
         testMapEntryReplacement(new HashMap_1.HashMap());
@@ -156,12 +169,14 @@ describe("Test Map functionality", function () {
         testMapEntryReplacement(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()));
         testMapEntryReplacement(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
         testMapEntryReplacement(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testMapEntryReplacement(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
     it("Test copy constructor", function () {
         testCopyConstructor(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable(), populateTestData(new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable()))));
         testCopyConstructor(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable(), populateTestData(new LinkedHashMap_1.LinkedHashMap(new AllFieldHashable_1.AllFieldHashable()))));
         testCopyConstructor(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator(), populateTestData(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()))));
         testCopyConstructor(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator(), populateTestData(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()))));
+        testCopyConstructor(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator(), populateTestData(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()))));
     });
 });
 function testEmptyStringStringMap(map) {

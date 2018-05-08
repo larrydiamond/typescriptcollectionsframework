@@ -20,6 +20,7 @@ import {JIterator} from "../src/JIterator";
 import {LinkedHashMap} from "../src/LinkedHashMap";
 import {JMap} from "../src/JMap";
 import {MapEntry} from "../src/MapEntry";
+import {NavigableHashMap} from "../src/NavigableHash";
 import {SkipListMap} from "../src/SkipList";
 import {TreeMap} from "../src/TreeMap";
 
@@ -111,6 +112,10 @@ describe("Test Map functionality", function() {
     testEmptyStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
     testEmptyStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testEmptyStringStringMap (new NavigableHashMap<string,string> (Collections.getStringComparator()));
+    testEmptyStringNumberMap (new NavigableHashMap<string,number> (Collections.getStringComparator()));
+    testEmptyPetStoreProductAndValueClassMap (new NavigableHashMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding to empty maps", function() {
@@ -135,6 +140,10 @@ describe("Test Map functionality", function() {
     testAddingOneEntryStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()), "SkipListMap");
     testAddingOneEntryStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testAddingOneEntryStringStringMap (new NavigableHashMap<string,string> (Collections.getStringComparator()), "NavigableHashMap");
+    testAddingOneEntryStringNumberMap (new NavigableHashMap<string,number> (Collections.getStringComparator()));
+    testAddingOneEntryPetStoreProductAndValueClassMap (new NavigableHashMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding two items to empty maps", function() {
@@ -159,6 +168,10 @@ describe("Test Map functionality", function() {
     testAddingTwoEntriesStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
     testAddingTwoEntriesStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
     testAddingTwoEntriesPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testAddingTwoEntriesStringStringMap (new NavigableHashMap<string,string> (Collections.getStringComparator()));
+    testAddingTwoEntriesStringNumberMap (new NavigableHashMap<string,number> (Collections.getStringComparator()));
+    testAddingTwoEntriesPetStoreProductAndValueClassMap (new NavigableHashMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test clearing maps", function() {
@@ -183,6 +196,10 @@ describe("Test Map functionality", function() {
     testClearingStringStringMap (new SkipListMap<string,string> (Collections.getStringComparator()));
     testClearingStringNumberMap (new SkipListMap<string,number> (Collections.getStringComparator()));
     testClearingPetStoreProductAndValueClassMap (new SkipListMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
+
+    testClearingStringStringMap (new NavigableHashMap<string,string> (Collections.getStringComparator()));
+    testClearingStringNumberMap (new NavigableHashMap<string,number> (Collections.getStringComparator()));
+    testClearingPetStoreProductAndValueClassMap (new NavigableHashMap<PetStoreProduct,ValueClass> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test replacing entries", function() {
@@ -192,6 +209,7 @@ describe("Test Map functionality", function() {
     testMapEntryReplacement (new LinkedHashMap<string,number> (new AllFieldHashable<string>()));
     testMapEntryReplacement (new TreeMap<string,number> (Collections.getStringComparator()));
     testMapEntryReplacement (new SkipListMap<string,number> (Collections.getStringComparator()));
+    testMapEntryReplacement (new NavigableHashMap<string,number> (Collections.getStringComparator()));
   });
 
   it("Test copy constructor", function() {
@@ -199,6 +217,7 @@ describe("Test Map functionality", function() {
     testCopyConstructor (new LinkedHashMap<string,number> (new AllFieldHashable<string>(), populateTestData (new LinkedHashMap<string,number> (new AllFieldHashable<string>()))));
     testCopyConstructor (new TreeMap<string,number> (Collections.getStringComparator(), populateTestData (new TreeMap<string,number> (Collections.getStringComparator()))));
     testCopyConstructor (new SkipListMap<string,number> (Collections.getStringComparator(), populateTestData (new SkipListMap<string,number> (Collections.getStringComparator()))));
+    testCopyConstructor (new NavigableHashMap<string,number> (Collections.getStringComparator(), populateTestData (new NavigableHashMap<string,number> (Collections.getStringComparator()))));
   });
 
 });

@@ -28,6 +28,8 @@ export {List} from "./src/List";
 export {JMap} from "./src/JMap";
 export {JSet} from "./src/JSet";
 export {MapEntry} from "./src/MapEntry";
+export {NavigableHashMap} from "./src/NavigableHash";
+export {NavigableHashSet} from "./src/NavigableHash";
 export {NavigableMap} from "./src/NavigableMap";
 export {NavigableSet} from "./src/NavigableSet";
 export {PriorityQueue} from "./src/PriorityQueue";

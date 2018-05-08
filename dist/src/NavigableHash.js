@@ -21,32 +21,32 @@ var ArrayList_1 = require("./ArrayList");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var Collections_1 = require("./Collections");
-var SkipListMapImpl = /** @class */ (function () {
-    function SkipListMapImpl(iComparator) {
+var NavigableHashImpl = /** @class */ (function () {
+    function NavigableHashImpl(iComparator) {
         this.head = null;
         this.height = 3;
         this.mapComparator = null;
         this.mapCollectable = null;
         this.numberElements = 0.0;
-        this.skipListNodeComparator = null;
-        this.skipListNodeCollectable = null;
+        this.NavigableHashNodeComparator = null;
+        this.NavigableHashNodeCollectable = null;
         this.mapComparator = iComparator;
-        this.skipListNodeComparator = new SkipListNodeComparator(this.mapComparator);
+        this.NavigableHashNodeComparator = new NavigableHashNodeComparator(this.mapComparator);
         this.mapCollectable = Collections_1.Collections.collectableFromComparator(iComparator);
-        this.skipListNodeCollectable = new SkipListNodeCollectable(this.mapCollectable);
-        this.head = new ArrayList_1.ArrayList(this.skipListNodeCollectable);
+        this.NavigableHashNodeCollectable = new NavigableHashNodeCollectable(this.mapCollectable);
+        this.head = new ArrayList_1.ArrayList(this.NavigableHashNodeCollectable);
         for (var loop = 0; loop < this.height; loop++) {
             this.head.add(null);
         }
     }
-    SkipListMapImpl.prototype.getSkipListNodeComparator = function () { return this.skipListNodeComparator; };
-    SkipListMapImpl.prototype.getSkipListNodeCollectable = function () { return this.skipListNodeCollectable; };
+    NavigableHashImpl.prototype.getNavigableHashNodeComparator = function () { return this.NavigableHashNodeComparator; };
+    NavigableHashImpl.prototype.getNavigableHashNodeCollectable = function () { return this.NavigableHashNodeCollectable; };
     /*
     
       public validateDisplay () : boolean {
-        console.log ("SkipListMapImpl::ValidateDisplay - Size of SkipListMap = " + this.numberElements);
+        console.log ("NavigableHashImpl::ValidateDisplay - Size of NavigableHashMap = " + this.numberElements);
         let count : number = 0;
-        let tmp : SkipListNode<K,V> = this.firstEntry();
+        let tmp : NavigableHashNode<K,V> = this.firstEntry();
         while ((tmp !== null) && (tmp !== undefined)) {
           console.log ("NodeList " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()));
           tmp = tmp.getNextNodeArray().get (0);
@@ -54,7 +54,7 @@ var SkipListMapImpl = /** @class */ (function () {
         }
     
         for (let loop:number = 0.0; loop < this.head.size(); loop++) {
-          const hn : SkipListNode<K,V> = this.head.get(loop);
+          const hn : NavigableHashNode<K,V> = this.head.get(loop);
           if ((hn !== null) && (hn !== undefined)) {
             console.log ("Head" + loop + " " + JSON.stringify(hn.getKey()) + " - " + JSON.stringify(hn.getValue()));
           }
@@ -64,13 +64,13 @@ var SkipListMapImpl = /** @class */ (function () {
         while ((tmp !== null) && (tmp !== undefined)) {
           console.log ("Node " + JSON.stringify(tmp.getKey()) + " - " + JSON.stringify(tmp.getValue()) + " " + tmp.getLastNodeArray().size() + " " + tmp.getNextNodeArray().size());
           for (let loop:number = 0.0; loop < this.head.size(); loop++) {
-            const ln : SkipListNode<K,V> = tmp.getLastNodeArray().get(loop);
+            const ln : NavigableHashNode<K,V> = tmp.getLastNodeArray().get(loop);
             if ((ln !== null) && (ln !== undefined)) {
               console.log ("Last" + loop + " " + JSON.stringify(ln.getKey()) + " - " + JSON.stringify(ln.getValue()));
             }
           }
           for (let loop:number = 0.0; loop < this.head.size(); loop++) {
-            const nn : SkipListNode<K,V> = tmp.getNextNodeArray().get(loop);
+            const nn : NavigableHashNode<K,V> = tmp.getNextNodeArray().get(loop);
             if ((nn !== null) && (nn !== undefined)) {
               console.log ("Next" + loop + " " + JSON.stringify(nn.getKey()) + " - " + JSON.stringify(nn.getValue()));
             }
@@ -81,8 +81,8 @@ var SkipListMapImpl = /** @class */ (function () {
     
         // each of the head elements needs to be at least as big as the prior element or null
         for (let loop:number = 1.0; loop < this.head.size() - 1.0; loop++) {
-          const lower : SkipListNode<K,V> = this.head.get (Math.round (loop - 1.0));
-          const higher : SkipListNode<K,V> = this.head.get (loop);
+          const lower : NavigableHashNode<K,V> = this.head.get (Math.round (loop - 1.0));
+          const higher : NavigableHashNode<K,V> = this.head.get (loop);
           if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
             const cmp:number = this.mapComparator.compare(lower.getKey(), higher.getKey());
             if (cmp === 1) {
@@ -92,7 +92,7 @@ var SkipListMapImpl = /** @class */ (function () {
           }
         }
         while ((tmp !== null) && (tmp !== undefined)) {
-          const next : SkipListNode<K,V> = this.nextHigherNode(tmp);
+          const next : NavigableHashNode<K,V> = this.nextHigherNode(tmp);
           if ((next !== null) && (next !== undefined)) {
             if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
               console.log ("next node array null");
@@ -104,7 +104,7 @@ var SkipListMapImpl = /** @class */ (function () {
             }
             console.log (JSON.stringify(next.getKey()) + " - " + JSON.stringify(next.getValue()));
             count++;
-            const prev : SkipListNode<K,V> = next.getLastNodeArray().get (0);
+            const prev : NavigableHashNode<K,V> = next.getLastNodeArray().get (0);
             if (prev !== null) {
               const cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
               if (cmp !== 0) {
@@ -115,17 +115,17 @@ var SkipListMapImpl = /** @class */ (function () {
           }
           tmp = next;
         }
-        console.log ("End::Size of SkipListMap = " + this.numberElements + " found " + count);
+        console.log ("End::Size of NavigableHashMap = " + this.numberElements + " found " + count);
         if (this.numberElements === count) {
           return true;
         } else {
-          console.log ("Inconsistent size of display SkipListMap = " + this.numberElements + " found " + count);
+          console.log ("Inconsistent size of display NavigableHashMap = " + this.numberElements + " found " + count);
           return false;
         }
       }
     
     */
-    SkipListMapImpl.prototype.validate = function () {
+    NavigableHashImpl.prototype.validate = function () {
         var count = 0.0;
         var tmp = this.firstEntry();
         if ((tmp !== null) && (tmp !== undefined)) {
@@ -138,7 +138,7 @@ var SkipListMapImpl = /** @class */ (function () {
             if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
                 var cmp = this.mapComparator.compare(lower.getKey(), higher.getKey());
                 if (cmp === 1) {
-                    //          console.log ("Head elements out of order");
+                    console.log("Head elements out of order");
                     return false;
                 }
             }
@@ -147,18 +147,18 @@ var SkipListMapImpl = /** @class */ (function () {
             var next = this.nextHigherNode(tmp);
             if ((next !== null) && (next !== undefined)) {
                 if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
-                    //        console.log ("next node array null");
+                    console.log("next node array null");
                     return false;
                 }
                 if ((tmp.getLastNodeArray() === null) || (tmp.getLastNodeArray() === undefined)) {
-                    //        console.log ("last node array null");
+                    console.log("last node array null");
                     return false;
                 }
                 var prev = next.getLastNodeArray().get(0);
                 if (prev !== null) {
                     var cmp = this.mapComparator.compare(prev.getKey(), tmp.getKey());
                     if (cmp !== 0) {
-                        //          console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
+                        console.log("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
                         return false;
                     }
                 }
@@ -170,7 +170,7 @@ var SkipListMapImpl = /** @class */ (function () {
             return true;
         }
         else {
-            //    console.log ("Inconsistent size of SkipListMap = " + this.numberElements + " found " + count);
+            console.log("Inconsistent size of NavigableHashMap = " + this.numberElements + " found " + count);
             return false;
         }
     };
@@ -179,7 +179,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key key for which mapping should be removed
     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
     */
-    SkipListMapImpl.prototype.remove = function (key) {
+    NavigableHashImpl.prototype.remove = function (key) {
         var tmp = this.getEntry(key);
         if ((tmp === null) || (tmp === undefined)) {
             return null;
@@ -191,7 +191,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * Removes this node from the Map
     * @param {MapEntry<K,V>} node node to remove
     */
-    SkipListMapImpl.prototype.removeElement = function (node) {
+    NavigableHashImpl.prototype.removeElement = function (node) {
         var size = node.getNextNodeArray().size();
         var lna = node.getLastNodeArray();
         var nna = node.getNextNodeArray();
@@ -214,9 +214,9 @@ var SkipListMapImpl = /** @class */ (function () {
     /**
     * Removes all of the mappings from this map. The map will be empty after this call returns.
     */
-    SkipListMapImpl.prototype.clear = function () {
+    NavigableHashImpl.prototype.clear = function () {
         this.numberElements = 0;
-        this.head = new ArrayList_1.ArrayList(this.skipListNodeCollectable);
+        this.head = new ArrayList_1.ArrayList(this.NavigableHashNodeCollectable);
         for (var loop = 0; loop < this.height; loop++) {
             this.head.add(null);
         }
@@ -225,21 +225,21 @@ var SkipListMapImpl = /** @class */ (function () {
     * Returns the comparator used to order the keys in this map
     * @return {Comparator} the comparator used to order the keys in this map
     */
-    SkipListMapImpl.prototype.comparator = function () {
+    NavigableHashImpl.prototype.comparator = function () {
         return this.mapComparator;
     };
     /**
     * Returns the number of key-value mappings in this map.
     * @return {number} the number of key-value mappings in this map
     */
-    SkipListMapImpl.prototype.size = function () {
+    NavigableHashImpl.prototype.size = function () {
         return this.numberElements;
     };
     /**
     * Returns true if this map contains no key-value mappings.
     * @return {boolean} true if this map contains no key-value mappings
     */
-    SkipListMapImpl.prototype.isEmpty = function () {
+    NavigableHashImpl.prototype.isEmpty = function () {
         if (this.size() > 0) {
             return false;
         }
@@ -247,7 +247,7 @@ var SkipListMapImpl = /** @class */ (function () {
             return true;
         }
     };
-    SkipListMapImpl.prototype.newNodeSize = function () {
+    NavigableHashImpl.prototype.newNodeSize = function () {
         for (var loop = 0.0; loop < this.height; loop++) {
             if ((this.head.get(loop) === null) || (this.head.get(loop) === undefined)) {
                 return loop + 1;
@@ -261,17 +261,17 @@ var SkipListMapImpl = /** @class */ (function () {
      * @param {V} value value to be associated with the specified key
      * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
      */
-    SkipListMapImpl.prototype.put = function (key, value) {
+    NavigableHashImpl.prototype.put = function (key, value) {
         if (Math.round(this.numberElements) < 1.0) {
             this.numberElements = 1.0;
-            var newnode = new SkipListNode(key, value, 1.0, this.skipListNodeCollectable);
+            var newnode = new NavigableHashNode(key, value, 1.0, this.NavigableHashNodeCollectable);
             this.head.set(0, newnode);
             return undefined;
         }
         else {
             var lastNode = this.floorEntry(key);
             if ((lastNode === null) || (lastNode === undefined)) {
-                var newnode = new SkipListNode(key, value, this.newNodeSize(), this.skipListNodeCollectable);
+                var newnode = new NavigableHashNode(key, value, this.newNodeSize(), this.NavigableHashNodeCollectable);
                 for (var loop = 0; loop < newnode.getNextNodeArray().size(); loop++) {
                     var existingNode = this.head.get(loop);
                     newnode.getNextNodeArray().set(loop, existingNode);
@@ -291,14 +291,14 @@ var SkipListMapImpl = /** @class */ (function () {
                 }
                 else {
                     this.numberElements++;
-                    var newnode = new SkipListNode(key, value, this.newNodeSize(), this.skipListNodeCollectable);
+                    var newnode = new NavigableHashNode(key, value, this.newNodeSize(), this.NavigableHashNodeCollectable);
                     this.hookUpNodePointers(newnode, lastNode);
                     return undefined;
                 }
             }
         }
     };
-    SkipListMapImpl.prototype.hookUpNodePointers = function (newNode, immediatePreceedingNode) {
+    NavigableHashImpl.prototype.hookUpNodePointers = function (newNode, immediatePreceedingNode) {
         //    console.log ("Immediate Preceeding = " + JSON.stringify (immediatePreceedingNode.getKey()));
         //    console.log ("newNode = " + JSON.stringify (newNode.getKey()));
         var lastNode = immediatePreceedingNode;
@@ -342,9 +342,9 @@ var SkipListMapImpl = /** @class */ (function () {
     };
     /**
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
-    * @return {SkipListNode} an entry with the least key, or null if this map is empty
+    * @return {NavigableHashNode} an entry with the least key, or null if this map is empty
     */
-    SkipListMapImpl.prototype.firstEntry = function () {
+    NavigableHashImpl.prototype.firstEntry = function () {
         if (this.numberElements < 1) {
             return null;
         }
@@ -355,7 +355,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
     */
-    SkipListMapImpl.prototype.ceilingEntry = function (key) {
+    NavigableHashImpl.prototype.ceilingEntry = function (key) {
         if (this.numberElements < 1) {
             return null;
         }
@@ -378,7 +378,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
     */
-    SkipListMapImpl.prototype.higherEntry = function (key) {
+    NavigableHashImpl.prototype.higherEntry = function (key) {
         if (this.numberElements < 1) {
             return null;
         }
@@ -396,7 +396,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
     */
-    SkipListMapImpl.prototype.nextHigherNode = function (node) {
+    NavigableHashImpl.prototype.nextHigherNode = function (node) {
         if (this.numberElements < 1) {
             return null;
         }
@@ -421,7 +421,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
     */
-    SkipListMapImpl.prototype.lowerEntry = function (key) {
+    NavigableHashImpl.prototype.lowerEntry = function (key) {
         if (this.numberElements < 1) {
             return null;
         }
@@ -473,7 +473,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
     */
-    SkipListMapImpl.prototype.floorEntry = function (key) {
+    NavigableHashImpl.prototype.floorEntry = function (key) {
         //    console.log ("SkipList::FloorEntry looking for " + key);
         if (this.numberElements < 1) {
             //      console.log ("SkipList::FloorEntry no nodes");
@@ -536,7 +536,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
-    SkipListMapImpl.prototype.lastEntry = function () {
+    NavigableHashImpl.prototype.lastEntry = function () {
         if (this.numberElements < 1) {
             return null;
         }
@@ -565,7 +565,7 @@ var SkipListMapImpl = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the key, or null if there is no such key
     */
-    SkipListMapImpl.prototype.getEntry = function (key) {
+    NavigableHashImpl.prototype.getEntry = function (key) {
         if (this.numberElements < 1) {
             return null;
         }
@@ -622,12 +622,12 @@ var SkipListMapImpl = /** @class */ (function () {
             }
         }
     };
-    return SkipListMapImpl;
+    return NavigableHashImpl;
 }());
-exports.SkipListMapImpl = SkipListMapImpl;
-var SkipListNode = /** @class */ (function (_super) {
-    __extends(SkipListNode, _super);
-    function SkipListNode(key, value, height, iNodeCollectable) {
+exports.NavigableHashImpl = NavigableHashImpl;
+var NavigableHashNode = /** @class */ (function (_super) {
+    __extends(NavigableHashNode, _super);
+    function NavigableHashNode(key, value, height, iNodeCollectable) {
         var _this = _super.call(this, key, value) || this;
         _this.lastNodeArray = null;
         _this.nextNodeArray = null;
@@ -640,24 +640,24 @@ var SkipListNode = /** @class */ (function (_super) {
         return _this;
         //    console.log ("Adding node of size " + height);
     }
-    SkipListNode.prototype.setValue = function (iValue) {
+    NavigableHashNode.prototype.setValue = function (iValue) {
         this.value = iValue;
     };
-    SkipListNode.prototype.getLastNodeArray = function () {
+    NavigableHashNode.prototype.getLastNodeArray = function () {
         return this.lastNodeArray;
     };
-    SkipListNode.prototype.getNextNodeArray = function () {
+    NavigableHashNode.prototype.getNextNodeArray = function () {
         return this.nextNodeArray;
     };
-    return SkipListNode;
+    return NavigableHashNode;
 }(BasicMapEntry_1.BasicMapEntry));
-exports.SkipListNode = SkipListNode;
-var SkipListNodeCollectable = /** @class */ (function () {
-    function SkipListNodeCollectable(iColl) {
+exports.NavigableHashNode = NavigableHashNode;
+var NavigableHashNodeCollectable = /** @class */ (function () {
+    function NavigableHashNodeCollectable(iColl) {
         this.coll = null;
         this.coll = iColl;
     }
-    SkipListNodeCollectable.prototype.equals = function (o1, o2) {
+    NavigableHashNodeCollectable.prototype.equals = function (o1, o2) {
         if (o1 === undefined) {
             if (o2 === undefined) {
                 return true;
@@ -682,14 +682,14 @@ var SkipListNodeCollectable = /** @class */ (function () {
         }
         return false;
     };
-    return SkipListNodeCollectable;
+    return NavigableHashNodeCollectable;
 }());
-var SkipListNodeComparator = /** @class */ (function () {
-    function SkipListNodeComparator(iComp) {
+var NavigableHashNodeComparator = /** @class */ (function () {
+    function NavigableHashNodeComparator(iComp) {
         this.comp = null;
         this.comp = iComp;
     }
-    SkipListNodeComparator.prototype.compare = function (o1, o2) {
+    NavigableHashNodeComparator.prototype.compare = function (o1, o2) {
         if (o1 === o2) {
             return 0;
         }
@@ -701,7 +701,7 @@ var SkipListNodeComparator = /** @class */ (function () {
         }
         return this.comp.compare(o1.getKey(), o2.getKey());
     };
-    return SkipListNodeComparator;
+    return NavigableHashNodeComparator;
 }());
 /**
  * A scalable NavigableMap implementation.
@@ -709,13 +709,13 @@ var SkipListNodeComparator = /** @class */ (function () {
  * The map is sorted according to a Comparator provided at map creation time.<br>
  * This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.
  *
- * This class corresponds to java.util.concurrent.ConcurrentSkipListMap
+ * This class corresponds to java.util.concurrent.ConcurrentNavigableHashMap
  */
-var SkipListMap = /** @class */ (function () {
-    function SkipListMap(comp, iInitial) {
+var NavigableHashMap = /** @class */ (function () {
+    function NavigableHashMap(comp, iInitial) {
         if (iInitial === void 0) { iInitial = null; }
         this.impl = null;
-        this.impl = new SkipListMapImpl(comp);
+        this.impl = new NavigableHashImpl(comp);
         if ((iInitial !== null) && (iInitial !== undefined)) {
             //      console.log ("skiplist::constructor initial has " + initialElements.size());
             for (var iter = iInitial.entrySet().iterator(); iter.hasNext();) {
@@ -725,9 +725,9 @@ var SkipListMap = /** @class */ (function () {
             }
         }
     }
-    SkipListMap.prototype.validateMap = function () { return this.impl.validate(); };
+    NavigableHashMap.prototype.validateMap = function () { return this.impl.validate(); };
     //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
-    SkipListMap.prototype.getNextHigherKey = function (key) {
+    NavigableHashMap.prototype.getNextHigherKey = function (key) {
         var node = this.impl.getEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -742,7 +742,7 @@ var SkipListMap = /** @class */ (function () {
     * Returns the number of key-value mappings in this map.
     * @return {number} the number of key-value mappings in this map
     */
-    SkipListMap.prototype.size = function () {
+    NavigableHashMap.prototype.size = function () {
         return this.impl.size();
     };
     /**
@@ -750,7 +750,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key whose associated value is to be returned
     * @return {V} the value to which the specified key is mapped, or null if this map contains no mapping for the key
     */
-    SkipListMap.prototype.get = function (key) {
+    NavigableHashMap.prototype.get = function (key) {
         var node = this.impl.getEntry(key);
         if ((node === undefined) || (node === null)) {
             return undefined;
@@ -762,7 +762,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key The key whose presence in this map is to be tested
     * @return {V} true if this map contains a mapping for the specified key.
     */
-    SkipListMap.prototype.containsKey = function (key) {
+    NavigableHashMap.prototype.containsKey = function (key) {
         var node = this.impl.getEntry(key);
         if ((node === undefined) || (node === null)) {
             return false;
@@ -773,8 +773,13 @@ var SkipListMap = /** @class */ (function () {
     * Returns true if this map contains no key-value mappings.
     * @return {boolean} true if this map contains no key-value mappings
     */
-    SkipListMap.prototype.isEmpty = function () {
-        return this.impl.isEmpty();
+    NavigableHashMap.prototype.isEmpty = function () {
+        if (this.impl.size() > 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
     };
     /**
     * Returns an ImmutableSet view of the keys contained in this map.
@@ -783,8 +788,8 @@ var SkipListMap = /** @class */ (function () {
     * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
-    SkipListMap.prototype.keySet = function () {
-        return new ImmutableKeySetForSkipListMap(this.impl);
+    NavigableHashMap.prototype.keySet = function () {
+        return new ImmutableKeySetForNavigableHashMap(this.impl);
     };
     /**
     * Returns an ImmutableSet view of the mappings contained in this map.
@@ -794,8 +799,8 @@ var SkipListMap = /** @class */ (function () {
     * The contains method on this entrySet will only compare keys not values.
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
-    SkipListMap.prototype.entrySet = function () {
-        return new ImmutableEntrySetForSkipListMapImpl(this.impl);
+    NavigableHashMap.prototype.entrySet = function () {
+        return new ImmutableEntrySetForNavigableHashImpl(this.impl);
     };
     /**
     * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
@@ -803,7 +808,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {V} value value to be associated with the specified key
     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
     */
-    SkipListMap.prototype.put = function (key, value) {
+    NavigableHashMap.prototype.put = function (key, value) {
         return this.impl.put(key, value);
     };
     /**
@@ -811,33 +816,33 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key key for which mapping should be removed
     * @return {V} the previous value associated with key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with key.)
     */
-    SkipListMap.prototype.remove = function (key) {
+    NavigableHashMap.prototype.remove = function (key) {
         return this.impl.remove(key);
     };
     /**
     * Removes all of the mappings from this map. The map will be empty after this call returns.
     */
-    SkipListMap.prototype.clear = function () {
+    NavigableHashMap.prototype.clear = function () {
         this.impl.clear();
     };
     /**
     * Returns an ImmutableMap backed by this Map
     */
-    SkipListMap.prototype.immutableMap = function () {
+    NavigableHashMap.prototype.immutableMap = function () {
         return this;
     };
     /**
      * Returns an iterator over the entire entry set
      * @return {Iterator<K>} an iterator for the entry set
      */
-    SkipListMap.prototype[Symbol.iterator] = function () {
+    NavigableHashMap.prototype[Symbol.iterator] = function () {
         return this.entrySet[Symbol.iterator]();
     };
     /**
     * Returns the first (lowest) key currently in this map.
     * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
     */
-    SkipListMap.prototype.firstKey = function () {
+    NavigableHashMap.prototype.firstKey = function () {
         var firstNode = this.impl.firstEntry();
         if ((firstNode === undefined) || (firstNode === null)) {
             return null;
@@ -848,7 +853,7 @@ var SkipListMap = /** @class */ (function () {
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
     * @return {MapEntry} an entry with the least key, or null if this map is empty
     */
-    SkipListMap.prototype.firstEntry = function () {
+    NavigableHashMap.prototype.firstEntry = function () {
         var firstNode = this.impl.firstEntry();
         if ((firstNode === undefined) || (firstNode === null)) {
             return null;
@@ -860,7 +865,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the least key greater than or equal to key, or null if there is no such key
     */
-    SkipListMap.prototype.ceilingEntry = function (key) {
+    NavigableHashMap.prototype.ceilingEntry = function (key) {
         var node = this.impl.ceilingEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -872,7 +877,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {K} the least key greater than or equal to key, or null if there is no such key
     */
-    SkipListMap.prototype.ceilingKey = function (key) {
+    NavigableHashMap.prototype.ceilingKey = function (key) {
         var node = this.impl.ceilingEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -884,7 +889,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {K} the least key greater than key, or null if there is no such key
     */
-    SkipListMap.prototype.higherKey = function (key) {
+    NavigableHashMap.prototype.higherKey = function (key) {
         var node = this.impl.higherEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -896,7 +901,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the least key greater than key, or null if there is no such key
     */
-    SkipListMap.prototype.higherEntry = function (key) {
+    NavigableHashMap.prototype.higherEntry = function (key) {
         var node = this.impl.higherEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -908,7 +913,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {K} the highest key lower than key, or null if there is no such key
     */
-    SkipListMap.prototype.lowerKey = function (key) {
+    NavigableHashMap.prototype.lowerKey = function (key) {
         var node = this.impl.lowerEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -920,7 +925,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the highest key lower than key, or null if there is no such key
     */
-    SkipListMap.prototype.lowerEntry = function (key) {
+    NavigableHashMap.prototype.lowerEntry = function (key) {
         var node = this.impl.lowerEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -932,7 +937,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {K} the greatest key less than or equal to key, or null if there is no such key
     */
-    SkipListMap.prototype.floorKey = function (key) {
+    NavigableHashMap.prototype.floorKey = function (key) {
         var node = this.impl.floorEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -944,7 +949,7 @@ var SkipListMap = /** @class */ (function () {
     * @param {K} key the key
     * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
     */
-    SkipListMap.prototype.floorEntry = function (key) {
+    NavigableHashMap.prototype.floorEntry = function (key) {
         var node = this.impl.floorEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -955,7 +960,7 @@ var SkipListMap = /** @class */ (function () {
     * Returns the last (highest) key currently in this map.
     * @return {K} the last (highest) key currently in this map, returns null if the Map is empty
     */
-    SkipListMap.prototype.lastKey = function () {
+    NavigableHashMap.prototype.lastKey = function () {
         var node = this.impl.lastEntry();
         if ((node === undefined) || (node === null)) {
             return null;
@@ -966,84 +971,92 @@ var SkipListMap = /** @class */ (function () {
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
-    SkipListMap.prototype.lastEntry = function () {
+    NavigableHashMap.prototype.lastEntry = function () {
         var node = this.impl.lastEntry();
         if ((node === undefined) || (node === null)) {
             return null;
         }
         return node;
     };
-    return SkipListMap;
+    return NavigableHashMap;
 }());
-exports.SkipListMap = SkipListMap;
-var ImmutableKeySetForSkipListMap = /** @class */ (function () {
-    function ImmutableKeySetForSkipListMap(iSkipListMapImpl) {
-        this.impl = iSkipListMapImpl;
+exports.NavigableHashMap = NavigableHashMap;
+var ImmutableKeySetForNavigableHashMap = /** @class */ (function () {
+    function ImmutableKeySetForNavigableHashMap(iNavigableHashImpl) {
+        this.impl = iNavigableHashImpl;
     }
-    ImmutableKeySetForSkipListMap.prototype.size = function () { return this.size(); };
-    ImmutableKeySetForSkipListMap.prototype.isEmpty = function () { return this.isEmpty(); };
-    ImmutableKeySetForSkipListMap.prototype.contains = function (item) { return this.contains(item); };
-    ImmutableKeySetForSkipListMap.prototype.iterator = function () { return new SkipListMapKeySetJIterator(this.impl); };
-    ImmutableKeySetForSkipListMap.prototype[Symbol.iterator] = function () { return new SkipListMapKeySetIterator(this.impl); };
+    ImmutableKeySetForNavigableHashMap.prototype.size = function () { return this.size(); };
+    ImmutableKeySetForNavigableHashMap.prototype.isEmpty = function () { return this.isEmpty(); };
+    ImmutableKeySetForNavigableHashMap.prototype.contains = function (item) { return this.contains(item); };
+    ImmutableKeySetForNavigableHashMap.prototype.iterator = function () { return new NavigableHashMapKeySetJIterator(this.impl); };
+    ImmutableKeySetForNavigableHashMap.prototype[Symbol.iterator] = function () { return new NavigableHashMapKeySetIterator(this.impl); };
     /**
     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
     * @param {Consumer} consumer - the action to be performed for each element
     */
-    ImmutableKeySetForSkipListMap.prototype.forEach = function (consumer) {
+    ImmutableKeySetForNavigableHashMap.prototype.forEach = function (consumer) {
         for (var iter = this.iterator(); iter.hasNext();) {
             var t = iter.next();
             consumer.accept(t);
         }
     };
-    return ImmutableKeySetForSkipListMap;
+    return ImmutableKeySetForNavigableHashMap;
 }());
-exports.ImmutableKeySetForSkipListMap = ImmutableKeySetForSkipListMap;
+exports.ImmutableKeySetForNavigableHashMap = ImmutableKeySetForNavigableHashMap;
 /* Java style iterator */
-var SkipListMapKeySetJIterator = /** @class */ (function () {
-    function SkipListMapKeySetJIterator(implI) {
+var NavigableHashMapKeySetJIterator = /** @class */ (function () {
+    function NavigableHashMapKeySetJIterator(implI) {
         this.impl = implI;
     }
-    SkipListMapKeySetJIterator.prototype.hasNext = function () {
+    NavigableHashMapKeySetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) {
             var firstEntry = this.impl.firstEntry();
-            if ((firstEntry === null) || (firstEntry === undefined))
+            if (firstEntry === null)
+                return false;
+            if (firstEntry === undefined)
                 return false;
             return true;
         }
         else {
             var tmpEntry = this.impl.nextHigherNode(this.location);
-            if ((tmpEntry === null) || (tmpEntry === undefined))
+            if (tmpEntry === null)
+                return false;
+            if (tmpEntry === undefined)
                 return false;
             return true;
         }
     };
-    SkipListMapKeySetJIterator.prototype.next = function () {
+    NavigableHashMapKeySetJIterator.prototype.next = function () {
         if (this.location === undefined) {
             var firstEntry = this.impl.firstEntry();
-            if ((firstEntry === null) || (firstEntry === undefined))
+            if (firstEntry === null)
+                return null;
+            if (firstEntry === undefined)
                 return null;
             this.location = firstEntry;
             return firstEntry.getKey();
         }
         else {
             var tmpEntry = this.impl.nextHigherNode(this.location);
-            if ((tmpEntry === null) || (tmpEntry === undefined))
+            if (tmpEntry === null)
+                return null;
+            if (tmpEntry === undefined)
                 return null;
             this.location = tmpEntry;
             return tmpEntry.getKey();
         }
     };
-    return SkipListMapKeySetJIterator;
+    return NavigableHashMapKeySetJIterator;
 }());
-exports.SkipListMapKeySetJIterator = SkipListMapKeySetJIterator;
+exports.NavigableHashMapKeySetJIterator = NavigableHashMapKeySetJIterator;
 /* TypeScript iterator */
-var SkipListMapKeySetIterator = /** @class */ (function () {
-    function SkipListMapKeySetIterator(implI) {
+var NavigableHashMapKeySetIterator = /** @class */ (function () {
+    function NavigableHashMapKeySetIterator(implI) {
         this.impl = implI;
         this.location = this.impl.firstEntry();
     }
     // tslint:disable-next-line:no-any
-    SkipListMapKeySetIterator.prototype.next = function (value) {
+    NavigableHashMapKeySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
@@ -1054,17 +1067,19 @@ var SkipListMapKeySetIterator = /** @class */ (function () {
         this.location = this.impl.nextHigherNode(this.location);
         return tmp;
     };
-    return SkipListMapKeySetIterator;
+    return NavigableHashMapKeySetIterator;
 }());
-exports.SkipListMapKeySetIterator = SkipListMapKeySetIterator;
-var ImmutableEntrySetForSkipListMapImpl = /** @class */ (function () {
-    function ImmutableEntrySetForSkipListMapImpl(iMap) {
+exports.NavigableHashMapKeySetIterator = NavigableHashMapKeySetIterator;
+var ImmutableEntrySetForNavigableHashImpl = /** @class */ (function () {
+    function ImmutableEntrySetForNavigableHashImpl(iMap) {
         this.map = iMap;
     }
-    ImmutableEntrySetForSkipListMapImpl.prototype.size = function () { return this.map.size(); };
-    ImmutableEntrySetForSkipListMapImpl.prototype.isEmpty = function () { return this.map.isEmpty(); };
-    ImmutableEntrySetForSkipListMapImpl.prototype.contains = function (item) {
-        if ((item === null) || (item === undefined))
+    ImmutableEntrySetForNavigableHashImpl.prototype.size = function () { return this.map.size(); };
+    ImmutableEntrySetForNavigableHashImpl.prototype.isEmpty = function () { return this.map.isEmpty(); };
+    ImmutableEntrySetForNavigableHashImpl.prototype.contains = function (item) {
+        if (item === null)
+            return false;
+        if (item === undefined)
             return false;
         var node = this.map.getEntry(item.getKey());
         if ((node === undefined) || (node === null)) {
@@ -1072,65 +1087,73 @@ var ImmutableEntrySetForSkipListMapImpl = /** @class */ (function () {
         }
         return true;
     };
-    ImmutableEntrySetForSkipListMapImpl.prototype.iterator = function () { return new SkipListMapEntrySetJIterator(this.map); };
-    ImmutableEntrySetForSkipListMapImpl.prototype[Symbol.iterator] = function () { return new SkipListMapEntrySetIterator(this.map); };
-    ImmutableEntrySetForSkipListMapImpl.prototype.forEach = function (consumer) {
+    ImmutableEntrySetForNavigableHashImpl.prototype.iterator = function () { return new NavigableHashMapEntrySetJIterator(this.map); };
+    ImmutableEntrySetForNavigableHashImpl.prototype[Symbol.iterator] = function () { return new NavigableHashMapEntrySetIterator(this.map); };
+    ImmutableEntrySetForNavigableHashImpl.prototype.forEach = function (consumer) {
         for (var iter = this.iterator(); iter.hasNext();) {
             var t = iter.next();
             consumer.accept(t);
         }
     };
-    return ImmutableEntrySetForSkipListMapImpl;
+    return ImmutableEntrySetForNavigableHashImpl;
 }());
-exports.ImmutableEntrySetForSkipListMapImpl = ImmutableEntrySetForSkipListMapImpl;
+exports.ImmutableEntrySetForNavigableHashImpl = ImmutableEntrySetForNavigableHashImpl;
 /* Java style iterator */
-var SkipListMapEntrySetJIterator = /** @class */ (function () {
-    function SkipListMapEntrySetJIterator(iMap) {
+var NavigableHashMapEntrySetJIterator = /** @class */ (function () {
+    function NavigableHashMapEntrySetJIterator(iMap) {
         this.map = iMap;
     }
-    SkipListMapEntrySetJIterator.prototype.hasNext = function () {
-        //    console.log ("SkipListMapEntrySetJIterator::hasNext");
+    NavigableHashMapEntrySetJIterator.prototype.hasNext = function () {
+        //    console.log ("NavigableHashMapEntrySetJIterator::hasNext");
         if (this.location === undefined) {
             var firstEntry = this.map.firstEntry();
-            if ((firstEntry === null) || (firstEntry === undefined))
+            if (firstEntry === null)
+                return false;
+            if (firstEntry === undefined)
                 return false;
             return true;
         }
         else {
             var tmpEntry = this.map.nextHigherNode(this.location);
-            if ((tmpEntry === null) || (tmpEntry === undefined))
+            if (tmpEntry === null)
+                return false;
+            if (tmpEntry === undefined)
                 return false;
             return true;
         }
     };
-    SkipListMapEntrySetJIterator.prototype.next = function () {
-        //    console.log ("SkipListMapEntrySetJIterator::next");
+    NavigableHashMapEntrySetJIterator.prototype.next = function () {
+        //    console.log ("NavigableHashMapEntrySetJIterator::next");
         if (this.location === undefined) {
             var firstEntry = this.map.firstEntry();
-            if ((firstEntry === null) || (firstEntry === undefined))
+            if (firstEntry === null)
+                return null;
+            if (firstEntry === undefined)
                 return null;
             this.location = firstEntry;
             return firstEntry;
         }
         else {
             var tmpEntry = this.map.nextHigherNode(this.location);
-            if ((tmpEntry === null) || (tmpEntry === undefined))
+            if (tmpEntry === null)
+                return null;
+            if (tmpEntry === undefined)
                 return null;
             this.location = tmpEntry;
             return tmpEntry;
         }
     };
-    return SkipListMapEntrySetJIterator;
+    return NavigableHashMapEntrySetJIterator;
 }());
-exports.SkipListMapEntrySetJIterator = SkipListMapEntrySetJIterator;
+exports.NavigableHashMapEntrySetJIterator = NavigableHashMapEntrySetJIterator;
 /* TypeScript iterator */
-var SkipListMapEntrySetIterator = /** @class */ (function () {
-    function SkipListMapEntrySetIterator(iMap) {
+var NavigableHashMapEntrySetIterator = /** @class */ (function () {
+    function NavigableHashMapEntrySetIterator(iMap) {
         this.map = iMap;
         this.location = this.map.firstEntry();
     }
     // tslint:disable-next-line:no-any
-    SkipListMapEntrySetIterator.prototype.next = function (value) {
+    NavigableHashMapEntrySetIterator.prototype.next = function (value) {
         if (this.location === null) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
@@ -1141,22 +1164,22 @@ var SkipListMapEntrySetIterator = /** @class */ (function () {
         this.location = this.map.nextHigherNode(this.location);
         return tmp;
     };
-    return SkipListMapEntrySetIterator;
+    return NavigableHashMapEntrySetIterator;
 }());
-exports.SkipListMapEntrySetIterator = SkipListMapEntrySetIterator;
+exports.NavigableHashMapEntrySetIterator = NavigableHashMapEntrySetIterator;
 /**
- * A scalable NavigableSet implementation based on a SkipListMap.
+ * A scalable NavigableSet implementation based on a NavigableHashMap.
  *
  * The elements of the set are kept sorted according to a Comparator provided at set creation time.<br>
  * This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.
  *
- * This class corresponds to java.util.concurrent.ConcurrentSkipListSet
+ * This class corresponds to java.util.concurrent.ConcurrentNavigableHashSet
  */
-var SkipListSet = /** @class */ (function () {
-    function SkipListSet(iComparator, initialElements) {
+var NavigableHashSet = /** @class */ (function () {
+    function NavigableHashSet(iComparator, initialElements) {
         this.initialElements = initialElements;
         this.impl = null;
-        this.impl = new SkipListMapImpl(iComparator);
+        this.impl = new NavigableHashImpl(iComparator);
         if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var key = iter.next();
@@ -1164,14 +1187,14 @@ var SkipListSet = /** @class */ (function () {
             }
         }
     }
-    SkipListSet.prototype.validateSet = function () { return this.impl.validate(); };
+    NavigableHashSet.prototype.validateSet = function () { return this.impl.validate(); };
     //  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set
     * @return {boolean} true if this set did not already contain the specified element
     */
-    SkipListSet.prototype.add = function (element) {
+    NavigableHashSet.prototype.add = function (element) {
         var tmp = this.impl.put(element, 1);
         if (tmp === 1) {
             return false;
@@ -1182,22 +1205,27 @@ var SkipListSet = /** @class */ (function () {
     * Returns the number of elements in this set (its cardinality).
     * @return {number} the number of elements in this set (its cardinality)
     */
-    SkipListSet.prototype.size = function () {
+    NavigableHashSet.prototype.size = function () {
         return this.impl.size();
     };
     /**
     * Returns true if this set contains no elements.
     * @return {boolean} true if this set contains no elements
     */
-    SkipListSet.prototype.isEmpty = function () {
-        return this.impl.isEmpty();
+    NavigableHashSet.prototype.isEmpty = function () {
+        if (this.impl.size() > 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
     };
     /**
     * Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals
     * @param {K} item object to be checked for containment in this set
     * @return {boolean} true if this set contains the specified element
     */
-    SkipListSet.prototype.contains = function (key) {
+    NavigableHashSet.prototype.contains = function (key) {
         var node = this.impl.getEntry(key);
         if ((node === undefined) || (node === null)) {
             return false;
@@ -1209,7 +1237,7 @@ var SkipListSet = /** @class */ (function () {
     * @param {K} item to find floor node for
     * @return {K} the greatest element less than or equal to e, or null if there is no such element
     */
-    SkipListSet.prototype.floor = function (key) {
+    NavigableHashSet.prototype.floor = function (key) {
         var node = this.impl.floorEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1221,7 +1249,7 @@ var SkipListSet = /** @class */ (function () {
     * @param {K} item to find ceiling node for
     * @return {K} the least element greater than or equal to item, or null if there is no such element
     */
-    SkipListSet.prototype.ceiling = function (key) {
+    NavigableHashSet.prototype.ceiling = function (key) {
         var node = this.impl.ceilingEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1232,7 +1260,7 @@ var SkipListSet = /** @class */ (function () {
     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
     * @param {Consumer} consumer - the action to be performed for each element
     */
-    SkipListSet.prototype.forEach = function (consumer) {
+    NavigableHashSet.prototype.forEach = function (consumer) {
         for (var iter = this.iterator(); iter.hasNext();) {
             var t = iter.next();
             consumer.accept(t);
@@ -1242,7 +1270,7 @@ var SkipListSet = /** @class */ (function () {
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, undefined if there are no elements in this set
     */
-    SkipListSet.prototype.first = function () {
+    NavigableHashSet.prototype.first = function () {
         var node = this.impl.firstEntry();
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1253,7 +1281,7 @@ var SkipListSet = /** @class */ (function () {
     * Returns the last (highest) element currently in this set.
     * @return {K} the last (highest) element currently in this set, undefined if there are no elements in this set
     */
-    SkipListSet.prototype.last = function () {
+    NavigableHashSet.prototype.last = function () {
         var node = this.impl.lastEntry();
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1265,7 +1293,7 @@ var SkipListSet = /** @class */ (function () {
     * @param {K} element element to be removed from this set
     * @return {boolean} true if the set contained the specified element
     */
-    SkipListSet.prototype.remove = function (element) {
+    NavigableHashSet.prototype.remove = function (element) {
         var tmp = this.impl.remove(element);
         if ((tmp === undefined) || (tmp === null)) {
             return false;
@@ -1277,14 +1305,14 @@ var SkipListSet = /** @class */ (function () {
     /**
     * Removes all of the elements from this set. The set will be empty after this call returns.
     */
-    SkipListSet.prototype.clear = function () {
+    NavigableHashSet.prototype.clear = function () {
         this.impl.clear();
     };
     /**
     * Retrieves and removes the first (lowest) element, or returns null if this set is empty.
     * @return {K} the first (lowest) element, or null if this set is empty
     */
-    SkipListSet.prototype.pollFirst = function () {
+    NavigableHashSet.prototype.pollFirst = function () {
         var node = this.impl.firstEntry();
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1299,7 +1327,7 @@ var SkipListSet = /** @class */ (function () {
     * Retrieves and removes the last (highest) element, or returns null if this set is empty.
     * @return {K} the last (highest) element, or null if this set is empty
     */
-    SkipListSet.prototype.pollLast = function () {
+    NavigableHashSet.prototype.pollLast = function () {
         var node = this.impl.lastEntry();
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1315,7 +1343,7 @@ var SkipListSet = /** @class */ (function () {
     * @param {K} key the given key
     * @return {K} the least key greater than key, or null if there is no such key
     */
-    SkipListSet.prototype.getNextHigherKey = function (key) {
+    NavigableHashSet.prototype.getNextHigherKey = function (key) {
         var node = this.impl.higherEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
@@ -1326,47 +1354,43 @@ var SkipListSet = /** @class */ (function () {
     * Returns a Java style iterator
     * @return {JIterator<K>} the Java style iterator
     */
-    SkipListSet.prototype.iterator = function () {
-        return new SkipListSetJIterator(this.impl);
+    NavigableHashSet.prototype.iterator = function () {
+        return new NavigableHashSetJIterator(this.impl);
     };
     /**
     * Returns a TypeScript style iterator
     * @return {Iterator<K>} the TypeScript style iterator
     */
-    SkipListSet.prototype[Symbol.iterator] = function () {
-        return new SkipListSetIterator(this.impl);
+    NavigableHashSet.prototype[Symbol.iterator] = function () {
+        return new NavigableHashSetIterator(this.impl);
     };
     /**
     * Returns an ImmutableCollection backed by this Collection
     */
-    SkipListSet.prototype.immutableCollection = function () {
+    NavigableHashSet.prototype.immutableCollection = function () {
         return this;
     };
     /**
     * Returns an ImmutableSet backed by this Set
     */
-    SkipListSet.prototype.immutableSet = function () {
+    NavigableHashSet.prototype.immutableSet = function () {
         return this;
     };
-    /**
-    * Override JSON.stringify handling
-    */
-    SkipListSet.prototype.toJSON = function () {
-        var tmp = Collections_1.Collections.asArray(this);
-        return JSON.stringify(tmp);
-    };
-    return SkipListSet;
+    return NavigableHashSet;
 }());
-exports.SkipListSet = SkipListSet;
+exports.NavigableHashSet = NavigableHashSet;
 /* Java style iterator */
-var SkipListSetJIterator = /** @class */ (function () {
-    function SkipListSetJIterator(implI) {
+var NavigableHashSetJIterator = /** @class */ (function () {
+    function NavigableHashSetJIterator(implI) {
         this.impl = implI;
     }
-    SkipListSetJIterator.prototype.hasNext = function () {
+    NavigableHashSetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) {
             var first = this.impl.firstEntry();
-            if ((first === undefined) || (first === null)) {
+            if (first === undefined) {
+                return false;
+            }
+            if (first === null) {
                 return false;
             }
             return true;
@@ -1381,10 +1405,13 @@ var SkipListSetJIterator = /** @class */ (function () {
             }
         }
     };
-    SkipListSetJIterator.prototype.next = function () {
+    NavigableHashSetJIterator.prototype.next = function () {
         if (this.location === undefined) {
             var first = this.impl.firstEntry();
-            if ((first === undefined) || (first === null)) {
+            if (first === undefined) {
+                return null;
+            }
+            if (first === null) {
                 return null;
             }
             this.location = first;
@@ -1401,24 +1428,27 @@ var SkipListSetJIterator = /** @class */ (function () {
             }
         }
     };
-    return SkipListSetJIterator;
+    return NavigableHashSetJIterator;
 }());
-exports.SkipListSetJIterator = SkipListSetJIterator;
+exports.NavigableHashSetJIterator = NavigableHashSetJIterator;
 /* TypeScript iterator */
-var SkipListSetIterator = /** @class */ (function () {
-    function SkipListSetIterator(implI) {
+var NavigableHashSetIterator = /** @class */ (function () {
+    function NavigableHashSetIterator(implI) {
         this.impl = implI;
         this.location = this.impl.firstEntry();
     }
     // tslint:disable-next-line:no-any
-    SkipListSetIterator.prototype.next = function (value) {
-        if ((this.location === null) || (this.location === undefined)) {
+    NavigableHashSetIterator.prototype.next = function (value) {
+        if (this.location === null) {
+            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        }
+        if (this.location === undefined) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.getKey());
         this.location = this.impl.nextHigherNode(this.location);
         return tmp;
     };
-    return SkipListSetIterator;
+    return NavigableHashSetIterator;
 }());
-exports.SkipListSetIterator = SkipListSetIterator;
+exports.NavigableHashSetIterator = NavigableHashSetIterator;
