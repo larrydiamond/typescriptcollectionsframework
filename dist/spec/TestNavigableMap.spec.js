@@ -111,6 +111,14 @@ describe("Test NavigableMap functionality", function () {
         testCeilingEntryStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testCeilingEntryStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
+    it("Test higherKey", function () {
+        testHigherKeyNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
+        testHigherKeyNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testHigherKeyNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
+        testHigherKeyStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
+        testHigherKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testHigherKeyStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+    });
 });
 function testFirstKeyNumberString(map) {
     expect(map.firstKey()).toEqual(null);
@@ -331,6 +339,47 @@ function testCeilingEntryStringString(map) {
     expect(map.ceilingEntry("zzzzz")).toEqual(null);
     map.clear();
     expect(map.ceilingEntry("a")).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+}
+function testHigherKeyNumberString(map) {
+    expect(map.higherKey(501)).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    addTestNumbers(map);
+    expect(map.size()).toEqual(10);
+    expect(map.isEmpty()).toEqual(false);
+    expect(map.higherKey(1)).toEqual(100);
+    expect(map.higherKey(100)).toEqual(200);
+    expect(map.higherKey(399)).toEqual(400);
+    expect(map.higherKey(500)).toEqual(600);
+    expect(map.higherKey(601)).toEqual(700);
+    expect(map.higherKey(999)).toEqual(1000);
+    expect(map.higherKey(1000)).toEqual(null);
+    expect(map.higherKey(1001)).toEqual(null);
+    map.clear();
+    expect(map.higherKey(501)).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+}
+function testHigherKeyStringString(map) {
+    expect(map.higherKey("a")).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    addTestStrings(map);
+    expect(map.size()).toEqual(10);
+    expect(map.isEmpty()).toEqual(false);
+    expect(map.higherKey("a")).toEqual("eighth");
+    expect(map.higherKey("eighth")).toEqual("fifth");
+    expect(map.higherKey("seco")).toEqual("second");
+    expect(map.higherKey("second")).toEqual("seventh");
+    expect(map.higherKey("secone")).toEqual("seventh");
+    expect(map.higherKey("thira")).toEqual("third");
+    expect(map.higherKey("third")).toEqual(null);
+    expect(map.higherKey("thire")).toEqual(null);
+    expect(map.higherKey("zzzzz")).toEqual(null);
+    map.clear();
+    expect(map.higherKey("a")).toEqual(null);
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
 }
