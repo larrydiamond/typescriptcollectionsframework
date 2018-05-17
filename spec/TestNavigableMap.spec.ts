@@ -127,6 +127,16 @@ describe("Test NavigableMap functionality", function() {
     testCeilingKeyStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
 
+  it ("Test ceilingEntry", function () {
+    testCeilingEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testCeilingEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testCeilingEntryNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
+
+    testCeilingEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testCeilingEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testCeilingEntryStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
+  });
+
 });
 
 function testFirstKeyNumberString (map:NavigableMap<number,string>) {
@@ -292,6 +302,94 @@ function testCeilingKeyStringString (map:NavigableMap<string,string>) {
   expect (map.ceilingKey("zzzzz")).toEqual (null);
   map.clear();
   expect (map.ceilingKey("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+
+function testCeilingEntryNumberString (map:NavigableMap<number,string>) {
+  expect (map.ceilingEntry(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+
+  let entry = map.ceilingEntry(1);
+  expect (entry.getKey()).toEqual (100);
+  expect (entry.getValue()).toEqual ("100blah");
+
+  entry = map.ceilingEntry(100);
+  expect (entry.getKey()).toEqual (100);
+  expect (entry.getValue()).toEqual ("100blah");
+
+  entry = map.ceilingEntry(399);
+  expect (entry.getKey()).toEqual (400);
+  expect (entry.getValue()).toEqual ("400blah");
+
+  entry = map.ceilingEntry(500);
+  expect (entry.getKey()).toEqual (500);
+  expect (entry.getValue()).toEqual ("500blah");
+
+  entry = map.ceilingEntry(601);
+  expect (entry.getKey()).toEqual (700);
+  expect (entry.getValue()).toEqual ("700blah");
+
+  entry = map.ceilingEntry(999);
+  expect (entry.getKey()).toEqual (1000);
+  expect (entry.getValue()).toEqual ("1000blah");
+
+  entry = map.ceilingEntry(1000);
+  expect (entry.getKey()).toEqual (1000);
+  expect (entry.getValue()).toEqual ("1000blah");
+
+  expect (map.ceilingEntry(1001)).toEqual (null);
+  map.clear();
+  expect (map.ceilingEntry(401)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testCeilingEntryStringString (map:NavigableMap<string,string>) {
+  expect (map.ceilingEntry("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+
+  let entry = map.ceilingEntry("a");
+  expect (entry.getKey()).toEqual ("eighth");
+  expect (entry.getValue()).toEqual ("eighthblah");
+
+  entry = map.ceilingEntry("eighth");
+  expect (entry.getKey()).toEqual ("eighth");
+  expect (entry.getValue()).toEqual ("eighthblah");
+
+  entry = map.ceilingEntry("seco");
+  expect (entry.getKey()).toEqual ("second");
+  expect (entry.getValue()).toEqual ("secondblah");
+
+  entry = map.ceilingEntry("second");
+  expect (entry.getKey()).toEqual ("second");
+  expect (entry.getValue()).toEqual ("secondblah");
+
+  entry = map.ceilingEntry("secone");
+  expect (entry.getKey()).toEqual ("seventh");
+  expect (entry.getValue()).toEqual ("seventhblah");
+
+  entry = map.ceilingEntry("thira");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+  entry = map.ceilingEntry("third");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+  expect (map.ceilingEntry("thire")).toEqual (null);
+  expect (map.ceilingEntry("zzzzz")).toEqual (null);
+  map.clear();
+  expect (map.ceilingEntry("a")).toEqual (null);
   expect (map.size ()).toEqual(0);
   expect (map.isEmpty ()).toEqual(true);
 }
