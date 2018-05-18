@@ -119,6 +119,14 @@ describe("Test NavigableMap functionality", function () {
         testHigherKeyStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
         testHigherKeyStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
     });
+    it("Test higherEntry", function () {
+        testHigherEntryNumberString(new TreeMap_1.TreeMap(Collections_1.Collections.getNumberComparator()));
+        testHigherEntryNumberString(new SkipList_1.SkipListMap(Collections_1.Collections.getNumberComparator()));
+        testHigherEntryNumberString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getNumberComparator()));
+        testHigherEntryStringString(new TreeMap_1.TreeMap(Collections_1.Collections.getStringComparator()));
+        testHigherEntryStringString(new SkipList_1.SkipListMap(Collections_1.Collections.getStringComparator()));
+        testHigherEntryStringString(new NavigableHash_1.NavigableHashMap(Collections_1.Collections.getStringComparator()));
+    });
 });
 function testFirstKeyNumberString(map) {
     expect(map.firstKey()).toEqual(null);
@@ -380,6 +388,71 @@ function testHigherKeyStringString(map) {
     expect(map.higherKey("zzzzz")).toEqual(null);
     map.clear();
     expect(map.higherKey("a")).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+}
+function testHigherEntryNumberString(map) {
+    expect(map.higherEntry(501)).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    addTestNumbers(map);
+    expect(map.size()).toEqual(10);
+    expect(map.isEmpty()).toEqual(false);
+    var entry = map.higherEntry(1);
+    expect(entry.getKey()).toEqual(100);
+    expect(entry.getValue()).toEqual("100blah");
+    entry = map.higherEntry(100);
+    expect(entry.getKey()).toEqual(200);
+    expect(entry.getValue()).toEqual("200blah");
+    entry = map.higherEntry(399);
+    expect(entry.getKey()).toEqual(400);
+    expect(entry.getValue()).toEqual("400blah");
+    entry = map.higherEntry(500);
+    expect(entry.getKey()).toEqual(600);
+    expect(entry.getValue()).toEqual("600blah");
+    entry = map.higherEntry(601);
+    expect(entry.getKey()).toEqual(700);
+    expect(entry.getValue()).toEqual("700blah");
+    entry = map.higherEntry(999);
+    expect(entry.getKey()).toEqual(1000);
+    expect(entry.getValue()).toEqual("1000blah");
+    expect(map.higherEntry(1000)).toEqual(null);
+    expect(map.higherEntry(1001)).toEqual(null);
+    map.clear();
+    expect(map.higherEntry(401)).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+}
+function testHigherEntryStringString(map) {
+    expect(map.higherEntry("a")).toEqual(null);
+    expect(map.size()).toEqual(0);
+    expect(map.isEmpty()).toEqual(true);
+    addTestStrings(map);
+    expect(map.size()).toEqual(10);
+    expect(map.isEmpty()).toEqual(false);
+    var entry = map.higherEntry("a");
+    expect(entry.getKey()).toEqual("eighth");
+    expect(entry.getValue()).toEqual("eighthblah");
+    entry = map.higherEntry("eighth");
+    expect(entry.getKey()).toEqual("fifth");
+    expect(entry.getValue()).toEqual("fifthblah");
+    entry = map.higherEntry("seco");
+    expect(entry.getKey()).toEqual("second");
+    expect(entry.getValue()).toEqual("secondblah");
+    entry = map.higherEntry("second");
+    expect(entry.getKey()).toEqual("seventh");
+    expect(entry.getValue()).toEqual("seventhblah");
+    entry = map.higherEntry("secone");
+    expect(entry.getKey()).toEqual("seventh");
+    expect(entry.getValue()).toEqual("seventhblah");
+    entry = map.higherEntry("thira");
+    expect(entry.getKey()).toEqual("third");
+    expect(entry.getValue()).toEqual("thirdblah");
+    expect(map.higherEntry("third")).toEqual(null);
+    expect(map.higherEntry("thire")).toEqual(null);
+    expect(map.higherEntry("zzzzz")).toEqual(null);
+    map.clear();
+    expect(map.higherEntry("a")).toEqual(null);
     expect(map.size()).toEqual(0);
     expect(map.isEmpty()).toEqual(true);
 }
