@@ -157,6 +157,48 @@ describe("Test NavigableMap functionality", function() {
     testHigherEntryStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
   });
 
+
+  it ("Test lowerKey", function () {
+    testLowerKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testLowerKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testLowerKeyNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
+
+    testLowerKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testLowerKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testLowerKeyStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
+  });
+
+  it ("Test lowerEntry", function () {
+    testLowerEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testLowerEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testLowerEntryNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
+
+    testLowerEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testLowerEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testLowerEntryStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
+  });
+
+
+  it ("Test floorKey", function () {
+    testFloorKeyNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testFloorKeyNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testFloorKeyNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
+
+    testFloorKeyStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testFloorKeyStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testFloorKeyStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
+  });
+
+  it ("Test floorEntry", function () {
+    testFloorEntryNumberString (new TreeMap<number,string>(Collections.getNumberComparator()));
+    testFloorEntryNumberString (new SkipListMap<number,string>(Collections.getNumberComparator()));
+    testFloorEntryNumberString (new NavigableHashMap<number,string>(Collections.getNumberComparator()));
+
+    testFloorEntryStringString (new TreeMap<string,string>(Collections.getStringComparator()));
+    testFloorEntryStringString (new SkipListMap<string,string>(Collections.getStringComparator()));
+    testFloorEntryStringString (new NavigableHashMap<string,string>(Collections.getStringComparator()));
+  });
+
 });
 
 function testFirstKeyNumberString (map:NavigableMap<number,string>) {
@@ -542,12 +584,274 @@ function testHigherEntryStringString (map:NavigableMap<string,string>) {
 
 
 
+function testLowerKeyNumberString (map:NavigableMap<number,string>) {
+  expect (map.lowerKey(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (map.lowerKey(1)).toEqual (null);
+  expect (map.lowerKey(100)).toEqual (null);
+  expect (map.lowerKey(399)).toEqual (300);
+  expect (map.lowerKey(500)).toEqual (400);
+  expect (map.lowerKey(601)).toEqual (600);
+  expect (map.lowerKey(999)).toEqual (900);
+  expect (map.lowerKey(1000)).toEqual (900);
+  expect (map.lowerKey(1001)).toEqual (1000);
+  map.clear();
+  expect (map.lowerKey(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testLowerKeyStringString (map:NavigableMap<string,string>) {
+  expect (map.lowerKey("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (map.lowerKey("a")).toEqual (null);
+  expect (map.lowerKey("eighth")).toEqual (null);
+  expect (map.lowerKey("seco")).toEqual ("ninth");
+  expect (map.lowerKey("second")).toEqual ("ninth");
+  expect (map.lowerKey("secone")).toEqual ("second");
+  expect (map.lowerKey("thira")).toEqual ("tenth");
+  expect (map.lowerKey("third")).toEqual ("tenth");
+  expect (map.lowerKey("thire")).toEqual ("third");
+  expect (map.lowerKey("zzzzz")).toEqual ("third");
+  map.clear();
+  expect (map.lowerKey("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testLowerEntryNumberString (map:NavigableMap<number,string>) {
+  expect (map.lowerEntry(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+
+  expect (map.lowerEntry(1)).toEqual (null);
+  expect (map.lowerEntry(100)).toEqual (null);
+
+  let entry = map.lowerEntry(399);
+  expect (entry.getKey()).toEqual (300);
+  expect (entry.getValue()).toEqual ("300blah");
+
+  entry = map.lowerEntry(500);
+  expect (entry.getKey()).toEqual (400);
+  expect (entry.getValue()).toEqual ("400blah");
+
+  entry = map.lowerEntry(601);
+  expect (entry.getKey()).toEqual (600);
+  expect (entry.getValue()).toEqual ("600blah");
+
+  entry = map.lowerEntry(999);
+  expect (entry.getKey()).toEqual (900);
+  expect (entry.getValue()).toEqual ("900blah");
+
+  entry = map.lowerEntry(1000);
+  expect (entry.getKey()).toEqual (900);
+  expect (entry.getValue()).toEqual ("900blah");
+
+  entry = map.lowerEntry(1001);
+  expect (entry.getKey()).toEqual (1000);
+  expect (entry.getValue()).toEqual ("1000blah");
+
+  map.clear();
+  expect (map.lowerEntry(401)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testLowerEntryStringString (map:NavigableMap<string,string>) {
+  expect (map.lowerEntry("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+
+  expect (map.lowerEntry("a")).toEqual (null);
+  expect (map.lowerEntry("eighth")).toEqual (null);
+
+  let entry = map.lowerEntry("seco");
+  expect (entry.getKey()).toEqual ("ninth");
+  expect (entry.getValue()).toEqual ("ninthblah");
+
+  entry = map.lowerEntry("second");
+  expect (entry.getKey()).toEqual ("ninth");
+  expect (entry.getValue()).toEqual ("ninthblah");
+
+  entry = map.lowerEntry("secone");
+  expect (entry.getKey()).toEqual ("second");
+  expect (entry.getValue()).toEqual ("secondblah");
+
+  entry = map.lowerEntry("thira");
+  expect (entry.getKey()).toEqual ("tenth");
+  expect (entry.getValue()).toEqual ("tenthblah");
+
+  entry = map.lowerEntry("third");
+  expect (entry.getKey()).toEqual ("tenth");
+  expect (entry.getValue()).toEqual ("tenthblah");
+
+  entry = map.lowerEntry("thire");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+  entry = map.lowerEntry("zzzzz");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+
+  map.clear();
+  expect (map.lowerEntry("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
 
 
 
+function testFloorKeyNumberString (map:NavigableMap<number,string>) {
+  expect (map.floorKey(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (map.floorKey(1)).toEqual (null);
+  expect (map.floorKey(100)).toEqual (100);
+  expect (map.floorKey(399)).toEqual (300);
+  expect (map.floorKey(500)).toEqual (500);
+  expect (map.floorKey(601)).toEqual (600);
+  expect (map.floorKey(999)).toEqual (900);
+  expect (map.floorKey(1000)).toEqual (1000);
+  expect (map.floorKey(1001)).toEqual (1000);
+  map.clear();
+  expect (map.floorKey(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testFloorKeyStringString (map:NavigableMap<string,string>) {
+  expect (map.floorKey("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+  expect (map.floorKey("a")).toEqual (null);
+  expect (map.floorKey("eighth")).toEqual ("eighth");
+  expect (map.floorKey("seco")).toEqual ("ninth");
+  expect (map.floorKey("second")).toEqual ("second");
+  expect (map.floorKey("secone")).toEqual ("second");
+  expect (map.floorKey("thira")).toEqual ("tenth");
+  expect (map.floorKey("third")).toEqual ("third");
+  expect (map.floorKey("thire")).toEqual ("third");
+  expect (map.floorKey("zzzzz")).toEqual ("third");
+  map.clear();
+  expect (map.floorKey("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
 
 
 
+function testFloorEntryNumberString (map:NavigableMap<number,string>) {
+  expect (map.floorEntry(501)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestNumbers(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+
+  expect (map.floorEntry(1)).toEqual (null);
+
+  let entry = map.floorEntry(100);
+  expect (entry.getKey()).toEqual (100);
+  expect (entry.getValue()).toEqual ("100blah");
+
+  entry = map.floorEntry(399);
+  expect (entry.getKey()).toEqual (300);
+  expect (entry.getValue()).toEqual ("300blah");
+
+  entry = map.floorEntry(500);
+  expect (entry.getKey()).toEqual (500);
+  expect (entry.getValue()).toEqual ("500blah");
+
+  entry = map.floorEntry(601);
+  expect (entry.getKey()).toEqual (600);
+  expect (entry.getValue()).toEqual ("600blah");
+
+  entry = map.floorEntry(999);
+  expect (entry.getKey()).toEqual (900);
+  expect (entry.getValue()).toEqual ("900blah");
+
+  entry = map.floorEntry(1000);
+  expect (entry.getKey()).toEqual (1000);
+  expect (entry.getValue()).toEqual ("1000blah");
+
+  entry = map.floorEntry(1001);
+  expect (entry.getKey()).toEqual (1000);
+  expect (entry.getValue()).toEqual ("1000blah");
+
+  map.clear();
+  expect (map.floorEntry(401)).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
+
+function testFloorEntryStringString (map:NavigableMap<string,string>) {
+  expect (map.floorEntry("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  addTestStrings(map);
+  expect (map.size ()).toEqual(10);
+  expect (map.isEmpty ()).toEqual(false);
+
+  expect (map.floorEntry("a")).toEqual (null);
+
+  let entry = map.floorEntry("eighth");
+  expect (entry.getKey()).toEqual ("eighth");
+  expect (entry.getValue()).toEqual ("eighthblah");
+
+  entry = map.floorEntry("seco");
+  expect (entry.getKey()).toEqual ("ninth");
+  expect (entry.getValue()).toEqual ("ninthblah");
+
+  entry = map.floorEntry("second");
+  expect (entry.getKey()).toEqual ("second");
+  expect (entry.getValue()).toEqual ("secondblah");
+
+  entry = map.floorEntry("secone");
+  expect (entry.getKey()).toEqual ("second");
+  expect (entry.getValue()).toEqual ("secondblah");
+
+  entry = map.floorEntry("thira");
+  expect (entry.getKey()).toEqual ("tenth");
+  expect (entry.getValue()).toEqual ("tenthblah");
+
+  entry = map.floorEntry("third");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+  entry = map.floorEntry("thire");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+  entry = map.floorEntry("zzzzz");
+  expect (entry.getKey()).toEqual ("third");
+  expect (entry.getValue()).toEqual ("thirdblah");
+
+  map.clear();
+  expect (map.floorEntry("a")).toEqual (null);
+  expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+}
 
 
 
