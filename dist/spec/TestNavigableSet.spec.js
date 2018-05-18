@@ -8,6 +8,7 @@
 */
 Object.defineProperty(exports, "__esModule", { value: true });
 var Collections_1 = require("../src/Collections");
+var NavigableHash_1 = require("../src/NavigableHash");
 var SkipList_1 = require("../src/SkipList");
 var TreeSet_1 = require("../src/TreeSet");
 // PetStoreProduct will be used in testing
@@ -57,38 +58,50 @@ var product3 = new PetStoreProduct("Goldfish", 9.99);
 var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 describe("Test NavigableSet functionality", function () {
     it("Test firstKey", function () {
+        testFirstKeyNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testFirstKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testFirstKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testFirstKeyString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testFirstKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testFirstKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test lastKey", function () {
+        testLastKeyNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testLastKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testLastKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testLastKeyString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testLastKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testLastKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test pollFirstKey", function () {
+        testPollFirstKeyNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testPollFirstKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testPollFirstKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollFirstKeyString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testPollFirstKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testPollFirstKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test pollLastKey", function () {
+        testPollLastKeyNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testPollLastKeyNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testPollLastKeyNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testPollLastKeyString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testPollLastKeyString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testPollLastKeyString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test ceiling", function () {
+        testCeilingNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testCeilingNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testCeilingNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testCeilingString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testCeilingString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testCeilingString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test floor", function () {
+        testFloorNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testFloorNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testFloorNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testFloorString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });

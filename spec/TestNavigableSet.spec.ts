@@ -11,6 +11,7 @@ import {Test, TestBoolean, TestString, TestNumber} from 'jasts';
 import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
 import {JSet} from "../src/JSet";
+import {NavigableHashSet} from "../src/NavigableHash";
 import {NavigableSet} from "../src/NavigableSet";
 import {SkipListSet} from "../src/SkipList";
 import {TreeSet} from "../src/TreeSet";
@@ -71,49 +72,61 @@ const productNotAvailable:PetStoreProduct = new PetStoreProduct("Bananas", 1.99)
 
 describe("Test NavigableSet functionality", function() {
   it ("Test firstKey", function () {
+    testFirstKeyNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testFirstKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
     testFirstKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
+    testFirstKeyString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testFirstKeyString (new TreeSet<string>(Collections.getStringComparator()));
     testFirstKeyString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test lastKey", function () {
+    testLastKeyNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testLastKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
     testLastKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
+    testLastKeyString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testLastKeyString (new TreeSet<string>(Collections.getStringComparator()));
     testLastKeyString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test pollFirstKey", function () {
+    testPollFirstKeyNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testPollFirstKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
     testPollFirstKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
+    testPollFirstKeyString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testPollFirstKeyString (new TreeSet<string>(Collections.getStringComparator()));
     testPollFirstKeyString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test pollLastKey", function () {
+    testPollLastKeyNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testPollLastKeyNumber (new TreeSet<number>(Collections.getNumberComparator()));
     testPollLastKeyNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
+    testPollLastKeyString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testPollLastKeyString (new TreeSet<string>(Collections.getStringComparator()));
     testPollLastKeyString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test ceiling", function () {
+    testCeilingNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testCeilingNumber (new TreeSet<number>(Collections.getNumberComparator()));
     testCeilingNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
+    testCeilingString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testCeilingString (new TreeSet<string>(Collections.getStringComparator()));
     testCeilingString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test floor", function () {
+    testFloorNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testFloorNumber (new TreeSet<number>(Collections.getNumberComparator()));
     testFloorNumber (new SkipListSet<number>(Collections.getNumberComparator()));
 
+    testFloorString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testFloorString (new TreeSet<string>(Collections.getStringComparator()));
     testFloorString (new SkipListSet<string>(Collections.getStringComparator()));
   });
