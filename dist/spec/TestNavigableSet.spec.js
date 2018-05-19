@@ -7,6 +7,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 Object.defineProperty(exports, "__esModule", { value: true });
+var jasts_1 = require("jasts");
 var Collections_1 = require("../src/Collections");
 var NavigableHash_1 = require("../src/NavigableHash");
 var SkipList_1 = require("../src/SkipList");
@@ -104,6 +105,11 @@ describe("Test NavigableSet functionality", function () {
         testFloorString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test floor", function () {
+        testToString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testToString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testToString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
 });
 function testFirstKeyNumber(set) {
@@ -237,6 +243,24 @@ function testFloorString(set) {
     expect(set.floor("first")).toEqual("first");
     expect(set.floor("aaaaa")).toEqual(null);
     expect(set.floor("zzzzz")).toEqual("third");
+}
+function testToString(set) {
+    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    set.clear();
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    console.log(JSON.stringify(set));
+    jasts_1.TestString.equals("Full set should stringify consistently", JSON.stringify(set), '"[\\"eighth\\",\\"fifth\\",\\"first\\",\\"fourth\\",\\"ninth\\",\\"second\\",\\"seventh\\",\\"sixth\\",\\"tenth\\",\\"third\\"]"');
+    set.clear();
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
 }
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);
