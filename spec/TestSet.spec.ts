@@ -15,6 +15,7 @@ import {Hashable} from "../src/Hashable";
 import {ImmutableSet} from "../src/ImmutableSet";
 import {JIterator} from "../src/JIterator";
 import {JSet} from "../src/JSet";
+import {NavigableHashSet} from "../src/NavigableHash";
 import {SkipListSet} from "../src/SkipList";
 import {TreeSet} from "../src/TreeSet";
 
@@ -88,6 +89,9 @@ describe("Test generic Set functionality", function() {
 
     testEmptyStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+
+    testEmptyStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testEmptyPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding to empty Sets", function() {
@@ -101,6 +105,9 @@ describe("Test generic Set functionality", function() {
 
     testAddingOneEntryStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+
+    testAddingOneEntryStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testAddingOneEntryPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding two items to empty Sets", function() {
@@ -114,6 +121,9 @@ describe("Test generic Set functionality", function() {
 
     testAddingTwoEntriesStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+
+    testAddingTwoEntriesStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testAddingTwoEntriesPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test clearing Sets", function() {
@@ -127,6 +137,9 @@ describe("Test generic Set functionality", function() {
 
     testClearingStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testClearingPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+
+    testClearingStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testClearingPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
 });

@@ -13,6 +13,7 @@ var ArrayList_1 = require("../src/ArrayList");
 var Collections_1 = require("../src/Collections");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
+var NavigableHash_1 = require("../src/NavigableHash");
 var PriorityQueue_1 = require("../src/PriorityQueue");
 var SkipList_1 = require("../src/SkipList");
 var TreeSet_1 = require("../src/TreeSet");
@@ -27,6 +28,7 @@ describe("Test Collection", function () {
         testEmptyStringCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()), "HashSet AllFieldHashable");
         testEmptyStringCollection(Collections_1.Collections.emptyList(), "EmptyList");
         testEmptyStringCollection(Collections_1.Collections.emptySet(), "EmptySet");
+        testEmptyStringCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()), "NavigableHashSet");
         testEmptyStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet");
         testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet");
         testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
@@ -40,6 +42,7 @@ describe("Test Collection", function () {
         testEmptyNumberCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyNumberCollection(Collections_1.Collections.emptyList());
         testEmptyNumberCollection(Collections_1.Collections.emptySet());
+        testEmptyNumberCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
@@ -57,6 +60,7 @@ describe("Test Collection", function () {
         testAddOneItemToStringCollection(alc, "ArrayList AllFieldCollectable");
         testAddOneItemToStringCollection(llc, "LinkedList AllFieldCollectable");
         testAddOneItemToStringCollection(hsc, "HashSet AllFieldCollectable");
+        testAddOneItemToStringCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()), "NavigableHashSet StringComparator");
         testAddOneItemToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet StringComparator");
         testAddOneItemToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet StringComparator");
         testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue StringComparator");
@@ -74,6 +78,7 @@ describe("Test Collection", function () {
         testAddOneItemToNumberCollection(alc);
         testAddOneItemToNumberCollection(llc);
         testAddOneItemToNumberCollection(hsc);
+        testAddOneItemToNumberCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
@@ -91,6 +96,7 @@ describe("Test Collection", function () {
         testAddTwoItemsToStringCollection(alc);
         testAddTwoItemsToStringCollection(llc);
         testAddTwoItemsToStringCollection(hsc);
+        testAddTwoItemsToStringCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
@@ -108,6 +114,7 @@ describe("Test Collection", function () {
         testAddTwoItemsToNumberCollection(alc);
         testAddTwoItemsToNumberCollection(llc);
         testAddTwoItemsToNumberCollection(hsc);
+        testAddTwoItemsToNumberCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testAddTwoItemsToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddTwoItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddTwoItemsToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
@@ -125,6 +132,7 @@ describe("Test Collection", function () {
         testAddItemsToStringCollection(alc);
         testAddItemsToStringCollection(llc);
         testAddItemsToStringCollection(hsc);
+        testAddItemsToStringCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testAddItemsToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
@@ -142,6 +150,7 @@ describe("Test Collection", function () {
         testAddItemsToNumberCollection(alc);
         testAddItemsToNumberCollection(llc);
         testAddItemsToNumberCollection(hsc);
+        testAddItemsToNumberCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testAddItemsToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddItemsToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));

@@ -978,6 +978,12 @@ var NavigableHashMap = /** @class */ (function () {
         }
         return node;
     };
+    /**
+    * Override JSON.stringify handling
+    */
+    NavigableHashMap.prototype.toJSON = function () {
+        return Collections_1.Collections.jsonstringify(this);
+    };
     return NavigableHashMap;
 }());
 exports.NavigableHashMap = NavigableHashMap;
@@ -1375,6 +1381,13 @@ var NavigableHashSet = /** @class */ (function () {
     */
     NavigableHashSet.prototype.immutableSet = function () {
         return this;
+    };
+    /**
+    * Override JSON.stringify handling
+    */
+    NavigableHashSet.prototype.toJSON = function () {
+        var tmp = Collections_1.Collections.asArray(this);
+        return JSON.stringify(tmp);
     };
     return NavigableHashSet;
 }());

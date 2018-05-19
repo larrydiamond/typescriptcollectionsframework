@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var Collections_1 = require("../src/Collections");
 var HashSet_1 = require("../src/HashSet");
+var NavigableHash_1 = require("../src/NavigableHash");
 var SkipList_1 = require("../src/SkipList");
 var TreeSet_1 = require("../src/TreeSet");
 // PetStoreProduct will be used in testing
@@ -69,6 +70,8 @@ describe("Test generic Set functionality", function () {
         testEmptyPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testEmptyStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testEmptyStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testEmptyPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test adding to empty Sets", function () {
         testAddingOneEntryStringStringSet(new HashSet_1.HashSet());
@@ -79,6 +82,8 @@ describe("Test generic Set functionality", function () {
         testAddingOneEntryPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testAddingOneEntryStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testAddingOneEntryStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test adding two items to empty Sets", function () {
         testAddingTwoEntriesStringStringSet(new HashSet_1.HashSet());
@@ -89,6 +94,8 @@ describe("Test generic Set functionality", function () {
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testAddingTwoEntriesStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testAddingTwoEntriesStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testAddingTwoEntriesPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test clearing Sets", function () {
         testClearingStringStringSet(new HashSet_1.HashSet());
@@ -99,6 +106,8 @@ describe("Test generic Set functionality", function () {
         testClearingPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testClearingStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testClearingStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testClearingPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
 });
 function testEmptyStringStringSet(Set) {

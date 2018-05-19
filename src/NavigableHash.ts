@@ -1034,6 +1034,13 @@ export class NavigableHashMap<K,V> implements NavigableMap<K,V> {
     }
     return node;
   }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    return Collections.jsonstringify(this);
+  }
 }
 
 
@@ -1452,6 +1459,14 @@ export class NavigableHashSet<K> implements NavigableSet<K> {
   */
   public immutableSet () : ImmutableSet<K> {
     return this;
+  }
+
+  /**
+  * Override JSON.stringify handling
+  */
+  public toJSON () : string {
+    const tmp : Array<K> = Collections.asArray(this);
+    return JSON.stringify (tmp);
   }
 
 }

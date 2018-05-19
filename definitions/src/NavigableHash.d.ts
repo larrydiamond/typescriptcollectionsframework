@@ -262,6 +262,10 @@ export declare class NavigableHashMap<K, V> implements NavigableMap<K, V> {
     * @return {MapEntry} an entry with the greatest key, or null if this map is empty
     */
     lastEntry(): MapEntry<K, V>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class ImmutableKeySetForNavigableHashMap<K, V> implements ImmutableSet<K> {
     private impl;
@@ -419,6 +423,10 @@ export declare class NavigableHashSet<K> implements NavigableSet<K> {
     * Returns an ImmutableSet backed by this Set
     */
     immutableSet(): ImmutableSet<K>;
+    /**
+    * Override JSON.stringify handling
+    */
+    toJSON(): string;
 }
 export declare class NavigableHashSetJIterator<T> implements JIterator<T> {
     private location;
