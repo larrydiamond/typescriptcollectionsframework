@@ -20,6 +20,7 @@ import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 import {JSet} from "./JSet";
 import {LinkedList} from "./LinkedList";
+import {List} from "./List";
 import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 import {NavigableSet} from "./NavigableSet";
@@ -33,7 +34,9 @@ export class NavigableHashImpl<K,V> {
   private NavigableHashNodeComparator:Comparator<NavigableHashNode<K,V>> = null;
   private NavigableHashNodeCollectable:Collectable<NavigableHashNode<K,V>> = null;
 
-  constructor(iComparator:Comparator<K>) {
+  private hashData:ArrayList<List<NavigableHashNode<K,V>>> = null;
+
+  constructor(iComparator:Comparator<K>, private initialElements:ImmutableMap<K, V> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.mapComparator = iComparator;
     this.NavigableHashNodeComparator = new NavigableHashNodeComparator<K,V>(this.mapComparator);
     this.mapCollectable = Collections.collectableFromComparator(iComparator);
@@ -43,6 +46,9 @@ export class NavigableHashImpl<K,V> {
     for (let loop:number = 0; loop < this.height; loop++) {
       this.head.add (null);
     }
+
+
+
   }
 
   public getNavigableHashNodeComparator() : Comparator<NavigableHashNode<K,V>> { return this.NavigableHashNodeComparator; }

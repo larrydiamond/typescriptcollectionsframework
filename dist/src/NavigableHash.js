@@ -22,7 +22,13 @@ var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var BasicMapEntry_1 = require("./BasicMapEntry");
 var Collections_1 = require("./Collections");
 var NavigableHashImpl = /** @class */ (function () {
-    function NavigableHashImpl(iComparator) {
+    function NavigableHashImpl(iComparator, initialElements, iInitialCapacity, iLoadFactor) {
+        if (initialElements === void 0) { initialElements = null; }
+        if (iInitialCapacity === void 0) { iInitialCapacity = 20; }
+        if (iLoadFactor === void 0) { iLoadFactor = 0.75; }
+        this.initialElements = initialElements;
+        this.iInitialCapacity = iInitialCapacity;
+        this.iLoadFactor = iLoadFactor;
         this.head = null;
         this.height = 3;
         this.mapComparator = null;
@@ -30,6 +36,7 @@ var NavigableHashImpl = /** @class */ (function () {
         this.numberElements = 0.0;
         this.NavigableHashNodeComparator = null;
         this.NavigableHashNodeCollectable = null;
+        this.hashData = null;
         this.mapComparator = iComparator;
         this.NavigableHashNodeComparator = new NavigableHashNodeComparator(this.mapComparator);
         this.mapCollectable = Collections_1.Collections.collectableFromComparator(iComparator);

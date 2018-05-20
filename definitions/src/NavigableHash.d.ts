@@ -11,6 +11,9 @@ import { MapEntry } from "./MapEntry";
 import { NavigableMap } from "./NavigableMap";
 import { NavigableSet } from "./NavigableSet";
 export declare class NavigableHashImpl<K, V> {
+    private initialElements;
+    private iInitialCapacity;
+    private iLoadFactor;
     private head;
     private height;
     private mapComparator;
@@ -18,7 +21,8 @@ export declare class NavigableHashImpl<K, V> {
     private numberElements;
     private NavigableHashNodeComparator;
     private NavigableHashNodeCollectable;
-    constructor(iComparator: Comparator<K>);
+    private hashData;
+    constructor(iComparator: Comparator<K>, initialElements?: ImmutableMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
     getNavigableHashNodeComparator(): Comparator<NavigableHashNode<K, V>>;
     getNavigableHashNodeCollectable(): Collectable<NavigableHashNode<K, V>>;
     validate(): boolean;

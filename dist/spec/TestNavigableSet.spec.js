@@ -255,7 +255,6 @@ function testToString(set) {
     addTestStrings(set);
     expect(set.size()).toEqual(10);
     expect(set.isEmpty()).toEqual(false);
-    console.log(JSON.stringify(set));
     jasts_1.TestString.equals("Full set should stringify consistently", JSON.stringify(set), '"[\\"eighth\\",\\"fifth\\",\\"first\\",\\"fourth\\",\\"ninth\\",\\"second\\",\\"seventh\\",\\"sixth\\",\\"tenth\\",\\"third\\"]"');
     set.clear();
     expect(set.size()).toEqual(0);
