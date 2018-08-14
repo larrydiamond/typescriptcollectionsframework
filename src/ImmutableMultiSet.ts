@@ -11,11 +11,6 @@ import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 
 export interface ImmutableMultiSet<K> extends ImmutableCollection<K> {
-  /**
-  * Returns the number of elements in this MultiSet (its cardinality).
-  * @return {number} the number of elements in this MultiSet (its cardinality)
-  */
-  size () : number;
 
   /**
   * Returns the number of occurrences of an element in this MultiSet (the count of the element).
@@ -25,35 +20,10 @@ export interface ImmutableMultiSet<K> extends ImmutableCollection<K> {
   count (item:K) : number;
 
   /**
-  * Returns true if this MultiSet contains no elements.
-  * @return {boolean} true if this MultiSet contains no elements
-  */
-  isEmpty () : boolean;
-
-  /**
-  * Returns true if this MultiSet contains the specified element.   This method uses the comparator and does not invoke equals
-  * @param {K} item object to be checked for containment in this set
-  * @return {boolean} true if this MultiSet contains the specified element
-  */
-  contains (item:K) : boolean;
-
-  /**
    * Returns an ImmutableSet view of the keys contained in this MultiSet.
    * The ImmutableSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableSet.
    * If the MultiSet is modified while an iteration over the returned ImmutableSet is in progress the results of the iteration are undefined.
    * @return {ImmutableSet<K>} a view of the set of distinct elements in this MultiSet
    */
    keySet () : ImmutableSet<K>;
-
- /**
-  * Returns a Java style iterator
-  * @return {JIterator<K>} a Java style iterator
-  */
-  iterator():JIterator<K>;
-
-  /**
-  * Returns a TypeScript style iterator
-  * @return {Iterator<K>} a TypeScript style iterator
-  */
-  [Symbol.iterator] ():Iterator<K>;
 }

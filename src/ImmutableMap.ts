@@ -6,7 +6,6 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
-import {Consumer} from "./Consumer";
 import {ImmutableSet} from "./ImmutableSet";
 import {MapEntry} from "./MapEntry";
 
