@@ -71,6 +71,8 @@ describe("Test Composite Collection functionality", function () {
         var cc = new CompositeCollection_1.CompositeCollection(underlying);
         expect(cc.isEmpty()).toEqual(false);
         expect(cc.size()).toEqual(7);
+        expect(cc.contains(product1)).toEqual(true);
+        expect(cc.contains(productNotAvailable)).toEqual(false);
         var product = 1;
         for (var iter = cc.iterator(); iter.hasNext();) {
             var psp = iter.next();
@@ -274,6 +276,8 @@ function testEmptyPSP(c) {
     var i = c[Symbol.iterator]();
     var ir = i.next();
     expect(ir.done).toEqual(true);
+    expect(c.contains(product1)).toEqual(false);
+    expect(c.contains(productNotAvailable)).toEqual(false);
     var collection = c;
     expect(collection.isEmpty()).toEqual(true);
     expect(collection.size()).toEqual(0);
@@ -284,4 +288,6 @@ function testEmptyPSP(c) {
     var i2 = collection[Symbol.iterator]();
     var ir2 = i2.next();
     expect(ir2.done).toEqual(true);
+    expect(collection.contains(product1)).toEqual(false);
+    expect(collection.contains(productNotAvailable)).toEqual(false);
 }

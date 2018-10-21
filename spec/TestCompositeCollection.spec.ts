@@ -89,6 +89,9 @@ import {LinkedList} from "../src/LinkedList";
      expect (cc.isEmpty ()).toEqual(false);
      expect (cc.size ()).toEqual(7);
 
+     expect (cc.contains(product1)).toEqual (true);
+     expect (cc.contains(productNotAvailable)).toEqual (false);
+
      let product:number = 1;
      for (const iter = cc.iterator(); iter.hasNext(); ) {
        const psp = iter.next();
@@ -330,6 +333,9 @@ import {LinkedList} from "../src/LinkedList";
    const ir:IteratorResult<PetStoreProduct> = i.next();
    expect (ir.done).toEqual(true);
 
+   expect (c.contains(product1)).toEqual (false);
+   expect (c.contains(productNotAvailable)).toEqual (false);
+
    const collection:ImmutableCollection<PetStoreProduct> = c;
    expect (collection.isEmpty ()).toEqual(true);
    expect (collection.size ()).toEqual(0);
@@ -340,4 +346,7 @@ import {LinkedList} from "../src/LinkedList";
    const i2:Iterator<PetStoreProduct> = collection[Symbol.iterator]();
    const ir2:IteratorResult<PetStoreProduct> = i2.next();
    expect (ir2.done).toEqual(true);
+
+   expect (collection.contains(product1)).toEqual (false);
+   expect (collection.contains(productNotAvailable)).toEqual (false);
  }
