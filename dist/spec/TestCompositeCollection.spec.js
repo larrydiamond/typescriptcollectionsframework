@@ -259,6 +259,140 @@ describe("Test Composite Collection functionality", function () {
         ir2 = i2.next();
         expect(ir2.done).toEqual(true);
     });
+    it("Test altering collection is reflected", function () {
+        var underlying = new ArrayList_1.ArrayList();
+        var cc = new CompositeCollection_1.CompositeCollection(underlying);
+        var iter = cc.iterator();
+        var i2 = cc[Symbol.iterator]();
+        underlying.add(product1);
+        underlying.add(product2);
+        underlying.add(product3);
+        underlying.add(product4);
+        underlying.add(product5);
+        underlying.add(product6);
+        underlying.add(product7);
+        expect(cc.isEmpty()).toEqual(false);
+        expect(cc.size()).toEqual(7);
+        expect(cc.contains(product1)).toEqual(true);
+        expect(cc.contains(productNotAvailable)).toEqual(false);
+        var product = 1;
+        for (; iter.hasNext();) {
+            var psp = iter.next();
+            switch (product) {
+                case 1:
+                    expect(psp.getProductName()).toEqual(product1.getProductName());
+                    break;
+                case 2:
+                    expect(psp.getProductName()).toEqual(product2.getProductName());
+                    break;
+                case 3:
+                    expect(psp.getProductName()).toEqual(product3.getProductName());
+                    break;
+                case 4:
+                    expect(psp.getProductName()).toEqual(product4.getProductName());
+                    break;
+                case 5:
+                    expect(psp.getProductName()).toEqual(product5.getProductName());
+                    break;
+                case 6:
+                    expect(psp.getProductName()).toEqual(product6.getProductName());
+                    break;
+                case 7:
+                    expect(psp.getProductName()).toEqual(product7.getProductName());
+                    break;
+                default:
+                    fail("iterator at invalid offset");
+                    break;
+            }
+            product = product + 1.0;
+        }
+        var ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product1.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product2.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product3.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product4.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product5.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product6.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product7.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(true);
+    });
+    it("Test removing last entry before hasnext ", function () {
+        var c1 = new ArrayList_1.ArrayList();
+        c1.add(product1);
+        c1.add(product2);
+        var c2 = new ArrayList_1.ArrayList();
+        c2.add(product3);
+        var cc = new CompositeCollection_1.CompositeCollection(c1, c2);
+        var iter = cc.iterator();
+        expect(iter.hasNext()).toEqual(true);
+        var psp = iter.next();
+        var i2 = cc[Symbol.iterator]();
+        var ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product1.getProductName());
+        c1.remove(product2);
+        expect(iter.hasNext()).toEqual(true);
+        psp = iter.next();
+        expect(psp.getProductName()).toEqual(product3.getProductName());
+        expect(iter.hasNext()).toEqual(false);
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product3.getProductName());
+        ir2 = i2.next();
+        expect(ir2.done).toEqual(true);
+    });
+    it("Test removing last entry after hasnext ", function () {
+        var c1 = new ArrayList_1.ArrayList();
+        c1.add(product1);
+        c1.add(product2);
+        var c2 = new ArrayList_1.ArrayList();
+        c2.add(product3);
+        var cc = new CompositeCollection_1.CompositeCollection(c1, c2);
+        var iter = cc.iterator();
+        expect(iter.hasNext()).toEqual(true);
+        var psp = iter.next();
+        var i2 = cc[Symbol.iterator]();
+        var ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product1.getProductName());
+        expect(iter.hasNext()).toEqual(true);
+        c1.remove(product2);
+        psp = iter.next();
+        expect(psp.getProductName()).toEqual(product3.getProductName());
+        expect(iter.hasNext()).toEqual(false);
+    });
+    it("Test removing last last entry after hasnext ", function () {
+        var c1 = new ArrayList_1.ArrayList();
+        c1.add(product1);
+        c1.add(product2);
+        var cc = new CompositeCollection_1.CompositeCollection(c1);
+        var iter = cc.iterator();
+        expect(iter.hasNext()).toEqual(true);
+        var psp = iter.next();
+        var i2 = cc[Symbol.iterator]();
+        var ir2 = i2.next();
+        expect(ir2.done).toEqual(false);
+        expect(ir2.value.getProductName()).toEqual(product1.getProductName());
+        expect(iter.hasNext()).toEqual(true);
+        c1.remove(product2);
+        psp = iter.next();
+        expect(psp).toEqual(undefined);
+        expect(iter.hasNext()).toEqual(false);
+    });
 });
 var failEmptyConsumerPSP = {
     accept: function (element) {

@@ -8,7 +8,7 @@ import { JIterator } from "./JIterator";
  */
 export declare class CompositeCollection<K> implements ImmutableCollection<K> {
     private impl;
-    constructor(input1: ImmutableCollection<K>, input2?: ImmutableCollection<K>, input3?: ImmutableCollection<K>, input4?: ImmutableCollection<K>, input5?: ImmutableCollection<K>, input6?: ImmutableCollection<K>);
+    constructor(...values: ImmutableCollection<K>[]);
     /**
     * Returns the number of elements in this set (its cardinality).
     * @return {number} the number of elements in this set (its cardinality)

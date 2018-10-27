@@ -13,6 +13,7 @@ export {Collectable} from "./src/Collectable";
 export {Collection} from "./src/Collection";
 export {Collections} from "./src/Collections";
 export {Comparator} from "./src/Comparator";
+export {CompositeCollection} from "./src/CompositeCollection";
 export {Hashable} from "./src/Hashable";
 export {HashMap} from "./src/HashMap";
 export {HashSet} from "./src/HashSet";

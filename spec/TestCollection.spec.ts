@@ -11,6 +11,7 @@ import {AllFieldHashable} from "../src/AllFieldHashable";
 import {ArrayList} from "../src/ArrayList";
 import {Collection} from "../src/Collection";
 import {Collections} from "../src/Collections";
+import {CompositeCollection} from "../src/CompositeCollection";
 import {Consumer} from "../src/Consumer";
 import {HashSet} from "../src/HashSet";
 import {ImmutableCollection} from "../src/ImmutableCollection";
@@ -36,6 +37,9 @@ describe("Test Collection", function() {
     testEmptyStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet");
     testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet");
     testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testEmptyStringCollection(new CompositeCollection<string> (undefined), "CompositeCollection undefined");
+    testEmptyStringCollection(new CompositeCollection<string> (null), "CompositeCollection null");
+    testEmptyStringCollection(new CompositeCollection<string> (new ArrayList<string>()), "CompositeCollection empty");
   });
 
   it("Test empty number Collections", function() {
@@ -51,6 +55,9 @@ describe("Test Collection", function() {
     testEmptyNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testEmptyNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testEmptyNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
+    testEmptyNumberCollection(new CompositeCollection<number> (undefined));
+    testEmptyNumberCollection(new CompositeCollection<number> (null));
+    testEmptyNumberCollection(new CompositeCollection<number> (new ArrayList<number>()));
   });
 
   it("Test add one item to string Collections", function() {

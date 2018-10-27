@@ -18,18 +18,28 @@ import {JIterator} from "./JIterator";
  *
  * This class corresponds to org.apache.commons.collections4.collection.CompositeCollection
  */
+
+
 export class CompositeCollection<K> implements ImmutableCollection<K> {
+
   private impl: CompositeCollectionImpl<K>;
 
-  constructor (input1: ImmutableCollection<K>, input2?: ImmutableCollection<K>, input3?: ImmutableCollection<K>, input4?: ImmutableCollection<K>, input5?: ImmutableCollection<K>, input6?: ImmutableCollection<K>) {
-    this.impl = new CompositeCollectionImpl<K> (input1, input2, input3, input4, input5, input6);
+  constructor (... values : ImmutableCollection<K>[]) {
+    this.impl = new CompositeCollectionImpl<K> ();
+
+    for (let loop : number = 0; loop < values.length; loop++) {
+      const tmp : ImmutableCollection<K> = values [loop];
+      if ((tmp !== null) && (tmp !== undefined)) {
+        this.impl.add (tmp);
+      }
+    }
   }
 
     /**
     * Returns the number of elements in this set (its cardinality).
     * @return {number} the number of elements in this set (its cardinality)
     */
-    size () : number {
+    public size () : number {
       return this.impl.size();
     }
 
@@ -37,7 +47,7 @@ export class CompositeCollection<K> implements ImmutableCollection<K> {
     * Returns true if this set contains no elements.
     * @return {boolean} true if this set contains no elements
     */
-    isEmpty () : boolean {
+    public isEmpty () : boolean {
       return this.impl.isEmpty();
     }
 
@@ -46,7 +56,7 @@ export class CompositeCollection<K> implements ImmutableCollection<K> {
     * @param {K} item object to be checked for containment in this set
     * @return {boolean} true if this set contains the specified element
     */
-    contains (item:K) : boolean {
+    public contains (item:K) : boolean {
       return this.impl.contains(item);
     }
 
@@ -54,7 +64,7 @@ export class CompositeCollection<K> implements ImmutableCollection<K> {
      * Performs the given action for each element until all elements have been processed or the action throws and exception.
      * Exceptions thrown by the action are relayed to the caller
      */
-    forEach (consumer: Consumer<K>) : void {
+    public forEach (consumer: Consumer<K>) : void {
       return this.impl.forEach(consumer);
     }
 
@@ -72,7 +82,7 @@ export class CompositeCollection<K> implements ImmutableCollection<K> {
     * In this scenario then next() will return undefined
     * @return {JIterator<K>} the Java style iterator
     */
-    iterator():JIterator<K> {
+    public iterator():JIterator<K> {
       return this.impl.iterator();
     }
 
@@ -80,7 +90,7 @@ export class CompositeCollection<K> implements ImmutableCollection<K> {
     * Returns a TypeScript style iterator.   The order of the elements returned by the iterator should not be relied upon
     * @return {Iterator<K>} the TypeScript style iterator
     */
-    [Symbol.iterator] ():Iterator<K> {
+    public [Symbol.iterator] ():Iterator<K> {
       return this.impl.tsIterator();
     }
 }
@@ -133,7 +143,9 @@ class CompositeCollectionJavaIterator<T> implements JIterator<T> {
   public next():T {
     if (this.locit.hasNext()) {
       return this.locit.next();
-    } else {
+    }
+    else
+    {
       while (true) {
         if (this.collit.hasNext()) {
           this.cloc = this.collit.next();
@@ -196,60 +208,32 @@ class CompositeCollectionIterator<T> implements Iterator<T> {
 }
 
 class CompositeCollectionImpl<K> {
-  public components: ArrayList<ImmutableCollection<K>> = new ArrayList<ImmutableCollection<K>>();
+  public components: ArrayList<ImmutableCollection<K>>;
 
-  constructor (input1: ImmutableCollection<K>, input2?: ImmutableCollection<K>, input3?: ImmutableCollection<K>, input4?: ImmutableCollection<K>, input5?: ImmutableCollection<K>, input6?: ImmutableCollection<K>) {
-    if (input1) {
-      if ((input1 !== null) && (input1 !== undefined)) {
-          this.components.add (input1);
-      }
-    }
+  constructor () {
+    this.components = new ArrayList<ImmutableCollection<K>>();
+  }
 
-    if (input2) {
-      if ((input2 !== null) && (input2 !== undefined)) {
-          this.components.add (input2);
-      }
-    }
-
-    if (input3) {
-      if ((input3 !== null) && (input3 !== undefined)) {
-          this.components.add (input3);
-      }
-    }
-
-    if (input4) {
-      if ((input4 !== null) && (input4 !== undefined)) {
-          this.components.add (input4);
-      }
-    }
-
-    if (input5) {
-      if ((input5 !== null) && (input5 !== undefined)) {
-          this.components.add (input5);
-      }
-    }
-
-    if (input6) {
-      if ((input6 !== null) && (input6 !== undefined)) {
-          this.components.add (input6);
-      }
+  public add (ic : ImmutableCollection<K>) {
+    if ((ic !== null) && (ic !== undefined)) {
+        this.components.add (ic);
     }
   }
 
-  size () : number {
+  public size () : number {
     let tempSize:number = 0;
 
-    for (let iter:JIterator<ImmutableCollection<K>> = this.components.iterator(); iter.hasNext(); ) {
-      let is:ImmutableCollection<K> = iter.next();
+    for (const iter:JIterator<ImmutableCollection<K>> = this.components.iterator(); iter.hasNext(); ) {
+      const is:ImmutableCollection<K> = iter.next();
       tempSize = tempSize + is.size();
     }
 
     return tempSize;
   }
 
-  isEmpty () : boolean {
-    for (let iter:JIterator<ImmutableCollection<K>> = this.components.iterator(); iter.hasNext(); ) {
-      let is:ImmutableCollection<K> = iter.next();
+  public isEmpty () : boolean {
+    for (const iter:JIterator<ImmutableCollection<K>> = this.components.iterator(); iter.hasNext(); ) {
+      const is:ImmutableCollection<K> = iter.next();
       if (!is.isEmpty()) {
         return false;
       }
@@ -258,9 +242,9 @@ class CompositeCollectionImpl<K> {
     return true;
   }
 
-  contains (item:K) : boolean {
-    for (let iter:JIterator<ImmutableCollection<K>> = this.components.iterator(); iter.hasNext(); ) {
-      let is:ImmutableCollection<K> = iter.next();
+  public contains (item:K) : boolean {
+    for (const iter:JIterator<ImmutableCollection<K>> = this.components.iterator(); iter.hasNext(); ) {
+      const is:ImmutableCollection<K> = iter.next();
       if (is.contains(item)) {
         return true;
       }
@@ -269,7 +253,7 @@ class CompositeCollectionImpl<K> {
     return false;
   }
 
-  forEach (consumer: Consumer<K>) : void {
+  public forEach (consumer: Consumer<K>) : void {
      for (const iter:JIterator<K> = this.iterator(); iter.hasNext(); ) {
        const t:K = iter.next();
        consumer.accept(t);
@@ -281,15 +265,15 @@ class CompositeCollectionImpl<K> {
     return JSON.stringify (tmp);
   }
 
-  iterator():JIterator<K> {
+  public iterator():JIterator<K> {
     return new CompositeCollectionJavaIterator(this);
   }
 
-  [Symbol.iterator] ():Iterator<K> {
+  public [Symbol.iterator] ():Iterator<K> {
     return new CompositeCollectionIterator(this);
   }
 
-  tsIterator ():Iterator<K> {
+  public tsIterator ():Iterator<K> {
     return new CompositeCollectionIterator(this);
   }
 }

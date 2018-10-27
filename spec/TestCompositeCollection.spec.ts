@@ -308,11 +308,174 @@ import {LinkedList} from "../src/LinkedList";
      expect (ir2.done).toEqual(true);
    });
 
+   it("Test altering collection is reflected", function() {
+     const underlying = new ArrayList<PetStoreProduct>();
+     const cc = new CompositeCollection<PetStoreProduct>(underlying);
+     const iter = cc.iterator();
+     const i2:Iterator<PetStoreProduct> = cc[Symbol.iterator]();
+
+     underlying.add (product1);
+     underlying.add (product2);
+     underlying.add (product3);
+     underlying.add (product4);
+     underlying.add (product5);
+     underlying.add (product6);
+     underlying.add (product7);
+
+     expect (cc.isEmpty ()).toEqual(false);
+     expect (cc.size ()).toEqual(7);
+
+     expect (cc.contains(product1)).toEqual (true);
+     expect (cc.contains(productNotAvailable)).toEqual (false);
+
+     let product:number = 1;
+     for (; iter.hasNext(); ) {
+       const psp = iter.next();
+       switch (product) {
+         case 1:
+          expect (psp.getProductName()).toEqual (product1.getProductName());
+         break;
+         case 2:
+          expect (psp.getProductName()).toEqual (product2.getProductName());
+         break;
+         case 3:
+          expect (psp.getProductName()).toEqual (product3.getProductName());
+         break;
+         case 4:
+          expect (psp.getProductName()).toEqual (product4.getProductName());
+         break;
+         case 5:
+          expect (psp.getProductName()).toEqual (product5.getProductName());
+         break;
+         case 6:
+          expect (psp.getProductName()).toEqual (product6.getProductName());
+         break;
+         case 7:
+          expect (psp.getProductName()).toEqual (product7.getProductName());
+         break;
+         default:
+          fail ("iterator at invalid offset");
+        break;
+       }
+       product = product + 1.0;
+     }
+
+     let ir2:IteratorResult<PetStoreProduct> = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product1.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product2.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product3.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product4.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product5.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product6.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product7.getProductName());
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(true);
+   });
 
 
+   it("Test removing last entry before hasnext ", function() {
+     const c1 = new ArrayList<PetStoreProduct>();
+     c1.add (product1);
+     c1.add (product2);
+     const c2 = new ArrayList<PetStoreProduct>();
+     c2.add (product3);
+
+     const cc = new CompositeCollection<PetStoreProduct>(c1, c2);
+     const iter = cc.iterator();
+     expect (iter.hasNext()).toEqual (true);
+     let psp = iter.next();
+
+     const i2:Iterator<PetStoreProduct> = cc[Symbol.iterator]();
+     let ir2:IteratorResult<PetStoreProduct> = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product1.getProductName());
+
+     c1.remove (product2);
+
+     expect (iter.hasNext()).toEqual (true);
+     psp = iter.next();
+     expect (psp.getProductName()).toEqual (product3.getProductName());
+     expect (iter.hasNext()).toEqual (false);
+
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product3.getProductName());
+     ir2 = i2.next();
+     expect (ir2.done).toEqual(true);
+   });
+
+
+   it("Test removing last entry after hasnext ", function() {
+     const c1 = new ArrayList<PetStoreProduct>();
+     c1.add (product1);
+     c1.add (product2);
+     const c2 = new ArrayList<PetStoreProduct>();
+     c2.add (product3);
+
+     const cc = new CompositeCollection<PetStoreProduct>(c1, c2);
+     const iter = cc.iterator();
+     expect (iter.hasNext()).toEqual (true);
+     let psp = iter.next();
+
+     const i2:Iterator<PetStoreProduct> = cc[Symbol.iterator]();
+     const ir2:IteratorResult<PetStoreProduct> = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product1.getProductName());
+
+     expect (iter.hasNext()).toEqual (true);
+
+     c1.remove (product2);
+
+     psp = iter.next();
+     expect (psp.getProductName()).toEqual (product3.getProductName());
+     expect (iter.hasNext()).toEqual (false);
+   });
+
+
+   it("Test removing last last entry after hasnext ", function() {
+     const c1 = new ArrayList<PetStoreProduct>();
+     c1.add (product1);
+     c1.add (product2);
+
+     const cc = new CompositeCollection<PetStoreProduct>(c1);
+     const iter = cc.iterator();
+     expect (iter.hasNext()).toEqual (true);
+     let psp = iter.next();
+
+     const i2:Iterator<PetStoreProduct> = cc[Symbol.iterator]();
+     const ir2:IteratorResult<PetStoreProduct> = i2.next();
+     expect (ir2.done).toEqual(false);
+     expect (ir2.value.getProductName()).toEqual (product1.getProductName());
+
+     expect (iter.hasNext()).toEqual (true);
+
+     c1.remove (product2);
+     psp = iter.next();
+     expect (psp).toEqual (undefined);
+     expect (iter.hasNext()).toEqual (false);
+   });
 
  });
-
 
 
  const failEmptyConsumerPSP:Consumer<PetStoreProduct> = {

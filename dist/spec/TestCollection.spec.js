@@ -11,6 +11,7 @@ var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
 var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var ArrayList_1 = require("../src/ArrayList");
 var Collections_1 = require("../src/Collections");
+var CompositeCollection_1 = require("../src/CompositeCollection");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
 var NavigableHash_1 = require("../src/NavigableHash");
@@ -32,6 +33,9 @@ describe("Test Collection", function () {
         testEmptyStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet");
         testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet");
         testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(undefined), "CompositeCollection undefined");
+        testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(null), "CompositeCollection null");
+        testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(new ArrayList_1.ArrayList()), "CompositeCollection empty");
     });
     it("Test empty number Collections", function () {
         testEmptyNumberCollection(new ArrayList_1.ArrayList());
@@ -46,6 +50,9 @@ describe("Test Collection", function () {
         testEmptyNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
+        testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(undefined));
+        testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(null));
+        testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(new ArrayList_1.ArrayList()));
     });
     it("Test add one item to string Collections", function () {
         var al = new ArrayList_1.ArrayList();

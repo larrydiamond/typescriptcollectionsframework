@@ -16,8 +16,18 @@ var Collections_1 = require("./Collections");
  * This class corresponds to org.apache.commons.collections4.collection.CompositeCollection
  */
 var CompositeCollection = /** @class */ (function () {
-    function CompositeCollection(input1, input2, input3, input4, input5, input6) {
-        this.impl = new CompositeCollectionImpl(input1, input2, input3, input4, input5, input6);
+    function CompositeCollection() {
+        var values = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            values[_i] = arguments[_i];
+        }
+        this.impl = new CompositeCollectionImpl();
+        for (var loop = 0; loop < values.length; loop++) {
+            var tmp = values[loop];
+            if ((tmp !== null) && (tmp !== undefined)) {
+                this.impl.add(tmp);
+            }
+        }
     }
     /**
     * Returns the number of elements in this set (its cardinality).
@@ -176,39 +186,14 @@ var CompositeCollectionIterator = /** @class */ (function () {
     return CompositeCollectionIterator;
 }());
 var CompositeCollectionImpl = /** @class */ (function () {
-    function CompositeCollectionImpl(input1, input2, input3, input4, input5, input6) {
+    function CompositeCollectionImpl() {
         this.components = new ArrayList_1.ArrayList();
-        if (input1) {
-            if ((input1 !== null) && (input1 !== undefined)) {
-                this.components.add(input1);
-            }
-        }
-        if (input2) {
-            if ((input2 !== null) && (input2 !== undefined)) {
-                this.components.add(input2);
-            }
-        }
-        if (input3) {
-            if ((input3 !== null) && (input3 !== undefined)) {
-                this.components.add(input3);
-            }
-        }
-        if (input4) {
-            if ((input4 !== null) && (input4 !== undefined)) {
-                this.components.add(input4);
-            }
-        }
-        if (input5) {
-            if ((input5 !== null) && (input5 !== undefined)) {
-                this.components.add(input5);
-            }
-        }
-        if (input6) {
-            if ((input6 !== null) && (input6 !== undefined)) {
-                this.components.add(input6);
-            }
-        }
     }
+    CompositeCollectionImpl.prototype.add = function (ic) {
+        if ((ic !== null) && (ic !== undefined)) {
+            this.components.add(ic);
+        }
+    };
     CompositeCollectionImpl.prototype.size = function () {
         var tempSize = 0;
         for (var iter = this.components.iterator(); iter.hasNext();) {
