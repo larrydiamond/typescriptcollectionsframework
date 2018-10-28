@@ -13,7 +13,7 @@
     "gulp": "^3.9.1",
     "gulp-jasmine": "^4.0.0",
     "gulp-typescript": "^4.0.2",
-    "jasmine": "^3.1.0",
+    "jasmine": "^3.3.0",
     "jasts": "^1.0.0",
     "merge2": "^1.2.0",
     "mixin-deep": "^2.0.0",
