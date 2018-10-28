@@ -325,6 +325,10 @@ import {LinkedList} from "../src/LinkedList";
      expect (cc.isEmpty ()).toEqual(false);
      expect (cc.size ()).toEqual(7);
 
+     let testCount : number = 0;
+     cc.forEach ({ accept(element:PetStoreProduct) { testCount = testCount + 1; } });
+     expect (testCount).toEqual (7);
+
      expect (cc.contains(product1)).toEqual (true);
      expect (cc.contains(productNotAvailable)).toEqual (false);
 

@@ -273,6 +273,9 @@ describe("Test Composite Collection functionality", function () {
         underlying.add(product7);
         expect(cc.isEmpty()).toEqual(false);
         expect(cc.size()).toEqual(7);
+        var testCount = 0;
+        cc.forEach({ accept: function (element) { testCount = testCount + 1; } });
+        expect(testCount).toEqual(7);
         expect(cc.contains(product1)).toEqual(true);
         expect(cc.contains(productNotAvailable)).toEqual(false);
         var product = 1;
