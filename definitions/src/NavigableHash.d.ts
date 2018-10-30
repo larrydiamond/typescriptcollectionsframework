@@ -32,7 +32,6 @@ export declare class NavigableHashImpl<K, V> {
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableMap<K, V>, iInitialCapacity?: number, iLoadFactor?: number);
     getNavigableHashNodeComparator(): Comparator<NavigableHashNode<K, V>>;
     getNavigableHashNodeCollectable(): Collectable<NavigableHashNode<K, V>>;
-    validate(): boolean;
     /**
     * Removes the mapping for this key from this Map if present.
     * @param {K} key key for which mapping should be removed
@@ -138,7 +137,6 @@ export declare class NavigableHashNode<K, V> extends BasicMapEntry<K, V> {
 export declare class NavigableHashMap<K, V> implements NavigableMap<K, V> {
     private impl;
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
-    validateMap(): boolean;
     getNextHigherKey(key: K): K;
     /**
     * Returns the number of key-value mappings in this map.
@@ -340,7 +338,6 @@ export declare class NavigableHashSet<K> implements NavigableSet<K> {
     private initialElements?;
     private impl;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
-    validateSet(): boolean;
     /**
     * Adds the specified element to this set if it is not already present.
     * @param {K} element element to be added to this set

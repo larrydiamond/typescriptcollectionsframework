@@ -135,55 +135,58 @@ var NavigableHashImpl = /** @class */ (function () {
       }
     
     */
-    NavigableHashImpl.prototype.validate = function () {
-        var count = 0.0;
-        var tmp = this.firstEntry();
+    /*
+      public validate () : boolean {
+        let count : number = 0.0;
+    
+        let tmp : NavigableHashNode<K,V> = this.firstEntry();
         if ((tmp !== null) && (tmp !== undefined)) {
-            count = 1.0;
+          count = 1.0;
         }
         // each of the head elements needs to be at least as big as the prior element or null
-        for (var loop = 1.0; loop < this.head.size() - 1.0; loop++) {
-            var lower = this.head.get(Math.round(loop - 1.0));
-            var higher = this.head.get(loop);
-            if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
-                var cmp = this.mapComparator.compare(lower.getKey(), higher.getKey());
-                if (cmp === 1) {
-                    console.log("Head elements out of order");
-                    return false;
-                }
+        for (let loop:number = 1.0; loop < this.head.size() - 1.0; loop++) {
+          const lower : NavigableHashNode<K,V> = this.head.get (Math.round (loop - 1.0));
+          const higher : NavigableHashNode<K,V> = this.head.get (loop);
+          if ((lower !== null) && (lower !== undefined) && (higher !== null) && (higher !== undefined)) {
+            const cmp:number = this.mapComparator.compare(lower.getKey(), higher.getKey());
+            if (cmp === 1) {
+              console.log ("Head elements out of order");
+              return false;
             }
+          }
         }
+    
         while ((tmp !== null) && (tmp !== undefined)) {
-            var next = this.nextHigherNode(tmp);
-            if ((next !== null) && (next !== undefined)) {
-                if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
-                    console.log("next node array null");
-                    return false;
-                }
-                if ((tmp.getLastNodeArray() === null) || (tmp.getLastNodeArray() === undefined)) {
-                    console.log("last node array null");
-                    return false;
-                }
-                var prev = next.getLastNodeArray().get(0);
-                if (prev !== null) {
-                    var cmp = this.mapComparator.compare(prev.getKey(), tmp.getKey());
-                    if (cmp !== 0) {
-                        console.log("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
-                        return false;
-                    }
-                }
-                count = count + 1.0;
+          const next : NavigableHashNode<K,V> = this.nextHigherNode(tmp);
+          if ((next !== null) && (next !== undefined)) {
+            if ((tmp.getNextNodeArray() === null) || (tmp.getNextNodeArray() === undefined)) {
+              console.log ("next node array null");
+              return false;
             }
-            tmp = next;
+            if ((tmp.getLastNodeArray() === null) || (tmp.getLastNodeArray() === undefined)) {
+              console.log ("last node array null");
+              return false;
+            }
+            const prev : NavigableHashNode<K,V> = next.getLastNodeArray().get (0);
+            if (prev !== null) {
+              const cmp:number = this.mapComparator.compare(prev.getKey(), tmp.getKey());
+              if (cmp !== 0) {
+                console.log ("Last node doesnt match " + next.getKey() + " " + tmp.getKey() + " " + prev.getKey());
+                return false;
+              }
+            }
+            count = count + 1.0;
+          }
+          tmp = next;
         }
         if (this.numberElements === count) {
-            return true;
+          return true;
+        } else {
+          console.log ("Inconsistent size of NavigableHashMap = " + this.numberElements + " found " + count);
+          return false;
         }
-        else {
-            console.log("Inconsistent size of NavigableHashMap = " + this.numberElements + " found " + count);
-            return false;
-        }
-    };
+      }
+    */
     /**
     * Removes the mapping for this key from this Map if present.
     * @param {K} key key for which mapping should be removed
@@ -735,7 +738,7 @@ var NavigableHashMap = /** @class */ (function () {
             }
         }
     }
-    NavigableHashMap.prototype.validateMap = function () { return this.impl.validate(); };
+    //  public validateMap () : boolean { return this.impl.validate(); }
     //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
     NavigableHashMap.prototype.getNextHigherKey = function (key) {
         var node = this.impl.getEntry(key);
@@ -1203,7 +1206,7 @@ var NavigableHashSet = /** @class */ (function () {
             }
         }
     }
-    NavigableHashSet.prototype.validateSet = function () { return this.impl.validate(); };
+    //  public validateSet () : boolean { return this.impl.validate(); }
     //  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
     /**
     * Adds the specified element to this set if it is not already present.

@@ -258,4 +258,18 @@ describe("Test HashSet functionality", function () {
         var tset = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable(), source);
         expect(tset.size()).toEqual(source.size());
     });
+    it("Test null", function () {
+        var set = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
+        set.add(null);
+        expect(set.contains(null)).toEqual(true);
+        expect(set.isEmpty()).toEqual(false);
+        expect(set.size()).toEqual(1);
+    });
+    it("Test undefined", function () {
+        var set = new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable());
+        set.add(undefined);
+        expect(set.contains(undefined)).toEqual(true);
+        expect(set.isEmpty()).toEqual(false);
+        expect(set.size()).toEqual(1);
+    });
 });

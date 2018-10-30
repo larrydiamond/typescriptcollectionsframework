@@ -765,7 +765,7 @@ export class NavigableHashMap<K,V> implements NavigableMap<K,V> {
     }
   }
 
-  public validateMap () : boolean { return this.impl.validate(); }
+//  public validateMap () : boolean { return this.impl.validate(); }
 //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
 
   public getNextHigherKey (key : K) {
@@ -1265,7 +1265,7 @@ export class NavigableHashSet<K> implements NavigableSet<K> {
     }
   }
 
-  public validateSet () : boolean { return this.impl.validate(); }
+//  public validateSet () : boolean { return this.impl.validate(); }
 //  public validateSetDisplay () : boolean { return this.impl.validateDisplay(); }
 
   /**

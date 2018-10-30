@@ -300,4 +300,20 @@ describe("Test HashSet functionality", function() {
     expect (tset.size ()).toEqual(source.size());
   });
 
+  it ("Test null", function () {
+    const set:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    set.add (null);
+    expect (set.contains (null)).toEqual (true);
+    expect (set.isEmpty ()).toEqual(false);
+    expect (set.size ()).toEqual(1);
+  });
+
+  it ("Test undefined", function () {
+    const set:HashSet<PetStoreProduct> = new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>());
+    set.add (undefined);
+    expect (set.contains (undefined)).toEqual (true);
+    expect (set.isEmpty ()).toEqual(false);
+    expect (set.size ()).toEqual(1);
+  });
+
 });
