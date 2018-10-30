@@ -510,4 +510,26 @@ describe("Test LinkedList functionality", function() {
         expect (list.size ()).toEqual(source.size());
       });
 
+      it ("Test null", function () {
+        const list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+        list.add (null);
+        expect (list.contains (null)).toEqual (true);
+        expect (list.isEmpty ()).toEqual(false);
+        expect (list.size ()).toEqual(1);
+        expect (list.get (0)).toEqual (null);
+        expect (list.indexOf (null)).toEqual (0);
+        expect (list.lastIndexOf (null)).toEqual (0);
+      });
+
+      it ("Test undefined", function () {
+        const list:LinkedList<PetStoreProduct> = new LinkedList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+        list.add (undefined);
+        expect (list.contains (undefined)).toEqual (true);
+        expect (list.isEmpty ()).toEqual(false);
+        expect (list.size ()).toEqual(1);
+        expect (list.get (0)).toEqual (undefined);
+        expect (list.indexOf (undefined)).toEqual (0);
+        expect (list.lastIndexOf (undefined)).toEqual (0);
+      });
+
 });

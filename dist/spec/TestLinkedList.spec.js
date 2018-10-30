@@ -404,4 +404,24 @@ describe("Test LinkedList functionality", function () {
         var list = new LinkedList_1.LinkedList(source.getHashable(), source);
         expect(list.size()).toEqual(source.size());
     });
+    it("Test null", function () {
+        var list = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
+        list.add(null);
+        expect(list.contains(null)).toEqual(true);
+        expect(list.isEmpty()).toEqual(false);
+        expect(list.size()).toEqual(1);
+        expect(list.get(0)).toEqual(null);
+        expect(list.indexOf(null)).toEqual(0);
+        expect(list.lastIndexOf(null)).toEqual(0);
+    });
+    it("Test undefined", function () {
+        var list = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
+        list.add(undefined);
+        expect(list.contains(undefined)).toEqual(true);
+        expect(list.isEmpty()).toEqual(false);
+        expect(list.size()).toEqual(1);
+        expect(list.get(0)).toEqual(undefined);
+        expect(list.indexOf(undefined)).toEqual(0);
+        expect(list.lastIndexOf(undefined)).toEqual(0);
+    });
 });

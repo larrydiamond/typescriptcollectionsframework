@@ -17,7 +17,7 @@ import { Queue } from "./Queue";
  * This class corresponds to java.util.PriorityQueue
  */
 export declare class PriorityQueue<K> implements Queue<K> {
-    private initialElements;
+    private initialElements?;
     private pQueue;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
     /**

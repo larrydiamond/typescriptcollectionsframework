@@ -58,7 +58,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     /**
      * Rehashes the entire hashmap.... gonna be slow you've been warned
      */
-    private rehash();
+    private rehash;
     /**
      * Returns true if this map contains no key-value mappings.
      * @return {boolean} true if this map contains no key-value mappings
@@ -88,7 +88,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      */
     containsKey(key: K): boolean;
     getEntry(key: K): HashMapEntry<K, V>;
-    private getMapEntry(key);
+    private getMapEntry;
     /**
      * Removes all of the mappings from this map. The map will be empty after this call returns.
      */
@@ -133,8 +133,8 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      * @deprecated
      */
     deprecatedGetNextEntryForIterator(current: HashMapIteratorLocationTracker<K, V>): HashMapIteratorLocationTracker<K, V>;
-    private getHashMapEntryHashable(iHash);
-    private getListHashMapEntryHashable(iHash);
+    private getHashMapEntryHashable;
+    private getListHashMapEntryHashable;
 }
 export declare class HashMapIteratorLocationTracker<K, V> {
     bucket: number;

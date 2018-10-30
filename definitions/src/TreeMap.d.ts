@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Larry Diamond 2017 All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+ */
 import { Comparator } from "./Comparator";
 import { Consumer } from "./Consumer";
 import { ImmutableMap } from "./ImmutableMap";
@@ -24,7 +31,7 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     private mapComparator;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableMap<K, V>);
     validateMap(): boolean;
-    private validateNode(node);
+    private validateNode;
     /**
      * Returns an iterator over the entire entry set
      * @return {Iterator<K>} an iterator for the entry set
@@ -49,7 +56,7 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
      * @return {boolean} true if this map contains no key-value mappings
      */
     isEmpty(): boolean;
-    private sizeTree(n);
+    private sizeTree;
     /**
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
      * @param {K} key key with which the specified value is to be associated
@@ -57,21 +64,21 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
      * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
      */
     put(key: K, value: V): V;
-    private putNode(node, key, value);
+    private putNode;
     /**
      * Needed For Iterator
      * @param {K} key the given key
      * @return {K} the least key greater than key, or null if there is no such key
      */
     getNextHigherKey(key: K): K;
-    private nextHigherNode(node);
+    private nextHigherNode;
     /**
      * Returns true if this map contains a mapping for the specified key.   This method uses the comparator for the map to find the specified key
      * @param {K} key key whose presence in this map is to be tested
      * @return {boolean} true if this map contains a mapping for the specified key
      */
     containsKey(key: K): boolean;
-    private getNode(node, key);
+    private getNode;
     /**
      * Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
      * @param {K} key the key whose associated value is to be returned
@@ -132,15 +139,15 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     * @return {MapEntry} an entry with the greatest key less than or equal to key, or null if there is no such key
     */
     floorEntry(key: K): MapEntry<K, V>;
-    private ceilingNode(node, key, currentBest);
-    private higherNode(node, key, currentBest);
-    private lowerNode(node, key, currentBest);
-    private floorNode(node, key, currentBest);
+    private ceilingNode;
+    private higherNode;
+    private lowerNode;
+    private floorNode;
     /**
      * Returns the first (lowest) node currently in this map.
      * @return {TreeMapNode} the first (lowest) node currently in this map, returns null if the Map is empty
      */
-    private firstMapNode();
+    private firstMapNode;
     /**
      * Returns the first (lowest) key currently in this map.
      * @return {K} the first (lowest) key currently in this map, returns null if the Map is empty
@@ -155,7 +162,7 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     * Returns the last (highest) node currently in this map.
     * @return {TreeMapNode} the last (highest) node currently in this map, returns null if the Map is empty
     */
-    private lastMapNode();
+    private lastMapNode;
     /**
      * Returns the last (highest) key currently in this map.
      * @return {K} the last (highest) key currently in this map, returns null if the Map is empty

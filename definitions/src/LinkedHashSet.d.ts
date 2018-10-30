@@ -16,7 +16,7 @@ export declare class LinkedHashSet<K> extends HashSet<K> {
     /**
      * Initializes the chain before any entries are inserted.
      */
-    private initChain();
+    private initChain;
     /**
      * Use collection and add to LinkedEntry and super HashSet
      * @param elements collection to populate
@@ -33,7 +33,7 @@ export declare class LinkedHashSet<K> extends HashSet<K> {
      * @param {V} value value
      */
     remove(value: K): boolean;
-    private createEntry(value);
+    private createEntry;
     clear(): void;
     /**
      * Java style iterator retrieves hash set values by insertion order.
@@ -69,6 +69,6 @@ export declare class LinkedIterator<K> implements JIterator<LinkedEntry<K>> {
     next(): LinkedEntry<K>;
     _next(): K;
     hasNext(): boolean;
-    private nextEntry();
-    private check();
+    private nextEntry;
+    private check;
 }

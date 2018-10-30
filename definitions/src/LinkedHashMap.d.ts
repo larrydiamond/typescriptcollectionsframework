@@ -19,7 +19,7 @@ export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
     /**
      * Initializes the chain before any entries are inserted into the map.
      */
-    private initChain();
+    private initChain;
     /**
      * Use collection and add to LinkedHashMap
      * @param elements collection to populate
@@ -49,7 +49,7 @@ export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
      * @param {number} bucket index of the bucket in which the Entry should be
      */
     addEntry(hash: number, key: K, value: V, bucket?: number): void;
-    private createEntry(hash, key, value, bucket?);
+    private createEntry;
     /**
      * Returns true if this map should remove its eldest entry. This method is invoked by put and
      * putAll after inserting a new entry into the map. It provides the implementor with the opportunity to remove the
@@ -57,8 +57,8 @@ export declare class LinkedHashMap<K, V> extends HashMap<K, V> {
      * memory consumption by deleting stale entries.
      * @param eldest eldest entry
      */
-    private removeEldestEntry(eldest);
-    private removeEntryForKey(key);
+    private removeEldestEntry;
+    private removeEntryForKey;
     clear(): void;
     getHeader(): LinkedEntry<K, V>;
     newKeyIterator(): KeyIterator<K, V>;
@@ -91,8 +91,8 @@ export declare class LinkedHashIterator<K, V> implements JIterator<LinkedEntry<K
     constructor(linkedHashMap: LinkedHashMap<K, V>);
     next(): LinkedEntry<K, V>;
     hasNext(): boolean;
-    private nextEntry();
-    private check();
+    private nextEntry;
+    private check;
 }
 export declare class EntryIterator<K, V> extends LinkedHashIterator<K, V> {
     constructor(linkedHashMap: LinkedHashMap<K, V>);

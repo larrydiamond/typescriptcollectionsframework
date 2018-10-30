@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Larry Diamond 2018 All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+ */
 import { Collectable } from "./Collectable";
 import { Consumer } from "./Consumer";
 import { Deque } from "./Deque";
@@ -18,7 +25,7 @@ import { Queue } from "./Queue";
  * This class corresponds to java.util.ArrayList
  */
 export declare class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
-    private initialElements;
+    private initialElements?;
     private elements;
     private sizeValue;
     private equality;

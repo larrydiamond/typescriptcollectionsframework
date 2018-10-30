@@ -1,3 +1,10 @@
+/**
+* @license
+* Copyright Larry Diamond 2018 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
 import { Comparator } from "./Comparator";
 import { Consumer } from "./Consumer";
 import { ImmutableCollection } from "./ImmutableCollection";
@@ -17,7 +24,7 @@ import { NavigableSet } from "./NavigableSet";
  * This class corresponds to java.util.TreeSet
  */
 export declare class TreeSet<K> implements NavigableSet<K> {
-    private initialElements;
+    private initialElements?;
     private datastore;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
     validateSet(): boolean;

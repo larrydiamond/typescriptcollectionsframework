@@ -1,3 +1,10 @@
+/**
+* @license
+* Copyright Larry Diamond 2018 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
 import { ArrayList } from "./ArrayList";
 import { BasicMapEntry } from "./BasicMapEntry";
 import { Collectable } from "./Collectable";
@@ -56,7 +63,7 @@ export declare class NavigableHashImpl<K, V> {
     * @return {boolean} true if this map contains no key-value mappings
     */
     isEmpty(): boolean;
-    private newNodeSize();
+    private newNodeSize;
     /**
      * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
      * @param {K} key key with which the specified value is to be associated
@@ -64,7 +71,7 @@ export declare class NavigableHashImpl<K, V> {
      * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
      */
     put(key: K, value: V): V;
-    private hookUpNodePointers(newNode, immediatePreceedingNode);
+    private hookUpNodePointers;
     /**
     * Returns a key-value mapping associated with the least key in this map, or null if the map is empty.
     * @return {NavigableHashNode} an entry with the least key, or null if this map is empty
@@ -330,7 +337,7 @@ export declare class NavigableHashMapEntrySetIterator<K, V> implements Iterator<
  * This class corresponds to java.util.concurrent.ConcurrentNavigableHashSet
  */
 export declare class NavigableHashSet<K> implements NavigableSet<K> {
-    private initialElements;
+    private initialElements?;
     private impl;
     constructor(iComparator: Comparator<K>, initialElements?: ImmutableCollection<K>);
     validateSet(): boolean;

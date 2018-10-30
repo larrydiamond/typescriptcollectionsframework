@@ -1,3 +1,10 @@
+/**
+* @license
+* Copyright Larry Diamond 2018 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
 import { Collectable } from "./Collectable";
 import { Consumer } from "./Consumer";
 import { Deque } from "./Deque";
@@ -15,7 +22,7 @@ import { Queue } from "./Queue";
  * This class corresponds to java.util.LinkedList
  */
 export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
-    private initialElements;
+    private initialElements?;
     private firstNode;
     private lastNode;
     private numberElements;
@@ -94,7 +101,7 @@ export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
      * @return {boolean} true if this list contains the specified element
      */
     contains(t: T): boolean;
-    private getNode(t);
+    private getNode;
     /**
      * Removes the first occurrence of the specified element from this list, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
      * @param {T} t element to be removed from this list, if present
