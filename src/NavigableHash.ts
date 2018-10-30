@@ -139,6 +139,7 @@ export class NavigableHashImpl<K,V> {
 
 */
 
+/*
   public validate () : boolean {
     let count : number = 0.0;
 
@@ -189,6 +190,7 @@ export class NavigableHashImpl<K,V> {
       return false;
     }
   }
+*/
 
   /**
   * Removes the mapping for this key from this Map if present.
