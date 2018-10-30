@@ -372,6 +372,26 @@ describe("Test ArrayList functionality", function () {
         var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable(), source);
         expect(arraylist.size()).toEqual(source.size());
     });
+    it("Test null", function () {
+        var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        arraylist.add(null);
+        expect(arraylist.contains(null)).toEqual(true);
+        expect(arraylist.isEmpty()).toEqual(false);
+        expect(arraylist.size()).toEqual(1);
+        expect(arraylist.get(0)).toEqual(null);
+        expect(arraylist.indexOf(null)).toEqual(0);
+        expect(arraylist.lastIndexOf(null)).toEqual(0);
+    });
+    it("Test undefined", function () {
+        var arraylist = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
+        arraylist.add(undefined);
+        expect(arraylist.contains(undefined)).toEqual(true);
+        expect(arraylist.isEmpty()).toEqual(false);
+        expect(arraylist.size()).toEqual(1);
+        expect(arraylist.get(0)).toEqual(undefined);
+        expect(arraylist.indexOf(undefined)).toEqual(0);
+        expect(arraylist.lastIndexOf(undefined)).toEqual(0);
+    });
 });
 function testEmptyArrayList(list) {
     expect(list.isEmpty()).toEqual(true);

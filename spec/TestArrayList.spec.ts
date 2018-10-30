@@ -468,6 +468,28 @@ describe("Test ArrayList functionality", function() {
     expect (arraylist.size ()).toEqual(source.size());
   });
 
+  it ("Test null", function () {
+    const arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+    arraylist.add (null);
+    expect (arraylist.contains (null)).toEqual (true);
+    expect (arraylist.isEmpty ()).toEqual(false);
+    expect (arraylist.size ()).toEqual(1);
+    expect (arraylist.get (0)).toEqual (null);
+    expect (arraylist.indexOf (null)).toEqual (0);
+    expect (arraylist.lastIndexOf (null)).toEqual (0);
+  });
+
+  it ("Test undefined", function () {
+    const arraylist:ArrayList<PetStoreProduct> = new ArrayList<PetStoreProduct> (new AllFieldCollectable<PetStoreProduct>());
+    arraylist.add (undefined);
+    expect (arraylist.contains (undefined)).toEqual (true);
+    expect (arraylist.isEmpty ()).toEqual(false);
+    expect (arraylist.size ()).toEqual(1);
+    expect (arraylist.get (0)).toEqual (undefined);
+    expect (arraylist.indexOf (undefined)).toEqual (0);
+    expect (arraylist.lastIndexOf (undefined)).toEqual (0);
+  });
+
 });
 
 function testEmptyArrayList (list:List<PetStoreProduct>) : void {
