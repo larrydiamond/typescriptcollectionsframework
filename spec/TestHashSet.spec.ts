@@ -306,6 +306,18 @@ describe("Test HashSet functionality", function() {
     expect (set.contains (null)).toEqual (true);
     expect (set.isEmpty ()).toEqual(false);
     expect (set.size ()).toEqual(1);
+
+    expect (set.remove (product1)).toEqual (false);
+
+    expect (set.contains (null)).toEqual (true);
+    expect (set.isEmpty ()).toEqual(false);
+    expect (set.size ()).toEqual(1);
+
+    expect (set.remove (null)).toEqual (true);
+
+    expect (set.contains (null)).toEqual (false);
+    expect (set.isEmpty ()).toEqual(true);
+    expect (set.size ()).toEqual(0);
   });
 
   it ("Test undefined", function () {
@@ -314,6 +326,18 @@ describe("Test HashSet functionality", function() {
     expect (set.contains (undefined)).toEqual (true);
     expect (set.isEmpty ()).toEqual(false);
     expect (set.size ()).toEqual(1);
+
+    expect (set.remove (product1)).toEqual (false);
+
+    expect (set.contains (undefined)).toEqual (true);
+    expect (set.isEmpty ()).toEqual(false);
+    expect (set.size ()).toEqual(1);
+
+    expect (set.remove (undefined)).toEqual (true);
+
+    expect (set.contains (undefined)).toEqual (false);
+    expect (set.isEmpty ()).toEqual(true);
+    expect (set.size ()).toEqual(0);
   });
 
 });

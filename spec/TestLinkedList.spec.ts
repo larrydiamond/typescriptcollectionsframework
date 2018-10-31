@@ -519,6 +519,9 @@ describe("Test LinkedList functionality", function() {
         expect (list.get (0)).toEqual (null);
         expect (list.indexOf (null)).toEqual (0);
         expect (list.lastIndexOf (null)).toEqual (0);
+        expect (list.peek()).toEqual (null);
+        expect (list.peekFirst()).toEqual (null);
+        expect (list.peekLast()).toEqual (null);
 
         expect (list.remove (product1)).toEqual (false);
 
@@ -528,12 +531,18 @@ describe("Test LinkedList functionality", function() {
         expect (list.get (0)).toEqual (null);
         expect (list.indexOf (null)).toEqual (0);
         expect (list.lastIndexOf (null)).toEqual (0);
+        expect (list.peek()).toEqual (null);
+        expect (list.peekFirst()).toEqual (null);
+        expect (list.peekLast()).toEqual (null);
 
         expect (list.remove (null)).toEqual (true);
 
         expect (list.contains (null)).toEqual (false);
         expect (list.isEmpty ()).toEqual(true);
         expect (list.size ()).toEqual(0);
+        expect (list.peek()).toEqual (null);
+        expect (list.peekFirst()).toEqual (null);
+        expect (list.peekLast()).toEqual (null);
       });
 
       it ("Test undefined", function () {
@@ -545,6 +554,9 @@ describe("Test LinkedList functionality", function() {
         expect (list.get (0)).toEqual (undefined);
         expect (list.indexOf (undefined)).toEqual (0);
         expect (list.lastIndexOf (undefined)).toEqual (0);
+        expect (list.peek()).toEqual (undefined);
+        expect (list.peekFirst()).toEqual (undefined);
+        expect (list.peekLast()).toEqual (undefined);
 
             expect (list.remove (product1)).toEqual (false);
 
@@ -554,12 +566,18 @@ describe("Test LinkedList functionality", function() {
             expect (list.get (0)).toEqual (undefined);
             expect (list.indexOf (undefined)).toEqual (0);
             expect (list.lastIndexOf (undefined)).toEqual (0);
+            expect (list.peek()).toEqual (undefined);
+            expect (list.peekFirst()).toEqual (undefined);
+            expect (list.peekLast()).toEqual (undefined);
 
             expect (list.remove (undefined)).toEqual (true);
 
             expect (list.contains (undefined)).toEqual (false);
             expect (list.isEmpty ()).toEqual(true);
             expect (list.size ()).toEqual(0);
+            expect (list.peek()).toEqual (null);
+            expect (list.peekFirst()).toEqual (null);
+            expect (list.peekLast()).toEqual (null);
       });
 
 });
