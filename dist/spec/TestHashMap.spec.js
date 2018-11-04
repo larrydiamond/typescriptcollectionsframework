@@ -477,4 +477,12 @@ describe("Test HashMap functionality", function () {
         expect(basicTypesMap1.put("Catnip", 9.99)).toEqual(4.99);
         expect(basicTypesMap1.get("Catnip")).toEqual(9.99); // Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
     });
+    it("Testing adding null", function () {
+        var basicTypesMap1 = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
+        expect(basicTypesMap1.put(null, null)).toEqual(undefined);
+    });
+    it("Testing adding undefined", function () {
+        var basicTypesMap1 = new HashMap_1.HashMap(new AllFieldHashable_1.AllFieldHashable());
+        expect(basicTypesMap1.put(undefined, undefined)).toEqual(undefined);
+    });
 });
