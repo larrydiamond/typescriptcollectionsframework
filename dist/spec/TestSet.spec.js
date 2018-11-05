@@ -121,6 +121,18 @@ describe("Test generic Set functionality", function () {
         testDuplicatingStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testDuplicatingPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
+    it("Test remove", function () {
+        testRemoveStringStringSet(new HashSet_1.HashSet());
+        testRemoveStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testRemovePetStoreProductAndValueClassSet(new HashSet_1.HashSet());
+        testRemovePetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testRemoveStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testRemovePetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
+        testRemoveStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testRemovePetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testRemoveStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testRemovePetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
+    });
 });
 function testEmptyStringStringSet(Set) {
     expect(Set.isEmpty()).toEqual(true);
@@ -209,6 +221,26 @@ function testDuplicatingStringStringSet(Set) {
     expect(Set.isEmpty()).toEqual(false);
 }
 function testDuplicatingPetStoreProductAndValueClassSet(Set) {
+    expect(Set.size()).toEqual(0);
+    expect(Set.isEmpty()).toEqual(true);
+    expect(true).toEqual(Set.add(product1));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+    expect(false).toEqual(Set.add(product1));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+}
+function testRemoveStringStringSet(Set) {
+    expect(Set.size()).toEqual(0);
+    expect(Set.isEmpty()).toEqual(true);
+    expect(true).toEqual(Set.add("testkey"));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+    expect(false).toEqual(Set.add("testkey"));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+}
+function testRemovePetStoreProductAndValueClassSet(Set) {
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
     expect(true).toEqual(Set.add(product1));

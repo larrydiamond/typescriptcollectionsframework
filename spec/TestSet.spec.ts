@@ -158,6 +158,22 @@ describe("Test generic Set functionality", function() {
       testDuplicatingPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
+  it ("Test remove", function () {
+      testRemoveStringStringSet (new HashSet<string> ());
+      testRemoveStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+      testRemovePetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
+      testRemovePetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+      testRemoveStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+      testRemovePetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+
+      testRemoveStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+      testRemovePetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+
+      testRemoveStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+      testRemovePetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
+  });
+
 });
 
 function testEmptyStringStringSet (Set:ImmutableSet<string>) : void {
@@ -256,6 +272,29 @@ function testDuplicatingStringStringSet (Set:JSet<string>) : void {
 }
 
 function testDuplicatingPetStoreProductAndValueClassSet (Set:JSet<PetStoreProduct>) : void {
+  expect (Set.size ()).toEqual(0);
+  expect (Set.isEmpty ()).toEqual(true);
+  expect (true).toEqual(Set.add(product1));
+  expect (Set.size ()).toEqual(1);
+  expect (Set.isEmpty ()).toEqual(false);
+  expect (false).toEqual(Set.add(product1));
+  expect (Set.size ()).toEqual(1);
+  expect (Set.isEmpty ()).toEqual(false);
+}
+
+function testRemoveStringStringSet (Set:JSet<string>) : void {
+  expect (Set.size ()).toEqual(0);
+  expect (Set.isEmpty ()).toEqual(true);
+  expect (true).toEqual(Set.add("testkey"));
+  expect (Set.size ()).toEqual(1);
+  expect (Set.isEmpty ()).toEqual(false);
+  
+  expect (false).toEqual(Set.add("testkey"));
+  expect (Set.size ()).toEqual(1);
+  expect (Set.isEmpty ()).toEqual(false);
+}
+
+function testRemovePetStoreProductAndValueClassSet (Set:JSet<PetStoreProduct>) : void {
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
   expect (true).toEqual(Set.add(product1));
