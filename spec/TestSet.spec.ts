@@ -283,24 +283,43 @@ function testDuplicatingPetStoreProductAndValueClassSet (Set:JSet<PetStoreProduc
 }
 
 function testRemoveStringStringSet (Set:JSet<string>) : void {
+  expect (Set.contains ("testkey")).toEqual (false);
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
+
   expect (true).toEqual(Set.add("testkey"));
   expect (Set.size ()).toEqual(1);
   expect (Set.isEmpty ()).toEqual(false);
-  
-  expect (false).toEqual(Set.add("testkey"));
+  expect (Set.contains ("testkey")).toEqual (true);
+
+  expect (false).toEqual (Set.remove ("NoSuchString"));
+  expect (Set.contains ("testkey")).toEqual (true);
   expect (Set.size ()).toEqual(1);
   expect (Set.isEmpty ()).toEqual(false);
+
+  expect (true).toEqual (Set.remove ("testkey"));
+  expect (Set.size ()).toEqual(0);
+  expect (Set.isEmpty ()).toEqual(true);
+  expect (Set.contains ("testkey")).toEqual (false);
 }
 
 function testRemovePetStoreProductAndValueClassSet (Set:JSet<PetStoreProduct>) : void {
+  expect (Set.contains (product1)).toEqual (false);
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
+
   expect (true).toEqual(Set.add(product1));
   expect (Set.size ()).toEqual(1);
   expect (Set.isEmpty ()).toEqual(false);
-  expect (false).toEqual(Set.add(product1));
+  expect (Set.contains (product1)).toEqual (true);
+
+  expect (false).toEqual (Set.remove (product2));
   expect (Set.size ()).toEqual(1);
   expect (Set.isEmpty ()).toEqual(false);
+  expect (Set.contains (product1)).toEqual (true);
+
+  expect (true).toEqual (Set.remove (product1));
+  expect (Set.contains (product1)).toEqual (false);
+  expect (Set.size ()).toEqual(0);
+  expect (Set.isEmpty ()).toEqual(true);
 }
