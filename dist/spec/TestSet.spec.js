@@ -109,6 +109,18 @@ describe("Test generic Set functionality", function () {
         testClearingStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
+    it("Test attempting to add a duplicate is ignored", function () {
+        testDuplicatingStringStringSet(new HashSet_1.HashSet());
+        testDuplicatingStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testDuplicatingPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
+        testDuplicatingPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testDuplicatingStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testDuplicatingPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
+        testDuplicatingStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testDuplicatingPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testDuplicatingStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testDuplicatingPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
+    });
 });
 function testEmptyStringStringSet(Set) {
     expect(Set.isEmpty()).toEqual(true);
@@ -185,4 +197,24 @@ function testClearingPetStoreProductAndValueClassSet(Set) {
     expect(undefined).toEqual(Set.clear());
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
+}
+function testDuplicatingStringStringSet(Set) {
+    expect(Set.size()).toEqual(0);
+    expect(Set.isEmpty()).toEqual(true);
+    expect(true).toEqual(Set.add("testkey"));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+    expect(false).toEqual(Set.add("testkey"));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+}
+function testDuplicatingPetStoreProductAndValueClassSet(Set) {
+    expect(Set.size()).toEqual(0);
+    expect(Set.isEmpty()).toEqual(true);
+    expect(true).toEqual(Set.add(product1));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
+    expect(false).toEqual(Set.add(product1));
+    expect(Set.size()).toEqual(1);
+    expect(Set.isEmpty()).toEqual(false);
 }
