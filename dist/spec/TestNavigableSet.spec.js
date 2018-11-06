@@ -106,10 +106,20 @@ describe("Test NavigableSet functionality", function () {
         testFloorString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
-    it("Test floor", function () {
+    it("Test tostring", function () {
         testToString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testToString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testToString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Set Test java iteration", function () {
+        testJavaIteration(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
+        testJavaIteration(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
+        testJavaIteration(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+    });
+    it("Set Test typescript iteration", function () {
+        testTSIteration(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
+        testTSIteration(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
+        testTSIteration(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
     });
 });
 function testFirstKeyNumber(set) {
@@ -260,6 +270,34 @@ function testToString(set) {
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
+}
+function testJavaIteration(set) {
+    expect(set.add(product1)).toEqual(true);
+    expect(set.add(product2)).toEqual(true);
+    var offset = 0;
+    for (var iter = set.iterator(); iter.hasNext();) {
+        var psp = iter.next();
+        if (offset === 0)
+            expect(psp.getProductName()).toEqual(product1.getProductName()); // Catnip before ChewToy
+        if (offset === 1)
+            expect(psp.getProductName()).toEqual(product2.getProductName()); // Catnip before ChewToy
+        if (offset > 1)
+            fail();
+        offset++;
+    }
+}
+function testTSIteration(set) {
+    expect(set.add(product1)).toEqual(true);
+    expect(set.add(product2)).toEqual(true);
+    var tsi = set[Symbol.iterator]();
+    var tmp = tsi.next();
+    expect(tmp.done).toEqual(false);
+    expect(JSON.stringify(tmp.value)).toEqual(JSON.stringify(product1)); // Catnip before ChewToy
+    tmp = tsi.next();
+    expect(tmp.done).toEqual(false);
+    expect(JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2)); // Catnip before ChewToy
+    tmp = tsi.next();
+    expect(tmp.done).toEqual(true);
 }
 function addTestNumbers(set) {
     expect(set.add(300)).toEqual(true);

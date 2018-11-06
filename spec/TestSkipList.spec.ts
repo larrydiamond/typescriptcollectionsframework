@@ -1538,8 +1538,6 @@ describe("Test SkipList functionality", function() {
     expect (SkipListSet2.add (product1)).toEqual (true);
     expect (SkipListSet2.add (product2)).toEqual (true);
 
-    const offset:number = 0;
-
     const tsi:Iterator<PetStoreProduct> = SkipListSet2[Symbol.iterator]();
     let tmp:IteratorResult<PetStoreProduct> = tsi.next();
     expect (tmp.done).toEqual(false);

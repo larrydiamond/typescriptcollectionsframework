@@ -131,11 +131,26 @@ describe("Test NavigableSet functionality", function() {
     testFloorString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
-  it ("Test floor", function () {
+  it ("Test tostring", function () {
     testToString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testToString (new TreeSet<string>(Collections.getStringComparator()));
     testToString (new SkipListSet<string>(Collections.getStringComparator()));
   });
+
+
+
+  it("Set Test java iteration", function() {
+    testJavaIteration (new NavigableHashSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+    testJavaIteration (new TreeSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+    testJavaIteration (new SkipListSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+  });
+
+  it("Set Test typescript iteration", function() {
+    testTSIteration (new NavigableHashSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+    testTSIteration (new TreeSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+    testTSIteration (new SkipListSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+  });
+
 });
 
 function testFirstKeyNumber (set:NavigableSet<number>) {
@@ -306,6 +321,39 @@ function testToString (set:NavigableSet<string>) {
   TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '"[]"');
 }
 
+function testJavaIteration (set:NavigableSet<PetStoreProduct>) {
+  expect (set.add (product1)).toEqual (true);
+  expect (set.add (product2)).toEqual (true);
+
+  let offset:number = 0;
+  for (const iter = set.iterator(); iter.hasNext(); ) {
+    const psp:PetStoreProduct = iter.next ();
+
+    if (offset === 0)
+      expect (psp.getProductName()).toEqual (product1.getProductName());  // Catnip before ChewToy
+    if (offset === 1)
+      expect (psp.getProductName()).toEqual (product2.getProductName());  // Catnip before ChewToy
+    if (offset > 1)
+      fail();
+
+    offset++;
+  }
+}
+
+function testTSIteration (set:NavigableSet<PetStoreProduct>) {
+  expect (set.add (product1)).toEqual (true);
+  expect (set.add (product2)).toEqual (true);
+
+  const tsi:Iterator<PetStoreProduct> = set[Symbol.iterator]();
+  let tmp:IteratorResult<PetStoreProduct> = tsi.next();
+  expect (tmp.done).toEqual(false);
+  expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product1));  // Catnip before ChewToy
+  tmp = tsi.next();
+  expect (tmp.done).toEqual(false);
+  expect (JSON.stringify(tmp.value)).toEqual(JSON.stringify(product2));  // Catnip before ChewToy
+  tmp = tsi.next();
+  expect (tmp.done).toEqual(true);
+}
 
 
 

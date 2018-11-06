@@ -1349,7 +1349,6 @@ describe("Test SkipList functionality", function () {
         var SkipListSet2 = new SkipList_2.SkipListSet(alphabeticalSortPetStoreProduct);
         expect(SkipListSet2.add(product1)).toEqual(true);
         expect(SkipListSet2.add(product2)).toEqual(true);
-        var offset = 0;
         var tsi = SkipListSet2[Symbol.iterator]();
         var tmp = tsi.next();
         expect(tmp.done).toEqual(false);
