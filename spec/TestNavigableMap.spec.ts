@@ -201,6 +201,9 @@ describe("Test NavigableMap functionality", function() {
 
 });
 
+
+
+
 function testFirstKeyNumberString (map:NavigableMap<number,string>) {
   expect (map.firstKey()).toEqual (null);
   expect (map.size ()).toEqual(0);
