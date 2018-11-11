@@ -203,6 +203,14 @@ function testEmptyStringStringMap(map) {
         count = count + 1;
     }
     expect(count).toEqual(0);
+    var entryset = map.entrySet();
+    var count2 = 0;
+    var iter2 = entryset.iterator();
+    for (; iter2.hasNext();) {
+        var p2 = iter2.next();
+        count2 = count2 + 1;
+    }
+    expect(count2).toEqual(0);
 }
 function testEmptyStringNumberMap(map) {
     expect(map.isEmpty()).toEqual(true);
@@ -249,6 +257,14 @@ function testAddingOneEntryStringNumberMap(map) {
         count = count + 1;
     }
     expect(count).toEqual(1);
+    var entryset = map.entrySet();
+    var count2 = 0;
+    var iter2 = entryset.iterator();
+    for (; iter2.hasNext();) {
+        var p2 = iter2.next();
+        count2 = count2 + 1;
+    }
+    expect(count2).toEqual(1);
 }
 function testAddingOneEntryPetStoreProductAndValueClassMap(map) {
     expect(map.size()).toEqual(0);

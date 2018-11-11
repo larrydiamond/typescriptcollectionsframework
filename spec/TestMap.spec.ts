@@ -248,6 +248,15 @@ function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
     count = count + 1;
   }
   expect (count).toEqual (0);
+
+  const entryset:ImmutableSet<MapEntry<string,string>> = map.entrySet();
+  let count2:number = 0;
+  const iter2:JIterator<MapEntry<string,string>> = entryset.iterator();
+  for (; iter2.hasNext(); ) {
+    const p2:MapEntry<string,string> = iter2.next();
+    count2 = count2 + 1;
+  }
+  expect (count2).toEqual (0);
 }
 
 
@@ -300,6 +309,15 @@ function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
     count = count + 1;
   }
   expect (count).toEqual (1);
+
+  const entryset:ImmutableSet<MapEntry<string,number>> = map.entrySet();
+  let count2:number = 0;
+  const iter2:JIterator<MapEntry<string,number>> = entryset.iterator();
+  for (; iter2.hasNext(); ) {
+    const p2:MapEntry<string,number> = iter2.next();
+    count2 = count2 + 1;
+  }
+  expect (count2).toEqual (1);
 }
 
 function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
