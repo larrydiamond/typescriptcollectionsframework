@@ -233,23 +233,33 @@ function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
   TestNumber.equals ("Testing empty string string map size", map.size(), 0);
   TestBoolean.true ("Testing empty string string map isEmpty", map.isEmpty());
   TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
-   expect (map.isEmpty ()).toEqual(true);
-   expect (map.size ()).toEqual(0);
-   expect ('"[]"').toEqual (JSON.stringify(map));
-   expect (false).toEqual (map.containsValue(null));
-   expect (false).toEqual (map.containsValue(undefined));
-   expect (false).toEqual (map.containsValue("notfound"));
+  expect (map.isEmpty ()).toEqual(true);
+  expect (map.size ()).toEqual(0);
+  expect ('"[]"').toEqual (JSON.stringify(map));
+  expect (false).toEqual (map.containsValue(null));
+  expect (false).toEqual (map.containsValue(undefined));
+  expect (false).toEqual (map.containsValue("notfound"));
+
+  const keyset:ImmutableSet<string> = map.keySet();
+  let count:number = 0;
+  const iter:JIterator<string> = keyset.iterator();
+  for (; iter.hasNext(); ) {
+    const p:string = iter.next();
+    count = count + 1;
+  }
+  expect (count).toEqual (0);
 }
 
+
 function testEmptyStringNumberMap (map:ImmutableMap<string,number>) : void {
-   expect (map.isEmpty ()).toEqual(true);
-   expect (map.size ()).toEqual(0);
-   TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
+  expect (map.isEmpty ()).toEqual(true);
+  expect (map.size ()).toEqual(0);
+  TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
 }
 
 function testEmptyPetStoreProductAndValueClassMap (map:ImmutableMap<PetStoreProduct,ValueClass>) : void {
-   expect (map.isEmpty ()).toEqual(true);
-   expect (map.size ()).toEqual(0);
+  expect (map.isEmpty ()).toEqual(true);
+  expect (map.size ()).toEqual(0);
 }
 
 function testAddingOneEntryStringStringMap (map:JMap<string,string>, typestring:string) : void {
@@ -281,6 +291,15 @@ function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
   expect (undefined).toEqual (map.get ("key not found"));
   TestBoolean.false ("Testing non existent key is not contained", map.containsKey ("not going to find it"));
   TestBoolean.true ("Testing known key is contained", map.containsKey ("testkey"));
+
+  const keyset:ImmutableSet<string> = map.keySet();
+  let count:number = 0;
+  const iter:JIterator<string> = keyset.iterator();
+  for (; iter.hasNext(); ) {
+    const p:string = iter.next();
+    count = count + 1;
+  }
+  expect (count).toEqual (1);
 }
 
 function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {

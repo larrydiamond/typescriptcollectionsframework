@@ -195,6 +195,14 @@ function testEmptyStringStringMap(map) {
     expect(false).toEqual(map.containsValue(null));
     expect(false).toEqual(map.containsValue(undefined));
     expect(false).toEqual(map.containsValue("notfound"));
+    var keyset = map.keySet();
+    var count = 0;
+    var iter = keyset.iterator();
+    for (; iter.hasNext();) {
+        var p = iter.next();
+        count = count + 1;
+    }
+    expect(count).toEqual(0);
 }
 function testEmptyStringNumberMap(map) {
     expect(map.isEmpty()).toEqual(true);
@@ -233,6 +241,14 @@ function testAddingOneEntryStringNumberMap(map) {
     expect(undefined).toEqual(map.get("key not found"));
     jasts_1.TestBoolean.false("Testing non existent key is not contained", map.containsKey("not going to find it"));
     jasts_1.TestBoolean.true("Testing known key is contained", map.containsKey("testkey"));
+    var keyset = map.keySet();
+    var count = 0;
+    var iter = keyset.iterator();
+    for (; iter.hasNext();) {
+        var p = iter.next();
+        count = count + 1;
+    }
+    expect(count).toEqual(1);
 }
 function testAddingOneEntryPetStoreProductAndValueClassMap(map) {
     expect(map.size()).toEqual(0);
