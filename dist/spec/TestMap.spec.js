@@ -211,6 +211,24 @@ function testEmptyStringStringMap(map) {
         count2 = count2 + 1;
     }
     expect(count2).toEqual(0);
+    var keyset3 = map.keySet();
+    var count3 = 0;
+    var tsi3 = keyset3[Symbol.iterator]();
+    var tmp3 = tsi3.next();
+    while (!tmp3.done) {
+        count3 = count + 1;
+        tmp3 = tsi3.next();
+    }
+    expect(count3).toEqual(0);
+    var entryset4 = map.entrySet();
+    var count4 = 0;
+    var tsi4 = entryset4[Symbol.iterator]();
+    var tmp4 = tsi4.next();
+    while (!tmp4.done) {
+        count4 = count4 + 1;
+        tmp4 = tsi4.next();
+    }
+    expect(count4).toEqual(0);
 }
 function testEmptyStringNumberMap(map) {
     expect(map.isEmpty()).toEqual(true);
@@ -265,6 +283,24 @@ function testAddingOneEntryStringNumberMap(map) {
         count2 = count2 + 1;
     }
     expect(count2).toEqual(1);
+    var keyset3 = map.keySet();
+    var count3 = 0;
+    var tsi3 = keyset3[Symbol.iterator]();
+    var tmp3 = tsi3.next();
+    while (!tmp3.done) {
+        count3 = count3 + 1;
+        tmp3 = tsi3.next();
+    }
+    expect(count3).toEqual(1);
+    var entryset4 = map.entrySet();
+    var count4 = 0;
+    var tsi4 = entryset4[Symbol.iterator]();
+    var tmp4 = tsi4.next();
+    while (!tmp4.done) {
+        count4 = count4 + 1;
+        tmp4 = tsi4.next();
+    }
+    expect(count4).toEqual(1);
 }
 function testAddingOneEntryPetStoreProductAndValueClassMap(map) {
     expect(map.size()).toEqual(0);

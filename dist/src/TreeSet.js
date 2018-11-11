@@ -278,10 +278,7 @@ var TreeSetIterator = /** @class */ (function () {
     }
     // tslint:disable-next-line:no-any
     TreeSetIterator.prototype.next = function (value) {
-        if (this.location === null) {
-            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
-        }
-        if (this.location === undefined) {
+        if ((this.location === null) || (this.location === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);

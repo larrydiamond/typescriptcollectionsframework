@@ -317,10 +317,7 @@ export class TreeSetIterator<T> implements Iterator<T> {
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
-    if (this.location === null) {
-      return new BasicIteratorResult(true, null);
-    }
-    if (this.location === undefined) {
+    if ((this.location === null) || (this.location === undefined)) {
       return new BasicIteratorResult(true, null);
     }
     const tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location);

@@ -257,6 +257,26 @@ function testEmptyStringStringMap (map:ImmutableMap<string,string>) : void {
     count2 = count2 + 1;
   }
   expect (count2).toEqual (0);
+
+  const keyset3:ImmutableSet<string> = map.keySet();
+  let count3:number = 0;
+  const tsi3:Iterator<string> = keyset3[Symbol.iterator]();
+  let tmp3:IteratorResult<string> = tsi3.next();
+  while (!tmp3.done) {
+    count3 = count + 1;
+    tmp3 = tsi3.next();
+  }
+  expect (count3).toEqual (0);
+
+  const entryset4:ImmutableSet<MapEntry<string,string>> = map.entrySet();
+  let count4:number = 0;
+  const tsi4:Iterator<MapEntry<string,string>> = entryset4[Symbol.iterator]();
+  let tmp4:IteratorResult<MapEntry<string,string>> = tsi4.next();
+  while (!tmp4.done) {
+    count4 = count4 + 1;
+    tmp4 = tsi4.next();
+  }
+  expect (count4).toEqual (0);
 }
 
 
@@ -318,6 +338,26 @@ function testAddingOneEntryStringNumberMap (map:JMap<string,number>) : void {
     count2 = count2 + 1;
   }
   expect (count2).toEqual (1);
+
+  const keyset3:ImmutableSet<string> = map.keySet();
+  let count3:number = 0;
+  const tsi3:Iterator<string> = keyset3[Symbol.iterator]();
+  let tmp3:IteratorResult<string> = tsi3.next();
+  while (!tmp3.done) {
+    count3 = count3 + 1;
+    tmp3 = tsi3.next();
+  }
+  expect (count3).toEqual (1);
+
+  const entryset4:ImmutableSet<MapEntry<string,number>> = map.entrySet();
+  let count4:number = 0;
+  const tsi4:Iterator<MapEntry<string,number>> = entryset4[Symbol.iterator]();
+  let tmp4:IteratorResult<MapEntry<string,number>> = tsi4.next();
+  while (!tmp4.done) {
+    count4 = count4 + 1;
+    tmp4 = tsi4.next();
+  }
+  expect (count4).toEqual (1);
 }
 
 function testAddingOneEntryPetStoreProductAndValueClassMap (map:JMap<PetStoreProduct,ValueClass>) : void {
