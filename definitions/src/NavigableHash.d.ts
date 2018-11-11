@@ -137,6 +137,11 @@ export declare class NavigableHashNode<K, V> extends BasicMapEntry<K, V> {
 export declare class NavigableHashMap<K, V> implements NavigableMap<K, V> {
     private impl;
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    containsValue(value: V): boolean;
     getNextHigherKey(key: K): K;
     /**
     * Returns the number of key-value mappings in this map.

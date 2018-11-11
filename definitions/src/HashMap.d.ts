@@ -87,6 +87,11 @@ export declare class HashMap<K, V> implements JMap<K, V> {
      * @return {V} true if this map contains a mapping for the specified key.
      */
     containsKey(key: K): boolean;
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    containsValue(value: V): boolean;
     getEntry(key: K): HashMapEntry<K, V>;
     private getMapEntry;
     /**

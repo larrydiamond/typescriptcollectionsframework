@@ -134,6 +134,11 @@ export declare class SkipListNode<K, V> extends BasicMapEntry<K, V> {
 export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     private impl;
     constructor(comp: Comparator<K>, iInitial?: ImmutableMap<K, V>);
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    containsValue(value: V): boolean;
     validateMap(): boolean;
     getNextHigherKey(key: K): K;
     /**

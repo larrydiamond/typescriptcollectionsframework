@@ -26,6 +26,11 @@ export interface ImmutableMap<K, V> {
      */
     containsKey(key: K): boolean;
     /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    containsValue(value: V): boolean;
+    /**
      * Returns true if this map contains no key-value mappings.
      * @return {boolean} true if this map contains no key-value mappings
      */

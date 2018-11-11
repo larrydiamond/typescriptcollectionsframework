@@ -738,6 +738,13 @@ var NavigableHashMap = /** @class */ (function () {
             }
         }
     }
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    NavigableHashMap.prototype.containsValue = function (value) {
+        return Collections_1.Collections.containsValue(this, value);
+    };
     //  public validateMap () : boolean { return this.impl.validate(); }
     //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
     NavigableHashMap.prototype.getNextHigherKey = function (key) {

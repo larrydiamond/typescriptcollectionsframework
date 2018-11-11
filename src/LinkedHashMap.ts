@@ -6,6 +6,7 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 import {AllFieldHashable} from "./AllFieldHashable";
+import {Collections} from "./Collections";
 import {Hashable} from "./Hashable";
 import {HashMap, HashMapEntry} from "./HashMap";
 import {ImmutableMap} from "./ImmutableMap";
@@ -63,14 +64,7 @@ export class LinkedHashMap<K, V> extends HashMap<K, V> {
      * @param value value whose presence in this map is to be tested
      */
     public containsValue (value: V) : boolean {
-        if (value === null || value === undefined)
-            return false;
-        else {
-            for (let e: LinkedEntry<K,V> = this.header.after; e !== this.header; e = e.after)
-                if (value === e.getValue())
-                    return true;
-        }
-        return false;
+      return Collections.containsValue (this, value);
     }
 
     /**

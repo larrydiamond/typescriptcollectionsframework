@@ -65,4 +65,5 @@ export declare class Collections {
      * JSON stringify for a map
      */
     static jsonstringify<K, V>(imap: ImmutableMap<K, V>): string;
+    static containsValue<K, V>(map: ImmutableMap<K, V>, value: V): boolean;
 }

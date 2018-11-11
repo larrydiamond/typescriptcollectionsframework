@@ -21,6 +21,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 var AllFieldHashable_1 = require("./AllFieldHashable");
+var Collections_1 = require("./Collections");
 var HashMap_1 = require("./HashMap");
 /**
  * Hash table and linked list implementation of the Map interface, with predictable iteration order. This implementation
@@ -75,14 +76,7 @@ var LinkedHashMap = /** @class */ (function (_super) {
      * @param value value whose presence in this map is to be tested
      */
     LinkedHashMap.prototype.containsValue = function (value) {
-        if (value === null || value === undefined)
-            return false;
-        else {
-            for (var e = this.header.after; e !== this.header; e = e.after)
-                if (value === e.getValue())
-                    return true;
-        }
-        return false;
+        return Collections_1.Collections.containsValue(this, value);
     };
     /**
      * This override alters behavior of superclass remove method.

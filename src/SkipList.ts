@@ -757,6 +757,14 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
     }
   }
 
+  /**
+   * Returns true if this map maps one or more keys to the specified value.
+   * @param value value whose presence in this map is to be tested
+   */
+  public containsValue (value: V) : boolean {
+    return Collections.containsValue (this, value);
+  }
+
   public validateMap () : boolean { return this.impl.validate(); }
 //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
 

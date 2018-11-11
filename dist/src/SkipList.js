@@ -728,6 +728,13 @@ var SkipListMap = /** @class */ (function () {
             }
         }
     }
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    SkipListMap.prototype.containsValue = function (value) {
+        return Collections_1.Collections.containsValue(this, value);
+    };
     SkipListMap.prototype.validateMap = function () { return this.impl.validate(); };
     //  public validateMapDisplay () : boolean { return this.impl.validateDisplay(); }
     SkipListMap.prototype.getNextHigherKey = function (key) {

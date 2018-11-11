@@ -207,6 +207,13 @@ var HashMap = /** @class */ (function () {
             return false;
         return true;
     };
+    /**
+     * Returns true if this map maps one or more keys to the specified value.
+     * @param value value whose presence in this map is to be tested
+     */
+    HashMap.prototype.containsValue = function (value) {
+        return Collections_1.Collections.containsValue(this, value);
+    };
     HashMap.prototype.getEntry = function (key) {
         return this.getMapEntry(key);
     };

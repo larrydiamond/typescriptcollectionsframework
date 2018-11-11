@@ -321,14 +321,22 @@ var Collections = /** @class */ (function () {
             else {
                 tmp = tmp + ",";
             }
-            tmp = tmp + '{"key":';
+            tmp = tmp + '{';
             tmp = tmp + JSON.stringify(elem.getKey());
-            tmp = tmp + ',"value":';
+            tmp = tmp + ',';
             tmp = tmp + JSON.stringify(elem.getValue());
             tmp = tmp + '}';
         }
         tmp = tmp + ']';
         return tmp;
+    };
+    Collections.containsValue = function (map, value) {
+        if ((map === null) || (map === undefined))
+            return false;
+        for (var iter = map.entrySet().iterator(); iter.hasNext();)
+            if (value === iter.next().getValue())
+                return true;
+        return false;
     };
     return Collections;
 }());

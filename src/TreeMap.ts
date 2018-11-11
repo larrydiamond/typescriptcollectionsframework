@@ -297,6 +297,15 @@ public size () : number {
     return tmp.getKey();
   }
 
+  /**
+   * Returns true if this map maps one or more keys to the specified value.
+   * @param value value whose presence in this map is to be tested
+   */
+  public containsValue (value: V) : boolean {
+    return Collections.containsValue (this, value);
+  }
+
+
   private nextHigherNode (node:TreeMapNode<K,V>) : TreeMapNode<K,V> {
     // if there is a right child to this node, return the leftmost child of that node
     // If there is no parent node and no right child node then there's no next node and return null

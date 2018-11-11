@@ -168,6 +168,7 @@ function testFirstKeyNumberString(map) {
     expect(map.size()).toEqual(10);
     expect(map.isEmpty()).toEqual(false);
     expect(map.firstKey()).toEqual(100);
+    expect('"[{100,\\\"100blah\\\"},{200,\\\"200blah\\\"},{300,\\\"300blah\\\"},{400,\\\"400blah\\\"},{500,\\\"500blah\\\"},{600,\\\"600blah\\\"},{700,\\\"700blah\\\"},{800,\\\"800blah\\\"},{900,\\\"900blah\\\"},{1000,\\\"1000blah\\\"}]"').toEqual(JSON.stringify(map));
     map.clear();
     expect(map.firstKey()).toEqual(null);
     expect(map.size()).toEqual(0);

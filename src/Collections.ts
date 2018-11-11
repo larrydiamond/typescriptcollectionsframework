@@ -338,14 +338,22 @@ export class Collections {
       } else {
         tmp = tmp + ",";
       }
-      tmp = tmp + '{"key":';
+      tmp = tmp + '{';
       tmp = tmp + JSON.stringify (elem.getKey());
-      tmp = tmp + ',"value":';
+      tmp = tmp + ',';
       tmp = tmp + JSON.stringify (elem.getValue());
       tmp = tmp + '}';
     }
     tmp = tmp + ']';
     return tmp;
+  }
+
+  public static containsValue<K,V> (map : ImmutableMap<K,V>, value : V) : boolean {
+    if ((map === null) || (map === undefined)) return false;
+    for (const iter:JIterator<MapEntry<K,V>> = map.entrySet().iterator(); iter.hasNext(); )
+      if (value === iter.next().getValue())
+        return true;
+    return false;
   }
 
 }
