@@ -15,6 +15,7 @@ import {Hashable} from "../src/Hashable";
 import {ImmutableSet} from "../src/ImmutableSet";
 import {JIterator} from "../src/JIterator";
 import {JSet} from "../src/JSet";
+import {LinkedHashSet} from "../src/LinkedHashSet";
 import {NavigableHashSet} from "../src/NavigableHash";
 import {SkipListSet} from "../src/SkipList";
 import {TreeSet} from "../src/TreeSet";
@@ -81,8 +82,13 @@ describe("Test generic Set functionality", function() {
 
     testEmptyStringStringSet (new HashSet<string> ());
     testEmptyStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testEmptyStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+
     testEmptyPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testEmptyPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+    testEmptyPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
+    testEmptyPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
     testEmptyStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
@@ -97,8 +103,13 @@ describe("Test generic Set functionality", function() {
   it("Test adding to empty Sets", function() {
     testAddingOneEntryStringStringSet (new HashSet<string> ());
     testAddingOneEntryStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+
     testAddingOneEntryPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testAddingOneEntryPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+    testAddingOneEntryPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
+    testAddingOneEntryPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
     testAddingOneEntryStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
@@ -113,8 +124,13 @@ describe("Test generic Set functionality", function() {
   it("Test adding two items to empty Sets", function() {
     testAddingTwoEntriesStringStringSet (new HashSet<string> ());
     testAddingTwoEntriesStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+    testAddingTwoEntriesPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
+    testAddingTwoEntriesPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
     testAddingTwoEntriesStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
@@ -129,8 +145,13 @@ describe("Test generic Set functionality", function() {
   it("Test clearing Sets", function() {
     testClearingStringStringSet (new HashSet<string> ());
     testClearingStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testClearingStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+
     testClearingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testClearingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+    testClearingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
+    testClearingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
     testClearingStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testClearingPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
@@ -145,8 +166,13 @@ describe("Test generic Set functionality", function() {
   it ("Test attempting to add a duplicate is ignored", function () {
       testDuplicatingStringStringSet (new HashSet<string> ());
       testDuplicatingStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+      testDuplicatingStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+
       testDuplicatingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
       testDuplicatingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+      testDuplicatingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
+      testDuplicatingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
       testDuplicatingStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
       testDuplicatingPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
@@ -161,8 +187,13 @@ describe("Test generic Set functionality", function() {
   it ("Test remove", function () {
       testRemoveStringStringSet (new HashSet<string> ());
       testRemoveStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+      testRemoveStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+
       testRemovePetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
       testRemovePetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
+
+      testRemovePetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
+      testRemovePetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
       testRemoveStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
       testRemovePetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));

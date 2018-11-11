@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var Collections_1 = require("../src/Collections");
 var HashSet_1 = require("../src/HashSet");
+var LinkedHashSet_1 = require("../src/LinkedHashSet");
 var NavigableHash_1 = require("../src/NavigableHash");
 var SkipList_1 = require("../src/SkipList");
 var TreeSet_1 = require("../src/TreeSet");
@@ -64,8 +65,11 @@ describe("Test generic Set functionality", function () {
         testEmptyPetStoreProductAndValueClassSet(Collections_1.Collections.emptySet());
         testEmptyStringStringSet(new HashSet_1.HashSet());
         testEmptyStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testEmptyStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testEmptyPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testEmptyPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
+        testEmptyPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testEmptyStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
@@ -76,8 +80,11 @@ describe("Test generic Set functionality", function () {
     it("Test adding to empty Sets", function () {
         testAddingOneEntryStringStringSet(new HashSet_1.HashSet());
         testAddingOneEntryStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testAddingOneEntryPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
+        testAddingOneEntryPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingOneEntryStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testAddingOneEntryStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
@@ -88,8 +95,11 @@ describe("Test generic Set functionality", function () {
     it("Test adding two items to empty Sets", function () {
         testAddingTwoEntriesStringStringSet(new HashSet_1.HashSet());
         testAddingTwoEntriesStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingTwoEntriesStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingTwoEntriesPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
+        testAddingTwoEntriesPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingTwoEntriesStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testAddingTwoEntriesStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
@@ -100,8 +110,11 @@ describe("Test generic Set functionality", function () {
     it("Test clearing Sets", function () {
         testClearingStringStringSet(new HashSet_1.HashSet());
         testClearingStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testClearingStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testClearingPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testClearingPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testClearingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
+        testClearingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testClearingStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testClearingStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
@@ -112,8 +125,11 @@ describe("Test generic Set functionality", function () {
     it("Test attempting to add a duplicate is ignored", function () {
         testDuplicatingStringStringSet(new HashSet_1.HashSet());
         testDuplicatingStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testDuplicatingStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testDuplicatingPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testDuplicatingPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testDuplicatingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
+        testDuplicatingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testDuplicatingStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testDuplicatingPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testDuplicatingStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
@@ -124,8 +140,11 @@ describe("Test generic Set functionality", function () {
     it("Test remove", function () {
         testRemoveStringStringSet(new HashSet_1.HashSet());
         testRemoveStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testRemoveStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testRemovePetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testRemovePetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testRemovePetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
+        testRemovePetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testRemoveStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testRemovePetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testRemoveStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
