@@ -517,10 +517,7 @@ export class HashMapKeySetIterator<K,V> implements Iterator<K> {
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<K> {
-    if (this.location === null) {
-      return new BasicIteratorResult(true, null);
-    }
-    if (this.location === undefined) {
+    if ((this.location === null) || (this.location === undefined)) {
       return new BasicIteratorResult(true, null);
     }
     const tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location.entry.getKey());
@@ -611,12 +608,10 @@ export class HashMapEntrySetIterator<K,V> implements Iterator<MapEntry<K,V>> {
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<MapEntry<K,V>> {
-    if (this.location === null) {
+    if ((this.location === null) || (this.location === undefined)) {
       return new BasicIteratorResult(true, null);
     }
-    if (this.location === undefined) {
-      return new BasicIteratorResult(true, null);
-    }
+
     const tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location.entry);
     this.location = this.map.deprecatedGetNextEntryForIterator(this.location);
     return tmp;

@@ -794,12 +794,7 @@ var NavigableHashMap = /** @class */ (function () {
     * @return {boolean} true if this map contains no key-value mappings
     */
     NavigableHashMap.prototype.isEmpty = function () {
-        if (this.impl.size() > 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return this.impl.isEmpty();
     };
     /**
     * Returns an ImmutableSet view of the keys contained in this map.
@@ -1037,17 +1032,13 @@ var NavigableHashMapKeySetJIterator = /** @class */ (function () {
     NavigableHashMapKeySetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) { // first time caller
             var firstEntry = this.impl.firstEntry();
-            if (firstEntry === null)
-                return false;
-            if (firstEntry === undefined)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return false;
             return true;
         }
         else { // we've already called this iterator before
             var tmpEntry = this.impl.nextHigherNode(this.location);
-            if (tmpEntry === null)
-                return false;
-            if (tmpEntry === undefined)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return false;
             return true;
         }
@@ -1055,18 +1046,14 @@ var NavigableHashMapKeySetJIterator = /** @class */ (function () {
     NavigableHashMapKeySetJIterator.prototype.next = function () {
         if (this.location === undefined) { // first time caller
             var firstEntry = this.impl.firstEntry();
-            if (firstEntry === null)
-                return null;
-            if (firstEntry === undefined)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
             this.location = firstEntry;
             return firstEntry.getKey();
         }
         else { // we've already called this iterator before
             var tmpEntry = this.impl.nextHigherNode(this.location);
-            if (tmpEntry === null)
-                return null;
-            if (tmpEntry === undefined)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;
             this.location = tmpEntry;
             return tmpEntry.getKey();
@@ -1083,10 +1070,7 @@ var NavigableHashMapKeySetIterator = /** @class */ (function () {
     }
     // tslint:disable-next-line:no-any
     NavigableHashMapKeySetIterator.prototype.next = function (value) {
-        if (this.location === null) {
-            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
-        }
-        if (this.location === undefined) {
+        if ((this.location === null) || (this.location === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.getKey());
@@ -1103,9 +1087,7 @@ var ImmutableEntrySetForNavigableHashImpl = /** @class */ (function () {
     ImmutableEntrySetForNavigableHashImpl.prototype.size = function () { return this.map.size(); };
     ImmutableEntrySetForNavigableHashImpl.prototype.isEmpty = function () { return this.map.isEmpty(); };
     ImmutableEntrySetForNavigableHashImpl.prototype.contains = function (item) {
-        if (item === null)
-            return false;
-        if (item === undefined)
+        if ((item === null) || (item === undefined))
             return false;
         var node = this.map.getEntry(item.getKey());
         if ((node === undefined) || (node === null)) {
@@ -1133,17 +1115,13 @@ var NavigableHashMapEntrySetJIterator = /** @class */ (function () {
         //    console.log ("NavigableHashMapEntrySetJIterator::hasNext");
         if (this.location === undefined) { // first time caller
             var firstEntry = this.map.firstEntry();
-            if (firstEntry === null)
-                return false;
-            if (firstEntry === undefined)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return false;
             return true;
         }
         else { // we've already called this iterator before
             var tmpEntry = this.map.nextHigherNode(this.location);
-            if (tmpEntry === null)
-                return false;
-            if (tmpEntry === undefined)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return false;
             return true;
         }
@@ -1152,18 +1130,14 @@ var NavigableHashMapEntrySetJIterator = /** @class */ (function () {
         //    console.log ("NavigableHashMapEntrySetJIterator::next");
         if (this.location === undefined) { // first time caller
             var firstEntry = this.map.firstEntry();
-            if (firstEntry === null)
-                return null;
-            if (firstEntry === undefined)
+            if ((firstEntry === null) || (firstEntry === undefined))
                 return null;
             this.location = firstEntry;
             return firstEntry;
         }
         else { // we've already called this iterator before
             var tmpEntry = this.map.nextHigherNode(this.location);
-            if (tmpEntry === null)
-                return null;
-            if (tmpEntry === undefined)
+            if ((tmpEntry === null) || (tmpEntry === undefined))
                 return null;
             this.location = tmpEntry;
             return tmpEntry;
@@ -1180,10 +1154,7 @@ var NavigableHashMapEntrySetIterator = /** @class */ (function () {
     }
     // tslint:disable-next-line:no-any
     NavigableHashMapEntrySetIterator.prototype.next = function (value) {
-        if (this.location === null) {
-            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
-        }
-        if (this.location === undefined) {
+        if ((this.location === null) || (this.location === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location);
@@ -1239,12 +1210,7 @@ var NavigableHashSet = /** @class */ (function () {
     * @return {boolean} true if this set contains no elements
     */
     NavigableHashSet.prototype.isEmpty = function () {
-        if (this.impl.size() > 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return this.impl.isEmpty();
     };
     /**
     * Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals
@@ -1420,17 +1386,14 @@ var NavigableHashSetJIterator = /** @class */ (function () {
     NavigableHashSetJIterator.prototype.hasNext = function () {
         if (this.location === undefined) { // first time caller
             var first = this.impl.firstEntry();
-            if (first === undefined) {
-                return false;
-            }
-            if (first === null) {
+            if ((first === undefined) || (first === null)) {
                 return false;
             }
             return true;
         }
         else { // we've already called this iterator before
             var tmp = this.impl.nextHigherNode(this.location);
-            if (tmp === null) {
+            if ((tmp === undefined) || (tmp === null)) {
                 return false;
             }
             else {
@@ -1441,10 +1404,7 @@ var NavigableHashSetJIterator = /** @class */ (function () {
     NavigableHashSetJIterator.prototype.next = function () {
         if (this.location === undefined) { // first time caller
             var first = this.impl.firstEntry();
-            if (first === undefined) {
-                return null;
-            }
-            if (first === null) {
+            if ((first === undefined) || (first === null)) {
                 return null;
             }
             this.location = first;
@@ -1472,10 +1432,7 @@ var NavigableHashSetIterator = /** @class */ (function () {
     }
     // tslint:disable-next-line:no-any
     NavigableHashSetIterator.prototype.next = function (value) {
-        if (this.location === null) {
-            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
-        }
-        if (this.location === undefined) {
+        if ((this.location === null) || (this.location === undefined)) {
             return new BasicIteratorResult_1.BasicIteratorResult(true, null);
         }
         var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.getKey());

@@ -827,11 +827,7 @@ export class NavigableHashMap<K,V> implements NavigableMap<K,V> {
   * @return {boolean} true if this map contains no key-value mappings
   */
   public isEmpty () : boolean {
-    if (this.impl.size() > 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.impl.isEmpty();
   }
 
   /**
@@ -1100,13 +1096,11 @@ export class NavigableHashMapKeySetJIterator<K,V> implements JIterator<K> {
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
       const firstEntry:NavigableHashNode<K,V> = this.impl.firstEntry();
-      if (firstEntry === null) return false;
-      if (firstEntry === undefined) return false;
+      if ((firstEntry === null) || (firstEntry === undefined)) return false;
       return true;
     } else { // we've already called this iterator before
       const tmpEntry:NavigableHashNode<K,V> = this.impl.nextHigherNode(this.location);
-      if (tmpEntry === null) return false;
-      if (tmpEntry === undefined) return false;
+      if ((tmpEntry === null) || (tmpEntry === undefined)) return false;
       return true;
     }
   }
@@ -1114,14 +1108,12 @@ export class NavigableHashMapKeySetJIterator<K,V> implements JIterator<K> {
   public next():K {
     if (this.location === undefined) { // first time caller
       const firstEntry:NavigableHashNode<K,V> = this.impl.firstEntry();
-      if (firstEntry === null) return null;
-      if (firstEntry === undefined) return null;
+      if ((firstEntry === null) || (firstEntry === undefined)) return null;
       this.location = firstEntry;
       return firstEntry.getKey();
     } else { // we've already called this iterator before
       const tmpEntry:NavigableHashNode<K,V> = this.impl.nextHigherNode(this.location);
-      if (tmpEntry === null) return null;
-      if (tmpEntry === undefined) return null;
+      if ((tmpEntry === null) || (tmpEntry === undefined)) return null;
       this.location = tmpEntry;
       return tmpEntry.getKey();
     }
@@ -1140,10 +1132,7 @@ export class NavigableHashMapKeySetIterator<K,V> implements Iterator<K> {
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<K> {
-    if (this.location === null) {
-      return new BasicIteratorResult(true, null);
-    }
-    if (this.location === undefined) {
+    if ((this.location === null) || (this.location === undefined)) {
       return new BasicIteratorResult(true, null);
     }
     const tmp:BasicIteratorResult<K> = new BasicIteratorResult (false, this.location.getKey());
@@ -1164,8 +1153,7 @@ export class ImmutableEntrySetForNavigableHashImpl<K,V> implements ImmutableSet<
   public isEmpty():boolean { return this.map.isEmpty(); }
 
   public contains(item:MapEntry<K,V>) : boolean {
-    if (item === null) return false;
-    if (item === undefined) return false;
+    if ((item === null) || (item === undefined)) return false;
     const node : NavigableHashNode<K,V> = this.map.getEntry(item.getKey());
     if ((node === undefined) || (node === null)) {
       return false;
@@ -1199,13 +1187,11 @@ export class NavigableHashMapEntrySetJIterator<K,V> implements JIterator<MapEntr
 //    console.log ("NavigableHashMapEntrySetJIterator::hasNext");
     if (this.location === undefined) { // first time caller
       const firstEntry:NavigableHashNode<K,V> = this.map.firstEntry();
-      if (firstEntry === null) return false;
-      if (firstEntry === undefined) return false;
+      if ((firstEntry === null) || (firstEntry === undefined)) return false;
       return true;
     } else { // we've already called this iterator before
       const tmpEntry:NavigableHashNode<K,V> = this.map.nextHigherNode(this.location);
-      if (tmpEntry === null) return false;
-      if (tmpEntry === undefined) return false;
+      if ((tmpEntry === null) || (tmpEntry === undefined)) return false;
       return true;
     }
   }
@@ -1214,14 +1200,12 @@ export class NavigableHashMapEntrySetJIterator<K,V> implements JIterator<MapEntr
 //    console.log ("NavigableHashMapEntrySetJIterator::next");
     if (this.location === undefined) { // first time caller
       const firstEntry:NavigableHashNode<K,V> = this.map.firstEntry();
-      if (firstEntry === null) return null;
-      if (firstEntry === undefined) return null;
+      if ((firstEntry === null) || (firstEntry === undefined)) return null;
       this.location = firstEntry;
       return firstEntry;
     } else { // we've already called this iterator before
       const tmpEntry:NavigableHashNode<K,V> = this.map.nextHigherNode(this.location);
-      if (tmpEntry === null) return null;
-      if (tmpEntry === undefined) return null;
+      if ((tmpEntry === null) || (tmpEntry === undefined)) return null;
       this.location = tmpEntry;
       return tmpEntry;
     }
@@ -1240,10 +1224,7 @@ export class NavigableHashMapEntrySetIterator<K,V> implements Iterator<MapEntry<
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<MapEntry<K,V>> {
-    if (this.location === null) {
-      return new BasicIteratorResult(true, null);
-    }
-    if (this.location === undefined) {
+    if ((this.location === null) || (this.location === undefined)) {
       return new BasicIteratorResult(true, null);
     }
     const tmp:BasicIteratorResult<MapEntry<K,V>> = new BasicIteratorResult (false, this.location);
@@ -1302,11 +1283,7 @@ export class NavigableHashSet<K> implements NavigableSet<K> {
   * @return {boolean} true if this set contains no elements
   */
   public isEmpty () : boolean {
-    if (this.impl.size() > 0) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.impl.isEmpty();
   }
 
   /**
@@ -1499,16 +1476,13 @@ export class NavigableHashSetJIterator<T> implements JIterator<T> {
   public hasNext():boolean {
     if (this.location === undefined) { // first time caller
       const first:NavigableHashNode<T,number> = this.impl.firstEntry();
-      if (first === undefined) {
-        return false;
-      }
-      if (first === null) {
+      if ((first === undefined) || (first === null)) {
         return false;
       }
       return true;
     } else { // we've already called this iterator before
       const tmp:NavigableHashNode<T,number> = this.impl.nextHigherNode(this.location);
-      if (tmp === null) {
+      if ((tmp === undefined) || (tmp === null)) {
         return false;
       } else {
         return true;
@@ -1519,10 +1493,7 @@ export class NavigableHashSetJIterator<T> implements JIterator<T> {
   public next():T {
     if (this.location === undefined) { // first time caller
       const first:NavigableHashNode<T,number> = this.impl.firstEntry();
-      if (first === undefined) {
-        return null;
-      }
-      if (first === null) {
+      if ((first === undefined) || (first === null)) {
         return null;
       }
       this.location = first;
@@ -1551,10 +1522,7 @@ export class NavigableHashSetIterator<T> implements Iterator<T> {
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
-    if (this.location === null) {
-      return new BasicIteratorResult(true, null);
-    }
-    if (this.location === undefined) {
+    if ((this.location === null) || (this.location === undefined)) {
       return new BasicIteratorResult(true, null);
     }
     const tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location.getKey());
