@@ -13,7 +13,7 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 [![quality badge](https://img.shields.io/badge/cuteness-overload-orange.svg)](http://www.emergencykitten.com/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/larrydiamond/typescriptcollectionsframework.svg)](https://greenkeeper.io/)
 
-**TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   
+**TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   It fully supports Generics and native types.
 
 # Demo & Tutorial project with Angular 7
 Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular7/dist/demoapp/
@@ -76,7 +76,7 @@ The goal of this library is to provide a "as Java Collections" framework as poss
 
 Semver was adopted as of version 1.0 of this framework.
 
-In TypeScript all objects do not inherit from Object (which we do not control anyway), so we made added a parameter to the constructors of each class to compare objects and calculate hash codes.   As a result, anything can be put into the Collections, even string, number, and classes from other packages.   There is no String class to wrap string, no Number class to wrap number, and no Boolean class to wrap boolean.   No autoboxing and no autounboxing.
+In TypeScript all objects do not inherit from Object (which we do not control anyway), so we made added a parameter to the constructors of each class to compare objects and calculate hash codes.   As a result, anything can be put into the Collections, even string, number, and classes from other packages.   There is no String class to wrap string, no Number class to wrap number, and no Boolean class to wrap boolean.   No autoboxing and no autounboxing.   Generics are fully supported, as are native JavaScript types.
 
 # Immutability
 I am a big proponent of Immutability.   Google Guava explains this very well [Google Guava Immutable Collections Explained](https://github.com/google/guava/wiki/ImmutableCollectionsExplained).   Our implementations differ significantly.   Collection subclasses ImmutableCollection.   Every object created from this framework has an Immutable interface that is safe to pass around confident that the object cannot be changed via the methods exposed by the Immutable interface.   All Sets inherit from ImmutableSet and have an immutableSet method that returns an ImmutableSet.    All Maps inherit from ImmutableMap and have an immutableMap method that returns an ImmutableMap.   All Lists inherit from ImmutableList and have an immutableList method that returns an ImmutableList.   These interfaces provide immutable versions of the real Collection or Map that you can pass to methods confident that your Collection or Map will not be modified by that method.   You can also write a method that takes an Immutable object and let your callers know that you promise not to modify the object you receive.
