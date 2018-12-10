@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/jasmine": "^3.0.0",
     "@types/node": "^10.12.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-jasmine": "^4.0.0",
     "gulp-typescript": "^4.0.2",
     "jasmine": "^3.3.0",
