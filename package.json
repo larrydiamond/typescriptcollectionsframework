@@ -12,7 +12,7 @@
     "@types/node": "^10.12.2",
     "gulp": "^4.0.0",
     "gulp-jasmine": "^4.0.0",
-    "gulp-typescript": "^4.0.2",
+    "gulp-typescript": "^5.0.0",
     "jasmine": "^2.9.0",
     "jasts": "^1.0.0",
     "merge2": "^1.2.2",
