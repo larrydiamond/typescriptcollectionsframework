@@ -7,16 +7,17 @@
  */
 
 import {AllFieldCollectable} from "./AllFieldCollectable";
-import {AllFieldHashable} from "./AllFieldHashable";
 import {ArrayList} from "./ArrayList";
 import {Collectable} from "./Collectable";
 import {Comparator} from "./Comparator";
 import {Hashable} from "./Hashable";
 import {HashMap} from "./HashMap";
+import {HashMultiSet} from "./HashClasses";
 import {HashSet} from "./HashSet";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableList} from "./ImmutableList";
 import {ImmutableMap} from "./ImmutableMap";
+import {ImmutableMultiSet} from "./ImmutableMultiSet";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 import {MapEntry} from "../src/MapEntry";
@@ -155,6 +156,11 @@ export class Collections {
   public static emptySet<T> () : ImmutableSet<T> {
     const tmp : HashSet<T> = new HashSet<T>();
     return tmp.immutableSet();
+  }
+
+  public static emptyMultiSet<T> () : ImmutableMultiSet<T> {
+    const tmp : HashMultiSet<T> = new HashMultiSet<T>();
+    return tmp.immutableMultiSet();
   }
 
   public static emptyMap<K,V> () : ImmutableMap<K,V> {

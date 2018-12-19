@@ -6,10 +6,16 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 import { Collection } from "./Collection";
-import { ImmutableSet } from "./ImmutableSet";
-export interface MultiSet<K> extends ImmutableSet<K>, Collection<K> {
+import { ImmutableMultiSet } from "./ImmutableMultiSet";
+export interface MultiSet<K> extends ImmutableMultiSet<K>, Collection<K> {
     /**
-    * Returns an ImmutableSet backed by this Set
+    * Returns an ImmutableMultiSet backed by this MultiSet
     */
-    immutableSet(): ImmutableSet<K>;
+    immutableMultiSet(): ImmutableMultiSet<K>;
+    /**
+    * Adds the specified element to this MultiSet
+    * @param {K} element element to be added to this MultiSet
+    * @return {boolean} true if this MultiSet did not already contain the specified element
+    */
+    add(element: K): boolean;
 }

@@ -7,13 +7,10 @@
 */
 
 import {AllFieldHashable} from "../src/AllFieldHashable";
-import {Collectable} from "../src/Collectable";
 import {Collections} from "../src/Collections";
 import {Comparator} from "../src/Comparator";
 import {HashSet} from "../src/HashSet";
-import {Hashable} from "../src/Hashable";
 import {ImmutableSet} from "../src/ImmutableSet";
-import {JIterator} from "../src/JIterator";
 import {JSet} from "../src/JSet";
 import {LinkedHashSet} from "../src/LinkedHashSet";
 import {NavigableHashSet} from "../src/NavigableHash";

@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var ArrayList_1 = require("./ArrayList");
 var HashMap_1 = require("./HashMap");
+var HashClasses_1 = require("./HashClasses");
 var HashSet_1 = require("./HashSet");
 /**
  * This class consists exclusively of static methods that operate on or return collections.
@@ -138,6 +139,10 @@ var Collections = /** @class */ (function () {
     Collections.emptySet = function () {
         var tmp = new HashSet_1.HashSet();
         return tmp.immutableSet();
+    };
+    Collections.emptyMultiSet = function () {
+        var tmp = new HashClasses_1.HashMultiSet();
+        return tmp.immutableMultiSet();
     };
     Collections.emptyMap = function () {
         var tmp = new HashMap_1.HashMap();

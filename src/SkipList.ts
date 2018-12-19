@@ -6,7 +6,6 @@
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
 
-import {AllFieldCollectable} from "./AllFieldCollectable";
 import {ArrayList} from "./ArrayList";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {BasicMapEntry} from "./BasicMapEntry";
@@ -18,8 +17,6 @@ import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableMap} from "./ImmutableMap";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
-import {JSet} from "./JSet";
-import {LinkedList} from "./LinkedList";
 import {MapEntry} from "./MapEntry";
 import {NavigableMap} from "./NavigableMap";
 import {NavigableSet} from "./NavigableSet";

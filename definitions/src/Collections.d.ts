@@ -11,6 +11,7 @@ import { Hashable } from "./Hashable";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableList } from "./ImmutableList";
 import { ImmutableMap } from "./ImmutableMap";
+import { ImmutableMultiSet } from "./ImmutableMultiSet";
 import { ImmutableSet } from "./ImmutableSet";
 /**
  * This class consists exclusively of static methods that operate on or return collections.
@@ -44,6 +45,7 @@ export declare class Collections {
     static list<T>(...values: T[]): ImmutableList<T>;
     static emptyList<T>(): ImmutableList<T>;
     static emptySet<T>(): ImmutableSet<T>;
+    static emptyMultiSet<T>(): ImmutableMultiSet<T>;
     static emptyMap<K, V>(): ImmutableMap<K, V>;
     /**
      * Returns an Collectable made from the Comparator passed in

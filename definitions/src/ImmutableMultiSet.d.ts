@@ -7,6 +7,7 @@
  */
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableSet } from "./ImmutableSet";
+import { JIterator } from "./JIterator";
 export interface ImmutableMultiSet<K> extends ImmutableCollection<K> {
     /**
     * Returns the number of occurrences of an element in this MultiSet (the count of the element).
@@ -18,7 +19,40 @@ export interface ImmutableMultiSet<K> extends ImmutableCollection<K> {
      * Returns an ImmutableSet view of the keys contained in this MultiSet.
      * The ImmutableSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableSet.
      * If the MultiSet is modified while an iteration over the returned ImmutableSet is in progress the results of the iteration are undefined.
-     * @return {ImmutableSet<K>} a view of the set of distinct elements in this MultiSet
+     * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
      */
     keySet(): ImmutableSet<K>;
+    /**
+    * Returns an ImmutableMultiSet view of the elements contained in this MultiSet.
+    * The ImmutableMultiSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableMultiSet.
+    * If the MultiSet is modified while an iteration over the returned ImmutableMultiSet is in progress the results of the iteration are undefined.
+    * @return {ImmutableMultiSet<K>} a view of the set of distinct elements in this MultiSet
+    */
+    elementSet(): ImmutableMultiSet<K>;
+    /**
+     * Returns the number of elements in this MultiSet (its cardinality).
+     * @return {number} the number of elements in this MultiSet (its cardinality)
+     */
+    size(): number;
+    /**
+     * Returns true if this MultiSet contains no elements.
+     * @return {boolean} true if this MultiSet contains no elements
+     */
+    isEmpty(): boolean;
+    /**
+     * Returns true if this MultiSet contains the specified element.   This method uses the comparator and does not invoke equals
+     * @param {K} item object to be checked for containment in this MultiSet
+     * @return {boolean} true if this MultiSet contains the specified element
+     */
+    contains(item: K): boolean;
+    /**
+      * Returns a Java style iterator
+      * @return {JIterator<K>} the Java style iterator
+      */
+    iterator(): JIterator<K>;
+    /**
+     * Returns a TypeScript style iterator
+     * @return {Iterator<K>} the TypeScript style iterator
+     */
+    [Symbol.iterator](): Iterator<K>;
 }
