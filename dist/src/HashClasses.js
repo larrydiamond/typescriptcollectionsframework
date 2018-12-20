@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
+var ArrayList_1 = require("./ArrayList");
 var AllFieldHashable_1 = require("./AllFieldHashable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var Collections_1 = require("./Collections");
@@ -96,11 +97,17 @@ var HashMultiSet = /** @class */ (function () {
     * @return {boolean} true if this MultiSet did not already contain the specified element
     */
     HashMultiSet.prototype.add = function (element) {
-        var tmp = this.datastore.put(element, 1);
-        if (tmp === undefined) {
+        var tmp = this.datastore.get(element);
+        if ((tmp === null) || (tmp === undefined)) {
+            var al = new ArrayList_1.ArrayList(this.hashMethods);
+            al.add(element);
+            this.datastore.put(element, al);
             return true;
         }
-        return false;
+        else {
+            tmp.add(element);
+            return false;
+        }
     };
     /**
     * Removes a single occurrence of the specified element from this MultiSet, if present.
@@ -108,9 +115,15 @@ var HashMultiSet = /** @class */ (function () {
     * @return {boolean} true if the set contained the specified element
     */
     HashMultiSet.prototype.remove = function (element) {
-        var tmp = this.datastore.remove(element);
-        if (tmp === null) {
+        var tmp = this.datastore.get(element);
+        if ((tmp === null) || (tmp === undefined)) {
             return false;
+        }
+        if (tmp.size() >= 1) {
+            this.datastore.remove(element);
+        }
+        else {
+            tmp.removeLast();
         }
         return true;
     };
@@ -121,7 +134,13 @@ var HashMultiSet = /** @class */ (function () {
     HashMultiSet.prototype.size = function () {
         if (this.datastore === null)
             return 0;
-        return this.datastore.size();
+        var count = 0;
+        for (var iter = this.datastore.entrySet().iterator(); iter.hasNext();) {
+            var element = iter.next();
+            var thisSize = element.getValue().size();
+            count = count + thisSize;
+        }
+        return count;
     };
     /**
     * Returns true if this MultiSet contains no elements.

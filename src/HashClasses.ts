@@ -5,6 +5,7 @@
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
 */
+import {ArrayList} from "./ArrayList";
 import {AllFieldHashable} from "./AllFieldHashable";
 import {BasicIteratorResult} from "./BasicIteratorResult";
 import {Collections} from "./Collections";
@@ -17,6 +18,8 @@ import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableMultiSet} from "./ImmutableMultiSet";
 import {ImmutableSet} from "./ImmutableSet";
 import {MultiSet} from "./MultiSet";
+import { MapEntry } from "./MapEntry";
+import { KeyIterator } from "./LinkedHashMap";
 
 /**
  * This class implements the MultiSet interface, backed by a HashMap instance.
@@ -35,12 +38,12 @@ import {MultiSet} from "./MultiSet";
  */
 export class HashMultiSet<K> implements MultiSet<K> {
 
-  private datastore:HashMap<K,number> = null;
+  private datastore:HashMap<K,ArrayList<K>> = null;
   private hashMethods:Hashable<K>;
 
   constructor(iHash:Hashable<K> = AllFieldHashable.instance, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
     this.hashMethods = iHash;
-    this.datastore = new HashMap<K,number>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
+    this.datastore = new HashMap<K,ArrayList<K>>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
     if ((initialElements !== null) && (initialElements !== undefined)){
       for (const iter = initialElements.iterator(); iter.hasNext(); ) {
         const t:K = iter.next ();
@@ -109,12 +112,16 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if this MultiSet did not already contain the specified element
   */
   public add (element:K) : boolean {
-    const tmp:number = this.datastore.put(element, 1);
-    if (tmp === undefined) {
+    const tmp:ArrayList<K> = this.datastore.get (element);
+    if ((tmp === null) || (tmp === undefined)) {
+      const al:ArrayList<K> = new ArrayList<K>(this.hashMethods);
+      al.add (element);
+      this.datastore.put (element, al);
       return true;
+    } else {
+      tmp.add (element);
+      return false;
     }
-
-    return false;
   }
 
   /**
@@ -123,11 +130,15 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if the set contained the specified element
   */
   public remove (element:K) : boolean {
-    const tmp:number = this.datastore.remove(element);
-    if (tmp === null) {
+    const tmp:ArrayList<K> = this.datastore.get (element);
+    if ((tmp === null) || (tmp === undefined)) {
       return false;
     }
-
+    if (tmp.size() >= 1) {
+      this.datastore.remove (element);
+    } else {
+      tmp.removeLast();
+    }
     return true;
   }
 
@@ -138,7 +149,16 @@ export class HashMultiSet<K> implements MultiSet<K> {
   public size () : number {
     if (this.datastore === null)
       return 0;
-    return this.datastore.size();
+
+    let count:number = 0;
+    
+    for (const iter = this.datastore.entrySet().iterator(); iter.hasNext(); ) {
+      const element = iter.next();
+      const thisSize = element.getValue().size();
+      count = count + thisSize;
+    }
+
+    return count;
   }
 
   /**
@@ -160,7 +180,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if this MultiSet contains the specified element
   */
   public contains (item:K) : boolean {
-    const tmp:number = this.datastore.get(item);
+    const tmp:ArrayList<K> = this.datastore.get(item);
     if ((tmp === null) || (tmp === undefined))
       return false;
     return true;
