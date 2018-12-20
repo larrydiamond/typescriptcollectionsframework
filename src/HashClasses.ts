@@ -59,7 +59,13 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {number} the number of occurrences of the element in this MultiSet; possibly zero but never negative
   */
   public count (item:K) : number {
-    return 0;
+    if ((this.datastore === null) || (this.datastore === undefined))
+      return 0;
+    const tmp:ArrayList<K> = this.datastore.get (item);
+    if ((tmp === null) || (tmp === undefined)) {
+      return 0;
+    }
+    return tmp.size();
   }
 
   
@@ -70,17 +76,6 @@ export class HashMultiSet<K> implements MultiSet<K> {
    * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
    */
    public keySet () : ImmutableSet<K> {
-     return null;
-   }
-  
-   
-   /**
-   * Returns an ImmutableMultiSet view of the elements contained in this MultiSet.
-   * The ImmutableMultiSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableMultiSet.
-   * If the MultiSet is modified while an iteration over the returned ImmutableMultiSet is in progress the results of the iteration are undefined.
-   * @return {ImmutableMultiSet<K>} a view of the set of distinct elements in this MultiSet
-   */
-   public elementSet () : ImmutableMultiSet<K> {
      return null;
    }
 
@@ -147,7 +142,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {number} the number of elements in this MultiSet (its cardinality)
   */
   public size () : number {
-    if (this.datastore === null)
+    if ((this.datastore === null) || (this.datastore === undefined))
       return 0;
 
     let count:number = 0;
@@ -166,7 +161,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if this MultiSet contains no elements
   */
   public isEmpty () : boolean {
-    if (this.datastore === null)
+    if ((this.datastore === null) || (this.datastore === undefined))
       return true;
     const tmp:number = this.datastore.size();
     if (tmp === 0)

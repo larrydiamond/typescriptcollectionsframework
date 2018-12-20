@@ -105,6 +105,20 @@ describe("Test generic MultiSet functionality", function () {
     it("Test adding two related items to empty class MultiSet", function () {
         testAddingTwoRelatedEntriesPetStoreProduct(new HashMultiSet<PetStoreProduct>(petStoreProductHashable));
     });
+
+    it("Test clearing string MultiSet", function () {
+        testClearingString(new HashMultiSet<string>());
+        testClearingString(new HashMultiSet<string>(new AllFieldHashable<string>()));
+    });
+
+    it("Test clearing number MultiSet", function () {
+        testClearingNumber(new HashMultiSet<number>());
+        testClearingNumber(new HashMultiSet<number>(new AllFieldHashable<number>()));
+    });
+
+    it("Test clearing class MultiSet", function () {
+        testClearingPetStoreProduct(new HashMultiSet<PetStoreProduct>(petStoreProductHashable));
+    });
 });
 
 function testEmptyStringMultiSet(tmp: ImmutableMultiSet<string>): void {
@@ -225,4 +239,68 @@ function testAddingTwoUnrelatedEntriesString (tmp: MultiSet<string>) : void {
     expect (false).toEqual(tmp.add(product1));
     expect (tmp.size ()).toEqual(2);
     expect (tmp.isEmpty ()).toEqual(false);
+  }
+
+  function testClearingString (tmp: MultiSet<string>) : void {
+    expect (tmp.size ()).toEqual(0);
+    expect (tmp.isEmpty ()).toEqual(true);
+    expect (true).toEqual(tmp.add("testkey"));
+    expect (tmp.size ()).toEqual(1);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (false).toEqual(tmp.add("testkey"));
+    expect (tmp.size ()).toEqual(2);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (true).toEqual (tmp.contains ("testkey"));
+    expect (false).toEqual (tmp.contains ("key not found"));
+    expect (true).toEqual(tmp.add("secondkey"));
+    expect (tmp.size ()).toEqual(3);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (undefined).toEqual(tmp.clear());
+    expect (tmp.size ()).toEqual(0);
+    expect (tmp.isEmpty ()).toEqual(true);
+    expect (false).toEqual (tmp.contains ("testkey"));
+    expect (false).toEqual (tmp.contains ("key not found"));
+    expect (false).toEqual (tmp.contains ("secondkey"));
+  }
+  
+  function testClearingNumber (tmp: MultiSet<number>) : void {
+    expect (tmp.size ()).toEqual(0);
+    expect (tmp.isEmpty ()).toEqual(true);
+    expect (true).toEqual(tmp.add(1000));
+    expect (tmp.size ()).toEqual(1);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (false).toEqual(tmp.add(1000));
+    expect (tmp.size ()).toEqual(2);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (true).toEqual (tmp.contains (1000));
+    expect (false).toEqual (tmp.contains (3000));
+    expect (true).toEqual(tmp.add(2000));
+    expect (tmp.size ()).toEqual(3);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (undefined).toEqual(tmp.clear());
+    expect (tmp.size ()).toEqual(0);
+    expect (tmp.isEmpty ()).toEqual(true);
+    expect (false).toEqual (tmp.contains (1000));
+    expect (false).toEqual (tmp.contains (2000));
+    expect (false).toEqual (tmp.contains (3000));
+  }
+  
+  function testClearingPetStoreProduct (tmp: MultiSet<PetStoreProduct>) : void {
+    expect (tmp.size ()).toEqual(0);
+    expect (tmp.isEmpty ()).toEqual(true);
+    expect (true).toEqual(tmp.add(product1));
+    expect (tmp.size ()).toEqual(1);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (false).toEqual(tmp.add(product1));
+    expect (tmp.size ()).toEqual(2);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (true).toEqual(tmp.add(product2));
+    expect (tmp.size ()).toEqual(3);
+    expect (tmp.isEmpty ()).toEqual(false);
+    expect (undefined).toEqual(tmp.clear());
+    expect (tmp.size ()).toEqual(0);
+    expect (tmp.isEmpty ()).toEqual(true);
+    expect (false).toEqual (tmp.contains (product1));
+    expect (false).toEqual (tmp.contains (product2));
+    expect (false).toEqual (tmp.contains (productNotAvailable));
   }

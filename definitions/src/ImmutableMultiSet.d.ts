@@ -23,13 +23,6 @@ export interface ImmutableMultiSet<K> extends ImmutableCollection<K> {
      */
     keySet(): ImmutableSet<K>;
     /**
-    * Returns an ImmutableMultiSet view of the elements contained in this MultiSet.
-    * The ImmutableMultiSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableMultiSet.
-    * If the MultiSet is modified while an iteration over the returned ImmutableMultiSet is in progress the results of the iteration are undefined.
-    * @return {ImmutableMultiSet<K>} a view of the set of distinct elements in this MultiSet
-    */
-    elementSet(): ImmutableMultiSet<K>;
-    /**
      * Returns the number of elements in this MultiSet (its cardinality).
      * @return {number} the number of elements in this MultiSet (its cardinality)
      */

@@ -52,7 +52,13 @@ var HashMultiSet = /** @class */ (function () {
     * @return {number} the number of occurrences of the element in this MultiSet; possibly zero but never negative
     */
     HashMultiSet.prototype.count = function (item) {
-        return 0;
+        if ((this.datastore === null) || (this.datastore === undefined))
+            return 0;
+        var tmp = this.datastore.get(item);
+        if ((tmp === null) || (tmp === undefined)) {
+            return 0;
+        }
+        return tmp.size();
     };
     /**
      * Returns an ImmutableSet view of the keys contained in this MultiSet.
@@ -61,15 +67,6 @@ var HashMultiSet = /** @class */ (function () {
      * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
      */
     HashMultiSet.prototype.keySet = function () {
-        return null;
-    };
-    /**
-    * Returns an ImmutableMultiSet view of the elements contained in this MultiSet.
-    * The ImmutableMultiSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableMultiSet.
-    * If the MultiSet is modified while an iteration over the returned ImmutableMultiSet is in progress the results of the iteration are undefined.
-    * @return {ImmutableMultiSet<K>} a view of the set of distinct elements in this MultiSet
-    */
-    HashMultiSet.prototype.elementSet = function () {
         return null;
     };
     /**
@@ -132,7 +129,7 @@ var HashMultiSet = /** @class */ (function () {
     * @return {number} the number of elements in this MultiSet (its cardinality)
     */
     HashMultiSet.prototype.size = function () {
-        if (this.datastore === null)
+        if ((this.datastore === null) || (this.datastore === undefined))
             return 0;
         var count = 0;
         for (var iter = this.datastore.entrySet().iterator(); iter.hasNext();) {
@@ -147,7 +144,7 @@ var HashMultiSet = /** @class */ (function () {
     * @return {boolean} true if this MultiSet contains no elements
     */
     HashMultiSet.prototype.isEmpty = function () {
-        if (this.datastore === null)
+        if ((this.datastore === null) || (this.datastore === undefined))
             return true;
         var tmp = this.datastore.size();
         if (tmp === 0)
