@@ -25,6 +25,7 @@ var PetStoreProduct = /** @class */ (function () {
     return PetStoreProduct;
 }());
 var petStoreProductHashable = Collections_1.Collections.dynamicHashable("productName"); // only check product name for equality
+var petStorePriceHashable = Collections_1.Collections.dynamicHashable("price"); // only check price for equality
 var product2 = new PetStoreProduct("ChewToy", 14.99);
 var product1 = new PetStoreProduct("Catnip", 4.99);
 var product3 = new PetStoreProduct("Goldfish", 9.99);
@@ -32,6 +33,9 @@ var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 var productDuplicate1 = new PetStoreProduct("Catnip", 5.99);
 var productDuplicate2 = new PetStoreProduct("Catnip", 6.99);
 var productDuplicate3 = new PetStoreProduct("Catnip", 7.99);
+var priceDuplicate1 = new PetStoreProduct("Leash", 14.99);
+var priceDuplicate2 = new PetStoreProduct("UnderwaterCastle", 14.99);
+var priceDuplicate3 = new PetStoreProduct("ScubaDiver", 14.99);
 describe("Test generic MultiSet functionality", function () {
     it("Test empty MultiSets", function () {
         testEmptyStringMultiSet(Collections_1.Collections.emptyMultiSet());
@@ -90,6 +94,32 @@ describe("Test generic MultiSet functionality", function () {
     });
     it("Test clearing class MultiSet", function () {
         testClearingPetStoreProduct(new HashClasses_1.HashMultiSet(petStoreProductHashable));
+    });
+    it("Test count string MultiSet", function () {
+        testCountString(new HashClasses_1.HashMultiSet());
+        testCountString(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
+    });
+    it("Test count number MultiSet", function () {
+        testCountNumber(new HashClasses_1.HashMultiSet());
+        testCountNumber(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
+    });
+    it("Test count class MultiSet all field hashable", function () {
+        var tmp = new HashClasses_1.HashMultiSet();
+        addPetStoreProducts(tmp);
+        expect(tmp.count(productNotAvailable)).toEqual(0);
+        expect(tmp.count(product1)).toEqual(1);
+    });
+    it("Test count class MultiSet string hashable", function () {
+        var tmp = new HashClasses_1.HashMultiSet(petStoreProductHashable);
+        addPetStoreProducts(tmp);
+        expect(tmp.count(productNotAvailable)).toEqual(0);
+        expect(tmp.count(product1)).toEqual(4);
+    });
+    it("Test count class MultiSet number hashable", function () {
+        var tmp = new HashClasses_1.HashMultiSet(petStorePriceHashable);
+        addPetStoreProducts(tmp);
+        expect(tmp.count(productNotAvailable)).toEqual(0);
+        expect(tmp.count(product2)).toEqual(4);
     });
 });
 function testEmptyStringMultiSet(tmp) {
@@ -259,4 +289,71 @@ function testClearingPetStoreProduct(tmp) {
     expect(false).toEqual(tmp.contains(product1));
     expect(false).toEqual(tmp.contains(product2));
     expect(false).toEqual(tmp.contains(productNotAvailable));
+}
+function testCountString(tmp) {
+    addStrings(tmp);
+    expect(tmp.size()).toEqual(15);
+    expect(tmp.count("zero")).toEqual(0);
+    expect(tmp.count("one")).toEqual(1);
+    expect(tmp.count("two")).toEqual(2);
+    expect(tmp.count("three")).toEqual(3);
+    expect(tmp.count("four")).toEqual(4);
+    expect(tmp.count("five")).toEqual(5);
+    expect(tmp.count("six")).toEqual(0);
+}
+function testCountNumber(tmp) {
+    addNumbers(tmp);
+    expect(tmp.size()).toEqual(15);
+    expect(tmp.count(1)).toEqual(0);
+    expect(tmp.count(100)).toEqual(1);
+    expect(tmp.count(200)).toEqual(2);
+    expect(tmp.count(300)).toEqual(3);
+    expect(tmp.count(400)).toEqual(4);
+    expect(tmp.count(500)).toEqual(5);
+    expect(tmp.count(600)).toEqual(0);
+}
+function addStrings(tmp) {
+    expect(true).toEqual(tmp.add("one"));
+    expect(true).toEqual(tmp.add("two"));
+    expect(false).toEqual(tmp.add("two"));
+    expect(true).toEqual(tmp.add("three"));
+    expect(false).toEqual(tmp.add("three"));
+    expect(false).toEqual(tmp.add("three"));
+    expect(true).toEqual(tmp.add("four"));
+    expect(false).toEqual(tmp.add("four"));
+    expect(false).toEqual(tmp.add("four"));
+    expect(false).toEqual(tmp.add("four"));
+    expect(true).toEqual(tmp.add("five"));
+    expect(false).toEqual(tmp.add("five"));
+    expect(false).toEqual(tmp.add("five"));
+    expect(false).toEqual(tmp.add("five"));
+    expect(false).toEqual(tmp.add("five"));
+}
+function addNumbers(tmp) {
+    expect(true).toEqual(tmp.add(100));
+    expect(true).toEqual(tmp.add(200));
+    expect(false).toEqual(tmp.add(200));
+    expect(true).toEqual(tmp.add(300));
+    expect(false).toEqual(tmp.add(300));
+    expect(false).toEqual(tmp.add(300));
+    expect(true).toEqual(tmp.add(400));
+    expect(false).toEqual(tmp.add(400));
+    expect(false).toEqual(tmp.add(400));
+    expect(false).toEqual(tmp.add(400));
+    expect(true).toEqual(tmp.add(500));
+    expect(false).toEqual(tmp.add(500));
+    expect(false).toEqual(tmp.add(500));
+    expect(false).toEqual(tmp.add(500));
+    expect(false).toEqual(tmp.add(500));
+}
+function addPetStoreProducts(tmp) {
+    tmp.add(product1);
+    tmp.add(product2);
+    tmp.add(product3);
+    tmp.add(productDuplicate1);
+    tmp.add(productDuplicate2);
+    tmp.add(productDuplicate3);
+    tmp.add(priceDuplicate1);
+    tmp.add(priceDuplicate2);
+    tmp.add(priceDuplicate3);
 }

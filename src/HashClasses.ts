@@ -52,7 +52,17 @@ export class HashMultiSet<K> implements MultiSet<K> {
     }
   }
 
-  
+  /*
+  public debug () : undefined {
+    console.log ("HashMultiSet debug " + this.datastore.size () + " entries");
+    for (let iter = this.datastore.entrySet().iterator() ; iter.hasNext(); ) {
+      let tmp = iter.next();
+      console.log ("entry " + JSON.stringify(tmp.getKey()) + " has " + tmp.getValue().size() + " entries");
+    }
+    return;
+  }
+*/
+
   /**
   * Returns the number of occurrences of an element in this MultiSet (the count of the element).
   * @param {K} item the element to count occurrences of

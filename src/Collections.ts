@@ -250,21 +250,27 @@ export class Collections {
   public static dynamicHashable<K> (... values : string []) : Hashable<K> {
     const tmp : Hashable<K> = {
       equals (o1: K, o2: K) : boolean {
+        // console.log ("Equals dynamic hashable " + JSON.stringify (o1) + " vs " + JSON.stringify (o2));
         if (o1 === undefined) {
           if (o2 === undefined) {
+            // console.log ("return true both undefined");
             return true;
           } else {
+            // console.log ("return false one undefined");
             return false;
           }
         }
         if (o1 === null) {
           if (o2 === null) {
+            // console.log ("return true both null");
             return true;
           } else {
+            // console.log ("return false one null");
             return false;
           }
         }
         if ((o2 === null) || (o2 === undefined)) {
+          // console.log ("return false null or undefined");
           return false;
         }
 
@@ -272,39 +278,54 @@ export class Collections {
           const a = o1 [values [loop]];
           const b = o2 [values [loop]];
 
+          // console.log ("field " + values [loop] + " of " + values.length + " - " + JSON.stringify(a) + " vs " + JSON.stringify(b));
+
           if (a === undefined) {
             if (b !== undefined) {
+              // console.log ("return false one undefined");
               return false;
             }
           }
           if (a === null) {
             if (b !== null) {
+              // console.log ("return false one null");
               return false;
             }
           }
           if (b === undefined) {
             if (a !== undefined) {
+              // console.log ("return false one undefined");
               return false;
             }
           }
           if (b === null) {
             if (a !== null) {
+              // console.log ("return false one null");
               return false;
             }
           }
 
           if (JSON.stringify(a) !== JSON.stringify(b)) {
+            // console.log ("stringify notequal");
             return false;
           }
         }
 
+        // console.log ("stringify all stringify equal true");
         return true;
 
       },
       hashCode (o:K) : number {
         if (o === undefined) return 0;
         if (o === null) return 0;
-        return Collections.getHashCodeForString(JSON.stringify(o));
+
+        let tmp : string = "";
+        for (let loop = 0; loop < values.length; loop++) {
+          const a = o [values [loop]];
+          tmp = tmp + " " + JSON.stringify (a);
+        }
+        // console.log ("Start of hashcode for " + JSON.stringify(o) + " - " + JSON.stringify(tmp) + " " + Collections.getHashCodeForString(JSON.stringify(tmp)));
+        return Collections.getHashCodeForString(JSON.stringify(tmp));
       }
     }
     return tmp;

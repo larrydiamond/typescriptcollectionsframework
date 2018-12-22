@@ -36,6 +36,7 @@ class PetStoreProduct {
 }
 
 const petStoreProductHashable = Collections.dynamicHashable("productName"); // only check product name for equality
+const petStorePriceHashable = Collections.dynamicHashable("price"); // only check price for equality
 
 const product2: PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
 const product1: PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
@@ -45,6 +46,10 @@ const productNotAvailable: PetStoreProduct = new PetStoreProduct("Bananas", 1.99
 const productDuplicate1: PetStoreProduct = new PetStoreProduct("Catnip", 5.99);
 const productDuplicate2: PetStoreProduct = new PetStoreProduct("Catnip", 6.99);
 const productDuplicate3: PetStoreProduct = new PetStoreProduct("Catnip", 7.99);
+
+const priceDuplicate1: PetStoreProduct = new PetStoreProduct("Leash", 14.99);
+const priceDuplicate2: PetStoreProduct = new PetStoreProduct("UnderwaterCastle", 14.99);
+const priceDuplicate3: PetStoreProduct = new PetStoreProduct("ScubaDiver", 14.99);
 
 describe("Test generic MultiSet functionality", function () {
     it("Test empty MultiSets", function () {
@@ -118,6 +123,37 @@ describe("Test generic MultiSet functionality", function () {
 
     it("Test clearing class MultiSet", function () {
         testClearingPetStoreProduct(new HashMultiSet<PetStoreProduct>(petStoreProductHashable));
+    });
+
+    it("Test count string MultiSet", function () {
+        testCountString(new HashMultiSet<string>());
+        testCountString(new HashMultiSet<string>(new AllFieldHashable<string>()));
+    });
+
+    it("Test count number MultiSet", function () {
+        testCountNumber(new HashMultiSet<number>());
+        testCountNumber(new HashMultiSet<number>(new AllFieldHashable<number>()));
+    });
+
+    it("Test count class MultiSet all field hashable", function () {
+        let tmp = new HashMultiSet<PetStoreProduct>();
+        addPetStoreProducts(tmp);
+        expect (tmp.count (productNotAvailable)).toEqual(0);
+        expect (tmp.count (product1)).toEqual(1);
+    });
+
+    it("Test count class MultiSet string hashable", function () {
+        let tmp = new HashMultiSet<PetStoreProduct>(petStoreProductHashable);
+        addPetStoreProducts(tmp);
+        expect (tmp.count (productNotAvailable)).toEqual(0);
+        expect (tmp.count (product1)).toEqual(4);
+    });
+
+    it("Test count class MultiSet number hashable", function () {
+        let tmp = new HashMultiSet<PetStoreProduct>(petStorePriceHashable);
+        addPetStoreProducts(tmp);
+        expect (tmp.count (productNotAvailable)).toEqual(0);
+        expect (tmp.count (product2)).toEqual(4);
     });
 });
 
@@ -304,3 +340,88 @@ function testAddingTwoUnrelatedEntriesString (tmp: MultiSet<string>) : void {
     expect (false).toEqual (tmp.contains (product2));
     expect (false).toEqual (tmp.contains (productNotAvailable));
   }
+
+function testCountString (tmp:MultiSet<string>) : void {
+    addStrings (tmp);
+    expect (tmp.size ()).toEqual(15);
+
+    expect (tmp.count ("zero")).toEqual(0);
+    expect (tmp.count ("one")).toEqual(1);
+    expect (tmp.count ("two")).toEqual(2);
+    expect (tmp.count ("three")).toEqual(3);
+    expect (tmp.count ("four")).toEqual(4);
+    expect (tmp.count ("five")).toEqual(5);
+    expect (tmp.count ("six")).toEqual(0);
+}
+
+function testCountNumber (tmp:MultiSet<number>) : void {
+    addNumbers (tmp);
+    expect (tmp.size ()).toEqual(15);
+
+    expect (tmp.count (1)).toEqual(0);
+    expect (tmp.count (100)).toEqual(1);
+    expect (tmp.count (200)).toEqual(2);
+    expect (tmp.count (300)).toEqual(3);
+    expect (tmp.count (400)).toEqual(4);
+    expect (tmp.count (500)).toEqual(5);
+    expect (tmp.count (600)).toEqual(0);
+}
+
+
+function addStrings (tmp:MultiSet<string>) : void {
+    expect (true).toEqual(tmp.add("one"));
+
+    expect (true).toEqual(tmp.add("two"));
+    expect (false).toEqual(tmp.add("two"));
+
+    expect (true).toEqual(tmp.add("three"));
+    expect (false).toEqual(tmp.add("three"));
+    expect (false).toEqual(tmp.add("three"));
+
+    expect (true).toEqual(tmp.add("four"));
+    expect (false).toEqual(tmp.add("four"));
+    expect (false).toEqual(tmp.add("four"));
+    expect (false).toEqual(tmp.add("four"));
+
+    expect (true).toEqual(tmp.add("five"));
+    expect (false).toEqual(tmp.add("five"));
+    expect (false).toEqual(tmp.add("five"));
+    expect (false).toEqual(tmp.add("five"));
+    expect (false).toEqual(tmp.add("five"));
+}
+
+function addNumbers (tmp:MultiSet<number>) : void {
+    expect (true).toEqual(tmp.add(100));
+
+    expect (true).toEqual(tmp.add(200));
+    expect (false).toEqual(tmp.add(200));
+
+    expect (true).toEqual(tmp.add(300));
+    expect (false).toEqual(tmp.add(300));
+    expect (false).toEqual(tmp.add(300));
+
+    expect (true).toEqual(tmp.add(400));
+    expect (false).toEqual(tmp.add(400));
+    expect (false).toEqual(tmp.add(400));
+    expect (false).toEqual(tmp.add(400));
+
+    expect (true).toEqual(tmp.add(500));
+    expect (false).toEqual(tmp.add(500));
+    expect (false).toEqual(tmp.add(500));
+    expect (false).toEqual(tmp.add(500));
+    expect (false).toEqual(tmp.add(500));
+}
+
+function addPetStoreProducts (tmp:MultiSet<PetStoreProduct>) : void {
+    tmp.add (product1);
+    tmp.add (product2);
+    tmp.add (product3);
+
+    tmp.add (productDuplicate1);
+    tmp.add (productDuplicate2);
+    tmp.add (productDuplicate3);
+
+    tmp.add (priceDuplicate1);
+    tmp.add (priceDuplicate2);
+    tmp.add (priceDuplicate3);
+}
