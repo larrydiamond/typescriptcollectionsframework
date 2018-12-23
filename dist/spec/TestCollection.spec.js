@@ -97,7 +97,7 @@ describe("Test Collection", function () {
         testAddOneItemToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
-        //    testAddOneItemToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
+        testAddOneItemToNumberCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
     });
     it("Test add two items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -116,7 +116,7 @@ describe("Test Collection", function () {
         testAddTwoItemsToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
-        //    testAddTwoItemsToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()));
+        testAddTwoItemsToStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
     });
     it("Test add two items to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -135,6 +135,7 @@ describe("Test Collection", function () {
         testAddTwoItemsToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddTwoItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddTwoItemsToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
+        testAddTwoItemsToNumberCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
     });
     it("Test add items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -153,6 +154,7 @@ describe("Test Collection", function () {
         testAddItemsToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
+        testAddItemsToStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
     });
     it("Test add items to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -171,6 +173,7 @@ describe("Test Collection", function () {
         testAddItemsToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddItemsToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddItemsToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
+        testAddItemsToNumberCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
     });
 });
 function addTestNumbers(coll) {

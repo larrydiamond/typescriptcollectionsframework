@@ -109,7 +109,7 @@ describe("Test Collection", function() {
     testAddOneItemToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
-//    testAddOneItemToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
+    testAddOneItemToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
   });
 
   it("Test add two items to string Collections", function() {
@@ -130,7 +130,7 @@ describe("Test Collection", function() {
     testAddTwoItemsToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
     testAddTwoItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
     testAddTwoItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
-//    testAddTwoItemsToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()));
+    testAddTwoItemsToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()));
   });
 
   it("Test add two items to number Collections", function() {
@@ -151,6 +151,7 @@ describe("Test Collection", function() {
     testAddTwoItemsToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddTwoItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddTwoItemsToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
+    testAddTwoItemsToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
   });
 
   it("Test add items to string Collections", function() {
@@ -171,6 +172,7 @@ describe("Test Collection", function() {
     testAddItemsToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
     testAddItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
     testAddItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
+    testAddItemsToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()));
   });
 
   it("Test add items to number Collections", function() {
@@ -191,6 +193,7 @@ describe("Test Collection", function() {
     testAddItemsToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddItemsToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddItemsToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
+    testAddItemsToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
   });
 });
 
