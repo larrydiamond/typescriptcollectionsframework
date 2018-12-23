@@ -21,6 +21,99 @@ import {MultiSet} from "./MultiSet";
 import { MapEntry } from "./MapEntry";
 import { KeyIterator } from "./LinkedHashMap";
 
+export class HashMultiSetImpl<K> {
+
+  private datastore:HashMap<K,ArrayList<K>> = null;
+  private hashMethods:Hashable<K>;
+
+  constructor (datastore:HashMap<K,ArrayList<K>>, iHash:Hashable<K>) {
+    this.datastore = datastore;
+    this.hashMethods = iHash;
+  }
+
+  public getDataStore () : HashMap<K,ArrayList<K>> {
+    return this.datastore;
+  }
+
+  public getHashMethods () : Hashable<K> {
+    return this.hashMethods;
+  }
+
+  public count (item:K) : number {
+    if ((this.datastore === null) || (this.datastore === undefined))
+      return 0;
+    const tmp:ArrayList<K> = this.datastore.get (item);
+    if ((tmp === null) || (tmp === undefined)) {
+      return 0;
+    }
+    return tmp.size();
+  }
+
+  public add (element:K) : boolean {
+    const tmp:ArrayList<K> = this.datastore.get (element);
+    if ((tmp === null) || (tmp === undefined)) {
+      const al:ArrayList<K> = new ArrayList<K>(this.hashMethods);
+      al.add (element);
+      this.datastore.put (element, al);
+      return true;
+    } else {
+      tmp.add (element);
+      return false;
+    }
+  }
+
+  public remove (element:K) : boolean {
+    const tmp:ArrayList<K> = this.datastore.get (element);
+    if ((tmp === null) || (tmp === undefined)) {
+      return false;
+    }
+    if (tmp.size() >= 1) {
+      this.datastore.remove (element);
+    } else {
+      tmp.removeLast();
+    }
+    return true;
+  }
+
+  public size () : number {
+    if ((this.datastore === null) || (this.datastore === undefined))
+      return 0;
+
+    let count:number = 0;
+    
+    for (const iter = this.datastore.entrySet().iterator(); iter.hasNext(); ) {
+      const element = iter.next();
+      const thisSize = element.getValue().size();
+      count = count + thisSize;
+    }
+
+    return count;
+  }
+
+  public isEmpty () : boolean {
+    if ((this.datastore === null) || (this.datastore === undefined))
+      return true;
+    const tmp:number = this.datastore.size();
+    if (tmp === 0)
+      return true;
+    return false;
+  }
+
+  public contains (item:K) : boolean {
+    const tmp:ArrayList<K> = this.datastore.get(item);
+    if ((tmp === null) || (tmp === undefined))
+      return false;
+    return true;
+  }
+
+  public clear () : void {
+    return this.datastore.clear();
+  }
+
+
+
+}
+
 /**
  * This class implements the MultiSet interface, backed by a HashMap instance.
  *
@@ -37,13 +130,12 @@ import { KeyIterator } from "./LinkedHashMap";
  * This class corresponds to com.google.common.collect.HashMultiSet
  */
 export class HashMultiSet<K> implements MultiSet<K> {
-
-  private datastore:HashMap<K,ArrayList<K>> = null;
-  private hashMethods:Hashable<K>;
+  private impl:HashMultiSetImpl<K> = undefined;
+//  private datastore:HashMap<K,ArrayList<K>> = null;
+//  private hashMethods:Hashable<K>;
 
   constructor(iHash:Hashable<K> = AllFieldHashable.instance, private initialElements:ImmutableCollection<K> = null, private iInitialCapacity:number=20, private iLoadFactor:number=0.75) {
-    this.hashMethods = iHash;
-    this.datastore = new HashMap<K,ArrayList<K>>(this.hashMethods, null, iInitialCapacity, iLoadFactor);
+    this.impl = new HashMultiSetImpl(new HashMap<K,ArrayList<K>>(iHash, null, iInitialCapacity, iLoadFactor), iHash);
     if ((initialElements !== null) && (initialElements !== undefined)){
       for (const iter = initialElements.iterator(); iter.hasNext(); ) {
         const t:K = iter.next ();
@@ -69,13 +161,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {number} the number of occurrences of the element in this MultiSet; possibly zero but never negative
   */
   public count (item:K) : number {
-    if ((this.datastore === null) || (this.datastore === undefined))
-      return 0;
-    const tmp:ArrayList<K> = this.datastore.get (item);
-    if ((tmp === null) || (tmp === undefined)) {
-      return 0;
-    }
-    return tmp.size();
+    return this.impl.count(item);
   }
 
   
@@ -86,6 +172,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
    * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
    */
    public keySet () : ImmutableSet<K> {
+     console.log ("HashMultiSet::keySet not yet implemented");
      return null;
    }
 
@@ -108,7 +195,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {Hashable}
   */
   public getHashable () : Hashable<K> {
-    return this.hashMethods;
+    return this.impl.getHashMethods();
   }
 
   /**
@@ -117,16 +204,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if this MultiSet did not already contain the specified element
   */
   public add (element:K) : boolean {
-    const tmp:ArrayList<K> = this.datastore.get (element);
-    if ((tmp === null) || (tmp === undefined)) {
-      const al:ArrayList<K> = new ArrayList<K>(this.hashMethods);
-      al.add (element);
-      this.datastore.put (element, al);
-      return true;
-    } else {
-      tmp.add (element);
-      return false;
-    }
+    return this.impl.add(element);
   }
 
   /**
@@ -135,16 +213,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if the set contained the specified element
   */
   public remove (element:K) : boolean {
-    const tmp:ArrayList<K> = this.datastore.get (element);
-    if ((tmp === null) || (tmp === undefined)) {
-      return false;
-    }
-    if (tmp.size() >= 1) {
-      this.datastore.remove (element);
-    } else {
-      tmp.removeLast();
-    }
-    return true;
+    return this.impl.remove (element);
   }
 
   /**
@@ -152,18 +221,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {number} the number of elements in this MultiSet (its cardinality)
   */
   public size () : number {
-    if ((this.datastore === null) || (this.datastore === undefined))
-      return 0;
-
-    let count:number = 0;
-    
-    for (const iter = this.datastore.entrySet().iterator(); iter.hasNext(); ) {
-      const element = iter.next();
-      const thisSize = element.getValue().size();
-      count = count + thisSize;
-    }
-
-    return count;
+    return this.impl.size();
   }
 
   /**
@@ -171,12 +229,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if this MultiSet contains no elements
   */
   public isEmpty () : boolean {
-    if ((this.datastore === null) || (this.datastore === undefined))
-      return true;
-    const tmp:number = this.datastore.size();
-    if (tmp === 0)
-      return true;
-    return false;
+    return this.impl.isEmpty();
   }
 
   /**
@@ -185,17 +238,14 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {boolean} true if this MultiSet contains the specified element
   */
   public contains (item:K) : boolean {
-    const tmp:ArrayList<K> = this.datastore.get(item);
-    if ((tmp === null) || (tmp === undefined))
-      return false;
-    return true;
+    return this.impl.contains(item);
   }
 
   /**
   * Removes all of the elements from this MultiSet. The MultiSet will be empty after this call returns.
   */
   public clear () : void {
-    return this.datastore.clear();
+    return this.impl.clear();
   }
 
  /**
@@ -203,7 +253,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {JIterator<K>} the Java style iterator
   */
   public iterator():JIterator<K> {
-    return new HashSetJIterator(this);
+    return new HashSetJIterator(this.impl);
   }
 
   /**
@@ -211,7 +261,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
   * @return {Iterator<K>} the TypeScript style iterator
   */
   public [Symbol.iterator] ():Iterator<K> {
-    return new HashSetIterator (this);
+    return new HashSetIterator (this.impl);
   }
 
   /**
@@ -240,76 +290,109 @@ export class HashMultiSet<K> implements MultiSet<K> {
 
 /* Java style iterator */
 export class HashSetJIterator<T> implements JIterator<T> {
-  private location:HashMapIteratorLocationTracker<T,number>;
-  private set:HashMultiSet<T>;
+  private impl:HashMultiSetImpl<T>;
+  private entrySet:ImmutableSet<MapEntry<T,ArrayList<T>>>;
+  private iter : JIterator<MapEntry<T,ArrayList<T>>>;
+  private currentEntry : MapEntry<T,ArrayList<T>>;
+  private offset : number;
 
-  constructor (iSet:HashMultiSet<T>) {
-    this.set = iSet;
+  constructor (msetimpl:HashMultiSetImpl<T>) {
+    this.impl = msetimpl;
   }
-
+  
   public hasNext():boolean {
-    if (this.location === undefined) { // first time caller
-      const first:HashMapIteratorLocationTracker<T,number> = null; // this.set.deprecatedGetFirstEntryForIterator();
-      if (first === undefined) {
-        return false;
+    if (this.iter === undefined) { // first time caller
+      this.entrySet = this.impl.getDataStore().entrySet();
+      this.iter = this.impl.getDataStore().entrySet().iterator();
+      this.currentEntry = undefined;
+      this.offset = 0;
+      return this.iter.hasNext();
+    } else { // we've already called hasNext before
+      if (this.currentEntry === undefined) { // we called hasNext twice without ever calling next 
+        return this.iter.hasNext();
       }
-      if (first === null) {
-        return false;
-      }
-      return true;
-    } else { // we've already called this iterator before
-      const tmp:HashMapIteratorLocationTracker<T,number> = null; // this.set.deprecatedGetNextEntryForIterator(this.location);
-      if (tmp === null) {
-        return false;
-      } else {
+
+      // if we're not at the last item in the arraylist then yes there's another node
+      if (this.currentEntry.getValue().size() > (this.offset + 1)) {
         return true;
       }
+
+      // if we're at the last item in the arraylist then see if theres another node
+      return this.iter.hasNext();
     }
   }
 
   public next():T {
-    if (this.location === undefined) { // first time caller
-      const first:HashMapIteratorLocationTracker<T,number> = null; // this.set.deprecatedGetFirstEntryForIterator();
-      if (first === undefined) {
-        return null;
+    if (this.currentEntry === undefined) { // have we called next before?
+      this.currentEntry = this.iter.next();
+      if ((this.currentEntry === null) || (this.currentEntry === undefined)) {
+        this.currentEntry = undefined;
+        return undefined;
       }
-      if (first === null) {
-        return null;
-      }
-      this.location = first;
-      return first.entry.getKey();
-    } else { // we've already called this iterator before
-      const tmp:HashMapIteratorLocationTracker<T,number> = null; // this.set.deprecatedGetNextEntryForIterator(this.location);
-      if (tmp === null) {
-        return null;
-      } else {
-        this.location = tmp;
-        return tmp.entry.getKey();
-      }
+      this.offset = 0;
+      return this.currentEntry.getValue().get(this.offset);
     }
+
+    if (this.currentEntry.getValue().size() > (this.offset + 1)) {
+      this.offset = this.offset + 1;
+      return this.currentEntry.getValue().get(this.offset);
+    }
+
+    this.currentEntry = this.iter.next();
+    if ((this.currentEntry === null) || (this.currentEntry === undefined)) {
+      this.currentEntry = undefined;
+      return undefined;
+    }
+    this.offset = 0;
+    return this.currentEntry.getValue().get(this.offset);
   }
 }
 
 /* TypeScript iterator */
 export class HashSetIterator<T> implements Iterator<T> {
-  private location:HashMapIteratorLocationTracker<T,number>;
-  private set:HashMultiSet<T>;
+  private impl:HashMultiSetImpl<T>;
+  private entrySet:ImmutableSet<MapEntry<T,ArrayList<T>>>;
+  private iter : JIterator<MapEntry<T,ArrayList<T>>>;
+  private currentEntry : MapEntry<T,ArrayList<T>>;
+  private offset : number;
 
-  constructor (iSet:HashMultiSet<T>) {
-    this.set = iSet;
-    this.location = null; // this.set.deprecatedGetFirstEntryForIterator();
+  constructor (msetimpl:HashMultiSetImpl<T>) {
+    this.impl = msetimpl;
   }
 
   // tslint:disable-next-line:no-any
   public next(value?: any): IteratorResult<T> {
-    if (this.location === null) {
-      return new BasicIteratorResult(true, null);
+    if (this.entrySet === undefined) { /// first time caller
+      this.entrySet = this.impl.getDataStore().entrySet();
+      this.iter = this.impl.getDataStore().entrySet().iterator();
+      if (this.iter.hasNext() === false) {
+        return new BasicIteratorResult(true, null);
+      }
+      this.currentEntry = this.iter.next();
+      this.offset = 0;
+      if ((this.currentEntry === null) || (this.currentEntry === undefined)) {
+        return new BasicIteratorResult(true, null);
+      }
+      if ((this.currentEntry.getValue() === null) || (this.currentEntry.getValue() === undefined)) {
+        return new BasicIteratorResult(true, null);
+      }
+      if (this.currentEntry.getValue().size () < (this.offset + 1)) {
+        return new BasicIteratorResult(true, null);
+      }
+      return new BasicIteratorResult (false, this.currentEntry.getValue().get(this.offset));
     }
-    if (this.location === undefined) {
-      return new BasicIteratorResult(true, null);
+
+    if (this.currentEntry.getValue().size() > (this.offset + 1)) {
+      this.offset = this.offset + 1;
+      return new BasicIteratorResult (false, this.currentEntry.getValue().get(this.offset));
     }
-    const tmp:BasicIteratorResult<T> = new BasicIteratorResult (false, this.location.entry.getKey());
-    this.location = null; // this.set.deprecatedGetNextEntryForIterator(this.location);
-    return tmp;
+
+    if (this.iter.hasNext()) {
+      this.currentEntry = this.iter.next();
+      this.offset = 0;
+      return new BasicIteratorResult (false, this.currentEntry.getValue().get(this.offset));
+    }
+    return new BasicIteratorResult(true, null);
   }
 }
+

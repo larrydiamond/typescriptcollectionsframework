@@ -299,13 +299,13 @@ var Collections = /** @class */ (function () {
                     return 0;
                 if (o === null)
                     return 0;
-                var tmp = "";
+                var htmp = "";
                 for (var loop = 0; loop < values.length; loop++) {
                     var a = o[values[loop]];
-                    tmp = tmp + " " + JSON.stringify(a);
+                    htmp = htmp + " " + JSON.stringify(a);
                 }
-                // console.log ("Start of hashcode for " + JSON.stringify(o) + " - " + JSON.stringify(tmp) + " " + Collections.getHashCodeForString(JSON.stringify(tmp)));
-                return Collections.getHashCodeForString(JSON.stringify(tmp));
+                // console.log ("Start of hashcode for " + JSON.stringify(o) + " - " + JSON.stringify(htmp) + " " + Collections.getHashCodeForString(JSON.stringify(htmp)));
+                return Collections.getHashCodeForString(JSON.stringify(htmp));
             }
         };
         return tmp;
@@ -319,10 +319,13 @@ var Collections = /** @class */ (function () {
         if (icoll === undefined)
             return undefined;
         var tmp = new Array(icoll.size());
+        //    console.log ("AsArray started size = " + icoll.size());
         var offset = 0;
         for (var iter = icoll.iterator(); iter.hasNext();) {
+            //      console.log ("AsArray iteration offset " + offset);
             var elem = iter.next();
             tmp[offset] = elem;
+            //      console.log ("AsArray iteration " + offset + " " + JSON.stringify(tmp[offset]));
             offset = offset + 1;
         }
         return tmp;

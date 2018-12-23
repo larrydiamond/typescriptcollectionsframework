@@ -136,21 +136,21 @@ describe("Test generic MultiSet functionality", function () {
     });
 
     it("Test count class MultiSet all field hashable", function () {
-        let tmp = new HashMultiSet<PetStoreProduct>();
+        const tmp = new HashMultiSet<PetStoreProduct>();
         addPetStoreProducts(tmp);
         expect (tmp.count (productNotAvailable)).toEqual(0);
         expect (tmp.count (product1)).toEqual(1);
     });
 
     it("Test count class MultiSet string hashable", function () {
-        let tmp = new HashMultiSet<PetStoreProduct>(petStoreProductHashable);
+        const tmp = new HashMultiSet<PetStoreProduct>(petStoreProductHashable);
         addPetStoreProducts(tmp);
         expect (tmp.count (productNotAvailable)).toEqual(0);
         expect (tmp.count (product1)).toEqual(4);
     });
 
     it("Test count class MultiSet number hashable", function () {
-        let tmp = new HashMultiSet<PetStoreProduct>(petStorePriceHashable);
+        const tmp = new HashMultiSet<PetStoreProduct>(petStorePriceHashable);
         addPetStoreProducts(tmp);
         expect (tmp.count (productNotAvailable)).toEqual(0);
         expect (tmp.count (product2)).toEqual(4);

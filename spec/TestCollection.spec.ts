@@ -17,6 +17,7 @@ import {HashSet} from "../src/HashSet";
 import {ImmutableCollection} from "../src/ImmutableCollection";
 import {JIterator} from "../src/JIterator";
 import {LinkedList} from "../src/LinkedList";
+import {HashMultiSet} from "../src/HashClasses";
 import {NavigableHashSet} from "../src/NavigableHash";
 import {PriorityQueue} from "../src/PriorityQueue";
 import {SkipListSet} from "../src/SkipList";
@@ -37,6 +38,8 @@ describe("Test Collection", function() {
     testEmptyStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet");
     testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet");
     testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testEmptyStringCollection(new HashMultiSet<string> (), "HashMultiSet");
+    testEmptyStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()), "HashMultiSet");
     testEmptyStringCollection(new CompositeCollection<string> (undefined), "CompositeCollection undefined");
     testEmptyStringCollection(new CompositeCollection<string> (null), "CompositeCollection null");
     testEmptyStringCollection(new CompositeCollection<string> (new ArrayList<string>()), "CompositeCollection empty");
@@ -55,6 +58,8 @@ describe("Test Collection", function() {
     testEmptyNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testEmptyNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testEmptyNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
+    testEmptyNumberCollection(new HashMultiSet<number> ());
+    testEmptyNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
     testEmptyNumberCollection(new CompositeCollection<number> (undefined));
     testEmptyNumberCollection(new CompositeCollection<number> (null));
     testEmptyNumberCollection(new CompositeCollection<number> (new ArrayList<number>()));
@@ -73,12 +78,18 @@ describe("Test Collection", function() {
     testAddOneItemToStringCollection(hs, "HashSet");
     testAddOneItemToStringCollection(alc, "ArrayList AllFieldCollectable");
     testAddOneItemToStringCollection(llc, "LinkedList AllFieldCollectable");
-    testAddOneItemToStringCollection(hsc, "HashSet AllFieldCollectable");
+    testAddOneItemToStringCollection(hsc, "HashSet AllFieldHashable");
     testAddOneItemToStringCollection(new NavigableHashSet<string> (Collections.getStringComparator()), "NavigableHashSet StringComparator");
     testAddOneItemToStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet StringComparator");
     testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet StringComparator");
     testAddOneItemToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue StringComparator");
   });
+
+  it("Test add one item to string Collection Hash MultiSet", function() {
+    testAddOneItemToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()), "HashMultiSet AllFieldHashable");
+  });
+
+
 
   it("Test add one item to number Collections", function() {
     const al:ArrayList<number> = new ArrayList<number> ();
@@ -98,6 +109,7 @@ describe("Test Collection", function() {
     testAddOneItemToNumberCollection(new SkipListSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
+//    testAddOneItemToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
   });
 
   it("Test add two items to string Collections", function() {
@@ -118,6 +130,7 @@ describe("Test Collection", function() {
     testAddTwoItemsToStringCollection(new SkipListSet<string> (Collections.getStringComparator()));
     testAddTwoItemsToStringCollection(new TreeSet<string> (Collections.getStringComparator()));
     testAddTwoItemsToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()));
+//    testAddTwoItemsToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()));
   });
 
   it("Test add two items to number Collections", function() {
@@ -252,7 +265,6 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
   expect (ir.done).toEqual(true);
 
   coll.forEach(failActionNumber);
-
   TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), '"[]"');
 }
 
@@ -271,6 +283,7 @@ function testAddOneItemToStringCollection (coll:Collection<string>, typestring:s
    coll.forEach ({ accept(element:string) { testCount = testCount + 1; } });
    expect (testCount).toEqual (1);
 
+//   console.log ("About to run test for " + typestring);
    TestString.equals ("One element array should stringify to [blah]", JSON.stringify (coll), '"[\\"blah\\"]"');
 }
 

@@ -12,6 +12,84 @@ var AllFieldHashable_1 = require("./AllFieldHashable");
 var BasicIteratorResult_1 = require("./BasicIteratorResult");
 var Collections_1 = require("./Collections");
 var HashMap_1 = require("./HashMap");
+var HashMultiSetImpl = /** @class */ (function () {
+    function HashMultiSetImpl(datastore, iHash) {
+        this.datastore = null;
+        this.datastore = datastore;
+        this.hashMethods = iHash;
+    }
+    HashMultiSetImpl.prototype.getDataStore = function () {
+        return this.datastore;
+    };
+    HashMultiSetImpl.prototype.getHashMethods = function () {
+        return this.hashMethods;
+    };
+    HashMultiSetImpl.prototype.count = function (item) {
+        if ((this.datastore === null) || (this.datastore === undefined))
+            return 0;
+        var tmp = this.datastore.get(item);
+        if ((tmp === null) || (tmp === undefined)) {
+            return 0;
+        }
+        return tmp.size();
+    };
+    HashMultiSetImpl.prototype.add = function (element) {
+        var tmp = this.datastore.get(element);
+        if ((tmp === null) || (tmp === undefined)) {
+            var al = new ArrayList_1.ArrayList(this.hashMethods);
+            al.add(element);
+            this.datastore.put(element, al);
+            return true;
+        }
+        else {
+            tmp.add(element);
+            return false;
+        }
+    };
+    HashMultiSetImpl.prototype.remove = function (element) {
+        var tmp = this.datastore.get(element);
+        if ((tmp === null) || (tmp === undefined)) {
+            return false;
+        }
+        if (tmp.size() >= 1) {
+            this.datastore.remove(element);
+        }
+        else {
+            tmp.removeLast();
+        }
+        return true;
+    };
+    HashMultiSetImpl.prototype.size = function () {
+        if ((this.datastore === null) || (this.datastore === undefined))
+            return 0;
+        var count = 0;
+        for (var iter = this.datastore.entrySet().iterator(); iter.hasNext();) {
+            var element = iter.next();
+            var thisSize = element.getValue().size();
+            count = count + thisSize;
+        }
+        return count;
+    };
+    HashMultiSetImpl.prototype.isEmpty = function () {
+        if ((this.datastore === null) || (this.datastore === undefined))
+            return true;
+        var tmp = this.datastore.size();
+        if (tmp === 0)
+            return true;
+        return false;
+    };
+    HashMultiSetImpl.prototype.contains = function (item) {
+        var tmp = this.datastore.get(item);
+        if ((tmp === null) || (tmp === undefined))
+            return false;
+        return true;
+    };
+    HashMultiSetImpl.prototype.clear = function () {
+        return this.datastore.clear();
+    };
+    return HashMultiSetImpl;
+}());
+exports.HashMultiSetImpl = HashMultiSetImpl;
 /**
  * This class implements the MultiSet interface, backed by a HashMap instance.
  *
@@ -28,6 +106,8 @@ var HashMap_1 = require("./HashMap");
  * This class corresponds to com.google.common.collect.HashMultiSet
  */
 var HashMultiSet = /** @class */ (function () {
+    //  private datastore:HashMap<K,ArrayList<K>> = null;
+    //  private hashMethods:Hashable<K>;
     function HashMultiSet(iHash, initialElements, iInitialCapacity, iLoadFactor) {
         if (iHash === void 0) { iHash = AllFieldHashable_1.AllFieldHashable.instance; }
         if (initialElements === void 0) { initialElements = null; }
@@ -36,9 +116,8 @@ var HashMultiSet = /** @class */ (function () {
         this.initialElements = initialElements;
         this.iInitialCapacity = iInitialCapacity;
         this.iLoadFactor = iLoadFactor;
-        this.datastore = null;
-        this.hashMethods = iHash;
-        this.datastore = new HashMap_1.HashMap(this.hashMethods, null, iInitialCapacity, iLoadFactor);
+        this.impl = undefined;
+        this.impl = new HashMultiSetImpl(new HashMap_1.HashMap(iHash, null, iInitialCapacity, iLoadFactor), iHash);
         if ((initialElements !== null) && (initialElements !== undefined)) {
             for (var iter = initialElements.iterator(); iter.hasNext();) {
                 var t = iter.next();
@@ -62,13 +141,7 @@ var HashMultiSet = /** @class */ (function () {
     * @return {number} the number of occurrences of the element in this MultiSet; possibly zero but never negative
     */
     HashMultiSet.prototype.count = function (item) {
-        if ((this.datastore === null) || (this.datastore === undefined))
-            return 0;
-        var tmp = this.datastore.get(item);
-        if ((tmp === null) || (tmp === undefined)) {
-            return 0;
-        }
-        return tmp.size();
+        return this.impl.count(item);
     };
     /**
      * Returns an ImmutableSet view of the keys contained in this MultiSet.
@@ -77,6 +150,7 @@ var HashMultiSet = /** @class */ (function () {
      * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
      */
     HashMultiSet.prototype.keySet = function () {
+        console.log("HashMultiSet::keySet not yet implemented");
         return null;
     };
     /**
@@ -96,7 +170,7 @@ var HashMultiSet = /** @class */ (function () {
     * @return {Hashable}
     */
     HashMultiSet.prototype.getHashable = function () {
-        return this.hashMethods;
+        return this.impl.getHashMethods();
     };
     /**
     * Adds an occurance of the specified element to this MultiSet
@@ -104,17 +178,7 @@ var HashMultiSet = /** @class */ (function () {
     * @return {boolean} true if this MultiSet did not already contain the specified element
     */
     HashMultiSet.prototype.add = function (element) {
-        var tmp = this.datastore.get(element);
-        if ((tmp === null) || (tmp === undefined)) {
-            var al = new ArrayList_1.ArrayList(this.hashMethods);
-            al.add(element);
-            this.datastore.put(element, al);
-            return true;
-        }
-        else {
-            tmp.add(element);
-            return false;
-        }
+        return this.impl.add(element);
     };
     /**
     * Removes a single occurrence of the specified element from this MultiSet, if present.
@@ -122,44 +186,21 @@ var HashMultiSet = /** @class */ (function () {
     * @return {boolean} true if the set contained the specified element
     */
     HashMultiSet.prototype.remove = function (element) {
-        var tmp = this.datastore.get(element);
-        if ((tmp === null) || (tmp === undefined)) {
-            return false;
-        }
-        if (tmp.size() >= 1) {
-            this.datastore.remove(element);
-        }
-        else {
-            tmp.removeLast();
-        }
-        return true;
+        return this.impl.remove(element);
     };
     /**
     * Returns the number of elements in this MultiSet (its cardinality).
     * @return {number} the number of elements in this MultiSet (its cardinality)
     */
     HashMultiSet.prototype.size = function () {
-        if ((this.datastore === null) || (this.datastore === undefined))
-            return 0;
-        var count = 0;
-        for (var iter = this.datastore.entrySet().iterator(); iter.hasNext();) {
-            var element = iter.next();
-            var thisSize = element.getValue().size();
-            count = count + thisSize;
-        }
-        return count;
+        return this.impl.size();
     };
     /**
     * Returns true if this MultiSet contains no elements.
     * @return {boolean} true if this MultiSet contains no elements
     */
     HashMultiSet.prototype.isEmpty = function () {
-        if ((this.datastore === null) || (this.datastore === undefined))
-            return true;
-        var tmp = this.datastore.size();
-        if (tmp === 0)
-            return true;
-        return false;
+        return this.impl.isEmpty();
     };
     /**
     * Returns true if this MultiSet contains the specified element.   This method uses the comparator and does not invoke equals
@@ -167,30 +208,27 @@ var HashMultiSet = /** @class */ (function () {
     * @return {boolean} true if this MultiSet contains the specified element
     */
     HashMultiSet.prototype.contains = function (item) {
-        var tmp = this.datastore.get(item);
-        if ((tmp === null) || (tmp === undefined))
-            return false;
-        return true;
+        return this.impl.contains(item);
     };
     /**
     * Removes all of the elements from this MultiSet. The MultiSet will be empty after this call returns.
     */
     HashMultiSet.prototype.clear = function () {
-        return this.datastore.clear();
+        return this.impl.clear();
     };
     /**
      * Returns a Java style iterator
      * @return {JIterator<K>} the Java style iterator
      */
     HashMultiSet.prototype.iterator = function () {
-        return new HashSetJIterator(this);
+        return new HashSetJIterator(this.impl);
     };
     /**
     * Returns a TypeScript style iterator
     * @return {Iterator<K>} the TypeScript style iterator
     */
     HashMultiSet.prototype[Symbol.iterator] = function () {
-        return new HashSetIterator(this);
+        return new HashSetIterator(this.impl);
     };
     /**
     * Returns an ImmutableCollection backed by this Collection
@@ -216,73 +254,90 @@ var HashMultiSet = /** @class */ (function () {
 exports.HashMultiSet = HashMultiSet;
 /* Java style iterator */
 var HashSetJIterator = /** @class */ (function () {
-    function HashSetJIterator(iSet) {
-        this.set = iSet;
+    function HashSetJIterator(msetimpl) {
+        this.impl = msetimpl;
     }
     HashSetJIterator.prototype.hasNext = function () {
-        if (this.location === undefined) { // first time caller
-            var first = null; // this.set.deprecatedGetFirstEntryForIterator();
-            if (first === undefined) {
-                return false;
-            }
-            if (first === null) {
-                return false;
-            }
-            return true;
+        if (this.iter === undefined) { // first time caller
+            this.entrySet = this.impl.getDataStore().entrySet();
+            this.iter = this.impl.getDataStore().entrySet().iterator();
+            this.currentEntry = undefined;
+            this.offset = 0;
+            return this.iter.hasNext();
         }
-        else { // we've already called this iterator before
-            var tmp = null; // this.set.deprecatedGetNextEntryForIterator(this.location);
-            if (tmp === null) {
-                return false;
+        else { // we've already called hasNext before
+            if (this.currentEntry === undefined) { // we called hasNext twice without ever calling next 
+                return this.iter.hasNext();
             }
-            else {
+            // if we're not at the last item in the arraylist then yes there's another node
+            if (this.currentEntry.getValue().size() > (this.offset + 1)) {
                 return true;
             }
+            // if we're at the last item in the arraylist then see if theres another node
+            return this.iter.hasNext();
         }
     };
     HashSetJIterator.prototype.next = function () {
-        if (this.location === undefined) { // first time caller
-            var first = null; // this.set.deprecatedGetFirstEntryForIterator();
-            if (first === undefined) {
-                return null;
+        if (this.currentEntry === undefined) { // have we called next before?
+            this.currentEntry = this.iter.next();
+            if ((this.currentEntry === null) || (this.currentEntry === undefined)) {
+                this.currentEntry = undefined;
+                return undefined;
             }
-            if (first === null) {
-                return null;
-            }
-            this.location = first;
-            return first.entry.getKey();
+            this.offset = 0;
+            return this.currentEntry.getValue().get(this.offset);
         }
-        else { // we've already called this iterator before
-            var tmp = null; // this.set.deprecatedGetNextEntryForIterator(this.location);
-            if (tmp === null) {
-                return null;
-            }
-            else {
-                this.location = tmp;
-                return tmp.entry.getKey();
-            }
+        if (this.currentEntry.getValue().size() > (this.offset + 1)) {
+            this.offset = this.offset + 1;
+            return this.currentEntry.getValue().get(this.offset);
         }
+        this.currentEntry = this.iter.next();
+        if ((this.currentEntry === null) || (this.currentEntry === undefined)) {
+            this.currentEntry = undefined;
+            return undefined;
+        }
+        this.offset = 0;
+        return this.currentEntry.getValue().get(this.offset);
     };
     return HashSetJIterator;
 }());
 exports.HashSetJIterator = HashSetJIterator;
 /* TypeScript iterator */
 var HashSetIterator = /** @class */ (function () {
-    function HashSetIterator(iSet) {
-        this.set = iSet;
-        this.location = null; // this.set.deprecatedGetFirstEntryForIterator();
+    function HashSetIterator(msetimpl) {
+        this.impl = msetimpl;
     }
     // tslint:disable-next-line:no-any
     HashSetIterator.prototype.next = function (value) {
-        if (this.location === null) {
-            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        if (this.entrySet === undefined) { /// first time caller
+            this.entrySet = this.impl.getDataStore().entrySet();
+            this.iter = this.impl.getDataStore().entrySet().iterator();
+            if (this.iter.hasNext() === false) {
+                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+            }
+            this.currentEntry = this.iter.next();
+            this.offset = 0;
+            if ((this.currentEntry === null) || (this.currentEntry === undefined)) {
+                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+            }
+            if ((this.currentEntry.getValue() === null) || (this.currentEntry.getValue() === undefined)) {
+                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+            }
+            if (this.currentEntry.getValue().size() < (this.offset + 1)) {
+                return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+            }
+            return new BasicIteratorResult_1.BasicIteratorResult(false, this.currentEntry.getValue().get(this.offset));
         }
-        if (this.location === undefined) {
-            return new BasicIteratorResult_1.BasicIteratorResult(true, null);
+        if (this.currentEntry.getValue().size() > (this.offset + 1)) {
+            this.offset = this.offset + 1;
+            return new BasicIteratorResult_1.BasicIteratorResult(false, this.currentEntry.getValue().get(this.offset));
         }
-        var tmp = new BasicIteratorResult_1.BasicIteratorResult(false, this.location.entry.getKey());
-        this.location = null; // this.set.deprecatedGetNextEntryForIterator(this.location);
-        return tmp;
+        if (this.iter.hasNext()) {
+            this.currentEntry = this.iter.next();
+            this.offset = 0;
+            return new BasicIteratorResult_1.BasicIteratorResult(false, this.currentEntry.getValue().get(this.offset));
+        }
+        return new BasicIteratorResult_1.BasicIteratorResult(true, null);
     };
     return HashSetIterator;
 }());

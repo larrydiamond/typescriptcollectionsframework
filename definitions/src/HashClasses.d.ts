@@ -1,10 +1,33 @@
+/**
+* @license
+* Copyright Larry Diamond 2018 All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+*/
+import { ArrayList } from "./ArrayList";
 import { Consumer } from "./Consumer";
 import { JIterator } from "./JIterator";
 import { Hashable } from "./Hashable";
+import { HashMap } from "./HashMap";
 import { ImmutableCollection } from "./ImmutableCollection";
 import { ImmutableMultiSet } from "./ImmutableMultiSet";
 import { ImmutableSet } from "./ImmutableSet";
 import { MultiSet } from "./MultiSet";
+export declare class HashMultiSetImpl<K> {
+    private datastore;
+    private hashMethods;
+    constructor(datastore: HashMap<K, ArrayList<K>>, iHash: Hashable<K>);
+    getDataStore(): HashMap<K, ArrayList<K>>;
+    getHashMethods(): Hashable<K>;
+    count(item: K): number;
+    add(element: K): boolean;
+    remove(element: K): boolean;
+    size(): number;
+    isEmpty(): boolean;
+    contains(item: K): boolean;
+    clear(): void;
+}
 /**
  * This class implements the MultiSet interface, backed by a HashMap instance.
  *
@@ -24,8 +47,7 @@ export declare class HashMultiSet<K> implements MultiSet<K> {
     private initialElements;
     private iInitialCapacity;
     private iLoadFactor;
-    private datastore;
-    private hashMethods;
+    private impl;
     constructor(iHash?: Hashable<K>, initialElements?: ImmutableCollection<K>, iInitialCapacity?: number, iLoadFactor?: number);
     /**
     * Returns the number of occurrences of an element in this MultiSet (the count of the element).
@@ -108,15 +130,21 @@ export declare class HashMultiSet<K> implements MultiSet<K> {
     toJSON(): string;
 }
 export declare class HashSetJIterator<T> implements JIterator<T> {
-    private location;
-    private set;
-    constructor(iSet: HashMultiSet<T>);
+    private impl;
+    private entrySet;
+    private iter;
+    private currentEntry;
+    private offset;
+    constructor(msetimpl: HashMultiSetImpl<T>);
     hasNext(): boolean;
     next(): T;
 }
 export declare class HashSetIterator<T> implements Iterator<T> {
-    private location;
-    private set;
-    constructor(iSet: HashMultiSet<T>);
+    private impl;
+    private entrySet;
+    private iter;
+    private currentEntry;
+    private offset;
+    constructor(msetimpl: HashMultiSetImpl<T>);
     next(value?: any): IteratorResult<T>;
 }

@@ -14,6 +14,7 @@ var Collections_1 = require("../src/Collections");
 var CompositeCollection_1 = require("../src/CompositeCollection");
 var HashSet_1 = require("../src/HashSet");
 var LinkedList_1 = require("../src/LinkedList");
+var HashClasses_1 = require("../src/HashClasses");
 var NavigableHash_1 = require("../src/NavigableHash");
 var PriorityQueue_1 = require("../src/PriorityQueue");
 var SkipList_1 = require("../src/SkipList");
@@ -33,6 +34,8 @@ describe("Test Collection", function () {
         testEmptyStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet");
         testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet");
         testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testEmptyStringCollection(new HashClasses_1.HashMultiSet(), "HashMultiSet");
+        testEmptyStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()), "HashMultiSet");
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(undefined), "CompositeCollection undefined");
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(null), "CompositeCollection null");
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(new ArrayList_1.ArrayList()), "CompositeCollection empty");
@@ -50,6 +53,8 @@ describe("Test Collection", function () {
         testEmptyNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testEmptyNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
+        testEmptyNumberCollection(new HashClasses_1.HashMultiSet());
+        testEmptyNumberCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(undefined));
         testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(null));
         testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(new ArrayList_1.ArrayList()));
@@ -66,11 +71,14 @@ describe("Test Collection", function () {
         testAddOneItemToStringCollection(hs, "HashSet");
         testAddOneItemToStringCollection(alc, "ArrayList AllFieldCollectable");
         testAddOneItemToStringCollection(llc, "LinkedList AllFieldCollectable");
-        testAddOneItemToStringCollection(hsc, "HashSet AllFieldCollectable");
+        testAddOneItemToStringCollection(hsc, "HashSet AllFieldHashable");
         testAddOneItemToStringCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()), "NavigableHashSet StringComparator");
         testAddOneItemToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet StringComparator");
         testAddOneItemToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet StringComparator");
         testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue StringComparator");
+    });
+    it("Test add one item to string Collection Hash MultiSet", function () {
+        testAddOneItemToStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()), "HashMultiSet AllFieldHashable");
     });
     it("Test add one item to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -89,6 +97,7 @@ describe("Test Collection", function () {
         testAddOneItemToNumberCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
+        //    testAddOneItemToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
     });
     it("Test add two items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -107,6 +116,7 @@ describe("Test Collection", function () {
         testAddTwoItemsToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddTwoItemsToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()));
+        //    testAddTwoItemsToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()));
     });
     it("Test add two items to number Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -240,6 +250,7 @@ function testAddOneItemToStringCollection(coll, typestring) {
     var testCount = 0;
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(1);
+    //   console.log ("About to run test for " + typestring);
     jasts_1.TestString.equals("One element array should stringify to [blah]", JSON.stringify(coll), '"[\\"blah\\"]"');
 }
 function testAddOneItemToNumberCollection(coll) {

@@ -319,13 +319,13 @@ export class Collections {
         if (o === undefined) return 0;
         if (o === null) return 0;
 
-        let tmp : string = "";
+        let htmp : string = "";
         for (let loop = 0; loop < values.length; loop++) {
           const a = o [values [loop]];
-          tmp = tmp + " " + JSON.stringify (a);
+          htmp = htmp + " " + JSON.stringify (a);
         }
-        // console.log ("Start of hashcode for " + JSON.stringify(o) + " - " + JSON.stringify(tmp) + " " + Collections.getHashCodeForString(JSON.stringify(tmp)));
-        return Collections.getHashCodeForString(JSON.stringify(tmp));
+        // console.log ("Start of hashcode for " + JSON.stringify(o) + " - " + JSON.stringify(htmp) + " " + Collections.getHashCodeForString(JSON.stringify(htmp)));
+        return Collections.getHashCodeForString(JSON.stringify(htmp));
       }
     }
     return tmp;
@@ -339,10 +339,13 @@ export class Collections {
     if (icoll === undefined) return undefined;
     const tmp : Array<T> = new Array<T>(icoll.size());
 
+//    console.log ("AsArray started size = " + icoll.size());
     let offset:number = 0;
     for (const iter:JIterator<T> = icoll.iterator(); iter.hasNext(); ) {
+//      console.log ("AsArray iteration offset " + offset);
       const elem : T = iter.next();
       tmp [offset] = elem;
+//      console.log ("AsArray iteration " + offset + " " + JSON.stringify(tmp[offset]));
       offset = offset + 1;
     }
 
