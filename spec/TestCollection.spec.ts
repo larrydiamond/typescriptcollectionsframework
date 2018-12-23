@@ -11,6 +11,7 @@ import {AllFieldHashable} from "../src/AllFieldHashable";
 import {ArrayList} from "../src/ArrayList";
 import {Collection} from "../src/Collection";
 import {Collections} from "../src/Collections";
+import {Comparator} from "../src/Comparator";
 import {CompositeCollection} from "../src/CompositeCollection";
 import {Consumer} from "../src/Consumer";
 import {HashSet} from "../src/HashSet";
