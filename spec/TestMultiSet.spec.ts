@@ -463,6 +463,17 @@ function testRemoveString (mset:MultiSet<string>) : void {
     expect (mset.size ()).toEqual(0);
     expect (mset.isEmpty ()).toEqual(true);
     expect (mset.contains ("testkey")).toEqual (false);
+
+    expect (true).toEqual(mset.add("repeatingkey"));
+    expect (mset.size ()).toEqual(1);
+    expect (false).toEqual(mset.add("repeatingkey"));
+    expect (mset.size ()).toEqual(2);
+    expect (true).toEqual (mset.remove ("repeatingkey"));
+    expect (mset.size ()).toEqual(1);
+    expect (mset.contains ("repeatingkey")).toEqual (true);
+    expect (true).toEqual (mset.remove ("repeatingkey"));
+    expect (mset.size ()).toEqual(0);
+    expect (mset.contains ("repeatingkey")).toEqual (false);
   }
   
 function testRemoveNumber (mset:MultiSet<number>) : void {
@@ -487,7 +498,18 @@ function testRemoveNumber (mset:MultiSet<number>) : void {
     expect (mset.size ()).toEqual(0);
     expect (mset.isEmpty ()).toEqual(true);
     expect (mset.contains (1000)).toEqual (false);
-  }
+
+    expect (true).toEqual(mset.add(5000));
+    expect (mset.size ()).toEqual(1);
+    expect (false).toEqual(mset.add(5000));
+    expect (mset.size ()).toEqual(2);
+    expect (true).toEqual (mset.remove (5000));
+    expect (mset.size ()).toEqual(1);
+    expect (mset.contains (5000)).toEqual (true);
+    expect (true).toEqual (mset.remove (5000));
+    expect (mset.size ()).toEqual(0);
+    expect (mset.contains (5000)).toEqual (false);
+}
   
   function testRemovePetStoreProductAndValueClass (mset:MultiSet<PetStoreProduct>) : void {
     expect (mset.contains (product1)).toEqual (false);

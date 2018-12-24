@@ -67,7 +67,7 @@ export class HashMultiSetImpl<K> {
     if ((tmp === null) || (tmp === undefined)) {
       return false;
     }
-    if (tmp.size() >= 1) {
+    if (tmp.size() === 1) {
       this.datastore.remove (element);
     } else {
       tmp.removeFirst();
