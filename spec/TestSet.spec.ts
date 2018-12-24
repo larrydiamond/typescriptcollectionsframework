@@ -74,12 +74,12 @@ const productNotAvailable:PetStoreProduct = new PetStoreProduct("Bananas", 1.99)
 describe("Test generic Set functionality", function() {
 
   it("Test empty Sets", function() {
-    testEmptyStringStringSet (Collections.emptySet<string>());
+    testEmptyStringSet (Collections.emptySet<string>());
     testEmptyPetStoreProductAndValueClassSet (Collections.emptySet<PetStoreProduct>());
 
-    testEmptyStringStringSet (new HashSet<string> ());
-    testEmptyStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
-    testEmptyStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+    testEmptyStringSet (new HashSet<string> ());
+    testEmptyStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testEmptyStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
 
     testEmptyPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testEmptyPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
@@ -87,20 +87,20 @@ describe("Test generic Set functionality", function() {
     testEmptyPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
     testEmptyPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
-    testEmptyStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+    testEmptyStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testEmptyStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+    testEmptyStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testEmptyStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testEmptyStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
     testEmptyPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding to empty Sets", function() {
-    testAddingOneEntryStringStringSet (new HashSet<string> ());
-    testAddingOneEntryStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
-    testAddingOneEntryStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringSet (new HashSet<string> ());
+    testAddingOneEntryStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testAddingOneEntryStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
 
     testAddingOneEntryPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testAddingOneEntryPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
@@ -108,20 +108,20 @@ describe("Test generic Set functionality", function() {
     testAddingOneEntryPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
     testAddingOneEntryPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
-    testAddingOneEntryStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+    testAddingOneEntryStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testAddingOneEntryStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+    testAddingOneEntryStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testAddingOneEntryStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testAddingOneEntryStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
     testAddingOneEntryPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test adding two items to empty Sets", function() {
-    testAddingTwoEntriesStringStringSet (new HashSet<string> ());
-    testAddingTwoEntriesStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
-    testAddingTwoEntriesStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesStringSet (new HashSet<string> ());
+    testAddingTwoEntriesStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testAddingTwoEntriesStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
 
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
@@ -129,20 +129,20 @@ describe("Test generic Set functionality", function() {
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
-    testAddingTwoEntriesStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+    testAddingTwoEntriesStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testAddingTwoEntriesStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+    testAddingTwoEntriesStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testAddingTwoEntriesStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testAddingTwoEntriesStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
     testAddingTwoEntriesPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it("Test clearing Sets", function() {
-    testClearingStringStringSet (new HashSet<string> ());
-    testClearingStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
-    testClearingStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+    testClearingStringSet (new HashSet<string> ());
+    testClearingStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+    testClearingStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
 
     testClearingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
     testClearingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
@@ -150,20 +150,20 @@ describe("Test generic Set functionality", function() {
     testClearingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
     testClearingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
-    testClearingStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+    testClearingStringSet (new TreeSet<string> (Collections.getStringComparator()));
     testClearingPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testClearingStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+    testClearingStringSet (new SkipListSet<string> (Collections.getStringComparator()));
     testClearingPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-    testClearingStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+    testClearingStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
     testClearingPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it ("Test attempting to add a duplicate is ignored", function () {
-      testDuplicatingStringStringSet (new HashSet<string> ());
-      testDuplicatingStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
-      testDuplicatingStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+      testDuplicatingStringSet (new HashSet<string> ());
+      testDuplicatingStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+      testDuplicatingStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
 
       testDuplicatingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
       testDuplicatingPetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
@@ -171,20 +171,20 @@ describe("Test generic Set functionality", function() {
       testDuplicatingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
       testDuplicatingPetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
-      testDuplicatingStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+      testDuplicatingStringSet (new TreeSet<string> (Collections.getStringComparator()));
       testDuplicatingPetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-      testDuplicatingStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+      testDuplicatingStringSet (new SkipListSet<string> (Collections.getStringComparator()));
       testDuplicatingPetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-      testDuplicatingStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+      testDuplicatingStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
       testDuplicatingPetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
   it ("Test remove", function () {
-      testRemoveStringStringSet (new HashSet<string> ());
-      testRemoveStringStringSet (new HashSet<string> (new AllFieldHashable<string>()));
-      testRemoveStringStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
+      testRemoveStringSet (new HashSet<string> ());
+      testRemoveStringSet (new HashSet<string> (new AllFieldHashable<string>()));
+      testRemoveStringSet (new LinkedHashSet<string> (new AllFieldHashable<string>()));
 
       testRemovePetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> ());
       testRemovePetStoreProductAndValueClassSet (new HashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
@@ -192,19 +192,19 @@ describe("Test generic Set functionality", function() {
       testRemovePetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> ());
       testRemovePetStoreProductAndValueClassSet (new LinkedHashSet<PetStoreProduct> (new AllFieldHashable<PetStoreProduct>()));
 
-      testRemoveStringStringSet (new TreeSet<string> (Collections.getStringComparator()));
+      testRemoveStringSet (new TreeSet<string> (Collections.getStringComparator()));
       testRemovePetStoreProductAndValueClassSet (new TreeSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-      testRemoveStringStringSet (new SkipListSet<string> (Collections.getStringComparator()));
+      testRemoveStringSet (new SkipListSet<string> (Collections.getStringComparator()));
       testRemovePetStoreProductAndValueClassSet (new SkipListSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
 
-      testRemoveStringStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
+      testRemoveStringSet (new NavigableHashSet<string> (Collections.getStringComparator()));
       testRemovePetStoreProductAndValueClassSet (new NavigableHashSet<PetStoreProduct> (alphabeticalSortPetStoreProduct));
   });
 
 });
 
-function testEmptyStringStringSet (Set:ImmutableSet<string>) : void {
+function testEmptyStringSet (Set:ImmutableSet<string>) : void {
    expect (Set.isEmpty ()).toEqual(true);
    expect (Set.size ()).toEqual(0);
 }
@@ -214,7 +214,7 @@ function testEmptyPetStoreProductAndValueClassSet (Set:ImmutableSet<PetStoreProd
    expect (Set.size ()).toEqual(0);
 }
 
-function testAddingOneEntryStringStringSet (Set:JSet<string>) : void {
+function testAddingOneEntryStringSet (Set:JSet<string>) : void {
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
   expect (true).toEqual(Set.add("testkey"));
@@ -232,7 +232,7 @@ function testAddingOneEntryPetStoreProductAndValueClassSet (Set:JSet<PetStorePro
   expect (Set.isEmpty ()).toEqual(false);
 }
 
-function testAddingTwoEntriesStringStringSet (Set:JSet<string>) : void {
+function testAddingTwoEntriesStringSet (Set:JSet<string>) : void {
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
   expect (true).toEqual(Set.add("testkey"));
@@ -256,7 +256,7 @@ function testAddingTwoEntriesPetStoreProductAndValueClassSet (Set:JSet<PetStoreP
   expect (Set.isEmpty ()).toEqual(false);
 }
 
-function testClearingStringStringSet (Set:JSet<string>) : void {
+function testClearingStringSet (Set:JSet<string>) : void {
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
   expect (true).toEqual(Set.add("testkey"));
@@ -288,7 +288,7 @@ function testClearingPetStoreProductAndValueClassSet (Set:JSet<PetStoreProduct>)
   expect (Set.isEmpty ()).toEqual(true);
 }
 
-function testDuplicatingStringStringSet (Set:JSet<string>) : void {
+function testDuplicatingStringSet (Set:JSet<string>) : void {
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);
   expect (true).toEqual(Set.add("testkey"));
@@ -310,7 +310,7 @@ function testDuplicatingPetStoreProductAndValueClassSet (Set:JSet<PetStoreProduc
   expect (Set.isEmpty ()).toEqual(false);
 }
 
-function testRemoveStringStringSet (Set:JSet<string>) : void {
+function testRemoveStringSet (Set:JSet<string>) : void {
   expect (Set.contains ("testkey")).toEqual (false);
   expect (Set.size ()).toEqual(0);
   expect (Set.isEmpty ()).toEqual(true);

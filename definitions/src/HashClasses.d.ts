@@ -82,7 +82,10 @@ export declare class HashMultiSet<K> implements MultiSet<K> {
     add(element: K): boolean;
     /**
     * Removes a single occurrence of the specified element from this MultiSet, if present.
-    * @param {K} element element to be removed from this MultiSet
+    *
+    * The element removed will be equal to the element as per the Hashable used in this MultiSet
+    * and will not necessarily be the element passed in.
+    * @param {K} element element equal to this element to be removed from this MultiSet
     * @return {boolean} true if the set contained the specified element
     */
     remove(element: K): boolean;

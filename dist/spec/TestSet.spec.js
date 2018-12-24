@@ -61,99 +61,99 @@ var product3 = new PetStoreProduct("Goldfish", 9.99);
 var productNotAvailable = new PetStoreProduct("Bananas", 1.99);
 describe("Test generic Set functionality", function () {
     it("Test empty Sets", function () {
-        testEmptyStringStringSet(Collections_1.Collections.emptySet());
+        testEmptyStringSet(Collections_1.Collections.emptySet());
         testEmptyPetStoreProductAndValueClassSet(Collections_1.Collections.emptySet());
-        testEmptyStringStringSet(new HashSet_1.HashSet());
-        testEmptyStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testEmptyStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testEmptyStringSet(new HashSet_1.HashSet());
+        testEmptyStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testEmptyStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testEmptyPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testEmptyPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
         testEmptyPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testEmptyStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testEmptyStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
-        testEmptyStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testEmptyStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
-        testEmptyStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testEmptyStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testEmptyPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test adding to empty Sets", function () {
-        testAddingOneEntryStringStringSet(new HashSet_1.HashSet());
-        testAddingOneEntryStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testAddingOneEntryStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringSet(new HashSet_1.HashSet());
+        testAddingOneEntryStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingOneEntryStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testAddingOneEntryPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
         testAddingOneEntryPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testAddingOneEntryStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
-        testAddingOneEntryStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
-        testAddingOneEntryStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testAddingOneEntryStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testAddingOneEntryPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test adding two items to empty Sets", function () {
-        testAddingTwoEntriesStringStringSet(new HashSet_1.HashSet());
-        testAddingTwoEntriesStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testAddingTwoEntriesStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingTwoEntriesStringSet(new HashSet_1.HashSet());
+        testAddingTwoEntriesStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddingTwoEntriesStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testAddingTwoEntriesStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testAddingTwoEntriesStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
-        testAddingTwoEntriesStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testAddingTwoEntriesStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
-        testAddingTwoEntriesStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testAddingTwoEntriesStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testAddingTwoEntriesPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test clearing Sets", function () {
-        testClearingStringStringSet(new HashSet_1.HashSet());
-        testClearingStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testClearingStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testClearingStringSet(new HashSet_1.HashSet());
+        testClearingStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testClearingStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testClearingPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testClearingPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testClearingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
         testClearingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testClearingStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testClearingStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
-        testClearingStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testClearingStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
-        testClearingStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testClearingStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testClearingPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test attempting to add a duplicate is ignored", function () {
-        testDuplicatingStringStringSet(new HashSet_1.HashSet());
-        testDuplicatingStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testDuplicatingStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testDuplicatingStringSet(new HashSet_1.HashSet());
+        testDuplicatingStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testDuplicatingStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testDuplicatingPetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testDuplicatingPetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testDuplicatingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
         testDuplicatingPetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testDuplicatingStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testDuplicatingStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testDuplicatingPetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
-        testDuplicatingStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testDuplicatingStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testDuplicatingPetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
-        testDuplicatingStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testDuplicatingStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testDuplicatingPetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
     it("Test remove", function () {
-        testRemoveStringStringSet(new HashSet_1.HashSet());
-        testRemoveStringStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testRemoveStringStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testRemoveStringSet(new HashSet_1.HashSet());
+        testRemoveStringSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
+        testRemoveStringSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
         testRemovePetStoreProductAndValueClassSet(new HashSet_1.HashSet());
         testRemovePetStoreProductAndValueClassSet(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()));
         testRemovePetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet());
         testRemovePetStoreProductAndValueClassSet(new LinkedHashSet_1.LinkedHashSet(new AllFieldHashable_1.AllFieldHashable()));
-        testRemoveStringStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testRemoveStringSet(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testRemovePetStoreProductAndValueClassSet(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
-        testRemoveStringStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+        testRemoveStringSet(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
         testRemovePetStoreProductAndValueClassSet(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
-        testRemoveStringStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testRemoveStringSet(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testRemovePetStoreProductAndValueClassSet(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
     });
 });
-function testEmptyStringStringSet(Set) {
+function testEmptyStringSet(Set) {
     expect(Set.isEmpty()).toEqual(true);
     expect(Set.size()).toEqual(0);
 }
@@ -161,7 +161,7 @@ function testEmptyPetStoreProductAndValueClassSet(Set) {
     expect(Set.isEmpty()).toEqual(true);
     expect(Set.size()).toEqual(0);
 }
-function testAddingOneEntryStringStringSet(Set) {
+function testAddingOneEntryStringSet(Set) {
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
     expect(true).toEqual(Set.add("testkey"));
@@ -177,7 +177,7 @@ function testAddingOneEntryPetStoreProductAndValueClassSet(Set) {
     expect(Set.size()).toEqual(1);
     expect(Set.isEmpty()).toEqual(false);
 }
-function testAddingTwoEntriesStringStringSet(Set) {
+function testAddingTwoEntriesStringSet(Set) {
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
     expect(true).toEqual(Set.add("testkey"));
@@ -199,7 +199,7 @@ function testAddingTwoEntriesPetStoreProductAndValueClassSet(Set) {
     expect(Set.size()).toEqual(2);
     expect(Set.isEmpty()).toEqual(false);
 }
-function testClearingStringStringSet(Set) {
+function testClearingStringSet(Set) {
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
     expect(true).toEqual(Set.add("testkey"));
@@ -229,7 +229,7 @@ function testClearingPetStoreProductAndValueClassSet(Set) {
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
 }
-function testDuplicatingStringStringSet(Set) {
+function testDuplicatingStringSet(Set) {
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);
     expect(true).toEqual(Set.add("testkey"));
@@ -249,7 +249,7 @@ function testDuplicatingPetStoreProductAndValueClassSet(Set) {
     expect(Set.size()).toEqual(1);
     expect(Set.isEmpty()).toEqual(false);
 }
-function testRemoveStringStringSet(Set) {
+function testRemoveStringSet(Set) {
     expect(Set.contains("testkey")).toEqual(false);
     expect(Set.size()).toEqual(0);
     expect(Set.isEmpty()).toEqual(true);

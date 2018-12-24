@@ -70,7 +70,7 @@ export class HashMultiSetImpl<K> {
     if (tmp.size() >= 1) {
       this.datastore.remove (element);
     } else {
-      tmp.removeLast();
+      tmp.removeFirst();
     }
     return true;
   }
@@ -209,7 +209,10 @@ export class HashMultiSet<K> implements MultiSet<K> {
 
   /**
   * Removes a single occurrence of the specified element from this MultiSet, if present.
-  * @param {K} element element to be removed from this MultiSet
+  * 
+  * The element removed will be equal to the element as per the Hashable used in this MultiSet 
+  * and will not necessarily be the element passed in.
+  * @param {K} element element equal to this element to be removed from this MultiSet
   * @return {boolean} true if the set contained the specified element
   */
   public remove (element:K) : boolean {

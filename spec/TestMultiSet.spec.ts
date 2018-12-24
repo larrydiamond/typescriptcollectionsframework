@@ -155,6 +155,20 @@ describe("Test generic MultiSet functionality", function () {
         expect (tmp.count (productNotAvailable)).toEqual(0);
         expect (tmp.count (product2)).toEqual(4);
     });
+
+    it("Test remove string", function () {
+        testRemoveString (new HashMultiSet<string>());
+        testRemoveString (new HashMultiSet<string>(new AllFieldHashable<string>()));
+    });
+
+    it("Test remove number", function () {
+        testRemoveNumber (new HashMultiSet<number>());
+        testRemoveNumber (new HashMultiSet<number>(new AllFieldHashable<number>()));
+    });
+
+    it("Test remove number", function () {
+        testRemovePetStoreProductAndValueClass (new HashMultiSet<PetStoreProduct>(petStoreProductHashable));
+    });
 });
 
 function testEmptyStringMultiSet(tmp: ImmutableMultiSet<string>): void {
@@ -425,3 +439,74 @@ function addPetStoreProducts (tmp:MultiSet<PetStoreProduct>) : void {
     tmp.add (priceDuplicate2);
     tmp.add (priceDuplicate3);
 }
+
+
+function testRemoveString (mset:MultiSet<string>) : void {
+    expect (mset.contains ("testkey")).toEqual (false);
+    expect (mset.size ()).toEqual(0);
+    expect (mset.isEmpty ()).toEqual(true);
+  
+    expect (true).toEqual(mset.add("testkey"));
+    expect (mset.size ()).toEqual(1);
+    expect (mset.isEmpty ()).toEqual(false);
+    expect (mset.contains ("testkey")).toEqual (true);
+  
+    expect (mset.contains ("NoSuchString")).toEqual (false);
+    expect (false).toEqual (mset.remove ("NoSuchString"));
+    expect (mset.contains ("NoSuchString")).toEqual (false);
+
+    expect (mset.contains ("testkey")).toEqual (true);
+    expect (mset.size ()).toEqual(1);
+    expect (mset.isEmpty ()).toEqual(false);
+  
+    expect (true).toEqual (mset.remove ("testkey"));
+    expect (mset.size ()).toEqual(0);
+    expect (mset.isEmpty ()).toEqual(true);
+    expect (mset.contains ("testkey")).toEqual (false);
+  }
+  
+function testRemoveNumber (mset:MultiSet<number>) : void {
+    expect (mset.contains (1000)).toEqual (false);
+    expect (mset.size ()).toEqual(0);
+    expect (mset.isEmpty ()).toEqual(true);
+  
+    expect (true).toEqual(mset.add(1000));
+    expect (mset.size ()).toEqual(1);
+    expect (mset.isEmpty ()).toEqual(false);
+    expect (mset.contains (1000)).toEqual (true);
+  
+    expect (mset.contains (2000)).toEqual (false);
+    expect (false).toEqual (mset.remove (2000));
+    expect (mset.contains (2000)).toEqual (false);
+
+    expect (mset.contains (1000)).toEqual (true);
+    expect (mset.size ()).toEqual(1);
+    expect (mset.isEmpty ()).toEqual(false);
+  
+    expect (true).toEqual (mset.remove (1000));
+    expect (mset.size ()).toEqual(0);
+    expect (mset.isEmpty ()).toEqual(true);
+    expect (mset.contains (1000)).toEqual (false);
+  }
+  
+  function testRemovePetStoreProductAndValueClass (mset:MultiSet<PetStoreProduct>) : void {
+    expect (mset.contains (product1)).toEqual (false);
+    expect (mset.size ()).toEqual(0);
+    expect (mset.isEmpty ()).toEqual(true);
+  
+    expect (true).toEqual(mset.add(product1));
+    expect (mset.size ()).toEqual(1);
+    expect (mset.isEmpty ()).toEqual(false);
+    expect (mset.contains (product1)).toEqual (true);
+  
+    expect (false).toEqual (mset.remove (product2));
+    expect (mset.size ()).toEqual(1);
+    expect (mset.isEmpty ()).toEqual(false);
+    expect (mset.contains (product1)).toEqual (true);
+  
+    expect (true).toEqual (mset.remove (product1));
+    expect (mset.contains (product1)).toEqual (false);
+    expect (mset.size ()).toEqual(0);
+    expect (mset.isEmpty ()).toEqual(true);
+  }
+
