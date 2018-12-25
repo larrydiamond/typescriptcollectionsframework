@@ -68,13 +68,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The root mutable interface in the collection hierarchy. A collection represents a group of objects, known as its elements.
-							Some collections allow duplicate elements and others do not. Some are ordered and others unordered.
-							This framework does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List.
-						This interface is typically used to pass collections around and manipulate them where maximum generality is desired.</p>
+						<p>The root mutable interface in the collection hierarchy. A collection represents a group of objects, known as its elements.</p>
 					</div>
-					<p>Methods that modify collections are not defined in this class, they are instead defined in Collection or some subinterface.<br>
-					Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null and / or undefined elements.</p>
+					<p>Some collections allow duplicate elements and others do not. Some are ordered and others unordered.</p>
+					<p>This framework does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List.</p>
+					<p>This interface is typically used to pass collections around and manipulate them where maximum generality is desired.</p>
+					<p>Methods that modify collections are not defined in this class, they are instead defined in Collection or some subinterface.</p>
+					<p>Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null and / or undefined elements.</p>
 					<p>This interface corresponds to java.util.Collection</p>
 				</div>
 			</section>
@@ -176,11 +176,15 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Ensures that this collection contains the specified element (optional operation).
-										Returns true if this collection changed as a result of the call. (Returns false if this collection does not permit duplicates and already contains the specified element.)
-										Collections that support this operation may place limitations on what elements may be added to this collection. In particular, some collections will refuse to add null elements, and others will impose restrictions on the type of elements that may be added. Collection classes should clearly specify in their documentation any restrictions on what elements may be added.
-									If a collection refuses to add a particular element for any reason other than that it already contains the element, it must throw an exception (rather than returning false). This preserves the invariant that a collection always contains the specified element after this call returns.</p>
+									<p>Ensures that this collection contains the specified element (optional operation).</p>
 								</div>
+								<p>Returns true if this collection changed as a result of the call. (Returns false if this collection does not permit duplicates and already contains the specified element.)</p>
+								<p>Collections that support this operation may place limitations on what elements may be added to this collection.
+									In particular, some collections will refuse to add null elements, and others will impose restrictions on the type of elements that may be added.
+								Collection classes should clearly specify in their documentation any restrictions on what elements may be added.</p>
+								<p>If a collection refuses to add a particular element for any reason other than that it already contains the element,
+									it must throw an exception (rather than returning false).
+								This preserves the invariant that a collection always contains the specified element after this call returns.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
