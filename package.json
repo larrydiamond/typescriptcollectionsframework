@@ -41,7 +41,7 @@
     "tslintfix": "tslint --fix -c tslint.json */*.ts",
     "tslintfixwin": "tslint --fix -c tslint.json *\\*.ts",
     "typedoc": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out docs/typedoc/ src/*.ts  --exclude **/spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'",
-    "typedocwin": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out docs\\typedoc\\  --exclude **\\spec\\*.spec.ts --name \"TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework\""
+    "typedocwin": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out docs\\typedoc\\ src  --exclude **\\spec\\*.spec.ts --name \"TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework\""
   },
   "repository": {
     "type": "git",

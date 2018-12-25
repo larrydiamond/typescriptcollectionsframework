@@ -77,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>
+						<a href="_immutablemultiset_.immutablemultiset.html" class="tsd-signature-type">ImmutableMultiSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>
 					</li>
 					<li>
 						<a href="_collection_.collection.html" class="tsd-signature-type">Collection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>
@@ -89,6 +89,12 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/_hashclasses_.hashmultiset.html" class="tsd-signature-type">HashMultiSet</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -97,14 +103,16 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_multiset_.multiset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_multiset_.multiset.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite"><a href="_multiset_.multiset.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_multiset_.multiset.html#clear" class="tsd-kind-icon">clear</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_multiset_.multiset.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_multiset_.multiset.html#count" class="tsd-kind-icon">count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_multiset_.multiset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_multiset_.multiset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_multiset_.multiset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_multiset_.multiset.html#immutablemultiset" class="tsd-kind-icon">immutable<wbr>Multi<wbr>Set</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_multiset_.multiset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_multiset_.multiset.html#iterator" class="tsd-kind-icon">iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_multiset_.multiset.html#keyset" class="tsd-kind-icon">key<wbr>Set</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_multiset_.multiset.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_multiset_.multiset.html#size" class="tsd-kind-icon">size</a></li>
 							</ul>
@@ -123,10 +131,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_immutableset_.immutableset.html">ImmutableSet</a>.<a href="_immutableset_.immutableset.html#___iterator">__@iterator</a></p>
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#___iterator">__@iterator</a></p>
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/ImmutableSet.ts#L42">ImmutableSet.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L59">ImmutableMultiSet.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -139,39 +147,36 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="add" class="tsd-anchor"></a>
 					<h3>add</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#add">add</a></p>
+								<p>Overrides <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/Collection.ts#L33">Collection.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/MultiSet.ts#L24">MultiSet.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Ensures that this collection contains the specified element (optional operation).
-										Returns true if this collection changed as a result of the call. (Returns false if this collection does not permit duplicates and already contains the specified element.)
-										Collections that support this operation may place limitations on what elements may be added to this collection. In particular, some collections will refuse to add null elements, and others will impose restrictions on the type of elements that may be added. Collection classes should clearly specify in their documentation any restrictions on what elements may be added.
-									If a collection refuses to add a particular element for any reason other than that it already contains the element, it must throw an exception (rather than returning false). This preserves the invariant that a collection always contains the specified element after this call returns.</p>
+									<p>Adds the specified element to this MultiSet</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>t: <span class="tsd-signature-type">K</span></h5>
+									<h5>element: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>element to Append</p>
+										<p>element to be added to this MultiSet</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this collection changed as a result of the call</p>
+							<p>true if this MultiSet did not already contain the specified element</p>
 						</li>
 					</ul>
 				</section>
@@ -186,7 +191,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/Collection.ts#L38">Collection.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/Collection.ts#L49">Collection.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,15 +212,15 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_immutableset_.immutableset.html">ImmutableSet</a>.<a href="_immutableset_.immutableset.html#contains">contains</a></p>
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#contains">contains</a></p>
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/ImmutableSet.ts#L30">ImmutableSet.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L47">ImmutableMultiSet.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals</p>
+									<p>Returns true if this MultiSet contains the specified element.   This method uses the comparator and does not invoke equals</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -223,12 +228,45 @@
 								<li>
 									<h5>item: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>object to be checked for containment in this set</p>
+										<p>object to be checked for containment in this MultiSet</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this set contains the specified element</p>
+							<p>true if this MultiSet contains the specified element</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#count">count</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L20">ImmutableMultiSet.ts:20</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the number of occurrences of an element in this MultiSet (the count of the element).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>item: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the element to count occurrences of</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>the number of occurrences of the element in this MultiSet; possibly zero but never negative</p>
 						</li>
 					</ul>
 				</section>
@@ -244,7 +282,7 @@
 								<p>Inherited from <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#foreach">forEach</a></p>
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/ImmutableCollection.ts#L59">ImmutableCollection.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableCollection.ts#L59">ImmutableCollection.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -274,7 +312,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/Collection.ts#L50">Collection.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/Collection.ts#L68">Collection.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,24 +325,24 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="immutableset" class="tsd-anchor"></a>
-					<h3>immutable<wbr>Set</h3>
+					<a name="immutablemultiset" class="tsd-anchor"></a>
+					<h3>immutable<wbr>Multi<wbr>Set</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Multi<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_immutablemultiset_.immutablemultiset.html" class="tsd-signature-type">ImmutableMultiSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/MultiSet.ts#L17">MultiSet.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/MultiSet.ts#L17">MultiSet.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet backed by this Set</p>
+									<p>Returns an ImmutableMultiSet backed by this MultiSet</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_immutablemultiset_.immutablemultiset.html" class="tsd-signature-type">ImmutableMultiSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -317,19 +355,19 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_immutableset_.immutableset.html">ImmutableSet</a>.<a href="_immutableset_.immutableset.html#isempty">isEmpty</a></p>
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#isempty">isEmpty</a></p>
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/ImmutableSet.ts#L23">ImmutableSet.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L40">ImmutableMultiSet.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if this set contains no elements.</p>
+									<p>Returns true if this MultiSet contains no elements.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this set contains no elements</p>
+							<p>true if this MultiSet contains no elements</p>
 						</li>
 					</ul>
 				</section>
@@ -342,10 +380,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_immutableset_.immutableset.html">ImmutableSet</a>.<a href="_immutableset_.immutableset.html#iterator">iterator</a></p>
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#iterator">iterator</a></p>
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/ImmutableSet.ts#L36">ImmutableSet.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L53">ImmutableMultiSet.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,6 +393,32 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the Java style iterator</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="keyset" class="tsd-anchor"></a>
+					<h3>key<wbr>Set</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">key<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#keyset">keySet</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L28">ImmutableMultiSet.ts:28</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an ImmutableSet view of the keys contained in this MultiSet.
+										The ImmutableSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableSet.
+									If the MultiSet is modified while an iteration over the returned ImmutableSet is in progress the results of the iteration are undefined.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a view of the set of distinct keys in this MultiSet</p>
 						</li>
 					</ul>
 				</section>
@@ -369,13 +433,17 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_collection_.collection.html">Collection</a>.<a href="_collection_.collection.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/Collection.ts#L45">Collection.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/Collection.ts#L63">Collection.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes the first occurrence of the specified element from this collection, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).</p>
+									<p>Removes the first occurrence of the specified element from this collection, if it is present.</p>
 								</div>
+								<p>If the list does not contain the element, it is unchanged.</p>
+								<p>More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i)))
+								(if such an element exists).</p>
+								<p>Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -400,19 +468,19 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_immutableset_.immutableset.html">ImmutableSet</a>.<a href="_immutableset_.immutableset.html#size">size</a></p>
+								<p>Inherited from <a href="_immutablemultiset_.immutablemultiset.html">ImmutableMultiSet</a>.<a href="_immutablemultiset_.immutablemultiset.html#size">size</a></p>
 								<p>Overrides <a href="_immutablecollection_.immutablecollection.html">ImmutableCollection</a>.<a href="_immutablecollection_.immutablecollection.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/449c87d/src/ImmutableSet.ts#L17">ImmutableSet.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/ImmutableMultiSet.ts#L34">ImmutableMultiSet.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the number of elements in this set (its cardinality).</p>
+									<p>Returns the number of elements in this MultiSet (its cardinality).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the number of elements in this set (its cardinality)</p>
+							<p>the number of elements in this MultiSet (its cardinality)</p>
 						</li>
 					</ul>
 				</section>
@@ -439,7 +507,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_multiset_.multiset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="_multiset_.multiset.html#add" class="tsd-kind-icon">add</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
@@ -448,6 +516,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_multiset_.multiset.html#contains" class="tsd-kind-icon">contains</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_multiset_.multiset.html#count" class="tsd-kind-icon">count</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_multiset_.multiset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
@@ -455,13 +526,16 @@
 								<a href="_multiset_.multiset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_multiset_.multiset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a>
+								<a href="_multiset_.multiset.html#immutablemultiset" class="tsd-kind-icon">immutable<wbr>Multi<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_multiset_.multiset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_multiset_.multiset.html#iterator" class="tsd-kind-icon">iterator</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_multiset_.multiset.html#keyset" class="tsd-kind-icon">key<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_multiset_.multiset.html#remove" class="tsd-kind-icon">remove</a>

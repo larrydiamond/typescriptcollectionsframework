@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HashSet | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>HashMultiSet | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_hashset_.html">&quot;HashSet&quot;</a>
+					<a href="../modules/_hashclasses_.html">&quot;HashClasses&quot;</a>
 				</li>
 				<li>
-					<a href="_hashset_.hashset.html">HashSet</a>
+					<a href="_hashclasses_.hashmultiset.html">HashMultiSet</a>
 				</li>
 			</ul>
-			<h1>Class HashSet&lt;K&gt;</h1>
+			<h1>Class HashMultiSet&lt;K&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,16 +68,17 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>This class implements the Set interface, backed by a HashMap instance.</p>
+						<p>This class implements the MultiSet interface, backed by a HashMap instance.</p>
 					</div>
-					<p>It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time.
-					This class permits the null element.</p>
+					<p>It makes no guarantees as to the iteration order of the MultiSet;
+						in particular, it does not guarantee that the order will remain constant over time.
+					This class permits the null element and the undefined element</p>
 					<p>This class offers constant time performance for the basic operations (add, remove, contains and size),
 						assuming the hash function disperses the elements properly among the buckets. <br>
-						Iterating over this set requires time proportional to the sum of the HashSet instance&#39;s size
+						Iterating over this MultiSet requires time proportional to the sum of the HashMultiSet instance&#39;s size
 						(the number of elements) plus the &quot;capacity&quot; of the backing HashMap instance (the number of buckets). <br>
 					Thus, it&#39;s very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.</p>
-					<p>This class corresponds to java.util.HashSet</p>
+					<p>This class corresponds to com.google.common.collect.HashMultiSet</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -92,19 +93,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HashSet</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="_linkedhashset_.linkedhashset.html" class="tsd-signature-type">LinkedHashSet</a>
-							</li>
-						</ul>
+						<span class="target">HashMultiSet</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_jset_.jset.html" class="tsd-signature-type">JSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/_multiset_.multiset.html" class="tsd-signature-type">MultiSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -114,27 +110,27 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_hashset_.hashset.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#contains" class="tsd-kind-icon">contains</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#iterator" class="tsd-kind-icon">iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#size" class="tsd-kind-icon">size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashset_.hashset.html#tojson" class="tsd-kind-icon">toJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#count" class="tsd-kind-icon">count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#immutablemultiset" class="tsd-kind-icon">immutable<wbr>Multi<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#iterator" class="tsd-kind-icon">iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#keyset" class="tsd-kind-icon">key<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_hashclasses_.hashmultiset.html#tojson" class="tsd-kind-icon">toJSON</a></li>
 							</ul>
 						</section>
 					</div>
@@ -146,13 +142,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Hash<wbr>Set<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacity<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Hash<wbr>Multi<wbr>Set<span class="tsd-signature-symbol">(</span>iHash<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_hashable_.hashable.html" class="tsd-signature-type">Hashable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, iInitialCapacity<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, iLoadFactor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashclasses_.hashmultiset.html" class="tsd-signature-type">HashMultiSet</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L38">HashSet.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L133">HashClasses.ts:133</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -170,7 +166,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iLoadFactor: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.75</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashset_.hashset.html" class="tsd-signature-type">HashSet</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_hashclasses_.hashmultiset.html" class="tsd-signature-type">HashMultiSet</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -186,9 +182,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#___iterator">__@iterator</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L168">HashSet.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L266">HashClasses.ts:266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -210,14 +206,14 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#add">add</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L75">HashSet.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L206">HashClasses.ts:206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds the specified element to this set if it is not already present.</p>
+									<p>Adds an occurance of the specified element to this MultiSet</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -225,12 +221,12 @@
 								<li>
 									<h5>element: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>element to be added to this set</p>
+										<p>element to be added to this MultiSet</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this set did not already contain the specified element</p>
+							<p>true if this MultiSet did not already contain the specified element</p>
 						</li>
 					</ul>
 				</section>
@@ -243,14 +239,14 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#clear">clear</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L136">HashSet.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L250">HashClasses.ts:250</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes all of the elements from this set. The set will be empty after this call returns.</p>
+									<p>Removes all of the elements from this MultiSet. The MultiSet will be empty after this call returns.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -266,14 +262,14 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#contains">contains</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L126">HashSet.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L243">HashClasses.ts:243</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals</p>
+									<p>Returns true if this MultiSet contains the specified element.   This method uses the comparator and does not invoke equals</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -281,70 +277,45 @@
 								<li>
 									<h5>item: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>object to be checked for containment in this set</p>
+										<p>object to be checked for containment in this MultiSet</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this set contains the specified element</p>
+							<p>true if this MultiSet contains the specified element</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="deprecatedgetfirstentryforiterator" class="tsd-anchor"></a>
-					<h3>deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</h3>
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#count">count</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L144">HashSet.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L163">HashClasses.ts:163</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is deprecated and will be removed in a future revision.</p>
+									<p>Returns the number of occurrences of an element in this MultiSet (the count of the element).</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="deprecatedgetnextentryforiterator" class="tsd-anchor"></a>
-					<h3>deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator<span class="tsd-signature-symbol">(</span>current<span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L152">HashSet.ts:152</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This method is deprecated and will be removed in a future revision.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd></dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>current: <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>item: <span class="tsd-signature-type">K</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the element to count occurrences of</p>
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>the number of occurrences of the element in this MultiSet; possibly zero but never negative</p>
 						</li>
 					</ul>
 				</section>
@@ -357,14 +328,16 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#foreach">forEach</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L55">HashSet.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L186">HashClasses.ts:186</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.</p>
+									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
+										Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified).
+									Exceptions thrown by the action are relayed to the caller.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -390,7 +363,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L66">HashSet.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L197">HashClasses.ts:197</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,9 +384,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#immutablecollection">immutableCollection</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L175">HashSet.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L273">HashClasses.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -426,25 +399,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="immutableset" class="tsd-anchor"></a>
-					<h3>immutable<wbr>Set</h3>
+					<a name="immutablemultiset" class="tsd-anchor"></a>
+					<h3>immutable<wbr>Multi<wbr>Set</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">immutable<wbr>Multi<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablemultiset_.immutablemultiset.html" class="tsd-signature-type">ImmutableMultiSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#immutableset">immutableSet</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#immutablemultiset">immutableMultiSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L182">HashSet.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L280">HashClasses.ts:280</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet backed by this Set</p>
+									<p>Returns an ImmutableMultiSet backed by this MultiSet</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutablemultiset_.immutablemultiset.html" class="tsd-signature-type">ImmutableMultiSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -457,18 +430,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#isempty">isEmpty</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L112">HashSet.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L234">HashClasses.ts:234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if this set contains no elements.</p>
+									<p>Returns true if this MultiSet contains no elements.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>true if this set contains no elements</p>
+							<p>true if this MultiSet contains no elements</p>
 						</li>
 					</ul>
 				</section>
@@ -481,9 +454,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#iterator">iterator</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L160">HashSet.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L258">HashClasses.ts:258</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -497,6 +470,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="keyset" class="tsd-anchor"></a>
+					<h3>key<wbr>Set</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">key<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#keyset">keySet</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L174">HashClasses.ts:174</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an ImmutableSet view of the keys contained in this MultiSet.
+										The ImmutableSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableSet.
+									If the MultiSet is modified while an iteration over the returned ImmutableSet is in progress the results of the iteration are undefined.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a view of the set of distinct keys in this MultiSet</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="remove" class="tsd-anchor"></a>
 					<h3>remove</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -505,22 +504,24 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#remove">remove</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L89">HashSet.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L218">HashClasses.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>RemoveElement the specified element from this set if it is present.</p>
+									<p>Removes a single occurrence of the specified element from this MultiSet, if present.</p>
 								</div>
+								<p>The element removed will be equal to the element as per the Hashable used in this MultiSet
+								and will not necessarily be the element passed in.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>element: <span class="tsd-signature-type">K</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>element to be removed from this set</p>
+										<p>element equal to this element to be removed from this MultiSet</p>
 									</div>
 								</li>
 							</ul>
@@ -538,18 +539,18 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_jset_.jset.html">JSet</a>.<a href="../interfaces/_jset_.jset.html#size">size</a></p>
+								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L102">HashSet.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L226">HashClasses.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the number of elements in this set (its cardinality).</p>
+									<p>Returns the number of elements in this MultiSet (its cardinality).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>the number of elements in this set (its cardinality)</p>
+							<p>the number of elements in this MultiSet (its cardinality)</p>
 						</li>
 					</ul>
 				</section>
@@ -563,7 +564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashSet.ts#L189">HashSet.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/863e733/src/HashClasses.ts#L287">HashClasses.ts:287</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -584,7 +585,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_hashset_.html">"<wbr>Hash<wbr>Set"</a>
+						<a href="../modules/_hashclasses_.html">"<wbr>Hash<wbr>Classes"</a>
 					</li>
 				</ul>
 			</nav>
@@ -593,65 +594,68 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashset.html" class="tsd-kind-icon">Hash<wbr>Set</a>
+						<a href="_hashclasses_.hashmultiset.html" class="tsd-kind-icon">Hash<wbr>Multi<wbr>Set</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_hashclasses_.hashmultiset.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+								<a href="_hashclasses_.hashmultiset.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#add" class="tsd-kind-icon">add</a>
+								<a href="_hashclasses_.hashmultiset.html#add" class="tsd-kind-icon">add</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#clear" class="tsd-kind-icon">clear</a>
+								<a href="_hashclasses_.hashmultiset.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#contains" class="tsd-kind-icon">contains</a>
+								<a href="_hashclasses_.hashmultiset.html#contains" class="tsd-kind-icon">contains</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#deprecatedgetfirstentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>First<wbr>Entry<wbr>For<wbr>Iterator</a>
+								<a href="_hashclasses_.hashmultiset.html#count" class="tsd-kind-icon">count</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#deprecatedgetnextentryforiterator" class="tsd-kind-icon">deprecated<wbr>Get<wbr>Next<wbr>Entry<wbr>For<wbr>Iterator</a>
+								<a href="_hashclasses_.hashmultiset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+								<a href="_hashclasses_.hashmultiset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#gethashable" class="tsd-kind-icon">get<wbr>Hashable</a>
+								<a href="_hashclasses_.hashmultiset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
+								<a href="_hashclasses_.hashmultiset.html#immutablemultiset" class="tsd-kind-icon">immutable<wbr>Multi<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#immutableset" class="tsd-kind-icon">immutable<wbr>Set</a>
+								<a href="_hashclasses_.hashmultiset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+								<a href="_hashclasses_.hashmultiset.html#iterator" class="tsd-kind-icon">iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#iterator" class="tsd-kind-icon">iterator</a>
+								<a href="_hashclasses_.hashmultiset.html#keyset" class="tsd-kind-icon">key<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#remove" class="tsd-kind-icon">remove</a>
+								<a href="_hashclasses_.hashmultiset.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#size" class="tsd-kind-icon">size</a>
+								<a href="_hashclasses_.hashmultiset.html#size" class="tsd-kind-icon">size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_hashset_.hashset.html#tojson" class="tsd-kind-icon">toJSON</a>
+								<a href="_hashclasses_.hashmultiset.html#tojson" class="tsd-kind-icon">toJSON</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashsetiterator.html" class="tsd-kind-icon">Hash<wbr>Set<wbr>Iterator</a>
+						<a href="_hashclasses_.hashmultisetimpl.html" class="tsd-kind-icon">Hash<wbr>Multi<wbr>Set<wbr>Impl</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_hashset_.hashsetjiterator.html" class="tsd-kind-icon">Hash<wbr>SetJIterator</a>
+						<a href="_hashclasses_.hashsetiterator.html" class="tsd-kind-icon">Hash<wbr>Set<wbr>Iterator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_hashclasses_.hashsetjiterator.html" class="tsd-kind-icon">Hash<wbr>SetJIterator</a>
 					</li>
 				</ul>
 			</nav>
