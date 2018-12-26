@@ -4,7 +4,7 @@
 * Copyright Larry Diamond 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/LICENSE
 */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {

@@ -3,7 +3,7 @@
 * Copyright Francesco Giordano 2017 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/LICENSE
 */
 import {Collectable} from "./Collectable";
 import {Collections} from "../src/Collections";

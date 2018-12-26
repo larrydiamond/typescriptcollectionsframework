@@ -18,7 +18,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 * Copyright Francesco Giordano 2018 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
-* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
+* found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/LICENSE
 */
 var AllFieldHashable_1 = require("./AllFieldHashable");
 var HashSet_1 = require("./HashSet");
