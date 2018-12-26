@@ -68,8 +68,14 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>BasicMapEntry is immutable once constructed.   Mutability is provided via the Map implementation</p>
+						<p>A map entry (key-value pair).</p>
 					</div>
+					<p>The Map.entrySet method returns a collection-view of the map, whose elements are of this class.</p>
+					<p>The only way to obtain a reference to a map entry is from the iterator of this collection-view.</p>
+					<p>These MapEntry objects are valid only for the duration of the iteration; more formally,
+						the behavior of a map entry is undefined if the backing map has been modified after the entry
+					was returned by the iterator, except through the setValue operation on the map entry.</p>
+					<p>BasicMapEntry is immutable once constructed.   Mutability is provided via the Map implementation.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -148,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L17">BasicMapEntry.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L27">BasicMapEntry.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -173,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">K</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L16">BasicMapEntry.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L26">BasicMapEntry.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +189,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">V</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L17">BasicMapEntry.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L27">BasicMapEntry.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +207,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_mapentry_.mapentry.html">MapEntry</a>.<a href="../interfaces/_mapentry_.mapentry.html#getkey">getKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L28">BasicMapEntry.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L39">BasicMapEntry.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -225,13 +231,15 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_mapentry_.mapentry.html">MapEntry</a>.<a href="../interfaces/_mapentry_.mapentry.html#getvalue">getValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L36">BasicMapEntry.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L51">BasicMapEntry.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the value corresponding to this entry. If the mapping has been removed from the backing map (by the iterator&#39;s remove operation), the results of this call are undefined.</p>
+									<p>Returns the value corresponding to this entry.</p>
 								</div>
+								<p>If the mapping has been removed from the backing map (by the iterator&#39;s remove operation),
+								the results of this call are undefined.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
 							<p>the value corresponding to this entry</p>
@@ -248,7 +256,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L40">BasicMapEntry.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/BasicMapEntry.ts#L55">BasicMapEntry.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
