@@ -6,6 +6,11 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
  */
 
+ /**
+  * BasicIteratorResult is often used when using the TypeScript style iteration.
+  * 
+  * It provides a done boolean and a value object, as per the IteratorResult class in TypeScript
+  */
 export class BasicIteratorResult<T> implements IteratorResult<T> {
     public done:boolean;
     public value:T;
