@@ -8,6 +8,7 @@
 
  /**
   * The Collectable interface provides a mechanism to compare objects to see if they are equal.
+  * 
   * This is a replacement for the equals method in Java
   */
 
