@@ -65,6 +65,36 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.</p>
+					</div>
+					<p>The ImmutableMap interface provides three collection views, which allow a map&#39;s contents to be viewed
+						as a set of keys, collection of values, or set of key-value mappings.
+						The order of a map is defined as the order in which the iterators on the map&#39;s collection views return their elements.
+					Some map implementations, like the TreeMap class, make specific guarantees as to their order; others, like the HashMap class, do not.</p>
+					<p>Note: great care must be exercised if mutable objects are used as map keys.
+						The behavior of a map is not specified if the value of an object is changed in a manner that affects equals comparisons while the object is a key in the map.
+						A special case of this prohibition is that it is not permissible for a map to contain itself as a key.
+					While it is permissible for a map to contain itself as a value, extreme caution is advised: the equals and hashCode methods are no longer well defined on such a map.</p>
+					<p>Some map implementations have restrictions on the keys and values they may contain.
+						For example, some implementations prohibit null and undefined keys and values.
+					Attempting to query the presence of an ineligible key or value has undefined behavior - it may throw an exception, or it may simply return false;</p>
+					<p>Many methods in Collections Framework interfaces are defined in terms of the equals method.
+						For example, the specification for the containsKey(k: K) method says:
+						&quot;returns true if and only if this map contains a mapping for a key k such that (key==null ? k==null : key.equals(k)).&quot;
+						This specification should not be construed to imply that invoking Map.containsKey with a non-null argument key will cause key.equals(k) to be invoked for any key k.
+						Implementations are free to implement optimizations whereby the equals invocation is avoided, for example, by first comparing the hash codes of the two keys.
+						More generally, implementations of the various Collections Framework interfaces are free to take advantage of the specified behavior of underlying Object
+					methods wherever the implementor deems it appropriate.</p>
+					<p>Some map operations which perform recursive traversal of the map may fail with an
+						exception for self-referential instances where the map directly or indirectly contains itself.
+						This includes the clone(), equals(), hashCode() and toString() methods.
+					Implementations may optionally handle the self-referential scenario, however most current implementations do not do so.</p>
+					<p>This interface is the immutable version of java.lang.Map.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -121,7 +151,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L66">ImmutableMap.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L98">ImmutableMap.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -144,7 +174,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L31">ImmutableMap.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L63">ImmutableMap.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -176,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L37">ImmutableMap.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L69">ImmutableMap.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,7 +237,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L60">ImmutableMap.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L92">ImmutableMap.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -233,7 +263,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L24">ImmutableMap.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L56">ImmutableMap.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -265,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L43">ImmutableMap.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L75">ImmutableMap.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L51">ImmutableMap.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L83">ImmutableMap.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L17">ImmutableMap.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L49">ImmutableMap.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
