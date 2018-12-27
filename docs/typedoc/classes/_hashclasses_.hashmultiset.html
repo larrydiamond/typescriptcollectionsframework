@@ -71,13 +71,13 @@
 						<p>This class implements the MultiSet interface, backed by a HashMap instance.</p>
 					</div>
 					<p>It makes no guarantees as to the iteration order of the MultiSet;
-						in particular, it does not guarantee that the order will remain constant over time.
-					This class permits the null element and the undefined element</p>
+					in particular, it does not guarantee that the order will remain constant over time.</p>
+					<p>This class permits the null element and the undefined element</p>
 					<p>This class offers constant time performance for the basic operations (add, remove, contains and size),
-						assuming the hash function disperses the elements properly among the buckets. <br>
-						Iterating over this MultiSet requires time proportional to the sum of the HashMultiSet instance&#39;s size
-						(the number of elements) plus the &quot;capacity&quot; of the backing HashMap instance (the number of buckets). <br>
-					Thus, it&#39;s very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.</p>
+					assuming the hash function disperses the elements properly among the buckets.</p>
+					<p>Iterating over this MultiSet requires time proportional to the sum of the HashMultiSet instance&#39;s size
+					(the number of elements) plus the &quot;capacity&quot; of the backing HashMap instance (the number of buckets).</p>
+					<p>Thus, it&#39;s very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.</p>
 					<p>This class corresponds to com.google.common.collect.HashMultiSet</p>
 				</div>
 			</section>
@@ -148,7 +148,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L133">HashClasses.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L136">HashClasses.ts:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -184,7 +184,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L266">HashClasses.ts:266</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L286">HashClasses.ts:286</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -208,7 +208,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L206">HashClasses.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L218">HashClasses.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -241,7 +241,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L250">HashClasses.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L268">HashClasses.ts:268</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -264,13 +264,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L243">HashClasses.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L261">HashClasses.ts:261</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns true if this MultiSet contains the specified element.   This method uses the comparator and does not invoke equals</p>
+									<p>Returns true if this MultiSet contains the specified element.</p>
 								</div>
+								<p>This method uses the comparator and does not invoke equals</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -297,7 +298,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#count">count</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L163">HashClasses.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L167">HashClasses.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,15 +331,15 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L186">HashClasses.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L196">HashClasses.ts:196</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
-										Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified).
-									Exceptions thrown by the action are relayed to the caller.</p>
+									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.</p>
 								</div>
+								<p>Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified).</p>
+								<p>Exceptions thrown by the action are relayed to the caller.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -363,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L197">HashClasses.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L208">HashClasses.ts:208</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,7 +387,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L273">HashClasses.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L293">HashClasses.ts:293</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -409,7 +410,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#immutablemultiset">immutableMultiSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L280">HashClasses.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L300">HashClasses.ts:300</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +433,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L234">HashClasses.ts:234</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L249">HashClasses.ts:249</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,7 +457,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L258">HashClasses.ts:258</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L277">HashClasses.ts:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,15 +481,15 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L174">HashClasses.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L181">HashClasses.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet view of the keys contained in this MultiSet.
-										The ImmutableSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableSet.
-									If the MultiSet is modified while an iteration over the returned ImmutableSet is in progress the results of the iteration are undefined.</p>
+									<p>Returns an ImmutableSet view of the keys contained in this MultiSet.</p>
 								</div>
+								<p>The ImmutableSet is backed by the MultiSet, so changes to the MultiSet are reflected in the returned ImmutableSet.</p>
+								<p>If the MultiSet is modified while an iteration over the returned ImmutableSet is in progress the results of the iteration are undefined.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>a view of the set of distinct keys in this MultiSet</p>
@@ -506,7 +507,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L218">HashClasses.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L231">HashClasses.ts:231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -541,7 +542,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_multiset_.multiset.html">MultiSet</a>.<a href="../interfaces/_multiset_.multiset.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L226">HashClasses.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L240">HashClasses.ts:240</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -564,7 +565,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L287">HashClasses.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashClasses.ts#L307">HashClasses.ts:307</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

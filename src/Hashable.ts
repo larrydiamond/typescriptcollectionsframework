@@ -6,14 +6,14 @@
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/LICENSE
  */
 
+import {Collectable} from "./Collectable";
+
  /**
   * The Hashable interface provides a mechanism to compare objects to see if they are equal and to calculate hash codes for objects.
   * 
   * This is a replacement for the equals method and hashcode method in Java
   */
-import {Collectable} from "./Collectable";
-
-export interface Hashable<T> extends Collectable<T> {
+ export interface Hashable<T> extends Collectable<T> {
   /**
    * Returns a hash code value for the object. 
    * 
