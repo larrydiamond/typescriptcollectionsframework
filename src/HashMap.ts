@@ -22,22 +22,38 @@ import {List} from "./List";
 import {MapEntry} from "./MapEntry";
 
 /**
- * Hash table based implementation of the Map interface.  This implementation permits null values and the null key.<br>
- * This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.<br>
- * This implementation provides constant-time performance for the basic operations (get and put), assuming the hash function disperses the elements properly among the buckets.<br>
- * Iteration over collection views requires time proportional to the "capacity" of the HashMap instance (the number of buckets) plus its size (the number of key-value mappings).
+ * Hash table based implementation of the Map interface.  This implementation permits null values and the null key.
+ * 
+ * This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.
+ * 
+ * This implementation provides constant-time performance for the basic operations (get and put), 
+ * assuming the hash function disperses the elements properly among the buckets.
+ * 
+ * Iteration over collection views requires time proportional to the "capacity" of the HashMap instance 
+ * (the number of buckets) plus its size (the number of key-value mappings).
  *
- * An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.<br>
- * The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created.<br>
- * The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased.<br>
- * When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.
+ * An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.
+ * 
+ * The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created.
+ * 
+ * The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased.
+ * 
+ * When the number of entries in the hash table exceeds the product of the load factor and the current capacity, 
+ * the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.
  *
- * As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.<br>
- * Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put).<br>
- * The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity, so as to minimize the number of rehash operations.<br>
+ * As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.
+ * 
+ * Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put).
+ * 
+ * The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity, 
+ * so as to minimize the number of rehash operations.
+ * 
  * If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.
  *
- * If many mappings are to be stored in a HashMap instance, creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform automatic rehashing as needed to grow the table.<br>
+ * If many mappings are to be stored in a HashMap instance, 
+ * creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform 
+ * automatic rehashing as needed to grow the table.
+ * 
  * Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table.
  *
  * This class corresponds to java.util.HashMap
@@ -70,7 +86,10 @@ export class HashMap<K,V> implements JMap<K,V> {
   }
 
   /**
-  * Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
+  * Associates the specified value with the specified key in this map. 
+  * 
+  * If the map previously contained a mapping for the key, the old value is replaced.
+  * 
   * @param {K} key key with which the specified value is to be associated
   * @param {V} value value to be associated with the specified key
   * @return {V} the previous value associated with key, or undefined if there was no mapping for key. (An undefined return can also indicate that the map previously associated undefined with key.)
@@ -108,6 +127,7 @@ export class HashMap<K,V> implements JMap<K,V> {
    *
    * This is a placeholder that does nothing for HashMap object but needed to work with
    * LinkedHashMap's addEntry method which it overrides from here to fully provide the linked functionality.
+   * 
    * @param {number} hash value that represents the hash value of the key
    * @param {K} key key with which the specified value is to be associated
    * @param {V} value value to be associated with the specified key
@@ -146,6 +166,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
  /**
   * Returns true if this map contains no key-value mappings.
+  * 
   * @return {boolean} true if this map contains no key-value mappings
   */
   public isEmpty () : boolean {
@@ -155,6 +176,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
  /**
   * Returns the number of key-value mappings in this map.
+  * 
   * @return {number} the number of key-value mappings in this map
   */
   public size () : number {
@@ -163,6 +185,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
   /**
   * Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.
+  * 
   * @param {K} key the key whose associated value is to be returned
   * @return {V} the value to which the specified key is mapped, or undefined if this map contains no mapping for the key
   */
@@ -196,6 +219,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
  /**
   * Returns true if this map contains a mapping for the specified key.
+  * 
   * @param {K} key The key whose presence in this map is to be tested
   * @return {V} true if this map contains a mapping for the specified key.
   */
@@ -207,6 +231,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
   /**
    * Returns true if this map maps one or more keys to the specified value.
+   * 
    * @param value value whose presence in this map is to be tested
    */
   public containsValue (value: V) : boolean {
@@ -244,9 +269,13 @@ export class HashMap<K,V> implements JMap<K,V> {
 
  /**
   * Returns an ImmutableSet view of the keys contained in this map.
+  * 
   * The set's iterator returns the keys in ascending order.
+  * 
   * The set is backed by the map, so changes to the map are reflected in the set.
+  * 
   * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * 
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
   public keySet () : ImmutableSet<K> {
@@ -255,10 +284,15 @@ export class HashMap<K,V> implements JMap<K,V> {
 
  /**
   * Returns an ImmutableSet view of the mappings contained in this map.
+  * 
   * The set's iterator returns the mappings in random key order.
+  * 
   * The set is backed by the map, so changes to the map are reflected in the set.
+  * 
   * If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
+  * 
   * The contains method on this entrySet will only compare keys not values.
+  * 
   * @return {MapEntry} an entry with the greatest key, or null if this map is empty
   */
   public entrySet () : ImmutableSet<MapEntry<K,V>> {
@@ -274,6 +308,7 @@ export class HashMap<K,V> implements JMap<K,V> {
 
   /**
    * Returns an iterator over the entire entry set
+   * 
    * @return {Iterator<K>} an iterator for the entry set
    */
   public [Symbol.iterator] ():Iterator<K> {

@@ -9,11 +9,15 @@ import { Consumer } from "./Consumer";
 import { JIterator } from "./JIterator";
 /**
  * The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements.
+ *
  * Some collections allow duplicate elements and others do not. Some are ordered and others unordered.
+ *
  * This framework does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List.
+ *
  * This interface is typically used to pass collections around and query them where maximum generality is desired.
  *
- * Methods that modify collections are not defined in this class, they are instead defined in Collection or some subinterface.<br>
+ * Methods that modify collections are not defined in this class, they are instead defined in Collection or some subinterface.
+ *
  * Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null and / or undefined elements.
  */
 export interface ImmutableCollection<T> {
@@ -45,6 +49,7 @@ export interface ImmutableCollection<T> {
     contains(t: T): boolean;
     /**
      * Performs the given action for each element until all elements have been processed or the action throws and exception.
+     *
      * Exceptions thrown by the action are relayed to the caller
      */
     forEach(action: Consumer<T>): void;

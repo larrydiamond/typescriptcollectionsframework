@@ -15,12 +15,15 @@ var HashMap_1 = require("./HashMap");
  * This class implements the Set interface, backed by a HashMap instance.
  *
  * It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time.
- * This class permits the null element.
+ *
+ * This class permits the null element and the undefined element.
  *
  * This class offers constant time performance for the basic operations (add, remove, contains and size),
- * assuming the hash function disperses the elements properly among the buckets. <br>
+ * assuming the hash function disperses the elements properly among the buckets.
+ *
  * Iterating over this set requires time proportional to the sum of the HashSet instance's size
- * (the number of elements) plus the "capacity" of the backing HashMap instance (the number of buckets). <br>
+ * (the number of elements) plus the "capacity" of the backing HashMap instance (the number of buckets).
+ *
  * Thus, it's very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.
  *
  * This class corresponds to java.util.HashSet
@@ -45,7 +48,11 @@ var HashSet = /** @class */ (function () {
         }
     }
     /**
-    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
+    *
+    * Unless otherwise specified by the implementing class, actions are performed in the order of iteration
+    * (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+    *
     * @param {Consumer} consumer - the action to be performed for each element
     */
     HashSet.prototype.forEach = function (consumer) {
@@ -63,6 +70,7 @@ var HashSet = /** @class */ (function () {
     };
     /**
     * Adds the specified element to this set if it is not already present.
+    *
     * @param {K} element element to be added to this set
     * @return {boolean} true if this set did not already contain the specified element
     */
@@ -75,6 +83,7 @@ var HashSet = /** @class */ (function () {
     };
     /**
     * RemoveElement the specified element from this set if it is present.
+    *
     * @param {K} element element to be removed from this set
     * @return {boolean} true if the set contained the specified element
     */
@@ -87,6 +96,7 @@ var HashSet = /** @class */ (function () {
     };
     /**
     * Returns the number of elements in this set (its cardinality).
+    *
     * @return {number} the number of elements in this set (its cardinality)
     */
     HashSet.prototype.size = function () {
@@ -96,6 +106,7 @@ var HashSet = /** @class */ (function () {
     };
     /**
     * Returns true if this set contains no elements.
+    *
     * @return {boolean} true if this set contains no elements
     */
     HashSet.prototype.isEmpty = function () {
@@ -108,6 +119,7 @@ var HashSet = /** @class */ (function () {
     };
     /**
     * Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals
+    *
     * @param {K} item object to be checked for containment in this set
     * @return {boolean} true if this set contains the specified element
     */

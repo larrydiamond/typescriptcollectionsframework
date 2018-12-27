@@ -68,21 +68,27 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Hash table based implementation of the Map interface.  This implementation permits null values and the null key.<br>
-							This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.<br>
-							This implementation provides constant-time performance for the basic operations (get and put), assuming the hash function disperses the elements properly among the buckets.<br>
-						Iteration over collection views requires time proportional to the &quot;capacity&quot; of the HashMap instance (the number of buckets) plus its size (the number of key-value mappings).</p>
+						<p>Hash table based implementation of the Map interface.  This implementation permits null values and the null key.</p>
 					</div>
-					<p>An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.<br>
-						The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created.<br>
-						The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased.<br>
-					When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.</p>
-					<p>As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.<br>
-						Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put).<br>
-						The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity, so as to minimize the number of rehash operations.<br>
-					If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.</p>
-					<p>If many mappings are to be stored in a HashMap instance, creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform automatic rehashing as needed to grow the table.<br>
-					Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table.</p>
+					<p>This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.</p>
+					<p>This implementation provides constant-time performance for the basic operations (get and put),
+					assuming the hash function disperses the elements properly among the buckets.</p>
+					<p>Iteration over collection views requires time proportional to the &quot;capacity&quot; of the HashMap instance
+					(the number of buckets) plus its size (the number of key-value mappings).</p>
+					<p>An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.</p>
+					<p>The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created.</p>
+					<p>The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased.</p>
+					<p>When the number of entries in the hash table exceeds the product of the load factor and the current capacity,
+					the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.</p>
+					<p>As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.</p>
+					<p>Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put).</p>
+					<p>The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity,
+					so as to minimize the number of rehash operations.</p>
+					<p>If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.</p>
+					<p>If many mappings are to be stored in a HashMap instance,
+						creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform
+					automatic rehashing as needed to grow the table.</p>
+					<p>Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table.</p>
 					<p>This class corresponds to java.util.HashMap</p>
 				</div>
 			</section>
@@ -163,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L52">HashMap.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L68">HashMap.ts:68</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -199,7 +205,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L279">HashMap.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L314">HashMap.ts:314</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -222,7 +228,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L116">HashMap.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L136">HashMap.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,7 +279,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L239">HashMap.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L264">HashMap.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -296,7 +302,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#containskey">containsKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L202">HashMap.ts:202</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L226">HashMap.ts:226</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,7 +335,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#containsvalue">containsValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L212">HashMap.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L237">HashMap.ts:237</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -360,7 +366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L294">HashMap.ts:294</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L329">HashMap.ts:329</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L320">HashMap.ts:320</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L355">HashMap.ts:355</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -419,17 +425,17 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#entryset">entrySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L264">HashMap.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L298">HashMap.ts:298</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet view of the mappings contained in this map.
-										The set&#39;s iterator returns the mappings in random key order.
-										The set is backed by the map, so changes to the map are reflected in the set.
-										If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-									The contains method on this entrySet will only compare keys not values.</p>
+									<p>Returns an ImmutableSet view of the mappings contained in this map.</p>
 								</div>
+								<p>The set&#39;s iterator returns the mappings in random key order.</p>
+								<p>The set is backed by the map, so changes to the map are reflected in the set.</p>
+								<p>If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
+								<p>The contains method on this entrySet will only compare keys not values.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an entry with the greatest key, or null if this map is empty</p>
@@ -447,7 +453,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L169">HashMap.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L192">HashMap.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -479,7 +485,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L216">HashMap.ts:216</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L241">HashMap.ts:241</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +509,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#immutablemap">immutableMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L271">HashMap.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L305">HashMap.ts:305</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -526,7 +532,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L151">HashMap.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L172">HashMap.ts:172</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -550,16 +556,16 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L252">HashMap.ts:252</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L281">HashMap.ts:281</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns an ImmutableSet view of the keys contained in this map.
-										The set&#39;s iterator returns the keys in ascending order.
-										The set is backed by the map, so changes to the map are reflected in the set.
-									If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
+									<p>Returns an ImmutableSet view of the keys contained in this map.</p>
 								</div>
+								<p>The set&#39;s iterator returns the keys in ascending order.</p>
+								<p>The set is backed by the map, so changes to the map are reflected in the set.</p>
+								<p>If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an entry with the greatest key, or null if this map is empty</p>
@@ -577,13 +583,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#put">put</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L78">HashMap.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L97">HashMap.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</p>
+									<p>Associates the specified value with the specified key in this map.</p>
 								</div>
+								<p>If the map previously contained a mapping for the key, the old value is replaced.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -616,7 +623,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L180">HashMap.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L203">HashMap.ts:203</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -649,7 +656,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L160">HashMap.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L182">HashMap.ts:182</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -672,7 +679,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L286">HashMap.ts:286</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L321">HashMap.ts:321</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
