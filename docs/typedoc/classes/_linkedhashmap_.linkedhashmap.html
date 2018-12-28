@@ -73,6 +73,8 @@
 							defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order).
 						Note that insertion order is not affected if a key is re-inserted into the map.</p>
 					</div>
+					<p>This implementation spares its clients from the unspecified, generally chaotic ordering provided by HashMap without incurring the increased cost associated with TreeMap.
+					It can be used to produce a copy of a map that has the same order as the original, regardless of the original map&#39;s implementation:</p>
 					<p>This class corresponds to java.util.LinkedHashMap</p>
 				</div>
 			</section>
@@ -159,7 +161,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L27">LinkedHashMap.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L30">LinkedHashMap.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -196,7 +198,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#___iterator">__@iterator</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L314">HashMap.ts:314</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L313">HashMap.ts:313</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -220,7 +222,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#addentry">addEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L106">LinkedHashMap.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L109">LinkedHashMap.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +274,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#clear">clear</a></p>
 								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L135">LinkedHashMap.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L138">LinkedHashMap.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -291,7 +293,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#containskey">containsKey</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#containskey">containsKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L226">HashMap.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L225">HashMap.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,7 +327,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#containsvalue">containsValue</a></p>
 								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#containsvalue">containsValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L66">LinkedHashMap.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L69">LinkedHashMap.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -357,7 +359,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#deprecatedgetfirstentryforiterator">deprecatedGetFirstEntryForIterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L329">HashMap.ts:329</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L328">HashMap.ts:328</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -384,7 +386,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#deprecatedgetnextentryforiterator">deprecatedGetNextEntryForIterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L355">HashMap.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L354">HashMap.ts:354</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -418,7 +420,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#entryset">entrySet</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#entryset">entrySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L298">HashMap.ts:298</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L297">HashMap.ts:297</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -447,7 +449,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#get">get</a></p>
 								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L91">LinkedHashMap.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L94">LinkedHashMap.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -479,7 +481,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#getentry">getEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L241">HashMap.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L240">HashMap.ts:240</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -502,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L140">LinkedHashMap.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L143">LinkedHashMap.ts:143</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.linkedentry.html" class="tsd-signature-type">LinkedEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -521,7 +523,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#immutablemap">immutableMap</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#immutablemap">immutableMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L305">HashMap.ts:305</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L304">HashMap.ts:304</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -543,7 +545,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L52">LinkedHashMap.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L55">LinkedHashMap.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -576,7 +578,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#isempty">isEmpty</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L172">HashMap.ts:172</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L171">HashMap.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -601,7 +603,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#keyset">keySet</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L281">HashMap.ts:281</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L280">HashMap.ts:280</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -627,7 +629,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L150">LinkedHashMap.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L153">LinkedHashMap.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.entryiterator.html" class="tsd-signature-type">EntryIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -644,7 +646,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L144">LinkedHashMap.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L147">LinkedHashMap.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.keyiterator.html" class="tsd-signature-type">KeyIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -661,7 +663,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L147">LinkedHashMap.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L150">LinkedHashMap.ts:150</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_linkedhashmap_.valueiterator.html" class="tsd-signature-type">ValueIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -680,7 +682,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#put">put</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#put">put</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L97">HashMap.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L96">HashMap.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -721,7 +723,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#remove">remove</a></p>
 								<p>Overrides <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L74">LinkedHashMap.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedHashMap.ts#L77">LinkedHashMap.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -754,7 +756,7 @@
 								<p>Implementation of <a href="../interfaces/_jmap_.jmap.html">JMap</a>.<a href="../interfaces/_jmap_.jmap.html#size">size</a></p>
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L182">HashMap.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L181">HashMap.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -778,7 +780,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_hashmap_.hashmap.html">HashMap</a>.<a href="_hashmap_.hashmap.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L321">HashMap.ts:321</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L320">HashMap.ts:320</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

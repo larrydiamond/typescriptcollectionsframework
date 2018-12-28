@@ -8,6 +8,9 @@ import { JIterator } from "./JIterator";
  * defines the iteration ordering, which is normally the order in which keys were inserted into the map (insertion-order).
  * Note that insertion order is not affected if a key is re-inserted into the map.
  *
+ * This implementation spares its clients from the unspecified, generally chaotic ordering provided by HashMap without incurring the increased cost associated with TreeMap.
+ * It can be used to produce a copy of a map that has the same order as the original, regardless of the original map's implementation:
+ *
  * This class corresponds to java.util.LinkedHashMap
  */
 export declare class LinkedHashMap<K, V> extends HashMap<K, V> {

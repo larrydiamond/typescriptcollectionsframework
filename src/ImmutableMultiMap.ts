@@ -10,6 +10,13 @@
  import {ImmutableSet} from "./ImmutableSet";
  import {MapEntry} from "./MapEntry";
 
+
+ /**
+  * A collection that maps keys to values, similar to Map, but in which each key may be associated with multiple values. 
+  * 
+  * This class corresponds to com.google.common.collect.ImmutableMultimap
+  * 
+  */
  export interface ImmutableMultiMap<K,V> {
    /**
    * Returns the number of key-value mappings in this MultiMap.

@@ -4,6 +4,14 @@ import { HashSet } from "./HashSet";
 import { JIterator } from "./JIterator";
 /**
  * Hash table and linked-list implementation of the Set interface with predictable iteration order.
+ * This implementation differs from HashSet in that it maintains a doubly-linked list running through all of its entries.
+ * This linked list defines the iteration ordering, which is the order in which elements were inserted into the set (insertion-order).
+ * Note that insertion order is not affected if an element is re-inserted into the set.
+ * (An element e is reinserted into a set s if s.add(e) is invoked when s.contains(e) would return true immediately prior to the invocation.)
+ *
+ * This implementation spares its clients from the unspecified, generally chaotic ordering provided by HashSet
+ * without incurring the increased cost associated with TreeSet.
+ * It can be used to produce a copy of a set that has the same order as the original, regardless of the original set's implementation
  *
  * This class corresponds to java.util.LinkedHashSet
  */

@@ -10,6 +10,12 @@ import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableSet} from "./ImmutableSet";
 import {JIterator} from "./JIterator";
 
+
+/**
+ * An immutable collection that may contain duplicate elements. (Or at least elements that are equal to one another)  
+ *  
+ * The purpose of this interface is to provide Navigable and Sorted implementations of Multisets that may contain duplicate elements.
+ */
 export interface ImmutableMultiSet<K> extends ImmutableCollection<K> {
 
   /**

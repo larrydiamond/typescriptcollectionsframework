@@ -31,6 +31,8 @@ import { ImmutableSet } from "./ImmutableSet";
  * that affects equals comparisons while the object is an element in the set.
  *
  * A special case of this prohibition is that it is not permissible for a set to contain itself as an element.
+ *
+ * This interface corresponds to java.lang.Set.
  */
 export interface JSet<K> extends ImmutableSet<K>, Collection<K> {
     /**

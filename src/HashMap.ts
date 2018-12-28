@@ -58,7 +58,6 @@ import {MapEntry} from "./MapEntry";
  *
  * This class corresponds to java.util.HashMap
  */
-
 export class HashMap<K,V> implements JMap<K,V> {
   private data:ArrayList<List<HashMapEntry<K,V>>> = null;
   private elementCount:number = 0;
