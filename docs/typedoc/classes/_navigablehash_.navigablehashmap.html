@@ -68,11 +68,12 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A scalable NavigableMap implementation.</p>
+						<p>A scalable NavigableMap implementation that implements SkipListMap for performance that also implements HashMap so that the get method returns in O(1) time.</p>
 					</div>
-					<p>The map is sorted according to a Comparator provided at map creation time.<br>
-					This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.</p>
-					<p>This class corresponds to java.util.concurrent.ConcurrentNavigableHashMap</p>
+					<p>The map is sorted according to a Comparator provided at map creation time.</p>
+					<p>This class implements a SkipList providing expected average log(n) time cost for the containsKey, put and remove operations and their variants.
+					This class implements a Hash providing expected average O(1) time cost for the get method.</p>
+					<p>This class does not directly correspond to any class but most closely corresponds to java.util.concurrent.ConcurrentSkipListMap and java.util.HashMap.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -156,7 +157,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L753">NavigableHash.ts:753</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L755">NavigableHash.ts:755</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -186,7 +187,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L894">NavigableHash.ts:894</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L896">NavigableHash.ts:896</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -210,7 +211,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#ceilingentry">ceilingEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L927">NavigableHash.ts:927</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L929">NavigableHash.ts:929</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -243,7 +244,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#ceilingkey">ceilingKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L940">NavigableHash.ts:940</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L942">NavigableHash.ts:942</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +277,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L879">NavigableHash.ts:879</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L881">NavigableHash.ts:881</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -299,7 +300,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#containskey">containsKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L817">NavigableHash.ts:817</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L819">NavigableHash.ts:819</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -332,7 +333,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#containsvalue">containsValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L772">NavigableHash.ts:772</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L774">NavigableHash.ts:774</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -364,7 +365,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#entryset">entrySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L853">NavigableHash.ts:853</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L855">NavigableHash.ts:855</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -392,7 +393,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#firstentry">firstEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L914">NavigableHash.ts:914</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L916">NavigableHash.ts:916</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +417,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#firstkey">firstKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L902">NavigableHash.ts:902</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L904">NavigableHash.ts:904</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -440,7 +441,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#floorentry">floorEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1018">NavigableHash.ts:1018</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1020">NavigableHash.ts:1020</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -473,7 +474,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#floorkey">floorKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1005">NavigableHash.ts:1005</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1007">NavigableHash.ts:1007</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -506,7 +507,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L804">NavigableHash.ts:804</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L806">NavigableHash.ts:806</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -538,7 +539,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L779">NavigableHash.ts:779</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L781">NavigableHash.ts:781</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -562,7 +563,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#higherentry">higherEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L966">NavigableHash.ts:966</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L968">NavigableHash.ts:968</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -595,7 +596,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#higherkey">higherKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L953">NavigableHash.ts:953</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L955">NavigableHash.ts:955</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -628,7 +629,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#immutablemap">immutableMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L886">NavigableHash.ts:886</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L888">NavigableHash.ts:888</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -651,7 +652,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L829">NavigableHash.ts:829</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L831">NavigableHash.ts:831</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -675,7 +676,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#keyset">keySet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L840">NavigableHash.ts:840</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L842">NavigableHash.ts:842</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -702,7 +703,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lastentry">lastEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1042">NavigableHash.ts:1042</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1044">NavigableHash.ts:1044</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -726,7 +727,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lastkey">lastKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1030">NavigableHash.ts:1030</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1032">NavigableHash.ts:1032</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -750,7 +751,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lowerentry">lowerEntry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L992">NavigableHash.ts:992</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L994">NavigableHash.ts:994</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -783,7 +784,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#lowerkey">lowerKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L979">NavigableHash.ts:979</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L981">NavigableHash.ts:981</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -816,7 +817,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#put">put</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L863">NavigableHash.ts:863</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L865">NavigableHash.ts:865</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -855,7 +856,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L872">NavigableHash.ts:872</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L874">NavigableHash.ts:874</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -888,7 +889,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_navigablemap_.navigablemap.html">NavigableMap</a>.<a href="../interfaces/_navigablemap_.navigablemap.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L795">NavigableHash.ts:795</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L797">NavigableHash.ts:797</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -911,7 +912,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1053">NavigableHash.ts:1053</a></li>
+									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableHash.ts#L1055">NavigableHash.ts:1055</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

@@ -28,8 +28,6 @@ import { MapEntry } from "./MapEntry";
  * that return and/or remove the least and greatest mappings, if any exist, else returning null.
  *
  * This interface corresponds to java.util.NavigableMap
- *
- * Soon this interface will extend ImmutableMap instead as all the methods are Immutable, backwards compatibility break is coming
  */
 export interface NavigableMap<K, V> extends JMap<K, V> {
     /**

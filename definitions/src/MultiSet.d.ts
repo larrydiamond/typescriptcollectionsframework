@@ -7,6 +7,16 @@
  */
 import { Collection } from "./Collection";
 import { ImmutableMultiSet } from "./ImmutableMultiSet";
+/**
+ * A collection that supports order-independent equality, like Set, but may have duplicate elements. A multiset is also sometimes called a bag.
+ *
+ * Elements of a multiset that are equal to one another are referred to as occurrences of the same single element.
+ * The total number of occurrences of an element in a multiset is called the count of that element
+ * (the terms "frequency" and "multiplicity" are equivalent, but not used in this API).
+ *
+ * This interface corresponds to com.google.common.collect.Multiset
+ *
+ */
 export interface MultiSet<K> extends ImmutableMultiSet<K>, Collection<K> {
     /**
     * Returns an ImmutableMultiSet backed by this MultiSet

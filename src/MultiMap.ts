@@ -8,6 +8,11 @@
 
 import {ImmutableMultiMap} from "./ImmutableMultiMap";
 
+/**
+ * A collection that maps keys to values, similar to Map, but in which each key may be associated with multiple values.
+ * 
+ * This interface corresponds to com.google.common.collect.Multimap
+ */
 export interface MultiMap<K,V> extends ImmutableMultiMap<K,V> {
   /**
   * Associates the specified value with the specified key in this MultiMap.

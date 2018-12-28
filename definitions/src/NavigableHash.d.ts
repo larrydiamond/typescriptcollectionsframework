@@ -127,12 +127,14 @@ export declare class NavigableHashNode<K, V> extends BasicMapEntry<K, V> {
     getNextNodeArray(): ArrayList<NavigableHashNode<K, V>>;
 }
 /**
- * A scalable NavigableMap implementation.
+ * A scalable NavigableMap implementation that implements SkipListMap for performance that also implements HashMap so that the get method returns in O(1) time.
  *
- * The map is sorted according to a Comparator provided at map creation time.<br>
- * This class implements a SkipList providing expected average log(n) time cost for the containsKey, get, put and remove operations and their variants.
+ * The map is sorted according to a Comparator provided at map creation time.
  *
- * This class corresponds to java.util.concurrent.ConcurrentNavigableHashMap
+ * This class implements a SkipList providing expected average log(n) time cost for the containsKey, put and remove operations and their variants.
+ * This class implements a Hash providing expected average O(1) time cost for the get method.
+ *
+ * This class does not directly correspond to any class but most closely corresponds to java.util.concurrent.ConcurrentSkipListMap and java.util.HashMap.
  */
 export declare class NavigableHashMap<K, V> implements NavigableMap<K, V> {
     private impl;
@@ -332,13 +334,15 @@ export declare class NavigableHashMapEntrySetIterator<K, V> implements Iterator<
     next(value?: any): IteratorResult<MapEntry<K, V>>;
 }
 /**
- * A scalable NavigableSet implementation based on a NavigableHashMap.
- *
- * The elements of the set are kept sorted according to a Comparator provided at set creation time.<br>
- * This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.
- *
- * This class corresponds to java.util.concurrent.ConcurrentNavigableHashSet
- */
+* A scalable NavigableSet implementation that implements SkipListSet for performance that also implements HashSet so that the get method returns in O(1) time.
+*
+* The set is sorted according to a Comparator provided at set creation time.
+*
+* This class implements a SkipList providing expected average log(n) time cost for the containsKey, put and remove operations and their variants.
+* This class implements a Hash providing expected average O(1) time cost for the get method.
+*
+* This class does not directly correspond to any class but most closely corresponds to java.util.concurrent.ConcurrentSkipListSet and java.util.HashSet.
+*/
 export declare class NavigableHashSet<K> implements NavigableSet<K> {
     private initialElements?;
     private impl;
