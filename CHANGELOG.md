@@ -1,8 +1,12 @@
 # Change Log
 
 <a name="4.4.0"></a>
-# [4.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.2...v4.4.0) (2018-12-30)
+# [4.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.3...v4.4.0) (2018-12-30)
 * TypeDocs and JSON.stringify handling
+
+<a name="4.2.3"></a>
+# [4.2.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.2...v4.2.3) (2018-08-14)
+* Updating away from vulnerable dependency
 
 <a name="4.2.2"></a>
 # [4.2.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.1...v4.2.2) (2018-05-01)
