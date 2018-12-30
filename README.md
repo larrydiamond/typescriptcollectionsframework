@@ -47,13 +47,14 @@ https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 [List](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_list_.list.html), [JSet](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_jset_.jset.html), [JMap](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_jmap_.jmap.html),
 [Queue](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_queue_.queue.html), and [Deque](https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/interfaces/_deque_.deque.html) interfaces are also available with many others to come soon (or are already here and aren't yet documented :) )
 
-Version 4 goals include ease of use, and a tutorial with code examples in Java and TypeScript
+Goals for the next version include a tutorial with code examples in Java and TypeScript
 
 # My goals of this project
 * Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript
 * Support putting "stuff" from other libraries into Collections without having to box and unbox objects.
 * Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
-* Eventually incorporate some of the classes from Apache Commons Collections and Google Guava.   
+* Incorporate some of the classes from Google Guava and Apache Commons Collections to provide more than what 
+* the raw Java Collections Framework provides
 
 # Class Hierarchy
 ![Class Hierarchy](docs/images/collections.png "Collections Class Hierarchy")
