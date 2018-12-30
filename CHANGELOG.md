@@ -4,8 +4,8 @@
 # [4.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.4...v4.4.0) (2018-12-30)
 * TypeDocs and dramatically better JSON.stringify handling
 
-<a name="4.3.3"></a>
-# [4.3.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.3...v4.3.4) (2018-11-17)
+<a name="4.3.4"></a>
+# [4.3.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.3...v4.3.4) (2018-11-17)
 * Updating dependencies
 
 <a name="4.3.3"></a>
