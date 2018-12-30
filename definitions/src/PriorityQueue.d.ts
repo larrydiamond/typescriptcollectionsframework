@@ -81,5 +81,5 @@ export declare class PriorityQueue<K> implements Queue<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
 }

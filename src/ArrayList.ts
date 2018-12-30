@@ -526,9 +526,8 @@ export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
   /**
   * Override JSON.stringify handling
   */
-  public toJSON () : string {
-    const tmp : Array<T> = Collections.asArray(this);
-    return JSON.stringify (tmp);
+  public toJSON (tmp) : Array<T> {
+    return Collections.asArray(this);
   }
 }
 

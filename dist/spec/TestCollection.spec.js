@@ -21,21 +21,39 @@ var SkipList_1 = require("../src/SkipList");
 var TreeSet_1 = require("../src/TreeSet");
 var jasts_1 = require("jasts");
 describe("Test Collection", function () {
-    it("Test empty string Collections", function () {
+    it("Test empty string Collections ArrayList", function () {
         testEmptyStringCollection(new ArrayList_1.ArrayList(), "ArrayList");
         testEmptyStringCollection(new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable()), "ArrayList AllFieldCollectable");
+    });
+    it("Test empty string Collections LinkedList", function () {
         testEmptyStringCollection(new LinkedList_1.LinkedList(), "LinkedList");
         testEmptyStringCollection(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()), "LinkedList AllFieldCollectable");
+    });
+    it("Test empty string Collections HashSet", function () {
         testEmptyStringCollection(new HashSet_1.HashSet(), "HashSet");
         testEmptyStringCollection(new HashSet_1.HashSet(new AllFieldHashable_1.AllFieldHashable()), "HashSet AllFieldHashable");
+    });
+    it("Test empty string Collections Empty", function () {
         testEmptyStringCollection(Collections_1.Collections.emptyList(), "EmptyList");
         testEmptyStringCollection(Collections_1.Collections.emptySet(), "EmptySet");
+    });
+    it("Test empty string Collections NavigableHashSet", function () {
         testEmptyStringCollection(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()), "NavigableHashSet");
+    });
+    it("Test empty string Collections SkipListSet", function () {
         testEmptyStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet");
+    });
+    it("Test empty string Collections TreeSet", function () {
         testEmptyStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet");
+    });
+    it("Test empty string Collections PriorityQueue", function () {
         testEmptyStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+    });
+    it("Test empty string Collections HashMultiSet", function () {
         testEmptyStringCollection(new HashClasses_1.HashMultiSet(), "HashMultiSet");
         testEmptyStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()), "HashMultiSet");
+    });
+    it("Test empty string Collections CompositeCollections", function () {
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(undefined), "CompositeCollection undefined");
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(null), "CompositeCollection null");
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(new ArrayList_1.ArrayList()), "CompositeCollection empty");
@@ -219,7 +237,7 @@ function testEmptyStringCollection(coll, typestring) {
     var ir = i.next();
     expect(ir.done).toEqual(true);
     coll.forEach(failActionString);
-    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(coll), '"[]"');
+    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(coll), "[]");
 }
 var failActionNumber = {
     accept: function (element) {
@@ -239,7 +257,7 @@ function testEmptyNumberCollection(coll) {
     var ir = i.next();
     expect(ir.done).toEqual(true);
     coll.forEach(failActionNumber);
-    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(coll), '"[]"');
+    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(coll), "[]");
 }
 function testAddOneItemToStringCollection(coll, typestring) {
     expect(coll.isEmpty()).toEqual(true);
@@ -254,7 +272,7 @@ function testAddOneItemToStringCollection(coll, typestring) {
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(1);
     //   console.log ("About to run test for " + typestring);
-    jasts_1.TestString.equals("One element array should stringify to [blah]", JSON.stringify(coll), '"[\\"blah\\"]"');
+    jasts_1.TestString.equals("One element array should stringify to [blah]", JSON.stringify(coll), "[\"blah\"]");
 }
 function testAddOneItemToNumberCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);
@@ -268,7 +286,7 @@ function testAddOneItemToNumberCollection(coll) {
     var testCount = 0;
     coll.forEach({ accept: function (element) { testCount = testCount + 1; } });
     expect(testCount).toEqual(1);
-    jasts_1.TestString.equals("One element array should stringify to [100]", JSON.stringify(coll), '"[100]"');
+    jasts_1.TestString.equals("One element array should stringify to [100]", JSON.stringify(coll), "[100]");
 }
 function testAddTwoItemsToStringCollection(coll) {
     expect(coll.isEmpty()).toEqual(true);

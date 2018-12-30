@@ -303,22 +303,22 @@ function testFloorString (set:NavigableSet<string>) {
 }
 
 function testToString (set:NavigableSet<string>) {
-  TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '"[]"');
+  TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '[]');
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
   set.clear();
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
-  TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '"[]"');
+  TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '[]');
   addTestStrings(set);
   expect (set.size ()).toEqual(10);
   expect (set.isEmpty ()).toEqual(false);
   TestString.equals ("Full set should stringify consistently", JSON.stringify (set),
-                    '"[\\"eighth\\",\\"fifth\\",\\"first\\",\\"fourth\\",\\"ninth\\",\\"second\\",\\"seventh\\",\\"sixth\\",\\"tenth\\",\\"third\\"]"');
+                    '[\"eighth\",\"fifth\",\"first\",\"fourth\",\"ninth\",\"second\",\"seventh\",\"sixth\",\"tenth\",\"third\"]');
   set.clear();
   expect (set.size ()).toEqual(0);
   expect (set.isEmpty ()).toEqual(true);
-  TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '"[]"');
+  TestString.equals ("Empty set should stringify to []", JSON.stringify (set), '[]');
 }
 
 function testJavaIteration (set:NavigableSet<PetStoreProduct>) {

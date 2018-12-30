@@ -71,7 +71,7 @@ export class CompositeCollection<K> implements ImmutableCollection<K> {
     /**
     * Override JSON.stringify handling
     */
-    public toJSON () : string {
+    public toJSON () : Array<K> {
       return this.impl.toJSON();
     }
 
@@ -260,9 +260,8 @@ class CompositeCollectionImpl<K> {
      }
   }
 
-  public toJSON () : string {
-    const tmp : Array<K> = Collections.asArray(this);
-    return JSON.stringify (tmp);
+  public toJSON () : Array<K> {
+    return Collections.asArray(this);
   }
 
   public iterator():JIterator<K> {

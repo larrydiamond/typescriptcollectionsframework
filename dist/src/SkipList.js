@@ -1368,8 +1368,7 @@ var SkipListSet = /** @class */ (function () {
     * Override JSON.stringify handling
     */
     SkipListSet.prototype.toJSON = function () {
-        var tmp = Collections_1.Collections.asArray(this);
-        return JSON.stringify(tmp);
+        return Collections_1.Collections.asArray(this);
     };
     return SkipListSet;
 }());

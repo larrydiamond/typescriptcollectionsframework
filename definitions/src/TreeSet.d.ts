@@ -129,7 +129,7 @@ export declare class TreeSet<K> implements NavigableSet<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
 }
 export declare class TreeSetJIterator<T> implements JIterator<T> {
     private location;

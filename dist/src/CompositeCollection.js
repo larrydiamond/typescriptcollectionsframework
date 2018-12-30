@@ -227,8 +227,7 @@ var CompositeCollectionImpl = /** @class */ (function () {
         }
     };
     CompositeCollectionImpl.prototype.toJSON = function () {
-        var tmp = Collections_1.Collections.asArray(this);
-        return JSON.stringify(tmp);
+        return Collections_1.Collections.asArray(this);
     };
     CompositeCollectionImpl.prototype.iterator = function () {
         return new CompositeCollectionJavaIterator(this);

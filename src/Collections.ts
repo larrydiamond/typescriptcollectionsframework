@@ -353,7 +353,7 @@ export class Collections {
   }
 
   /**
-   * JSON stringify for a map
+   * JSON stringify for a Map
    */
   public static jsonstringify<K,V> (imap : ImmutableMap<K,V>) : string {
     if (imap === null) return null;

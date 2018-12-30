@@ -331,7 +331,7 @@ var Collections = /** @class */ (function () {
         return tmp;
     };
     /**
-     * JSON stringify for a map
+     * JSON stringify for a Map
      */
     Collections.jsonstringify = function (imap) {
         if (imap === null)

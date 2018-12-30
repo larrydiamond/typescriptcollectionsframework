@@ -463,9 +463,8 @@ var ArrayList = /** @class */ (function () {
     /**
     * Override JSON.stringify handling
     */
-    ArrayList.prototype.toJSON = function () {
-        var tmp = Collections_1.Collections.asArray(this);
-        return JSON.stringify(tmp);
+    ArrayList.prototype.toJSON = function (tmp) {
+        return Collections_1.Collections.asArray(this);
     };
     return ArrayList;
 }());

@@ -637,8 +637,7 @@ var LinkedList = /** @class */ (function () {
     * Override JSON.stringify handling
     */
     LinkedList.prototype.toJSON = function () {
-        var tmp = Collections_1.Collections.asArray(this);
-        return JSON.stringify(tmp);
+        return Collections_1.Collections.asArray(this);
     };
     return LinkedList;
 }());

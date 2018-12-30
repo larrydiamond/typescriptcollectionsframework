@@ -111,7 +111,7 @@ export declare class HashSet<K> implements JSet<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
 }
 export declare class HashSetJIterator<T> implements JIterator<T> {
     private location;

@@ -1457,9 +1457,8 @@ export class SkipListSet<K> implements NavigableSet<K> {
   /**
   * Override JSON.stringify handling
   */
-  public toJSON () : string {
-    const tmp : Array<K> = Collections.asArray(this);
-    return JSON.stringify (tmp);
+  public toJSON () : Array<K> {
+    return Collections.asArray(this);
   }
 
 }

@@ -438,7 +438,7 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
 }
 export declare class SkipListSetJIterator<T> implements JIterator<T> {
     private location;

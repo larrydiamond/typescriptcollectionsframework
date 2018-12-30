@@ -255,21 +255,21 @@ function testFloorString(set) {
     expect(set.floor("zzzzz")).toEqual("third");
 }
 function testToString(set) {
-    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
+    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '[]');
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
     set.clear();
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
-    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
+    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '[]');
     addTestStrings(set);
     expect(set.size()).toEqual(10);
     expect(set.isEmpty()).toEqual(false);
-    jasts_1.TestString.equals("Full set should stringify consistently", JSON.stringify(set), '"[\\"eighth\\",\\"fifth\\",\\"first\\",\\"fourth\\",\\"ninth\\",\\"second\\",\\"seventh\\",\\"sixth\\",\\"tenth\\",\\"third\\"]"');
+    jasts_1.TestString.equals("Full set should stringify consistently", JSON.stringify(set), '[\"eighth\",\"fifth\",\"first\",\"fourth\",\"ninth\",\"second\",\"seventh\",\"sixth\",\"tenth\",\"third\"]');
     set.clear();
     expect(set.size()).toEqual(0);
     expect(set.isEmpty()).toEqual(true);
-    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '"[]"');
+    jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '[]');
 }
 function testJavaIteration(set) {
     expect(set.add(product1)).toEqual(true);

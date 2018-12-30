@@ -26,21 +26,39 @@ import {TreeSet} from "../src/TreeSet";
 import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
 
 describe("Test Collection", function() {
-  it("Test empty string Collections", function() {
+  it("Test empty string Collections ArrayList", function() {
     testEmptyStringCollection(new ArrayList<string> (), "ArrayList");
     testEmptyStringCollection(new ArrayList<string> (new AllFieldCollectable<string>()), "ArrayList AllFieldCollectable");
+  });
+  it("Test empty string Collections LinkedList", function() {
     testEmptyStringCollection(new LinkedList<string> (), "LinkedList");
     testEmptyStringCollection(new LinkedList<string> (new AllFieldCollectable<string>()), "LinkedList AllFieldCollectable");
+  });
+  it("Test empty string Collections HashSet", function() {
     testEmptyStringCollection(new HashSet<string> (), "HashSet");
     testEmptyStringCollection(new HashSet<string> (new AllFieldHashable<string>()), "HashSet AllFieldHashable");
+  });
+  it("Test empty string Collections Empty", function() {
     testEmptyStringCollection(Collections.emptyList<string>(), "EmptyList");
     testEmptyStringCollection(Collections.emptySet<string>(), "EmptySet");
+  });
+  it("Test empty string Collections NavigableHashSet", function() {
     testEmptyStringCollection(new NavigableHashSet<string> (Collections.getStringComparator()), "NavigableHashSet");
+  });
+  it("Test empty string Collections SkipListSet", function() {
     testEmptyStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet");
+  });
+  it("Test empty string Collections TreeSet", function() {
     testEmptyStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet");
+  });
+  it("Test empty string Collections PriorityQueue", function() {
     testEmptyStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+  });
+  it("Test empty string Collections HashMultiSet", function() {
     testEmptyStringCollection(new HashMultiSet<string> (), "HashMultiSet");
     testEmptyStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()), "HashMultiSet");
+  });
+  it("Test empty string Collections CompositeCollections", function() {
     testEmptyStringCollection(new CompositeCollection<string> (undefined), "CompositeCollection undefined");
     testEmptyStringCollection(new CompositeCollection<string> (null), "CompositeCollection null");
     testEmptyStringCollection(new CompositeCollection<string> (new ArrayList<string>()), "CompositeCollection empty");
@@ -246,7 +264,7 @@ function testEmptyStringCollection (coll:ImmutableCollection<string>, typestring
 
   coll.forEach(failActionString);
 
-  TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), '"[]"');
+  TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), "[]");
 }
 
 const failActionNumber:Consumer<number> = {
@@ -269,7 +287,7 @@ function testEmptyNumberCollection (coll:ImmutableCollection<number>) : void {
   expect (ir.done).toEqual(true);
 
   coll.forEach(failActionNumber);
-  TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), '"[]"');
+  TestString.equals ("Empty array should stringify to []", JSON.stringify (coll), "[]");
 }
 
 
@@ -288,7 +306,7 @@ function testAddOneItemToStringCollection (coll:Collection<string>, typestring:s
    expect (testCount).toEqual (1);
 
 //   console.log ("About to run test for " + typestring);
-   TestString.equals ("One element array should stringify to [blah]", JSON.stringify (coll), '"[\\"blah\\"]"');
+   TestString.equals ("One element array should stringify to [blah]", JSON.stringify (coll), "[\"blah\"]");
 }
 
 function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
@@ -305,7 +323,7 @@ function testAddOneItemToNumberCollection (coll:Collection<number>) : void {
   coll.forEach ({ accept(element:number) { testCount = testCount + 1; } });
   expect (testCount).toEqual (1);
 
-  TestString.equals ("One element array should stringify to [100]", JSON.stringify (coll), '"[100]"');
+  TestString.equals ("One element array should stringify to [100]", JSON.stringify (coll), "[100]");
 }
 
 function testAddTwoItemsToStringCollection (coll:Collection<string>) : void {

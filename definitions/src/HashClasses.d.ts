@@ -150,7 +150,7 @@ export declare class HashMultiSet<K> implements MultiSet<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
 }
 export declare class HashSetJIterator<T> implements JIterator<T> {
     private impl;

@@ -238,7 +238,7 @@ export declare class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<T>;
 }
 export declare class LinkedListNode<T> {
     previousNode: LinkedListNode<T>;

@@ -40,7 +40,7 @@ export declare class CompositeCollection<K> implements ImmutableCollection<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
     /**
      * Returns a Java style iterator.   The order of the elements returned by the iterator should not be relied upon.
      * Since the underlying Collections could be modified between the call to hasNext() and next(),

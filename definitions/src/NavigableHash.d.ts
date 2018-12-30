@@ -443,7 +443,7 @@ export declare class NavigableHashSet<K> implements NavigableSet<K> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<K>;
 }
 export declare class NavigableHashSetJIterator<T> implements JIterator<T> {
     private location;

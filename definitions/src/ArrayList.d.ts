@@ -238,7 +238,7 @@ export declare class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(tmp: any): Array<T>;
 }
 export declare class ArrayListJIterator<T> implements JIterator<T> {
     private offset;
