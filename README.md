@@ -20,21 +20,6 @@ Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Ang
 
 Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular7
 
-# Demo & Tutorial project with Angular 5
-Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular5/dist/
-
-Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular5
-
-# Demo & Tutorial project with Angular 4
-Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular4/dist/
-
-Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular4
-
-# Demo & Tutorial project with Angular 2
-Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular2/dist/
-
-Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular2
-
 # Classes documentation
 https://larrydiamond.github.io/typescriptcollectionsframework/typedoc/
 
@@ -53,8 +38,7 @@ Goals for the next version include a tutorial with code examples in Java and Typ
 * Port over as many of the classes and interfaces I've previously used as a Java developer to TypeScript
 * Support putting "stuff" from other libraries into Collections without having to box and unbox objects.
 * Use the compiler as much as possible to catch issues at compile rather than at run time or at test time.
-* Incorporate some of the classes from Google Guava and Apache Commons Collections to provide more than what 
-* the raw Java Collections Framework provides
+* Incorporate some of the classes from Google Guava and Apache Commons Collections to provide more than what the raw Java Collections Framework provides
 
 # Class Hierarchy
 ![Class Hierarchy](docs/images/collections.png "Collections Class Hierarchy")
@@ -86,6 +70,21 @@ I am a big proponent of Immutability.   Google Guava explains this very well [Go
 The number of NPM downloads has been way higher than I expected.  150 in the first three days, 350 in the first five days, 600 in the first week. That's *way* *way* *way* more interest in what I'm doing than I expected.   Thank you!  We first released in July of 2017, and by the end of 2017 we had over 10,000 downloads.  That's phenomenal for half a year, with no marketing effort or a big company bankrolling the work.  We felt there was a huge need, and the community has clearly supported our work, and we thank you.
 
 Please feel free to email me at ldiamond at ldiamond dot com with feature requests.  I love to hear from people putting my effort to good use.   :)
+
+# Demo & Tutorial project with Angular 5
+Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular5/dist/
+
+Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular5
+
+# Demo & Tutorial project with Angular 4
+Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular4/dist/
+
+Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular4
+
+# Demo & Tutorial project with Angular 2
+Demo: https://larrydiamond.github.io/typescriptcollectionsframework-Demo-For-Angular2/dist/
+
+Source: https://github.com/larrydiamond/typescriptcollectionsframework-Demo-For-Angular2
 
 # Author
 Larry Diamond https://www.linkedin.com/in/larry-diamond-3964042/   ldiamond at ldiamond dot com    Please feel free to contact me for training or with questions
