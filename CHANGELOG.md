@@ -1,11 +1,15 @@
 # Change Log
 
 <a name="4.4.0"></a>
-# [4.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.1...v4.4.0) (2018-12-30)
+# [4.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.2...v4.4.0) (2018-12-30)
 * TypeDocs and dramatically better JSON.stringify handling
 
+<a name="4.3.2"></a>
+# [4.3.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.1...v4.3.2) (2018-11-09)
+* Updating dependencies
+
 <a name="4.3.1"></a>
-# [4.3.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.0...v4.3.1) (2018-11-07)
+# [4.3.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.0...v4.3.1) (2018-11-07)
 * Unit tests for null and undefined elements
 
 <a name="4.3.0"></a>
