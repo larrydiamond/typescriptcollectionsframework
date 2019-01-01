@@ -64,7 +64,7 @@ Semver was adopted as of version 1.0 of this framework.
 
 In TypeScript all objects do not inherit from Object (which we do not control anyway), so we made added a parameter to the constructors of each class to compare objects and calculate hash codes.   As a result, anything can be put into the Collections, even string, number, and classes from other packages.   There is no String class to wrap string, no Number class to wrap number, and no Boolean class to wrap boolean.   No autoboxing and no autounboxing.   Generics are fully supported, as are native JavaScript types.
 
-Ensuring that the Collection classes in this Framework fully supported generic types has been an important motivator for this framework, and we have accomplished this on the existing classes and ensure that all future Collection classes fully support generic classes.
+Ensuring that the Collection classes in this Framework fully supported generic types has been an important motivator for this framework, and we have accomplished this on the existing classes and ensure that all future Collection classes fully support generic types.
 
 # Immutability
 I am a big proponent of Immutability.   Google Guava explains this very well [Google Guava Immutable Collections Explained](https://github.com/google/guava/wiki/ImmutableCollectionsExplained).   
