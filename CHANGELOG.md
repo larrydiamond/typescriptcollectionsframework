@@ -1,5 +1,41 @@
 # Change Log
 
+<a name="4.4.0"></a>
+# [4.4.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.5...v4.4.0) (2018-12-30)
+* TypeDocs and dramatically better JSON.stringify handling
+
+<a name="4.3.5"></a>
+# [4.3.5](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.4...v4.3.5) (2018-12-22)
+* Node 10 upgrade, Gulp 4 upgrade
+
+<a name="4.3.4"></a>
+# [4.3.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.3...v4.3.4) (2018-11-17)
+* Updating dependencies
+
+<a name="4.3.3"></a>
+# [4.3.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.2...v4.3.3) (2018-11-10)
+* Map.containsValue
+
+<a name="4.3.2"></a>
+# [4.3.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.1...v4.3.2) (2018-11-09)
+* Updating dependencies
+
+<a name="4.3.1"></a>
+# [4.3.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.3.0...v4.3.1) (2018-11-07)
+* Unit tests for null and undefined elements
+
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.4...v4.3.0) (2018-10-27)
+* Composite Collection
+
+<a name="4.2.4"></a>
+# [4.2.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.3...v4.2.4) (2018-10-14)
+* Typedocs and updating dependencies
+
+<a name="4.2.3"></a>
+# [4.2.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.2...v4.2.3) (2018-08-14)
+* Updating away from vulnerable dependency
+
 <a name="4.2.2"></a>
 # [4.2.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.2.1...v4.2.2) (2018-05-01)
 * Documentation fix for empty navigable set behavior
