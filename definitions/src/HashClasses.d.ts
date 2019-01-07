@@ -27,6 +27,7 @@ export declare class HashMultiSetImpl<K> {
     isEmpty(): boolean;
     contains(item: K): boolean;
     clear(): void;
+    keySet(): ImmutableSet<K>;
 }
 /**
  * This class implements the MultiSet interface, backed by a HashMap instance.

@@ -110,7 +110,9 @@ export class HashMultiSetImpl<K> {
     return this.datastore.clear();
   }
 
-
+  public keySet() : ImmutableSet<K> {
+    return this.datastore.keySet();
+  }
 
 }
 
@@ -179,8 +181,7 @@ export class HashMultiSet<K> implements MultiSet<K> {
    * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
    */
    public keySet () : ImmutableSet<K> {
-     console.log ("HashMultiSet::keySet not yet implemented");
-     return null;
+     return this.impl.keySet();
    }
 
 

@@ -87,6 +87,9 @@ var HashMultiSetImpl = /** @class */ (function () {
     HashMultiSetImpl.prototype.clear = function () {
         return this.datastore.clear();
     };
+    HashMultiSetImpl.prototype.keySet = function () {
+        return this.datastore.keySet();
+    };
     return HashMultiSetImpl;
 }());
 exports.HashMultiSetImpl = HashMultiSetImpl;
@@ -157,8 +160,7 @@ var HashMultiSet = /** @class */ (function () {
      * @return {ImmutableSet<K>} a view of the set of distinct keys in this MultiSet
      */
     HashMultiSet.prototype.keySet = function () {
-        console.log("HashMultiSet::keySet not yet implemented");
-        return null;
+        return this.impl.keySet();
     };
     /**
     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
