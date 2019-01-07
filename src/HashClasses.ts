@@ -13,13 +13,11 @@ import {Consumer} from "./Consumer";
 import {JIterator} from "./JIterator";
 import {Hashable} from "./Hashable";
 import {HashMap} from "./HashMap";
-import {HashMapIteratorLocationTracker} from "./HashMap";
 import {ImmutableCollection} from "./ImmutableCollection";
 import {ImmutableMultiSet} from "./ImmutableMultiSet";
 import {ImmutableSet} from "./ImmutableSet";
 import {MultiSet} from "./MultiSet";
 import { MapEntry } from "./MapEntry";
-import { KeyIterator } from "./LinkedHashMap";
 
 export class HashMultiSetImpl<K> {
 
