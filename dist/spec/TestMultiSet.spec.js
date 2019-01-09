@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldHashable_1 = require("../src/AllFieldHashable");
 var Collections_1 = require("../src/Collections");
 var HashClasses_1 = require("../src/HashClasses");
+var jasts_1 = require("jasts");
 // PetStoreProduct will be used in testing
 var PetStoreProduct = /** @class */ (function () {
     function PetStoreProduct(iName, iPrice) {
@@ -136,10 +137,12 @@ describe("Test generic MultiSet functionality", function () {
 function testEmptyStringMultiSet(tmp) {
     expect(tmp.isEmpty()).toEqual(true);
     expect(tmp.size()).toEqual(0);
+    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(tmp), "[]");
 }
 function testEmptyNumberMultiSet(tmp) {
     expect(tmp.isEmpty()).toEqual(true);
     expect(tmp.size()).toEqual(0);
+    jasts_1.TestString.equals("Empty array should stringify to []", JSON.stringify(tmp), "[]");
 }
 function testEmptyPetStoreProductAndValueClassMultiSet(tmp) {
     expect(tmp.isEmpty()).toEqual(true);
@@ -153,6 +156,7 @@ function testAddingOneEntryString(tmp) {
     expect(tmp.isEmpty()).toEqual(false, 'expected isempty to be false after adding');
     expect(true).toEqual(tmp.contains("testkey"), 'expected contains to be true looking for existing string');
     expect(false).toEqual(tmp.contains("key not found"), 'expected not present element not be be contained');
+    jasts_1.TestString.equals("One element array should stringify to [blah]", JSON.stringify(tmp), "[\"testkey\"]");
 }
 function testAddingOneEntryNumber(tmp) {
     expect(tmp.size()).toEqual(0);
@@ -162,6 +166,7 @@ function testAddingOneEntryNumber(tmp) {
     expect(tmp.isEmpty()).toEqual(false);
     expect(true).toEqual(tmp.contains(100));
     expect(false).toEqual(tmp.contains(200));
+    jasts_1.TestString.equals("One element array should stringify to [100]", JSON.stringify(tmp), "[100]");
 }
 function testAddingOneEntryPetStoreProduct(tmp) {
     expect(tmp.size()).toEqual(0);

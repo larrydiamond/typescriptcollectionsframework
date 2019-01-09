@@ -96,6 +96,7 @@ describe("Test Collection", function () {
         testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue StringComparator");
     });
     it("Test add one item to string Collection Hash MultiSet", function () {
+        testAddOneItemToStringCollection(new HashClasses_1.HashMultiSet(), "HashMultiSet");
         testAddOneItemToStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()), "HashMultiSet AllFieldHashable");
     });
     it("Test add one item to number Collections", function () {

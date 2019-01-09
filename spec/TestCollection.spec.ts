@@ -105,6 +105,7 @@ describe("Test Collection", function() {
   });
 
   it("Test add one item to string Collection Hash MultiSet", function() {
+    testAddOneItemToStringCollection(new HashMultiSet<string> (), "HashMultiSet");
     testAddOneItemToStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()), "HashMultiSet AllFieldHashable");
   });
 

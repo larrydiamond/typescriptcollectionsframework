@@ -15,6 +15,7 @@ import { ImmutableMultiSet } from "../src/ImmutableMultiSet";
 import { ImmutableSet } from "../src/ImmutableSet";
 import { JSet } from "../src/JSet";
 import { MultiSet } from "../src/MultiSet";
+import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
 
 // PetStoreProduct will be used in testing
 class PetStoreProduct {
@@ -174,11 +175,13 @@ describe("Test generic MultiSet functionality", function () {
 function testEmptyStringMultiSet(tmp: ImmutableMultiSet<string>): void {
     expect(tmp.isEmpty()).toEqual(true);
     expect(tmp.size()).toEqual(0);
+    TestString.equals ("Empty array should stringify to []", JSON.stringify (tmp), "[]");
 }
 
 function testEmptyNumberMultiSet(tmp: ImmutableMultiSet<number>): void {
     expect(tmp.isEmpty()).toEqual(true);
     expect(tmp.size()).toEqual(0);
+    TestString.equals ("Empty array should stringify to []", JSON.stringify (tmp), "[]");
 }
 
 function testEmptyPetStoreProductAndValueClassMultiSet(tmp: ImmutableMultiSet<PetStoreProduct>): void {
@@ -194,6 +197,7 @@ function testAddingOneEntryString(tmp: MultiSet<string>): void {
     expect(tmp.isEmpty()).toEqual(false, 'expected isempty to be false after adding');
     expect(true).toEqual(tmp.contains("testkey"), 'expected contains to be true looking for existing string');
     expect(false).toEqual(tmp.contains("key not found"), 'expected not present element not be be contained');
+    TestString.equals ("One element array should stringify to [blah]", JSON.stringify (tmp), "[\"testkey\"]");
 }
 
 function testAddingOneEntryNumber(tmp: MultiSet<number>): void {
@@ -204,6 +208,7 @@ function testAddingOneEntryNumber(tmp: MultiSet<number>): void {
     expect(tmp.isEmpty()).toEqual(false);
     expect(true).toEqual(tmp.contains(100));
     expect(false).toEqual(tmp.contains(200));
+    TestString.equals ("One element array should stringify to [100]", JSON.stringify (tmp), "[100]");
 }
 
 function testAddingOneEntryPetStoreProduct(tmp: MultiSet<PetStoreProduct>): void {
