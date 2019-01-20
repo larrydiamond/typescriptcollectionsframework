@@ -9,6 +9,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var AllFieldCollectable_1 = require("./AllFieldCollectable");
 var ArrayList_1 = require("./ArrayList");
+var BasicMapEntry_1 = require("./BasicMapEntry");
 var HashMap_1 = require("./HashMap");
 var HashClasses_1 = require("./HashClasses");
 var HashSet_1 = require("./HashSet");
@@ -331,30 +332,24 @@ var Collections = /** @class */ (function () {
         return tmp;
     };
     /**
-     * JSON stringify for a Map
+     * Returns an Array of the elements of this Immutable Map
      */
-    Collections.jsonstringify = function (imap) {
+    Collections.asArrayMap = function (imap) {
         if (imap === null)
             return null;
         if (imap === undefined)
             return undefined;
-        var first = true;
-        var tmp = '[';
+        var tmp = new Array(imap.size());
+        //    console.log ("AsArray started size = " + icoll.size());
+        var offset = 0;
         for (var iter = imap.entrySet().iterator(); iter.hasNext();) {
-            var elem = iter.next();
-            if (first === true) {
-                first = false;
-            }
-            else {
-                tmp = tmp + ",";
-            }
-            tmp = tmp + '{';
-            tmp = tmp + JSON.stringify(elem.getKey());
-            tmp = tmp + ',';
-            tmp = tmp + JSON.stringify(elem.getValue());
-            tmp = tmp + '}';
+            //      console.log ("AsArray iteration offset " + offset);
+            var entry = iter.next();
+            var bme = new BasicMapEntry_1.BasicMapEntry(entry.getKey(), entry.getValue());
+            tmp[offset] = bme;
+            //      console.log ("AsArray iteration " + offset + " " + JSON.stringify(tmp[offset]));
+            offset = offset + 1;
         }
-        tmp = tmp + ']';
         return tmp;
     };
     Collections.containsValue = function (map, value) {

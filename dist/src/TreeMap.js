@@ -750,7 +750,8 @@ var TreeMap = /** @class */ (function () {
     * Override JSON.stringify handling
     */
     TreeMap.prototype.toJSON = function () {
-        return Collections_1.Collections.jsonstringify(this);
+        var tmp = Collections_1.Collections.asArrayMap(this);
+        return tmp;
     };
     return TreeMap;
 }());

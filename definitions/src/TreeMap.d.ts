@@ -202,7 +202,7 @@ export declare class TreeMap<K, V> implements NavigableMap<K, V> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<MapEntry<K, V>>;
 }
 export declare class TreeMapNode<K, V> {
     private key;

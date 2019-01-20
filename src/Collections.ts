@@ -8,6 +8,7 @@
 
 import {AllFieldCollectable} from "./AllFieldCollectable";
 import {ArrayList} from "./ArrayList";
+import {BasicMapEntry} from "./BasicMapEntry";
 import {Collectable} from "./Collectable";
 import {Comparator} from "./Comparator";
 import {Hashable} from "./Hashable";
@@ -353,28 +354,24 @@ export class Collections {
   }
 
   /**
-   * JSON stringify for a Map
+   * Returns an Array of the elements of this Immutable Map
    */
-  public static jsonstringify<K,V> (imap : ImmutableMap<K,V>) : string {
+  public static asArrayMap<K,V> (imap : ImmutableMap<K,V>) : Array<MapEntry<K,V>> {
     if (imap === null) return null;
     if (imap === undefined) return undefined;
+    const tmp : Array<MapEntry<K,V>> = new Array<MapEntry<K,V>>(imap.size());
 
-    let first:boolean = true;
-    let tmp:string = '[';
+//    console.log ("AsArray started size = " + icoll.size());
+    let offset:number = 0;
     for (const iter:JIterator<MapEntry<K,V>> = imap.entrySet().iterator(); iter.hasNext(); ) {
-      const elem : MapEntry<K,V> = iter.next();
-      if (first === true) {
-        first = false;
-      } else {
-        tmp = tmp + ",";
-      }
-      tmp = tmp + '{';
-      tmp = tmp + JSON.stringify (elem.getKey());
-      tmp = tmp + ',';
-      tmp = tmp + JSON.stringify (elem.getValue());
-      tmp = tmp + '}';
+//      console.log ("AsArray iteration offset " + offset);
+      const entry : MapEntry<K,V> = iter.next();
+      const bme: BasicMapEntry<K,V> = new BasicMapEntry (entry.getKey(), entry.getValue())
+      tmp [offset] = bme;
+//      console.log ("AsArray iteration " + offset + " " + JSON.stringify(tmp[offset]));
+      offset = offset + 1;
     }
-    tmp = tmp + ']';
+
     return tmp;
   }
 

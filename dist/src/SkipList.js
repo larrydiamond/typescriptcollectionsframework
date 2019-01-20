@@ -987,7 +987,8 @@ var SkipListMap = /** @class */ (function () {
     * Override JSON.stringify handling
     */
     SkipListMap.prototype.toJSON = function () {
-        return Collections_1.Collections.jsonstringify(this);
+        var tmp = Collections_1.Collections.asArrayMap(this);
+        return tmp;
     };
     return SkipListMap;
 }());

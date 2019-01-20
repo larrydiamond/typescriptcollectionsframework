@@ -277,7 +277,7 @@ export declare class SkipListMap<K, V> implements NavigableMap<K, V> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<MapEntry<K, V>>;
 }
 export declare class ImmutableKeySetForSkipListMap<K, V> implements ImmutableSet<K> {
     private impl;

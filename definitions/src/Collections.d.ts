@@ -13,6 +13,7 @@ import { ImmutableList } from "./ImmutableList";
 import { ImmutableMap } from "./ImmutableMap";
 import { ImmutableMultiSet } from "./ImmutableMultiSet";
 import { ImmutableSet } from "./ImmutableSet";
+import { MapEntry } from "../src/MapEntry";
 /**
  * This class consists exclusively of static methods that operate on or return collections.
  *
@@ -64,8 +65,8 @@ export declare class Collections {
      */
     static asArray<T>(icoll: ImmutableCollection<T>): Array<T>;
     /**
-     * JSON stringify for a Map
+     * Returns an Array of the elements of this Immutable Map
      */
-    static jsonstringify<K, V>(imap: ImmutableMap<K, V>): string;
+    static asArrayMap<K, V>(imap: ImmutableMap<K, V>): Array<MapEntry<K, V>>;
     static containsValue<K, V>(map: ImmutableMap<K, V>, value: V): boolean;
 }

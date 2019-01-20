@@ -1039,8 +1039,9 @@ export class SkipListMap<K,V> implements NavigableMap<K,V> {
   /**
   * Override JSON.stringify handling
   */
-  public toJSON () : string {
-    return Collections.jsonstringify(this);
+  public toJSON () : Array<MapEntry<K,V>> {
+    const tmp = Collections.asArrayMap(this);
+    return tmp;
   }
 }
 

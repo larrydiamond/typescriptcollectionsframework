@@ -316,7 +316,8 @@ var HashMap = /** @class */ (function () {
     * Override JSON.stringify handling
     */
     HashMap.prototype.toJSON = function () {
-        return Collections_1.Collections.jsonstringify(this);
+        var tmp = Collections_1.Collections.asArrayMap(this);
+        return tmp;
     };
     /**
      * This method is deprecated and will be removed in a future revision.

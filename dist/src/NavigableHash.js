@@ -999,7 +999,8 @@ var NavigableHashMap = /** @class */ (function () {
     * Override JSON.stringify handling
     */
     NavigableHashMap.prototype.toJSON = function () {
-        return Collections_1.Collections.jsonstringify(this);
+        var tmp = Collections_1.Collections.asArrayMap(this);
+        return tmp;
     };
     return NavigableHashMap;
 }());

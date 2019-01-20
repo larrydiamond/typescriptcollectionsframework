@@ -191,7 +191,7 @@ function testEmptyStringStringMap(map) {
     jasts_1.TestBoolean.false("Testing non existent key is not contained", map.containsKey("not going to find it"));
     expect(map.isEmpty()).toEqual(true);
     expect(map.size()).toEqual(0);
-    expect('"[]"').toEqual(JSON.stringify(map));
+    expect('[]').toEqual(JSON.stringify(map));
     expect(false).toEqual(map.containsValue(null));
     expect(false).toEqual(map.containsValue(undefined));
     expect(false).toEqual(map.containsValue("notfound"));
@@ -250,7 +250,7 @@ function testAddingOneEntryStringStringMap(map, typestring) {
     jasts_1.TestString.undefined("Getting key not in map will return undefined " + typestring, map.get("key not found"));
     expect(undefined).toEqual(map.get("key not found"));
     jasts_1.TestBoolean.false("Testing non existent key is not contained", map.containsKey("not going to find it"));
-    expect('"[{\\\"testkey\\\",\\\"testvalue\\\"}]"').toEqual(JSON.stringify(map));
+    expect('[{\"key\":\"testkey\",\"value\":\"testvalue\"}]').toEqual(JSON.stringify(map));
     expect(false).toEqual(map.containsValue(null));
     expect(false).toEqual(map.containsValue(undefined));
     expect(false).toEqual(map.containsValue("notfound"));
@@ -421,13 +421,5 @@ function testCopyConstructor(map) {
     expect(map.get("Catnip")).toEqual(4.99);
     expect(map.get("Bananas")).toEqual(undefined);
     expect(map.size()).toEqual(3);
-}
-;
-function testJsonStringify(map) {
-    console.log(JSON.stringify(map));
-    expect(JSON.stringify(map)).toEqual('"[]"');
-    map.put("ChewToy", 14.99);
-    expect(JSON.stringify(map)).toEqual('"[{\"key\":\"ChewToy\",\"value\":14.99}]"');
-    console.log(JSON.stringify(map));
 }
 ;

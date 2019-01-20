@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.4.2"></a>
+# [4.4.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.1...v4.4.2) (2019-01-19)
+* Map JSON.stringify rewrite to provide much better output.   Better handling of complex generic maps for JSON.stringify
+
 <a name="4.4.1"></a>
 # [4.4.1](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.0...v4.4.1) (2019-01-07)
 * Updating dependencies

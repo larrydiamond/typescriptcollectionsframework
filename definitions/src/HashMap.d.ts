@@ -162,7 +162,7 @@ export declare class HashMap<K, V> implements JMap<K, V> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<MapEntry<K, V>>;
     /**
      * This method is deprecated and will be removed in a future revision.
      * @deprecated

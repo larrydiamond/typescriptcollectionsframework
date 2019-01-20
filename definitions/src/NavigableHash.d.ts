@@ -281,7 +281,7 @@ export declare class NavigableHashMap<K, V> implements NavigableMap<K, V> {
     /**
     * Override JSON.stringify handling
     */
-    toJSON(): string;
+    toJSON(): Array<MapEntry<K, V>>;
 }
 export declare class ImmutableKeySetForNavigableHashMap<K, V> implements ImmutableSet<K> {
     private impl;
