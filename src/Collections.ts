@@ -333,6 +333,114 @@ export class Collections {
   }
 
   /**
+   * This method creates a Comparator for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+   */
+    public static dynamicComparator<K> (... values : string []) : Comparator<K> {
+      const tmp : Comparator<K> = {
+        compare(o1:K, o2:K) : number {
+          if (o1 === undefined) {
+            if (o2 === undefined) {
+              return 0;
+            } else {
+              return -1;
+            }
+          }
+
+          if (o2 === undefined)
+            return 1;
+
+          if (o1 === null) {
+            if (o2 === null) {
+              return 0;
+            } else {
+              return -1;
+            }
+          }
+
+          if (o2 === null)
+            return 1;
+
+          for (let loop = 0; loop < values.length; loop++) {
+            const a = o1 [values [loop]];
+            const b = o2 [values [loop]];
+
+            if (a === undefined) {
+              if (b === undefined) {
+                return 0;
+              } else {
+                return -1;
+              }
+            }
+  
+            if (b === undefined)
+              return 1;
+
+            if (a === null) {
+              if (b === null) {
+                return 0;
+              } else {
+                return -1;
+              }
+            }
+
+            if (b === null)
+            return 1;
+
+            if (typeof a === "boolean") {
+              const x = Collections.booleanCompare (a, b);
+              if (x !== 0)
+                return x;
+            } else {
+              if (typeof a === "string") {
+                const x = Collections.stringCompare (a, b);
+                if (x !== 0)
+                  return x;  
+              } else {
+                if (typeof a === "number") {
+                  const x = Collections.numberCompare (a, b);
+                  if (x !== 0)
+                    return x;
+                } else {
+// other types?
+                }
+    
+              }
+  
+            }
+
+          }
+
+          return 0;
+        }
+      }
+      return tmp;
+    }
+
+    private static booleanCompare (a : boolean, b : boolean) {
+      if (a === b) {
+        return 0;
+      }
+      if (a === false) {
+        return -1;
+      } 
+      return 1;
+    }
+
+    private static numberCompare (a : number, b : number) {
+      if (a === b) {
+        return 0;
+      }
+      if (a < b) {
+        return -1;
+      }
+      return 1;
+    }
+
+    private static stringCompare (a : string, b : string) {
+      return a.localeCompare(b);
+    }
+
+  /**
    * Returns an Array of the elements of this Immutable Collection
    */
   public static asArray<T> (icoll : ImmutableCollection<T>) : Array<T> {

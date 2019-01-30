@@ -61,6 +61,13 @@ export declare class Collections {
      */
     static dynamicHashable<K>(...values: string[]): Hashable<K>;
     /**
+     * This method creates a Comparator for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+     */
+    static dynamicComparator<K>(...values: string[]): Comparator<K>;
+    private static booleanCompare;
+    private static numberCompare;
+    private static stringCompare;
+    /**
      * Returns an Array of the elements of this Immutable Collection
      */
     static asArray<T>(icoll: ImmutableCollection<T>): Array<T>;

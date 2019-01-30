@@ -65,6 +65,8 @@ const alphabeticalSortPetStoreProduct:Comparator<PetStoreProduct> = {
   }
 };
 
+const productnameComparator:Comparator<PetStoreProduct> = Collections.dynamicComparator<PetStoreProduct>("productName");
+
 const product2:PetStoreProduct = new PetStoreProduct("ChewToy", 14.99);
 const product1:PetStoreProduct = new PetStoreProduct("Catnip", 4.99);
 const product3:PetStoreProduct = new PetStoreProduct("Goldfish", 9.99);
@@ -137,18 +139,24 @@ describe("Test NavigableSet functionality", function() {
     testToString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
-
-
   it("Set Test java iteration", function() {
     testJavaIteration (new NavigableHashSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
     testJavaIteration (new TreeSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
     testJavaIteration (new SkipListSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+
+    testJavaIteration (new NavigableHashSet<PetStoreProduct>(productnameComparator));
+    testJavaIteration (new TreeSet<PetStoreProduct>(productnameComparator));
+    testJavaIteration (new SkipListSet<PetStoreProduct>(productnameComparator));
   });
 
   it("Set Test typescript iteration", function() {
     testTSIteration (new NavigableHashSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
     testTSIteration (new TreeSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
     testTSIteration (new SkipListSet<PetStoreProduct>(alphabeticalSortPetStoreProduct));
+
+    testTSIteration (new NavigableHashSet<PetStoreProduct>(productnameComparator));
+    testTSIteration (new TreeSet<PetStoreProduct>(productnameComparator));
+    testTSIteration (new SkipListSet<PetStoreProduct>(productnameComparator));
   });
 
 });

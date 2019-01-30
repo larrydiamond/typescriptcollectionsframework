@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.4.3"></a>
+# [4.4.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.2...v4.4.3) (2019-01-30)
+* Dynamic Comparator - this eases the creation of comparators to make constructing sorted Collections easier - the node.js tutorial will have examples shortly!
+
 <a name="4.4.2"></a>
 # [4.4.2](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.1...v4.4.2) (2019-01-19)
 * Map JSON.stringify rewrite to provide much better output.   Better handling of complex generic maps for JSON.stringify

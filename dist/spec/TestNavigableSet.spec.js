@@ -53,6 +53,7 @@ var alphabeticalSortPetStoreProduct = {
         return 1;
     }
 };
+var productnameComparator = Collections_1.Collections.dynamicComparator("productName");
 var product2 = new PetStoreProduct("ChewToy", 14.99);
 var product1 = new PetStoreProduct("Catnip", 4.99);
 var product3 = new PetStoreProduct("Goldfish", 9.99);
@@ -115,11 +116,17 @@ describe("Test NavigableSet functionality", function () {
         testJavaIteration(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
         testJavaIteration(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testJavaIteration(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testJavaIteration(new NavigableHash_1.NavigableHashSet(productnameComparator));
+        testJavaIteration(new TreeSet_1.TreeSet(productnameComparator));
+        testJavaIteration(new SkipList_1.SkipListSet(productnameComparator));
     });
     it("Set Test typescript iteration", function () {
         testTSIteration(new NavigableHash_1.NavigableHashSet(alphabeticalSortPetStoreProduct));
         testTSIteration(new TreeSet_1.TreeSet(alphabeticalSortPetStoreProduct));
         testTSIteration(new SkipList_1.SkipListSet(alphabeticalSortPetStoreProduct));
+        testTSIteration(new NavigableHash_1.NavigableHashSet(productnameComparator));
+        testTSIteration(new TreeSet_1.TreeSet(productnameComparator));
+        testTSIteration(new SkipList_1.SkipListSet(productnameComparator));
     });
 });
 function testFirstKeyNumber(set) {

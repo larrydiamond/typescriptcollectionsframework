@@ -381,6 +381,67 @@ describe("Test Collections static methods", function() {
     TestNumber.notEquals ("psp2 hashcode is non-zero", nameHashable.hashCode(psp2), 0);
     TestNumber.notEquals ("psp3 hashcode is non-zero", nameHashable.hashCode(psp3), 0);
   });
+
+  it ("Dynamic Comparator number field", function () {
+    const nc:Comparator<PetStoreProduct> = Collections.dynamicComparator<PetStoreProduct>("sku");
+    TestNumber.equals ("same null object equals itself", nc.compare(pspnull, pspnull), 0);
+    TestNumber.equals ("different null object equals itself", nc.compare(pspnull, pspalsonull), 0);
+    TestNumber.equals ("same undefined object equals itself", nc.compare(pspundefined, pspundefined), 0);
+    TestNumber.equals ("different undefined object equals itself", nc.compare(pspundefined, pspalsoundefined), 0);
+    TestNumber.equals ("undefined is less than null", nc.compare(pspundefined, pspnull), -1);
+    TestNumber.equals ("null is more than undefined", nc.compare(pspnull, pspundefined), 1);
+    TestNumber.equals ("undefined is less than a value", nc.compare(pspundefined, psp1), -1);
+    TestNumber.equals ("a value is more than undefined", nc.compare(psp1, pspundefined), 1);
+    TestNumber.equals ("null is less than a value", nc.compare(pspnull, psp1), -1);
+    TestNumber.equals ("a value is more than null", nc.compare(psp1, pspnull), 1);
+    TestNumber.equals ("same value equals itself", nc.compare(psp1, psp1), 0);
+    TestNumber.equals ("different object with same value equals itself", nc.compare(psp1, psp1copy), 0); // sku = 1
+    TestNumber.equals ("higher values are higher than lower values", nc.compare(psp2, psp1), 1);
+    TestNumber.equals ("lower values are lower than higher values", nc.compare(psp1, psp2), -1);
+  });
+
+  it ("Dynamic Comparator string field", function () {
+    const nc:Comparator<PetStoreProduct> = Collections.dynamicComparator<PetStoreProduct>("name");
+    TestNumber.equals ("same null object equals itself", nc.compare(pspnull, pspnull), 0);
+    TestNumber.equals ("different null object equals itself", nc.compare(pspnull, pspalsonull), 0);
+    TestNumber.equals ("same undefined object equals itself", nc.compare(pspundefined, pspundefined), 0);
+    TestNumber.equals ("different undefined object equals itself", nc.compare(pspundefined, pspalsoundefined), 0);
+    TestNumber.equals ("undefined is less than null", nc.compare(pspundefined, pspnull), -1);
+    TestNumber.equals ("null is more than undefined", nc.compare(pspnull, pspundefined), 1);
+    TestNumber.equals ("undefined is less than a value", nc.compare(pspundefined, psp1), -1);
+    TestNumber.equals ("a value is more than undefined", nc.compare(psp1, pspundefined), 1);
+    TestNumber.equals ("null is less than a value", nc.compare(pspnull, psp1), -1);
+    TestNumber.equals ("a value is more than null", nc.compare(psp1, pspnull), 1);
+    TestNumber.equals ("same value equals itself", nc.compare(psp1, psp1), 0);
+    TestNumber.equals ("different object with same value equals itself", nc.compare(psp1, psp3copy), 0); // name = A
+    TestNumber.equals ("higher values are higher than lower values", nc.compare(psp2, psp1), 1);
+    TestNumber.equals ("lower values are lower than higher values", nc.compare(psp1, psp2), -1);
+  });
+
+  it ("Dynamic Comparator compound number string", function () {
+    const nc:Comparator<PetStoreProduct> = Collections.dynamicComparator<PetStoreProduct>("sku", "name");
+    TestNumber.equals ("same null object equals itself", nc.compare(pspnull, pspnull), 0);
+    TestNumber.equals ("different null object equals itself", nc.compare(pspnull, pspalsonull), 0);
+    TestNumber.equals ("same undefined object equals itself", nc.compare(pspundefined, pspundefined), 0);
+    TestNumber.equals ("different undefined object equals itself", nc.compare(pspundefined, pspalsoundefined), 0);
+    TestNumber.equals ("undefined is less than null", nc.compare(pspundefined, pspnull), -1);
+    TestNumber.equals ("null is more than undefined", nc.compare(pspnull, pspundefined), 1);
+    TestNumber.equals ("undefined is less than a value", nc.compare(pspundefined, psp1), -1);
+    TestNumber.equals ("a value is more than undefined", nc.compare(psp1, pspundefined), 1);
+    TestNumber.equals ("null is less than a value", nc.compare(pspnull, psp1), -1);
+    TestNumber.equals ("a value is more than null", nc.compare(psp1, pspnull), 1);
+    TestNumber.equals ("same value equals itself", nc.compare(psp1, psp1), 0);
+    TestNumber.equals ("different value with same keys equals itself", nc.compare(psp1, psp3copy), 0);  // Sku 1 Name A
+
+    TestNumber.equals ("higher values on first field are higher than lower values", nc.compare(psp2, psp1), 1);
+    TestNumber.equals ("lower values on first field are lower than higher values", nc.compare(psp1, psp2), -1);
+
+    TestNumber.equals ("higher values on first field outweigh second field", nc.compare(psp2copy, psp1copy), 1);
+    TestNumber.equals ("lower values on first field outweigh second field", nc.compare(psp1copy, psp2copy), -1);
+
+    TestNumber.equals ("higher values on second field", nc.compare(psp1copy, psp3copy), 1);
+    TestNumber.equals ("lower values on second field", nc.compare(psp3copy, psp1copy), -1);
+  });
 });
 
 /*
@@ -410,3 +471,5 @@ const psp3copy:PetStoreProduct = new PetStoreProduct (1, "A", "F");  // duplicat
 
 const pspnull:PetStoreProduct = new PetStoreProduct (null, null, null);
 const pspundefined:PetStoreProduct = new PetStoreProduct (undefined, undefined, undefined);
+const pspalsonull:PetStoreProduct = new PetStoreProduct (null, null, null);
+const pspalsoundefined:PetStoreProduct = new PetStoreProduct (undefined, undefined, undefined);

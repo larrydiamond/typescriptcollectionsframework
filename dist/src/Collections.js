@@ -312,6 +312,108 @@ var Collections = /** @class */ (function () {
         return tmp;
     };
     /**
+     * This method creates a Comparator for a class and prevents you from having to copy and paste and then test and debug all the boilerplate code
+     */
+    Collections.dynamicComparator = function () {
+        var values = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            values[_i] = arguments[_i];
+        }
+        var tmp = {
+            compare: function (o1, o2) {
+                if (o1 === undefined) {
+                    if (o2 === undefined) {
+                        return 0;
+                    }
+                    else {
+                        return -1;
+                    }
+                }
+                if (o2 === undefined)
+                    return 1;
+                if (o1 === null) {
+                    if (o2 === null) {
+                        return 0;
+                    }
+                    else {
+                        return -1;
+                    }
+                }
+                if (o2 === null)
+                    return 1;
+                for (var loop = 0; loop < values.length; loop++) {
+                    var a = o1[values[loop]];
+                    var b = o2[values[loop]];
+                    if (a === undefined) {
+                        if (b === undefined) {
+                            return 0;
+                        }
+                        else {
+                            return -1;
+                        }
+                    }
+                    if (b === undefined)
+                        return 1;
+                    if (a === null) {
+                        if (b === null) {
+                            return 0;
+                        }
+                        else {
+                            return -1;
+                        }
+                    }
+                    if (b === null)
+                        return 1;
+                    if (typeof a === "boolean") {
+                        var x = Collections.booleanCompare(a, b);
+                        if (x !== 0)
+                            return x;
+                    }
+                    else {
+                        if (typeof a === "string") {
+                            var x = Collections.stringCompare(a, b);
+                            if (x !== 0)
+                                return x;
+                        }
+                        else {
+                            if (typeof a === "number") {
+                                var x = Collections.numberCompare(a, b);
+                                if (x !== 0)
+                                    return x;
+                            }
+                            else {
+                                // other types?
+                            }
+                        }
+                    }
+                }
+                return 0;
+            }
+        };
+        return tmp;
+    };
+    Collections.booleanCompare = function (a, b) {
+        if (a === b) {
+            return 0;
+        }
+        if (a === false) {
+            return -1;
+        }
+        return 1;
+    };
+    Collections.numberCompare = function (a, b) {
+        if (a === b) {
+            return 0;
+        }
+        if (a < b) {
+            return -1;
+        }
+        return 1;
+    };
+    Collections.stringCompare = function (a, b) {
+        return a.localeCompare(b);
+    };
+    /**
      * Returns an Array of the elements of this Immutable Collection
      */
     Collections.asArray = function (icoll) {
