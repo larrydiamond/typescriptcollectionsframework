@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.4.4"></a>
+# [4.4.4](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.3...v4.4.4) (2019-03-02)
+* Updating standard version dependency to 5.0.1
+
 <a name="4.4.3"></a>
 # [4.4.3](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.2...v4.4.3) (2019-01-30)
 * Dynamic Comparator - this eases the creation of comparators to make constructing sorted Collections easier - the node.js tutorial will have examples shortly!
