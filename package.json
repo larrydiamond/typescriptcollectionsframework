@@ -1,7 +1,7 @@
 {
   "name": "typescriptcollectionsframework",
   "author": "Larry Diamond <ldiamond@ldiamond.com>",
-  "version": "4.4.4",
+  "version": "4.4.5",
   "description": "Collections Framework for TypeScript compatible with AngularJS",
   "homepage": "https://github.com/larrydiamond/typescriptcollectionsframework",
   "license": "MIT",
