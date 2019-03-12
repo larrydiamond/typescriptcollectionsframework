@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.4.6"></a>
+# [4.4.6](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.5...v4.4.6) (2019-03-12)
+* Updating types jasmine to 3.3.9, types nodejs to 11.11.1, tslint to 5.13.1 and typescript to 3.3.3333
+
 <a name="4.4.5"></a>
 # [4.4.5](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.4...v4.4.5) (2019-03-09)
 * Updating types nodejs to 11.10.5
