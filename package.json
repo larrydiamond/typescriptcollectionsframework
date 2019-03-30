@@ -9,16 +9,15 @@
   "dependencines": {},
   "devDependencies": {
     "@types/jasmine": "^3.3.9",
-    "@types/node": "11.11.1",
     "gulp": "^4.0.0",
     "gulp-jasmine": "^4.0.0",
     "gulp-typescript": "^5.0.0",
     "jasmine": "^2.9.0",
     "jasts": "^1.0.0",
     "merge2": "^1.2.3",
-    "mixin-deep": "^2.0.0",
     "standard-version": "^5.0.1",
     "tslint": "^5.13.1",
+    
     "typedoc": "^0.14.2",
     "typescript": "^3.3.3333"
   },
@@ -41,7 +40,8 @@
     "tslintfix": "tslint --fix -c tslint.json */*.ts",
     "tslintfixwin": "tslint --fix -c tslint.json *\\*.ts",
     "typedoc": "typedoc --target ES5 --readme typedocreadme.html --excludeNotExported  --excludeExternals  --excludePrivate --out docs/typedoc/ src/*.ts  --exclude **/spec/*.spec.ts --name 'TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework'",
-    "typedocwin": "typedoc --target ES5 --readme typedocreadme.html --gitRevision master  --excludeNotExported  --excludeExternals  --excludePrivate --out docs\\typedoc\\ src  --exclude **\\spec\\*.spec.ts --name \"TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework\""
+    "typedocwin": "typedoc --target ES5 --readme typedocreadme.html --gitRevision master  --excludeNotExported  --excludeExternals  --excludePrivate --out docs\\typedoc\\ src  --exclude **\\spec\\*.spec.ts --name \"TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework\"",
+    "allwin": "npm run testwin && npm run tslintwin && npm run tslintfixwin && npm run typedocwin"
   },
   "repository": {
     "type": "git",
