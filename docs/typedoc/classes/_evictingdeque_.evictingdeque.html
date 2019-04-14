@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LinkedList | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
+	<title>EvictingDeque | TypeScriptCollectionsFramework https://github.com/larrydiamond/typescriptcollectionsframework</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_linkedlist_.html">&quot;LinkedList&quot;</a>
+					<a href="../modules/_evictingdeque_.html">&quot;EvictingDeque&quot;</a>
 				</li>
 				<li>
-					<a href="_linkedlist_.linkedlist.html">LinkedList</a>
+					<a href="_evictingdeque_.evictingdeque.html">EvictingDeque</a>
 				</li>
 			</ul>
-			<h1>Class LinkedList&lt;T&gt;</h1>
+			<h1>Class EvictingDeque&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,11 +68,12 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Doubly-linked list implementation of the List, Queue, and Deque interfaces.</p>
+						<p>A deque which automatically evicts elements from the head of the queue
+						when attempting to add new elements onto the queue and it is full.</p>
 					</div>
-					<p>All of the operations perform as could be expected for a doubly-linked list.
-					Operations that index into the list will traverse the list from the beginning or the end, whichever is closer to the specified index.</p>
-					<p>This class corresponds to java.util.LinkedList</p>
+					<p>An evicting queue must be configured with a maximum size.
+						Each time an element is added to a full queue, the queue automatically removes its head element.
+					This is different from conventional bounded queues, which either block or reject new elements when full.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -87,7 +88,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">LinkedList</span>
+						<span class="target">EvictingDeque</span>
 					</li>
 				</ul>
 			</section>
@@ -106,51 +107,50 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#addall" class="tsd-kind-icon">add<wbr>All</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#addfirst" class="tsd-kind-icon">add<wbr>First</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#addindex" class="tsd-kind-icon">add<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#addlast" class="tsd-kind-icon">add<wbr>Last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#contains" class="tsd-kind-icon">contains</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#element" class="tsd-kind-icon">element</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#getcollectable" class="tsd-kind-icon">get<wbr>Collectable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#getfirst" class="tsd-kind-icon">get<wbr>First</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#getfirstnode" class="tsd-kind-icon">get<wbr>First<wbr>Node</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#getlast" class="tsd-kind-icon">get<wbr>Last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#immutablelist" class="tsd-kind-icon">immutable<wbr>List</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#indexof" class="tsd-kind-icon">index<wbr>Of</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#iterator" class="tsd-kind-icon">iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#lastindexof" class="tsd-kind-icon">last<wbr>Index<wbr>Of</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#offer" class="tsd-kind-icon">offer</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#offerfirst" class="tsd-kind-icon">offer<wbr>First</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#offerlast" class="tsd-kind-icon">offer<wbr>Last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#peek" class="tsd-kind-icon">peek</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#peekfirst" class="tsd-kind-icon">peek<wbr>First</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#peeklast" class="tsd-kind-icon">peek<wbr>Last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#poll" class="tsd-kind-icon">poll</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#pollfirst" class="tsd-kind-icon">poll<wbr>First</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#polllast" class="tsd-kind-icon">poll<wbr>Last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removeall" class="tsd-kind-icon">remove<wbr>All</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removefirst" class="tsd-kind-icon">remove<wbr>First</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removeindex" class="tsd-kind-icon">remove<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removelast" class="tsd-kind-icon">remove<wbr>Last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#removequeue" class="tsd-kind-icon">remove<wbr>Queue</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#set" class="tsd-kind-icon">set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#size" class="tsd-kind-icon">size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_linkedlist_.linkedlist.html#tojson" class="tsd-kind-icon">toJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#addall" class="tsd-kind-icon">add<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#addfirst" class="tsd-kind-icon">add<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#addindex" class="tsd-kind-icon">add<wbr>Index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#addlast" class="tsd-kind-icon">add<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#element" class="tsd-kind-icon">element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#getcollectable" class="tsd-kind-icon">get<wbr>Collectable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#getfirst" class="tsd-kind-icon">get<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#getlast" class="tsd-kind-icon">get<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#immutablelist" class="tsd-kind-icon">immutable<wbr>List</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#indexof" class="tsd-kind-icon">index<wbr>Of</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#iterator" class="tsd-kind-icon">iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#lastindexof" class="tsd-kind-icon">last<wbr>Index<wbr>Of</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#offer" class="tsd-kind-icon">offer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#offerfirst" class="tsd-kind-icon">offer<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#offerlast" class="tsd-kind-icon">offer<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#peek" class="tsd-kind-icon">peek</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#peekfirst" class="tsd-kind-icon">peek<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#peeklast" class="tsd-kind-icon">peek<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#poll" class="tsd-kind-icon">poll</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#pollfirst" class="tsd-kind-icon">poll<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#polllast" class="tsd-kind-icon">poll<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#removeall" class="tsd-kind-icon">remove<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#removefirst" class="tsd-kind-icon">remove<wbr>First</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#removeindex" class="tsd-kind-icon">remove<wbr>Index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#removelast" class="tsd-kind-icon">remove<wbr>Last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#removequeue" class="tsd-kind-icon">remove<wbr>Queue</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#set" class="tsd-kind-icon">set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_evictingdeque_.evictingdeque.html#tojson" class="tsd-kind-icon">toJSON</a></li>
 							</ul>
 						</section>
 					</div>
@@ -162,17 +162,20 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Linked<wbr>List<span class="tsd-signature-symbol">(</span>iEquals<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_collectable_.collectable.html" class="tsd-signature-type">Collectable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedlist_.linkedlist.html" class="tsd-signature-type">LinkedList</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Evicting<wbr>Deque<span class="tsd-signature-symbol">(</span>maxSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, iEquals<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_collectable_.collectable.html" class="tsd-signature-type">Collectable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_evictingdeque_.evictingdeque.html" class="tsd-signature-type">EvictingDeque</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L34">LinkedList.ts:34</a></li>
+									<li>Defined in EvictingDeque.ts:31</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>maxSize: <span class="tsd-signature-type">number</span></h5>
+								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> iEquals: <a href="../interfaces/_collectable_.collectable.html" class="tsd-signature-type">Collectable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;AllFieldCollectable.instance</span></h5>
 								</li>
@@ -180,7 +183,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> initialElements: <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_linkedlist_.linkedlist.html" class="tsd-signature-type">LinkedList</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_evictingdeque_.evictingdeque.html" class="tsd-signature-type">EvictingDeque</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -198,7 +201,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L717">LinkedList.ts:717</a></li>
+									<li>Defined in EvictingDeque.ts:367</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -222,13 +225,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L63">LinkedList.ts:63</a></li>
+									<li>Defined in EvictingDeque.ts:53</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Appends the specified element to the end of this list</p>
+									<p>Appends the specified element to the end of this list.</p>
 								</div>
+								<p>If the deque is currently full, the element at the head of the queue is evicted to make room.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -255,7 +259,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#addall">addAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L337">LinkedList.ts:337</a></li>
+									<li>Defined in EvictingDeque.ts:410</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,12 +302,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#addfirst">addFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L86">LinkedList.ts:86</a></li>
+									<li>Defined in EvictingDeque.ts:66</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts the specified element at the front of this deque</p>
+									<p>Inserts the specified element at the front of this deque
+									If the deque is currently full, the element at the head of the queue is evicted to make room.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -328,7 +333,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#addindex">addIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L149">LinkedList.ts:149</a></li>
+									<li>Defined in EvictingDeque.ts:391</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -368,12 +373,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#addlast">addLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L108">LinkedList.ts:108</a></li>
+									<li>Defined in EvictingDeque.ts:79</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts the specified element at the end of this deque</p>
+									<p>Inserts the specified element at the end of this deque
+									If the deque is currently full, the element at the head of the queue is evicted to make room.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -398,7 +404,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#clear">clear</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L209">LinkedList.ts:209</a></li>
+									<li>Defined in EvictingDeque.ts:137</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +427,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#contains">contains</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L244">LinkedList.ts:244</a></li>
+									<li>Defined in EvictingDeque.ts:154</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -454,15 +460,15 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#element">element</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L693">LinkedList.ts:693</a></li>
+									<li>Defined in EvictingDeque.ts:330</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves, but does not remove, the head of this queue.</p>
+									<p>Retrieves, but does not remove, the head of this queue.
+										This method differs from peek only in that it returns undefined if this queue is empty.
+									Needed to implement Queue</p>
 								</div>
-								<p>This method differs from peek only in that it returns undefined if this queue is empty.
-								Needed to implement Queue</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the element at the head of the queue or null if empty</p>
@@ -480,7 +486,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L223">LinkedList.ts:223</a></li>
+									<li>Defined in EvictingDeque.ts:379</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -514,7 +520,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#get">get</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L503">LinkedList.ts:503</a></li>
+									<li>Defined in EvictingDeque.ts:229</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -546,7 +552,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L54">LinkedList.ts:54</a></li>
+									<li>Defined in EvictingDeque.ts:42</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -569,33 +575,16 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#getfirst">getFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L474">LinkedList.ts:474</a></li>
+									<li>Defined in EvictingDeque.ts:211</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>etrieves, but does not remove, the first element in this list.</p>
+									<p>Retrieves, but does not remove, the first element in this list.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the first element in this list, undefined if the list is empty</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getfirstnode" class="tsd-anchor"></a>
-					<h3>get<wbr>First<wbr>Node</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>First<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L480">LinkedList.ts:480</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_linkedlist_.linkedlistnode.html" class="tsd-signature-type">LinkedListNode</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -610,14 +599,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#getlast">getLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L492">LinkedList.ts:492</a></li>
+									<li>Defined in EvictingDeque.ts:220</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves, but does not remove, the last element of this queue.</p>
+									<p>Retrieves, but does not remove, the last element of this queue.
+									This method differs from peek only in that it returns undefined if this queue is empty.</p>
 								</div>
-								<p>This method differs from peek only in that it returns undefined if this queue is empty.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the element at the tail of the queue or undefined if empty</p>
@@ -635,7 +624,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#immutablecollection">immutableCollection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L731">LinkedList.ts:731</a></li>
+									<li>Defined in EvictingDeque.ts:352</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -658,7 +647,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#immutablelist">immutableList</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L724">LinkedList.ts:724</a></li>
+									<li>Defined in EvictingDeque.ts:345</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -681,13 +670,12 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#indexof">indexOf</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L363">LinkedList.ts:363</a></li>
+									<li>Defined in EvictingDeque.ts:184</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the index of the first occurrence of the specified element in this list,
-									or -1 if this list does not contain the element.</p>
+									<p>Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -715,7 +703,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L197">LinkedList.ts:197</a></li>
+									<li>Defined in EvictingDeque.ts:130</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -739,7 +727,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#iterator">iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L709">LinkedList.ts:709</a></li>
+									<li>Defined in EvictingDeque.ts:338</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -763,13 +751,12 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#lastindexof">lastIndexOf</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L448">LinkedList.ts:448</a></li>
+									<li>Defined in EvictingDeque.ts:203</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the index of the last occurrence of the specified element in this list,
-									or -1 if this list does not contain the element</p>
+									<p>Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -797,12 +784,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#offer">offer</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L118">LinkedList.ts:118</a></li>
+									<li>Defined in EvictingDeque.ts:93</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Inserts the specified element into this queue if it is possible to do so immediately without violating capacity restrictions.
+										If the deque is currently full, the element at the head of the queue is evicted to make room.
 									Needed to implement Queue interface</p>
 								</div>
 							</div>
@@ -831,12 +819,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#offerfirst">offerFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L128">LinkedList.ts:128</a></li>
+									<li>Defined in EvictingDeque.ts:106</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts the specified element at the front of this deque</p>
+									<p>Inserts the specified element at the front of this deque
+									If the deque is currently full, the element at the head of the queue is evicted to make room.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -861,12 +850,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#offerlast">offerLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L137">LinkedList.ts:137</a></li>
+									<li>Defined in EvictingDeque.ts:119</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Inserts the specified element at the end of this deque</p>
+									<p>Inserts the specified element at the end of this deque
+									If the deque is currently full, the element at the head of the queue is evicted to make room.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -891,7 +881,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#peek">peek</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L652">LinkedList.ts:652</a></li>
+									<li>Defined in EvictingDeque.ts:303</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -916,7 +906,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#peekfirst">peekFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L667">LinkedList.ts:667</a></li>
+									<li>Defined in EvictingDeque.ts:312</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -940,7 +930,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#peeklast">peekLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L675">LinkedList.ts:675</a></li>
+									<li>Defined in EvictingDeque.ts:320</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -964,14 +954,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#poll">poll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L560">LinkedList.ts:560</a></li>
+									<li>Defined in EvictingDeque.ts:248</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves and removes the head of this queue, or returns null if this queue is empty.</p>
+									<p>Retrieves and removes the head of this queue, or returns null if this queue is empty.
+									Needed to implement Queue</p>
 								</div>
-								<p>Needed to implement Queue</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the element at the head of the queue or null if empty</p>
@@ -989,7 +979,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#pollfirst">pollFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L577">LinkedList.ts:577</a></li>
+									<li>Defined in EvictingDeque.ts:256</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1013,7 +1003,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#polllast">pollLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L585">LinkedList.ts:585</a></li>
+									<li>Defined in EvictingDeque.ts:264</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1037,15 +1027,16 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L271">LinkedList.ts:271</a></li>
+									<li>Defined in EvictingDeque.ts:166</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes the first occurrence of the specified element from this list, if it is present.</p>
+									<p>Removes the first occurrence of the specified element from this list, if it is present.
+										If the list does not contain the element, it is unchanged.
+										More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists).
+									Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).</p>
 								</div>
-								<p>If the list does not contain the element, it is unchanged.
-								More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1072,7 +1063,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#removeall">removeAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L309">LinkedList.ts:309</a></li>
+									<li>Defined in EvictingDeque.ts:175</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1105,14 +1096,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#removefirst">removeFirst</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L624">LinkedList.ts:624</a></li>
+									<li>Defined in EvictingDeque.ts:283</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves and removes the head of this queue.</p>
+									<p>Retrieves and removes the head of this queue.
+									This method differs from poll only in that it returns undefined if this queue is empty</p>
 								</div>
-								<p>This method differs from poll only in that it returns undefined if this queue is empty</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the element at the head of the queue or undefined if empty</p>
@@ -1130,14 +1121,13 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#removeindex">removeIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L392">LinkedList.ts:392</a></li>
+									<li>Defined in EvictingDeque.ts:194</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Removes the element at the specified position in this list.</p>
+									<p>Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).</p>
 								</div>
-								<p>Shifts any subsequent elements to the left (subtracts one from their indices).</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1164,14 +1154,14 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#removelast">removeLast</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L634">LinkedList.ts:634</a></li>
+									<li>Defined in EvictingDeque.ts:292</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves and removes the element at the end of this queue.</p>
+									<p>Retrieves and removes the element at the end of this queue.
+									This method differs from poll only in that it returns undefined if this queue is empty</p>
 								</div>
-								<p>This method differs from poll only in that it returns undefined if this queue is empty</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the element at the end of the queue or undefined if empty</p>
@@ -1189,15 +1179,15 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#removequeue">removeQueue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L605">LinkedList.ts:605</a></li>
+									<li>Defined in EvictingDeque.ts:274</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieves and removes the head of this queue.</p>
+									<p>Retrieves and removes the head of this queue.
+										This method differs from poll only in that it returns undefined if this queue is empty
+									Needed to implement Queue</p>
 								</div>
-								<p>This method differs from poll only in that it returns undefined if this queue is empty
-								Needed to implement Queue</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>the element at the head of the queue or undefined if empty</p>
@@ -1215,7 +1205,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_list_.list.html">List</a>.<a href="../interfaces/_list_.list.html#set">set</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L538">LinkedList.ts:538</a></li>
+									<li>Defined in EvictingDeque.ts:239</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1254,7 +1244,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_deque_.deque.html">Deque</a>.<a href="../interfaces/_deque_.deque.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L234">LinkedList.ts:234</a></li>
+									<li>Defined in EvictingDeque.ts:145</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1277,7 +1267,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/LinkedList.ts#L738">LinkedList.ts:738</a></li>
+									<li>Defined in EvictingDeque.ts:359</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1298,7 +1288,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_linkedlist_.html">"<wbr>Linked<wbr>List"</a>
+						<a href="../modules/_evictingdeque_.html">"<wbr>Evicting<wbr>Deque"</a>
 					</li>
 				</ul>
 			</nav>
@@ -1307,141 +1297,129 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_linkedlist_.linkedlist.html" class="tsd-kind-icon">Linked<wbr>List</a>
+						<a href="_evictingdeque_.evictingdeque.html" class="tsd-kind-icon">Evicting<wbr>Deque</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_evictingdeque_.evictingdeque.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+								<a href="_evictingdeque_.evictingdeque.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#add" class="tsd-kind-icon">add</a>
+								<a href="_evictingdeque_.evictingdeque.html#add" class="tsd-kind-icon">add</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#addall" class="tsd-kind-icon">add<wbr>All</a>
+								<a href="_evictingdeque_.evictingdeque.html#addall" class="tsd-kind-icon">add<wbr>All</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#addfirst" class="tsd-kind-icon">add<wbr>First</a>
+								<a href="_evictingdeque_.evictingdeque.html#addfirst" class="tsd-kind-icon">add<wbr>First</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#addindex" class="tsd-kind-icon">add<wbr>Index</a>
+								<a href="_evictingdeque_.evictingdeque.html#addindex" class="tsd-kind-icon">add<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#addlast" class="tsd-kind-icon">add<wbr>Last</a>
+								<a href="_evictingdeque_.evictingdeque.html#addlast" class="tsd-kind-icon">add<wbr>Last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#clear" class="tsd-kind-icon">clear</a>
+								<a href="_evictingdeque_.evictingdeque.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#contains" class="tsd-kind-icon">contains</a>
+								<a href="_evictingdeque_.evictingdeque.html#contains" class="tsd-kind-icon">contains</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#element" class="tsd-kind-icon">element</a>
+								<a href="_evictingdeque_.evictingdeque.html#element" class="tsd-kind-icon">element</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+								<a href="_evictingdeque_.evictingdeque.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#get" class="tsd-kind-icon">get</a>
+								<a href="_evictingdeque_.evictingdeque.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#getcollectable" class="tsd-kind-icon">get<wbr>Collectable</a>
+								<a href="_evictingdeque_.evictingdeque.html#getcollectable" class="tsd-kind-icon">get<wbr>Collectable</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#getfirst" class="tsd-kind-icon">get<wbr>First</a>
+								<a href="_evictingdeque_.evictingdeque.html#getfirst" class="tsd-kind-icon">get<wbr>First</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#getfirstnode" class="tsd-kind-icon">get<wbr>First<wbr>Node</a>
+								<a href="_evictingdeque_.evictingdeque.html#getlast" class="tsd-kind-icon">get<wbr>Last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#getlast" class="tsd-kind-icon">get<wbr>Last</a>
+								<a href="_evictingdeque_.evictingdeque.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#immutablecollection" class="tsd-kind-icon">immutable<wbr>Collection</a>
+								<a href="_evictingdeque_.evictingdeque.html#immutablelist" class="tsd-kind-icon">immutable<wbr>List</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#immutablelist" class="tsd-kind-icon">immutable<wbr>List</a>
+								<a href="_evictingdeque_.evictingdeque.html#indexof" class="tsd-kind-icon">index<wbr>Of</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#indexof" class="tsd-kind-icon">index<wbr>Of</a>
+								<a href="_evictingdeque_.evictingdeque.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+								<a href="_evictingdeque_.evictingdeque.html#iterator" class="tsd-kind-icon">iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#iterator" class="tsd-kind-icon">iterator</a>
+								<a href="_evictingdeque_.evictingdeque.html#lastindexof" class="tsd-kind-icon">last<wbr>Index<wbr>Of</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#lastindexof" class="tsd-kind-icon">last<wbr>Index<wbr>Of</a>
+								<a href="_evictingdeque_.evictingdeque.html#offer" class="tsd-kind-icon">offer</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#offer" class="tsd-kind-icon">offer</a>
+								<a href="_evictingdeque_.evictingdeque.html#offerfirst" class="tsd-kind-icon">offer<wbr>First</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#offerfirst" class="tsd-kind-icon">offer<wbr>First</a>
+								<a href="_evictingdeque_.evictingdeque.html#offerlast" class="tsd-kind-icon">offer<wbr>Last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#offerlast" class="tsd-kind-icon">offer<wbr>Last</a>
+								<a href="_evictingdeque_.evictingdeque.html#peek" class="tsd-kind-icon">peek</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#peek" class="tsd-kind-icon">peek</a>
+								<a href="_evictingdeque_.evictingdeque.html#peekfirst" class="tsd-kind-icon">peek<wbr>First</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#peekfirst" class="tsd-kind-icon">peek<wbr>First</a>
+								<a href="_evictingdeque_.evictingdeque.html#peeklast" class="tsd-kind-icon">peek<wbr>Last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#peeklast" class="tsd-kind-icon">peek<wbr>Last</a>
+								<a href="_evictingdeque_.evictingdeque.html#poll" class="tsd-kind-icon">poll</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#poll" class="tsd-kind-icon">poll</a>
+								<a href="_evictingdeque_.evictingdeque.html#pollfirst" class="tsd-kind-icon">poll<wbr>First</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#pollfirst" class="tsd-kind-icon">poll<wbr>First</a>
+								<a href="_evictingdeque_.evictingdeque.html#polllast" class="tsd-kind-icon">poll<wbr>Last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#polllast" class="tsd-kind-icon">poll<wbr>Last</a>
+								<a href="_evictingdeque_.evictingdeque.html#remove" class="tsd-kind-icon">remove</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#remove" class="tsd-kind-icon">remove</a>
+								<a href="_evictingdeque_.evictingdeque.html#removeall" class="tsd-kind-icon">remove<wbr>All</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#removeall" class="tsd-kind-icon">remove<wbr>All</a>
+								<a href="_evictingdeque_.evictingdeque.html#removefirst" class="tsd-kind-icon">remove<wbr>First</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#removefirst" class="tsd-kind-icon">remove<wbr>First</a>
+								<a href="_evictingdeque_.evictingdeque.html#removeindex" class="tsd-kind-icon">remove<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#removeindex" class="tsd-kind-icon">remove<wbr>Index</a>
+								<a href="_evictingdeque_.evictingdeque.html#removelast" class="tsd-kind-icon">remove<wbr>Last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#removelast" class="tsd-kind-icon">remove<wbr>Last</a>
+								<a href="_evictingdeque_.evictingdeque.html#removequeue" class="tsd-kind-icon">remove<wbr>Queue</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#removequeue" class="tsd-kind-icon">remove<wbr>Queue</a>
+								<a href="_evictingdeque_.evictingdeque.html#set" class="tsd-kind-icon">set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#set" class="tsd-kind-icon">set</a>
+								<a href="_evictingdeque_.evictingdeque.html#size" class="tsd-kind-icon">size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#size" class="tsd-kind-icon">size</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_linkedlist_.linkedlist.html#tojson" class="tsd-kind-icon">toJSON</a>
+								<a href="_evictingdeque_.evictingdeque.html#tojson" class="tsd-kind-icon">toJSON</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_linkedlist_.linkedlistiterator.html" class="tsd-kind-icon">Linked<wbr>List<wbr>Iterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_linkedlist_.linkedlistjiterator.html" class="tsd-kind-icon">Linked<wbr>ListJIterator</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_linkedlist_.linkedlistnode.html" class="tsd-kind-icon">Linked<wbr>List<wbr>Node</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

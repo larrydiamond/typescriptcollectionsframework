@@ -1,7 +1,7 @@
 "use strict";
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2019 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -20,6 +20,7 @@ var PriorityQueue_1 = require("../src/PriorityQueue");
 var SkipList_1 = require("../src/SkipList");
 var TreeSet_1 = require("../src/TreeSet");
 var jasts_1 = require("jasts");
+var EvictingDeque_1 = require("../src/EvictingDeque");
 describe("Test Collection", function () {
     it("Test empty string Collections ArrayList", function () {
         testEmptyStringCollection(new ArrayList_1.ArrayList(), "ArrayList");
@@ -53,6 +54,10 @@ describe("Test Collection", function () {
         testEmptyStringCollection(new HashClasses_1.HashMultiSet(), "HashMultiSet");
         testEmptyStringCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()), "HashMultiSet");
     });
+    it("Test empty string Collections EvictingDeque", function () {
+        testEmptyStringCollection(new EvictingDeque_1.EvictingDeque(1000), "EvictingDeque");
+        testEmptyStringCollection(new EvictingDeque_1.EvictingDeque(1000, new AllFieldHashable_1.AllFieldHashable()), "EvictingDeque");
+    });
     it("Test empty string Collections CompositeCollections", function () {
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(undefined), "CompositeCollection undefined");
         testEmptyStringCollection(new CompositeCollection_1.CompositeCollection(null), "CompositeCollection null");
@@ -76,6 +81,8 @@ describe("Test Collection", function () {
         testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(undefined));
         testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(null));
         testEmptyNumberCollection(new CompositeCollection_1.CompositeCollection(new ArrayList_1.ArrayList()));
+        testEmptyNumberCollection(new EvictingDeque_1.EvictingDeque(1000));
+        testEmptyNumberCollection(new EvictingDeque_1.EvictingDeque(1000, new AllFieldHashable_1.AllFieldHashable()));
     });
     it("Test add one item to string Collections", function () {
         var al = new ArrayList_1.ArrayList();
@@ -94,6 +101,8 @@ describe("Test Collection", function () {
         testAddOneItemToStringCollection(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()), "SkipListSet StringComparator");
         testAddOneItemToStringCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()), "TreeSet StringComparator");
         testAddOneItemToStringCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue StringComparator");
+        testAddOneItemToStringCollection(new EvictingDeque_1.EvictingDeque(1000), "EvictingDeque");
+        testAddOneItemToStringCollection(new EvictingDeque_1.EvictingDeque(1000, new AllFieldHashable_1.AllFieldHashable()), "EvictingDeque");
     });
     it("Test add one item to string Collection Hash MultiSet", function () {
         testAddOneItemToStringCollection(new HashClasses_1.HashMultiSet(), "HashMultiSet");
@@ -117,6 +126,8 @@ describe("Test Collection", function () {
         testAddOneItemToNumberCollection(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getNumberComparator()));
         testAddOneItemToNumberCollection(new HashClasses_1.HashMultiSet(new AllFieldHashable_1.AllFieldHashable()));
+        testAddOneItemToNumberCollection(new EvictingDeque_1.EvictingDeque(1000));
+        testAddOneItemToNumberCollection(new EvictingDeque_1.EvictingDeque(1000, new AllFieldHashable_1.AllFieldHashable()));
     });
     it("Test add two items to string Collections", function () {
         var al = new ArrayList_1.ArrayList();

@@ -1,7 +1,7 @@
 "use strict";
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2019 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptListsframework/LICENSE
@@ -11,6 +11,7 @@ var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
 var ArrayList_1 = require("../src/ArrayList");
 var LinkedList_1 = require("../src/LinkedList");
 var jasts_1 = require("jasts");
+var EvictingDeque_1 = require("../src/EvictingDeque");
 describe("Test Lists", function () {
     it("Test empty string Lists", function () {
         var al = new ArrayList_1.ArrayList();
@@ -21,6 +22,7 @@ describe("Test Lists", function () {
         testEmptyStringList(ll);
         testEmptyStringList(alc);
         testEmptyStringList(llc);
+        testEmptyStringList(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()));
     });
     it("Test empty number Lists", function () {
         var al = new ArrayList_1.ArrayList();
@@ -31,18 +33,21 @@ describe("Test Lists", function () {
         testEmptyNumberList(ll);
         testEmptyNumberList(alc);
         testEmptyNumberList(llc);
+        testEmptyNumberList(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()));
     });
     it("Test JSON.stringify for numbers", function () {
         testStringifyNumbers(new ArrayList_1.ArrayList());
         testStringifyNumbers(new LinkedList_1.LinkedList());
         testStringifyNumbers(new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable()));
         testStringifyNumbers(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()));
+        testStringifyNumbers(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()));
     });
     it("Test JSON.stringify for strings", function () {
         testStringifyStrings(new ArrayList_1.ArrayList());
         testStringifyStrings(new LinkedList_1.LinkedList());
         testStringifyStrings(new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable()));
         testStringifyStrings(new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable()));
+        testStringifyStrings(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()));
     });
 });
 function testEmptyStringList(list) {

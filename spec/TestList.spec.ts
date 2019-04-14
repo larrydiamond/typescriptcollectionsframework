@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2019 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptListsframework/LICENSE
@@ -12,6 +12,7 @@ import {ImmutableList} from "../src/ImmutableList";
 import {List} from "../src/List";
 import {LinkedList} from "../src/LinkedList";
 import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
+import {EvictingDeque} from "../src/EvictingDeque";
 
 describe("Test Lists", function() {
   it("Test empty string Lists", function() {
@@ -24,6 +25,7 @@ describe("Test Lists", function() {
     testEmptyStringList(ll);
     testEmptyStringList(alc);
     testEmptyStringList(llc);
+    testEmptyStringList(new EvictingDeque<string> (1000, new AllFieldCollectable()));
   });
 
   it("Test empty number Lists", function() {
@@ -36,6 +38,7 @@ describe("Test Lists", function() {
     testEmptyNumberList(ll);
     testEmptyNumberList(alc);
     testEmptyNumberList(llc);
+    testEmptyNumberList(new EvictingDeque<number> (1000, new AllFieldCollectable()));
   });
 
   it ("Test JSON.stringify for numbers", function () {
@@ -43,6 +46,7 @@ describe("Test Lists", function() {
     testStringifyNumbers (new LinkedList<number>());
     testStringifyNumbers (new ArrayList<number>(new AllFieldCollectable()));
     testStringifyNumbers (new LinkedList<number>(new AllFieldCollectable()));
+    testStringifyNumbers(new EvictingDeque<number> (1000, new AllFieldCollectable()));
   });
 
   it ("Test JSON.stringify for strings", function () {
@@ -50,6 +54,7 @@ describe("Test Lists", function() {
     testStringifyStrings (new LinkedList<string>());
     testStringifyStrings (new ArrayList<string>(new AllFieldCollectable()));
     testStringifyStrings (new LinkedList<string>(new AllFieldCollectable()));
+    testStringifyStrings(new EvictingDeque<string> (1000, new AllFieldCollectable()));
   });
 });
 

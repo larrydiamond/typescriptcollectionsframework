@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2019 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -13,6 +13,7 @@ import {LinkedList} from "../src/LinkedList";
 import {PriorityQueue} from "../src/PriorityQueue";
 import {Queue} from "../src/Queue";
 import {TestBoolean, TestString} from 'jasts';
+import {EvictingDeque} from "../src/EvictingDeque";
 
 describe("Test Queue functionality", function() {
 
@@ -23,6 +24,7 @@ describe("Test Queue functionality", function() {
     testEmptyQueue(al, "ArrayList");
     testEmptyQueue(ll, "LinkedList");
     testEmptyQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testEmptyQueue(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test adding items to queues", function() {
@@ -32,6 +34,7 @@ describe("Test Queue functionality", function() {
     testAddToQueue(al, "ArrayList");
     testAddToQueue(ll, "LinkedList");
     testAddToQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testAddToQueue(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test offering items to queues", function() {
@@ -41,6 +44,7 @@ describe("Test Queue functionality", function() {
     testOfferToQueue(al, "ArrayList");
     testOfferToQueue(ll, "LinkedList");
     testOfferToQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testOfferToQueue(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test polling items from queues", function() {
@@ -50,6 +54,7 @@ describe("Test Queue functionality", function() {
     testPollFromQueue(al, "ArrayList");
     testPollFromQueue(ll, "LinkedList");
     testPollFromQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testPollFromQueue(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test removing items from queues", function() {
@@ -59,6 +64,7 @@ describe("Test Queue functionality", function() {
     testRemoveFromQueue(al, "ArrayList");
     testRemoveFromQueue(ll, "LinkedList");
     testRemoveFromQueue(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue");
+    testRemoveFromQueue(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
 });

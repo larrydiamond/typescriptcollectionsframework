@@ -1,7 +1,7 @@
 "use strict";
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2019 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -13,6 +13,7 @@ var Collections_1 = require("../src/Collections");
 var LinkedList_1 = require("../src/LinkedList");
 var PriorityQueue_1 = require("../src/PriorityQueue");
 var jasts_1 = require("jasts");
+var EvictingDeque_1 = require("../src/EvictingDeque");
 describe("Test Queue functionality", function () {
     it("Test empty queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -20,6 +21,7 @@ describe("Test Queue functionality", function () {
         testEmptyQueue(al, "ArrayList");
         testEmptyQueue(ll, "LinkedList");
         testEmptyQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testEmptyQueue(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test adding items to queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -27,6 +29,7 @@ describe("Test Queue functionality", function () {
         testAddToQueue(al, "ArrayList");
         testAddToQueue(ll, "LinkedList");
         testAddToQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testAddToQueue(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test offering items to queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -34,6 +37,7 @@ describe("Test Queue functionality", function () {
         testOfferToQueue(al, "ArrayList");
         testOfferToQueue(ll, "LinkedList");
         testOfferToQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testOfferToQueue(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test polling items from queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -41,6 +45,7 @@ describe("Test Queue functionality", function () {
         testPollFromQueue(al, "ArrayList");
         testPollFromQueue(ll, "LinkedList");
         testPollFromQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testPollFromQueue(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test removing items from queues", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
@@ -48,6 +53,7 @@ describe("Test Queue functionality", function () {
         testRemoveFromQueue(al, "ArrayList");
         testRemoveFromQueue(ll, "LinkedList");
         testRemoveFromQueue(new PriorityQueue_1.PriorityQueue(Collections_1.Collections.getStringComparator()), "PriorityQueue");
+        testRemoveFromQueue(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
 });
 function testEmptyQueue(queue, prefix) {

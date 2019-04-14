@@ -11,6 +11,7 @@ import {ArrayList} from "../src/ArrayList";
 import {LinkedList} from "../src/LinkedList";
 import {Deque} from "../src/Deque";
 import {TestBoolean, TestNumber, TestString} from 'jasts';
+import {EvictingDeque} from "../src/EvictingDeque";
 
 describe("Test Deque functionality", function() {
 
@@ -20,6 +21,7 @@ describe("Test Deque functionality", function() {
 
     testEmptyDeque(al, "ArrayList");
     testEmptyDeque(ll, "LinkedList");
+    testEmptyDeque(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test adding first items to Deques", function() {
@@ -28,6 +30,7 @@ describe("Test Deque functionality", function() {
 
     testAddFirstToDeque(al, "ArrayList");
     testAddFirstToDeque(ll, "LinkedList");
+    testAddFirstToDeque(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test adding last items to Deques", function() {
@@ -36,6 +39,7 @@ describe("Test Deque functionality", function() {
 
     testAddLastToDeque(al, "ArrayList");
     testAddLastToDeque(ll, "LinkedList");
+    testAddLastToDeque(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test offering first items to Deques", function() {
@@ -44,6 +48,7 @@ describe("Test Deque functionality", function() {
 
     testOfferFirstToDeque(al, "ArrayList");
     testOfferFirstToDeque(ll, "LinkedList");
+    testOfferFirstToDeque(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
   it("Test offering last items to Deques", function() {
@@ -52,6 +57,7 @@ describe("Test Deque functionality", function() {
 
     testOfferLastToDeque(al, "ArrayList");
     testOfferLastToDeque(ll, "LinkedList");
+    testOfferLastToDeque(new EvictingDeque<string> (1000, new AllFieldCollectable()), "EvictingDeque");
   });
 
 });

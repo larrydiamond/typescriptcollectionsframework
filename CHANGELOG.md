@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.4.9"></a>
+# [4.4.9](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.8...v4.4.9) (2019-04-13)
+* EvictingDeque
+
 <a name="4.4.8"></a>
 # [4.4.8](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.7...v4.4.8) (2019-04-07)
 * Upgrading Node to 11 and Jasmine to 3.4

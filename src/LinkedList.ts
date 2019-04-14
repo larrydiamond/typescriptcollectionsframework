@@ -139,7 +139,10 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
  /**
-  * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+  * Inserts the specified element at the specified position in this list. 
+  * 
+  * Shifts the element currently at that position (if any) 
+  * and any subsequent elements to the right (adds one to their indices).
   * @param {number} index index at which the specified element is to be inserted
   * @param {T} t element to be inserted
   */
@@ -210,7 +213,11 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
 /**
- * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+ * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. 
+ * 
+ * Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). 
+ * 
+ * Exceptions thrown by the action are relayed to the caller.
  * @param {Consumer} consumer - the action to be performed for each element
  */
  public forEach(consumer:Consumer<T>) : void {
@@ -254,7 +261,10 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
  /**
-  * Removes the first occurrence of the specified element from this list, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
+  * Removes the first occurrence of the specified element from this list, if it is present. 
+  * 
+  * If the list does not contain the element, it is unchanged. 
+  * More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
   * @param {T} t element to be removed from this list, if present
   * @return {T} true if this list contained the specified element
   */
@@ -314,7 +324,12 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
 
 
  /**
-  * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
+  * Inserts all of the elements in the specified collection into this list, 
+  * starting at the specified position. Shifts the element currently at that position (if any) 
+  * and any subsequent elements to the right (increases their indices). 
+  * 
+  * The new elements will appear in the list in the order that they are returned by the specified 
+  * collection's iterator.
   * @param {number} index index at which to insert the first element from the specified collection
   * @param {Collection} c collection containing elements to be added to this list
   * @return {boolean} true if this collection changed as a result of the call
@@ -340,7 +355,8 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
 
 
  /**
-  * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+  * Returns the index of the first occurrence of the specified element in this list, 
+  * or -1 if this list does not contain the element.
   * @param {T} t element to search for
   * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
@@ -367,7 +383,9 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
 
 
  /**
-  * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
+  * Removes the element at the specified position in this list. 
+  * 
+  * Shifts any subsequent elements to the left (subtracts one from their indices).
   * @param {number} index the index of the element to be removed
   * @return {T} the element that was removed from the list, undefined if the element does not exist
   */
@@ -422,7 +440,8 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
 
 
  /**
-  * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+  * Returns the index of the last occurrence of the specified element in this list, 
+  * or -1 if this list does not contain the element
   * @param {T} t element to search for
   * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
   */
@@ -465,7 +484,9 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
   /**
-  * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * Retrieves, but does not remove, the last element of this queue. 
+  * 
+  * This method differs from peek only in that it returns undefined if this queue is empty.
   * @return {K} the element at the tail of the queue or undefined if empty
   */
   public getLast () : T {
@@ -532,6 +553,7 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
 
   /**
   * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+  * 
   * Needed to implement Queue
   * @return {T} the element at the head of the queue or null if empty
   */
@@ -574,7 +596,9 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
   /**
-  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * Retrieves and removes the head of this queue. 
+  * 
+  * This method differs from poll only in that it returns undefined if this queue is empty
   * Needed to implement Queue
   * @return {T} the element at the head of the queue or undefined if empty
   */
@@ -592,7 +616,9 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
   /**
-  * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * Retrieves and removes the head of this queue. 
+  * 
+  * This method differs from poll only in that it returns undefined if this queue is empty
   * @return {K} the element at the head of the queue or undefined if empty
   */
   public removeFirst () : T {
@@ -600,7 +626,9 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
   /**
-  * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+  * Retrieves and removes the element at the end of this queue. 
+  * 
+  * This method differs from poll only in that it returns undefined if this queue is empty
   * @return {K} the element at the end of the queue or undefined if empty
   */
   public removeLast () : T {
@@ -656,7 +684,9 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
   }
 
   /**
-  * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+  * Retrieves, but does not remove, the head of this queue. 
+  * 
+  * This method differs from peek only in that it returns undefined if this queue is empty.
   * Needed to implement Queue
   * @return {T} the element at the head of the queue or null if empty
   */

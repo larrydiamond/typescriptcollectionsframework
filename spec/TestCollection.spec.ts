@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Larry Diamond 2017 All Rights Reserved.
+ * Copyright Larry Diamond 2019 All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -24,6 +24,7 @@ import {PriorityQueue} from "../src/PriorityQueue";
 import {SkipListSet} from "../src/SkipList";
 import {TreeSet} from "../src/TreeSet";
 import {Test, TestBoolean, TestNumber, TestString} from 'jasts';
+import {EvictingDeque} from "../src/EvictingDeque";
 
 describe("Test Collection", function() {
   it("Test empty string Collections ArrayList", function() {
@@ -58,6 +59,10 @@ describe("Test Collection", function() {
     testEmptyStringCollection(new HashMultiSet<string> (), "HashMultiSet");
     testEmptyStringCollection(new HashMultiSet<string> (new AllFieldHashable<string>()), "HashMultiSet");
   });
+  it("Test empty string Collections EvictingDeque", function() {
+    testEmptyStringCollection(new EvictingDeque<string> (1000, ), "EvictingDeque");
+    testEmptyStringCollection(new EvictingDeque<string> (1000, new AllFieldHashable<string>()), "EvictingDeque");
+  });
   it("Test empty string Collections CompositeCollections", function() {
     testEmptyStringCollection(new CompositeCollection<string> (undefined), "CompositeCollection undefined");
     testEmptyStringCollection(new CompositeCollection<string> (null), "CompositeCollection null");
@@ -82,6 +87,8 @@ describe("Test Collection", function() {
     testEmptyNumberCollection(new CompositeCollection<number> (undefined));
     testEmptyNumberCollection(new CompositeCollection<number> (null));
     testEmptyNumberCollection(new CompositeCollection<number> (new ArrayList<number>()));
+    testEmptyNumberCollection(new EvictingDeque<number> (1000));
+    testEmptyNumberCollection(new EvictingDeque<number> (1000, new AllFieldHashable<number>()));
   });
 
   it("Test add one item to string Collections", function() {
@@ -102,6 +109,8 @@ describe("Test Collection", function() {
     testAddOneItemToStringCollection(new SkipListSet<string> (Collections.getStringComparator()), "SkipListSet StringComparator");
     testAddOneItemToStringCollection(new TreeSet<string> (Collections.getStringComparator()), "TreeSet StringComparator");
     testAddOneItemToStringCollection(new PriorityQueue<string> (Collections.getStringComparator()), "PriorityQueue StringComparator");
+    testAddOneItemToStringCollection(new EvictingDeque<string> (1000), "EvictingDeque");
+    testAddOneItemToStringCollection(new EvictingDeque<string> (1000, new AllFieldHashable<string>()), "EvictingDeque");
   });
 
   it("Test add one item to string Collection Hash MultiSet", function() {
@@ -130,6 +139,8 @@ describe("Test Collection", function() {
     testAddOneItemToNumberCollection(new TreeSet<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new PriorityQueue<number> (Collections.getNumberComparator()));
     testAddOneItemToNumberCollection(new HashMultiSet<number> (new AllFieldHashable<number>()));
+    testAddOneItemToNumberCollection(new EvictingDeque<number> (1000));
+    testAddOneItemToNumberCollection(new EvictingDeque<number> (1000, new AllFieldHashable<number>()));
   });
 
   it("Test add two items to string Collections", function() {

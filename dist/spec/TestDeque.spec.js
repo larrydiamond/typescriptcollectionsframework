@@ -11,36 +11,42 @@ var AllFieldCollectable_1 = require("../src/AllFieldCollectable");
 var ArrayList_1 = require("../src/ArrayList");
 var LinkedList_1 = require("../src/LinkedList");
 var jasts_1 = require("jasts");
+var EvictingDeque_1 = require("../src/EvictingDeque");
 describe("Test Deque functionality", function () {
     it("Test empty Deques", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testEmptyDeque(al, "ArrayList");
         testEmptyDeque(ll, "LinkedList");
+        testEmptyDeque(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test adding first items to Deques", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testAddFirstToDeque(al, "ArrayList");
         testAddFirstToDeque(ll, "LinkedList");
+        testAddFirstToDeque(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test adding last items to Deques", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testAddLastToDeque(al, "ArrayList");
         testAddLastToDeque(ll, "LinkedList");
+        testAddLastToDeque(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test offering first items to Deques", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testOfferFirstToDeque(al, "ArrayList");
         testOfferFirstToDeque(ll, "LinkedList");
+        testOfferFirstToDeque(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
     it("Test offering last items to Deques", function () {
         var al = new ArrayList_1.ArrayList(new AllFieldCollectable_1.AllFieldCollectable());
         var ll = new LinkedList_1.LinkedList(new AllFieldCollectable_1.AllFieldCollectable());
         testOfferLastToDeque(al, "ArrayList");
         testOfferLastToDeque(ll, "LinkedList");
+        testOfferLastToDeque(new EvictingDeque_1.EvictingDeque(1000, new AllFieldCollectable_1.AllFieldCollectable()), "EvictingDeque");
     });
 });
 function testEmptyDeque(deque, prefix) {

@@ -112,7 +112,10 @@ var LinkedList = /** @class */ (function () {
         return this.addLast(t);
     };
     /**
-     * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to their indices).
+     * Inserts the specified element at the specified position in this list.
+     *
+     * Shifts the element currently at that position (if any)
+     * and any subsequent elements to the right (adds one to their indices).
      * @param {number} index index at which the specified element is to be inserted
      * @param {T} t element to be inserted
      */
@@ -178,7 +181,11 @@ var LinkedList = /** @class */ (function () {
         this.numberElements = 0;
     };
     /**
-     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
+     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception.
+     *
+     * Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified).
+     *
+     * Exceptions thrown by the action are relayed to the caller.
      * @param {Consumer} consumer - the action to be performed for each element
      */
     LinkedList.prototype.forEach = function (consumer) {
@@ -218,7 +225,10 @@ var LinkedList = /** @class */ (function () {
         return null;
     };
     /**
-     * Removes the first occurrence of the specified element from this list, if it is present. If the list does not contain the element, it is unchanged. More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
+     * Removes the first occurrence of the specified element from this list, if it is present.
+     *
+     * If the list does not contain the element, it is unchanged.
+     * More formally, removes the element with the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists). Returns true if this list contained the specified element (or equivalently, if this list changed as a result of the call).
      * @param {T} t element to be removed from this list, if present
      * @return {T} true if this list contained the specified element
      */
@@ -276,7 +286,12 @@ var LinkedList = /** @class */ (function () {
         return changed;
     };
     /**
-     * Inserts all of the elements in the specified collection into this list, starting at the specified position. Shifts the element currently at that position (if any) and any subsequent elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator.
+     * Inserts all of the elements in the specified collection into this list,
+     * starting at the specified position. Shifts the element currently at that position (if any)
+     * and any subsequent elements to the right (increases their indices).
+     *
+     * The new elements will appear in the list in the order that they are returned by the specified
+     * collection's iterator.
      * @param {number} index index at which to insert the first element from the specified collection
      * @param {Collection} c collection containing elements to be added to this list
      * @return {boolean} true if this collection changed as a result of the call
@@ -301,7 +316,8 @@ var LinkedList = /** @class */ (function () {
         return true;
     };
     /**
-     * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+     * Returns the index of the first occurrence of the specified element in this list,
+     * or -1 if this list does not contain the element.
      * @param {T} t element to search for
      * @return {number} the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
@@ -326,7 +342,9 @@ var LinkedList = /** @class */ (function () {
         return -1;
     };
     /**
-     * Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).
+     * Removes the element at the specified position in this list.
+     *
+     * Shifts any subsequent elements to the left (subtracts one from their indices).
      * @param {number} index the index of the element to be removed
      * @return {T} the element that was removed from the list, undefined if the element does not exist
      */
@@ -378,7 +396,8 @@ var LinkedList = /** @class */ (function () {
         return undefined;
     };
     /**
-     * Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
+     * Returns the index of the last occurrence of the specified element in this list,
+     * or -1 if this list does not contain the element
      * @param {T} t element to search for
      * @return {number} the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element
      */
@@ -419,7 +438,9 @@ var LinkedList = /** @class */ (function () {
         return node;
     };
     /**
-    * Retrieves, but does not remove, the last element of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Retrieves, but does not remove, the last element of this queue.
+    *
+    * This method differs from peek only in that it returns undefined if this queue is empty.
     * @return {K} the element at the tail of the queue or undefined if empty
     */
     LinkedList.prototype.getLast = function () {
@@ -484,6 +505,7 @@ var LinkedList = /** @class */ (function () {
     };
     /**
     * Retrieves and removes the head of this queue, or returns null if this queue is empty.
+    *
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or null if empty
     */
@@ -521,7 +543,9 @@ var LinkedList = /** @class */ (function () {
         return element;
     };
     /**
-    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Retrieves and removes the head of this queue.
+    *
+    * This method differs from poll only in that it returns undefined if this queue is empty
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or undefined if empty
     */
@@ -537,14 +561,18 @@ var LinkedList = /** @class */ (function () {
         return element;
     };
     /**
-    * Retrieves and removes the head of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Retrieves and removes the head of this queue.
+    *
+    * This method differs from poll only in that it returns undefined if this queue is empty
     * @return {K} the element at the head of the queue or undefined if empty
     */
     LinkedList.prototype.removeFirst = function () {
         return this.removeQueue();
     };
     /**
-    * Retrieves and removes the element at the end of this queue. This method differs from poll only in that it returns undefined if this queue is empty
+    * Retrieves and removes the element at the end of this queue.
+    *
+    * This method differs from poll only in that it returns undefined if this queue is empty
     * @return {K} the element at the end of the queue or undefined if empty
     */
     LinkedList.prototype.removeLast = function () {
@@ -593,7 +621,9 @@ var LinkedList = /** @class */ (function () {
         return this.lastNode.payload;
     };
     /**
-    * Retrieves, but does not remove, the head of this queue. This method differs from peek only in that it returns undefined if this queue is empty.
+    * Retrieves, but does not remove, the head of this queue.
+    *
+    * This method differs from peek only in that it returns undefined if this queue is empty.
     * Needed to implement Queue
     * @return {T} the element at the head of the queue or null if empty
     */
