@@ -2,6 +2,10 @@ sudo: false
 language: node_js
 node_js: "11"
 
+addons:
+  sonarcloud:
+    organization: "sonarcloud"
+
 script:
   - npm test
 
