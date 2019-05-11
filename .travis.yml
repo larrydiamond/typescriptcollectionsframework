@@ -8,6 +8,7 @@ addons:
 
 script:
   - npm test
+  - sonar-scanner
 
 after_script:
   - npm run tslint
