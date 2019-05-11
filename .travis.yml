@@ -8,7 +8,6 @@ addons:
 
 script:
   - npm test
-  - sonar-scanner
 
 after_script:
   - npm run tslint
@@ -16,3 +15,4 @@ after_script:
   - npm install nyc
   - nyc --reporter=lcov --reporter=text-lcov npm test
   - bash <(curl -s https://codecov.io/bash)
+  - sonar-scanner
