@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2018 All Rights Reserved.
+* Copyright Larry Diamond 2019 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/LICENSE
@@ -117,6 +117,18 @@ export class TreeSet<K> implements NavigableSet<K> {
     return tmp;
   }
 
+  /**
+  * Returns the highest key lower than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {K} the highest key lower than key, or null if there is no such key
+  */
+  public lower (item:K) : K {
+    const tmp:K = this.datastore.lowerKey(item);
+    if (tmp === undefined)
+      return null;
+    return tmp;
+  }
+
  /**
   * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
   * @param {K} item to find ceiling node for
@@ -129,6 +141,17 @@ export class TreeSet<K> implements NavigableSet<K> {
     return tmp;
   }
 
+  /**
+  * Returns the least key greater than the given key, or null if there is no such key.
+  * @param {K} key the key
+  * @return {K} the least key greater than key, or null if there is no such key
+  */
+  public higher (item:K) : K {
+    const tmp:K = this.datastore.higherKey(item);
+    if (tmp === undefined)
+      return null;
+    return tmp;
+  }
 
   /**
   * Returns the first (lowest) element currently in this set.

@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2017 All Rights Reserved.
+* Copyright Larry Diamond 2019 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/LICENSE
@@ -350,6 +350,48 @@ describe("Test TreeSet functionality", function() {
     expect (TreeSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
     expect (TreeSet2.ceiling (16)).toEqual(17); // 16 isnt there, 17 is
     expect (TreeSet2.ceiling (17)).toEqual(17); // 17 is there
+  });
+
+  it("Test higher", function() {
+    const TreeSet2:TreeSet<number> = new TreeSet<number>(Collections.getNumberComparator());
+    expect (TreeSet2.add (44)).toEqual(true);
+    expect (TreeSet2.add (5)).toEqual(true);
+    expect (TreeSet2.add (20)).toEqual(true);
+    expect (TreeSet2.add (88)).toEqual(true);
+    expect (TreeSet2.add (50)).toEqual(true);
+    expect (TreeSet2.add (30)).toEqual(true);
+    expect (TreeSet2.add (1)).toEqual(true);
+    expect (TreeSet2.add (48)).toEqual(true);
+    expect (TreeSet2.add (62)).toEqual(true);
+    expect (TreeSet2.add (78)).toEqual(true);
+    expect (TreeSet2.add (17)).toEqual(true);
+    expect (TreeSet2.add (70)).toEqual(true);
+    expect (TreeSet2.add (80)).toEqual(true);
+    expect (TreeSet2.add (32)).toEqual(true);
+    expect (TreeSet2.higher (16)).toEqual(17); // 16 isnt there, 17 is
+    expect (TreeSet2.higher (16)).toEqual(17); // 16 isnt there, 17 is
+    expect (TreeSet2.higher (17)).toEqual(20); // 17 is there, 20 is next
+  });
+
+  it("Test lower", function() {
+    const TreeSet2:TreeSet<number> = new TreeSet<number>(Collections.getNumberComparator());
+    expect (TreeSet2.add (44)).toEqual(true);
+    expect (TreeSet2.add (5)).toEqual(true);
+    expect (TreeSet2.add (20)).toEqual(true);
+    expect (TreeSet2.add (88)).toEqual(true);
+    expect (TreeSet2.add (50)).toEqual(true);
+    expect (TreeSet2.add (30)).toEqual(true);
+    expect (TreeSet2.add (1)).toEqual(true);
+    expect (TreeSet2.add (48)).toEqual(true);
+    expect (TreeSet2.add (62)).toEqual(true);
+    expect (TreeSet2.add (78)).toEqual(true);
+    expect (TreeSet2.add (17)).toEqual(true);
+    expect (TreeSet2.add (70)).toEqual(true);
+    expect (TreeSet2.add (80)).toEqual(true);
+    expect (TreeSet2.add (32)).toEqual(true);
+    expect (TreeSet2.lower (38)).toEqual(32); // 38 isnt there, 32 is next
+    expect (TreeSet2.lower (31)).toEqual(30); // 31 isnt there, 30 is next
+    expect (TreeSet2.lower (17)).toEqual(5); // 17 is there, 16 is next
   });
 
   it ("Test lots", function () {

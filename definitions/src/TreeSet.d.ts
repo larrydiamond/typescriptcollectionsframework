@@ -1,6 +1,6 @@
 /**
 * @license
-* Copyright Larry Diamond 2018 All Rights Reserved.
+* Copyright Larry Diamond 2019 All Rights Reserved.
 *
 * Use of this source code is governed by an MIT-style license that can be
 * found in the LICENSE file at https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/LICENSE
@@ -62,11 +62,23 @@ export declare class TreeSet<K> implements NavigableSet<K> {
      */
     floor(item: K): K;
     /**
+    * Returns the highest key lower than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the highest key lower than key, or null if there is no such key
+    */
+    lower(item: K): K;
+    /**
      * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
      * @param {K} item to find ceiling node for
      * @return {K} the least element greater than or equal to item, or null if there is no such element
      */
     ceiling(item: K): K;
+    /**
+    * Returns the least key greater than the given key, or null if there is no such key.
+    * @param {K} key the key
+    * @return {K} the least key greater than key, or null if there is no such key
+    */
+    higher(item: K): K;
     /**
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, null if there are no elements in this set
