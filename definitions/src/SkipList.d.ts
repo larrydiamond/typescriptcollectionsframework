@@ -371,11 +371,23 @@ export declare class SkipListSet<K> implements NavigableSet<K> {
     */
     floor(key: K): K;
     /**
+    * Returns the greatest element in this set less than the given element, or null if there is no such element.
+    * @param {K} item to find floor node for
+    * @return {K} the greatest element less than the given element, or null if there is no such element
+    */
+    lower(key: K): K;
+    /**
     * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
     * @param {K} item to find ceiling node for
     * @return {K} the least element greater than or equal to item, or null if there is no such element
     */
     ceiling(key: K): K;
+    /**
+    * Returns the least element in this set greater than the given element, or null if there is no such element.
+    * @param {K} item to find ceiling node for
+    * @return {K} the least element greater than the given element, or null if there is no such element
+    */
+    higher(key: K): K;
     /**
     * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
     * @param {Consumer} consumer - the action to be performed for each element

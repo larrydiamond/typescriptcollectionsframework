@@ -99,6 +99,14 @@ describe("Test NavigableSet functionality", function () {
         testCeilingString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testCeilingString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
+    it("Test higher", function () {
+        testHigherNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
+        testHigherNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testHigherNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testHigherString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testHigherString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testHigherString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
     it("Test floor", function () {
         testFloorNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
         testFloorNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
@@ -106,6 +114,14 @@ describe("Test NavigableSet functionality", function () {
         testFloorString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
         testFloorString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
+    });
+    it("Test lower", function () {
+        testLowerNumber(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getNumberComparator()));
+        testLowerNumber(new TreeSet_1.TreeSet(Collections_1.Collections.getNumberComparator()));
+        testLowerNumber(new SkipList_1.SkipListSet(Collections_1.Collections.getNumberComparator()));
+        testLowerString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
+        testLowerString(new TreeSet_1.TreeSet(Collections_1.Collections.getStringComparator()));
+        testLowerString(new SkipList_1.SkipListSet(Collections_1.Collections.getStringComparator()));
     });
     it("Test tostring", function () {
         testToString(new NavigableHash_1.NavigableHashSet(Collections_1.Collections.getStringComparator()));
@@ -225,6 +241,18 @@ function testCeilingNumber(set) {
     expect(set.ceiling(1)).toEqual(100);
     expect(set.ceiling(99999)).toEqual(null);
 }
+function testHigherNumber(set) {
+    expect(set.higher(456)).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.higher(456)).toEqual(500);
+    expect(set.higher(600)).toEqual(700);
+    expect(set.higher(1)).toEqual(100);
+    expect(set.higher(99999)).toEqual(null);
+}
 function testCeilingString(set) {
     expect(set.ceiling("notfound")).toEqual(null);
     expect(set.size()).toEqual(0);
@@ -236,6 +264,18 @@ function testCeilingString(set) {
     expect(set.ceiling("first")).toEqual("first");
     expect(set.ceiling("aaaaa")).toEqual("eighth");
     expect(set.ceiling("zzzzz")).toEqual(null);
+}
+function testHigherString(set) {
+    expect(set.higher("notfound")).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.higher("notfound")).toEqual("second");
+    expect(set.higher("first")).toEqual("fourth");
+    expect(set.higher("aaaaa")).toEqual("eighth");
+    expect(set.higher("zzzzz")).toEqual(null);
 }
 function testFloorNumber(set) {
     expect(set.floor(456)).toEqual(null);
@@ -260,6 +300,30 @@ function testFloorString(set) {
     expect(set.floor("first")).toEqual("first");
     expect(set.floor("aaaaa")).toEqual(null);
     expect(set.floor("zzzzz")).toEqual("third");
+}
+function testLowerNumber(set) {
+    expect(set.lower(456)).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestNumbers(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.lower(456)).toEqual(400);
+    expect(set.lower(600)).toEqual(500);
+    expect(set.lower(1)).toEqual(null);
+    expect(set.lower(99999)).toEqual(1000);
+}
+function testLowerString(set) {
+    expect(set.lower("notfound")).toEqual(null);
+    expect(set.size()).toEqual(0);
+    expect(set.isEmpty()).toEqual(true);
+    addTestStrings(set);
+    expect(set.size()).toEqual(10);
+    expect(set.isEmpty()).toEqual(false);
+    expect(set.lower("notfound")).toEqual("ninth");
+    expect(set.lower("first")).toEqual("fifth");
+    expect(set.lower("aaaaa")).toEqual(null);
+    expect(set.lower("zzzzz")).toEqual("third");
 }
 function testToString(set) {
     jasts_1.TestString.equals("Empty set should stringify to []", JSON.stringify(set), '[]');

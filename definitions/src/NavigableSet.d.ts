@@ -32,11 +32,23 @@ export interface NavigableSet<K> extends JSet<K> {
     */
     ceiling(item: K): K;
     /**
+    * Returns the least element in this set greater than the given element, or null if there is no such element.
+    * @param {K} item to find ceiling node for
+    * @return {K} the least element greater than the given element, or null if there is no such element
+    */
+    higher(item: K): K;
+    /**
     * Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.
     * @param {K} item to find floor node for
     * @return {K} the greatest element less than or equal to e, or null if there is no such element
     */
     floor(item: K): K;
+    /**
+    * Returns the greatest element in this set less than the given element, or null if there is no such element.
+    * @param {K} item to find floor node for
+    * @return {K} the greatest element less than the given element, or null if there is no such element
+    */
+    lower(item: K): K;
     /**
     * Returns the first (lowest) element currently in this set.
     * @return {K} the first (lowest) element currently in this set, null if there are no elements in this set

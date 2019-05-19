@@ -1234,12 +1234,36 @@ var SkipListSet = /** @class */ (function () {
         return node.getKey();
     };
     /**
+    * Returns the greatest element in this set less than the given element, or null if there is no such element.
+    * @param {K} item to find floor node for
+    * @return {K} the greatest element less than the given element, or null if there is no such element
+    */
+    SkipListSet.prototype.lower = function (key) {
+        var node = this.impl.lowerEntry(key);
+        if ((node === undefined) || (node === null)) {
+            return null;
+        }
+        return node.getKey();
+    };
+    /**
     * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
     * @param {K} item to find ceiling node for
     * @return {K} the least element greater than or equal to item, or null if there is no such element
     */
     SkipListSet.prototype.ceiling = function (key) {
         var node = this.impl.ceilingEntry(key);
+        if ((node === undefined) || (node === null)) {
+            return null;
+        }
+        return node.getKey();
+    };
+    /**
+    * Returns the least element in this set greater than the given element, or null if there is no such element.
+    * @param {K} item to find ceiling node for
+    * @return {K} the least element greater than the given element, or null if there is no such element
+    */
+    SkipListSet.prototype.higher = function (key) {
+        var node = this.impl.higherEntry(key);
         if ((node === undefined) || (node === null)) {
             return null;
         }

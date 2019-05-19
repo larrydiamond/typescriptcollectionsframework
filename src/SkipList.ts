@@ -1314,12 +1314,38 @@ export class SkipListSet<K> implements NavigableSet<K> {
   }
 
   /**
+  * Returns the greatest element in this set less than the given element, or null if there is no such element.
+  * @param {K} item to find floor node for
+  * @return {K} the greatest element less than the given element, or null if there is no such element
+  */
+  public lower (key:K) : K {
+    const node : SkipListNode<K,number> = this.impl.lowerEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
+  }
+
+  /**
   * Returns the least element in this set greater than or equal to the given element, or null if there is no such element.
   * @param {K} item to find ceiling node for
   * @return {K} the least element greater than or equal to item, or null if there is no such element
   */
   public ceiling (key:K) : K {
     const node : SkipListNode<K,number> = this.impl.ceilingEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
+  }
+
+  /**
+  * Returns the least element in this set greater than the given element, or null if there is no such element.
+  * @param {K} item to find ceiling node for
+  * @return {K} the least element greater than the given element, or null if there is no such element
+  */
+  public higher (key:K) : K {
+    const node : SkipListNode<K,number> = this.impl.higherEntry(key);
     if ((node === undefined) || (node === null)) {
       return null;
     }

@@ -1331,6 +1331,19 @@ export class NavigableHashSet<K> implements NavigableSet<K> {
   }
 
   /**
+  * Returns the least element in this set greater than the given element, or null if there is no such element.
+  * @param {K} item to find ceiling node for
+  * @return {K} the least element greater than the given element, or null if there is no such element
+  */
+  public higher (key:K) : K {
+    const node : NavigableHashNode<K,number> = this.impl.higherEntry(key);
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
+  }
+
+  /**
   * Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.
   * @param {Consumer} consumer - the action to be performed for each element
   */
@@ -1347,6 +1360,19 @@ export class NavigableHashSet<K> implements NavigableSet<K> {
   */
   public first () : K {
     const node : NavigableHashNode<K,number> = this.impl.firstEntry();
+    if ((node === undefined) || (node === null)) {
+      return null;
+    }
+    return node.getKey();
+  }
+
+  /**
+  * Returns the greatest element in this set less than the given element, or null if there is no such element.
+  * @param {K} item to find floor node for
+  * @return {K} the greatest element less than the given element, or null if there is no such element
+  */
+  public lower (key:K) : K {
+    const node : NavigableHashNode<K,number> = this.impl.lowerEntry(key);
     if ((node === undefined) || (node === null)) {
       return null;
     }

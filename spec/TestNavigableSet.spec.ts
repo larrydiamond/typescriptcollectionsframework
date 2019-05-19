@@ -123,6 +123,16 @@ describe("Test NavigableSet functionality", function() {
     testCeilingString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
+  it ("Test higher", function () {
+    testHigherNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
+    testHigherNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testHigherNumber (new SkipListSet<number>(Collections.getNumberComparator()));
+
+    testHigherString (new NavigableHashSet<string>(Collections.getStringComparator()));
+    testHigherString (new TreeSet<string>(Collections.getStringComparator()));
+    testHigherString (new SkipListSet<string>(Collections.getStringComparator()));
+  });
+
   it ("Test floor", function () {
     testFloorNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
     testFloorNumber (new TreeSet<number>(Collections.getNumberComparator()));
@@ -131,6 +141,16 @@ describe("Test NavigableSet functionality", function() {
     testFloorString (new NavigableHashSet<string>(Collections.getStringComparator()));
     testFloorString (new TreeSet<string>(Collections.getStringComparator()));
     testFloorString (new SkipListSet<string>(Collections.getStringComparator()));
+  });
+
+  it ("Test lower", function () {
+    testLowerNumber (new NavigableHashSet<number>(Collections.getNumberComparator()));
+    testLowerNumber (new TreeSet<number>(Collections.getNumberComparator()));
+    testLowerNumber (new SkipListSet<number>(Collections.getNumberComparator()));
+
+    testLowerString (new NavigableHashSet<string>(Collections.getStringComparator()));
+    testLowerString (new TreeSet<string>(Collections.getStringComparator()));
+    testLowerString (new SkipListSet<string>(Collections.getStringComparator()));
   });
 
   it ("Test tostring", function () {
@@ -270,6 +290,19 @@ function testCeilingNumber (set:NavigableSet<number>) {
   expect (set.ceiling(99999)).toEqual (null);
 }
 
+function testHigherNumber (set:NavigableSet<number>) {
+  expect (set.higher(456)).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestNumbers(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.higher(456)).toEqual (500);
+  expect (set.higher(600)).toEqual (700);
+  expect (set.higher(1)).toEqual (100);
+  expect (set.higher(99999)).toEqual (null);
+}
+
 function testCeilingString (set:NavigableSet<string>) {
   expect (set.ceiling("notfound")).toEqual (null);
   expect (set.size ()).toEqual(0);
@@ -283,6 +316,18 @@ function testCeilingString (set:NavigableSet<string>) {
   expect (set.ceiling("zzzzz")).toEqual (null);
 }
 
+function testHigherString (set:NavigableSet<string>) {
+  expect (set.higher("notfound")).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestStrings(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.higher("notfound")).toEqual ("second");
+  expect (set.higher("first")).toEqual ("fourth");
+  expect (set.higher("aaaaa")).toEqual ("eighth");
+  expect (set.higher("zzzzz")).toEqual (null);
+}
 
 function testFloorNumber (set:NavigableSet<number>) {
   expect (set.floor(456)).toEqual (null);
@@ -308,6 +353,32 @@ function testFloorString (set:NavigableSet<string>) {
   expect (set.floor("first")).toEqual ("first");
   expect (set.floor("aaaaa")).toEqual (null);
   expect (set.floor("zzzzz")).toEqual ("third");
+}
+
+function testLowerNumber (set:NavigableSet<number>) {
+  expect (set.lower(456)).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestNumbers(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.lower(456)).toEqual (400);
+  expect (set.lower(600)).toEqual (500);
+  expect (set.lower(1)).toEqual (null);
+  expect (set.lower(99999)).toEqual (1000);
+}
+
+function testLowerString (set:NavigableSet<string>) {
+  expect (set.lower("notfound")).toEqual (null);
+  expect (set.size ()).toEqual(0);
+  expect (set.isEmpty ()).toEqual(true);
+  addTestStrings(set);
+  expect (set.size ()).toEqual(10);
+  expect (set.isEmpty ()).toEqual(false);
+  expect (set.lower("notfound")).toEqual ("ninth");
+  expect (set.lower("first")).toEqual ("fifth");
+  expect (set.lower("aaaaa")).toEqual (null);
+  expect (set.lower("zzzzz")).toEqual ("third");
 }
 
 function testToString (set:NavigableSet<string>) {
