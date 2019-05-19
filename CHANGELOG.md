@@ -1,5 +1,9 @@
 # Change Log
 
+<a name="4.4.10"></a>
+# [4.4.10](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.9...v4.4.10) (2019-05-19)
+* Set higher and lower methods
+
 <a name="4.4.9"></a>
 # [4.4.9](https://github.com/larrydiamond/typescriptcollectionsframework/compare/v4.4.8...v4.4.9) (2019-04-13)
 * EvictingDeque
