@@ -383,7 +383,7 @@ export declare class NavigableHashSet<K> implements NavigableSet<K> {
     ceiling(key: K): K;
     /**
     * Returns the least element in this set greater than the given element, or null if there is no such element.
-    * @param {K} item to find ceiling node for
+    * @param {K} item to find higher node for
     * @return {K} the least element greater than the given element, or null if there is no such element
     */
     higher(key: K): K;
@@ -399,7 +399,7 @@ export declare class NavigableHashSet<K> implements NavigableSet<K> {
     first(): K;
     /**
     * Returns the greatest element in this set less than the given element, or null if there is no such element.
-    * @param {K} item to find floor node for
+    * @param {K} item to find lower node for
     * @return {K} the greatest element less than the given element, or null if there is no such element
     */
     lower(key: K): K;

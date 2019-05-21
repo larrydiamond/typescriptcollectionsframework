@@ -15,6 +15,7 @@ export { Comparator } from "./src/Comparator";
 export { CompositeCollection } from "./src/CompositeCollection";
 export { Hashable } from "./src/Hashable";
 export { HashMap } from "./src/HashMap";
+export { HashMultiSet } from "./src/HashClasses";
 export { HashSet } from "./src/HashSet";
 export { ImmutableCollection } from "./src/ImmutableCollection";
 export { ImmutableList } from "./src/ImmutableList";
