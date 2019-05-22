@@ -494,7 +494,6 @@ var HashMapKeySetJIterator = /** @class */ (function () {
                 return false;
             if ((firstEntry.entry === null) || (firstEntry.entry === undefined))
                 return false;
-            var first = firstEntry.entry.getKey();
             return true;
         }
         else { // we've already called this iterator before
@@ -503,7 +502,6 @@ var HashMapKeySetJIterator = /** @class */ (function () {
                 return false;
             if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined))
                 return false;
-            var tmp = tmpEntry.entry.getKey();
             return true;
         }
     };
@@ -580,7 +578,6 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
                 return null;
             if ((firstEntry.entry === null) || (firstEntry.entry === undefined))
                 return null;
-            var first = firstEntry.entry.getKey();
             return true;
         }
         else { // we've already called this iterator before
@@ -589,7 +586,6 @@ var HashMapEntrySetJIterator = /** @class */ (function () {
                 return null;
             if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined))
                 return null;
-            var tmp = tmpEntry.entry.getKey();
             return true;
         }
     };

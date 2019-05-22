@@ -137,10 +137,6 @@ export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
       if (c === null) return false;
       if (c === undefined) return false;
       if (c.size() < 1) return false;
-      let offsetToStartAt = this.size();
-      if (index) {
-        offsetToStartAt = index;
-      }
       let offset = index;
 
       for (const iter = c.iterator(); iter.hasNext(); ) {
@@ -482,15 +478,7 @@ export class ArrayList<T> implements List<T>, Queue<T>, Deque<T> {
   * @return {T} the element at the head of the queue or undefined if empty
   */
   public element () : T {
-    if ((this.elements === null) || (this.elements === undefined)) {
-      return undefined;
-    }
-    if (this.sizeValue <= 0) {
-      return undefined;
-    }
-
-    const element:T = this.get (0);
-    return element;
+    return this.getFirst();
   }
 
   /**

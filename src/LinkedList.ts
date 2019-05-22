@@ -338,10 +338,6 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     if (c === null) return false;
     if (c === undefined) return false;
     if (c.size() < 1) return false;
-    let offsetToStartAt = this.size();
-    if (index) {
-      offsetToStartAt = index;
-    }
     let offset = index;
 
     for (const iter = c.iterator(); iter.hasNext(); ) {
@@ -423,7 +419,6 @@ export class LinkedList<T> implements List<T>, Queue<T>, Deque<T> {
     let previous:LinkedListNode<T> = null;
     while ((node !== null) && (node !== undefined)) {
       if (index === offset) {
-        const payload:T = node.payload;
         previous.nextNode = node.nextNode;
         if (node.nextNode !== null)
           node.nextNode.previousNode = previous;

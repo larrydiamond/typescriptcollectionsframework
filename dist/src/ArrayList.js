@@ -122,10 +122,6 @@ var ArrayList = /** @class */ (function () {
             return false;
         if (c.size() < 1)
             return false;
-        var offsetToStartAt = this.size();
-        if (index) {
-            offsetToStartAt = index;
-        }
         var offset = index;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
@@ -425,14 +421,7 @@ var ArrayList = /** @class */ (function () {
     * @return {T} the element at the head of the queue or undefined if empty
     */
     ArrayList.prototype.element = function () {
-        if ((this.elements === null) || (this.elements === undefined)) {
-            return undefined;
-        }
-        if (this.sizeValue <= 0) {
-            return undefined;
-        }
-        var element = this.get(0);
-        return element;
+        return this.getFirst();
     };
     /**
      * Returns a Java style iterator

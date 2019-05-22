@@ -510,13 +510,11 @@ export class HashMapKeySetJIterator<K,V> implements JIterator<K> {
       const firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
       if ((firstEntry === null) || (firstEntry === undefined)) return false;
       if ((firstEntry.entry === null) || (firstEntry.entry === undefined)) return false;
-      const first:K = firstEntry.entry.getKey();
       return true;
     } else { // we've already called this iterator before
       const tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
       if ((tmpEntry === null) || (tmpEntry === undefined)) return false;
       if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined)) return false;
-      const tmp:K = tmpEntry.entry.getKey();
       return true;
     }
   }
@@ -601,13 +599,11 @@ export class HashMapEntrySetJIterator<K,V> implements JIterator<MapEntry<K,V>> {
       const firstEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetFirstEntryForIterator();
       if ((firstEntry === null) || (firstEntry === undefined)) return null;
       if ((firstEntry.entry === null) || (firstEntry.entry === undefined)) return null;
-      const first:K = firstEntry.entry.getKey();
       return true;
     } else { // we've already called this iterator before
       const tmpEntry:HashMapIteratorLocationTracker<K,V> = this.map.deprecatedGetNextEntryForIterator(this.location);
       if ((tmpEntry === null) || (tmpEntry === undefined)) return null;
       if ((tmpEntry.entry === null) || (tmpEntry.entry === undefined)) return null;
-      const tmp:K = tmpEntry.entry.getKey();
       return true;
     }
   }

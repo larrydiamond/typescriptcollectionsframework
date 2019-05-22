@@ -95,7 +95,7 @@ var LinkedHashSet = /** @class */ (function (_super) {
         if (result === false)
             return false; // not there dont proceed further
         var linkedIter = this.Iterator();
-        for (; linkedIter.hasNext();) {
+        while (linkedIter.hasNext()) {
             var val = linkedIter.next();
             if (val.equals(value) === true) {
                 val.remove();

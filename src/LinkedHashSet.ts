@@ -85,7 +85,7 @@ export class LinkedHashSet<K> extends HashSet<K> {
           return false;  // not there dont proceed further
 
         const linkedIter:LinkedIterator<K> = this.Iterator();
-        for (; linkedIter.hasNext(); ) {
+        while (linkedIter.hasNext()) {
            const val:LinkedEntry<K> = linkedIter.next();
            if (val.equals(value) === true) {
                val.remove();

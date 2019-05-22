@@ -303,10 +303,6 @@ var LinkedList = /** @class */ (function () {
             return false;
         if (c.size() < 1)
             return false;
-        var offsetToStartAt = this.size();
-        if (index) {
-            offsetToStartAt = index;
-        }
         var offset = index;
         for (var iter = c.iterator(); iter.hasNext();) {
             var t = iter.next();
@@ -380,7 +376,6 @@ var LinkedList = /** @class */ (function () {
         var previous = null;
         while ((node !== null) && (node !== undefined)) {
             if (index === offset) {
-                var payload = node.payload;
                 previous.nextNode = node.nextNode;
                 if (node.nextNode !== null)
                     node.nextNode.previousNode = previous;
