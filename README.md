@@ -12,6 +12,7 @@ https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 [![Code Triage](https://www.codetriage.com/larrydiamond/typescriptcollectionsframework/badges/users.svg)](https://www.codetriage.com)
 [![quality badge](https://img.shields.io/badge/cuteness-overload-orange.svg)](http://www.emergencykitten.com/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/larrydiamond/typescriptcollectionsframework.svg)](https://greenkeeper.io/)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=larrydiamond_typescriptcollectionsframework&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=larrydiamond_typescriptcollectionsframework)
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/ldiamondldiamond)
 
 **TypeScript Collections Framework** is a port of the Java Collections framework to TypeScript.   It fully supports Generics and native types.
