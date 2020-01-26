@@ -20,5 +20,5 @@ import { Collectable } from "./Collectable";
  */
 export declare class AllFieldCollectable<T> implements Collectable<T> {
     equals(o1: T, o2: T): boolean;
-    static instance: AllFieldCollectable<{}>;
+    static instance: AllFieldCollectable<unknown>;
 }
