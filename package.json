@@ -16,7 +16,7 @@
     "jasts": "^1.0.0",
     "merge2": "^1.2.3",
     "standard-version": "^7.1.0",
-    "tslint": "^5.13.1",
+    "tslint": "^6.1.2",
     "typedoc": "^0.14.2",
     "typescript": "3.5.1"
   },
