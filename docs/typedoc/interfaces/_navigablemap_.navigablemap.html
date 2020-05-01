@@ -65,29 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A Map that further provides a total ordering on its keys. The map is ordered according to a Comparator provided at sorted map creation time.
-							This order is reflected when iterating over the navigable map&#39;s collection views (returned by the entrySet and keySet).
-						Several additional operations are provided to take advantage of the ordering. (This interface is the map analogue of NavigableSet.)</p>
-					</div>
-					<p>Note that the ordering maintained by a navigable map must be consistent with equals if the navigable map is to correctly implement the Map interface.
-						(See the Comparator interface for a precise definition of consistent with equals.)
-						This is so because the Map interface is defined in terms of the equals operation,
-						but a navigable map performs all key comparisons using its Comparator so two keys that are deemed equal by this method are,
-						from the standpoint of the navigable map, equal.
-						The behavior of an implementing map is well-defined even if its ordering is inconsistent with equals;
-					it just fails to obey the general contract of the Map interface.</p>
-					<p>Methods lowerEntry, floorEntry, ceilingEntry, and higherEntry return MapEntry objects associated with keys respectively less than,
-						less than or equal, greater than or equal, and greater than a given key, returning null if there is no such key. <br>
-						Similarly, methods lowerKey, floorKey, ceilingKey, and higherKey return only the associated keys.
-						All of these methods are designed for locating, not traversing entries.<br>
-						This interface additionally defines methods firstEntry, pollFirstEntry, lastEntry, and pollLastEntry
-					that return and/or remove the least and greatest mappings, if any exist, else returning null.</p>
-					<p>This interface corresponds to java.util.NavigableMap</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -172,11 +149,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L98">ImmutableMap.ts:98</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an iterator over the entire entry set</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an iterator for the entry set</p>
 						</li>
@@ -195,18 +167,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L53">NavigableMap.ts:53</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a key-value mapping associated with the least key greater than or equal to the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -227,18 +191,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L60">NavigableMap.ts:60</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the least key greater than or equal to the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -260,11 +216,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/JMap.ts#L66">JMap.ts:66</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes all of the mappings from this map. The map will be empty after this call returns.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -283,18 +234,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L63">ImmutableMap.ts:63</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this map contains a mapping for the specified key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The key whose presence in this map is to be tested</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -316,18 +259,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L69">ImmutableMap.ts:69</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this map maps one or more keys to the specified value.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">V</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value whose presence in this map is to be tested</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -348,14 +283,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L92">ImmutableMap.ts:92</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableSet view of the mappings contained in this map.
-										The set is backed by the map, so changes to the map are reflected in the set.
-										If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.
-									The contains method on this entrySet will only compare keys not values.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the Immutable Entry Set</p>
 						</li>
@@ -374,11 +301,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L46">NavigableMap.ts:46</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a key-value mapping associated with the least key in this map, or null if the map is empty.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an entry with the least key, or null if this map is empty</p>
 						</li>
@@ -397,11 +319,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L40">NavigableMap.ts:40</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the first (lowest) key currently in this map.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
 							<p>the first (lowest) key currently in this map, returns null if the Map is empty</p>
 						</li>
@@ -420,18 +337,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L102">NavigableMap.ts:102</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a key-value mapping associated with the greatest key less than or equal to the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -452,18 +361,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L95">NavigableMap.ts:95</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the greatest key less than or equal to the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -485,18 +386,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L56">ImmutableMap.ts:56</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key whose associated value is to be returned</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
@@ -517,18 +410,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L74">NavigableMap.ts:74</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a key-value mapping associated with the least key greater than the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -549,18 +434,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L67">NavigableMap.ts:67</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the least key greater than the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -582,11 +459,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/JMap.ts#L71">JMap.ts:71</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableMap backed by this Map</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -605,11 +477,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L75">ImmutableMap.ts:75</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this map contains no key-value mappings.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>true if this map contains no key-value mappings</p>
 						</li>
@@ -629,13 +496,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L83">ImmutableMap.ts:83</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableSet view of the keys contained in this map.
-										The set is backed by the map, so changes to the map are reflected in the set.
-									If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the ImmutableSet</p>
 						</li>
@@ -654,11 +514,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L114">NavigableMap.ts:114</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a key-value mapping associated with the least key in this map, or null if the map is empty.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an entry with the greatest key, or null if this map is empty</p>
 						</li>
@@ -677,11 +532,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L108">NavigableMap.ts:108</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the last (highest) key currently in this map.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
 							<p>the last (highest) key currently in this map, returns null if the Map is empty</p>
 						</li>
@@ -700,18 +550,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L88">NavigableMap.ts:88</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a key-value mapping associated with the highest key lower than the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -732,18 +574,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/NavigableMap.ts#L81">NavigableMap.ts:81</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the highest key lower than the given key, or null if there is no such key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -765,24 +599,13 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/JMap.ts#L54">JMap.ts:54</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>key with which the specified value is to be associated</p>
-									</div>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">V</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value to be associated with the specified key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
@@ -804,18 +627,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/JMap.ts#L61">JMap.ts:61</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes the mapping for this key from this Map if present.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>key for which mapping should be removed</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
@@ -837,11 +652,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableMap.ts#L49">ImmutableMap.ts:49</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the number of key-value mappings in this map.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of key-value mappings in this map</p>
 						</li>

@@ -65,30 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>An ordered collection (also known as a sequence).
-							The user of this interface has precise control over where in the list each element is inserted.
-						The user can access elements by their integer index (position in the list), and search for elements in the list.</p>
-					</div>
-					<p>Unlike sets, lists typically allow duplicate elements.
-					More formally, lists typically allow pairs of elements e1 and e2 such that e1.equals(e2).</p>
-					<p>The ImmutableList interface places additional stipulations, beyond those specified in the ImmutableCollection interface,
-						on the contracts of the iterator method.
-					Declarations for other inherited methods are also included here for convenience.</p>
-					<p>The ImmutableList interface provides four methods for positional (indexed) access to list elements.
-						Lists (like TypeScript arrays) are zero based.
-						Note that these operations may execute in time proportional to the index value for some implementations (the LinkedList class, for example).
-					Thus, iterating over the elements in a list is typically preferable to indexing through it if the caller does not know the implementation.</p>
-					<p>The ImmutableList interface provides two methods to search for a specified object.
-						From a performance standpoint, these methods should be used with caution.
-					In many implementations they will perform costly linear searches.</p>
-					<p>Note: While it is permissible for lists to contain themselves as elements, extreme caution is advised:
-					the equals and hashCode methods are no longer well defined on such a list.</p>
-					<p>This interface is the immutable version of java.lang.List.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -152,11 +128,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableCollection.ts#L52">ImmutableCollection.ts:52</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a TypeScript style iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the TypeScript style iterator</p>
 						</li>
@@ -176,18 +147,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableList.ts#L65">ImmutableList.ts:65</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this list contains the specified element.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>t: <span class="tsd-signature-type">T</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element whose presence in this list is to be tested</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -209,12 +172,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableCollection.ts#L66">ImmutableCollection.ts:66</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Performs the given action for each element until all elements have been processed or the action throws and exception.</p>
-								</div>
-								<p>Exceptions thrown by the action are relayed to the caller</p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -238,18 +195,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableList.ts#L44">ImmutableList.ts:44</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the element at the specified position in this list.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>index: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>index of the element to return</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
@@ -270,18 +219,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableList.ts#L51">ImmutableList.ts:51</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>t: <span class="tsd-signature-type">T</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element to search for</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -303,11 +244,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableList.ts#L71">ImmutableList.ts:71</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this list contains no elements.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>true if this list contains no elements</p>
 						</li>
@@ -327,11 +263,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableCollection.ts#L46">ImmutableCollection.ts:46</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a Java style iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the Java style iterator</p>
 						</li>
@@ -350,18 +281,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableList.ts#L58">ImmutableList.ts:58</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>t: <span class="tsd-signature-type">T</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element to search for</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -383,11 +306,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableCollection.ts#L34">ImmutableCollection.ts:34</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the number of elements in this collection.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of elements in this collection</p>
 						</li>

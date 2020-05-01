@@ -65,16 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A scalable NavigableSet implementation based on a SkipListMap.</p>
-					</div>
-					<p>The elements of the set are kept sorted according to a Comparator provided at set creation time.<br>
-					This implementation provides expected average log(n) time cost for the contains, add, and remove operations and their variants.</p>
-					<p>This class corresponds to java.util.concurrent.ConcurrentSkipListSet</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -143,7 +133,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Set<span class="tsd-signature-symbol">(</span>iComparator<span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistset.html" class="tsd-signature-type">SkipListSet</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Skip<wbr>List<wbr>Set<span class="tsd-signature-symbol">(</span>iComparator<span class="tsd-signature-symbol">: </span><a href="../interfaces/_comparator_.comparator.html" class="tsd-signature-type">Comparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, initialElements<span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_skiplist_.skiplistset.html" class="tsd-signature-type">SkipListSet</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -182,11 +172,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1466">SkipList.ts:1466</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a TypeScript style iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the TypeScript style iterator</p>
 						</li>
@@ -206,18 +191,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1266">SkipList.ts:1266</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Adds the specified element to this set if it is not already present.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>element: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element to be added to this set</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -239,11 +216,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1334">SkipList.ts:1334</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the least element in this set greater than or equal to the given element, or null if there is no such element.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -269,11 +241,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1407">SkipList.ts:1407</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes all of the elements from this set. The set will be empty after this call returns.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -292,11 +259,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1295">SkipList.ts:1295</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -322,11 +284,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1370">SkipList.ts:1370</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the first (lowest) element currently in this set.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
 							<p>the first (lowest) element currently in this set, null if there are no elements in this set</p>
 						</li>
@@ -346,11 +303,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1308">SkipList.ts:1308</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the greatest element in this set less than or equal to the given element, or null if there is no such element.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -376,18 +328,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1359">SkipList.ts:1359</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Performs the given action for each element of the Iterable until all elements have been processed or the action throws an exception. Unless otherwise specified by the implementing class, actions are performed in the order of iteration (if an iteration order is specified). Exceptions thrown by the action are relayed to the caller.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>consumer: <a href="../interfaces/_consumer_.consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the action to be performed for each element</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -407,18 +351,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1446">SkipList.ts:1446</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Needed For Iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the given key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
@@ -440,11 +376,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1347">SkipList.ts:1347</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the least element in this set greater than the given element, or null if there is no such element.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -470,11 +401,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1473">SkipList.ts:1473</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableCollection backed by this Collection</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -493,11 +419,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1480">SkipList.ts:1480</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableSet backed by this Set</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -516,11 +437,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1286">SkipList.ts:1286</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this set contains no elements.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>true if this set contains no elements</p>
 						</li>
@@ -540,11 +456,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1458">SkipList.ts:1458</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a Java style iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the Java style iterator</p>
 						</li>
@@ -564,11 +475,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1382">SkipList.ts:1382</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the last (highest) element currently in this set.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
 							<p>the last (highest) element currently in this set, null if there are no elements in this set</p>
 						</li>
@@ -588,11 +494,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1321">SkipList.ts:1321</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the greatest element in this set less than the given element, or null if there is no such element.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -618,11 +519,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1415">SkipList.ts:1415</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Retrieves and removes the first (lowest) element, or returns null if this set is empty.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
 							<p>the first (lowest) element, or null if this set is empty</p>
 						</li>
@@ -642,11 +538,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1430">SkipList.ts:1430</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Retrieves and removes the last (highest) element, or returns null if this set is empty.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">K</span></h4>
 							<p>the last (highest) element, or null if this set is empty</p>
 						</li>
@@ -666,18 +557,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1395">SkipList.ts:1395</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes the specified element from this set if it is present.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>element: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>element to be removed from this set</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -699,11 +582,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1278">SkipList.ts:1278</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the number of elements in this set (its cardinality).</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of elements in this set (its cardinality)</p>
 						</li>
@@ -722,11 +600,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/SkipList.ts#L1487">SkipList.ts:1487</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Override JSON.stringify handling</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>

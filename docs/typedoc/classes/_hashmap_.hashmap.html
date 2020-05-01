@@ -65,33 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Hash table based implementation of the Map interface.  This implementation permits null values and the null key.</p>
-					</div>
-					<p>This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.</p>
-					<p>This implementation provides constant-time performance for the basic operations (get and put),
-					assuming the hash function disperses the elements properly among the buckets.</p>
-					<p>Iteration over collection views requires time proportional to the &quot;capacity&quot; of the HashMap instance
-					(the number of buckets) plus its size (the number of key-value mappings).</p>
-					<p>An instance of HashMap has two parameters that affect its performance: initial capacity and load factor.</p>
-					<p>The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created.</p>
-					<p>The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased.</p>
-					<p>When the number of entries in the hash table exceeds the product of the load factor and the current capacity,
-					the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.</p>
-					<p>As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs.</p>
-					<p>Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put).</p>
-					<p>The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity,
-					so as to minimize the number of rehash operations.</p>
-					<p>If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.</p>
-					<p>If many mappings are to be stored in a HashMap instance,
-						creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform
-					automatic rehashing as needed to grow the table.</p>
-					<p>Note that using many keys with the same hashCode() is a sure way to slow down performance of any hash table.</p>
-					<p>This class corresponds to java.util.HashMap</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -208,11 +181,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L313">HashMap.ts:313</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an iterator over the entire entry set</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an iterator for the entry set</p>
 						</li>
@@ -222,7 +190,7 @@
 					<a name="addentry" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> add<wbr>Entry</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Entry<span class="tsd-signature-symbol">(</span>hash<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span>, bucket<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Entry<span class="tsd-signature-symbol">(</span>hash<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">K</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V</span>, bucket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -231,37 +199,19 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L135">HashMap.ts:135</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This is a placeholder that does nothing for HashMap object but needed to work with
-									LinkedHashMap&#39;s addEntry method which it overrides from here to fully provide the linked functionality.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hash: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value that represents the hash value of the key</p>
-									</div>
 								</li>
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>key with which the specified value is to be associated</p>
-									</div>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">V</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value to be associated with the specified key</p>
-									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> bucket: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>index of the bucket in which the Entry should be</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -282,11 +232,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L263">HashMap.ts:263</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes all of the mappings from this map. The map will be empty after this call returns.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -305,18 +250,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L225">HashMap.ts:225</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this map contains a mapping for the specified key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The key whose presence in this map is to be tested</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -338,18 +275,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L236">HashMap.ts:236</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this map maps one or more keys to the specified value.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">V</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value whose presence in this map is to be tested</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -369,15 +298,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L329">HashMap.ts:329</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This method is deprecated and will be removed in a future revision.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd></dd>
-								</dl>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_hashmap_.hashmapiteratorlocationtracker.html" class="tsd-signature-type">HashMapIteratorLocationTracker</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -395,15 +315,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L355">HashMap.ts:355</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This method is deprecated and will be removed in a future revision.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd></dd>
-								</dl>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -428,15 +339,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L297">HashMap.ts:297</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableSet view of the mappings contained in this map.</p>
-								</div>
-								<p>The set&#39;s iterator returns the mappings in random key order.</p>
-								<p>The set is backed by the map, so changes to the map are reflected in the set.</p>
-								<p>If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
-								<p>The contains method on this entrySet will only compare keys not values.</p>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an entry with the greatest key, or null if this map is empty</p>
 						</li>
@@ -456,18 +358,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L191">HashMap.ts:191</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the value to which the specified key is mapped, or undefined if this map contains no mapping for the key.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the key whose associated value is to be returned</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
@@ -512,11 +406,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L304">HashMap.ts:304</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableMap backed by Map</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutablemap_.immutablemap.html" class="tsd-signature-type">ImmutableMap</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -535,11 +424,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L171">HashMap.ts:171</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this map contains no key-value mappings.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>true if this map contains no key-value mappings</p>
 						</li>
@@ -559,14 +443,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L280">HashMap.ts:280</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns an ImmutableSet view of the keys contained in this map.</p>
-								</div>
-								<p>The set&#39;s iterator returns the keys in ascending order.</p>
-								<p>The set is backed by the map, so changes to the map are reflected in the set.</p>
-								<p>If the map is modified while an iteration over the set is in progress the results of the iteration are undefined.</p>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_immutableset_.immutableset.html" class="tsd-signature-type">ImmutableSet</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>an entry with the greatest key, or null if this map is empty</p>
 						</li>
@@ -586,25 +462,13 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L96">HashMap.ts:96</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Associates the specified value with the specified key in this map.</p>
-								</div>
-								<p>If the map previously contained a mapping for the key, the old value is replaced.</p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>key with which the specified value is to be associated</p>
-									</div>
 								</li>
 								<li>
 									<h5>value: <span class="tsd-signature-type">V</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value to be associated with the specified key</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
@@ -626,18 +490,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L202">HashMap.ts:202</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Removes the mapping for this key from this Map if present.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>key: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>key for which mapping should be removed</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V</span></h4>
@@ -659,11 +515,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L181">HashMap.ts:181</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the number of key-value mappings in this map.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of key-value mappings in this map</p>
 						</li>
@@ -682,11 +533,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/HashMap.ts#L320">HashMap.ts:320</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Override JSON.stringify handling</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_mapentry_.mapentry.html" class="tsd-signature-type">MapEntry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>

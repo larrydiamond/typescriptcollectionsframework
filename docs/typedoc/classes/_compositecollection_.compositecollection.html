@@ -65,14 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Decorates a collection of other collection to provide a single unified view.</p>
-					</div>
-					<p>This class corresponds to org.apache.commons.collections4.collection.CompositeCollection</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -126,7 +118,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Composite<wbr>Collection<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>values<span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_compositecollection_.compositecollection.html" class="tsd-signature-type">CompositeCollection</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Composite<wbr>Collection<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_compositecollection_.compositecollection.html" class="tsd-signature-type">CompositeCollection</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -138,7 +130,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>values: <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> values: <a href="../interfaces/_immutablecollection_.immutablecollection.html" class="tsd-signature-type">ImmutableCollection</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_compositecollection_.compositecollection.html" class="tsd-signature-type">CompositeCollection</a></h4>
@@ -162,11 +154,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L93">CompositeCollection.ts:93</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a TypeScript style iterator.   The order of the elements returned by the iterator should not be relied upon</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the TypeScript style iterator</p>
 						</li>
@@ -186,18 +173,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L59">CompositeCollection.ts:59</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>object to be checked for containment in this set</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -219,12 +198,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L67">CompositeCollection.ts:67</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Performs the given action for each element until all elements have been processed or the action throws and exception.
-									Exceptions thrown by the action are relayed to the caller</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -249,11 +222,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L50">CompositeCollection.ts:50</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this set contains no elements.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>true if this set contains no elements</p>
 						</li>
@@ -273,14 +241,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L85">CompositeCollection.ts:85</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a Java style iterator.   The order of the elements returned by the iterator should not be relied upon.
-										Since the underlying Collections could be modified between the call to hasNext() and next(),
-										there is no guarantee that next() will return a value even if hasNext() returns true.
-									In this scenario then next() will return undefined</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the Java style iterator</p>
 						</li>
@@ -300,11 +260,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L42">CompositeCollection.ts:42</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the number of elements in this set (its cardinality).</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of elements in this set (its cardinality)</p>
 						</li>
@@ -323,11 +278,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/CompositeCollection.ts#L74">CompositeCollection.ts:74</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Override JSON.stringify handling</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>

@@ -65,26 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A collection that contains no duplicate elements.
-							More formally, sets contain no pair of elements e1 and e2 such that e1.equals(e2), and at most one null element and at most one undefined element.
-						As implied by its name, this interface models the mathematical set abstraction.</p>
-					</div>
-					<p>The ImmutableSet interface places additional stipulations, beyond those inherited from the Collection interface,
-						on the contracts of all constructors and on the contracts of the equals and hashCode methods.
-						Declarations for other inherited methods are also included here for convenience.
-					(The specifications accompanying these declarations have been tailored to the Set interface, but they do not contain any additional stipulations.)</p>
-					<p>The additional stipulation on constructors is, not surprisingly, that all constructors must create a set that contains no duplicate elements (as defined above).</p>
-					<p>Note: Great care must be exercised if mutable objects are used as set elements.
-						The behavior of a set is not specified if the value of an object is changed in a manner that affects equals comparisons while the object is an element in the set.
-					A special case of this prohibition is that it is not permissible for a set to contain itself as an element.</p>
-					<p>Some set implementations have restrictions on the elements that they may contain.
-					For example, some implementations prohibit null elements and undefined elements.</p>
-					<p>This interface is the immutable version of java.lang.Set.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -158,11 +138,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableSet.ts#L63">ImmutableSet.ts:63</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a TypeScript style iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the TypeScript style iterator</p>
 						</li>
@@ -182,18 +157,10 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableSet.ts#L51">ImmutableSet.ts:51</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this set contains the specified element.   This method uses the comparator and does not invoke equals</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">K</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>object to be checked for containment in this set</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -215,12 +182,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableCollection.ts#L66">ImmutableCollection.ts:66</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Performs the given action for each element until all elements have been processed or the action throws and exception.</p>
-								</div>
-								<p>Exceptions thrown by the action are relayed to the caller</p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -245,11 +206,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableSet.ts#L44">ImmutableSet.ts:44</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns true if this set contains no elements.</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>true if this set contains no elements</p>
 						</li>
@@ -269,11 +225,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableSet.ts#L57">ImmutableSet.ts:57</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns a Java style iterator</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_jiterator_.jiterator.html" class="tsd-signature-type">JIterator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>the Java style iterator</p>
 						</li>
@@ -293,11 +244,6 @@
 									<li>Defined in <a href="https://github.com/larrydiamond/typescriptcollectionsframework/blob/master/src/ImmutableSet.ts#L38">ImmutableSet.ts:38</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the number of elements in this set (its cardinality).</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the number of elements in this set (its cardinality)</p>
 						</li>
