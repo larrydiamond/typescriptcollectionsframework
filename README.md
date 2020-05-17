@@ -11,7 +11,7 @@ It is designed for and written by Java coders who also needed to do TypeScript p
 https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 [![Code Triage](https://www.codetriage.com/larrydiamond/typescriptcollectionsframework/badges/users.svg)](https://www.codetriage.com)
 [![quality badge](https://img.shields.io/badge/cuteness-overload-orange.svg)](http://www.emergencykitten.com/)
-[![Greenkeeper badge](https://badges.greenkeeper.io/larrydiamond/typescriptcollectionsframework.svg)](https://greenkeeper.io/)
+
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=larrydiamond_typescriptcollectionsframework&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=larrydiamond_typescriptcollectionsframework)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=larrydiamond_typescriptcollectionsframework&metric=bugs)](https://sonarcloud.io/dashboard?id=larrydiamond_typescriptcollectionsframework)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=larrydiamond_typescriptcollectionsframework&metric=code_smells)](https://sonarcloud.io/dashboard?id=larrydiamond_typescriptcollectionsframework)
