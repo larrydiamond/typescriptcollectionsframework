@@ -2,7 +2,7 @@
 
 **"If you know the Java Collections Framework, you know the Typescript Collections Framework.   It's the same API (mostly)"**
 
-**I am working on an upgrade to this library to the newest version of TypeScript.  This upgrade will be available to sponsors only and not open source ising the Github sponsorship tools - https://github.blog/2022-02-02-new-sponsors-only-repositories-custom-amounts-and-more/ To get access sponsor this project and you will be added when the sponsor only library is available**
+**I am working on an upgrade to this library to the newest version of TypeScript.  This upgrade will be available to sponsors only and not open source ising the Github sponsorship tools - https://github.blog/2022-02-02-new-sponsors-only-repositories-custom-amounts-and-more/ To get access sponsor this project and you will be added when the sponsor only library is available.**
 
 It is designed for and written by Java coders who also needed to do TypeScript programming.
 
