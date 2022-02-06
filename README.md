@@ -2,11 +2,12 @@
 
 **"If you know the Java Collections Framework, you know the Typescript Collections Framework.   It's the same API (mostly)"**
 
+**I am working on an upgrade to this library to the newest version of TypeScript.  This upgrade will be available to sponsors only and not open source ising the Github sponsorship tools - https://github.blog/2022-02-02-new-sponsors-only-repositories-custom-amounts-and-more/ To get access sponsor this project and you will be added when the sponsor only library is available**
+
 It is designed for and written by Java coders who also needed to do TypeScript programming.
 
 [![NPM](https://nodei.co/npm/typescriptcollectionsframework.png?compact=true)](https://npmjs.org/typescriptcollectionsframework)
 [![Build Status](https://travis-ci.org/larrydiamond/typescriptcollectionsframework.svg?branch=master)](https://travis-ci.org/larrydiamond/typescriptcollectionsframework)
-[![devDependencies Status](https://david-dm.org/larrydiamond/typescriptcollectionsframework/dev-status.svg)](https://david-dm.org/larrydiamond/typescriptcollectionsframework?type=dev)
 [![Code Coverage](https://codecov.io/gh/larrydiamond/typescriptcollectionsframework/branch/master/graphs/badge.svg?branch=master)](
 https://codecov.io/gh/larrydiamond/typescriptcollectionsframework)
 [![Code Triage](https://www.codetriage.com/larrydiamond/typescriptcollectionsframework/badges/users.svg)](https://www.codetriage.com)
