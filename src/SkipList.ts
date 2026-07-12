@@ -347,6 +347,7 @@ export class SkipListMapImpl<K,V> {
           const tmp:SkipListNode<K,V> = this.head.get(height);
           this.head.set (height, newNode);
           newNode.getNextNodeArray().set (height, tmp);
+          tmp.getLastNodeArray().set (height, newNode);
         }
       }
     }

@@ -1550,6 +1550,73 @@ describe("Test SkipList functionality", function() {
 
   });
 
+  it("Set Test insert 1 to 20 and iterate in order", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+
+    for (let i:number = 1; i <= 20; i++) {
+      expect (set.add (i)).toEqual (true);
+    }
+
+    expect (set.size ()).toEqual (20);
+    testBoolean.equalsTrue ("Validate set", set.validateSet ());
+
+    // every number 1..20 must exist
+    for (let i:number = 1; i <= 20; i++) {
+      testBoolean.equalsTrue ("Set should contain " + i, set.contains (i));
+    }
+
+    // iterating (Java style) must produce exactly 1..20 in ascending order
+    let expectedValue:number = 1;
+    let count:number = 0;
+    for (const iter = set.iterator (); iter.hasNext (); ) {
+      const value:number = iter.next ();
+      testNumber.equals ("Value at position " + expectedValue + " out of order", value, expectedValue);
+      expectedValue++;
+      count++;
+    }
+    testNumber.equals ("Expected to iterate over all 20 elements", count, 20);
+
+    // iterating (TypeScript style) must also produce exactly 1..20 in ascending order
+    expectedValue = 1;
+    count = 0;
+    const tsi:Iterator<number> = set[Symbol.iterator]();
+    let tmp:IteratorResult<number> = tsi.next();
+    while (!tmp.done) {
+      testNumber.equals ("Value at position " + expectedValue + " out of order", tmp.value, expectedValue);
+      expectedValue++;
+      count++;
+      tmp = tsi.next();
+    }
+    testNumber.equals ("Expected to iterate over all 20 elements", count, 20);
+  });
+
+  it("Set Test insert 1 to 20 in shuffled order and iterate in order", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+    // Fixed, deliberately non-sorted insertion order so ascending order in the set can only come from the SkipList itself, not from insertion order.
+    const shuffledNumbers:Array<number> = [13, 7, 20, 1, 16, 4, 9, 18, 2, 11, 15, 6, 19, 3, 10, 14, 8, 17, 5, 12];
+
+    for (const n of shuffledNumbers) {
+      expect (set.add (n)).toEqual (true);
+    }
+
+    expect (set.size ()).toEqual (20);
+    testBoolean.equalsTrue ("Validate set", set.validateSet ());
+
+    for (let i:number = 1; i <= 20; i++) {
+      testBoolean.equalsTrue ("Set should contain " + i, set.contains (i));
+    }
+
+    let expectedValue:number = 1;
+    let count:number = 0;
+    for (const iter = set.iterator (); iter.hasNext (); ) {
+      const value:number = iter.next ();
+      testNumber.equals ("Value at position " + expectedValue + " out of order", value, expectedValue);
+      expectedValue++;
+      count++;
+    }
+    testNumber.equals ("Expected to iterate over all 20 elements", count, 20);
+  });
+
 
   it("Set Test ceiling", function() {
     const SkipListSet2:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
@@ -1803,6 +1870,139 @@ describe("Test SkipList functionality", function() {
     testNumber.equals ("Test Next where below all", set.getNextHigherKey (-1000), 1);
   });
 
+  it("Set Test lower", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+    testNumber.equals ("Test empty lower", set.lower (0), null);
 
+    expect (set.add (44)).toEqual(true);
+    expect (set.add (5)).toEqual(true);
+    expect (set.add (20)).toEqual(true);
+    expect (set.add (88)).toEqual(true);
+    expect (set.add (50)).toEqual(true);
+    expect (set.add (30)).toEqual(true);
+    expect (set.add (1)).toEqual(true);
+    expect (set.add (48)).toEqual(true);
+    expect (set.add (62)).toEqual(true);
+    expect (set.add (78)).toEqual(true);
+    expect (set.add (17)).toEqual(true);
+    expect (set.add (70)).toEqual(true);
+    expect (set.add (80)).toEqual(true);
+    expect (set.add (32)).toEqual(true);
+    testBoolean.equalsTrue ("Validate set", set.validateSet());
+
+    testNumber.equals ("Test lower where exists", set.lower (62), 50);
+    testNumber.equals ("Test lower where not exists", set.lower (63), 62);
+    testNumber.equals ("Test lower where above all", set.lower (1000), 88);
+    testNumber.equals ("Test lower where below all", set.lower (-1000), null);
+    testNumber.equals ("Test lower where equal to smallest", set.lower (1), null);
+    testNumber.equals ("Test lower where equal to largest", set.lower (88), 80);
+  });
+
+  it("Set Test higher", function() {
+    const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+    testNumber.equals ("Test empty higher", set.higher (0), null);
+
+    expect (set.add (44)).toEqual(true);
+    expect (set.add (5)).toEqual(true);
+    expect (set.add (20)).toEqual(true);
+    expect (set.add (88)).toEqual(true);
+    expect (set.add (50)).toEqual(true);
+    expect (set.add (30)).toEqual(true);
+    expect (set.add (1)).toEqual(true);
+    expect (set.add (48)).toEqual(true);
+    expect (set.add (62)).toEqual(true);
+    expect (set.add (78)).toEqual(true);
+    expect (set.add (17)).toEqual(true);
+    expect (set.add (70)).toEqual(true);
+    expect (set.add (80)).toEqual(true);
+    expect (set.add (32)).toEqual(true);
+    testBoolean.equalsTrue ("Validate set", set.validateSet());
+
+    testNumber.equals ("Test higher where exists", set.higher (62), 70);
+    testNumber.equals ("Test higher where not exists", set.higher (63), 70);
+    testNumber.equals ("Test higher where above all", set.higher (1000), null);
+    testNumber.equals ("Test higher where below all", set.higher (-1000), 1);
+    testNumber.equals ("Test higher where equal to smallest", set.higher (1), 5);
+    testNumber.equals ("Test higher where equal to largest", set.higher (88), null);
+  });
+
+  // Deterministic seeded PRNG (mulberry32) so fuzz failures are reproducible from the logged seed.
+  function mulberry32 (seed:number) : () => number {
+    let state:number = seed;
+    return function () : number {
+      state = (state + 0x6D2B79F5) | 0;
+      let t:number = state;
+      t = Math.imul (t ^ (t >>> 15), t | 1);
+      t = (t + Math.imul (t ^ (t >>> 7), t | 61)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  it("Map Test always-new-minimum insertion stresses head bootstrap path", function() {
+    const map:SkipListMap<number,number> = new SkipListMap<number,number>(Collections.getNumberComparator());
+    const count:number = 200;
+    for (let i:number = count; i > 0; i--) {
+      expect (map.put (i, i * 10)).toEqual (undefined);
+      expect (map.validateMap ()).withContext ("validateMap after inserting new minimum " + i).toEqual (true);
+      expect (map.firstKey ()).toEqual (i);
+      expect (map.lastKey ()).toEqual (count);
+      expect (map.size ()).toEqual (count - i + 1);
+    }
+    let expectedKey:number = 1;
+    for (const iter:JIterator<number> = map.keySet ().iterator (); iter.hasNext (); ) {
+      expect (iter.next ()).toEqual (expectedKey);
+      expectedKey++;
+    }
+    expect (expectedKey).toEqual (count + 1);
+  });
+
+  it("Map Test always-new-maximum insertion stresses tail append path", function() {
+    const map:SkipListMap<number,number> = new SkipListMap<number,number>(Collections.getNumberComparator());
+    const count:number = 200;
+    for (let i:number = 1; i <= count; i++) {
+      expect (map.put (i, i * 10)).toEqual (undefined);
+      expect (map.validateMap ()).withContext ("validateMap after inserting new maximum " + i).toEqual (true);
+      expect (map.firstKey ()).toEqual (1);
+      expect (map.lastKey ()).toEqual (i);
+      expect (map.size ()).toEqual (i);
+    }
+    let expectedKey:number = 1;
+    for (const iter:JIterator<number> = map.keySet ().iterator (); iter.hasNext (); ) {
+      expect (iter.next ()).toEqual (expectedKey);
+      expectedKey++;
+    }
+    expect (expectedKey).toEqual (count + 1);
+  });
+
+  it("Set Test remove every element in random order many times leaves an empty, valid set", function() {
+    const rand = mulberry32 (99);
+    for (let trial:number = 0; trial < 8; trial++) {
+      const set:SkipListSet<number> = new SkipListSet<number>(Collections.getNumberComparator());
+      const keys:Array<number> = [];
+      for (let i:number = 0; i < 100; i++) { keys.push (i); }
+      // shuffle insertion order (Fisher-Yates)
+      for (let i:number = keys.length - 1; i > 0; i--) {
+        const j:number = Math.floor (rand() * (i + 1));
+        const tmp:number = keys[i]; keys[i] = keys[j]; keys[j] = tmp;
+      }
+      for (const k of keys) { set.add (k); }
+      expect (set.validateSet ()).toEqual (true);
+      expect (set.size ()).toEqual (100);
+
+      // shuffle removal order independently
+      for (let i:number = keys.length - 1; i > 0; i--) {
+        const j:number = Math.floor (rand() * (i + 1));
+        const tmp:number = keys[i]; keys[i] = keys[j]; keys[j] = tmp;
+      }
+      for (const k of keys) {
+        expect (set.remove (k)).withContext ("trial " + trial + " removing " + k).toEqual (true);
+        expect (set.validateSet ()).withContext ("trial " + trial + " validateSet after removing " + k).toEqual (true);
+      }
+      expect (set.size ()).toEqual (0);
+      expect (set.isEmpty ()).toEqual (true);
+      expect (set.first ()).toEqual (null);
+      expect (set.last ()).toEqual (null);
+    }
+  }, 30000);
 
 });
