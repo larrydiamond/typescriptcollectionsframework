@@ -1,0 +1,28 @@
+spec/TestSkipList.spec.ts
+  s_023c1bd8219a59::t_a035cef9e80439 1582-1585,1588
+  s_023c1bd8219a59::t_2c4e25dfb2e2b0 1873-1939,1941-2006
+  s_023c1bd8219a59::t_b9206bf8b1589f 1553-1581,1586-1587,1589-1619
+src/SkipList.ts
+  s_023c1bd8219a59::t_00446afcf84418 350
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "788f9d4e243b5e212f0ecadb8e2ffb3c9c2262d9",
+  "prompts": {},
+  "humans": {
+    "h_bb8abe7e00e0ce": {
+      "author": "Larry Diamond <ldiamond@ldiamond.com>"
+    }
+  },
+  "sessions": {
+    "s_023c1bd8219a59": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "92f22abe-5931-4834-9294-5ac2a9418b5e",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Larry Diamond <ldiamond@ldiamond.com>"
+    }
+  }
+}
